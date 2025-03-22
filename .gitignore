@@ -134,3 +134,46 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+# vite cache
+.vite/
+
+# vitest coverage
+coverage/
+
+# Cypress test files
+cypress/screenshots/
+cypress/videos/
+
+# Playwright test output
+test-results/
+playwright-report/
+
+# Storybook build output
+storybook-static/
+
+# Tailwind CSS JIT cache
+.tailwind-config.js
+.postcss.config.js
+
+# Local dev server SSL certs (if using https locally)
+*.pem
+*.key
+
+# Mac OS & system files (for cross-platform dev)
+.DS_Store
+Thumbs.db
+
+# IDE specific (optional but useful)
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local environment files (if any custom naming)
+.env.*.local
+
