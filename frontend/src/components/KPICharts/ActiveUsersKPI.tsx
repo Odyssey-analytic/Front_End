@@ -1,72 +1,59 @@
-import React from 'react';
-import { Line } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  LineElement,
-  PointElement,
-  CategoryScale,
-  LinearScale,
-  ChartData,
-  ChartOptions,
-} from 'chart.js';
+// RealTimeChart.js
+import React, {useEffect, useState} from 'react';
+import {Line} from 'react-chartjs-2';
+import {Chart as ChartJS, LineElement, PointElement, LinearScale, Title, Tooltip, Legend} from 'chart.js';
 
-import styles from './ActiveUsersChart.module.css';
-import { useRealTimeUsers } from '../../hooks/useRealTimeUsers'; 
+ChartJS.register(LineElement, PointElement, LinearScale, Title, Tooltip, Legend);
 
-ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale);
+const RealTimeChart = () => {
+    const [data, setData] = useState({
+        labels: [],
+        datasets: [
+            {
+                label: 'Random Data',
+                data: [],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+            },
+        ],
+    });
+    const [dataa, setdataa] = useState({});
+    const [initialPayload, setInitialPayload] = useState({
+        kpi: "current_active_users",
+        token: "NenFqjpccgj4dL1DPmP83P40ome3cphkxIYkmnE9QxIzmhLfBW4OHcL8x39I1MeE"
+    }); // Example initial payload
+    const x = new URLSearchParams(initialPayload);
+    useEffect(() => {
+        const source = new EventSource(`http://localhost:8000/kpi/sse?${x.toString()}`);
 
-const ActiveUsersChart = () => {
-  const { userCounts, labels } = useRealTimeUsers();
+        // Define event handlers
+        const handleMessage = (event) => {
+            console.log("SSE message:", event.data);
+        };
 
-  const currentUserCount = userCounts[userCounts.length - 1] ?? 0;
+        const handleError = (error) => {
+            console.error("SSE connection error:", error);
+            // Optionally, you can close the connection on error
+            source.close();
+        };
 
-  const data: ChartData<'line'> = {
-    labels,
-    datasets: [
-      {
-        label: 'Active Users Number',
-        data: userCounts,
-        fill: true,
-        borderColor: '#00C4FF',
-        backgroundColor: 'rgba(0, 196, 255, 0.2)',
-        tension: 0.4,
-      },
-    ],
-  };
+        // Attach event listeners
+        source.onmessage = handleMessage;
+        source.onerror = handleError;
 
-  const options: ChartOptions<'line'> = {
-    responsive: true,
-    plugins: {
-      legend: {
-        labels: {
-          color: '#FFFFFF',
-        },
-      },
-    },
-    scales: {
-      x: {
-        ticks: {
-          color: '#B8C4E0',
-        },
-      },
-      y: {
-        ticks: {
-          color: '#B8C4E0',
-        },
-      },
-    },
-  };
+        // Cleanup function to close the EventSource when the component unmounts or dependencies change
+        return () => {
+            source.close(); // Close the connection
+        };
+    }, [dataa, x]);
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.kpiBox}>
-        <h3 className={styles.kpiLabel}>Active Users</h3>
-        <p className={styles.kpiValue}>{currentUserCount}</p>
-      </div>
-      <Line data={data} options={options} />
-    </div>
-  );
-  
+    return (
+        <div>
+            <h2>Real-Time Data Chart</h2>
+            <Line data={data}/>
+        </div>
+    );
 };
 
-export default ActiveUsersChart;
+export default RealTimeChart;
