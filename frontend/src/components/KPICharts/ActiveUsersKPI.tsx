@@ -1,12 +1,12 @@
-// RealTimeChart.js
-import React, {useEffect, useState} from 'react';
-import {Line} from 'react-chartjs-2';
-import {Chart as ChartJS, LineElement, PointElement, LinearScale, Title, Tooltip, Legend} from 'chart.js';
+import React, { useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend } from 'chart.js';
 
-ChartJS.register(LineElement, PointElement, LinearScale, Title, Tooltip, Legend);
+// Register the necessary components
+ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 
 const RealTimeChart = () => {
-    const [data, setData] = useState({
+    const [chartData, setChartData] = useState({
         labels: [],
         datasets: [
             {
@@ -18,23 +18,43 @@ const RealTimeChart = () => {
             },
         ],
     });
-    const [dataa, setdataa] = useState({});
-    const [initialPayload, setInitialPayload] = useState({
+
+    const [initialPayload] = useState({
         kpi: "current_active_users",
-        token: "NenFqjpccgj4dL1DPmP83P40ome3cphkxIYkmnE9QxIzmhLfBW4OHcL8x39I1MeE"
-    }); // Example initial payload
-    const x = new URLSearchParams(initialPayload);
+        token: "jGsqgVxz5FpEVAVo6tTcde3giUYR24r2HE5iT1AUmYBCNZcCXhVAhTJ2ZY60kgUm"
+    });
+
     useEffect(() => {
-        const source = new EventSource(`http://localhost:8000/kpi/sse?${x.toString()}`);
+        const source = new EventSource(`http://127.0.0.1:8000/kpi/sse/?kpi=${initialPayload.kpi}&token=${initialPayload.token}`);
 
         // Define event handlers
         const handleMessage = (event) => {
-            console.log("SSE message:", event.data);
+            const newData = JSON.parse(event.data); // Assuming the data is in JSON format
+            console.log("SSE message:", newData);
+
+            // Update chart data
+            setChartData(prevData => {
+                const updatedLabels = [...prevData.labels, newData.timestamp]; // Assuming your data has a timestamp field
+                const updatedData = [...prevData.datasets[0].data, newData.value]; // Assuming your data has a value field
+
+                // Keep only the latest 10 entries
+                if (updatedLabels.length > 10) {
+                    updatedLabels.shift();
+                    updatedData.shift();
+                }
+
+                return {
+                    labels: updatedLabels,
+                    datasets: [{
+                        ...prevData.datasets[0],
+                        data: updatedData,
+                    }],
+                };
+            });
         };
 
         const handleError = (error) => {
             console.error("SSE connection error:", error);
-            // Optionally, you can close the connection on error
             source.close();
         };
 
@@ -42,16 +62,16 @@ const RealTimeChart = () => {
         source.onmessage = handleMessage;
         source.onerror = handleError;
 
-        // Cleanup function to close the EventSource when the component unmounts or dependencies change
+        // Cleanup function to close the EventSource when the component unmounts
         return () => {
-            source.close(); // Close the connection
+            source.close();
         };
-    }, [dataa, x]);
+    }, [initialPayload]);
 
     return (
         <div>
             <h2>Real-Time Data Chart</h2>
-            <Line data={data}/>
+            <Line width={1500} height={550}  data={chartData} />
         </div>
     );
 };
