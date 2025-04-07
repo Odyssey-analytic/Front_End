@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; 
+
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -6,7 +8,7 @@ const LoginPage = () => {
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 login-page-container px-3">
       <div className="login-box mx-auto ms-lg-5">
         <h2 className="fw-bold text-start mb-3 login-title">ورود</h2>
-        <p className="text-start login-subtitle">ورود با استفاده از ایمیل</p>
+        <p className=" text-muted text-start login-subtitle">ورود با استفاده از ایمیل</p>
         <form>
           <div className="mb-3 position-relative">
             <input
@@ -26,11 +28,15 @@ const LoginPage = () => {
 
             <div className="text-muted small px-2 my-3 text-start login-non-register-remember-password">
               <span className="login-non-register-remember-password">
-                ثبت‌نام نکرده‌اید؟ <a className="fw-bold text-decoration-none login-non-register-remember-password">ایجاد حساب</a>
-              </span>
-              <div>
-                <a className="fw-bold text-decoration-none login-non-register-remember-password">فراموشی رمز عبور</a>
-              </div>
+                ثبت‌نام نکرده‌اید؟{' '}
+                <Link
+                  to="/signup"
+                  className="fw-bold text-decoration-none login-non-register-remember-password"
+                >
+                  ایجاد حساب
+                </Link>
+              </span> <div>
+              <a className="fw-bold text-decoration-none login-non-register-remember-password">فراموشی رمز عبور</a></div>
             </div>
     
             <hr className="my-4" />
