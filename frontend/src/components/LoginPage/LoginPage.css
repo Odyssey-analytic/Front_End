@@ -8,6 +8,22 @@
   width: 100vw;
 }
 
+.website-logo {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 10;
+}
+
+.website-logo-img {
+  height: 32px;
+  width: auto;
+}
+
+.website-brand-text {
+  font-size: 18px;
+  letter-spacing: 2px;
+}
 
 .login-box {
   background-color: rgba(255, 255, 255, 0.8);
@@ -44,12 +60,14 @@
   color: rgba(29, 29, 29);
 }
 
-/* .login-input-email-icon {
+.login-email-icon{
   position: absolute;
-  top: 10%;
+  top: 50%;
   right: 1rem; 
   transform: translateY(-50%);
-} */
+  width: 20px;
+  opacity: 1;
+}
 
 .login-btn {
   background: linear-gradient(to right, rgba(93, 27, 121),   rgba(0, 113, 154));

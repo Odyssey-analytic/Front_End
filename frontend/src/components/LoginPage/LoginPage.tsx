@@ -5,7 +5,11 @@ import './LoginPage.css';
 
 const LoginPage = () => {
   return (
-    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 login-page-container px-3">
+    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 login-page-container px-3">  
+      <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
+        <div className="website-brand-text english-text text-white me-3">ODESSAY</div>
+        <img src="/src/assets/icons/odessay_logo.svg" alt="Odessay Logo" className="website-logo-img me-4" />
+      </div>
       <div className="login-box mx-auto ms-lg-5">
         <h2 className="fw-bold text-start mb-3 login-title">ورود</h2>
         <p className=" text-muted text-start login-subtitle">ورود با استفاده از ایمیل</p>
@@ -13,15 +17,16 @@ const LoginPage = () => {
           <div className="mb-3 position-relative">
             <input
               type="email"
-              className="form-control text-start pe-5 login-input text-dark"
+              className="form-control text-start pe-5 text-dark login-input"
               placeholder=".ایمیل خود را وارد کنید"
               required
             />
-            {/* <img
-              src="/src/assets/icons/email_icon.svg"
+            <img
+              src="/src/assets/icons/login_email_icon.svg"
               alt="email icon"
-              className="login-input-email-icon"
-            /> */}
+              className="login-email-icon"
+            />
+            </div>
             <button type="submit" className="btn w-100 login-btn">
               ورود
             </button>
@@ -31,8 +36,7 @@ const LoginPage = () => {
                 ثبت‌نام نکرده‌اید؟{' '}
                 <Link
                   to="/signup"
-                  className="fw-bold text-decoration-none login-non-register-remember-password"
-                >
+                  className="fw-bold text-decoration-none login-non-register-remember-password">
                   ایجاد حساب
                 </Link>
               </span> <div>
@@ -45,12 +49,12 @@ const LoginPage = () => {
               <span className="fw-bold text-white ms-auto me-4 login-google-btn-enter-text">ورود با استفاده از</span>
               <div className="d-flex align-items-center gap-2 me-auto">
                 <span className="fw-bold text-white login-google-btn-google-text">Google</span>
-                <img src="/src/assets/icons/google_icon.svg" alt="Google" width="23" />
+                <img src="/src/assets/icons/login_google_icon.svg" alt="Google" width="23" />
               </div>
             </button>
 
 
-          </div>
+          
         </form>
       </div>
     </div>
