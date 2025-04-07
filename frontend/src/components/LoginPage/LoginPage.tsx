@@ -40,7 +40,12 @@ const LoginPage = () => {
                   ایجاد حساب
                 </Link>
               </span> <div>
-              <a className="fw-bold text-decoration-none login-non-register-remember-password">فراموشی رمز عبور</a></div>
+                <Link
+                to="/forgot-password"
+                className="fw-bold text-decoration-none login-non-register-remember-password"
+              >
+                فراموشی رمز عبور
+              </Link></div>
             </div>
     
             <hr className="my-4" />

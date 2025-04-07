@@ -10,8 +10,7 @@ import './index.css'
 import ActiveUsersKPI from "./components/KPICharts/ActiveUsersKPI.tsx";
 import LoginPage from "./components/LoginPage/LoginPage";
 import SignupPage from "./components/SignupPage/SignupPage";
-
-
+import ForgotPasswordPage from "./components/ForgotpasswordPage/ForgotpasswordPage"; // اضافه کن
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -19,6 +18,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} /> {/* اینو اضافه کن */}
       </Routes>
     </BrowserRouter>
   </StrictMode>
