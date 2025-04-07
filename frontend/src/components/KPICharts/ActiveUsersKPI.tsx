@@ -21,7 +21,7 @@ const RealTimeChart = () => {
 
     const [initialPayload] = useState({
         kpi: "current_active_users",
-        token: "jGsqgVxz5FpEVAVo6tTcde3giUYR24r2HE5iT1AUmYBCNZcCXhVAhTJ2ZY60kgUm"
+        token: "j87dpMSJg7pMVd7VKxjBR1Qo6Uu86DiCNf8PwI3GHZxgZOO2827SsDWxsfjHVTQH"
     });
 
     useEffect(() => {
