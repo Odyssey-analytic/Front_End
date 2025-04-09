@@ -5,7 +5,9 @@ import './SignupPage.css';
 const SignupPage = () => {
   
   const [showPassword, setShowPassword] = useState(false);
-  
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+
   return (
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 signup-page-container px-3">
       <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
@@ -16,18 +18,36 @@ const SignupPage = () => {
         <h2 className="fw-bold text-start mb-3 signup-title">ثبت‌نام</h2>
 
         <form>
-          <div className="mb-3 position-relative">
-            <input
-              type="text"
-              className="form-control text-start pe-5 signup-input"
-              placeholder="نام کاربری یا ایمیل"
-              required
-            />
-            <img
-              src="/src/assets/icons/signup_user_icon.svg"
-              alt="user icon"
-              className="signup-user-icon"
-            />
+            <div className="mb-3 position-relative">
+              <input
+                type="email"
+                className="form-control text-start pe-5 signup-input"
+                placeholder="ایمیل"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <img
+                src="/src/assets/icons/login_email_icon.svg"
+                alt="email icon"
+                className="signup-email-icon"
+              />
+            </div>
+
+            <div className="mb-3 position-relative">
+              <input
+                type="text"
+                className="form-control text-start pe-5 signup-input"
+                placeholder="نام کاربری"
+                required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <img
+                src="/src/assets/icons/signup_user_icon.svg"
+                alt="username icon"
+                className="signup-user-icon"
+              />
           </div>
 
           <div className="mb-3 position-relative">
