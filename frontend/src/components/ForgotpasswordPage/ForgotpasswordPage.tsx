@@ -1,4 +1,3 @@
-import React from 'react';
 import './ForgotPasswordPage.css';
 
 const ForgotPasswordPage = () => {

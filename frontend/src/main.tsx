@@ -7,10 +7,10 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './styles/fonts.css';
 import './index.css'
 
-import ActiveUsersKPI from "./components/KPICharts/ActiveUsersKPI.tsx";
+// import ActiveUsersKPI from "./components/KPICharts/ActiveUsersKPI";
 import LoginPage from "./components/LoginPage/LoginPage";
 import SignupPage from "./components/SignupPage/SignupPage";
-import ForgotPasswordPage from "./components/ForgotpasswordPage/ForgotpasswordPage"; // اضافه کن
+import ForgotPasswordPage from "./components/ForgotpasswordPage/ForgotpasswordPage"; 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -18,7 +18,9 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} /> {/* اینو اضافه کن */}
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} /> 
+        
+        {/* <Route path="/" element={<ActiveUsersKPI />} /> */}
       </Routes>
     </BrowserRouter>
   </StrictMode>
