@@ -1,26 +1,30 @@
 import { useState , useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
+import { signup } from '../../services/userService';
 import './SignupPage.css';
 
 
 const SignupPage = () => {
-  
+
+  const navigate = useNavigate();
+    
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
 
-    const [email, setEmail] = useState('');
-    const [emailError, setEmailError] = useState('');
-    const [emailErrorKey, setEmailErrorKey] = useState(0);
-    const [emailErrorType, setEmailErrorType] = useState<'empty' | 'invalid' | ''>('');
-    
-    const [username, setUsername] = useState('');
-    const [usernameError, setUsernameError] = useState('');
-    const [usernameErrorType, setUsernameErrorType] = useState<'empty' | 'invalid' | ''>('');
-    const [usernameErrorKey, setUsernameErrorKey] = useState(0);
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [emailErrorKey, setEmailErrorKey] = useState(0);
+  const [emailErrorType, setEmailErrorType] = useState<'empty' | 'invalid' | ''>('');
+  
+  const [username, setUsername] = useState('');
+  const [usernameError, setUsernameError] = useState('');
+  const [usernameErrorType, setUsernameErrorType] = useState<'empty' | 'invalid' | ''>('');
+  const [usernameErrorKey, setUsernameErrorKey] = useState(0);
 
-    const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [confirmPasswordErrorKey, setConfirmPasswordErrorKey] = useState(0);
 
 
@@ -106,7 +110,7 @@ const SignupPage = () => {
   };
   
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     let valid = true;
@@ -152,7 +156,23 @@ const SignupPage = () => {
 
     if (!valid) return;
 
-    console.log('Form submitted successfully');
+    try {
+
+      const data = {
+        username,
+        email,
+        password,
+        confirm_password: confirmPassword,
+      };
+      const result = await signup(data);
+      console.log('Signup successful:', result);
+
+      navigate('/login');
+    
+    } catch (error: any) {
+      console.error('Signup failed:', error.message);
+    }
+    
   };
 
   return (
@@ -236,7 +256,7 @@ const SignupPage = () => {
           <input
             type={showConfirmPassword ? 'text' : 'password'}
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={handleConfirmPasswordChange}
             className="form-control signup-input"
             placeholder="تأیید رمز عبور"
           />
