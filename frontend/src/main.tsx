@@ -20,7 +20,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} /> 
         
-        {/* <Route path="/" element={<ActiveUsersKPI />} /> */}
+        {/* <Route path="/login/dashboard" element={<ActiveUsersKPI />} /> */}
       </Routes>
     </BrowserRouter>
   </StrictMode>

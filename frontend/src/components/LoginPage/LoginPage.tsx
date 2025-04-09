@@ -1,10 +1,38 @@
-import { Link } from 'react-router-dom'; 
+import { Link , useNavigate } from 'react-router-dom'; 
 import { useState } from 'react';
+import { login } from '../../services/userService';
 import './LoginPage.css';
 
 const LoginPage = () => {
 
+  const navigate = useNavigate();
+  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+  
+    try {
+      const data = {
+        identifier: email,
+        password: password,
+      };
+  
+      const result = await login(data);
+      console.log('Login successful:', result);
+  
+      // می‌تونی JWT یا نام کاربری رو ذخیره کنی:
+      localStorage.setItem('accessToken', result.access);
+      navigate('/login/dashboard');
+    } catch (error: any) {
+      console.error('Login failed:', error.message);
+      // اینجا پیغام خطا رو نشون بده
+    }
+  };
+  
 
   return (
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 login-page-container px-3">  
@@ -15,14 +43,16 @@ const LoginPage = () => {
       <div className="login-box mx-auto ms-lg-5">
         <h2 className="fw-bold text-start mb-3 login-title">ورود</h2>
         <p className=" text-muted text-start login-subtitle">ورود با استفاده از ایمیل</p>
-        <form>
+        
+        <form onSubmit={handleLogin}>
           {/* Username Or Email */}
           <div className="mb-3 position-relative">
             <input
               type="email"
               className="form-control text-start pe-5 text-dark login-input"
               placeholder=".ایمیل خود را وارد کنید"
-              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <img
               src="/src/assets/icons/login_email_icon.svg"
@@ -38,13 +68,15 @@ const LoginPage = () => {
                 className="form-control text-start pe-5 text-dark login-input"
                 placeholder="رمز عبور خود را وارد کنید."
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}     
               />
               <img
                 src="/src/assets/icons/email_padlock_icon.svg"
                 alt="password icon"
                 className="login-password-icon"
               />
-            <img
+              <img
                 src={showPassword ? '/src/assets/icons/login_eye_icon.svg' : '/src/assets/icons/login_eye_off_icon.svg'}
                 alt="toggle password"
                 className="login-eye-icon"
