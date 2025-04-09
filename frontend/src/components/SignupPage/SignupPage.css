@@ -129,10 +129,7 @@
 }
 
 .error-message {
-  /* font-size: 0.85rem; */
-  color: #dc3545; /* قرمز استاندارد بوت‌استرپ */
-  /* margin-top: 0.1rem; */
-  /* line-height: 1.2; */
+  color: #dc3545; 
 }
 
 

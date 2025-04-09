@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'; 
-
+import { useState } from 'react';
 import './LoginPage.css';
 
 const LoginPage = () => {
+
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 login-page-container px-3">  
       <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
@@ -13,6 +16,7 @@ const LoginPage = () => {
         <h2 className="fw-bold text-start mb-3 login-title">ورود</h2>
         <p className=" text-muted text-start login-subtitle">ورود با استفاده از ایمیل</p>
         <form>
+          {/* Username Or Email */}
           <div className="mb-3 position-relative">
             <input
               type="email"
@@ -26,6 +30,29 @@ const LoginPage = () => {
               className="login-email-icon"
             />
             </div>
+
+            {/* Password */}
+            <div className="mb-3 position-relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                className="form-control text-start pe-5 text-dark login-input"
+                placeholder="رمز عبور خود را وارد کنید."
+                required
+              />
+              <img
+                src="/src/assets/icons/email_padlock_icon.svg"
+                alt="password icon"
+                className="login-password-icon"
+              />
+            <img
+                src={showPassword ? '/src/assets/icons/login_eye_icon.svg' : '/src/assets/icons/login_eye_off_icon.svg'}
+                alt="toggle password"
+                className="login-eye-icon"
+                onClick={() => setShowPassword(prev => !prev)}
+              />
+            </div>
+
+
             <button type="submit" className="btn w-100 login-btn">
               ورود
             </button>
