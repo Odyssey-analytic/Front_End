@@ -6,6 +6,9 @@ const ForgotpasswordPage = () => {
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
+
+    console.log("in the handle submit:", email);
+
     e.preventDefault();
     console.log("Submitting forgot password form with email:", email);
 
@@ -17,8 +20,8 @@ const ForgotpasswordPage = () => {
       alert("Failed to send reset email. Please try again.");
     }
 
-    console.log("Form submitted with email:", email);
-    await requestPasswordReset({ email });
+    // console.log("Form submitted with email:", email);
+    // await requestPasswordReset({ email });
 
   };
 
