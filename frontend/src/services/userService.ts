@@ -32,6 +32,7 @@ export const signup = async (data: {
   
     if (!response.ok) {
       const errorData = await response.json();
+      console.error("Backend error:", errorData);
       throw new Error(errorData.message || 'Login failed');
     }
   
