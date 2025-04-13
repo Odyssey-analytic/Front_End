@@ -4,7 +4,7 @@ export const signup = async (data: {
     password: string;
     confirm_password: string;
   }) => {
-    const response = await fetch('https://odysseyanalytics.ir/api/signup/', {
+    const response = await fetch('https://odysseyanalytics.ir/api/api/signup/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
