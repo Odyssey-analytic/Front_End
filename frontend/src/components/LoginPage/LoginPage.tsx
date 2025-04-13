@@ -24,12 +24,10 @@ const LoginPage = () => {
       const result = await login(data);
       console.log('Login successful:', result);
   
-      // می‌تونی JWT یا نام کاربری رو ذخیره کنی:
       localStorage.setItem('accessToken', result.access);
       navigate('/login/dashboard');
     } catch (error: any) {
       console.error('Login failed:', error.message);
-      // اینجا پیغام خطا رو نشون بده
     }
   };
   
