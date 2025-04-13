@@ -8,19 +8,18 @@ const ForgotpasswordPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Submitting forgot password form with email:", email);
-
+  
     try {
-      await requestPasswordReset({ email });
-      alert("Password reset link has been sent to your email.");
+      const res = await requestPasswordReset({ email });
+      console.log("Reset request successful:", res);
+      alert("A password reset link has been sent to your email.");
     } catch (err: any) {
       console.error("Request error:", err.message);
-      alert("Failed to send reset email. Please try again.");
+      alert("Failed to send the reset email. Please try again.");
     }
-
-    console.log("Form submitted with email:", email);
-    await requestPasswordReset({ email });
-
   };
+  
+
 
   return (
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 forgot-page-container px-3">  
