@@ -1,4 +1,4 @@
-import './ForgotPasswordPage.css';
+import './ForgotpasswordPage.css';
 
 const ForgotPasswordPage = () => {
   return (
