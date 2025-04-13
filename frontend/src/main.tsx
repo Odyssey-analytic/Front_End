@@ -11,15 +11,16 @@ import './index.css'
 import LoginPage from "./components/LoginPage/LoginPage";
 import SignupPage from "./components/SignupPage/SignupPage";
 import ForgotPasswordPage from "./components/ForgotpasswordPage/ForgotpasswordPage"; 
+import ResetpasswordPage from "./components/ResetpasswordPage/ResetpasswordPage";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} /> 
-        
+        <Route path="/forgot-password/reset-password" element={<ResetpasswordPage />} />
         {/* <Route path="/login/dashboard" element={<ActiveUsersKPI />} /> */}
       </Routes>
     </BrowserRouter>

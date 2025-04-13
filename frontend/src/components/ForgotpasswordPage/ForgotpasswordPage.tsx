@@ -27,7 +27,7 @@ const ForgotPasswordPage = () => {
           </div>
 
           <p className="text-muted small text-start">ما یک پیام برای تنظیم یا بازیابی رمز عبور جدید برایتان ارسال خواهیم کرد.</p>
-          <div className="text-end mt-3">
+          <div className="d-flex justify-content-center mt-3">
             <button type="submit" className="btn d-flex align-items-center gap-1 forgot-btn">
               <span className="text-white fw-bold forgot-btn-text">ارسال کد</span>
               <img  className="" src="/src/assets/icons/forgetpassword_sendcode_icon.svg" alt="send icon" style={{ width: '30px', height: '25px' }} />
