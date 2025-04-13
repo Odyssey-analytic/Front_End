@@ -130,7 +130,6 @@ const SignupPage = () => {
       setEmailErrorType('');
     }
     
-
     if (username.trim() === '') {
       setUsernameError('لطفاً نام کاربری را وارد کنید.');
       setUsernameErrorType('empty');

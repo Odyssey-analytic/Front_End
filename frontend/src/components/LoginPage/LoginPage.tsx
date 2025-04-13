@@ -36,8 +36,6 @@ const LoginPage = () => {
       setErrorMessage(error.message || 'Something went wrong');
     }
 
-    // console.log(JSON.stringify(data));
-
   };
   
 
