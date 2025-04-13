@@ -7,7 +7,6 @@ const LoginPage = () => {
 
   const [errorMessage, setErrorMessage] = useState('');
 
-
   const navigate = useNavigate();
   
   const [email, setEmail] = useState('');

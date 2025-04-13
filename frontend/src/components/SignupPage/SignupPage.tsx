@@ -6,6 +6,8 @@ import './SignupPage.css';
 
 const SignupPage = () => {
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   const navigate = useNavigate();
     
   const [showPassword, setShowPassword] = useState(false);
@@ -26,8 +28,6 @@ const SignupPage = () => {
 
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [confirmPasswordErrorKey, setConfirmPasswordErrorKey] = useState(0);
-
-
 
 
   useEffect(() => {
@@ -171,6 +171,7 @@ const SignupPage = () => {
     
     } catch (error: any) {
       console.error('Signup failed:', error.message);
+      setErrorMessage(error.message || 'Something went wrong');
     }
     
   };
@@ -272,6 +273,13 @@ const SignupPage = () => {
             </div>
           )}
           </div>
+
+
+          {errorMessage && (
+              <div className="alert alert-danger text-center mt-2">
+                {errorMessage}
+              </div>
+          )}
 
           <button type="submit" className="btn w-100 signup-btn">
             ثبت نام
