@@ -7,6 +7,9 @@ const ForgotpasswordPage = () => {
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
+
+    console.log("in the handle submit:", email);
+
     e.preventDefault();
     console.log("Submitting forgot password form with email:", email);
   
@@ -18,9 +21,10 @@ const ForgotpasswordPage = () => {
       console.error("Request error:", err.message);
       alert("Failed to send the reset email. Please try again.");
     }
-  };
+  }
   
 
+  };
 
   return (
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 forgot-page-container px-3">  

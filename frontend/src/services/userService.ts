@@ -56,19 +56,22 @@ export const signup = async (data: {
   // };
 
   export const requestPasswordReset = async (data: { email: string }) => {
-    console.log(">>> SENDING RESET EMAIL TO", data.email);
+    console.log("Sending POST to /request-reset-password with:", data.email);
   
-    const res = await fetch("https://odysseyanalytics.ir/api/api/request-reset-password/", {
-      method: "POST",
+    const response = await fetch('https://odysseyanalytics.ir/api/api/request-reset-password/', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to send reset email.');
+    }
   
-    console.log(">>> RESPONSE STATUS", res.status);
-    const json = await res.json();
-    console.log(">>> RESPONSE JSON", json);
-    return json;
+    return response.json();
   };
+  
   

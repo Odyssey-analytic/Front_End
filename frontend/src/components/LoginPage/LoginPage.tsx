@@ -113,9 +113,7 @@ const LoginPage = () => {
                 <img src="/src/assets/icons/login_google_icon.svg" alt="Google" width="23" />
               </div>
             </button>
-
-
-          
+            
         </form>
       </div>
     </div>
