@@ -26,9 +26,15 @@ const LoginPage = () => {
   
       localStorage.setItem('accessToken', result.access);
       navigate('/login/dashboard');
+
+      console.log(JSON.stringify(data));
+      
     } catch (error: any) {
       console.error('Login failed:', error.message);
     }
+
+    // console.log(JSON.stringify(data));
+
   };
   
 
@@ -113,7 +119,7 @@ const LoginPage = () => {
                 <img src="/src/assets/icons/login_google_icon.svg" alt="Google" width="23" />
               </div>
             </button>
-            
+
         </form>
       </div>
     </div>

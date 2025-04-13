@@ -34,7 +34,7 @@ const ResetpasswordPage = () => {
       }
 
       alert("Your password has been successfully reset.");
-      navigate("/"); // بازگشت به صفحه ورود
+      navigate("/");
     } catch (error: any) {
       console.error("Reset error:", error.message);
       alert("Failed to reset password. Please try again.");
