@@ -3,7 +3,7 @@ import { requestPasswordReset } from "../../services/userService";
 import './ForgotpasswordPage.css';
 
 const ForgotpasswordPage = () => {
-  
+
   const [email, setEmail] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -23,8 +23,6 @@ const ForgotpasswordPage = () => {
     }
   }
   
-
-  };
 
   return (
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 forgot-page-container px-3">  
@@ -67,5 +65,4 @@ const ForgotpasswordPage = () => {
     </div>
   );
 };
-
 export default ForgotpasswordPage;
