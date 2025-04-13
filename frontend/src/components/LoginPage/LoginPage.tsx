@@ -5,6 +5,9 @@ import './LoginPage.css';
 
 const LoginPage = () => {
 
+  const [errorMessage, setErrorMessage] = useState('');
+
+
   const navigate = useNavigate();
   
   const [email, setEmail] = useState('');
@@ -28,9 +31,10 @@ const LoginPage = () => {
       navigate('/login/dashboard');
 
       console.log(JSON.stringify(data));
-      
+
     } catch (error: any) {
       console.error('Login failed:', error.message);
+      setErrorMessage(error.message || 'Something went wrong');
     }
 
     // console.log(JSON.stringify(data));
@@ -111,6 +115,12 @@ const LoginPage = () => {
             </div>
     
             <hr className="my-4" />
+
+            {errorMessage && (
+              <div className="alert alert-danger text-center mt-2">
+                {errorMessage}
+              </div>
+            )}
 
             <button type="button" className="btn login-google-btn d-flex align-items-center w-80 px-4 mx-auto">
               <span className="fw-bold text-white ms-auto me-4 login-google-btn-enter-text">ورود با استفاده از</span>
