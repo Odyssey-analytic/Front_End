@@ -16,6 +16,10 @@ const ForgotpasswordPage = () => {
       console.error("Request error:", err.message);
       alert("Failed to send reset email. Please try again.");
     }
+
+    console.log("Form submitted with email:", email);
+    await requestPasswordReset({ email });
+
   };
 
   return (
