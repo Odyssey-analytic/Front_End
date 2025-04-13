@@ -23,7 +23,6 @@ const ForgotpasswordPage = () => {
     }
   }
   
-
   return (
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 forgot-page-container px-3">  
       <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
