@@ -35,7 +35,6 @@ const LoginPage = () => {
       console.error('Login failed:', error.message);
       setErrorMessage(error.message || 'Something went wrong');
     }
-
   };
   
 
