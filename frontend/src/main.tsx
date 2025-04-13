@@ -20,8 +20,8 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/forgot-password" element={<ForgotpasswordPage />} /> 
-        <Route path="/forgot-password/reset-password" element={<ResetpasswordPage />} />
-        {/* <Route path="/login/dashboard" element={<ActiveUsersKPI />} /> */}
+        {/* <Route path="/forgot-password/reset-password" element={<ResetpasswordPage />} /> */}
+        <Route path="/reset-password/:token" element={<ResetpasswordPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

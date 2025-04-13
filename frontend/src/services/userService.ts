@@ -58,27 +58,27 @@ export const signup = async (data: {
   };
 
 
-  // export const resetPassword = async (data: {
-  //   token: string;
-  //   password: string;
-  //   confirm_password: string;
-  // }) => {
-  //   const response = await fetch(`https://odysseyanalytics.ir/api/reset-password/${data.token}/`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       password: data.password,
-  //       confirm_password: data.confirm_password,
-  //     }),
-  //   });
+  export const resetPassword = async (data: {
+    token: string;
+    password: string;
+    confirm_password: string;
+  }) => {
+    const response = await fetch(`https://odysseyanalytics.ir/api/api/reset-password/${data.token}/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        password: data.password,
+        confirm_password: data.confirm_password
+      })
+    });
   
-  //   if (!response.ok) {
-  //     const errorData = await response.json();
-  //     throw new Error(errorData.message || "Password reset failed.");
-  //   }
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Password reset failed.");
+    }
   
-  //   return response.json();
-  // };
+    return response.json();
+  };
   
