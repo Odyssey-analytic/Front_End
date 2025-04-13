@@ -37,23 +37,6 @@ export const signup = async (data: {
   
     return response.json(); 
   };
-  
-  // export const requestPasswordReset = async (data: { email: string }) => {
-  //   const response = await fetch('https://odysseyanalytics.ir/api/api/request-reset-password/', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(data),
-  //   });
-  
-  //   if (!response.ok) {
-  //     const errorData = await response.json();
-  //     throw new Error(errorData.message || 'Failed to send reset password email.');
-  //   }
-  
-  //   return response.json();
-  // };
 
   export const requestPasswordReset = async (data: { email: string }) => {
     console.log("Sending POST to /request-reset-password with:", data.email);
@@ -73,5 +56,29 @@ export const signup = async (data: {
   
     return response.json();
   };
+
+
+  // export const resetPassword = async (data: {
+  //   token: string;
+  //   password: string;
+  //   confirm_password: string;
+  // }) => {
+  //   const response = await fetch(`https://odysseyanalytics.ir/api/reset-password/${data.token}/`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       password: data.password,
+  //       confirm_password: data.confirm_password,
+  //     }),
+  //   });
   
+  //   if (!response.ok) {
+  //     const errorData = await response.json();
+  //     throw new Error(errorData.message || "Password reset failed.");
+  //   }
+  
+  //   return response.json();
+  // };
   
