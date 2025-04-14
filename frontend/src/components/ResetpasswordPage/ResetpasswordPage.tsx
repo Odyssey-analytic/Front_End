@@ -135,13 +135,13 @@ const ResetpasswordPage = () => {
           
           </div>
 
-          <div className="d-flex justify-content-center mt-3">
-
           {errorMessage && (
               <div className="alert alert-danger text-center my-2">
                 {errorMessage}
               </div>
             )}
+            
+          <div className="d-flex justify-content-center mt-3">
 
             <button type="submit" className="btn d-flex align-items-center gap-1 forgot-btn">
               <span className="text-white fw-bold forgot-btn-text">ثبت رمز جدید</span>
