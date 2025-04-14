@@ -4,6 +4,14 @@ import { signup } from '../../services/userService';
 import './SignupPage.css';
 
 
+import odessay_logo from '/public/icons/odessay_logo.svg';
+import login_email_icon from '/public/icons/login_email_icon.svg';
+import signup_user_icon from '/public/icons/signup_user_icon.svg';
+
+import signup_eye_icon from '/public/icons/signup_eye_icon.svg';
+import signup_eye_off_icon from '/public/icons/signup_eye_off_icon.svg';
+
+
 const SignupPage = () => {
 
   const [errorMessage, setErrorMessage] = useState('');
@@ -166,7 +174,7 @@ const SignupPage = () => {
       const result = await signup(data);
       console.log('Signup successful:', result);
 
-      navigate('/login');
+      navigate('/');
     
     } catch (error: any) {
       console.error('Signup failed:', error.message);
@@ -179,7 +187,17 @@ const SignupPage = () => {
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 signup-page-container px-3">
       <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
         <div className="website-brand-text english-text text-white me-3">ODESSAY</div>
-        <img src="/src/assets/icons/odessay_logo.svg" alt="Odessay Logo" className="website-logo-img me-4" />
+      
+        <img
+          src={odessay_logo}
+          alt="Odessay Logo"
+          className="website-logo-img me-4"
+        />
+
+      
+        {/* <img src="/src/assets/icons/odessay_logo.svg" alt="Odessay Logo" className="website-logo-img me-4" />
+       */}
+      
       </div>
       <div className="mx-auto ms-lg-5 signup-box">
         <h2 className="fw-bold text-start mb-3 signup-title">ثبت‌نام</h2>
@@ -195,11 +213,21 @@ const SignupPage = () => {
                 value={email}
                 onChange={handleEmailChange}
               />
+
               <img
-                src="/src/assets/icons/login_email_icon.svg"
+                src={login_email_icon}
                 alt="email icon"
                 className="signup-email-icon"
               />
+
+
+              {/* <img
+                src="/src/assets/icons/login_email_icon.svg"
+                alt="email icon"
+                className="signup-email-icon"
+              /> */}
+
+
               {emailError && (
                 <div className="input-error-popup" key={emailErrorKey}>
                   {emailError}
@@ -221,11 +249,23 @@ const SignupPage = () => {
                   <span className="hint"> (۳–۲۰ کاراکتر، فقط a-z، 0–9، . یا _)</span>
                 </div>
               )}
+
+
               <img
+                src={signup_user_icon}
+                alt="username icon"
+                className="signup-user-icon"
+              />
+
+              
+              
+              {/* <img
                 src="/src/assets/icons/signup_user_icon.svg"
                 alt="username icon"
                 className="signup-user-icon"
               />
+               */}
+              
               {usernameError && (
                 <div className="input-error-popup" key={usernameErrorKey}>
                   {usernameError}
@@ -242,12 +282,21 @@ const SignupPage = () => {
               className="form-control signup-input"
               placeholder="رمز عبور"
             />
+
             <img
-              src={showPassword ? '/src/assets/icons/signup_eye_icon.svg' : '/src/assets/icons/signup_eye_off_icon.svg'}
+              src={showPassword ? signup_eye_icon : signup_eye_off_icon}
               alt="toggle password"
               className="signup-eye-icon"
               onClick={() => setShowPassword(prev => !prev)}
             />
+
+
+            {/* <img
+              src={showPassword ? '/src/assets/icons/signup_eye_icon.svg' : '/src/assets/icons/signup_eye_off_icon.svg'}
+              alt="toggle password"
+              className="signup-eye-icon"
+              onClick={() => setShowPassword(prev => !prev)}
+            /> */}
 
           </div>
 
@@ -260,12 +309,24 @@ const SignupPage = () => {
             className="form-control signup-input"
             placeholder="تأیید رمز عبور"
           />
+
+
           <img
-            src={showConfirmPassword ? '/src/assets/icons/signup_eye_icon.svg' : '/src/assets/icons/signup_eye_off_icon.svg'}
+            src={showConfirmPassword ? signup_eye_icon : signup_eye_off_icon}
             alt="toggle confirm password"
             className="signup-eye-icon"
             onClick={() => setShowConfirmPassword(prev => !prev)}
           />
+
+
+          {/* <img
+            src={showConfirmPassword ? '/src/assets/icons/signup_eye_icon.svg' : '/src/assets/icons/signup_eye_off_icon.svg'}
+            alt="toggle confirm password"
+            className="signup-eye-icon"
+            onClick={() => setShowConfirmPassword(prev => !prev)}
+          /> */}
+
+
           {confirmPasswordError && (
             <div className="input-error-popup" key={confirmPasswordErrorKey}>
               {confirmPasswordError}

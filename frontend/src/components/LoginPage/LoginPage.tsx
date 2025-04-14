@@ -3,6 +3,18 @@ import { useState } from 'react';
 import { login } from '../../services/userService';
 import './LoginPage.css';
 
+import OdessayLogo from "/public/icons/odessay_logo.svg"
+
+
+import email_padlock_icon from '/public/icons/email_padlock_icon.svg';
+import login_eye_icon from '/public/icons/login_eye_icon.svg';
+import login_eye_off_icon from '/public/icons/login_eye_off_icon.svg';
+import login_email_icon from '/public/icons/login_email_icon.svg';
+
+import login_google_icon from '/public/icons/login_google_icon.svg';
+
+
+
 const LoginPage = () => {
 
   const [errorMessage, setErrorMessage] = useState('');
@@ -42,7 +54,7 @@ const LoginPage = () => {
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 login-page-container px-3">  
       <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
         <div className="website-brand-text english-text text-white me-3">ODESSAY</div>
-        <img src="/src/assets/icons/odessay_logo.svg" alt="Odessay Logo" className="website-logo-img me-4" />
+        <img src={OdessayLogo} alt="Odessay Logo" className="website-logo-img me-4" />
       </div>
       <div className="login-box mx-auto ms-lg-5">
         <h2 className="fw-bold text-start mb-3 login-title">ورود</h2>
@@ -58,11 +70,21 @@ const LoginPage = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+
+
             <img
-              src="/src/assets/icons/login_email_icon.svg"
+              src={login_email_icon}
               alt="email icon"
               className="login-email-icon"
             />
+
+            {/* <img
+              src="/src/assets/icons/login_email_icon.svg"
+              alt="email icon"
+              className="login-email-icon"
+            /> */}
+
+            
             </div>
 
             {/* Password */}
@@ -76,16 +98,30 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}     
               />
               <img
-                src="/src/assets/icons/email_padlock_icon.svg"
+                src={email_padlock_icon}
                 alt="password icon"
                 className="login-password-icon"
               />
+
               <img
-                src={showPassword ? '/src/assets/icons/login_eye_icon.svg' : '/src/assets/icons/login_eye_off_icon.svg'}
+                src={showPassword ? login_eye_icon : login_eye_off_icon}
                 alt="toggle password"
                 className="login-eye-icon"
                 onClick={() => setShowPassword(prev => !prev)}
               />
+
+              {/* <img
+                src="/src/assets/icons/email_padlock_icon.svg"
+                alt="password icon"
+                className="login-password-icon"
+              /> */}
+              {/* <img
+                src={showPassword ? '/src/assets/icons/login_eye_icon.svg' : '/src/assets/icons/login_eye_off_icon.svg'}
+                alt="toggle password"
+                className="login-eye-icon"
+                onClick={() => setShowPassword(prev => !prev)}
+              /> */}
+
             </div>
 
 
@@ -122,7 +158,15 @@ const LoginPage = () => {
               <span className="fw-bold text-white ms-auto me-4 login-google-btn-enter-text">ورود با استفاده از</span>
               <div className="d-flex align-items-center gap-2 me-auto">
                 <span className="fw-bold text-white login-google-btn-google-text">Google</span>
-                <img src="/src/assets/icons/login_google_icon.svg" alt="Google" width="23" />
+
+                <img
+                  src={login_google_icon}
+                  alt="Google"
+                  width="23"
+                />
+
+                {/* <img src="/src/assets/icons/login_google_icon.svg" alt="Google" width="23" /> */}
+              
               </div>
             </button>
 

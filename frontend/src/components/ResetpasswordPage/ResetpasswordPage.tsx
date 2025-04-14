@@ -2,6 +2,13 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import './ResetpasswordPage.css';
 
+
+import odessay_logo from '/public/icons/odessay_logo.svg';
+import signup_padlock_icon from '/public/icons/signup_padlock_icon.svg';
+import forgetpassword_sendcode_icon from '/public/icons/forgetpassword_sendcode_icon.svg';
+
+
+
 const ResetpasswordPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -45,7 +52,17 @@ const ResetpasswordPage = () => {
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 forgot-page-container px-3">  
       <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
         <div className="website-brand-text english-text text-white me-3">ODESSAY</div>
-        <img src="/src/assets/icons/odessay_logo.svg" alt="Odessay Logo" className="website-logo-img me-4" />
+
+        <img
+          src={odessay_logo}
+          alt="Odessay Logo"
+          className="website-logo-img me-4"
+        />
+
+
+        {/* <img src="/src/assets/icons/odessay_logo.svg" alt="Odessay Logo" className="website-logo-img me-4" /> */}
+      
+      
       </div>
 
       <div className="forgot-box mx-auto ms-lg-5">
@@ -61,11 +78,22 @@ const ResetpasswordPage = () => {
               placeholder="رمز عبور جدید"
               required
             />
+            
+          
             <img
-              src="/src/assets/icons/signup_padlock_icon.svg"
+              src={signup_padlock_icon}
               alt="lock icon"
               className="forgot-email-icon"
             />
+
+          
+            {/* <img
+              src="/src/assets/icons/signup_padlock_icon.svg"
+              alt="lock icon"
+              className="forgot-email-icon"
+            /> */}
+          
+          
           </div>
 
           <div className="mb-3 position-relative">
@@ -77,17 +105,37 @@ const ResetpasswordPage = () => {
               placeholder="تایید رمز عبور جدید"
               required
             />
+
+          
             <img
+              src={signup_padlock_icon}
+              alt="lock icon"
+              className="forgot-email-icon"
+            />
+          
+            {/* <img
               src="/src/assets/icons/signup_padlock_icon.svg"
               alt="lock icon"
               className="forgot-email-icon"
             />
+           */}
+          
           </div>
 
           <div className="d-flex justify-content-center mt-3">
             <button type="submit" className="btn d-flex align-items-center gap-1 forgot-btn">
               <span className="text-white fw-bold forgot-btn-text">ثبت رمز جدید</span>
-              <img src="/src/assets/icons/forgetpassword_sendcode_icon.svg" alt="send icon" style={{ width: '30px', height: '25px' }} />
+            
+              <img
+                src={forgetpassword_sendcode_icon}
+                alt="send icon"
+                style={{ width: '30px', height: '25px' }}
+              />
+
+
+              {/* <img src="/src/assets/icons/forgetpassword_sendcode_icon.svg" alt="send icon" style={{ width: '30px', height: '25px' }} /> */}
+            
+            
             </button>
           </div>
         </form>
