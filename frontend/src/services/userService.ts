@@ -88,6 +88,7 @@ export const signup = async (data: {
     return response.json();
   };
 
+
   export const resetPassword = async (data: {
     token: string;
     password: string;
