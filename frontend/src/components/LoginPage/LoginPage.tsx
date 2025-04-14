@@ -6,7 +6,7 @@ import './LoginPage.css';
 import OdessayLogo from "/public/icons/odessay_logo.svg"
 
 
-import email_padlock_icon from '/public/icons/email_padlock_icon.svg';
+import email_padlock_icon from '../../../public/icons/email_padlock_icon.svg';
 import login_eye_icon from '/public/icons/login_eye_icon.svg';
 import login_eye_off_icon from '/public/icons/login_eye_off_icon.svg';
 import login_email_icon from '/public/icons/login_email_icon.svg';
