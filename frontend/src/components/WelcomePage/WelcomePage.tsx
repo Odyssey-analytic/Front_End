@@ -36,18 +36,35 @@ const WelcomePage = () => {
         
     </div>
     <div className="welcome-subheader d-flex justify-content-between align-items-center px-4 py-2">
-  {/* چپ: آیکن پروفایل و منوی سه‌نقطه‌ای */}
   <div className="d-flex align-items-center gap-3">
   <img src={welcome_subheader_menu} alt="Menu" className="menu-icon" />
     <img src={welcome_subheader_user} alt="User" className="user-icon" />
   </div>
-  {/* راست: عنوان بخش */}
-  <div className="section-title text-muted fw-semibold">Admin</div>
+  <div className="admin-label-container d-flex align-items-center">
+  <div className="admin-divider"></div>
+  <span className="admin-label-text">Admin</span>
+  
+</div>
 
   
 </div>
 
+{/* Main Welcome Box */}
+<div className="welcome-body d-flex justify-content-center align-items-center flex-grow-1">
+  <div className="welcome-box text-center p-4">
+    <h2 className="welcome-heading mb-3">{username} خوش اومدی!</h2>
+    <p className="welcome-description mb-1">
+      شروع کن تا ببینی توی محصولات دقیقاً چه خبره
+    </p>
+    <p className="welcome-description mb-4">
+      و چطور می‌تونی بهترین تجربه رو برای کاربرات بسازی.
+    </p>
+    <button className="btn welcome-start-btn">اضافه کردن بازی</button>
+  </div>
+</div>
+
     </div>
+    
 
   );
 };

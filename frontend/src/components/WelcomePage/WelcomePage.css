@@ -42,9 +42,9 @@
 
 .welcome-subheader {
   background-color: #ffffff;
-  border-top: 1px solid #e4e4e4;
-  border-bottom: 1px solid #e4e4e4;
   height: 60px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
+  padding: 1rem;
 }
 
 .section-title {
@@ -61,4 +61,76 @@
 
 .user-icon:hover, .menu-icon:hover {
   opacity: 1;
+}
+
+
+.admin-label-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-label-text {
+  color: #717171; /* همون خاکستری با ۳۸٪ opacity */
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.admin-divider {
+  width: 1px;
+  height: 24px;
+  margin-left: 10px;
+  background-color: rgba(0, 0, 0, 0.1); /* خیلی لطیف */
+}
+
+
+.welcome-body {
+  flex-grow: 1;
+  background-color: #f1f3f4;
+  margin-top: 3px;
+}
+
+.welcome-box {
+  background-color: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+  max-width: 480px;
+  width: 100%;
+
+  min-height: 300px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.welcome-heading {
+  font-size: 24px;
+  font-weight: bold;
+  color: #121212;
+}
+
+.welcome-description {
+  color: #4a4a4a;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.welcome-start-btn {
+  background: linear-gradient(to right, #5d1b79, #00719a);
+  color: white;
+  border-radius: 12px;
+  padding: 0.5rem 0.5rem;
+  font-weight: bold;
+  font-size: 15px;
+  border: none;
+  transition: all 0.3s ease;
+  margin: 0 auto; 
+  width: 200px; /* یا هر مقداری که دوست داری */
+  max-width: 100%; /* اگه خواستی تو صفحه کوچیک‌تر منعطف باشه */
+}
+
+.welcome-start-btn:hover {
+  background: linear-gradient(to right, #4c1764, #005d7a);
 }
