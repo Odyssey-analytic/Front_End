@@ -2,6 +2,7 @@
   /* background-color: rgba(241,243,244); */
   color: #121212;
   font-family: 'Shabnam', sans-serif;
+  position: relative; 
 }
 
 .welcome-page-header {
@@ -125,4 +126,59 @@
 
 .welcome-page-main-box-start-btn:hover {
   background: linear-gradient(to right, #4c1764, #005d7a);
+}
+
+/* فقط برای وقتی popup بازه */
+.welcome-page-body-overlay {
+  position: absolute;
+  top: 120px; /* اینو بر اساس ارتفاع header + subheader تنظیم کن */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(6px);
+  background-color: rgba(255, 255, 255, 0.15);
+  z-index: 999; /* پایین‌تر از popup */
+}
+
+/* لایه اصلی popup */
+.welcome-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000; /* بالاتر از blur */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* به تنهایی باعث میشه لایه روی چیزها کلیک‌ناپذیر بشه */
+}
+
+/* خود کارت popup */
+.welcome-popup-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 1001;
+  pointer-events: all; /* این باعث میشه فقط خود کارت قابل کلیک باشه */
+}
+
+/* عنوان بالا در popup */
+.popup-title {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* گزینه‌های checkbox */
+.popup-options label {
+  display: block;
+  text-align: right;
+  margin-bottom: 0.8rem;
+  font-size: 14px;
 }

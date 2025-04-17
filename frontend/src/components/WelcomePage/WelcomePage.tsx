@@ -7,7 +7,10 @@ import welcome_subheader_user from '/public/icons/welcome_subheader_user.svg';
 import welcome_subheader_menu from '/public/icons/welcome_subheader_menu.svg';
 
 const WelcomePage = () => {
+
   const [username, setUsername] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
@@ -15,6 +18,7 @@ const WelcomePage = () => {
   }, []);
 
   return (
+    <>
     <div className="welcome-page-container vh-100 d-flex flex-column">
         <div className="welcome-page-header d-flex justify-content-between align-items-center px-4 py-2 shadow-sm">
             <div>
@@ -39,7 +43,8 @@ const WelcomePage = () => {
             </div>
         </div>
         <div className="welcome-page-body d-flex justify-content-center align-items-center flex-grow-1">
-            <div className="welcome-page-main-box text-center p-4">
+    <div className={`welcome-page-main-box text-center p-4 ${showPopup ? 'blurred' : ''}`}>
+
                 <h2 className="welcome-page-main-box-heading mb-3">{username} خوش اومدی!</h2>
                 <p className="welcome-page-main-box-description mb-1">
                 شروع کن تا ببینی توی محصولات دقیقاً چه خبره
@@ -47,10 +52,34 @@ const WelcomePage = () => {
                 <p className="welcome-page-main-box-description mb-4">
                 و چطور می‌تونی بهترین تجربه رو برای کاربرات بسازی.
                 </p>
-                <button className="btn welcome-page-main-box-start-btn">اضافه کردن بازی</button>
+                <button
+                    className="btn welcome-page-main-box-start-btn"
+                    onClick={() => setShowPopup(true)}
+                    >
+                    اضافه کردن بازی
+                </button>
             </div>
         </div>
     </div>
+    {showPopup && (
+  <>
+    <div className="welcome-page-body-overlay" />
+    
+    <div className="welcome-overlay">
+      <div className="welcome-popup-card">
+        <p className="popup-title">محصولاتی که می‌خوای آنالیزشون رو انجام بدی رو انتخاب کن:</p>
+        <div className="popup-options my-4">
+          <label><input type="checkbox" /> بازی</label>
+          <label><input type="checkbox" /> وب‌سایت</label>
+        </div>
+        <button className="btn btn-primary">ادامه</button>
+      </div>
+    </div>
+  </>
+)}
+
+
+    </>
   );
 };
 
