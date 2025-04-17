@@ -1,31 +1,54 @@
 import './WelcomePage.css';
-import odessay_logo from '/public/icons/odessay_logo.svg';
-// import welcome_image from '/public/icons/welcome_icon.svg'; // آیکون welcome وسط صفحه
+import { useEffect, useState } from 'react';
+
+import OdessayLogo from "/public/icons/odessay_logo.svg";
+import welcome_header_help from '/public/icons/welcome_header_help.svg';
+import welcome_subheader_user from '/public/icons/welcome_subheader_user.svg';
+import welcome_subheader_menu from '/public/icons/welcome_subheader_menu.svg';
 
 const WelcomePage = () => {
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    setUsername(storedUsername || '');
+  }, []);
+
   return (
-    <div className="welcome-container d-flex flex-column flex-lg-row vh-100">
-      {/* Sidebar */}
-      <div className="welcome-sidebar d-flex align-items-center px-4 py-3">
-        <img src={odessay_logo} alt="Odessay Logo" className="welcome-logo me-2" />
-        <span className="fw-bold text-white fs-6">ODESSAY</span>
-      </div>
+    <div className="welcome-page-container vh-100 d-flex flex-column">
+    <div className="welcome-header d-flex justify-content-between align-items-center px-4 py-2 shadow-sm">
+        
+        <div>
+            <img src={welcome_header_help} alt="Help" className="help-icon" />
+        </div>
 
-      {/* Main Content */}
-      <div className="welcome-content d-flex flex-column justify-content-center align-items-center flex-grow-1 px-3">
-        {/* <img src={welcome_image} alt="Welcome Icon" className="welcome-icon mb-4" /> */}
+        <div className="search-box flex-grow-1 mx-4">
+            <input type="text" className="form-control search-input text-center" placeholder="جستجو..." />
+        </div>
+        
+        <div className="d-flex align-items-center">
+            <span className="website-brand-text english-text">ODESSAY</span>
+            <img src={OdessayLogo} alt="Odessay Logo" className="website-logo-img ms-2" />
+        </div>
 
-        <h2 className="welcome-heading mb-3">{'{نام کاربر}'} خوش اومدی!</h2>
-        <p className="welcome-description text-center mb-2">
-          شروع کن تا ببینی توی محصولات دقیقاً چه خبره
-        </p>
-        <p className="welcome-description text-center mb-4">
-          و چطور می‌تونی بهترین تجربه رو برای کاربرات بسازی.
-        </p>
+    
 
-        <button className="btn welcome-start-btn">شروع آنالیز</button>
-      </div>
+        
     </div>
+    <div className="welcome-subheader d-flex justify-content-between align-items-center px-4 py-2">
+  {/* چپ: آیکن پروفایل و منوی سه‌نقطه‌ای */}
+  <div className="d-flex align-items-center gap-3">
+  <img src={welcome_subheader_menu} alt="Menu" className="menu-icon" />
+    <img src={welcome_subheader_user} alt="User" className="user-icon" />
+  </div>
+  {/* راست: عنوان بخش */}
+  <div className="section-title text-muted fw-semibold">Admin</div>
+
+  
+</div>
+
+    </div>
+
   );
 };
 

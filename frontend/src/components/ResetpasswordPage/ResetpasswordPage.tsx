@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import './ResetpasswordPage.css';
 
-
 import odessay_logo from '/public/icons/odessay_logo.svg';
 import signup_padlock_icon from '/public/icons/signup_padlock_icon.svg';
 import forgetpassword_sendcode_icon from '/public/icons/forgetpassword_sendcode_icon.svg';
@@ -17,12 +16,6 @@ const ResetpasswordPage = () => {
 
   const [errorMessage, setErrorMessage] = useState('');
 
-
-  // if (!token) {
-  //   alert("Invalid password reset link.");
-  //   return;
-  // }
-  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

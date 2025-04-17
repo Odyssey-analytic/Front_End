@@ -7,7 +7,6 @@ import './SignupPage.css';
 import odessay_logo from '/public/icons/odessay_logo.svg';
 import login_email_icon from '/public/icons/login_email_icon.svg';
 import signup_user_icon from '/public/icons/signup_user_icon.svg';
-
 import signup_eye_icon from '/public/icons/signup_eye_icon.svg';
 import signup_eye_off_icon from '/public/icons/signup_eye_off_icon.svg';
 

@@ -1,62 +1,64 @@
-.welcome-container {
-    background-color: #f1f3f5;
-    overflow: hidden;
-  }
-  
-  .welcome-sidebar {
-    background-color: #212529;
-    width: 100%;
-    height: 60px;
-  }
-  
-  @media (min-width: 992px) {
-    .welcome-sidebar {
-      width: 220px;
-      height: 100vh;
-      flex-direction: column;
-      justify-content: start;
-      padding-top: 2rem;
-    }
-  }
-  
-  .welcome-logo {
-    height: 30px;
-    width: auto;
-  }
-  
-  .welcome-content {
-    background-color: #f8f9fa;
-    text-align: center;
-  }
-  
-  .welcome-icon {
-    width: 80px;
-    height: auto;
-  }
-  
-  .welcome-heading {
-    font-size: 1.75rem;
-    color: #1e1e1e;
-    font-weight: bold;
-  }
-  
-  .welcome-description {
-    color: #3b3b3b;
-    font-size: 1rem;
-  }
-  
-  .welcome-start-btn {
-    background: linear-gradient(to right, rgba(93, 27, 121), rgba(0, 113, 154));
-    color: white;
-    padding: 0.5rem 1.5rem;
-    font-weight: bold;
-    border-radius: 8px;
-    border: none;
-    font-size: 14px;
-    transition: background 0.3s ease;
-  }
-  
-  .welcome-start-btn:hover {
-    background: linear-gradient(to right, rgba(75, 22, 96), rgba(0, 92, 125));
-  }
-  
+.welcome-page-container {
+  /* background-color: rgba(241,243,244); */
+  color: #121212;
+  font-family: 'Shabnam', sans-serif;
+}
+
+.welcome-header {
+  background-color: rgba(245,245,245);
+  height: 60px;
+  border-bottom: 1px solid rgba(113, 113, 113, 0.38);
+}
+
+
+.website-logo {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 10;
+}
+
+.website-logo-img {
+  height: 32px;
+  width: auto;
+}
+
+.website-brand-text {
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: rgba(51, 54, 88);
+}
+
+.search-box {
+  max-width: 400px;
+
+}
+
+.search-input {
+  border-radius: 12px;
+  padding: 0.4rem 1rem;
+  font-size: 14px;
+}
+
+.welcome-subheader {
+  background-color: #ffffff;
+  border-top: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+  height: 60px;
+}
+
+.section-title {
+  font-size: 16px;
+  color: #666;
+}
+
+.user-icon, .menu-icon , .help-icon{
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.user-icon:hover, .menu-icon:hover {
+  opacity: 1;
+}

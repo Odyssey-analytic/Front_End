@@ -12,6 +12,7 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import SignupPage from "./components/SignupPage/SignupPage";
 import ForgotpasswordPage from "./components/ForgotpasswordPage/ForgotpasswordPage";
 import ResetpasswordPage from "./components/ResetpasswordPage/ResetpasswordPage";
+import WelcomePage from "./components/WelcomePage/WelcomePage";
 import ActiveUsersKPI from "./components/KPICharts/ActiveUsersKPI";
 
 createRoot(document.getElementById('root')!).render(
@@ -22,7 +23,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/forgot-password" element={<ForgotpasswordPage />} /> 
         <Route path="/kpi" element={<ActiveUsersKPI />} /> 
-        {/* <Route path="/forgot-password/reset-password" element={<ResetpasswordPage />} /> */}
+        <Route path="/login/welcome" element={<WelcomePage />} />
         <Route path="/reset-password/:token" element={<ResetpasswordPage />} />
       </Routes>
     </BrowserRouter>

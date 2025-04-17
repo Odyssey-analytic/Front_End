@@ -4,13 +4,10 @@ import { login } from '../../services/userService';
 import './LoginPage.css';
 
 import OdessayLogo from "/public/icons/odessay_logo.svg"
-
-
-import email_padlock_icon from '../../../public/icons/email_padlock_icon.svg';
+import email_padlock_icon from '/public/icons/email_padlock_icon.svg';
 import login_eye_icon from '/public/icons/login_eye_icon.svg';
 import login_eye_off_icon from '/public/icons/login_eye_off_icon.svg';
 import login_email_icon from '/public/icons/login_email_icon.svg';
-
 import login_google_icon from '/public/icons/login_google_icon.svg';
 
 
@@ -39,7 +36,14 @@ const LoginPage = () => {
       console.log('Login successful:', result);
   
       localStorage.setItem('accessToken', result.access);
-      navigate('/login/dashboard');
+      localStorage.setItem('username', result.user.username);
+      
+      // should be fixed with back !!!!!!!!!
+      if (result.user.is_first_login) {
+        navigate('/login/welcome');
+      } else {
+        navigate('/login/dashboard');
+      }
 
       console.log(JSON.stringify(data));
 
