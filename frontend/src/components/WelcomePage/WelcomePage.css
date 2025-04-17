@@ -103,26 +103,34 @@
   margin: 0 auto;
 }
 
+.welcome-page-main-box-icon img{
+
+  width: 100px; 
+  height: auto;
+}
+
 
 .welcome-page-main-box-heading {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
   color: #121212;
 }
 
 .welcome-page-main-box-description {
   color: #4a4a4a;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 17px;
+  line-height: 1.3;
+  text-align: center;
+  max-width: 600px;
 }
 
 .welcome-page-main-box-start-btn {
   background: linear-gradient(to right, #5d1b79, #00719a);
   color: white;
   border-radius: 12px;
-  padding: 0.5rem 0.5rem;
+  padding: 0.75rem 1.5rem;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 17px;
   border: none;
   transition: all 0.3s ease;
   margin: 0 auto; 
@@ -134,8 +142,8 @@
   background: linear-gradient(to right, #4c1764, #005d7a);
 }
 
-/* فقط برای وقتی popup بازه */
-.welcome-page-body-overlay {
+
+.welcome-page-main-box-body {
   position: absolute;
   top: 120px;
   left: 0;
@@ -146,22 +154,20 @@
   z-index: 998;
 }
 
-/* لایه اصلی popup */
-.welcome-overlay {
+.welcome-page-main-box-body-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1000; /* بالاتر از blur */
+  z-index: 1000; 
   display: flex;
   justify-content: center;
   align-items: center;
-  pointer-events: none; /* به تنهایی باعث میشه لایه روی چیزها کلیک‌ناپذیر بشه */
+  pointer-events: none; 
 }
 
-/* خود کارت popup */
-.welcome-popup-card {
+.welcome-page-main-box-body-popup-card {
   background: white;
   padding: 2rem;
   border-radius: 12px;
@@ -171,10 +177,10 @@
   text-align: center;
   position: relative;
   z-index: 1001;
-  pointer-events: all; /* این باعث میشه فقط خود کارت قابل کلیک باشه */
+  pointer-events: all;
 }
 
-.popup-title {
+.welcome-page-popup-title {
   font-size: 15px;
   color: #333;
   margin-bottom: 1rem;

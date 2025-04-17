@@ -13,7 +13,7 @@ const WelcomePage = () => {
   const [showPopup, setShowPopup] = useState(false);
   
   const [selectedProduct, setSelectedProduct] = useState('');
-  const [step, setStep] = useState(1); // مرحله ۱ = انتخاب محصول، ۲ = فرم اطلاعات، ۳ = پیام موفقیت
+  const [step, setStep] = useState(1); 
 
 
   useEffect(() => {
@@ -47,10 +47,10 @@ const WelcomePage = () => {
             </div>
         </div>
         <div className="welcome-page-body d-flex justify-content-center align-items-center flex-grow-1">
-    <div className={`welcome-page-main-box text-center p-4 ${showPopup ? 'blurred' : ''}`}>
-    <div className="welcome-page-icon mb-3">
-    <img src={welcome_page_main_box_welcome_icon} alt="Welcome Icon" />
-  </div>
+          <div className={`welcome-page-main-box text-center p-4 ${showPopup ? 'blurred' : ''}`}>
+            <div className="welcome-page-main-box-icon mb-3">
+              <img src={welcome_page_main_box_welcome_icon} alt="Welcome Icon" />
+            </div>
                 <h2 className="welcome-page-main-box-heading mb-3">{username} خوش اومدی!</h2>
                 <p className="welcome-page-main-box-description mb-1">
                 شروع کن تا ببینی توی محصولات دقیقاً چه خبره
@@ -58,113 +58,94 @@ const WelcomePage = () => {
                 <p className="welcome-page-main-box-description mb-4">
                 و چطور می‌تونی بهترین تجربه رو برای کاربرات بسازی.
                 </p>
-                <button
-                    className="btn welcome-page-main-box-start-btn"
-                    onClick={() => setShowPopup(true)}
-                    >
-                    اضافه کردن بازی
-                </button>
-            </div>
+                <button className="btn welcome-page-main-box-start-btn" onClick={() => setShowPopup(true)}> اضافه کردن بازی </button>
+          </div>
         </div>
     </div>
     {showPopup && (
-  <>
-    {/* بلور روی بک‌گراند، برای هر دو مرحله فعاله */}
-    <div className="welcome-page-body-overlay" />
+      <>
+        <div className="welcome-page-main-box-body" />
+        <div className="welcome-page-main-box-body-overlay">
+          <div className="welcome-page-main-box-body-popup-card">
+            {step === 1 && (
+              <>
+                <p className="welcome-page-popup-title">محصولاتی که می‌خوای آنالیزشون رو انجام بدی رو انتخاب کن:</p>
+                <div className="welcome-page-popup-title-options my-4">
+                  <label>
+                    <input type="checkbox" checked={selectedProduct === 'game'} onChange={() => setSelectedProduct('game')}/> 
+                    بازی
+                  </label>
+                  <label>
+                    <input type="checkbox" checked={selectedProduct === 'website'} onChange={() => setSelectedProduct('website')}/> 
+                    وب‌سایت
+                  </label>
+                </div>
+                <button className="btn btn-primary" disabled={!selectedProduct} onClick={() => setStep(2)} >ادامه</button>
+              </>
+            )}
 
-    <div className="welcome-overlay">
-      <div className="welcome-popup-card">
-        {step === 1 && (
-          <>
-            <p className="popup-title">محصولاتی که می‌خوای آنالیزشون رو انجام بدی رو انتخاب کن:</p>
-            <div className="popup-options my-4">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={selectedProduct === 'game'}
-                  onChange={() => setSelectedProduct('game')}
-                /> بازی
-              </label>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={selectedProduct === 'website'}
-                  onChange={() => setSelectedProduct('website')}
-                /> وب‌سایت
-              </label>
-            </div>
-            <button
-              className="btn btn-primary"
-              disabled={!selectedProduct}
-              onClick={() => setStep(2)}
-            >
-              ادامه
-            </button>
-          </>
-        )}
+            {step === 2 && selectedProduct === 'game' && (
+              <>
+                <p className="popup-title">اطلاعات بازیت رو وارد کن:</p>
+                <div className="popup-options my-4 text-end">
+                  <label>نام بازی:</label>
+                  <input type="text" className="form-control mb-3" />
 
-        {step === 2 && selectedProduct === 'game' && (
-          <>
-            <p className="popup-title">اطلاعات بازیت رو وارد کن:</p>
-            <div className="popup-options my-4 text-end">
-              <label>نام بازی:</label>
-              <input type="text" className="form-control mb-3" />
+                  <label className="d-block mb-1">انتخاب موتور بازی:</label>
+                  <div className="d-flex gap-3 mb-3">
+                    <label><input type="checkbox" /> Unity</label>
+                    <label><input type="checkbox" /> Godot</label>
+                    <label><input type="checkbox" /> Custom</label>
+                  </div>
 
-              <label className="d-block mb-1">انتخاب موتور بازی:</label>
-              <div className="d-flex gap-3 mb-3">
-                <label><input type="checkbox" /> Unity</label>
-                <label><input type="checkbox" /> Godot</label>
-                <label><input type="checkbox" /> Custom</label>
-              </div>
+                  <label className="d-block mb-1">انتخاب پلتفرم هدف:</label>
+                  <div className="d-flex gap-3 mb-3">
+                    <label><input type="checkbox" /> PC</label>
+                    <label><input type="checkbox" /> Android</label>
+                    <label><input type="checkbox" /> iOS</label>
+                  </div>
 
-              <label className="d-block mb-1">انتخاب پلتفرم هدف:</label>
-              <div className="d-flex gap-3 mb-3">
-                <label><input type="checkbox" /> PC</label>
-                <label><input type="checkbox" /> Android</label>
-                <label><input type="checkbox" /> iOS</label>
-              </div>
+                  <label>توضیحات (اختیاری):</label>
+                  <textarea className="form-control mb-4"></textarea>
 
-              <label>توضیحات (اختیاری):</label>
-              <textarea className="form-control mb-4"></textarea>
+                  <div className="d-flex justify-content-between">
+                    <button className="btn btn-secondary" onClick={() => setStep(1)}>بازگشت</button>
+                    <button className="btn btn-primary"  onClick={() => setStep(3)}>ثبت</button>
+                  </div>
+                </div>
+              </>
+            )}
 
-              <div className="d-flex justify-content-between">
-                <button className="btn btn-secondary" onClick={() => setStep(1)}>بازگشت</button>
-                <button className="btn btn-primary"  onClick={() => setStep(3)}>ثبت</button>
-              </div>
-            </div>
-          </>
-        )}
+    {step === 3 && (
+      <>
+        <div className="success-popup-icon mb-3">
+          {/* یا از img استفاده کن، یا یک آیکون استایل‌دار */}
+          {/* <img src="/icons/success-box.svg" alt="Success" /> */}
+        </div>
+        <h4 className="mb-2">محصول شما با موفقیت ثبت شد!</h4>
+        <p className="mb-2">
+          همه‌چیز آماده‌ست. حالا فقط کافیه SDK رو داخل بازی/وب‌سایت‌تون قرار بدید تا بتونید داده‌های آنالیز رو مشاهده کنید.
+        </p>
+        <p className="mb-3">
+          <a href="#" className="text-primary">لینک دانلود SDK</a>
+        </p>
+        <div className="form-control mb-2 text-start" style={{ direction: 'ltr' }}>
+          <strong>Access Token:</strong><br />
+          <span className="text-muted small">ghp_4G8j7nwWL9TETKXsmBjXaiU6NHQMrs1ZDOGv</span>
+        </div>
+        <p className="text-muted mt-3" style={{ fontSize: '13px' }}>
+          برای اطلاع از دستور نصب به بخش داکیومنت در منو مراجعه کنید!
+        </p>
+      </>
+    )}
 
-{step === 3 && (
-  <>
-    <div className="success-popup-icon mb-3">
-      {/* یا از img استفاده کن، یا یک آیکون استایل‌دار */}
-      {/* <img src="/icons/success-box.svg" alt="Success" /> */}
-    </div>
-    <h4 className="mb-2">محصول شما با موفقیت ثبت شد!</h4>
-    <p className="mb-2">
-      همه‌چیز آماده‌ست. حالا فقط کافیه SDK رو داخل بازی/وب‌سایت‌تون قرار بدید تا بتونید داده‌های آنالیز رو مشاهده کنید.
-    </p>
-    <p className="mb-3">
-      <a href="#" className="text-primary">لینک دانلود SDK</a>
-    </p>
-    <div className="form-control mb-2 text-start" style={{ direction: 'ltr' }}>
-      <strong>Access Token:</strong><br />
-      <span className="text-muted small">ghp_4G8j7nwWL9TETKXsmBjXaiU6NHQMrs1ZDOGv</span>
-    </div>
-    <p className="text-muted mt-3" style={{ fontSize: '13px' }}>
-      برای اطلاع از دستور نصب به بخش داکیومنت در منو مراجعه کنید!
-    </p>
-  </>
-)}
-
-      </div>
-    </div>
-  </>
-)}
+          </div>
+        </div>
+      </>
+    )}
 
 
-    </>
+        </>
   );
 };
 
