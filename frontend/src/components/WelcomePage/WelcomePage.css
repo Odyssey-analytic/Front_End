@@ -182,3 +182,8 @@
   margin-bottom: 0.8rem;
   font-size: 14px;
 }
+
+.success-popup-icon img {
+  width: 64px;
+  height: 64px;
+}

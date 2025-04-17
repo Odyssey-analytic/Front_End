@@ -12,9 +12,7 @@ const WelcomePage = () => {
   const [showPopup, setShowPopup] = useState(false);
   
   const [selectedProduct, setSelectedProduct] = useState('');
-  const [step, setStep] = useState(1);
-
-
+  const [step, setStep] = useState(1); // مرحله ۱ = انتخاب محصول، ۲ = فرم اطلاعات، ۳ = پیام موفقیت
 
 
   useEffect(() => {
@@ -128,11 +126,35 @@ const WelcomePage = () => {
 
               <div className="d-flex justify-content-between">
                 <button className="btn btn-secondary" onClick={() => setStep(1)}>بازگشت</button>
-                <button className="btn btn-primary">ثبت</button>
+                <button className="btn btn-primary"  onClick={() => setStep(3)}>ثبت</button>
               </div>
             </div>
           </>
         )}
+
+{step === 3 && (
+  <>
+    <div className="success-popup-icon mb-3">
+      {/* یا از img استفاده کن، یا یک آیکون استایل‌دار */}
+      {/* <img src="/icons/success-box.svg" alt="Success" /> */}
+    </div>
+    <h4 className="mb-2">محصول شما با موفقیت ثبت شد!</h4>
+    <p className="mb-2">
+      همه‌چیز آماده‌ست. حالا فقط کافیه SDK رو داخل بازی/وب‌سایت‌تون قرار بدید تا بتونید داده‌های آنالیز رو مشاهده کنید.
+    </p>
+    <p className="mb-3">
+      <a href="#" className="text-primary">لینک دانلود SDK</a>
+    </p>
+    <div className="form-control mb-2 text-start" style={{ direction: 'ltr' }}>
+      <strong>Access Token:</strong><br />
+      <span className="text-muted small">ghp_4G8j7nwWL9TETKXsmBjXaiU6NHQMrs1ZDOGv</span>
+    </div>
+    <p className="text-muted mt-3" style={{ fontSize: '13px' }}>
+      برای اطلاع از دستور نصب به بخش داکیومنت در منو مراجعه کنید!
+    </p>
+  </>
+)}
+
       </div>
     </div>
   </>
