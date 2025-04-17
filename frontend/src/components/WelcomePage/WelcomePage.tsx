@@ -5,6 +5,7 @@ import OdessayLogo from "/public/icons/odessay_logo.svg";
 import welcome_header_help from '/public/icons/welcome_header_help.svg';
 import welcome_subheader_user from '/public/icons/welcome_subheader_user.svg';
 import welcome_subheader_menu from '/public/icons/welcome_subheader_menu.svg';
+import welcome_page_main_box_welcome_icon from '/public/icons/welcome_page_main_box_welcome_icon.svg';
 
 const WelcomePage = () => {
 
@@ -47,7 +48,9 @@ const WelcomePage = () => {
         </div>
         <div className="welcome-page-body d-flex justify-content-center align-items-center flex-grow-1">
     <div className={`welcome-page-main-box text-center p-4 ${showPopup ? 'blurred' : ''}`}>
-
+    <div className="welcome-page-icon mb-3">
+    <img src={welcome_page_main_box_welcome_icon} alt="Welcome Icon" />
+  </div>
                 <h2 className="welcome-page-main-box-heading mb-3">{username} خوش اومدی!</h2>
                 <p className="welcome-page-main-box-description mb-1">
                 شروع کن تا ببینی توی محصولات دقیقاً چه خبره

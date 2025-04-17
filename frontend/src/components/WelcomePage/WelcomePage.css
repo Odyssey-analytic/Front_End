@@ -3,6 +3,8 @@
   color: #121212;
   font-family: 'Shabnam', sans-serif;
   position: relative; 
+  background-color: rgb(241, 243, 244);
+  min-height: 100vh;
 }
 
 .welcome-page-header {
@@ -81,22 +83,26 @@
   flex-grow: 1;
   background-color: rgb(241, 243, 244);
   margin-top: 3px;
+  padding: 2rem;
 }
 
 .welcome-page-main-box {
   background-color: white;
   border-radius: 16px;
-  padding: 2rem;
+  padding: 3rem 2rem;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
-  max-width: 480px;
   width: 100%;
-
-  min-height: 300px;
+  max-width: 1400px;
   min-width: 300px;
+  min-height: 470px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0 auto;
 }
+
 
 .welcome-page-main-box-heading {
   font-size: 24px;
@@ -168,14 +174,12 @@
   pointer-events: all; /* این باعث میشه فقط خود کارت قابل کلیک باشه */
 }
 
-/* عنوان بالا در popup */
 .popup-title {
   font-size: 15px;
   color: #333;
   margin-bottom: 1rem;
 }
 
-/* گزینه‌های checkbox */
 .popup-options label {
   display: block;
   text-align: right;
@@ -187,3 +191,59 @@
   width: 64px;
   height: 64px;
 }
+
+.welcome-page-icon img {
+  width: 72px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+
+/* Extra Small Devices (phones) */
+@media (max-width: 480px) {
+  .welcome-page-body {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Small Devices (large phones) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .welcome-page-body {
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* Medium Devices (tablets) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .welcome-page-body {
+    padding: 2.5rem 2rem;
+  }
+}
+
+/* Large Devices (small laptops) */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .welcome-page-body {
+    padding: 3rem 2.5rem;
+  }
+}
+
+/* Extra Large Devices (large laptops) */
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .welcome-page-body {
+    padding: 3rem 4rem;
+  }
+}
+
+/* 2K Displays */
+/* @media (min-width: 1441px) and (max-width: 1920px) {
+  .welcome-page-body {
+    padding: 4rem 4rem;
+  }
+} */
+
+/* 4K Displays */
+/* @media (min-width: 1921px) {
+  .welcome-page-body {
+    padding: 4rem 7rem;
+  }
+} */
