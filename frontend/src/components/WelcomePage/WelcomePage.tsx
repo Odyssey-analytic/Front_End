@@ -66,9 +66,19 @@ const WelcomePage = () => {
       <>
         <div className="welcome-page-main-box-body" />
         <div className="welcome-page-main-box-body-overlay">
+
+        <div className="popup-card-tab-wrapper">
           <div className="welcome-page-main-box-body-popup-card">
+          
+          <div className="step-indicator-container">
+            <div className={`step-item ${step === 1 ? 'active' : ''}`}>انتخاب محصول</div>
+            <div className={`step-item ${step === 2 ? 'active' : ''}`}>اطلاعات</div>
+            <div className={`step-item ${step === 3 ? 'active' : ''}`}>ثبت نهایی</div>
+          </div>
+
             {step === 1 && (
               <>
+              
                 <p className="welcome-page-popup-title">محصولاتی که می‌خوای آنالیزشون رو انجام بدی رو انتخاب کن:</p>
                 <div className="welcome-page-popup-title-options my-4">
                   <label>
@@ -138,7 +148,7 @@ const WelcomePage = () => {
         </p>
       </>
     )}
-
+        </div>
           </div>
         </div>
       </>
