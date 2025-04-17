@@ -10,6 +10,11 @@ const WelcomePage = () => {
 
   const [username, setUsername] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+  
+  const [selectedProduct, setSelectedProduct] = useState('');
+  const [step, setStep] = useState(1);
+
+
 
 
   useEffect(() => {
@@ -63,16 +68,71 @@ const WelcomePage = () => {
     </div>
     {showPopup && (
   <>
+    {/* بلور روی بک‌گراند، برای هر دو مرحله فعاله */}
     <div className="welcome-page-body-overlay" />
-    
+
     <div className="welcome-overlay">
       <div className="welcome-popup-card">
-        <p className="popup-title">محصولاتی که می‌خوای آنالیزشون رو انجام بدی رو انتخاب کن:</p>
-        <div className="popup-options my-4">
-          <label><input type="checkbox" /> بازی</label>
-          <label><input type="checkbox" /> وب‌سایت</label>
-        </div>
-        <button className="btn btn-primary">ادامه</button>
+        {step === 1 && (
+          <>
+            <p className="popup-title">محصولاتی که می‌خوای آنالیزشون رو انجام بدی رو انتخاب کن:</p>
+            <div className="popup-options my-4">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={selectedProduct === 'game'}
+                  onChange={() => setSelectedProduct('game')}
+                /> بازی
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={selectedProduct === 'website'}
+                  onChange={() => setSelectedProduct('website')}
+                /> وب‌سایت
+              </label>
+            </div>
+            <button
+              className="btn btn-primary"
+              disabled={!selectedProduct}
+              onClick={() => setStep(2)}
+            >
+              ادامه
+            </button>
+          </>
+        )}
+
+        {step === 2 && selectedProduct === 'game' && (
+          <>
+            <p className="popup-title">اطلاعات بازیت رو وارد کن:</p>
+            <div className="popup-options my-4 text-end">
+              <label>نام بازی:</label>
+              <input type="text" className="form-control mb-3" />
+
+              <label className="d-block mb-1">انتخاب موتور بازی:</label>
+              <div className="d-flex gap-3 mb-3">
+                <label><input type="checkbox" /> Unity</label>
+                <label><input type="checkbox" /> Godot</label>
+                <label><input type="checkbox" /> Custom</label>
+              </div>
+
+              <label className="d-block mb-1">انتخاب پلتفرم هدف:</label>
+              <div className="d-flex gap-3 mb-3">
+                <label><input type="checkbox" /> PC</label>
+                <label><input type="checkbox" /> Android</label>
+                <label><input type="checkbox" /> iOS</label>
+              </div>
+
+              <label>توضیحات (اختیاری):</label>
+              <textarea className="form-control mb-4"></textarea>
+
+              <div className="d-flex justify-content-between">
+                <button className="btn btn-secondary" onClick={() => setStep(1)}>بازگشت</button>
+                <button className="btn btn-primary">ثبت</button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   </>

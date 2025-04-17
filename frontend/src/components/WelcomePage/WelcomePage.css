@@ -131,13 +131,13 @@
 /* فقط برای وقتی popup بازه */
 .welcome-page-body-overlay {
   position: absolute;
-  top: 120px; /* اینو بر اساس ارتفاع header + subheader تنظیم کن */
+  top: 120px;
   left: 0;
   right: 0;
   bottom: 0;
   backdrop-filter: blur(6px);
   background-color: rgba(255, 255, 255, 0.15);
-  z-index: 999; /* پایین‌تر از popup */
+  z-index: 998;
 }
 
 /* لایه اصلی popup */
