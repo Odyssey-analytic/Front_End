@@ -4,12 +4,11 @@
   font-family: 'Shabnam', sans-serif;
 }
 
-.welcome-header {
+.welcome-page-header {
   background-color: rgba(245,245,245);
   height: 60px;
   border-bottom: 1px solid rgba(113, 113, 113, 0.38);
 }
-
 
 .website-logo {
   position: absolute;
@@ -29,68 +28,61 @@
   color: rgba(51, 54, 88);
 }
 
-.search-box {
+.welcome-page-header-search-box {
   max-width: 400px;
-
 }
 
-.search-input {
+.welcome-page-header-search-box-input {
   border-radius: 12px;
   padding: 0.4rem 1rem;
   font-size: 14px;
 }
 
-.welcome-subheader {
+.welcome-page-subheader {
   background-color: #ffffff;
   height: 60px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
   padding: 1rem;
 }
 
-.section-title {
-  font-size: 16px;
-  color: #666;
-}
-
-.user-icon, .menu-icon , .help-icon{
+.welcome-page-subheader-user-icon, .welcome-page-subheader-menu-icon , .welcome-page-header-help-icon{
   width: 28px;
   height: 28px;
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
 
-.user-icon:hover, .menu-icon:hover {
+/* .welcome-page-subheader-user-icon:hover, .welcome-page-subheader-menu-icon:hover {
   opacity: 1;
-}
+} */
 
-
-.admin-label-container {
+.welcome-page-subheader-admin-label-container {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.admin-label-text {
-  color: #717171; /* همون خاکستری با ۳۸٪ opacity */
+.welcome-page-subheader-admin-label-container-label-text {
+  color: #717171;
   font-size: 16px;
   font-weight: 400;
 }
 
-.admin-divider {
+.welcome-page-subheader-admin-label-container-divider {
   width: 1px;
   height: 24px;
   margin-left: 10px;
-  background-color: rgba(0, 0, 0, 0.1); /* خیلی لطیف */
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 
-.welcome-body {
+.welcome-page-body {
   flex-grow: 1;
-  background-color: #f1f3f4;
+  background-color: rgb(241, 243, 244);
   margin-top: 3px;
 }
 
-.welcome-box {
+.welcome-page-main-box {
   background-color: white;
   border-radius: 16px;
   padding: 2rem;
@@ -105,19 +97,19 @@
   justify-content: center;
 }
 
-.welcome-heading {
+.welcome-page-main-box-heading {
   font-size: 24px;
   font-weight: bold;
   color: #121212;
 }
 
-.welcome-description {
+.welcome-page-main-box-description {
   color: #4a4a4a;
   font-size: 14px;
   line-height: 1.6;
 }
 
-.welcome-start-btn {
+.welcome-page-main-box-start-btn {
   background: linear-gradient(to right, #5d1b79, #00719a);
   color: white;
   border-radius: 12px;
@@ -127,10 +119,10 @@
   border: none;
   transition: all 0.3s ease;
   margin: 0 auto; 
-  width: 200px; /* یا هر مقداری که دوست داری */
-  max-width: 100%; /* اگه خواستی تو صفحه کوچیک‌تر منعطف باشه */
+  width: 200px; 
+  max-width: 100%; 
 }
 
-.welcome-start-btn:hover {
+.welcome-page-main-box-start-btn:hover {
   background: linear-gradient(to right, #4c1764, #005d7a);
 }
