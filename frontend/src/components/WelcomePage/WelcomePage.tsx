@@ -66,9 +66,9 @@ const WelcomePage = () => {
       <>
         <div className="welcome-page-main-box-body" />
         <div className="welcome-page-main-box-body-overlay">
-
-        <div className="popup-card-tab-wrapper">
-          <div className="welcome-page-main-box-body-popup-card">
+        <div className="welcome-page-main-box-body-popup-card">
+        {/* <div className="popup-card-tab-wrapper"> */}
+          {/* <div className="welcome-page-main-box-body-popup-card"> */}
           
           <div className="step-indicator-container">
             <div className={`step-item ${step === 1 ? 'active' : ''}`}>انتخاب محصول</div>
@@ -129,8 +129,6 @@ const WelcomePage = () => {
     {step === 3 && (
       <>
         <div className="success-popup-icon mb-3">
-          {/* یا از img استفاده کن، یا یک آیکون استایل‌دار */}
-          {/* <img src="/icons/success-box.svg" alt="Success" /> */}
         </div>
         <h4 className="mb-2">محصول شما با موفقیت ثبت شد!</h4>
         <p className="mb-2">
@@ -150,7 +148,7 @@ const WelcomePage = () => {
     )}
         </div>
           </div>
-        </div>
+        {/* </div> */}
       </>
     )}
 
