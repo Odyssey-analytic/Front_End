@@ -261,7 +261,7 @@
 } */
 
 
-.step-indicator-container {
+/* .step-indicator-container {
   display: flex;
   justify-content: center;
   gap: 2.5rem;
@@ -292,4 +292,69 @@
   height: 2px;
   background-color: #00719a;
   border-radius: 1px;
+} */
+
+.stepper-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto 2rem;
+  padding: 1rem 0;
+}
+
+.stepper-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+.stepper-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background-color: white;
+  color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.stepper-label {
+  margin-top: 0.5rem;
+  font-size: 13px;
+  color: #888;
+}
+
+.stepper-line {
+  height: 2px;
+  border-radius: 12px;
+  background-color: #ccc;
+  flex: 1;
+  margin: 0 8px;
+  z-index: 1;
+}
+
+.stepper-item.active .stepper-circle {
+  /* background: #005d7a; */
+  background: linear-gradient(to left, #4c1764, #005d7a);
+  color: white;
+  border: 2px solid white;
+  /* box-shadow: 0 0 0 2px #4c1764;  */
+}
+
+
+.stepper-item.active .stepper-label {
+  color: #4c1764;
+}
+
+.stepper-line.active {
+  background: linear-gradient(to right, #4c1764, #005d7a);
 }

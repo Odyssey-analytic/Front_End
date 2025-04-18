@@ -70,11 +70,22 @@ const WelcomePage = () => {
         {/* <div className="popup-card-tab-wrapper"> */}
           {/* <div className="welcome-page-main-box-body-popup-card"> */}
           
-          <div className="step-indicator-container">
-            <div className={`step-item ${step === 1 ? 'active' : ''}`}>انتخاب محصول</div>
-            <div className={`step-item ${step === 2 ? 'active' : ''}`}>اطلاعات</div>
-            <div className={`step-item ${step === 3 ? 'active' : ''}`}>ثبت نهایی</div>
-          </div>
+<div className="stepper-container">
+  <div className={`stepper-item ${step >= 1 ? 'active' : ''}`}>
+    <div className="stepper-circle">1</div>
+    <div className="stepper-label">انتخاب محصول</div>
+  </div>
+  <div className={`stepper-line ${step >= 2 ? 'active' : ''}`} />
+  <div className={`stepper-item ${step >= 2 ? 'active' : ''}`}>
+    <div className="stepper-circle">2</div>
+    <div className="stepper-label">اطلاعات</div>
+  </div>
+  <div className={`stepper-line ${step >= 3 ? 'active' : ''}`} />
+  <div className={`stepper-item ${step >= 3 ? 'active' : ''}`}>
+    <div className="stepper-circle">3</div>
+    <div className="stepper-label">ثبت نهایی</div>
+  </div>
+</div>
 
             {step === 1 && (
               <>
@@ -148,11 +159,8 @@ const WelcomePage = () => {
     )}
         </div>
           </div>
-        {/* </div> */}
       </>
     )}
-
-
         </>
   );
 };
