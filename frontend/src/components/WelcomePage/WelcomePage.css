@@ -1,11 +1,15 @@
+/* =========================== main container =========================== */
+
 .welcome-page-container {
-  /* background-color: rgba(241,243,244); */
   color: #121212;
   font-family: 'Shabnam', sans-serif;
   position: relative; 
   background-color: rgb(241, 243, 244);
   min-height: 100vh;
 }
+
+
+/* =========================== header =========================== */
 
 .welcome-page-header {
   background-color: rgba(245,245,245);
@@ -41,6 +45,9 @@
   font-size: 14px;
 }
 
+
+/* =========================== subheader =========================== */
+
 .welcome-page-subheader {
   background-color: #ffffff;
   height: 60px;
@@ -48,16 +55,14 @@
   padding: 1rem;
 }
 
-.welcome-page-subheader-user-icon, .welcome-page-subheader-menu-icon , .welcome-page-header-help-icon{
+.welcome-page-subheader-user-icon,
+.welcome-page-subheader-menu-icon,
+.welcome-page-header-help-icon {
   width: 28px;
   height: 28px;
   cursor: pointer;
   transition: opacity 0.2s ease;
 }
-
-/* .welcome-page-subheader-user-icon:hover, .welcome-page-subheader-menu-icon:hover {
-  opacity: 1;
-} */
 
 .welcome-page-subheader-admin-label-container {
   display: flex;
@@ -79,12 +84,17 @@
 }
 
 
+/* =========================== body =========================== */
+
 .welcome-page-body {
   flex-grow: 1;
   background-color: rgb(241, 243, 244);
   margin-top: 3px;
   padding: 2rem;
 }
+
+
+/* =========================== main box =========================== */
 
 .welcome-page-main-box {
   background-color: white;
@@ -103,12 +113,10 @@
   margin: 0 auto;
 }
 
-.welcome-page-main-box-icon img{
-
+.welcome-page-main-box-icon img {
   width: 100px; 
   height: auto;
 }
-
 
 .welcome-page-main-box-heading {
   font-size: 32px;
@@ -143,6 +151,8 @@
 }
 
 
+/* =========================== popup overlay =========================== */
+
 .welcome-page-main-box-body {
   position: absolute;
   top: 120px;
@@ -169,11 +179,11 @@
   background: white;
   padding: 4rem;
   border-radius: 12px;
-   margin-top: 8rem;
+  margin-top: 8rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  max-width: 600px; /* اختیاری برای بزرگتر شدن در دسکتاپ */
+  max-width: 600px;
   width: 100%;
-  min-height: 470px; /* برابر با .welcome-page-main-box */
+  min-height: 470px;
   text-align: center;
   position: relative;
   z-index: 1001;
@@ -181,10 +191,11 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  /* align-items: center; */
   padding-top: 1.5rem;
 }
 
+
+/* =========================== popup content =========================== */
 
 .welcome-page-popup-title {
   font-size: 15px;
@@ -211,88 +222,45 @@
 }
 
 
-/* Extra Small Devices (phones) */
+/* =========================== responsive breakpoints =========================== */
+
+/* Extra Small Devices */
 @media (max-width: 480px) {
   .welcome-page-body {
     padding: 1.5rem 1rem;
   }
 }
 
-/* Small Devices (large phones) */
+/* Small Devices */
 @media (min-width: 481px) and (max-width: 768px) {
   .welcome-page-body {
     padding: 2rem 1.5rem;
   }
 }
 
-/* Medium Devices (tablets) */
+/* Medium Devices */
 @media (min-width: 769px) and (max-width: 1024px) {
   .welcome-page-body {
     padding: 2.5rem 2rem;
   }
 }
 
-/* Large Devices (small laptops) */
+/* Large Devices */
 @media (min-width: 1025px) and (max-width: 1280px) {
   .welcome-page-body {
     padding: 3rem 2.5rem;
   }
 }
 
-/* Extra Large Devices (large laptops) */
+/* Extra Large Devices */
 @media (min-width: 1281px) and (max-width: 1440px) {
   .welcome-page-body {
     padding: 3rem 4rem;
   }
 }
 
-/* 2K Displays */
-/* @media (min-width: 1441px) and (max-width: 1920px) {
-  .welcome-page-body {
-    padding: 4rem 4rem;
-  }
-} */
 
-/* 4K Displays */
-/* @media (min-width: 1921px) {
-  .welcome-page-body {
-    padding: 4rem 7rem;
-  }
-} */
-
-
-/* .step-indicator-container {
-  display: flex;
-  justify-content: center;
-  gap: 2.5rem;
-  width: 100%; 
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 0.5rem;
-  font-weight: 500;
-  padding-inline: 1rem;
-}
-
-.step-item {
-  cursor: default;
-  color: #888;
-  position: relative;
-}
-
-.step-item.active {
-  color: #00719a;
-  font-weight: bold;
-}
-
-.step-item.active::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #00719a;
-  border-radius: 1px;
-} */
+/* =========================== stepper =========================== */
 
 .stepper-container {
   display: flex;
@@ -343,18 +311,75 @@
 }
 
 .stepper-item.active .stepper-circle {
-  /* background: #005d7a; */
-  background: linear-gradient(to left, #4c1764, #005d7a);
+  background: linear-gradient(to right, rgba(93, 27, 121), rgba(0, 113, 154));
   color: white;
   border: 2px solid white;
-  /* box-shadow: 0 0 0 2px #4c1764;  */
 }
-
 
 .stepper-item.active .stepper-label {
   color: #4c1764;
 }
 
 .stepper-line.active {
-  background: linear-gradient(to right, #4c1764, #005d7a);
+  background: linear-gradient(to right, rgba(93, 27, 121), rgba(0, 113, 154));
+}
+
+
+/* =========================== product option checkboxes =========================== */
+
+.product-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: right;
+}
+
+.product-option {
+  position: relative;
+  padding: 1rem 1rem 1rem 2rem;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.product-option input {
+  display: none;
+}
+
+.product-option .checkmark {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.product-option.checked {
+  background: linear-gradient(to left, rgba(93, 27, 121), rgba(0, 113, 154));
+  color: white;
+}
+
+.product-option.checked .checkmark {
+  background-color: white;
+  border-color: white;
+}
+
+.product-option.checked::before {
+  content: '✔';
+  position: absolute;
+  left: 1.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #4c1764;
+  z-index: 1;
 }
