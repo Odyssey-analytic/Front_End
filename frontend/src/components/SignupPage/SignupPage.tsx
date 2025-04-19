@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signup } from '../../services/userService';
 import './SignupPage.css';
 
+// Importing icons
 import odessay_logo from '/public/icons/odessay_logo.svg';
 import login_email_icon from '/public/icons/login_email_icon.svg';
 import signup_user_icon from '/public/icons/signup_user_icon.svg';
@@ -12,23 +13,24 @@ import successful_signup_icon from '/public/icons/successful_signup_icon.svg';
 import unsuccessful_signup_icon from '/public/icons/unsuccessful_signup_icon.svg';
 import signup_padlock_icon from '/public/icons/signup_padlock_icon.svg';
 
-
 const SignupPage = () => {
-  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
-  // ============================== Form State ==============================
+  // ========================== Form state ==========================
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [emailErrorKey, setEmailErrorKey] = useState(0);
-  const [emailErrorType, setEmailErrorType] = useState<'empty' | 'invalid' | ''>('');
-
   const [username, setUsername] = useState('');
+
+  // ========================== Error state ==========================
+  const [errorMessage, setErrorMessage] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [emailErrorType, setEmailErrorType] = useState<'empty' | 'invalid' | ''>('');
+  const [emailErrorKey, setEmailErrorKey] = useState(0);
+
   const [usernameError, setUsernameError] = useState('');
   const [usernameErrorType, setUsernameErrorType] = useState<'empty' | 'invalid' | ''>('');
   const [usernameErrorKey, setUsernameErrorKey] = useState(0);
@@ -36,17 +38,21 @@ const SignupPage = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [confirmPasswordErrorKey, setConfirmPasswordErrorKey] = useState(0);
 
-  // ============================== Popup Status ==============================
+  // ========================== Popup state ==========================
   const [signupStatus, setSignupStatus] = useState<'success' | 'error' | ''>('');
 
-  // ============================== Validations ==============================
-  const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email);
-  const isValidUsername = (username: string) => /^(?=[a-zA-Z0-9._]{3,15}$)(?=.*[a-zA-Z])[a-zA-Z0-9._]+$/.test(username);
-  
-  // ============================== Input Handlers ==============================
+  // ========================== Validation functions ==========================
+  const isValidEmail = (email: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email);
+
+  const isValidUsername = (username: string) =>
+    /^(?=[a-zA-Z0-9._]{3,15}$)(?=.*[a-zA-Z])[a-zA-Z0-9._]+$/.test(username);
+
+  // ========================== Input change handlers ==========================
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEmail(value);
+
     if ((emailErrorType === 'invalid' && isValidEmail(value)) || (emailErrorType === 'empty' && value.trim())) {
       setEmailError('');
       setEmailErrorType('');
@@ -56,6 +62,7 @@ const SignupPage = () => {
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setUsername(value);
+
     if ((usernameErrorType === 'invalid' && isValidUsername(value)) || (usernameErrorType === 'empty' && value.trim())) {
       setUsernameError('');
       setUsernameErrorType('');
@@ -65,53 +72,61 @@ const SignupPage = () => {
   const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setConfirmPassword(value);
+
     if (confirmPasswordError && value === password) {
       setConfirmPasswordError('');
     }
   };
 
-  // ============================== Submit Handler ==============================
+  // ========================== Submit handler ==========================
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     let valid = true;
 
+    // Email validation
     if (!email.trim()) {
-      setEmailError('لطفاً ایمیل خود را وارد کنید.');
+      setEmailError('ایمیل را وارد کنید.');
       setEmailErrorType('empty');
       setEmailErrorKey(prev => prev + 1);
       valid = false;
     } else if (!isValidEmail(email)) {
-      setEmailError('ایمیل وارد شده معتبر نیست.');
+      setEmailError('فرمت ایمیل صحیح نیست.');
       setEmailErrorType('invalid');
       setEmailErrorKey(prev => prev + 1);
       valid = false;
     }
 
+    // Username validation
     if (!username.trim()) {
-      setUsernameError('لطفاً نام کاربری را وارد کنید.');
+      setUsernameError('نام کاربری را وارد کنید.');
       setUsernameErrorType('empty');
       setUsernameErrorKey(prev => prev + 1);
       valid = false;
     } else if (!isValidUsername(username)) {
-      setUsernameError('نام کاربری باید بین ۳ تا ۱۵ کاراکتر و شامل حروف و اعداد، . یا _ باشد.');
+      setUsernameError('نام کاربری بین ۳ تا ۱۵ کاراکتر و شامل حروف باشد.');
       setUsernameErrorType('invalid');
       setUsernameErrorKey(prev => prev + 1);
       valid = false;
     }
 
+    // Password match validation
     if (confirmPassword !== password) {
-      setConfirmPasswordError('رمز عبور و تکرار آن یکسان نیستند.');
+      setConfirmPasswordError('رمز عبور و تأیید آن یکی نیستند.');
       setConfirmPasswordErrorKey(prev => prev + 1);
       valid = false;
     }
 
     if (!valid) return;
 
+    // API call to register
     try {
       const data = { username, email, password, confirm_password: confirmPassword };
       const result = await signup(data);
+
       console.log('Signup successful:', result);
       setSignupStatus('success');
+
+      // Redirect after success
       setTimeout(() => navigate('/'), 2000);
     } catch (error: any) {
       console.error('Signup failed:', error.message);
@@ -120,21 +135,20 @@ const SignupPage = () => {
     }
   };
 
-  // ============================== Render ==============================
+  // ========================== JSX ==========================
   return (
     <div className="signup-page-container d-flex justify-content-center justify-content-lg-start align-items-center vh-100 px-3">
-      {/* Logo section (top left) */}
+      {/* Logo */}
       <div className="d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
         <div className="signup-page-brand-text english-text text-white me-3">ODESSAY</div>
         <img src={odessay_logo} alt="Odessay Logo" className="signup-page-logo-img me-4" />
       </div>
 
-      {/* Signup form container */}
+      {/* Signup Form */}
       <div className="signup-page-form-container mx-auto ms-lg-5 position-relative">
         <h2 className="signup-page-form-container-title fw-bold text-start mb-3">ثبت‌نام</h2>
 
         <form onSubmit={handleSubmit}>
-
           {/* Email field */}
           <div className="signup-input-wrapper mb-3 position-relative">
             <input type="text" className="signup-page-form-container-input form-control no-focus-style text-start pe-5" placeholder="ایمیل" value={email} onChange={handleEmailChange} />
@@ -167,14 +181,8 @@ const SignupPage = () => {
           {/* Password field */}
           <div className="mb-3 position-relative">
             <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="signup-page-form-container-input form-control" placeholder="رمز عبور" />
-            <img src={signup_padlock_icon} alt="confirm password icon" className="signup-form-container-padlock-icon" />
+            <img src={signup_padlock_icon} alt="password icon" className="signup-form-container-padlock-icon" />
             <img src={showPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle password" className="signup-form-container-eye-icon" onClick={() => setShowPassword((prev) => !prev)} />
-            {confirmPasswordError && (
-              <div className="signup-input-error-popup" key={`password-error-${confirmPasswordErrorKey}`}>
-                <span>{confirmPasswordError}</span>
-                <button type="button" onClick={() => setConfirmPasswordError('')}>×</button>
-              </div>
-            )}
           </div>
 
           {/* Confirm password field */}
@@ -185,22 +193,19 @@ const SignupPage = () => {
             {confirmPasswordError && (
               <div className="signup-input-error-popup" key={`confirm-password-error-${confirmPasswordErrorKey}`}>
                 <span>{confirmPasswordError}</span>
-                <button type="button" onClick={() => setConfirmPasswordError('')} >×</button>
+                <button type="button" onClick={() => setConfirmPasswordError('')}>×</button>
               </div>
             )}
           </div>
 
-          {/* General error message */}
-          {errorMessage && <div className="alert alert-danger text-center mt-2">{errorMessage}</div>}
-
-          {/* Submit button */}
+          {/* Submit Button */}
           <button type="submit" className="signup-form-btn btn w-100">ثبت نام</button>
 
           <p className="text-muted small mt-3">
             با ثبت‌نام، شما با <a href="#" className="signup-agreement-text">قوانین و شرایط</a> ما موافقت می‌کنید.
           </p>
 
-          {/* Signup status popup */}
+          {/* Success/Error Popup */}
           {signupStatus && (
             <div className={`signup-popup-warning-overlay ${signupStatus}`}>
               <div className="signup-warning-popup-card text-center">
@@ -213,7 +218,7 @@ const SignupPage = () => {
                 <p className="text-muted small">
                   {signupStatus === 'success'
                     ? 'حالا می‌تونی وارد حساب کاربریت بشی.'
-                    : 'لطفاً اطلاعات وارد شده رو بررسی کن و دوباره امتحان کن.'}
+                    : 'لطفاً اطلاعات وارد شده را بررسی کن و دوباره امتحان کن.'}
                 </p>
               </div>
             </div>

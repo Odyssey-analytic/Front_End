@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../services/userService';
 import './LoginPage.css';
 
+// ============================== Icon Imports ==============================
 import OdessayLogo from '/public/icons/odessay_logo.svg';
 import email_padlock_icon from '/public/icons/email_padlock_icon.svg';
 import login_eye_icon from '/public/icons/login_eye_icon.svg';
@@ -14,31 +15,64 @@ import successful_signup_icon from '/public/icons/successful_signup_icon.svg';
 import unsuccessful_signup_icon from '/public/icons/unsuccessful_signup_icon.svg';
 
 const LoginPage = () => {
+  // ============================== State ==============================
   const [errorMessage, setErrorMessage] = useState('');
   const [loginStatus, setLoginStatus] = useState<'success' | 'error' | ''>('');
-
-  const navigate = useNavigate();
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
+  const navigate = useNavigate();
+
+  // ============================== Login Handler ==============================
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    let valid = true;
+
+    // Validate email field
+    if (!email.trim()) {
+      setEmailError('لطفاً ایمیل یا نام کاربری را وارد کنید.');
+      valid = false;
+    } else {
+      setEmailError('');
+    }
+
+    // Validate password field
+    if (!password.trim()) {
+      setPasswordError('لطفاً رمز عبور را وارد کنید.');
+      valid = false;
+    } else {
+      setPasswordError('');
+    }
+
+    // If validation fails, prevent submission
+    if (!valid) return;
+
     try {
+      // Send login request
       const data = { identifier: email, password };
       const result = await login(data);
       console.log('Login successful:', result);
 
+      // Save token & username to localStorage
       localStorage.setItem('accessToken', result.access);
       localStorage.setItem('username', result.user.username);
 
-      if (result.user.is_first_login) {
-        navigate('/login/welcome');
-      } else {
-        navigate('/login/dashboard');
-      }
+      // Show success popup
+      setLoginStatus('success');
+
+      // Redirect user after short delay
+      setTimeout(() => {
+        if (result.user.is_first_login) {
+          navigate('/login/welcome');
+        } else {
+          navigate('/login/dashboard');
+        }
+      }, 2000);
     } catch (error: any) {
       console.error('Login failed:', error.message);
       setErrorMessage('');
@@ -46,20 +80,24 @@ const LoginPage = () => {
     }
   };
 
+  // ============================== JSX ==============================
   return (
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 login-page-container px-3">
+      
+      {/* Brand/Logo Section */}
       <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
         <div className="website-brand-text english-text text-white me-3">ODESSAY</div>
         <img src={OdessayLogo} alt="Odessay Logo" className="website-logo-img me-4" />
       </div>
 
+      {/* Login Form Box */}
       <div className="login-box mx-auto ms-lg-5 position-relative">
         <h2 className="fw-bold text-start mb-3 login-title">ورود</h2>
         <p className="text-muted text-start login-subtitle">ورود با استفاده از ایمیل</p>
 
         <form onSubmit={handleLogin}>
-          {/* Username Or Email */}
-          <div className="mb-3 position-relative">
+          {/* Email or Username Field */}
+          <div className="mb-3 position-relative login-input-wrapper">
             <input
               type="email"
               className="form-control text-start pe-5 text-dark login-input"
@@ -68,15 +106,20 @@ const LoginPage = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
             <img src={login_email_icon} alt="email icon" className="login-email-icon" />
+            {emailError && (
+              <div className="login-input-error-popup">
+                <span>{emailError}</span>
+                <button type="button" onClick={() => setEmailError('')}>×</button>
+              </div>
+            )}
           </div>
 
-          {/* Password */}
-          <div className="mb-3 position-relative">
+          {/* Password Field */}
+          <div className="mb-3 position-relative login-input-wrapper">
             <input
               type={showPassword ? 'text' : 'password'}
               className="form-control text-start pe-5 text-dark login-input"
               placeholder="رمز عبور خود را وارد کنید."
-              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -87,10 +130,18 @@ const LoginPage = () => {
               className="login-eye-icon"
               onClick={() => setShowPassword((prev) => !prev)}
             />
+            {passwordError && (
+              <div className="login-input-error-popup">
+                <span>{passwordError}</span>
+                <button type="button" onClick={() => setPasswordError('')}>×</button>
+              </div>
+            )}
           </div>
 
+          {/* Submit Button */}
           <button type="submit" className="btn w-100 login-btn">ورود</button>
 
+          {/* Register / Forgot Password Links */}
           <div className="text-muted small px-2 my-3 text-start login-non-register-remember-password">
             <span className="login-non-register-remember-password">
               ثبت‌نام نکرده‌اید؟{' '}
@@ -107,44 +158,40 @@ const LoginPage = () => {
 
           <hr className="my-4" />
 
+          {/* Login Result Popup */}
           {loginStatus && (
-  <div className={`signup-popup-warning-overlay ${loginStatus}`}>
-    <div className="signup-warning-popup-card text-center">
-      <button
-        className="signup-warning-popup-close-btn"
-        onClick={() => setLoginStatus('')}
-      >
-        ×
-      </button>
-      <img
-        src={
-          loginStatus === 'success'
-            ? successful_signup_icon
-            : unsuccessful_signup_icon
-        }
-        className="signup-warning-popup-emoji"
-        alt="status-icon"
-      />
-      <div className="signup-warning-popup-line-separator"></div>
-      <h5 className="fw-bold mb-2">
-        {loginStatus === 'success'
-          ? 'ورود با موفقیت انجام شد!'
-          : 'خطایی رخ داده است!'}
-      </h5>
-      <p className="text-muted small">
-        {loginStatus === 'success'
-          ? 'در حال انتقال به حساب کاربری...'
-          : 'نام کاربری یا رمز عبور نادرست است.'}
-      </p>
-    </div>
-  </div>
-)}
+            <div className={`login-popup-warning-overlay ${loginStatus}`}>
+              <div className="login-warning-popup-card text-center">
+                <button
+                  className="login-warning-popup-close-btn"
+                  onClick={() => setLoginStatus('')}
+                >
+                  ×
+                </button>
+                <img
+                  src={loginStatus === 'success' ? successful_signup_icon : unsuccessful_signup_icon}
+                  className="login-warning-popup-emoji"
+                  alt="status-icon"
+                />
+                <div className="login-warning-popup-line-separator"></div>
+                <h5 className="fw-bold mb-2">
+                  {loginStatus === 'success' ? 'ورود با موفقیت انجام شد!' : 'خطایی رخ داده است!'}
+                </h5>
+                <p className="text-muted small">
+                  {loginStatus === 'success'
+                    ? 'در حال انتقال به حساب کاربری...'
+                    : 'نام کاربری یا رمز عبور نادرست است.'}
+                </p>
+              </div>
+            </div>
+          )}
 
-
+          {/* Mock Test Button */}
           <button type="button" className="btn btn-sm btn-outline-success mt-1" onClick={() => setLoginStatus('success')}>
             تست موفقیت (ماک)
           </button>
 
+          {/* Google Login Button (non-functional) */}
           <button type="button" className="btn login-google-btn d-flex align-items-center w-80 px-4 mx-auto">
             <span className="fw-bold text-white ms-auto me-4 login-google-btn-enter-text">ورود با استفاده از</span>
             <div className="d-flex align-items-center gap-2 me-auto">
