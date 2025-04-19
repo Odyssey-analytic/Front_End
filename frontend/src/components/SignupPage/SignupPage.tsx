@@ -36,6 +36,9 @@ const SignupPage = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [confirmPasswordErrorKey, setConfirmPasswordErrorKey] = useState(0);
 
+  // error handling 
+  const [signupStatus, setSignupStatus] = useState<'success' | 'error' | ''>('');
+
 
   useEffect(() => {
     if (emailError) {
@@ -173,11 +176,18 @@ const SignupPage = () => {
       const result = await signup(data);
       console.log('Signup successful:', result);
 
-      navigate('/');
+      // change
+      setSignupStatus('success'); // 👈 موفقیت
+      // change
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
     
     } catch (error: any) {
       console.error('Signup failed:', error.message);
-      setErrorMessage(error.message || 'Something went wrong');
+      setErrorMessage('');
+      // change 
+      setSignupStatus('error');
     }
     
   };
@@ -193,12 +203,11 @@ const SignupPage = () => {
           className="website-logo-img me-4"
         />
 
-      
-        {/* <img src="/src/assets/icons/odessay_logo.svg" alt="Odessay Logo" className="website-logo-img me-4" />
-       */}
-      
       </div>
-      <div className="mx-auto ms-lg-5 signup-box">
+      <div className="mx-auto ms-lg-5 signup-box position-relative">
+        {/* change */}
+        <div className={`signup-form-wrapper ${signupStatus ? 'blurred' : ''}`}>
+        {/* change */}
         <h2 className="fw-bold text-start mb-3 signup-title">ثبت‌نام</h2>
 
         <form onSubmit={handleSubmit}>
@@ -218,14 +227,6 @@ const SignupPage = () => {
                 alt="email icon"
                 className="signup-email-icon"
               />
-
-
-              {/* <img
-                src="/src/assets/icons/login_email_icon.svg"
-                alt="email icon"
-                className="signup-email-icon"
-              /> */}
-
 
               {emailError && (
                 <div className="input-error-popup" key={emailErrorKey}>
@@ -255,15 +256,6 @@ const SignupPage = () => {
                 alt="username icon"
                 className="signup-user-icon"
               />
-
-              
-              
-              {/* <img
-                src="/src/assets/icons/signup_user_icon.svg"
-                alt="username icon"
-                className="signup-user-icon"
-              />
-               */}
               
               {usernameError && (
                 <div className="input-error-popup" key={usernameErrorKey}>
@@ -288,15 +280,6 @@ const SignupPage = () => {
               className="signup-eye-icon"
               onClick={() => setShowPassword(prev => !prev)}
             />
-
-
-            {/* <img
-              src={showPassword ? '/src/assets/icons/signup_eye_icon.svg' : '/src/assets/icons/signup_eye_off_icon.svg'}
-              alt="toggle password"
-              className="signup-eye-icon"
-              onClick={() => setShowPassword(prev => !prev)}
-            /> */}
-
           </div>
 
           {/* Confirm Password */}
@@ -316,16 +299,6 @@ const SignupPage = () => {
             className="signup-eye-icon"
             onClick={() => setShowConfirmPassword(prev => !prev)}
           />
-
-
-          {/* <img
-            src={showConfirmPassword ? '/src/assets/icons/signup_eye_icon.svg' : '/src/assets/icons/signup_eye_off_icon.svg'}
-            alt="toggle confirm password"
-            className="signup-eye-icon"
-            onClick={() => setShowConfirmPassword(prev => !prev)}
-          /> */}
-
-
           {confirmPasswordError && (
             <div className="input-error-popup" key={confirmPasswordErrorKey}>
               {confirmPasswordError}
@@ -347,8 +320,38 @@ const SignupPage = () => {
           <p className="text-muted small mt-3">
             با ثبت‌نام، شما با <a href="#" className="signup-agreement-text">قوانین و شرایط</a> ما موافقت می‌کنید.
           </p>
-        </form>
+          {signupStatus && (
+    <div className={`signup-popup-overlay ${signupStatus}`}>
+      <div className="signup-popup-card text-center">
+        <button className="close-btn" onClick={() => setSignupStatus('')}>×</button>
+
+        <div className="popup-icon mb-3">{signupStatus === 'success' ? '🎉' : '😞'}</div>
+
+        <h5 className="fw-bold mb-2">
+          {signupStatus === 'success' ? 'ثبت‌نام با موفقیت انجام شد!' : 'خطایی رخ داده است!'}
+        </h5>
+        <p className="text-muted small">
+          {signupStatus === 'success'
+            ? 'حالا می‌تونی وارد حساب کاربریت بشی.'
+            : 'لطفاً اطلاعات وارد شده رو بررسی کن و دوباره امتحان کن.'}
+        </p>
       </div>
+    </div>
+  )}
+  
+        </form>
+        <button
+  type="button"
+  className="btn btn-sm btn-outline-success mt-3"
+  onClick={() => setSignupStatus('success')}
+>
+  تست موفقیت (ماک)
+</button>
+
+      </div>
+
+      </div>
+    
     </div>
   );
 };
