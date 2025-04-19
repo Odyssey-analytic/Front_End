@@ -37,33 +37,6 @@ const SignupPage = () => {
   // Status for popup
   const [signupStatus, setSignupStatus] = useState<'success' | 'error' | ''>('');
 
-  // Timed hiding for email error
-  useEffect(() => {
-    if (emailError) {
-      const timer = setTimeout(() => setEmailError(''), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [emailErrorKey]);
-
-  // Timed hiding for username error
-  useEffect(() => {
-    if (usernameErrorType === 'empty' && usernameError) {
-      const timer = setTimeout(() => {
-        setUsernameError('');
-        setUsernameErrorType('');
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [usernameErrorKey]);
-
-  // Timed hiding for password confirmation error
-  useEffect(() => {
-    if (confirmPasswordError) {
-      const timer = setTimeout(() => setConfirmPasswordError(''), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [confirmPasswordErrorKey]);
-
   const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email);
   const isValidUsername = (username: string) => /^[a-zA-Z0-9._]{3,20}$/.test(username);
 
@@ -199,17 +172,64 @@ const SignupPage = () => {
 
 
             {/* Password field */}
-            <div className="mb-3 position-relative">
-              <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="signup-page-form-container-input form-control" placeholder="رمز عبور" />
-              <img src={showPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle password" className="signup-form-container-eye-icon" onClick={() => setShowPassword(prev => !prev)} />
-            </div>
+{/* Password field */}
+<div className="mb-3 position-relative">
+  <input
+    type={showPassword ? 'text' : 'password'}
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    className="signup-page-form-container-input form-control"
+    placeholder="رمز عبور"
+  />
+  <img
+    src={showPassword ? signup_eye_icon : signup_eye_off_icon}
+    alt="toggle password"
+    className="signup-form-container-eye-icon"
+    onClick={() => setShowPassword((prev) => !prev)}
+  />
+  {confirmPasswordError && (
+    <div className="input-error-popup" key={`password-error-${confirmPasswordErrorKey}`}>
+      <span>{confirmPasswordError}</span>
+      <button
+        type="button"
+        onClick={() => setConfirmPasswordError('')}
+        className="input-error-close"
+      >
+        ×
+      </button>
+    </div>
+  )}
+</div>
 
-            {/* Confirm password field */}
-            <div className="mb-3 position-relative">
-              <input type={showConfirmPassword ? 'text' : 'password'} value={confirmPassword} onChange={handleConfirmPasswordChange} className="signup-page-form-container-input form-control" placeholder="تأیید رمز عبور" />
-              <img src={showConfirmPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle confirm password" className="signup-form-container-eye-icon" onClick={() => setShowConfirmPassword(prev => !prev)} />
-              {confirmPasswordError && <div className="input-error-popup" key={confirmPasswordErrorKey}>{confirmPasswordError}</div>}
-            </div>
+{/* Confirm password field */}
+<div className="mb-3 position-relative">
+  <input
+    type={showConfirmPassword ? 'text' : 'password'}
+    value={confirmPassword}
+    onChange={handleConfirmPasswordChange}
+    className="signup-page-form-container-input form-control"
+    placeholder="تأیید رمز عبور"
+  />
+  <img
+    src={showConfirmPassword ? signup_eye_icon : signup_eye_off_icon}
+    alt="toggle confirm password"
+    className="signup-form-container-eye-icon"
+    onClick={() => setShowConfirmPassword((prev) => !prev)}
+  />
+  {confirmPasswordError && (
+    <div className="input-error-popup" key={`confirm-password-error-${confirmPasswordErrorKey}`}>
+      <span>{confirmPasswordError}</span>
+      <button
+        type="button"
+        onClick={() => setConfirmPasswordError('')}
+        className="input-error-close"
+      >
+        ×
+      </button>
+    </div>
+  )}
+</div>
+
 
             {/* General error */}
             {errorMessage && <div className="alert alert-danger text-center mt-2">{errorMessage}</div>}
