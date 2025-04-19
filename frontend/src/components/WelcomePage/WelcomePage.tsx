@@ -115,56 +115,70 @@ const WelcomePage = () => {
                   <button className="btn btn-primary mt-3" disabled={!selectedProduct} onClick={() => setStep(2)}>ادامه</button>
                 </>
               )}
-
               {/* =========================== Step 2 =========================== */}
               {step === 2 && selectedProduct === 'game' && (
-                <>
-                  <p className="popup-title">اطلاعات بازیت رو وارد کن:</p>
-                  <div className="popup-options my-4 text-end">
-                    <label>نام بازی:</label>
-                    <input type="text" className="form-control mb-3" />
-                    <label className="d-block mb-1">انتخاب موتور بازی:</label>
-                    <div className="d-flex gap-3 mb-3">
-                      <label><input type="checkbox" /> Unity</label>
-                      <label><input type="checkbox" /> Godot</label>
-                      <label><input type="checkbox" /> Custom</label>
-                    </div>
-                    <label className="d-block mb-1">انتخاب پلتفرم هدف:</label>
-                    <div className="d-flex gap-3 mb-3">
-                      <label><input type="checkbox" /> PC</label>
-                      <label><input type="checkbox" /> Android</label>
-                      <label><input type="checkbox" /> iOS</label>
-                    </div>
-                    <label>توضیحات (اختیاری):</label>
-                    <textarea className="form-control mb-4"></textarea>
-                    <div className="d-flex justify-content-between">
-                      <button className="btn btn-secondary" onClick={() => setStep(1)}>بازگشت</button>
-                      <button className="btn btn-primary" onClick={() => setStep(3)}>ثبت</button>
-                    </div>
-                  </div>
-                </>
-              )}
+              <div className="step-2-compact">
+                <p className="text-start">اطلاعات بازیت رو وارد کن :</p>
+                <div className="popup-options my-2 text-end">
+                  <label>نام بازی:</label>
+                  <input type="text" className="form-control" />
 
+                  <div className="d-flex justify-content-between gap-4 flex-wrap">
+  {/* موتور بازی */}
+  <div className="text-end">
+    <label className="d-block mb-1">انتخاب موتور بازی:</label>
+    <div className="d-flex gap-2">
+      <label><input type="checkbox" /> Unity</label>
+      <label><input type="checkbox" /> Godot</label>
+      <label><input type="checkbox" /> Custom</label>
+    </div>
+  </div>
+
+  {/* پلتفرم هدف */}
+  <div className="text-end">
+    <label className="d-block mb-1">انتخاب پلتفرم هدف:</label>
+    <div className="d-flex gap-2">
+      <label><input type="checkbox" /> PC</label>
+      <label><input type="checkbox" /> Android</label>
+      <label><input type="checkbox" /> iOS</label>
+    </div>
+  </div>
+</div>
+
+
+                  <label>توضیحات (اختیاری):</label>
+                  <textarea className="form-control"></textarea>
+
+                  <div className="d-flex justify-content-between mt-3">
+                    <button className="btn btn-secondary" onClick={() => setStep(1)}>بازگشت</button>
+                    <button className="btn btn-primary" onClick={() => setStep(3)}>ثبت</button>
+                  </div>
+                </div>
+              </div>
+            )}
               {/* =========================== Step 3 =========================== */}
               {step === 3 && (
-                <>
-                  <div className="success-popup-icon mb-3"></div>
-                  <h4 className="mb-2">محصول شما با موفقیت ثبت شد!</h4>
-                  <p className="mb-2">
-                    همه‌چیز آماده‌ست. حالا فقط کافیه SDK رو داخل بازی/وب‌سایت‌تون قرار بدید تا بتونید داده‌های آنالیز رو مشاهده کنید.
-                  </p>
-                  <p className="mb-3">
-                    <a href="#" className="text-primary">لینک دانلود SDK</a>
-                  </p>
-                  <div className="form-control mb-2 text-start" style={{ direction: 'ltr' }}>
-                    <strong>Access Token:</strong><br />
-                    <span className="text-muted small">ghp_4G8j7nwWL9TETKXsmBjXaiU6NHQMrs1ZDOGv</span>
-                  </div>
-                  <p className="text-muted mt-3" style={{ fontSize: '13px' }}>
-                    برای اطلاع از دستور نصب به بخش داکیومنت در منو مراجعه کنید!
-                  </p>
-                </>
-              )}
+              <div className="step-success-container">
+                <div className="success-icon-wrapper">
+                  <img src="/icons/success.svg" alt="Success" />
+                </div>
+                <h4 className="mb-2">محصول با موفقیت ثبت شد!</h4>
+                <p className="mb-2">
+                  همه‌چیز آماده‌ست. حالا فقط کافیه SDK رو داخل بازی/وب‌سایت‌تون قرار بدید تا بتونید داده‌های آنالیز رو ببینید.
+                </p>
+                <p className="mb-3">
+                  <a href="#" className="sdk-download-link">دانلود SDK</a>
+                </p>
+                <div className="access-token-box">
+                  <strong>Access Token:</strong><br />
+                  <span className="token-value">ghp_4G8j7nwWL9TETKXsmBjXaiU6NHQMrs1ZDOGv</span>
+                </div>
+                <p className="token-note">
+                  برای اطلاع از نحوه نصب SDK به بخش داکیومنت در منو مراجعه کن.
+                </p>
+              </div>
+            )}
+
 
             </div>
           </div>

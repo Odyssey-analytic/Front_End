@@ -184,6 +184,9 @@
   max-width: 600px;
   width: 100%;
   min-height: 470px;
+  /*  */
+  max-height: 470px;
+  overflow-y: auto; 
   text-align: center;
   position: relative;
   z-index: 1001;
@@ -199,6 +202,7 @@
 
 .welcome-page-popup-title {
   font-size: 15px;
+  text-align: right;
   color: #333;
   margin-bottom: 1rem;
 }
@@ -382,4 +386,65 @@
   font-size: 12px;
   color: #4c1764;
   z-index: 1;
+}
+
+
+
+/* ///////////////////////////////// */
+.step-success-container {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.success-icon-wrapper img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1rem;
+}
+
+.sdk-download-link {
+  color: #00719a;
+  font-weight: 500;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.sdk-download-link:hover {
+  color: #4c1764;
+}
+
+.access-token-box {
+  background-color: #f6f6f6;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: monospace;
+  text-align: left;
+  direction: ltr;
+}
+
+.token-value {
+  color: #333;
+  font-size: 13px;
+}
+
+.token-note {
+  margin-top: 1rem;
+  font-size: 12px;
+  color: #888;
+}
+
+.step-2-compact .popup-options label {
+  margin-bottom: 0.3rem;
+  font-size: 14px;
+}
+
+.step-2-compact .popup-options input,
+.step-2-compact .popup-options textarea {
+  margin-bottom: 0.6rem;
+}
+
+.step-2-compact .popup-options .d-flex {
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
 }
