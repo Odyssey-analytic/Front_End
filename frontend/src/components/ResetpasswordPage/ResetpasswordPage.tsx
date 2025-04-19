@@ -1,29 +1,49 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import './ResetpasswordPage.css';
+import "./ResetpasswordPage.css";
 
 import odessay_logo from '/public/icons/odessay_logo.svg';
 import signup_padlock_icon from '/public/icons/signup_padlock_icon.svg';
 import forgetpassword_sendcode_icon from '/public/icons/forgetpassword_sendcode_icon.svg';
-
-
+import successful_signup_icon from '/public/icons/successful_signup_icon.svg';
+import unsuccessful_signup_icon from '/public/icons/unsuccessful_signup_icon.svg';
 
 const ResetpasswordPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
+  const [popupStatus, setPopupStatus] = useState<'success' | 'error' | ''>('');
+
   const { token } = useParams();
   const navigate = useNavigate();
-
-  const [errorMessage, setErrorMessage] = useState('');
-
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
+    let valid = true;
+
+    // ===== Validate password =====
+    if (!password.trim()) {
+      setPasswordError("رمز عبور را وارد کنید.");
+      valid = false;
+    } else {
+      setPasswordError("");
     }
+
+    // ===== Validate confirm password =====
+    if (!confirmPassword.trim()) {
+      setConfirmPasswordError("تأیید رمز عبور را وارد کنید.");
+      valid = false;
+    } else if (password !== confirmPassword) {
+      setConfirmPasswordError("رمز عبور و تأیید آن یکسان نیستند.");
+      valid = false;
+    } else {
+      setConfirmPasswordError("");
+    }
+
+    if (!valid) return;
 
     try {
       const response = await fetch(`https://odysseyanalytics.ir/api/api/reset-password/${token}/`, {
@@ -31,131 +51,125 @@ const ResetpasswordPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          password: password,
-          confirm_password: confirmPassword,
-        }),
+        body: JSON.stringify({ password, confirm_password: confirmPassword }),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        // throw new Error(errorData.message || "Reset password failed.");
         throw new Error(errorData.message || errorData.detail || "Reset password failed.");
-
       }
 
-      alert("Your password has been successfully reset.");
-      navigate("/");
+      setPopupStatus('success');
+      setTimeout(() => navigate("/"), 2000);
     } catch (error: any) {
       console.error("Reset error:", error.message);
-      alert("Failed to reset password. Please try again.");
-      // console.error("Reset error:", error.message);
-      setErrorMessage(error.message || "Failed to reset password. Please try again.");
+      // setErrorMessage(error.message || "Failed to reset password. Please try again.");
+      setPopupStatus('error');
     }
   };
 
   return (
-    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 forgot-page-container px-3">  
+    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 reset-page-container px-3">
+      {/* ===== Brand ===== */}
       <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
         <div className="website-brand-text english-text text-white me-3">ODESSAY</div>
-
-        <img
-          src={odessay_logo}
-          alt="Odessay Logo"
-          className="website-logo-img me-4"
-        />
-
-
-        {/* <img src="/src/assets/icons/odessay_logo.svg" alt="Odessay Logo" className="website-logo-img me-4" /> */}
-      
-      
+        <img src={odessay_logo} alt="Odessay Logo" className="website-logo-img me-4" />
       </div>
 
-      <div className="forgot-box mx-auto ms-lg-5">
-        <h2 className="fw-bold text-start mb-3 forgot-title">تغییر رمز عبور</h2>
+      {/* ===== Reset Form Box ===== */}
+      <div className="reset-box mx-auto ms-lg-5 position-relative">
+        <h2 className="fw-bold text-start mb-3 reset-title">تغییر رمز عبور</h2>
 
         <form onSubmit={handleSubmit}>
-          <div className="mb-3 position-relative">
+          {/* ===== Password Field ===== */}
+          <div className="mb-3 position-relative reset-input-wrapper">
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="form-control text-start pe-5 text-dark forgot-input"
+              className="form-control text-start pe-5 text-dark reset-input"
               placeholder="رمز عبور جدید"
-              required
             />
-            
-          
-            <img
-              src={signup_padlock_icon}
-              alt="lock icon"
-              className="forgot-email-icon"
-            />
-
-          
-            {/* <img
-              src="/src/assets/icons/signup_padlock_icon.svg"
-              alt="lock icon"
-              className="forgot-email-icon"
-            /> */}
-          
-          
+            <img src={signup_padlock_icon} alt="lock icon" className="reset-icon" />
+            {passwordError && (
+              <div className="reset-input-error-popup">
+                <span>{passwordError}</span>
+                <button type="button" onClick={() => setPasswordError("")}>×</button>
+              </div>
+            )}
           </div>
 
-          <div className="mb-3 position-relative">
+          {/* ===== Confirm Password Field ===== */}
+          <div className="mb-3 position-relative reset-input-wrapper">
             <input
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="form-control text-start pe-5 text-dark forgot-input"
-              placeholder="تایید رمز عبور جدید"
-              required
+              className="form-control text-start pe-5 text-dark reset-input"
+              placeholder="تأیید رمز عبور جدید"
             />
-
-          
-            <img
-              src={signup_padlock_icon}
-              alt="lock icon"
-              className="forgot-email-icon"
-            />
-          
-            {/* <img
-              src="/src/assets/icons/signup_padlock_icon.svg"
-              alt="lock icon"
-              className="forgot-email-icon"
-            />
-           */}
-          
-          </div>
-
-          {errorMessage && (
-              <div className="alert alert-danger text-center my-2">
-                {errorMessage}
+            <img src={signup_padlock_icon} alt="lock icon" className="reset-icon" />
+            {confirmPasswordError && (
+              <div className="reset-input-error-popup">
+                <span>{confirmPasswordError}</span>
+                <button type="button" onClick={() => setConfirmPasswordError("")}>×</button>
               </div>
             )}
-            
+          </div>
+
+          {/* ===== General Server Error ===== */}
+          {errorMessage && (
+            <div className="alert alert-danger text-center my-2">{errorMessage}</div>
+          )}
+
+          {/* ===== Submit Button ===== */}
           <div className="d-flex justify-content-center mt-3">
-
-            <button type="submit" className="btn d-flex align-items-center gap-1 forgot-btn">
-              <span className="text-white fw-bold forgot-btn-text">ثبت رمز جدید</span>
-            
-              <img
-                src={forgetpassword_sendcode_icon}
-                alt="send icon"
-                style={{ width: '30px', height: '25px' }}
-              />
-
-
-              {/* <img src="/src/assets/icons/forgetpassword_sendcode_icon.svg" alt="send icon" style={{ width: '30px', height: '25px' }} /> */}
-            
-            
+            <button type="submit" className="btn d-flex align-items-center gap-1 reset-btn">
+              <span className="text-white fw-bold reset-btn-text">ثبت رمز جدید</span>
+              <img src={forgetpassword_sendcode_icon} alt="send icon" style={{ width: '30px', height: '25px' }} />
+            </button>
+          </div>
+          {/* ===== Test Success Button (Mock) ===== */}
+          <div className="text-center mt-2">
+            <button
+              type="button"
+              className="btn btn-sm btn-outline-success"
+              onClick={() => setPopupStatus("success")}
+            >
+              تست موفقیت (ماک)
             </button>
           </div>
         </form>
+
+        {/* ===== Popup Overlay ===== */}
+        {popupStatus && (
+          <div className={`reset-popup-warning-overlay ${popupStatus}`}>
+            <div className="reset-warning-popup-card text-center">
+              <button
+                className="reset-warning-popup-close-btn"
+                onClick={() => setPopupStatus("")}
+              >
+                ×
+              </button>
+              <img src={popupStatus === "success" ? successful_signup_icon : unsuccessful_signup_icon} className="reset-warning-popup-emoji" alt="status-icon"/>
+              <div className="reset-warning-popup-line-separator"></div>
+              <h5 className="fw-bold mb-2">
+                {popupStatus === "success"
+                  ? "رمز عبور با موفقیت تغییر کرد!"
+                  : "تغییر رمز عبور با خطا مواجه شد!"}
+              </h5>
+              <p className="text-muted small">
+                {popupStatus === "success"
+                  ? "اکنون می‌توانید وارد حساب کاربری شوید."
+                  : "لطفاً اتصال اینترنت یا لینک بازیابی را بررسی کنید."}
+              </p>
+            </div>
+          </div>
+        )}
+
       </div>
     </div>
   );
 };
 
 export default ResetpasswordPage;
-

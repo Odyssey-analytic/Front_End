@@ -130,7 +130,7 @@
   color: rgba(114, 114, 114);
 }
 
-/* ======================== Input Error Popup ======================== */
+/* ======================== Error Popup Over Input Fields ======================== */
 .login-input-wrapper {
   position: relative;
 }
