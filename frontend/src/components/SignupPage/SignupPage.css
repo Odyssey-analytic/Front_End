@@ -128,10 +128,6 @@
   cursor: pointer;
 }
 
-.error-message {
-  color: #dc3545; 
-}
-
 
 .signup-btn {
   background: linear-gradient(to right, rgba(93, 27, 121),   rgba(0, 113, 154));
@@ -148,7 +144,7 @@
   color:  rgba(89, 67, 130);
 }
 
-.input-error-popup {
+/* .input-error-popup {
   position: absolute;
   top: 100%;
   right: 0.5rem;
@@ -160,7 +156,7 @@
   margin-top: 4px;
   z-index: 10;
   transition: opacity 0.3s ease;
-}
+} */
 
 
 @keyframes fadeOut {
@@ -223,18 +219,6 @@
   z-index: 1;
 }
 
-/* آیکون دایره‌ای */
-.popup-icon {
-  color: white;
-  font-size: 24px;
-  width: 52px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  margin-bottom: 1.2rem;
-}
 
 /* تیتر */
 .signup-popup-card h5 {
@@ -267,4 +251,23 @@
   font-size: 18px;
   color: #333;
   cursor: pointer;
+}
+
+/* سایز آیکون تصویری */
+.popup-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+/* خط جداکننده */
+.popup-separator {
+  width: 100%;
+  max-width: 250px;
+  height: 1px;
+  background-color: #7b7b7b;
+  margin: 0 auto 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
 }
