@@ -2,9 +2,9 @@ import { useState } from "react";
 import { requestPasswordReset } from "../../services/userService";
 import "./ForgotpasswordPage.css";
 
-import logoImage from '/public/icons/odessay_logo.svg';
-import loginEmailIcon from '/public/icons/login_email_icon.svg';
-import sendcodeIcon from "/public/icons/forgetpassword_sendcode_icon.svg";
+import odessay_logo from '/public/icons/odessay_logo.svg';
+import login_email_icon from '/public/icons/login_email_icon.svg';
+import forgetpassword_sendcode_icon from "/public/icons/forgetpassword_sendcode_icon.svg";
 import successful_signup_icon from "/public/icons/successful_signup_icon.svg";
 import unsuccessful_signup_icon from "/public/icons/unsuccessful_signup_icon.svg";
 
@@ -14,8 +14,7 @@ const ForgotpasswordPage = () => {
   const [emailErrorKey, setEmailErrorKey] = useState(0);
   const [popupStatus, setPopupStatus] = useState<"success" | "error" | "">("");
 
-  const isValidEmail = (email: string) =>
-    /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email);
+  const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,7 +48,7 @@ const ForgotpasswordPage = () => {
       {/* ====== Brand Logo ====== */}
       <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
         <div className="website-brand-text english-text text-white me-3">ODESSAY</div>
-        <img src={logoImage} alt="Odessay Logo" className="website-logo-img me-4" />
+        <img src={odessay_logo} alt="Odessay Logo" className="website-logo-img me-4" />
       </div>
 
       {/* ====== Forgot Form Box ====== */}
@@ -68,10 +67,10 @@ const ForgotpasswordPage = () => {
               className="form-control text-start pe-5 text-dark forgot-input"
               placeholder="ایمیل خود را وارد کنید."
             />
-            <img src={loginEmailIcon} alt="Email Icon" className="forgot-email-icon" />
+            <img src={login_email_icon} alt="Email Icon" className="forgot-email-icon" />
 
             {emailError && (
-              <div className="forgot-input-error-popup" key={emailErrorKey}>
+              <div className="signup-input-error-popup" key={emailErrorKey}>
                 <span>{emailError}</span>
                 <button type="button" onClick={() => setEmailError("")}>×</button>
               </div>
@@ -85,7 +84,7 @@ const ForgotpasswordPage = () => {
           <div className="d-flex justify-content-center mt-3">
             <button type="submit" className="btn d-flex align-items-center gap-1 forgot-btn">
               <span className="text-white fw-bold forgot-btn-text">ارسال کد</span>
-              <img src={sendcodeIcon} alt="send icon" style={{ width: "30px", height: "25px" }} />
+              <img src={forgetpassword_sendcode_icon} alt="send icon" style={{ width: "30px", height: "25px" }} />
             </button>
           </div>
 
@@ -99,20 +98,20 @@ const ForgotpasswordPage = () => {
 
         {/* ====== Popup Message (Success / Error) ====== */}
         {popupStatus && (
-          <div className={`login-popup-warning-overlay ${popupStatus}`}>
-            <div className="login-warning-popup-card text-center">
+          <div className={`forgot-password-popup-warning-overlay ${popupStatus}`}>
+            <div className="forgot-password-warning-popup-card text-center">
               <button
-                className="login-warning-popup-close-btn"
+                className="forgot-password-warning-popup-close-btn"
                 onClick={() => setPopupStatus("")}
               >
                 ×
               </button>
               <img
                 src={popupStatus === "success" ? successful_signup_icon : unsuccessful_signup_icon}
-                className="login-warning-popup-emoji"
+                className="forgot-password-warning-popup-emoji"
                 alt="status-icon"
               />
-              <div className="login-warning-popup-line-separator"></div>
+              <div className="forgot-password-warning-popup-line-separator"></div>
               <h5 className="fw-bold mb-2">
                 {popupStatus === "success"
                   ? "ایمیل با موفقیت ارسال شد!"
