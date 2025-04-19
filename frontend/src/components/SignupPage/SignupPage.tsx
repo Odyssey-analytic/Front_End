@@ -1,4 +1,4 @@
-import { useState , useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signup } from '../../services/userService';
 import './SignupPage.css';
@@ -10,12 +10,14 @@ import signup_eye_icon from '/public/icons/signup_eye_icon.svg';
 import signup_eye_off_icon from '/public/icons/signup_eye_off_icon.svg';
 import successful_signup_icon from '/public/icons/successful_signup_icon.svg';
 import unsuccessful_signup_icon from '/public/icons/unsuccessful_signup_icon.svg';
+import signup_padlock_icon from '/public/icons/signup_padlock_icon.svg';
+
 
 const SignupPage = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
-  // Form state
+  // ============================== Form State ==============================
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [password, setPassword] = useState('');
@@ -34,13 +36,14 @@ const SignupPage = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [confirmPasswordErrorKey, setConfirmPasswordErrorKey] = useState(0);
 
-  // Status for popup
+  // ============================== Popup Status ==============================
   const [signupStatus, setSignupStatus] = useState<'success' | 'error' | ''>('');
 
+  // ============================== Validations ==============================
   const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email);
-  const isValidUsername = (username: string) => /^[a-zA-Z0-9._]{3,20}$/.test(username);
-
-  // Input handlers with error cleaning
+  const isValidUsername = (username: string) => /^(?=[a-zA-Z0-9._]{3,15}$)(?=.*[a-zA-Z])[a-zA-Z0-9._]+$/.test(username);
+  
+  // ============================== Input Handlers ==============================
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEmail(value);
@@ -67,7 +70,7 @@ const SignupPage = () => {
     }
   };
 
-  // Form submission handler
+  // ============================== Submit Handler ==============================
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     let valid = true;
@@ -90,7 +93,7 @@ const SignupPage = () => {
       setUsernameErrorKey(prev => prev + 1);
       valid = false;
     } else if (!isValidUsername(username)) {
-      setUsernameError('نام کاربری باید بین ۳ تا ۲۰ حرف و شامل حروف، عدد، نقطه یا زیرخط باشد.');
+      setUsernameError('نام کاربری باید بین ۳ تا ۱۵ کاراکتر و شامل حروف و اعداد، . یا _ باشد.');
       setUsernameErrorType('invalid');
       setUsernameErrorKey(prev => prev + 1);
       valid = false;
@@ -117,167 +120,112 @@ const SignupPage = () => {
     }
   };
 
+  // ============================== Render ==============================
   return (
     <div className="signup-page-container d-flex justify-content-center justify-content-lg-start align-items-center vh-100 px-3">
-      {/* Brand section */}
+      {/* Logo section (top left) */}
       <div className="d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
         <div className="signup-page-brand-text english-text text-white me-3">ODESSAY</div>
         <img src={odessay_logo} alt="Odessay Logo" className="signup-page-logo-img me-4" />
       </div>
 
+      {/* Signup form container */}
       <div className="signup-page-form-container mx-auto ms-lg-5 position-relative">
-          <h2 className="signup-page-form-container-title fw-bold text-start mb-3">ثبت‌نام</h2>
+        <h2 className="signup-page-form-container-title fw-bold text-start mb-3">ثبت‌نام</h2>
 
-          <form onSubmit={handleSubmit}>
-            {/* Email field */}
-<div className="input-wrapper mb-3 position-relative">
-  <input
-    type="text"
-    className="signup-page-form-container-input form-control no-focus-style text-start pe-5"
-    placeholder="ایمیل"
-    value={email}
-    onChange={handleEmailChange}
-  />
-  <img src={login_email_icon} alt="email icon" className="signup-form-container-email-icon" />
-  {emailError && (
-    <div className="input-error-popup" key={emailErrorKey}>
-      <span>{emailError}</span>
-      <button type="button" onClick={() => setEmailError('')} className="input-error-close">×</button>
-    </div>
-  )}
-</div>
+        <form onSubmit={handleSubmit}>
 
-{/* Username field */}
-<div className="input-wrapper mb-3 position-relative">
-  <input
-    type="text"
-    className="signup-page-form-container-input form-control no-focus-style"
-    value={username}
-    onChange={handleUsernameChange}
-  />
-  {!username && (
-    <div className="signup-page-form-container-input-custom-placeholder text-muted">
-      نام کاربری
-      <span className="hint"> (۳–۲۰ کاراکتر، فقط a-z، 0–9، . یا _)</span>
-    </div>
-  )}
-  <img src={signup_user_icon} alt="username icon" className="signup-form-container-user-icon" />
-  {usernameError && (
-    <div className="input-error-popup" key={usernameErrorKey}>
-      <span>{usernameError}</span>
-      <button type="button" onClick={() => setUsernameError('')} className="input-error-close">×</button>
-    </div>
-  )}
-</div>
+          {/* Email field */}
+          <div className="signup-input-wrapper mb-3 position-relative">
+            <input type="text" className="signup-page-form-container-input form-control no-focus-style text-start pe-5" placeholder="ایمیل" value={email} onChange={handleEmailChange} />
+            <img src={login_email_icon} alt="email icon" className="signup-form-container-email-icon" />
+            {emailError && (
+              <div className="signup-input-error-popup" key={emailErrorKey}>
+                <span>{emailError}</span>
+                <button type="button" onClick={() => setEmailError('')}>×</button>
+              </div>
+            )}
+          </div>
 
+          {/* Username field */}
+          <div className="signup-input-wrapper mb-3 position-relative">
+            <input type="text" className="signup-page-form-container-input form-control no-focus-style" value={username} onChange={handleUsernameChange} />
+            {!username && (
+              <div className="signup-page-form-container-input-custom-placeholder text-muted">
+                نام کاربری <span className="hint">(بین ۳ تا ۱۵ کاراکتر و شامل حروف، عدد، . یا _)</span>
+              </div>
+            )}
+            <img src={signup_user_icon} alt="username icon" className="signup-form-container-user-icon" />
+            {usernameError && (
+              <div className="signup-input-error-popup" key={usernameErrorKey}>
+                <span>{usernameError}</span>
+                <button type="button" onClick={() => setUsernameError('')}>×</button>
+              </div>
+            )}
+          </div>
 
-            {/* Password field */}
-{/* Password field */}
-<div className="mb-3 position-relative">
-  <input
-    type={showPassword ? 'text' : 'password'}
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-    className="signup-page-form-container-input form-control"
-    placeholder="رمز عبور"
-  />
-  <img
-    src={showPassword ? signup_eye_icon : signup_eye_off_icon}
-    alt="toggle password"
-    className="signup-form-container-eye-icon"
-    onClick={() => setShowPassword((prev) => !prev)}
-  />
-  {confirmPasswordError && (
-    <div className="input-error-popup" key={`password-error-${confirmPasswordErrorKey}`}>
-      <span>{confirmPasswordError}</span>
-      <button
-        type="button"
-        onClick={() => setConfirmPasswordError('')}
-        className="input-error-close"
-      >
-        ×
-      </button>
-    </div>
-  )}
-</div>
+          {/* Password field */}
+          <div className="mb-3 position-relative">
+            <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="signup-page-form-container-input form-control" placeholder="رمز عبور" />
+            <img src={signup_padlock_icon} alt="confirm password icon" className="signup-form-container-padlock-icon" />
+            <img src={showPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle password" className="signup-form-container-eye-icon" onClick={() => setShowPassword((prev) => !prev)} />
+            {confirmPasswordError && (
+              <div className="signup-input-error-popup" key={`password-error-${confirmPasswordErrorKey}`}>
+                <span>{confirmPasswordError}</span>
+                <button type="button" onClick={() => setConfirmPasswordError('')}>×</button>
+              </div>
+            )}
+          </div>
 
-{/* Confirm password field */}
-<div className="mb-3 position-relative">
-  <input
-    type={showConfirmPassword ? 'text' : 'password'}
-    value={confirmPassword}
-    onChange={handleConfirmPasswordChange}
-    className="signup-page-form-container-input form-control"
-    placeholder="تأیید رمز عبور"
-  />
-  <img
-    src={showConfirmPassword ? signup_eye_icon : signup_eye_off_icon}
-    alt="toggle confirm password"
-    className="signup-form-container-eye-icon"
-    onClick={() => setShowConfirmPassword((prev) => !prev)}
-  />
-  {confirmPasswordError && (
-    <div className="input-error-popup" key={`confirm-password-error-${confirmPasswordErrorKey}`}>
-      <span>{confirmPasswordError}</span>
-      <button
-        type="button"
-        onClick={() => setConfirmPasswordError('')}
-        className="input-error-close"
-      >
-        ×
-      </button>
-    </div>
-  )}
-</div>
+          {/* Confirm password field */}
+          <div className="mb-3 position-relative">
+            <input type={showConfirmPassword ? 'text' : 'password'} value={confirmPassword} onChange={handleConfirmPasswordChange} className="signup-page-form-container-input form-control" placeholder="تأیید رمز عبور" />
+            <img src={signup_padlock_icon} alt="confirm password icon" className="signup-form-container-padlock-icon" />
+            <img src={showConfirmPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle confirm password" className="signup-form-container-eye-icon" onClick={() => setShowConfirmPassword((prev) => !prev)} />
+            {confirmPasswordError && (
+              <div className="signup-input-error-popup" key={`confirm-password-error-${confirmPasswordErrorKey}`}>
+                <span>{confirmPasswordError}</span>
+                <button type="button" onClick={() => setConfirmPasswordError('')} >×</button>
+              </div>
+            )}
+          </div>
 
+          {/* General error message */}
+          {errorMessage && <div className="alert alert-danger text-center mt-2">{errorMessage}</div>}
 
-            {/* General error */}
-            {errorMessage && <div className="alert alert-danger text-center mt-2">{errorMessage}</div>}
+          {/* Submit button */}
+          <button type="submit" className="signup-form-btn btn w-100">ثبت نام</button>
 
-            {/* Submit button */}
-            <button type="submit" className="signup-form-btn btn w-100">ثبت نام</button>
+          <p className="text-muted small mt-3">
+            با ثبت‌نام، شما با <a href="#" className="signup-agreement-text">قوانین و شرایط</a> ما موافقت می‌کنید.
+          </p>
 
-            <p className="text-muted small mt-3">
-              با ثبت‌نام، شما با <a href="#" className="signup-agreement-text">قوانین و شرایط</a> ما موافقت می‌کنید.
-            </p>
+          {/* Signup status popup */}
+          {signupStatus && (
+            <div className={`signup-popup-warning-overlay ${signupStatus}`}>
+              <div className="signup-warning-popup-card text-center">
+                <button className="signup-warning-popup-close-btn" onClick={() => setSignupStatus('')}>×</button>
+                <img src={signupStatus === 'success' ? successful_signup_icon : unsuccessful_signup_icon} className="signup-warning-popup-emoji" alt="status-icon" />
+                <div className="signup-warning-popup-line-separator"></div>
+                <h5 className="fw-bold mb-2">
+                  {signupStatus === 'success' ? 'ثبت‌نام با موفقیت انجام شد!' : 'خطایی رخ داده است!'}
+                </h5>
+                <p className="text-muted small">
+                  {signupStatus === 'success'
+                    ? 'حالا می‌تونی وارد حساب کاربریت بشی.'
+                    : 'لطفاً اطلاعات وارد شده رو بررسی کن و دوباره امتحان کن.'}
+                </p>
+              </div>
+            </div>
+          )}
+        </form>
 
-            {/* Popup feedback */}
-            {signupStatus && (
-  <div className={`signup-popup-overlay ${signupStatus}`}>
-    <div className="signup-popup-card text-center">
-      <button className="close-btn" onClick={() => setSignupStatus('')}>×</button>
-
-
-      <img
-        src={signupStatus === 'success' ? successful_signup_icon : unsuccessful_signup_icon}
-        className="popup-image"
-        alt="status-icon"
-      />
-
-
-      <div className="popup-separator"></div>
-
-
-      <h5 className="fw-bold mb-2">
-        {signupStatus === 'success' ? 'ثبت‌نام با موفقیت انجام شد!' : 'خطایی رخ داده است!'}
-      </h5>
-      <p className="text-muted small">
-        {signupStatus === 'success'
-          ? 'حالا می‌تونی وارد حساب کاربریت بشی.'
-          : 'لطفاً اطلاعات وارد شده رو بررسی کن و دوباره امتحان کن.'}
-      </p>
-    </div>
-  </div>
-)}
-
-          </form>
-
-          {/* Mock success button for local testing */}
-          <button type="button" className="btn btn-sm btn-outline-success mt-3" onClick={() => setSignupStatus('success')}>
-            تست موفقیت (ماک)
-          </button>
-        </div>
+        {/* Mock test button */}
+        <button type="button" className="btn btn-sm btn-outline-success mt-3" onClick={() => setSignupStatus('success')}>
+          تست موفقیت (ماک)
+        </button>
       </div>
+    </div>
   );
 };
 

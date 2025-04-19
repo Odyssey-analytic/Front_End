@@ -1,4 +1,5 @@
- .signup-page-container {
+/* ===================================  Main Page  =================================== */
+.signup-page-container {
   background-image: url('/src/assets/images/login-bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -8,6 +9,7 @@
   width: 100vw;
 }
 
+/* ===================================  Brand & Logo  =================================== */
 .signup-page-brand-text {
   font-size: 18px;
   letter-spacing: 2px;
@@ -18,6 +20,7 @@
   width: auto;
 }
 
+/* ===================================  Signup Form  =================================== */
 .signup-page-form-container {
   background-color: rgba(255, 255, 255, 0.8);
   width: 100%;
@@ -27,27 +30,23 @@
   height: auto;
 }
 
-.signup-page-form-container-title{
+.signup-page-form-container-title {
   font-size: 2.5rem;
   color: rgba(11, 20, 75);
   margin-bottom: 1rem;
 }
 
-.signup-page-form-container-input{
+.signup-page-form-container-input {
   font-size: 1rem;
-  padding: 0.5rem 1rem;         
-  padding-right: 4rem;           
+  padding: 0.5rem 1rem;
+  padding-right: 4rem;
   border-radius: 12px;
   box-shadow: inset 0 0 11px rgba(0, 0, 0, 0.16);
-  line-height: 1.4;              
+  line-height: 1.4;
   height: auto;
 }
 
-/* .signup-page-form-container-input::placeholder {
-  color: rgba(29, 29, 29);
-} */
-
-.signup-page-form-container-input-custom-placeholder{
+.signup-page-form-container-input-custom-placeholder {
   position: absolute;
   padding: 0.5rem 1rem;
   border-radius: 12px;
@@ -59,48 +58,35 @@
   color: rgba(29, 29, 29);
 }
 
-.signup-page-form-container-input-custom-placeholder .hint{
-  font-size: 0.7rem;
+.signup-page-form-container-input-custom-placeholder .hint {
+  font-size: 0.6rem;
   color: rgba(0, 0, 0, 0.5);
   margin-right: 4px;
 }
-/* 
-.signup-form-container-user-icon{
+
+/* ===================================  Form Icons  =================================== */
+.signup-form-container-email-icon,
+.signup-form-container-user-icon,
+.signup-form-container-padlock-icon {
   position: absolute;
   top: 50%;
+  right: 1rem;
   transform: translateY(-50%);
-  font-size: 0.9rem;
-  pointer-events: none;
-  z-index: 1;
-} */
+}
 
-
-.signup-form-container-email-icon{
-  position: absolute;
-  top: 50%;
-  right: 1rem; 
-  transform: translateY(-50%);
+.signup-form-container-email-icon {
   width: 20px;
   opacity: 0.7;
   pointer-events: none;
 }
 
-
-.signup-form-container-user-icon{
-  position: absolute;
-  top: 50%;
-  right: 1rem; 
-  transform: translateY(-50%);
+.signup-form-container-user-icon {
   width: 23px;
   opacity: 1;
   margin-right: -0.1rem;
 }
 
-.signup-form-container-padlock-icon{
-  position: absolute;
-  top: 50%;
-  right: 1rem; 
-  transform: translateY(-50%);
+.signup-form-container-padlock-icon {
   width: 20px;
   opacity: 0.7;
 }
@@ -115,10 +101,10 @@
   cursor: pointer;
 }
 
-
+/* ===================================  Signup Button  =================================== */
 .signup-form-btn {
-  background: linear-gradient(to right, rgba(93, 27, 121),   rgba(0, 113, 154));
-  color:  rgba(237, 237, 237);
+  background: linear-gradient(to right, rgba(93, 27, 121), rgba(0, 113, 154));
+  color: rgba(237, 237, 237);
   font-weight: bold;
   margin-top: 1rem;
   border-radius: 12px;
@@ -127,29 +113,19 @@
   font-size: 17px;
 }
 
-.signup-agreement-text{
-  color:  rgba(89, 67, 130);
+.signup-agreement-text {
+  color: rgba(89, 67, 130);
 }
 
-
-
-/* وقتی ارور داریم، input بلور میشه */
-.blurred-input {
-  filter: blur(2px);
-  pointer-events: none;
-  transition: filter 0.3s ease;
-}
-
-/* باکس خطا که روی input قرار می‌گیره */
-.input-error-popup {
+/* ===================================  Error Over Input  =================================== */
+.signup-input-error-popup {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   padding: 0.5rem 0.75rem;
-  background-color: rgba(255, 0, 0, 0.2); 
-
+  background-color: rgba(255, 0, 0, 0.2);
   border-right: 7px solid rgba(205, 30, 30, 0.6);
   border-radius: 8px;
   font-size: 0.8rem;
@@ -162,34 +138,22 @@
   -webkit-backdrop-filter: blur(2px);
 }
 
-.form-control:focus {
-  outline: none;
-  box-shadow: none;
-}
-/* دکمه × بستن ارور */
-.input-error-popup button {
+.signup-input-error-popup button {
   background: transparent;
   border: none;
   font-size: 1rem;
   color: #900;
-  /* cursor: pointer; */
   margin-left: 0.5rem;
+  margin-bottom: -0.3rem;
+  justify-content: center;
 }
 
-.input-wrapper {
+.signup-input-wrapper {
   position: relative;
 }
 
-
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    transform: translateY(-4px);
-    visibility: hidden;
-  }
-}
-
-.signup-popup-card {
+/* ===================================  Success/Error Popup  =================================== */
+.signup-warning-popup-card {
   position: absolute;
   inset: 0;
   background-color: transparent;
@@ -204,8 +168,7 @@
   overflow: hidden;
 }
 
-/* بلور پس‌زمینه */
-.signup-popup-card::before {
+.signup-warning-popup-card::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -215,66 +178,57 @@
   transition: all 0.3s ease;
 }
 
-/* حالت ارور */
-.signup-popup-overlay.error .signup-popup-card::before {
-  background-color: rgba(255, 0, 0, 0.2); /* قرمز نیمه‌شفاف */
+.signup-popup-warning-overlay.error .signup-warning-popup-card::before {
+  background-color: rgba(255, 0, 0, 0.2);
 }
 
-/* حالت موفقیت */
-.signup-popup-overlay.success .signup-popup-card::before {
-  background-color: rgba(40, 167, 69, 0.2); /* سبز نیمه‌شفاف */
+.signup-popup-warning-overlay.success .signup-warning-popup-card::before {
+  background-color: rgba(40, 167, 69, 0.2);
 }
 
-/* برای همه محتوای داخلی */
-.signup-popup-card > * {
+.signup-warning-popup-card > * {
   position: relative;
   z-index: 1;
 }
 
-
-/* تیتر */
-.signup-popup-card h5 {
+.signup-warning-popup-card h5 {
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
-/* تیتر رنگ‌ خاص بر اساس وضعیت */
-.signup-popup-overlay.error .signup-popup-card h5 {
+.signup-popup-warning-overlay.error .signup-warning-popup-card h5 {
   color: #e60023;
 }
-.signup-popup-overlay.success .signup-popup-card h5 {
+
+.signup-popup-warning-overlay.success .signup-warning-popup-card h5 {
   color: #28a745;
 }
 
-/* متن توضیح */
-.signup-popup-card p {
+.signup-warning-popup-card p {
   color: #555;
   font-size: 14px;
   margin: 0;
 }
 
-/* دکمه بستن */
-.close-btn {
+.signup-warning-popup-close-btn {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 17px;
+  left: 25px;
   background: transparent;
   border: none;
-  font-size: 18px;
-  color: #333;
+  font-size: 30px;
+  color: #7b7b7b;
   cursor: pointer;
 }
 
-/* سایز آیکون تصویری */
-.popup-image {
+.signup-warning-popup-emoji {
   width: 100px;
   height: 100px;
   object-fit: contain;
   margin-bottom: 1rem;
 }
 
-/* خط جداکننده */
-.popup-separator {
+.signup-warning-popup-line-separator {
   width: 100%;
   max-width: 250px;
   height: 1px;
@@ -282,4 +236,19 @@
   margin: 0 auto 2rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   border-radius: 2px;
+}
+
+
+/* extend bootstrap style*/
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-4px);
+    visibility: hidden;
+  }
 }
