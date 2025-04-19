@@ -7,6 +7,8 @@ import welcome_header_help from '/public/icons/welcome_header_help.svg';
 import welcome_subheader_user from '/public/icons/welcome_subheader_user.svg';
 import welcome_subheader_menu from '/public/icons/welcome_subheader_menu.svg';
 import welcome_page_main_box_welcome_icon from '/public/icons/welcome_page_main_box_welcome_icon.svg';
+import gift from '/public/icons/gift.svg';
+
 
 // =========================== component ===========================
 const WelcomePage = () => {
@@ -160,21 +162,26 @@ const WelcomePage = () => {
               {step === 3 && (
               <div className="step-success-container">
                 <div className="success-icon-wrapper">
-                  <img src="/icons/success.svg" alt="Success" />
+                  <img src={gift} alt="Success Icon" />
                 </div>
-                <h4 className="mb-2">محصول با موفقیت ثبت شد!</h4>
+
+                <h4 className="mb-3 fw-bold">محصول شما با موفقیت ثبت شد!</h4>
+
                 <p className="mb-2">
-                  همه‌چیز آماده‌ست. حالا فقط کافیه SDK رو داخل بازی/وب‌سایت‌تون قرار بدید تا بتونید داده‌های آنالیز رو ببینید.
+                  همه‌چیز آماده‌ست. حالا فقط کافیه SDK رو داخل بازی/وب‌سایت‌تون قرار بدید تا بتوانید داده‌های آنالیز را مشاهده کنید.
                 </p>
+
                 <p className="mb-3">
-                  <a href="#" className="sdk-download-link">دانلود SDK</a>
+                  <a href="#" className="sdk-download-link">لینک دانلود SDK</a>
                 </p>
-                <div className="access-token-box">
+
+                <div className="access-token-box mb-3">
                   <strong>Access Token:</strong><br />
-                  <span className="token-value">ghp_4G8j7nwWL9TETKXsmBjXaiU6NHQMrs1ZDOGv</span>
+                  <span className="token-value">ghp_4G8j7nwWL9TETXsmxBjXaiU6NHQMrs1ZDOGv</span>
                 </div>
+
                 <p className="token-note">
-                  برای اطلاع از نحوه نصب SDK به بخش داکیومنت در منو مراجعه کن.
+                  برای اطلاع از دستور نصب به بخش داکیومنت در منو مراجعه کنید!
                 </p>
               </div>
             )}

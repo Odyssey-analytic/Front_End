@@ -421,3 +421,49 @@
 /* .step-2-compact .popup-options .d-flex {
   margin-bottom: 0.2rem;
 } */
+
+
+
+/* ////////////////////////// */
+.step-success-container {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.success-icon-wrapper img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1rem;
+}
+
+.sdk-download-link {
+  color: #00719a;
+  font-weight: 500;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.sdk-download-link:hover {
+  color: #4c1764;
+}
+
+.access-token-box {
+  background-color: #f6f6f6;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: monospace;
+  text-align: left;
+  direction: ltr;
+}
+
+.token-value {
+  color: #333;
+  font-size: 13px;
+}
+
+.token-note {
+  margin-top: 1rem;
+  font-size: 12px;
+  color: #888;
+}
