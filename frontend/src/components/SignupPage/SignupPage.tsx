@@ -99,35 +99,35 @@ const SignupPage = () => {
     e.preventDefault();
     let valid = true;
 
-    // if (!email.trim()) {
-    //   setEmailError('لطفاً ایمیل خود را وارد کنید.');
-    //   setEmailErrorType('empty');
-    //   setEmailErrorKey(prev => prev + 1);
-    //   valid = false;
-    // } else if (!isValidEmail(email)) {
-    //   setEmailError('ایمیل وارد شده معتبر نیست.');
-    //   setEmailErrorType('invalid');
-    //   setEmailErrorKey(prev => prev + 1);
-    //   valid = false;
-    // }
+    if (!email.trim()) {
+      setEmailError('لطفاً ایمیل خود را وارد کنید.');
+      setEmailErrorType('empty');
+      setEmailErrorKey(prev => prev + 1);
+      valid = false;
+    } else if (!isValidEmail(email)) {
+      setEmailError('ایمیل وارد شده معتبر نیست.');
+      setEmailErrorType('invalid');
+      setEmailErrorKey(prev => prev + 1);
+      valid = false;
+    }
 
-    // if (!username.trim()) {
-    //   setUsernameError('لطفاً نام کاربری را وارد کنید.');
-    //   setUsernameErrorType('empty');
-    //   setUsernameErrorKey(prev => prev + 1);
-    //   valid = false;
-    // } else if (!isValidUsername(username)) {
-    //   setUsernameError('نام کاربری باید بین ۳ تا ۲۰ حرف و شامل حروف، عدد، نقطه یا زیرخط باشد.');
-    //   setUsernameErrorType('invalid');
-    //   setUsernameErrorKey(prev => prev + 1);
-    //   valid = false;
-    // }
+    if (!username.trim()) {
+      setUsernameError('لطفاً نام کاربری را وارد کنید.');
+      setUsernameErrorType('empty');
+      setUsernameErrorKey(prev => prev + 1);
+      valid = false;
+    } else if (!isValidUsername(username)) {
+      setUsernameError('نام کاربری باید بین ۳ تا ۲۰ حرف و شامل حروف، عدد، نقطه یا زیرخط باشد.');
+      setUsernameErrorType('invalid');
+      setUsernameErrorKey(prev => prev + 1);
+      valid = false;
+    }
 
-    // if (confirmPassword !== password) {
-    //   setConfirmPasswordError('رمز عبور و تکرار آن یکسان نیستند.');
-    //   setConfirmPasswordErrorKey(prev => prev + 1);
-    //   valid = false;
-    // }
+    if (confirmPassword !== password) {
+      setConfirmPasswordError('رمز عبور و تکرار آن یکسان نیستند.');
+      setConfirmPasswordErrorKey(prev => prev + 1);
+      valid = false;
+    }
 
     if (!valid) return;
 
@@ -145,43 +145,69 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 signup-page-container px-3">
+    <div className="signup-page-container d-flex justify-content-center justify-content-lg-start align-items-center vh-100 px-3">
       {/* Brand section */}
-      <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
-        <div className="website-brand-text english-text text-white me-3">ODESSAY</div>
-        <img src={odessay_logo} alt="Odessay Logo" className="website-logo-img me-4" />
+      <div className="d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
+        <div className="signup-page-brand-text english-text text-white me-3">ODESSAY</div>
+        <img src={odessay_logo} alt="Odessay Logo" className="signup-page-logo-img me-4" />
       </div>
 
-      <div className="mx-auto ms-lg-5 signup-box position-relative">
-        <div className={`signup-form-wrapper ${signupStatus ? 'blurred' : ''}`}>
-          <h2 className="fw-bold text-start mb-3 signup-title">ثبت‌نام</h2>
+      <div className="signup-page-form-container mx-auto ms-lg-5 position-relative">
+          <h2 className="signup-page-form-container-title fw-bold text-start mb-3">ثبت‌نام</h2>
 
           <form onSubmit={handleSubmit}>
             {/* Email field */}
-            <div className="mb-3 position-relative">
-              <input type="text" className="form-control text-start pe-5 signup-input" placeholder="ایمیل" value={email} onChange={handleEmailChange} />
-              <img src={login_email_icon} alt="email icon" className="signup-email-icon" />
-              {emailError && <div className="input-error-popup" key={emailErrorKey}>{emailError}</div>}
-            </div>
+<div className="input-wrapper mb-3 position-relative">
+  <input
+    type="text"
+    className="signup-page-form-container-input form-control no-focus-style text-start pe-5"
+    placeholder="ایمیل"
+    value={email}
+    onChange={handleEmailChange}
+  />
+  <img src={login_email_icon} alt="email icon" className="signup-form-container-email-icon" />
+  {emailError && (
+    <div className="input-error-popup" key={emailErrorKey}>
+      <span>{emailError}</span>
+      <button type="button" onClick={() => setEmailError('')} className="input-error-close">×</button>
+    </div>
+  )}
+</div>
 
-            {/* Username field */}
-            <div className="mb-3 position-relative ">
-              <input type="text" className="form-control signup-input" value={username} onChange={handleUsernameChange} />
-              {!username && <div className="signup-custom-placeholder">نام کاربری<span className="hint"> (۳–۲۰ کاراکتر، فقط a-z، 0–9، . یا _)</span></div>}
-              <img src={signup_user_icon} alt="username icon" className="signup-user-icon" />
-              {usernameError && <div className="input-error-popup" key={usernameErrorKey}>{usernameError}</div>}
-            </div>
+{/* Username field */}
+<div className="input-wrapper mb-3 position-relative">
+  <input
+    type="text"
+    className="signup-page-form-container-input form-control no-focus-style"
+    value={username}
+    onChange={handleUsernameChange}
+  />
+  {!username && (
+    <div className="signup-page-form-container-input-custom-placeholder text-muted">
+      نام کاربری
+      <span className="hint"> (۳–۲۰ کاراکتر، فقط a-z، 0–9، . یا _)</span>
+    </div>
+  )}
+  <img src={signup_user_icon} alt="username icon" className="signup-form-container-user-icon" />
+  {usernameError && (
+    <div className="input-error-popup" key={usernameErrorKey}>
+      <span>{usernameError}</span>
+      <button type="button" onClick={() => setUsernameError('')} className="input-error-close">×</button>
+    </div>
+  )}
+</div>
+
 
             {/* Password field */}
             <div className="mb-3 position-relative">
-              <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="form-control signup-input" placeholder="رمز عبور" />
-              <img src={showPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle password" className="signup-eye-icon" onClick={() => setShowPassword(prev => !prev)} />
+              <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="signup-page-form-container-input form-control" placeholder="رمز عبور" />
+              <img src={showPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle password" className="signup-form-container-eye-icon" onClick={() => setShowPassword(prev => !prev)} />
             </div>
 
             {/* Confirm password field */}
             <div className="mb-3 position-relative">
-              <input type={showConfirmPassword ? 'text' : 'password'} value={confirmPassword} onChange={handleConfirmPasswordChange} className="form-control signup-input" placeholder="تأیید رمز عبور" />
-              <img src={showConfirmPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle confirm password" className="signup-eye-icon" onClick={() => setShowConfirmPassword(prev => !prev)} />
+              <input type={showConfirmPassword ? 'text' : 'password'} value={confirmPassword} onChange={handleConfirmPasswordChange} className="signup-page-form-container-input form-control" placeholder="تأیید رمز عبور" />
+              <img src={showConfirmPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle confirm password" className="signup-form-container-eye-icon" onClick={() => setShowConfirmPassword(prev => !prev)} />
               {confirmPasswordError && <div className="input-error-popup" key={confirmPasswordErrorKey}>{confirmPasswordError}</div>}
             </div>
 
@@ -189,7 +215,7 @@ const SignupPage = () => {
             {errorMessage && <div className="alert alert-danger text-center mt-2">{errorMessage}</div>}
 
             {/* Submit button */}
-            <button type="submit" className="btn w-100 signup-btn">ثبت نام</button>
+            <button type="submit" className="signup-form-btn btn w-100">ثبت نام</button>
 
             <p className="text-muted small mt-3">
               با ثبت‌نام، شما با <a href="#" className="signup-agreement-text">قوانین و شرایط</a> ما موافقت می‌کنید.
@@ -201,17 +227,17 @@ const SignupPage = () => {
     <div className="signup-popup-card text-center">
       <button className="close-btn" onClick={() => setSignupStatus('')}>×</button>
 
-      {/* آیکون */}
+
       <img
         src={signupStatus === 'success' ? successful_signup_icon : unsuccessful_signup_icon}
         className="popup-image"
         alt="status-icon"
       />
 
-      {/* خط جداکننده */}
+
       <div className="popup-separator"></div>
 
-      {/* عنوان و متن */}
+
       <h5 className="fw-bold mb-2">
         {signupStatus === 'success' ? 'ثبت‌نام با موفقیت انجام شد!' : 'خطایی رخ داده است!'}
       </h5>
@@ -232,7 +258,6 @@ const SignupPage = () => {
           </button>
         </div>
       </div>
-    </div>
   );
 };
 

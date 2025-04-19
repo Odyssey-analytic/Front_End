@@ -8,25 +8,17 @@
   width: 100vw;
 }
 
-.website-logo {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  z-index: 10;
-}
-
-.website-logo-img {
-  height: 32px;
-  width: auto;
-}
-
-.website-brand-text {
+.signup-page-brand-text {
   font-size: 18px;
   letter-spacing: 2px;
 }
 
+.signup-page-logo-img {
+  height: 32px;
+  width: auto;
+}
 
-.signup-box {
+.signup-page-form-container {
   background-color: rgba(255, 255, 255, 0.8);
   width: 100%;
   max-width: 400px;
@@ -35,19 +27,13 @@
   height: auto;
 }
 
-.signup-title{
+.signup-page-form-container-title{
   font-size: 2.5rem;
   color: rgba(11, 20, 75);
   margin-bottom: 1rem;
 }
 
-.signup-subtitle {
-  font-size: 1rem;
-  color: rgba(237, 237, 237);
-  margin-bottom: 1.5rem;
-}
-
-.signup-input {
+.signup-page-form-container-input{
   font-size: 1rem;
   padding: 0.5rem 1rem;         
   padding-right: 4rem;           
@@ -57,39 +43,39 @@
   height: auto;
 }
 
-.signup-input::placeholder {
+/* .signup-page-form-container-input::placeholder {
   color: rgba(29, 29, 29);
-}
+} */
 
-.signup-custom-placeholder {
+.signup-page-form-container-input-custom-placeholder{
   position: absolute;
   padding: 0.5rem 1rem;
   border-radius: 12px;
   padding-right: 4rem;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 0.9rem;
+  font-size: 1rem;
   pointer-events: none;
   color: rgba(29, 29, 29);
 }
 
-.signup-custom-placeholder .hint {
-  font-size: 0.75rem;
+.signup-page-form-container-input-custom-placeholder .hint{
+  font-size: 0.7rem;
   color: rgba(0, 0, 0, 0.5);
   margin-right: 4px;
 }
-
-.signup-user-icon {
+/* 
+.signup-form-container-user-icon{
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   font-size: 0.9rem;
   pointer-events: none;
   z-index: 1;
-}
+} */
 
 
-.signup-email-icon{
+.signup-form-container-email-icon{
   position: absolute;
   top: 50%;
   right: 1rem; 
@@ -100,16 +86,17 @@
 }
 
 
-.signup-user-icon{
+.signup-form-container-user-icon{
   position: absolute;
   top: 50%;
   right: 1rem; 
   transform: translateY(-50%);
-  width: 20px;
+  width: 23px;
   opacity: 1;
+  margin-right: -0.1rem;
 }
 
-.signup-padlock-icon{
+.signup-form-container-padlock-icon{
   position: absolute;
   top: 50%;
   right: 1rem; 
@@ -118,7 +105,7 @@
   opacity: 0.7;
 }
 
-.signup-eye-icon {
+.signup-form-container-eye-icon {
   position: absolute;
   top: 50%;
   left: 1rem;
@@ -129,7 +116,7 @@
 }
 
 
-.signup-btn {
+.signup-form-btn {
   background: linear-gradient(to right, rgba(93, 27, 121),   rgba(0, 113, 154));
   color:  rgba(237, 237, 237);
   font-weight: bold;
@@ -144,19 +131,55 @@
   color:  rgba(89, 67, 130);
 }
 
-/* .input-error-popup {
+
+
+/* وقتی ارور داریم، input بلور میشه */
+.blurred-input {
+  filter: blur(2px);
+  pointer-events: none;
+  transition: filter 0.3s ease;
+}
+
+/* باکس خطا که روی input قرار می‌گیره */
+.input-error-popup {
   position: absolute;
-  top: 100%;
-  right: 0.5rem;
-  background-color: rgba(220, 53, 69, 0.95);
-  color: white;
-  font-size: 0.75rem;
-  padding: 0.4rem 0.6rem;
-  border-radius: 6px;
-  margin-top: 4px;
-  z-index: 10;
-  transition: opacity 0.3s ease;
-} */
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(255, 0, 0, 0.2); /* قرمز خیلی ملایم */
+  /* border: 1px solid rgba(255, 0, 0, 0.6); */
+
+  border-right: 7px solid rgba(205, 30, 30, 0.7);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #b60000;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+/* دکمه × بستن ارور */
+.input-error-popup button {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  color: #900;
+  /* cursor: pointer; */
+  margin-left: 0.5rem;
+}
+
+.input-wrapper {
+  position: relative;
+}
 
 
 @keyframes fadeOut {
@@ -166,16 +189,6 @@
     visibility: hidden;
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 .signup-popup-card {
   position: absolute;
