@@ -118,27 +118,27 @@ const WelcomePage = () => {
               {/* =========================== Step 2 =========================== */}
               {step === 2 && selectedProduct === 'game' && (
               <div className="step-2-compact">
-                <p className="text-start">اطلاعات بازیت رو وارد کن :</p>
+                <p className="text-start ">اطلاعات بازیت رو وارد کن :</p>
                 <div className="popup-options my-2 text-end">
                   <label>نام بازی:</label>
-                  <input type="text" className="form-control" />
+                  <input type="text" className="form-control game-name-input" />
 
                   <div className="d-flex justify-content-between gap-4 flex-wrap">
   {/* موتور بازی */}
   <div className="text-end">
-    <label className="d-block mb-1">انتخاب موتور بازی:</label>
+    <label className="d-block mb-1">انتخاب موتور بازی :</label>
     <div className="d-flex gap-2">
-      <label><input type="checkbox" /> Unity</label>
-      <label><input type="checkbox" /> Godot</label>
-      <label><input type="checkbox" /> Custom</label>
+      <label ><input type="checkbox" /> Unity</label>
+      <label className="engine-disabled-option"><input type="checkbox" disabled/> Godot</label>
+      <label className="engine-disabled-option"><input type="checkbox" disabled/> Custom</label>
     </div>
   </div>
 
   {/* پلتفرم هدف */}
   <div className="text-end">
-    <label className="d-block mb-1">انتخاب پلتفرم هدف:</label>
+    <label className="d-block mb-1">انتخاب پلتفرم هدف :</label>
     <div className="d-flex gap-2">
-      <label><input type="checkbox" /> PC</label>
+    <label><input type="checkbox" /> Windows</label>
       <label><input type="checkbox" /> Android</label>
       <label><input type="checkbox" /> iOS</label>
     </div>
