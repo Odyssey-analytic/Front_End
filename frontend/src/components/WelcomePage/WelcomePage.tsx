@@ -17,7 +17,6 @@ const WelcomePage = () => {
   const [selectedProduct, setSelectedProduct] = useState('');
   const [step, setStep] = useState(1);
 
-  // فرم مقادیر
   const [gameName, setGameName] = useState('');
   const [description, setDescription] = useState('');
   const [engine, setEngine] = useState('Unity');
@@ -129,41 +128,112 @@ const WelcomePage = () => {
                       ادامه
                     </button>
                   </div>
-
-                  {/* <button className="btn btn-primary mt-3" disabled={!selectedProduct} onClick={() => setStep(2)}>ادامه</button> */}
                 </>
               )}
-
               {step === 2 && selectedProduct === 'game' && (
+  <div className="step-2-compact">
+    <p className="text-start mb-3">اطلاعات بازیت رو وارد کن :</p>
+
+    {/* نام بازی */}
+    <div className="text-start mb-4">
+      <label className="d-block mb-1">نام بازی :</label>
+      <input
+        type="text"
+        className="form-control game-name-input text-end"
+        value={gameName}
+        onChange={(e) => setGameName(e.target.value)}
+      />
+    </div>
+
+    <div className="d-flex flex-column flex-md-row gap-4 mb-4">
+      {/* موتور بازی */}
+      <div className="text-start flex-fill ">
+        <label className="d-block mb-1">انتخاب موتور بازی :</label>
+        <div className="d-flex gap-2 justify-content-start">
+          <label><input type="radio" checked={engine === 'Unity'} onChange={() => setEngine('Unity')} /> Unity</label>
+          <label className="engine-disabled-option"><input type="radio" disabled /> Godot</label>
+          <label className="engine-disabled-option"><input type="radio" disabled /> Custom</label>
+        </div>
+      </div>
+
+      <div className="text-start flex-fill mt-3 mt-md-0 mb-4">
+        <label className="d-block mb-1">انتخاب پلتفرم هدف :</label>
+        <div className="d-flex flex-row align-items-center gap-3">
+          <label><input type="checkbox" onChange={() => handlePlatformChange('Windows')} /> Windows</label>
+          <label><input type="checkbox" onChange={() => handlePlatformChange('Android')} /> Android</label>
+          <label><input type="checkbox" onChange={() => handlePlatformChange('iOS')} /> iOS</label>
+        </div>
+      </div>
+    </div>
+
+    <div className="w-100 text-start mb-4">
+      <label className="d-block mb-2">توضیحات (اختیاری) :</label>
+      <textarea
+        className="form-control"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+    </div>
+
+    <div className="w-100 text-start mb-5">
+      <label className="d-block mb-2">آپلود تصویر (اختیاری):</label>
+      <input
+        type="file"
+        accept="image/*"
+        className="form-control"
+        onChange={(e) => {
+          if (e.target.files && e.target.files[0]) {
+            setThumbnail(e.target.files[0]);
+          }
+        }}
+      />
+    </div>
+
+    {/* دکمه‌ها */}
+    <div className="d-flex justify-content-between mt-3">
+      <button className="btn btn-secondary" onClick={() => setStep(1)}>بازگشت</button>
+      <button className="btn btn-primary" onClick={handleSubmitGame}>ثبت</button>
+    </div>
+  </div>
+)}
+
+
+              {/* {step === 2 && selectedProduct === 'game' && (
                 <div className="step-2-compact">
                   <p className="text-start">اطلاعات بازیت رو وارد کن :</p>
-                  <label>نام بازی:</label>
-                  <input type="text" className="form-control game-name-input" value={gameName} onChange={(e) => setGameName(e.target.value)} />
+                  <div className="text-start">
+                    <label className="d-block">نام بازی :</label>
+                    <input type="text" className="form-control game-name-input text-end" value={gameName} onChange={(e) => setGameName(e.target.value)} />
+                  </div>
+                  <div className="d-flex flex-column flex-md-row gap-4">
 
-                  <div className="d-flex justify-content-between gap-4 flex-wrap">
-                    <div className="text-end">
-                      <label className="d-block mb-1">انتخاب موتور بازی :</label>
-                      <div className="d-flex gap-2">
-                        <label><input type="radio" checked={engine === 'Unity'} onChange={() => setEngine('Unity')} /> Unity</label>
-                        <label className="engine-disabled-option"><input type="radio" disabled /> Godot</label>
-                        <label className="engine-disabled-option"><input type="radio" disabled /> Custom</label>
-                      </div>
-                    </div>
-
-                    <div className="text-end">
-                      <label className="d-block mb-1">انتخاب پلتفرم هدف :</label>
-                      <div className="d-flex gap-2">
-                        <label><input type="checkbox" onChange={() => handlePlatformChange('Windows')} /> Windows</label>
-                        <label><input type="checkbox" onChange={() => handlePlatformChange('Android')} /> Android</label>
-                        <label><input type="checkbox" onChange={() => handlePlatformChange('iOS')} /> iOS</label>
-                      </div>
+                  <div className="text-start flex-fill">
+                    <label className="d-block mb-1">انتخاب موتور بازی :</label>
+                    <div className="d-flex gap-2 justify-content-start">
+                      <label><input type="radio" checked={engine === 'Unity'} onChange={() => setEngine('Unity')} /> Unity</label>
+                      <label className="engine-disabled-option"><input type="radio" disabled /> Godot</label>
+                      <label className="engine-disabled-option"><input type="radio" disabled /> Custom</label>
                     </div>
                   </div>
 
-                  <label className="mt-2">توضیحات (اختیاری):</label>
+                  <div className="text-start flex-fill mt-3 mt-md-0">
+                        <label className="d-block mb-1">انتخاب پلتفرم هدف :</label>
+                    <div className="d-flex flex-row align-items-center gap-3">
+                      <label className="d-block"><input type="checkbox" onChange={() => handlePlatformChange('Windows')} /> Windows</label>
+                      <label className="d-block"><input type="checkbox" onChange={() => handlePlatformChange('Android')} /> Android</label>
+                      <label className="d-block"><input type="checkbox" onChange={() => handlePlatformChange('iOS')} /> iOS</label>
+                    </div>
+                    </div>
+                  </div>
+
+                  <div className="w-100 text-start">
+                    <label className="mt-2">توضیحات (اختیاری) :</label>
+                  </div>
                   <textarea className="form-control" value={description} onChange={(e) => setDescription(e.target.value)} />
 
-                  <label className="mt-2">آپلود تصویر (اختیاری):</label>
+                  <div className="w-100 text-start">
+                    <label className="mt-2">آپلود تصویر (اختیاری):</label>
+                  </div>
                   <input type="file" accept="image/*" className="form-control" onChange={(e) => {
                     if (e.target.files && e.target.files[0]) {
                       setThumbnail(e.target.files[0]);
@@ -175,7 +245,7 @@ const WelcomePage = () => {
                     <button className="btn btn-primary" onClick={handleSubmitGame}>ثبت</button>
                   </div>
                 </div>
-              )}
+              )} */}
 
               {step === 3 && (
                 <div className="step-success-container">
