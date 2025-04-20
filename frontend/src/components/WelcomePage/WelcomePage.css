@@ -1,5 +1,5 @@
 /* =========================== main container =========================== */
-
+/* General layout container */
 .welcome-page-container {
   color: #121212;
   font-family: 'Shabnam', sans-serif;
@@ -10,7 +10,7 @@
 
 
 /* =========================== header =========================== */
-
+/* Top header bar including logo, search and branding */
 .welcome-page-header {
   background-color: rgba(245,245,245);
   height: 60px;
@@ -47,7 +47,7 @@
 
 
 /* =========================== subheader =========================== */
-
+/* Bar under header with user/menu icons and admin label */
 .welcome-page-subheader {
   background-color: #ffffff;
   height: 60px;
@@ -85,7 +85,7 @@
 
 
 /* =========================== body =========================== */
-
+/* Main scrollable body section */
 .welcome-page-body {
   flex-grow: 1;
   background-color: rgb(241, 243, 244);
@@ -95,7 +95,7 @@
 
 
 /* =========================== main box =========================== */
-
+/* Welcome card with heading and CTA */
 .welcome-page-main-box {
   background-color: white;
   border-radius: 12px;
@@ -152,7 +152,7 @@
 
 
 /* =========================== popup overlay =========================== */
-
+/* Blur effect + modal positioning */
 .welcome-page-main-box-body {
   position: absolute;
   top: 120px;
@@ -175,6 +175,7 @@
   border-radius: inherit;
 }
 
+/* Modal card for stepper */
 .welcome-page-main-box-body-popup-card {
   background: white;
   padding: 4rem;
@@ -184,7 +185,6 @@
   max-width: 600px;
   width: 100%;
   min-height: 470px;
-  /*  */
   max-height: 470px;
   overflow-y: auto; 
   text-align: center;
@@ -199,7 +199,7 @@
 
 
 /* =========================== popup content =========================== */
-
+/* Modal title and layout */
 .welcome-page-popup-title {
   font-size: 15px;
   text-align: right;
@@ -227,36 +227,27 @@
 
 
 /* =========================== responsive breakpoints =========================== */
-
-/* Extra Small Devices */
+/* Padding adjustments for screen sizes */
 @media (max-width: 480px) {
   .welcome-page-body {
     padding: 1.5rem 1rem;
   }
 }
-
-/* Small Devices */
 @media (min-width: 481px) and (max-width: 768px) {
   .welcome-page-body {
     padding: 2rem 1.5rem;
   }
 }
-
-/* Medium Devices */
 @media (min-width: 769px) and (max-width: 1024px) {
   .welcome-page-body {
     padding: 2.5rem 2rem;
   }
 }
-
-/* Large Devices */
 @media (min-width: 1025px) and (max-width: 1280px) {
   .welcome-page-body {
     padding: 3rem 2.5rem;
   }
 }
-
-/* Extra Large Devices */
 @media (min-width: 1281px) and (max-width: 1440px) {
   .welcome-page-body {
     padding: 3rem 4rem;
@@ -265,7 +256,7 @@
 
 
 /* =========================== stepper =========================== */
-
+/* Visual step indicator in modal */
 .stepper-container {
   display: flex;
   align-items: center;
@@ -330,7 +321,7 @@
 
 
 /* =========================== product option checkboxes =========================== */
-
+/* Style for 'game' and 'website' option cards */
 .product-options-list {
   display: flex;
   flex-direction: column;
@@ -338,7 +329,6 @@
   text-align: right;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  
 }
 
 .product-option {
@@ -396,7 +386,8 @@
 }
 
 
-
+/* =========================== success message =========================== */
+/* Step 3 success UI */
 .step-success-container {
   text-align: center;
   padding: 2rem 0;
@@ -409,6 +400,7 @@
 }
 
 
+/* =========================== step 2 inputs =========================== */
 .step-2-compact .popup-options label {
   font-size: 14px;
 }
@@ -424,17 +416,7 @@
 }
 
 
-.step-success-container {
-  text-align: center;
-  padding: 2rem 0;
-}
-
-.success-icon-wrapper img {
-  width: 64px;
-  height: 64px;
-  margin-bottom: 1rem;
-}
-
+/* =========================== token and SDK link =========================== */
 .sdk-download-link {
   color: #00719a;
   font-weight: 500;
@@ -468,6 +450,8 @@
 }
 
 
+/* =========================== continue button =========================== */
+/* Continue button below product choices */
 .product-buttons-row {
   display: flex;
   justify-content: center;
