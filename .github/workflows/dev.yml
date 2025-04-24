@@ -1,0 +1,29 @@
+name: Deploy Vite React App
+
+on:
+  push:
+    branches:
+      - dev  # or whichever branch you want to deploy from
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20  # or your preferred version
+
+    - name: Install Dependencies
+      run: |
+        cd frontend  # change if your Vite project is in a different folder
+        npm install
+
+    - name: Build Vite App
+      run: |
+        cd frontend
+        npm run build
