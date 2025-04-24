@@ -224,7 +224,7 @@
   padding: 4rem;
   border-radius: 12px;
   margin-top: 8rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(60, 60, 60, 0.2);
   max-width: 600px;
   width: 100%;
   min-height: 470px;
@@ -238,6 +238,23 @@
   flex-direction: column;
   justify-content: flex-start;
   padding-top: 1.5rem;
+}
+
+.welcome-page-popup-card-close-icon {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0.4;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.welcome-page-popup-card-close-icon:hover {
+  transform: scale(1.08);
+  opacity: 0.7;
 }
 
 

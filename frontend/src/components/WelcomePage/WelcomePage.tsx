@@ -2,6 +2,7 @@
 import './WelcomePage.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { submitGameInfo } from '../../services/userService';
 
 // =========================== assets ===========================
 import OdessayLogo from '/public/icons/odessay_logo.svg';
@@ -10,6 +11,7 @@ import welcome_subheader_user from '/public/icons/welcome_subheader_user.svg';
 import welcome_subheader_menu from '/public/icons/welcome_subheader_menu.svg';
 import welcome_page_main_box_welcome_icon from '/public/icons/welcome_page_main_box_welcome_icon.svg';
 import gift from '/public/icons/gift.svg';
+import close_icon from '/public/icons/close_icon.png';
 
 const WelcomePage = () => {
   const [username, setUsername] = useState('');
@@ -38,22 +40,26 @@ const WelcomePage = () => {
   };
 
   const handleSubmitGame = async () => {
-    const formData = new FormData();
-    formData.append('name', gameName);
-    formData.append('description', description);
-    formData.append('engine', engine);
-    formData.append('platform', platforms.join(','));
-    if (thumbnail) formData.append('thumbnail', thumbnail);
+    setStep(3);
+    setToken("token token token");
 
-    try {
-      const res = await axios.post('http://localhost:8000/api/game/', formData);
-      setToken(res.data.token);
-      setStep(3);
-    } catch (err) {
-      console.error("API error:", err);
-      alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
-    }
+    // const formData = new FormData();
+    // formData.append('name', gameName);
+    // formData.append('description', description);
+    // formData.append('engine', engine);
+    // formData.append('platform', platforms.join(','));
+    // if (thumbnail) formData.append('thumbnail', thumbnail);
+
+    // try {
+    //   const res = await axios.post('http://localhost:8000/api/game/', formData);
+    //   setToken(res.data.token);
+    //   setStep(3);
+    // } catch (err) {
+    //   console.error("API error:", err);
+    //   alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
+    // }
   };
+
 
   return (
     <>
@@ -76,8 +82,7 @@ const WelcomePage = () => {
           </div>
         </div>
 
-
-        <div className="welcome-page-subheader d-flex justify-content-between align-items-center py-2">
+       <div className="welcome-page-subheader d-flex justify-content-between align-items-center py-2">
           <div className="d-flex align-items-center gap-3">
             <img src={welcome_subheader_menu} alt="Menu" className="welcome-page-subheader-menu-icon" />
             <img src={welcome_subheader_user} alt="User" className="welcome-page-subheader-user-icon" />
@@ -106,6 +111,16 @@ const WelcomePage = () => {
           <div className="welcome-page-main-box-body" />
           <div className="welcome-page-main-box-body-overlay">
             <div className="welcome-page-main-box-body-popup-card">
+
+              {(step === 1 || (step === 2 && selectedProduct === 'game')) || step === 3 && (
+                <img
+                  src={close_icon}
+                  alt="بستن"
+                  className="welcome-page-popup-card-close-icon"
+                  onClick={() => setShowPopup(false)}
+                />
+              )} 
+
               <div className="stepper-container">
                 <div className={`stepper-item ${step >= 1 ? 'active' : ''}`}><div className="stepper-circle">1</div><div className="stepper-label">انتخاب محصول</div></div>
                 <div className={`stepper-line ${step >= 2 ? 'active' : ''}`} />
@@ -114,16 +129,31 @@ const WelcomePage = () => {
                 <div className={`stepper-item ${step >= 3 ? 'active' : ''}`}><div className="stepper-circle">3</div><div className="stepper-label">ثبت نهایی</div></div>
               </div>
 
+
               {step === 1 && (
                 <>
                   <p className="welcome-page-popup-title">محصولی که می‌خوای آنالیزشون رو انجام بدی رو انتخاب کن :</p>
                   <div className="product-options-list">
                     <label className={`product-option ${selectedProduct === 'game' ? 'checked' : ''}`}>
-                      <input type="checkbox" checked={selectedProduct === 'game'} onChange={() => setSelectedProduct('game')} />
+
+                      <input
+                        type="checkbox"
+                        checked={selectedProduct === 'game'}
+                        onChange={() =>
+                          setSelectedProduct(selectedProduct === 'game' ? '' : 'game')
+                        }
+                      />
+                      
                       <span className="checkmark" /> بازی
                     </label>
                     <label className={`product-option ${selectedProduct === 'website' ? 'checked' : ''}`}>
-                      <input type="checkbox" checked={selectedProduct === 'website'} onChange={() => setSelectedProduct('website')} />
+                      <input
+                        type="checkbox"
+                        checked={selectedProduct === 'website'}
+                        onChange={() =>
+                          setSelectedProduct(selectedProduct === 'website' ? '' : 'website')
+                        }
+                      />
                       <span className="checkmark" /> وب‌سایت
                     </label>
                   </div>
@@ -230,57 +260,7 @@ const WelcomePage = () => {
                   <button className="btn btn-primary" onClick={handleSubmitGame}>ثبت</button>
                 </div>
               </div>
-            )}
-
-
-              {/* {step === 2 && selectedProduct === 'game' && (
-                <div className="step-2-compact">
-                  <p className="text-start">اطلاعات بازیت رو وارد کن :</p>
-                  <div className="text-start">
-                    <label className="d-block">نام بازی :</label>
-                    <input type="text" className="form-control game-name-input text-end" value={gameName} onChange={(e) => setGameName(e.target.value)} />
-                  </div>
-                  <div className="d-flex flex-column flex-md-row gap-4">
-
-                  <div className="text-start flex-fill">
-                    <label className="d-block mb-1">انتخاب موتور بازی :</label>
-                    <div className="d-flex gap-2 justify-content-start">
-                      <label><input type="radio" checked={engine === 'Unity'} onChange={() => setEngine('Unity')} /> Unity</label>
-                      <label className="engine-disabled-option"><input type="radio" disabled /> Godot</label>
-                      <label className="engine-disabled-option"><input type="radio" disabled /> Custom</label>
-                    </div>
-                  </div>
-
-                  <div className="text-start flex-fill mt-3 mt-md-0">
-                        <label className="d-block mb-1">انتخاب پلتفرم هدف :</label>
-                    <div className="d-flex flex-row align-items-center gap-3">
-                      <label className="d-block"><input type="checkbox" onChange={() => handlePlatformChange('Windows')} /> Windows</label>
-                      <label className="d-block"><input type="checkbox" onChange={() => handlePlatformChange('Android')} /> Android</label>
-                      <label className="d-block"><input type="checkbox" onChange={() => handlePlatformChange('iOS')} /> iOS</label>
-                    </div>
-                    </div>
-                  </div>
-
-                  <div className="w-100 text-start">
-                    <label className="mt-2">توضیحات (اختیاری) :</label>
-                  </div>
-                  <textarea className="form-control" value={description} onChange={(e) => setDescription(e.target.value)} />
-
-                  <div className="w-100 text-start">
-                    <label className="mt-2">آپلود تصویر (اختیاری):</label>
-                  </div>
-                  <input type="file" accept="image/*" className="form-control" onChange={(e) => {
-                    if (e.target.files && e.target.files[0]) {
-                      setThumbnail(e.target.files[0]);
-                    }
-                  }} />
-
-                  <div className="d-flex justify-content-between mt-3">
-                    <button className="btn btn-secondary" onClick={() => setStep(1)}>بازگشت</button>
-                    <button className="btn btn-primary" onClick={handleSubmitGame}>ثبت</button>
-                  </div>
-                </div>
-              )} */}
+              )}
 
               {step === 3 && (
                 <div className="step-success-container">
