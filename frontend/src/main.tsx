@@ -14,17 +14,20 @@ import ForgotpasswordPage from "./components/ForgotpasswordPage/ForgotpasswordPa
 import ResetpasswordPage from "./components/ResetpasswordPage/ResetpasswordPage";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
 import ActiveUsersKPI from "./components/KPICharts/ActiveUsersKPI";
+import LandingPage from "./components/LandingPage/LandingPage"
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/forgot-password" element={<ForgotpasswordPage />} /> 
         <Route path="/kpi" element={<ActiveUsersKPI />} /> 
-        <Route path="/login/welcome" element={<WelcomePage />} />
+        <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/reset-password/:token" element={<ResetpasswordPage />} />
+        <Route path="/" element={<LandingPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

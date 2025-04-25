@@ -71,7 +71,7 @@ const LoginPage = () => {
       setEmailErrorKey(prev => prev + 1);
       valid = false;
     } else if (!isValidEmail(email)) {
-      setEmailError('فرمت ایمیل صحیح نیست.');
+      setEmailError('فرمت ورودی صحیح نیست.');
       setEmailErrorType('invalid');
       setEmailErrorKey(prev => prev + 1);
       valid = false;
@@ -104,7 +104,7 @@ const LoginPage = () => {
 
       setTimeout(() => {
         if (result.user.is_first_login) {
-          navigate('/login/welcome');
+          navigate('/welcome');
         } else {
           navigate('/login/dashboard');
         }

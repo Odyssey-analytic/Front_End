@@ -127,7 +127,7 @@ const SignupPage = () => {
       setSignupStatus('success');
 
       // Redirect after success
-      setTimeout(() => navigate('/'), 2000);
+      setTimeout(() => navigate('/login'), 2000);
     } catch (error: any) {
       console.error('Signup failed:', error.message);
       setErrorMessage('');
@@ -201,6 +201,14 @@ const SignupPage = () => {
           {/* Submit Button */}
           <button type="submit" className="signup-form-btn btn w-100">ثبت نام</button>
 
+          <button
+            type="button"
+            className="btn btn-link text-muted mt-2"
+            onClick={() => navigate('/login')}
+          >
+            ← بازگشت به صفحه ورود
+          </button>
+
           <p className="text-muted small mt-3">
             با ثبت‌نام، شما با <a href="#" className="signup-agreement-text">قوانین و شرایط</a> ما موافقت می‌کنید.
           </p>
@@ -224,6 +232,7 @@ const SignupPage = () => {
             </div>
           )}
         </form>
+
 
         {/* Mock test button */}
         <button type="button" className="btn btn-sm btn-outline-success mt-3" onClick={() => setSignupStatus('success')}>
