@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../services/userService';
 import './LoginPage.css';
+import { loginWithGoogle } from '../../services/userService';
 
 // ============================== Icon Imports ==============================
 import OdessayLogo from '/public/icons/odessay_logo.svg';
@@ -59,6 +60,30 @@ const LoginPage = () => {
     }
   };
 
+
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await loginWithGoogle();
+  
+      localStorage.setItem('accessToken', result.access);
+      localStorage.setItem('username', result.user.username);
+  
+      setLoginStatus('success');
+  
+      setTimeout(() => {
+        if (result.user.is_first_login) {
+          navigate('/welcome');
+        } else {
+          navigate('/dashboard');
+        }
+      }, 2000);
+    } catch (error: any) {
+      console.error('Google login failed:', error);
+      setErrorMessage('ورود با گوگل ناموفق بود.');
+      setLoginStatus('error');
+    }
+  };  
+
   // ============================== Submit Handler ==============================
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,7 +103,7 @@ const LoginPage = () => {
     } else {
       setEmailError('');
       setEmailErrorType('');
-    }
+    }  
 
     // Validate password field
     if (!password.trim()) {
@@ -222,19 +247,18 @@ const LoginPage = () => {
             </div>
           )}
 
-          {/* ========== Mock Test Button ========== */}
-          {/* <button type="button" className="btn btn-sm btn-outline-success mt-1" onClick={() => setLoginStatus('success')}>
-            تست موفقیت (ماک)
-          </button> */}
-
-          {/* ========== Google Login Placeholder ========== */}
-          <button type="button" className="btn login-google-btn d-flex align-items-center w-80 px-4 mx-auto">
+          <button
+            type="button"
+            className="btn login-google-btn d-flex align-items-center w-80 px-4 mx-auto"
+            onClick={handleGoogleLogin}
+          >
             <span className="fw-bold text-white ms-auto me-4 login-google-btn-enter-text">ورود با استفاده از</span>
             <div className="d-flex align-items-center gap-2 me-auto">
               <span className="fw-bold text-white login-google-btn-google-text">Google</span>
               <img src={login_google_icon} alt="Google" width="23" />
             </div>
           </button>
+          
         </form>
       </div>
     </div>

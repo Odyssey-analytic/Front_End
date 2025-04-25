@@ -184,3 +184,26 @@ export const signup = async (data: {
   // };
   
   
+
+  export const loginWithGoogle = async () => {
+    try {
+      const response = await fetch('https://odysseyanalytics.ir/api/api/sign_in', {
+        method: 'GET',
+        credentials: 'include',
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Google login failed with message:', errorData.message);
+        throw new Error(errorData.message || 'Google login failed');
+      }
+  
+      const result = await response.json();
+      console.log('Google login successful:', result);
+      return result;
+    } catch (error: any) {
+      console.error('Network or unexpected error:', error);
+      throw new Error('An unexpected error occurred during Google login. Please try again.');
+    }
+  };
+  
