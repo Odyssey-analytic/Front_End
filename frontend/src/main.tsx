@@ -17,7 +17,6 @@ import ActiveUsersKPI from "./components/KPICharts/ActiveUsersKPI";
 import LandingPage from "./components/LandingPage/LandingPage"
 import DashboardPage from "./components/DashboardPage/DashboardPage"
 
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
