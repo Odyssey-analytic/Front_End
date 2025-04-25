@@ -43,21 +43,25 @@ const WelcomePage = () => {
     setStep(3);
     setToken("token token token");
 
-    // const formData = new FormData();
-    // formData.append('name', gameName);
-    // formData.append('description', description);
-    // formData.append('engine', engine);
-    // formData.append('platform', platforms.join(','));
-    // if (thumbnail) formData.append('thumbnail', thumbnail);
+    const formData = new FormData();
+    formData.append('name', gameName);
+    formData.append('description', description);
+    formData.append('engine', engine);
+    formData.append('platform', `${platforms.join(',')}`);
+    if (thumbnail) formData.append('thumbnail', thumbnail);
 
-    // try {
-    //   const res = await axios.post('http://localhost:8000/api/game/', formData);
-    //   setToken(res.data.token);
-    //   setStep(3);
-    // } catch (err) {
-    //   console.error("API error:", err);
-    //   alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
-    // }
+    try {
+      const res = await axios.post('http://localhost:8000/api/game/', formData, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+        }
+      });
+      setToken(res.data.token);
+      setStep(3);
+    } catch (err) {
+      console.error("API error:", err);
+      alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
+    }
   };
 
 
@@ -191,7 +195,7 @@ const WelcomePage = () => {
 
                     <div className="radio-group-grid">
                       <label className="radio-label">
-                        <input type="radio" checked={engine === 'Unity'} onChange={() => setEngine('Unity')} />
+                        <input type="radio" checked={engine === 'unity'} onChange={() => setEngine('unity')} />
                         Unity
                       </label>
 
@@ -215,15 +219,15 @@ const WelcomePage = () => {
 
                     <div className="radio-group-grid">
                       <label className="radio-label">
-                        <input type="radio" name="platform" onChange={() => handlePlatformChange('iOS')} />
+                        <input type="radio" name="platform" onChange={() => handlePlatformChange('ios')} />
                         iOS
                       </label>
                       <label className="radio-label">
-                        <input type="radio" name="platform" onChange={() => handlePlatformChange('Android')} />
+                        <input type="radio" name="platform" onChange={() => handlePlatformChange('android')} />
                         Android
                       </label>
                       <label className="radio-label">
-                        <input type="radio" name="platform" onChange={() => handlePlatformChange('Windows')} />
+                        <input type="radio" name="platform" onChange={() => handlePlatformChange('pc')} />
                         Windows
                       </label>
                       
