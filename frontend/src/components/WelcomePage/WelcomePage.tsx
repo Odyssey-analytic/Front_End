@@ -64,53 +64,53 @@ const WelcomePage = () => {
   // final part
   const handleSubmitGame = async () => {
 
-    // setStep(3);
+    setStep(3);
 
-    let valid = true;
+    // let valid = true;
   
-    // بررسی نام بازی
-    if (!gameName.trim()) {
-      setGameNameError('وارد کردن نام بازی الزامی است.');
-      valid = false;
-    } else {
-      setGameNameError('');
-    }
+    // // بررسی نام بازی
+    // if (!gameName.trim()) {
+    //   setGameNameError('وارد کردن نام بازی الزامی است.');
+    //   valid = false;
+    // } else {
+    //   setGameNameError('');
+    // }
   
-    // بررسی موتور بازی
-    if (!engine.trim()) {
-      setEngineError('انتخاب موتور بازی الزامی است.');
-      valid = false;
-    } else {
-      setEngineError('');
-    }
+    // // بررسی موتور بازی
+    // if (!engine.trim()) {
+    //   setEngineError('انتخاب موتور بازی الزامی است.');
+    //   valid = false;
+    // } else {
+    //   setEngineError('');
+    // }
   
-    // بررسی پلتفرم‌ها
-    if (platforms.length === 0) {
-      setPlatformError('انتخاب حداقل یک پلتفرم الزامی است.');
-      valid = false;
-    } else {
-      setPlatformError('');
-    }
+    // // بررسی پلتفرم‌ها
+    // if (platforms.length === 0) {
+    //   setPlatformError('انتخاب حداقل یک پلتفرم الزامی است.');
+    //   valid = false;
+    // } else {
+    //   setPlatformError('');
+    // }
   
-    if (!valid) return; // اگر چیزی خالی بود، جلو برو نگیریم
+    // if (!valid) return; // اگر چیزی خالی بود، جلو برو نگیریم
 
-    const data = {
-      name: gameName,
-      description: description,
-      engine: engine,
-      platform: platforms.join(','),
-    };
+    // const data = {
+    //   name: gameName,
+    //   description: description,
+    //   engine: engine,
+    //   platform: platforms.join(','),
+    // };
     
-    console.log('داده ارسالی:', data);
+    // console.log('داده ارسالی:', data);
     
-    try {
-      const result = await submitGameInfo(data);
-      setToken(result.token);
-      setStep(3);
-    } catch (err: any) {
-      console.error('API error:', err.response?.data || err.message);
-      alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
-    }
+    // try {
+    //   const result = await submitGameInfo(data);
+    //   setToken(result.token);
+    //   setStep(3);
+    // } catch (err: any) {
+    //   console.error('API error:', err.response?.data || err.message);
+    //   alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
+    // }
     
   };
 
@@ -212,12 +212,12 @@ const WelcomePage = () => {
                         <label className="d-block mb-1 small-label text-start">نام بازی :</label>
                         <input
                           type="text"
-                          className="form-control game-name-input-sm text-end"
+                          className="form-control game-name-input-sm text-start"
                           value={gameName}
                           onChange={(e) => setGameName(e.target.value)}
                         />
 
-                        {gameNameError && <p className="text-danger small mt-1">{gameNameError}</p>}
+                        {gameNameError && <p className="text-danger small mt-1 text-start">{gameNameError}</p>}
                       </div>
 
                       {/* آپلود تصویر دایره‌ای */}
@@ -345,17 +345,10 @@ const WelcomePage = () => {
                   />
                 </div>
 
-                {/* دکمه‌ها */}
-                {/* <div className="d-flex justify-content-between mt-3">
-                  <button className="btn btn-secondary" onClick={() => setStep(1)}>بازگشت</button>
-                  <button className="btn btn-primary" onClick={handleSubmitGame}>ثبت</button>
-                </div> */}
-
-                <div className="d-flex justify-content-center gap-4 mt-4">
-                  <button className="continue-btn" onClick={() => setStep(1)}>بازگشت</button>
-                  <button className="continue-btn" onClick={handleSubmitGame}>ثبت</button>
+                <div className="d-flex justify-content-center gap-3 mt-3">
+                  <button className="action-btn" onClick={() => setStep(1)}>بازگشت</button>
+                  <button className="action-btn" onClick={handleSubmitGame}>ثبت</button>
                 </div>
-
 
               </div>
               
@@ -363,9 +356,18 @@ const WelcomePage = () => {
 
               {step === 3 && (
                 <div className="welcome-page-step-success-container">
+
+                  <img
+                    src={close_icon}
+                    alt="بستن"
+                    className="welcome-page-popup-card-close-icon"
+                    onClick={() => navigate('/dashboard')}
+                  />
+
                   <div className="welcome-page-success-icon-wrapper">
                     <img src={gift} alt="Success Icon" />
                   </div>
+
                   <h4 className="mb-3 fw-bold">محصول شما با موفقیت ثبت شد!</h4>
                   <p className="mb-2">همه‌چیز آماده‌ست. حالا فقط کافیه SDK رو داخل بازی/وب‌سایت‌تون قرار بدید.</p>
                   <p className="mb-3 welcome-page-sdk-download-link"><a href="#">لینک دانلود SDK</a></p>
@@ -376,8 +378,6 @@ const WelcomePage = () => {
                   <p className="welcome-page-token-note">برای اطلاع از دستور نصب، به بخش داکیومنت در منو مراجعه کنید!</p>
                 </div>
               )}
-
-
 
             </div>
           </div>
