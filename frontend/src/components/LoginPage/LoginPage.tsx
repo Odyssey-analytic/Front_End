@@ -126,8 +126,13 @@ const LoginPage = () => {
         <img src={OdessayLogo} alt="Odessay Logo" className="website-logo-img me-4" />
       </div>
 
+
       {/* ========== Login Box ========== */}
       <div className="login-box mx-auto ms-lg-5 position-relative">
+        <Link to="/" className="login-back-to-home text-muted small">
+            ← بازگشت به صفحه اصلی
+        </Link>
+
         <h2 className="fw-bold text-start mb-3 login-title">ورود</h2>
         <p className="text-muted text-start login-subtitle">ورود با استفاده از ایمیل</p>
 

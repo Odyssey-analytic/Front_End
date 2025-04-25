@@ -1,19 +1,18 @@
 .landing-container {
-    text-align: center;
-    padding: 3rem;
-    background: linear-gradient(#f7f7f7, #e3e3e3);
-  }
-  
-  .landing-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .landing-actions {
-    margin-top: 2rem;
-  }
-  
-  .landing-actions .btn {
-    margin: 0 1rem;
-  }
-  
+  text-align: center;
+  padding: 3rem;
+  background: linear-gradient(#f7f7f7, #e3e3e3);
+}
+
+.landing-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.landing-actions {
+  margin-top: 2rem;
+}
+
+.landing-actions .btn {
+  margin: 0 1rem;
+}  

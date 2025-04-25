@@ -143,7 +143,7 @@ export const signup = async (data: {
     platform: string;
     description?: string;
   }) => {
-    const token = localStorage.getItem('accessToken'); // گرفتن توکن ذخیره‌شده
+    const token = localStorage.getItem('accessToken');
   
     const response = await fetch('/api/game/submit', {
       method: 'POST',
@@ -161,4 +161,5 @@ export const signup = async (data: {
   
     return response.json();
   };
+  
   

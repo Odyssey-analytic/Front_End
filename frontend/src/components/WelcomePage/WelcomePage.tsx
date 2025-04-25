@@ -1,6 +1,7 @@
 // WelcomePage.tsx
 import './WelcomePage.css';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { submitGameInfo } from '../../services/userService';
 
@@ -12,6 +13,9 @@ import welcome_subheader_menu from '/public/icons/welcome_subheader_menu.svg';
 import welcome_page_main_box_welcome_icon from '/public/icons/welcome_page_main_box_welcome_icon.svg';
 import gift from '/public/icons/gift.svg';
 import close_icon from '/public/icons/close_icon.png';
+import uploading_game_image_icon from '/public/icons/game-console-icon.png';
+import uploading_game_image_icon_ghost from '/public/icons/game-ghost-icon.png';
+
 
 const WelcomePage = () => {
   const [username, setUsername] = useState('');
@@ -21,48 +25,172 @@ const WelcomePage = () => {
 
   const [gameName, setGameName] = useState('');
   const [description, setDescription] = useState('');
-  const [engine, setEngine] = useState('Unity');
+  const [engine, setEngine] = useState('');
   const [platforms, setPlatforms] = useState<string[]>([]);
   const [thumbnail, setThumbnail] = useState<File | null>(null);
+  const [imageError, setImageError] = useState('');
+
+  const [gameNameError, setGameNameError] = useState('');
+  const [engineError, setEngineError] = useState('');
+  const [platformError, setPlatformError] = useState('');
+  
+
   const [token, setToken] = useState('');
+
+  const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('username');
+    navigate('/');
+  };  
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
     setUsername(storedUsername || '');
   }, []);
 
+  // const handlePlatformChange = (platform: string) => {
+  //   setPlatforms(prev =>
+  //     prev.includes(platform)
+  //       ? prev.filter(p => p !== platform)
+  //       : [...prev, platform]
+  //   );
+  // };
+
   const handlePlatformChange = (platform: string) => {
-    setPlatforms(prev =>
-      prev.includes(platform)
-        ? prev.filter(p => p !== platform)
-        : [...prev, platform]
-    );
-  };
-
-  const handleSubmitGame = async () => {
-    setStep(3);
-    setToken("token token token");
-
-    const formData = new FormData();
-    formData.append('name', gameName);
-    formData.append('description', description);
-    formData.append('engine', engine);
-    formData.append('platform', `${platforms.join(',')}`);
-    if (thumbnail) formData.append('thumbnail', thumbnail);
-
-    try {
-      const res = await axios.post('http://localhost:8000/api/game/', formData, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
-        }
-      });
-      setToken(res.data.token);
-      setStep(3);
-    } catch (err) {
-      console.error("API error:", err);
-      alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
+    if (platforms.includes(platform)) {
+      setPlatforms(platforms.filter(p => p !== platform));
+    } else {
+      setPlatforms([...platforms, platform]);
     }
   };
+  
+  // URL.createObjectURL(thumbnail)
+
+  // const handleSubmitGame = async () => {
+  //   setStep(3);
+  //   setToken("token token token");
+
+  //   const formData = new FormData();
+  //   formData.append('name', gameName);
+  //   formData.append('description', description);
+  //   formData.append('engine', engine);
+  //   formData.append('platform', `${platforms.join(',')}`);
+  //   if (thumbnail) formData.append('thumbnail', thumbnail);
+
+  //   try {
+  //     const res = await axios.post('http://localhost:8000/api/game/', formData, {
+  //       headers: {
+  //         'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+  //       }
+  //     });
+  //     setToken(res.data.token);
+  //     setStep(3);
+  //   } catch (err) {
+  //     console.error("API error:", err);
+  //     alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
+  //   }
+  // };
+
+
+  const handleSubmitGame = async () => {
+    let valid = true;
+  
+    // بررسی نام بازی
+    if (!gameName.trim()) {
+      setGameNameError('وارد کردن نام بازی الزامی است.');
+      valid = false;
+    } else {
+      setGameNameError('');
+    }
+  
+    // بررسی موتور بازی
+    if (!engine.trim()) {
+      setEngineError('انتخاب موتور بازی الزامی است.');
+      valid = false;
+    } else {
+      setEngineError('');
+    }
+  
+    // بررسی پلتفرم‌ها
+    if (platforms.length === 0) {
+      setPlatformError('انتخاب حداقل یک پلتفرم الزامی است.');
+      valid = false;
+    } else {
+      setPlatformError('');
+    }
+  
+    if (!valid) return; // اگر چیزی خالی بود، جلو برو نگیریم
+  
+    // console.log('اطلاعاتی که به بک ارسال می‌شن:', {
+    //   name: gameName,
+    //   engine,
+    //   platform: platforms,
+    //   description,
+    //   thumbnail,
+    // });
+
+    const data = {
+      name: gameName,
+      description: description,
+      engine: engine,
+      platform: platforms.join(','),
+    };
+    
+    console.log('داده ارسالی:', data);
+    
+    try {
+      const result = await submitGameInfo(data);
+      setToken(result.token);
+      setStep(3);
+    } catch (err: any) {
+      console.error('API error:', err.response?.data || err.message);
+      alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
+    }
+    
+
+    // اگر همه چیز اوکی بود، ادامه بده
+    // حالتی که بعدا اگر بخوایم تصویر هم اپلود کنیم
+    // چون باید از thumbnail و formData استفاده کنیم
+    // const formData = new FormData();
+    // formData.append('name', gameName);
+    // formData.append('description', description);
+    // formData.append('engine', engine);
+    // formData.append('platform', platforms.join(','));
+    // if (thumbnail) formData.append('thumbnail', thumbnail);
+  
+    // for (let pair of formData.entries()) {
+    //   console.log(pair[0] + ':', pair[1]);
+    // }
+    
+    // try {
+    //   const result = await submitGameInfo(formData);
+    //   setToken(result.token);
+    //   setStep(3);
+    // } catch (err: any) {
+    //   console.error('API error:', err.response?.data || err.message);
+    //   alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
+    // }
+
+
+    // حالت اولیه
+    // try {
+    //   const res = await axios.post('http://localhost:8000/api/game/submit', formData, {
+    //     headers: {
+    //       'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+    //     }
+    //   });
+    //   setToken(res.data.token);
+    //   setStep(3);
+    // } catch (err) {
+    //   console.error("API error:", err);
+    //   alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
+    // }
+
+  };
+  
 
 
   return (
@@ -88,7 +216,28 @@ const WelcomePage = () => {
 
        <div className="welcome-page-subheader d-flex justify-content-between align-items-center py-2">
           <div className="d-flex align-items-center gap-3">
-            <img src={welcome_subheader_menu} alt="Menu" className="welcome-page-subheader-menu-icon" />
+            {/* <img src={welcome_subheader_menu} alt="Menu" className="welcome-page-subheader-menu-icon" /> */}
+
+            <div
+              className="welcome-page-menu-icon-wrapper"
+              onClick={() => setMenuOpen(prev => !prev)}
+            >
+              <img
+                src={welcome_subheader_menu}
+                alt="Menu"
+                className="welcome-page-subheader-menu-icon"
+              />
+
+              {menuOpen && (
+                <div className="welcome-page-dropdown-menu">
+                  <button className="welcome-page-dropdown-item" onClick={handleLogout}>
+                    خروج از حساب کاربری
+                  </button>
+                </div>
+              )}
+
+            </div>
+
             <img src={welcome_subheader_user} alt="User" className="welcome-page-subheader-user-icon" />
           </div>
           <div className="welcome-page-subheader-admin-label-container">
@@ -105,7 +254,7 @@ const WelcomePage = () => {
             <h2 className="welcome-page-main-box-heading">{username} خوش اومدی!</h2>
             <p className="welcome-page-main-box-description">شروع کن تا ببینی توی محصولات دقیقاً چه خبره</p>
             <p className="welcome-page-main-box-description">و چطور می‌تونی بهترین تجربه رو برای کاربرات بسازی.</p>
-            <button className="btn welcome-page-main-box-start-btn " onClick={() => setShowPopup(true)}> اضافه کردن بازی </button>
+            <button className="btn welcome-page-main-box-start-btn" onClick={() => setShowPopup(true)}> اضافه کردن بازی </button>
           </div>
         </div>
       </div>
@@ -116,7 +265,7 @@ const WelcomePage = () => {
           <div className="welcome-page-main-box-body-overlay">
             <div className="welcome-page-main-box-body-popup-card">
 
-              {(step === 1 || (step === 2 && selectedProduct === 'game')) || step === 3 && (
+              {((step === 1) || (step === 2 && selectedProduct === 'game') || (step === 3)) && (
                 <img
                   src={close_icon}
                   alt="بستن"
@@ -178,7 +327,7 @@ const WelcomePage = () => {
                 <p className="text-start mb-3">اطلاعات بازیت رو وارد کن :</p>
 
                 {/* نام بازی */}
-                <div className="text-start mb-4">
+                {/* <div className="text-start mb-4">
                   <label className="d-block mb-1">نام بازی:</label>
                   <input
                     type="text"
@@ -186,7 +335,119 @@ const WelcomePage = () => {
                     value={gameName}
                     onChange={(e) => setGameName(e.target.value)}
                   />
-                </div>
+                </div> */}
+
+
+                {/* نام بازی + آپلود تصویر */}
+                <div className="d-flex justify-content-between align-items-start mb-4">
+                      {/* نام بازی */}
+                      <div className="flex-fill me-3">
+                        <label className="d-block mb-1 small-label">نام بازی:</label>
+                        <input
+                          type="text"
+                          className="form-control game-name-input-sm text-end"
+                          value={gameName}
+                          onChange={(e) => setGameName(e.target.value)}
+                        />
+
+                        {gameNameError && <p className="text-danger small mt-1">{gameNameError}</p>}
+                      </div>
+
+                      {/* آپلود تصویر دایره‌ای */}
+                      <div className="upload-section text-center">
+                        <div className="upload-preview-wrapper">
+                          {thumbnail ? (
+                            <img
+                              src={URL.createObjectURL(thumbnail)}
+                              alt="thumbnail"
+                              className="upload-preview-image"
+                            />
+                          ) : (
+                            <img
+                              src={uploading_game_image_icon_ghost}
+                              alt="انتخاب تصویر"
+                              className="upload-placeholder-icon"
+                            />
+                          )}
+                        </div>
+
+
+                        {/* آیکون انتخاب و حذف تصویر در یک ردیف */}
+                        <div className="d-flex justify-content-center gap-3 mt-2">
+                          <label className="upload-select-label mb-0">
+                            انتخاب تصویر
+                            <input
+                              type="file"
+                              accept="image/png, image/jpeg"
+                              hidden
+                              onChange={(e) => {
+                                if (e.target.files && e.target.files[0]) {
+                                  setThumbnail(e.target.files[0]);
+                                  setImageError('');
+                                }
+                              }}
+                            />
+                          </label>
+
+                          <button
+                            type="button"
+                            className={`welcome-page-delete-image-text-btn ${thumbnail ? 'active' : 'disabled'}`}
+                            onClick={() => {
+                              if (!thumbnail) {
+                                setImageError('هنوز تصویری بارگزاری نشده است.');
+                              } else {
+                                setThumbnail(null);
+                                setImageError('');
+                              }
+                            }}
+                          >
+                            حذف تصویر
+                          </button>
+                        </div>
+
+
+                        {/* آیکون انتخاب تصویر */}
+                        {/* <label className="upload-select-label mt-2">
+                          انتخاب تصویر
+                          <input
+                            type="file"
+                            accept="image/png, image/jpeg"
+                            hidden
+                            onChange={(e) => {
+                              if (e.target.files && e.target.files[0]) {
+                                setThumbnail(e.target.files[0]);
+                                setImageError('');
+                              }
+                            }}
+                          />
+                        </label> */}
+
+                        {/* <button
+                          type="button"
+                          className={`welcome-page-delete-image-text-btn mt-2 ${thumbnail ? 'active' : 'disabled'}`}
+                          onClick={() => {
+                            if (!thumbnail) {
+                              setImageError('هنوز تصویری بارگزاری نشده است.');
+                            } else {
+                              setThumbnail(null);
+                              setImageError('');
+                            }
+                          }}
+                        >
+                          حذف تصویر
+                        </button> */}
+
+                        {/* خطای حذف */}
+                        {imageError && (
+                          <p className="text-danger small mt-1">{imageError}</p>
+                        )}
+
+                        {/* نکته سایز و فرمت */}
+                        <p className="text-muted small mt-1">
+                          تصویر باید png یا jpg و حداکثر ۲۰۰MB باشد.
+                        </p>
+                      </div>
+                    </div>
 
                 {/* <!-- انتخاب موتور بازی --> */}
                 <div className="d-flex flex-column flex-md-row gap-4 mb-4">
@@ -209,6 +470,9 @@ const WelcomePage = () => {
                         Custom
                       </label>
                     </div>
+                    
+                    {engineError && <p className="text-danger small mt-1">{engineError}</p>}
+                    
                   </div>
                 </div>
 
@@ -230,8 +494,10 @@ const WelcomePage = () => {
                         <input type="radio" name="platform" onChange={() => handlePlatformChange('pc')} />
                         Windows
                       </label>
-                      
                     </div>
+
+                    {platformError && <p className="text-danger small mt-1">{platformError}</p>}
+
                   </div>
                 </div>
 
@@ -244,7 +510,7 @@ const WelcomePage = () => {
                   />
                 </div>
 
-                <div className="w-100 text-start mb-5">
+                {/* <div className="w-100 text-start mb-5">
                   <label className="d-block mb-2">آپلود تصویر (اختیاری):</label>
                   <input
                     type="file"
@@ -256,7 +522,7 @@ const WelcomePage = () => {
                       }
                     }}
                   />
-                </div>
+                </div> */}
 
                 {/* دکمه‌ها */}
                 <div className="d-flex justify-content-between mt-3">
