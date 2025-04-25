@@ -67,130 +67,59 @@ const WelcomePage = () => {
     }
   };
   
-  // URL.createObjectURL(thumbnail)
 
-  // const handleSubmitGame = async () => {
-  //   setStep(3);
-  //   setToken("token token token");
-
-  //   const formData = new FormData();
-  //   formData.append('name', gameName);
-  //   formData.append('description', description);
-  //   formData.append('engine', engine);
-  //   formData.append('platform', `${platforms.join(',')}`);
-  //   if (thumbnail) formData.append('thumbnail', thumbnail);
-
-  //   try {
-  //     const res = await axios.post('http://localhost:8000/api/game/', formData, {
-  //       headers: {
-  //         'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
-  //       }
-  //     });
-  //     setToken(res.data.token);
-  //     setStep(3);
-  //   } catch (err) {
-  //     console.error("API error:", err);
-  //     alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
-  //   }
-  // };
-
-
+  // final part
   const handleSubmitGame = async () => {
-    let valid = true;
-  
-    // بررسی نام بازی
-    if (!gameName.trim()) {
-      setGameNameError('وارد کردن نام بازی الزامی است.');
-      valid = false;
-    } else {
-      setGameNameError('');
-    }
-  
-    // بررسی موتور بازی
-    if (!engine.trim()) {
-      setEngineError('انتخاب موتور بازی الزامی است.');
-      valid = false;
-    } else {
-      setEngineError('');
-    }
-  
-    // بررسی پلتفرم‌ها
-    if (platforms.length === 0) {
-      setPlatformError('انتخاب حداقل یک پلتفرم الزامی است.');
-      valid = false;
-    } else {
-      setPlatformError('');
-    }
-  
-    if (!valid) return; // اگر چیزی خالی بود، جلو برو نگیریم
-  
-    // console.log('اطلاعاتی که به بک ارسال می‌شن:', {
-    //   name: gameName,
-    //   engine,
-    //   platform: platforms,
-    //   description,
-    //   thumbnail,
-    // });
 
-    const data = {
-      name: gameName,
-      description: description,
-      engine: engine,
-      platform: platforms.join(','),
-    };
-    
-    console.log('داده ارسالی:', data);
-    
-    try {
-      const result = await submitGameInfo(data);
-      setToken(result.token);
-      setStep(3);
-    } catch (err: any) {
-      console.error('API error:', err.response?.data || err.message);
-      alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
-    }
-    
+    setStep(3);
 
-    // اگر همه چیز اوکی بود، ادامه بده
-    // حالتی که بعدا اگر بخوایم تصویر هم اپلود کنیم
-    // چون باید از thumbnail و formData استفاده کنیم
-    // const formData = new FormData();
-    // formData.append('name', gameName);
-    // formData.append('description', description);
-    // formData.append('engine', engine);
-    // formData.append('platform', platforms.join(','));
-    // if (thumbnail) formData.append('thumbnail', thumbnail);
+    // let valid = true;
   
-    // for (let pair of formData.entries()) {
-    //   console.log(pair[0] + ':', pair[1]);
+    // // بررسی نام بازی
+    // if (!gameName.trim()) {
+    //   setGameNameError('وارد کردن نام بازی الزامی است.');
+    //   valid = false;
+    // } else {
+    //   setGameNameError('');
     // }
+  
+    // // بررسی موتور بازی
+    // if (!engine.trim()) {
+    //   setEngineError('انتخاب موتور بازی الزامی است.');
+    //   valid = false;
+    // } else {
+    //   setEngineError('');
+    // }
+  
+    // // بررسی پلتفرم‌ها
+    // if (platforms.length === 0) {
+    //   setPlatformError('انتخاب حداقل یک پلتفرم الزامی است.');
+    //   valid = false;
+    // } else {
+    //   setPlatformError('');
+    // }
+  
+    // if (!valid) return; // اگر چیزی خالی بود، جلو برو نگیریم
+
+    // const data = {
+    //   name: gameName,
+    //   description: description,
+    //   engine: engine,
+    //   platform: platforms.join(','),
+    // };
+    
+    // console.log('داده ارسالی:', data);
     
     // try {
-    //   const result = await submitGameInfo(formData);
+    //   const result = await submitGameInfo(data);
     //   setToken(result.token);
     //   setStep(3);
     // } catch (err: any) {
     //   console.error('API error:', err.response?.data || err.message);
     //   alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
     // }
-
-
-    // حالت اولیه
-    // try {
-    //   const res = await axios.post('http://localhost:8000/api/game/submit', formData, {
-    //     headers: {
-    //       'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
-    //     }
-    //   });
-    //   setToken(res.data.token);
-    //   setStep(3);
-    // } catch (err) {
-    //   console.error("API error:", err);
-    //   alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
-    // }
-
+    
   };
-  
 
 
   return (
@@ -405,38 +334,6 @@ const WelcomePage = () => {
                           </button>
                         </div>
 
-
-                        {/* آیکون انتخاب تصویر */}
-                        {/* <label className="upload-select-label mt-2">
-                          انتخاب تصویر
-                          <input
-                            type="file"
-                            accept="image/png, image/jpeg"
-                            hidden
-                            onChange={(e) => {
-                              if (e.target.files && e.target.files[0]) {
-                                setThumbnail(e.target.files[0]);
-                                setImageError('');
-                              }
-                            }}
-                          />
-                        </label> */}
-
-                        {/* <button
-                          type="button"
-                          className={`welcome-page-delete-image-text-btn mt-2 ${thumbnail ? 'active' : 'disabled'}`}
-                          onClick={() => {
-                            if (!thumbnail) {
-                              setImageError('هنوز تصویری بارگزاری نشده است.');
-                            } else {
-                              setThumbnail(null);
-                              setImageError('');
-                            }
-                          }}
-                        >
-                          حذف تصویر
-                        </button> */}
-
                         {/* خطای حذف */}
                         {imageError && (
                           <p className="text-danger small mt-1">{imageError}</p>
@@ -510,20 +407,6 @@ const WelcomePage = () => {
                   />
                 </div>
 
-                {/* <div className="w-100 text-start mb-5">
-                  <label className="d-block mb-2">آپلود تصویر (اختیاری):</label>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className="form-control"
-                    onChange={(e) => {
-                      if (e.target.files && e.target.files[0]) {
-                        setThumbnail(e.target.files[0]);
-                      }
-                    }}
-                  />
-                </div> */}
-
                 {/* دکمه‌ها */}
                 <div className="d-flex justify-content-between mt-3">
                   <button className="btn btn-secondary" onClick={() => setStep(1)}>بازگشت</button>
@@ -533,18 +416,18 @@ const WelcomePage = () => {
               )}
 
               {step === 3 && (
-                <div className="step-success-container">
-                  <div className="success-icon-wrapper">
+                <div className="welcome-page-step-success-container">
+                  <div className="welcome-page-success-icon-wrapper">
                     <img src={gift} alt="Success Icon" />
                   </div>
                   <h4 className="mb-3 fw-bold">محصول شما با موفقیت ثبت شد!</h4>
                   <p className="mb-2">همه‌چیز آماده‌ست. حالا فقط کافیه SDK رو داخل بازی/وب‌سایت‌تون قرار بدید.</p>
-                  <p className="mb-3"><a href="#" className="sdk-download-link">لینک دانلود SDK</a></p>
-                  <div className="access-token-box mb-3">
+                  <p className="mb-3 welcome-page-sdk-download-link"><a href="#">لینک دانلود SDK</a></p>
+                  <div className="welcome-page-access-token-box mb-3">
                     <strong>Access Token:</strong><br />
-                    <span className="token-value">{token}</span>
+                    <span className="welcome-page-token-value">{token}</span>
                   </div>
-                  <p className="token-note">برای اطلاع از دستور نصب، به بخش داکیومنت در منو مراجعه کنید!</p>
+                  <p className="welcome-page-token-note">برای اطلاع از دستور نصب، به بخش داکیومنت در منو مراجعه کنید!</p>
                 </div>
               )}
 
