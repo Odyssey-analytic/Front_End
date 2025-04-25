@@ -113,3 +113,53 @@ export const signup = async (data: {
     return response.json();
   };
   
+
+  // export const submitGameInfo = async (data: {
+  //   name: string;
+  //   engine: string;
+  //   platform: string;
+  //   description?: string;
+  // }) => {
+  //   const response = await fetch('/api/game/submit', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(data),
+  //   });
+  
+  //   if (!response.ok) {
+  //     const errorData = await response.json();
+  //     throw new Error(errorData.message || 'خطا در ارسال اطلاعات بازی.');
+  //   }
+  
+  //   return response.json();
+  // };
+  
+
+  export const submitGameInfo = async (data: {
+    name: string;
+    engine: string;
+    platform: string;
+    description?: string;
+  }) => {
+    const token = localStorage.getItem('accessToken');
+  
+    const response = await fetch('/api/game/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+  
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'خطا در ارسال اطلاعات بازی.');
+    }
+  
+    return response.json();
+  };
+  
+  
