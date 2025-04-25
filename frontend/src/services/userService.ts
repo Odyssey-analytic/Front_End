@@ -24,28 +24,6 @@ export const login = async (data: { identifier: string; password: string }) => {
 };
 
 
-
-
-// export const login = async (data: { identifier: string; password: string }) => {
-//   // const response = await fetch('http://localhost:8000/api/login/', {
-//   const response = await fetch('https://odysseyanalytics.ir/api/api/login/', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(data),
-//   });
-
-//   if (!response.ok) {
-//     const errorData = await response.json();
-//     console.error("Backend error:", errorData);
-//     throw new Error(errorData.message || 'Login failed');
-//   }
-
-//   return response.json(); 
-// };
-
-
 export const signup = async (data: {
     username: string;
     email: string;
@@ -68,6 +46,28 @@ export const signup = async (data: {
     return response.json();
   };
   
+
+  export const getUserStatus = async () => {
+    const token = localStorage.getItem('accessToken');
+  
+    const response = await fetch('https://odysseyanalytics.ir/api/api/user/status/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+  
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'خطا در دریافت وضعیت کاربر');
+    }
+  
+    const result = await response.json(); // مثلا { status: true }
+    return result;
+  };
+  
+
 
   export const requestPasswordReset = async (data: { email: string }) => {
     console.log("Sending POST to /request-reset-password with:", data.email);
@@ -161,5 +161,26 @@ export const signup = async (data: {
   
     return response.json();
   };
+  
+
+
+  // export const fetchUserGames = async () => {
+  //   const token = localStorage.getItem('accessToken');
+  
+  //   const response = await fetch('https://odysseyanalytics.ir/api/api/user/games/', {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${token}`,
+  //     },
+  //   });
+  
+  //   if (!response.ok) {
+  //     const errorData = await response.json();
+  //     throw new Error(errorData.message || 'خطا در دریافت بازی‌ها');
+  //   }
+  
+  //   return response.json();
+  // };
   
   

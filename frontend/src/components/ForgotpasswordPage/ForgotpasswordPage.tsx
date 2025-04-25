@@ -89,11 +89,13 @@ const ForgotpasswordPage = () => {
           </div>
 
           {/* ====== Test Success Button (Mock) ====== */}
-          <div className="text-center mt-2">
+          {/* <div className="text-center mt-2">
             <button type="button" className="btn btn-sm btn-outline-success" onClick={() => setPopupStatus("success")}>
               تست موفقیت (ماک)
             </button>
-          </div>
+          </div> */}
+
+
         </form>
 
         {/* ====== Popup Message (Success / Error) ====== */}

@@ -235,9 +235,10 @@ const SignupPage = () => {
 
 
         {/* Mock test button */}
-        <button type="button" className="btn btn-sm btn-outline-success mt-3" onClick={() => setSignupStatus('success')}>
+        {/* <button type="button" className="btn btn-sm btn-outline-success mt-3" onClick={() => setSignupStatus('success')}>
           تست موفقیت (ماک)
-        </button>
+        </button> */}
+
       </div>
     </div>
   );

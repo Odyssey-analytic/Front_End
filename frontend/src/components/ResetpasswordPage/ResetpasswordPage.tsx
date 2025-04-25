@@ -129,8 +129,9 @@ const ResetpasswordPage = () => {
               <img src={forgetpassword_sendcode_icon} alt="send icon" style={{ width: '30px', height: '25px' }} />
             </button>
           </div>
+          
           {/* ===== Test Success Button (Mock) ===== */}
-          <div className="text-center mt-2">
+          {/* <div className="text-center mt-2">
             <button
               type="button"
               className="btn btn-sm btn-outline-success"
@@ -139,6 +140,7 @@ const ResetpasswordPage = () => {
               تست موفقیت (ماک)
             </button>
           </div>
+           */}
         </form>
 
         {/* ===== Popup Overlay ===== */}

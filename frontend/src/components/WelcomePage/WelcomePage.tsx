@@ -64,53 +64,53 @@ const WelcomePage = () => {
   // final part
   const handleSubmitGame = async () => {
 
-    setStep(3);
+    // setStep(3);
 
-    // let valid = true;
+    let valid = true;
   
-    // // بررسی نام بازی
-    // if (!gameName.trim()) {
-    //   setGameNameError('وارد کردن نام بازی الزامی است.');
-    //   valid = false;
-    // } else {
-    //   setGameNameError('');
-    // }
+    // بررسی نام بازی
+    if (!gameName.trim()) {
+      setGameNameError('وارد کردن نام بازی الزامی است.');
+      valid = false;
+    } else {
+      setGameNameError('');
+    }
   
-    // // بررسی موتور بازی
-    // if (!engine.trim()) {
-    //   setEngineError('انتخاب موتور بازی الزامی است.');
-    //   valid = false;
-    // } else {
-    //   setEngineError('');
-    // }
+    // بررسی موتور بازی
+    if (!engine.trim()) {
+      setEngineError('انتخاب موتور بازی الزامی است.');
+      valid = false;
+    } else {
+      setEngineError('');
+    }
   
-    // // بررسی پلتفرم‌ها
-    // if (platforms.length === 0) {
-    //   setPlatformError('انتخاب حداقل یک پلتفرم الزامی است.');
-    //   valid = false;
-    // } else {
-    //   setPlatformError('');
-    // }
+    // بررسی پلتفرم‌ها
+    if (platforms.length === 0) {
+      setPlatformError('انتخاب حداقل یک پلتفرم الزامی است.');
+      valid = false;
+    } else {
+      setPlatformError('');
+    }
   
-    // if (!valid) return; // اگر چیزی خالی بود، جلو برو نگیریم
+    if (!valid) return; // اگر چیزی خالی بود، جلو برو نگیریم
 
-    // const data = {
-    //   name: gameName,
-    //   description: description,
-    //   engine: engine,
-    //   platform: platforms.join(','),
-    // };
+    const data = {
+      name: gameName,
+      description: description,
+      engine: engine,
+      platform: platforms.join(','),
+    };
     
-    // console.log('داده ارسالی:', data);
+    console.log('داده ارسالی:', data);
     
-    // try {
-    //   const result = await submitGameInfo(data);
-    //   setToken(result.token);
-    //   setStep(3);
-    // } catch (err: any) {
-    //   console.error('API error:', err.response?.data || err.message);
-    //   alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
-    // }
+    try {
+      const result = await submitGameInfo(data);
+      setToken(result.token);
+      setStep(3);
+    } catch (err: any) {
+      console.error('API error:', err.response?.data || err.message);
+      alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
+    }
     
   };
 
@@ -209,7 +209,7 @@ const WelcomePage = () => {
                 <div className="d-flex justify-content-between align-items-start mb-4">
                       {/* نام بازی */}
                       <div className="flex-fill me-3">
-                        <label className="d-block mb-1 small-label">نام بازی:</label>
+                        <label className="d-block mb-1 small-label text-start">نام بازی :</label>
                         <input
                           type="text"
                           className="form-control game-name-input-sm text-end"
@@ -287,7 +287,7 @@ const WelcomePage = () => {
                 {/* <!-- انتخاب موتور بازی --> */}
                 <div className="d-flex flex-column flex-md-row gap-4 mb-4">
                   <div className="text-start flex-fill mt-3 mt-md-0 mb-4">
-                    <label className="d-block mb-3">انتخاب موتور بازی:</label>
+                    <label className="d-block mb-3">انتخاب موتور بازی :</label>
 
                     <div className="radio-group-grid">
                       <label className="radio-label">
@@ -346,11 +346,19 @@ const WelcomePage = () => {
                 </div>
 
                 {/* دکمه‌ها */}
-                <div className="d-flex justify-content-between mt-3">
+                {/* <div className="d-flex justify-content-between mt-3">
                   <button className="btn btn-secondary" onClick={() => setStep(1)}>بازگشت</button>
                   <button className="btn btn-primary" onClick={handleSubmitGame}>ثبت</button>
+                </div> */}
+
+                <div className="d-flex justify-content-center gap-4 mt-4">
+                  <button className="continue-btn" onClick={() => setStep(1)}>بازگشت</button>
+                  <button className="continue-btn" onClick={handleSubmitGame}>ثبت</button>
                 </div>
+
+
               </div>
+              
               )}
 
               {step === 3 && (
@@ -368,6 +376,8 @@ const WelcomePage = () => {
                   <p className="welcome-page-token-note">برای اطلاع از دستور نصب، به بخش داکیومنت در منو مراجعه کنید!</p>
                 </div>
               )}
+
+
 
             </div>
           </div>

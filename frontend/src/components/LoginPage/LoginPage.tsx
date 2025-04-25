@@ -106,9 +106,10 @@ const LoginPage = () => {
         if (result.user.is_first_login) {
           navigate('/welcome');
         } else {
-          navigate('/login/dashboard');
+          navigate('/dashboard');
         }
       }, 2000);
+
     } catch (error: any) {
       console.error('Login failed:', error.message);
       setErrorMessage('نام کاربری یا رمز عبور نادرست است.');
@@ -222,9 +223,9 @@ const LoginPage = () => {
           )}
 
           {/* ========== Mock Test Button ========== */}
-          <button type="button" className="btn btn-sm btn-outline-success mt-1" onClick={() => setLoginStatus('success')}>
+          {/* <button type="button" className="btn btn-sm btn-outline-success mt-1" onClick={() => setLoginStatus('success')}>
             تست موفقیت (ماک)
-          </button>
+          </button> */}
 
           {/* ========== Google Login Placeholder ========== */}
           <button type="button" className="btn login-google-btn d-flex align-items-center w-80 px-4 mx-auto">
