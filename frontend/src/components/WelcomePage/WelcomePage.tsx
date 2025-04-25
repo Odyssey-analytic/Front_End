@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { submitGameInfo } from '../../services/userService';
+import MainLayout from '../MainLayout/MainLayout';
 
 // =========================== assets ===========================
 import OdessayLogo from '/public/icons/odessay_logo.svg';
@@ -51,13 +52,6 @@ const WelcomePage = () => {
     setUsername(storedUsername || '');
   }, []);
 
-  // const handlePlatformChange = (platform: string) => {
-  //   setPlatforms(prev =>
-  //     prev.includes(platform)
-  //       ? prev.filter(p => p !== platform)
-  //       : [...prev, platform]
-  //   );
-  // };
 
   const handlePlatformChange = (platform: string) => {
     if (platforms.includes(platform)) {
@@ -67,7 +61,6 @@ const WelcomePage = () => {
     }
   };
   
-
   // final part
   const handleSubmitGame = async () => {
 
@@ -126,66 +119,24 @@ const WelcomePage = () => {
     <>
       <div className="welcome-page-container vh-100 d-flex flex-column">
 
-        <div className="welcome-page-header">
-          <img src={welcome_header_help} alt="Help" className="welcome-page-header-help-icon" />
-
-          <div className="welcome-page-header-search-box">
-            <input
-              type="text"
-              className="welcome-page-header-search-box-input"
-              placeholder="جستجو..."
-            />
-          </div>
-
-          <div className="header-brand">
-            <span className="website-brand-text english-text">ODESSAY</span>
-            <img src={OdessayLogo} alt="Odessay Logo" className="website-logo-img ms-2" />
-          </div>
-        </div>
-
-       <div className="welcome-page-subheader d-flex justify-content-between align-items-center py-2">
-          <div className="d-flex align-items-center gap-3">
-            {/* <img src={welcome_subheader_menu} alt="Menu" className="welcome-page-subheader-menu-icon" /> */}
-
-            <div
-              className="welcome-page-menu-icon-wrapper"
-              onClick={() => setMenuOpen(prev => !prev)}
-            >
-              <img
-                src={welcome_subheader_menu}
-                alt="Menu"
-                className="welcome-page-subheader-menu-icon"
-              />
-
-              {menuOpen && (
-                <div className="welcome-page-dropdown-menu">
-                  <button className="welcome-page-dropdown-item" onClick={handleLogout}>
-                    خروج از حساب کاربری
-                  </button>
-                </div>
-              )}
-
+        <MainLayout>
+          {/* <div className="welcome-page-body justify-content-center align-items-center flex-grow-1"> */}
+            <div className={`welcome-page-main-box text-center ${showPopup ? 'blurred' : ''}`}>
+              <div className="welcome-page-main-box-icon">
+                <img src={welcome_page_main_box_welcome_icon} alt="Welcome Icon" />
+              </div>
+              <h2 className="welcome-page-main-box-heading">{username} خوش اومدی!</h2>
+              <p className="welcome-page-main-box-description">شروع کن تا ببینی توی محصولات دقیقاً چه خبره</p>
+              <p className="welcome-page-main-box-description">و چطور می‌تونی بهترین تجربه رو برای کاربرات بسازی.</p>
+              
+              <button className="btn welcome-page-main-box-start-btn" onClick={() => setShowPopup(true)}> 
+                اضافه کردن بازی 
+              </button>
             </div>
+          {/* </div> */}
 
-            <img src={welcome_subheader_user} alt="User" className="welcome-page-subheader-user-icon" />
-          </div>
-          <div className="welcome-page-subheader-admin-label-container">
-            <span className="welcome-page-subheader-admin-label-container-divider"></span>
-            <div className="welcome-page-subheader-admin-label-container-label-text">Admin</div>
-          </div>
-        </div>
+        </MainLayout>
 
-        <div className="welcome-page-body justify-content-center align-items-center flex-grow-1">
-          <div className={`welcome-page-main-box text-center ${showPopup ? 'blurred' : ''}`}>
-            <div className="welcome-page-main-box-icon">
-              <img src={welcome_page_main_box_welcome_icon} alt="Welcome Icon" />
-            </div>
-            <h2 className="welcome-page-main-box-heading">{username} خوش اومدی!</h2>
-            <p className="welcome-page-main-box-description">شروع کن تا ببینی توی محصولات دقیقاً چه خبره</p>
-            <p className="welcome-page-main-box-description">و چطور می‌تونی بهترین تجربه رو برای کاربرات بسازی.</p>
-            <button className="btn welcome-page-main-box-start-btn" onClick={() => setShowPopup(true)}> اضافه کردن بازی </button>
-          </div>
-        </div>
       </div>
 
       {showPopup && (
@@ -210,7 +161,6 @@ const WelcomePage = () => {
                 <div className={`stepper-line ${step >= 3 ? 'active' : ''}`} />
                 <div className={`stepper-item ${step >= 3 ? 'active' : ''}`}><div className="stepper-circle">3</div><div className="stepper-label">ثبت نهایی</div></div>
               </div>
-
 
               {step === 1 && (
                 <>
@@ -254,18 +204,6 @@ const WelcomePage = () => {
 
               <div className="step-2-compact">
                 <p className="text-start mb-3">اطلاعات بازیت رو وارد کن :</p>
-
-                {/* نام بازی */}
-                {/* <div className="text-start mb-4">
-                  <label className="d-block mb-1">نام بازی:</label>
-                  <input
-                    type="text"
-                    className="form-control game-name-input text-end"
-                    value={gameName}
-                    onChange={(e) => setGameName(e.target.value)}
-                  />
-                </div> */}
-
 
                 {/* نام بازی + آپلود تصویر */}
                 <div className="d-flex justify-content-between align-items-start mb-4">
@@ -340,9 +278,9 @@ const WelcomePage = () => {
                         )}
 
                         {/* نکته سایز و فرمت */}
-                        <p className="text-muted small mt-1">
+                        {/* <p className="text-muted small mt-1 img-exp">
                           تصویر باید png یا jpg و حداکثر ۲۰۰MB باشد.
-                        </p>
+                        </p> */}
                       </div>
                     </div>
 
