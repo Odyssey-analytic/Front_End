@@ -17,9 +17,22 @@ const SignIn: React.FC = () => {
       if (window.google && window.google.accounts) {
         window.google.accounts.id.initialize({
           client_id: "23562081971-et56bvsvn60pfca9th7vh3c4h1pot0ob.apps.googleusercontent.com",
-          ux_mode: "redirect",
-          login_uri: "https://odysseyanalytics.ir/welcome",
-          itp_support: true,
+          ux_mode: "popup",  // Changed to popup
+          callback: (response) => {  // Add callback
+            // Send credential to your backend
+            fetch('https://odysseyanalytics.ir/api/api/auth-receiver', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ credential: response.credential })
+            })
+            .then(response => response.json())
+            .then(data => {
+              // Store tokens and redirect
+              localStorage.setItem('accessToken', data.access);
+              localStorage.setItem('username', data.username);
+              window.location.href = '/welcome';  // Or your desired redirect
+            });
+          }
         });
 
         window.google.accounts.id.renderButton(
