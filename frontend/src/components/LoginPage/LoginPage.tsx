@@ -66,12 +66,12 @@ const LoginPage = () => {
       const result = await loginWithGoogle();
   
       localStorage.setItem('accessToken', result.access);
-      localStorage.setItem('username', result.user.username);
+      localStorage.setItem('username', result.username);
   
       setLoginStatus('success');
   
       setTimeout(() => {
-        if (result.user.is_first_login) {
+        if (result.is_first_login) {
           navigate('/welcome');
         } else {
           navigate('/dashboard');
