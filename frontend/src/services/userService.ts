@@ -140,7 +140,7 @@ export const signup = async (data: {
   export const submitGameInfo = async (data: {
     name: string;
     engine: string;
-    platform: string;
+    platform: string[];
     description?: string;
   }) => {
     const token = localStorage.getItem('accessToken');

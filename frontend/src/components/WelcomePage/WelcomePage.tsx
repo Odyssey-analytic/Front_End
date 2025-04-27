@@ -98,7 +98,7 @@ const WelcomePage = () => {
       name: gameName,
       description: description,
       engine: engine,
-      platform: platforms.join(','),
+      platform: platforms,
     };
     
     console.log('داده ارسالی:', data);
