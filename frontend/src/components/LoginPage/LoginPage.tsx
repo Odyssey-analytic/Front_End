@@ -128,7 +128,7 @@ const LoginPage = () => {
       setLoginStatus('success');
 
       setTimeout(() => {
-        if (result.user.is_first_login) {
+        if (result.is_first_login) {
           navigate('/welcome');
         } else {
           navigate('/dashboard');
