@@ -145,7 +145,7 @@ export const signup = async (data: {
   }) => {
     const token = localStorage.getItem('accessToken');
   
-    const response = await fetch('/api/game/submit', {
+    const response = await fetch('/api/game/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

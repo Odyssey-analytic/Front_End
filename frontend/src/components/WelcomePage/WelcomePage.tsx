@@ -66,51 +66,51 @@ const WelcomePage = () => {
 
     setStep(3);
 
-    // let valid = true;
+    let valid = true;
   
-    // // بررسی نام بازی
-    // if (!gameName.trim()) {
-    //   setGameNameError('وارد کردن نام بازی الزامی است.');
-    //   valid = false;
-    // } else {
-    //   setGameNameError('');
-    // }
+    // بررسی نام بازی
+    if (!gameName.trim()) {
+      setGameNameError('وارد کردن نام بازی الزامی است.');
+      valid = false;
+    } else {
+      setGameNameError('');
+    }
   
-    // // بررسی موتور بازی
-    // if (!engine.trim()) {
-    //   setEngineError('انتخاب موتور بازی الزامی است.');
-    //   valid = false;
-    // } else {
-    //   setEngineError('');
-    // }
+    // بررسی موتور بازی
+    if (!engine.trim()) {
+      setEngineError('انتخاب موتور بازی الزامی است.');
+      valid = false;
+    } else {
+      setEngineError('');
+    }
   
-    // // بررسی پلتفرم‌ها
-    // if (platforms.length === 0) {
-    //   setPlatformError('انتخاب حداقل یک پلتفرم الزامی است.');
-    //   valid = false;
-    // } else {
-    //   setPlatformError('');
-    // }
+    // بررسی پلتفرم‌ها
+    if (platforms.length === 0) {
+      setPlatformError('انتخاب حداقل یک پلتفرم الزامی است.');
+      valid = false;
+    } else {
+      setPlatformError('');
+    }
   
-    // if (!valid) return; // اگر چیزی خالی بود، جلو برو نگیریم
+    if (!valid) return; // اگر چیزی خالی بود، جلو برو نگیریم
 
-    // const data = {
-    //   name: gameName,
-    //   description: description,
-    //   engine: engine,
-    //   platform: platforms.join(','),
-    // };
+    const data = {
+      name: gameName,
+      description: description,
+      engine: engine,
+      platform: platforms.join(','),
+    };
     
-    // console.log('داده ارسالی:', data);
+    console.log('داده ارسالی:', data);
     
-    // try {
-    //   const result = await submitGameInfo(data);
-    //   setToken(result.token);
-    //   setStep(3);
-    // } catch (err: any) {
-    //   console.error('API error:', err.response?.data || err.message);
-    //   alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
-    // }
+    try {
+      const result = await submitGameInfo(data);
+      setToken(result.token);
+      setStep(3);
+    } catch (err: any) {
+      console.error('API error:', err.response?.data || err.message);
+      alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
+    }
     
   };
 
