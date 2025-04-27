@@ -123,7 +123,7 @@ const LoginPage = () => {
       const result = await login(data);
 
       localStorage.setItem('accessToken', result.access);
-      localStorage.setItem('username', result.user.username);
+      localStorage.setItem('username', result.username);
 
       setLoginStatus('success');
 
