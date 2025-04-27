@@ -28,6 +28,7 @@ const SignIn: React.FC = () => {
             .then(response => response.json())
             .then(data => {
               // Store tokens and redirect
+              console.log(data)
               localStorage.setItem('accessToken', data.access);
               localStorage.setItem('username', data.username);
               window.location.href = '/welcome';  // Or your desired redirect

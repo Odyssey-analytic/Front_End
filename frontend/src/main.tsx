@@ -30,7 +30,6 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/reset-password/:token" element={<ResetpasswordPage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/sign_in" element={<SignIn />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
