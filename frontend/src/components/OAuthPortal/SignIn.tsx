@@ -16,9 +16,9 @@ const SignIn: React.FC = () => {
     script.onload = () => {
       if (window.google && window.google.accounts) {
         window.google.accounts.id.initialize({
-          client_id: "276057790895-k0sd02ratqbjehtafo6fa4muj4n81m8r.apps.googleusercontent.com",
+          client_id: "23562081971-et56bvsvn60pfca9th7vh3c4h1pot0ob.apps.googleusercontent.com",
           ux_mode: "redirect",
-          login_uri: "http://odysseyanalytics.ir/api/auth-receiver",
+          login_uri: "https://odysseyanalytics.ir/api/api/auth-receiver",
           itp_support: true,
         });
 
