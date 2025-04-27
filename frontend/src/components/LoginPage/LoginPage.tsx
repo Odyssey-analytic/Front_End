@@ -131,7 +131,8 @@ const LoginPage = () => {
         if (result.is_first_login) {
           navigate('/welcome');
         } else {
-          navigate('/dashboard');
+          // navigate('/dashboard');
+          navigate('/welcome');
         }
       }, 2000);
 
