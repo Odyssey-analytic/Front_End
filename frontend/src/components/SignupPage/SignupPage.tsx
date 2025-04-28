@@ -199,7 +199,7 @@ const SignupPage = () => {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="signup-form-btn btn w-100">ثبت نام</button>
+          <button type="submit" className="signup-btn btn w-100">ثبت نام</button>
 
           <button
             type="button"

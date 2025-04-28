@@ -186,7 +186,7 @@ const LoginPage = () => {
           <div className="mb-3 position-relative login-input-wrapper">
             <input
               type={showPassword ? 'text' : 'password'}
-              className="form-control text-start pe-5 text-dark login-input"
+              className="form-control no-focus-style text-start pe-5 text-dark login-input"
               placeholder="رمز عبور خود را وارد کنید."
               value={password}
               onChange={handlePasswordChange}
