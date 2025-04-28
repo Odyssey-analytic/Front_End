@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../services/userService';
 import './LoginPage.css';
-import { loginWithGoogle } from '../../services/userService';
 
 // ============================== Icon Imports ==============================
 import OdessayLogo from '/public/icons/odessay_logo.svg';
@@ -13,6 +12,13 @@ import login_email_icon from '/public/icons/login_email_icon.svg';
 import login_google_icon from '/public/icons/login_google_icon.svg';
 import successful_signup_icon from '/public/icons/successful_signup_icon.svg';
 import unsuccessful_signup_icon from '/public/icons/unsuccessful_signup_icon.svg';
+
+// ============================== Interfaces ==============================
+declare global {
+  interface Window{
+    google:any;
+  }
+}
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -60,29 +66,48 @@ const LoginPage = () => {
     }
   };
 
+  // ============================== Google Login ==============================
 
-  const handleGoogleLogin = async () => {
-    try {
-      const result = await loginWithGoogle();
-  
-      localStorage.setItem('accessToken', result.access);
-      localStorage.setItem('username', result.username);
-  
-      setLoginStatus('success');
-  
-      setTimeout(() => {
-        if (result.is_first_login) {
-          navigate('/welcome');
-        } else {
-          navigate('/dashboard');
+    useEffect(() => {
+      const script = document.createElement('script');
+      script.src = "https://accounts.google.com/gsi/client";
+      script.async = true;
+      document.body.appendChild(script);
+
+      script.onload = () => {
+        if (window.google && window.google.accounts) {
+          window.google.accounts.id.initialize({
+            client_id: "23562081971-et56bvsvn60pfca9th7vh3c4h1pot0ob.apps.googleusercontent.com",
+            ux_mode: "popup",  
+            callback: (response) => { 
+              fetch('https://odysseyanalytics.ir/api/api/auth-receiver', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ credential: response.credential })
+              })
+              .then(response => response.json())
+              .then(data => {
+                console.log(data)
+                localStorage.setItem('accessToken', data.access);
+                localStorage.setItem('username', data.username);
+                window.location.href = '/welcome';
+              });
+            }
+          });
+
+          window.google.accounts.id.renderButton(
+            document.getElementById("g_id_signin") as HTMLElement,
+            {
+              theme: "outline",
+              size: "large",
+              text: "signin_with",
+              shape: "pill",
+              logo_alignment: "left",
+            }
+          );
         }
-      }, 2000);
-    } catch (error: any) {
-      console.error('Google login failed:', error);
-      setErrorMessage('ورود با گوگل ناموفق بود.');
-      setLoginStatus('error');
-    }
-  };  
+      };
+    }, []);
 
   // ============================== Submit Handler ==============================
   const handleLogin = async (e: React.FormEvent) => {
@@ -248,17 +273,7 @@ const LoginPage = () => {
             </div>
           )}
 
-          <button
-            type="button"
-            className="btn login-google-btn d-flex align-items-center w-80 px-4 mx-auto"
-            onClick={handleGoogleLogin}
-          >
-            <span className="fw-bold text-white ms-auto me-4 login-google-btn-enter-text">ورود با استفاده از</span>
-            <div className="d-flex align-items-center gap-2 me-auto">
-              <span className="fw-bold text-white login-google-btn-google-text">Google</span>
-              <img src={login_google_icon} alt="Google" width="23" />
-            </div>
-          </button>
+          <div id = 'g_id_signin'></div>
           
         </form>
       </div>

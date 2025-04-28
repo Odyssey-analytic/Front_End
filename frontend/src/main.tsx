@@ -16,6 +16,7 @@ import WelcomePage from "./components/WelcomePage/WelcomePage";
 import ActiveUsersKPI from "./components/KPICharts/ActiveUsersKPI";
 import LandingPage from "./components/LandingPage/LandingPage"
 import DashboardPage from "./components/DashboardPage/DashboardPage"
+import SignIn from './components/OAuthPortal/SignIn';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
