@@ -17,9 +17,13 @@ const RealTimeChart = () => {
       },
     ],
   });
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const urlToken = searchParams.get('token') || '';
+    console.log(urlToken)
     const [initialPayload] = useState({
         kpi: "sessionTime_average",
-        token: "TgaAGnHggY1QNT1FMjInCHrMFR59RGzAGsh95lXNwECqH0vNO3U58txWNUvz5Ptu"
+        token: urlToken
     });
   useEffect(() => {
     const source = new EventSource(`https://odysseyanalytics.ir/api/kpi/sse/SessionLengthAvr?kpi=${initialPayload.kpi}&token=${initialPayload.token}`);
