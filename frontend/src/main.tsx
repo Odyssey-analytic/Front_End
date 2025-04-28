@@ -8,8 +8,8 @@ import './styles/fonts.css';
 import './index.css'
 
 // import ActiveUsersKPI from "./components/KPICharts/ActiveUsersKPI";
-import LoginPage from "./components/LoginPage/LoginPage";
-import SignupPage from "./components/SignupPage/SignupPage";
+import LoginPage from "./components/AuthPages/LoginPage";
+import SignupPage from "./components/AuthPages/SignupPage";
 import ForgotpasswordPage from "./components/ForgotpasswordPage/ForgotpasswordPage";
 import ResetpasswordPage from "./components/ResetpasswordPage/ResetpasswordPage";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
