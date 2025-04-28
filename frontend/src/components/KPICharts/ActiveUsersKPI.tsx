@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend, ChartData } from 'chart.js';
 
@@ -17,12 +17,21 @@ const RealTimeChart = () => {
       },
     ],
   });
-    const [initialPayload] = useState({
-        kpi: "sessionTime_average",
-        token: "TgaAGnHggY1QNT1FMjInCHrMFR59RGzAGsh95lXNwECqH0vNO3U58txWNUvz5Ptu"
-    });
+
+
+  const searchParams = new URLSearchParams(window.location.search);
+  const urlToken = searchParams.get('token') || '';
+  const [initialPayload] = useState({
+    kpi: "sessionTime_average",
+    token: urlToken
+  });
+
+  // Use a ref to store the SSE connection
+  const sseRef = useRef<EventSource | null>(null);
+
   useEffect(() => {
-    const source = new EventSource(`https://odysseyanalytics.ir/api/kpi/sse/SessionLengthAvr?kpi=${initialPayload.kpi}&token=${initialPayload.token}`);
+    // Create SSE connection
+    sseRef.current = new EventSource(`https://odysseyanalytics.ir/api/kpi/sse/SessionLengthAvr?kpi=${initialPayload.kpi}&token=${initialPayload.token}`);
 
     const handleMessage = (event: MessageEvent) => {
       const newData = JSON.parse(event.data);
@@ -49,16 +58,36 @@ const RealTimeChart = () => {
 
     const handleError = (error: Event) => {
       console.error("SSE connection error:", error);
-      source.close();
+      if (sseRef.current) {
+        sseRef.current.close();
+      }
     };
 
-    source.onmessage = handleMessage;
-    source.onerror = handleError;
+    sseRef.current.onmessage = handleMessage;
+    sseRef.current.onerror = handleError;
 
+    // Cleanup function for component unmount
     return () => {
-      source.close();
+      if (sseRef.current) {
+        sseRef.current.close();
+      }
     };
   }, [initialPayload]);
+
+  // Handle tab/window closing
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (sseRef.current) {
+        sseRef.current.close();
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   return (
     <div>
