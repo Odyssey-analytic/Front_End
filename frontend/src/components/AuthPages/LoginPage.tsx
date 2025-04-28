@@ -23,6 +23,10 @@ declare global {
 const LoginPage = () => {
   const navigate = useNavigate();
 
+  // ============================== State: Loading ==============================
+
+  const [isLoading, setIsLoading] = useState(false);
+
   // ============================== State: Form Fields ==============================
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -143,6 +147,8 @@ const LoginPage = () => {
 
     if (!valid) return;
 
+    setIsLoading(true);
+
     try {
       const data = { identifier: email, password };
       const result = await login(data);
@@ -165,6 +171,8 @@ const LoginPage = () => {
       console.error('Login failed:', error.message);
       setErrorMessage('نام کاربری یا رمز عبور نادرست است.');
       setLoginStatus('error');
+    } finally {
+      setIsLoading(false); // بعد از موفق یا ناموفق، لودینگ قطع بشه
     }
   };
 
@@ -178,6 +186,12 @@ const LoginPage = () => {
         <img src={OdessayLogo} alt="Odessay Logo" className="auth-page-logo-img me-4" />
       </div>
 
+      {/* ========== Loading ========== */}
+      {isLoading && (
+        <div className="auth-loading-overlay">
+          <div className="auth-spinner"></div>
+        </div>
+      )}
 
       {/* ========== Login Box ========== */}
       <div className="auth-box mx-auto ms-lg-5 position-relative">
