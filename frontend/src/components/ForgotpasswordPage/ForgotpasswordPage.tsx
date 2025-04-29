@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { requestPasswordReset } from "../../services/userService";
 import "./ForgotpasswordPage.css";
-import '../AuthPages/AuthPages.css'
 import { Link, useNavigate } from 'react-router-dom';
 
 import odessay_logo from '/public/icons/odessay_logo.svg';
@@ -53,50 +52,50 @@ const ForgotpasswordPage = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 auth-page-container px-3">
+    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 forgot-page-container px-3">
 
       {/* ====== Brand Logo ====== */}
       <div className="d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
-        <div className="auth-page-brand-text english-text text-white me-3">ODESSAY</div>
-        <img src={odessay_logo} alt="Odessay Logo" className="auth-page-logo-img me-4" />
+        <div className="forgot-page-brand-text english-text text-white me-3">ODESSAY</div>
+        <img src={odessay_logo} alt="Odessay Logo" className="forgot-page-logo-img me-4" />
       </div>
 
       {/* ========== Loading ========== */}
       {isLoading && (
-        <div className="auth-loading-overlay">
-          <div className="auth-spinner"></div>
+        <div className="forgot-loading-overlay">
+          <div className="forgot-spinner"></div>
         </div>
       )}
 
       {/* ====== Forgot Form Box ====== */}
-      <div className="auth-box mx-auto ms-lg-5 position-relative">
+      <div className="forgot-box mx-auto ms-lg-5 position-relative">
         <div className="forgot-title">
           <h2 className="fw-bold text-start mb-3">بازیابی رمز عبور</h2>
         </div>
         
         <form onSubmit={handleSubmit}>
           {/* ====== Email Field ====== */}
-          <div className="mb-3 position-relative auth-input-wrapper">
+          <div className="mb-3 position-relative forgot-input-wrapper">
             <input
               type="text"
               name="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="form-control text-start pe-5 text-dark auth-input"
+              className="form-control text-start pe-5 text-dark forgot-input"
               placeholder="ایمیل خود را وارد کنید."
             />
-            <img src={login_email_icon} alt="Email Icon" className="auth-email-icon" />
+            <img src={login_email_icon} alt="Email Icon" className="forgot-email-icon" />
 
             {emailError && (
-              <div className="auth-input-error-popup" key={emailErrorKey}>
+              <div className="forgot-input-error-popup" key={emailErrorKey}>
                 <span>{emailError}</span>
                 <button type="button" onClick={() => setEmailError("")}>×</button>
               </div>
             )}
           </div>
 
-          <Link to="/login" className="auth-back-to-home text-muted small">
+          <Link to="/login" className="forgot-back-to-home text-muted small">
               ← بازگشت به صفحه ورود
           </Link>
 

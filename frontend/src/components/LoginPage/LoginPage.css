@@ -9,7 +9,7 @@ body, html {
   box-sizing: border-box;
 }
 
-.auth-page-container {
+.login-page-container {
   background-image: url('/src/assets/images/login-bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -21,18 +21,18 @@ body, html {
 }
 
 /* ======================== Brand ======================== */
-.auth-page-logo-img {
+.login-page-logo-img {
   height: 32px;
   width: auto;
 }
 
-.auth-page-brand-text {
+.login-page-brand-text {
   font-size: 18px;
   letter-spacing: 2px;
 }
 
-/* ======================== auth Back To Home Link ======================== */
-.auth-back-to-home {
+/* ======================== login Back To Home Link ======================== */
+.login-back-to-home {
   position: absolute;
   top: 1.2rem;
   left: 1.2rem;
@@ -41,11 +41,11 @@ body, html {
   transition: color 0.2s ease;
 }
 
-.auth-back-to-home:hover {
+.login-back-to-home:hover {
   color: #5c5c5c;
 }
 
-.auth-box {
+.login-box {
   background-color: rgba(255, 255, 255, 0.8);
   width: 100%;
   max-width: 400px;
@@ -56,40 +56,40 @@ body, html {
   flex-direction: column;
 }
 
-.auth-title {
+.login-title {
   font-size: 2.5rem;
   color: rgba(11, 20, 75);
   margin-bottom: 1rem;
 }
 
-.auth-subtitle {
+.login-subtitle {
   font-size: 1rem;
   color: rgba(90, 90, 90);
   margin-bottom: 1.5rem;
 }
 
 /* ======================== Input Fields ======================== */
-.auth-input {
+.login-input {
   padding: 0.5rem 1rem;
   border-radius: 12px;
   padding-right: 3rem;
   box-shadow: inset 0 0 11px rgba(0, 0, 0, 0.16);
 }
 
-.auth-input::placeholder {
+.login-input::placeholder {
   font-size: 0.8rem;
   color: rgb(46, 46, 46);
 }
 
-.auth-input:focus,
-.auth-input:focus-visible {
+.login-input:focus,
+.login-input:focus-visible {
   outline: none !important;
   box-shadow: 0 0 0 1px rgba(113, 46, 141, 0.4) !important;
 }
 
 /* ======================== Icons ======================== */
-.auth-email-icon,
-.auth-password-icon {
+.login-email-icon,
+.login-password-icon {
   position: absolute;
   top: 50%;
   right: 1rem;
@@ -98,7 +98,7 @@ body, html {
   opacity: 1;
 }
 
-.auth-eye-icon {
+.login-eye-icon {
   position: absolute;
   top: 50%;
   left: 1rem;
@@ -108,7 +108,7 @@ body, html {
   opacity: 0.8;
 }
 
-.signup-form-container-user-icon {
+.login-form-container-user-icon {
   position: absolute;
   top: 50%;
   right: 1rem;
@@ -116,8 +116,8 @@ body, html {
   width: 20px;
 }
 
-.signup-form-container-email-icon,
-.signup-form-container-padlock-icon {
+.login-form-container-email-icon,
+.login-form-container-padlock-icon {
   position: absolute;
   top: 50%;
   right: 1rem;
@@ -125,7 +125,7 @@ body, html {
   width: 20px;
 }
 
-.signup-form-container-eye-icon {
+.login-form-container-eye-icon {
   position: absolute;
   top: 50%;
   left: 1rem;
@@ -136,7 +136,7 @@ body, html {
 }
 
 /* ======================== Buttons ======================== */
-.auth-btn {
+.login-btn {
   display: block;
   width: 100%;
   max-width: 350px;
@@ -155,9 +155,9 @@ body, html {
   text-align: center;
 }
 
-.auth-btn:hover,
-.auth-btn:focus,
-.auth-btn:active {
+.login-btn:hover,
+.login-btn:focus,
+.login-btn:active {
   background: linear-gradient(to right, #5d1b79, #00719a);
   filter: brightness(1.1);
   color: white !important;
@@ -165,7 +165,7 @@ body, html {
   outline: none;
 }
 
-.auth-google-btn {
+.login-google-btn {
   background-color: rgb(84, 28, 121);
   color: white;
   font-weight: bold;
@@ -176,34 +176,34 @@ body, html {
   transition: all 0.3s ease;
 }
 
-.auth-google-btn:hover {
+.login-google-btn:hover {
   background-color: rgb(68, 20, 99);
 }
 
-.auth-google-btn-enter-text {
+.login-google-btn-enter-text {
   font-size: 13px;
 }
 
-.auth-google-btn-google-text {
+.login-google-btn-google-text {
   font-size: 14px;
   margin-top: auto;
 }
 
-.auth-non-register-remember-password {
+.login-non-register-remember-password {
   color: rgba(29, 29, 29);
   font-size: 12px;
 }
 
-.auth-box-seperator-line {
+.login-box-seperator-line {
   color: rgba(114, 114, 114);
 }
 
 /* ======================== Error Popup Over Input Fields ======================== */
-.auth-input-wrapper {
+.login-input-wrapper {
   position: relative;
 }
 
-.auth-input-error-popup {
+.login-input-error-popup {
   position: absolute;
   top: 0;
   left: 0;
@@ -223,7 +223,7 @@ body, html {
   -webkit-backdrop-filter: blur(2px);
 }
 
-.auth-input-error-popup button {
+.login-input-error-popup button {
   background: transparent;
   border: none;
   font-size: 1rem;
@@ -232,7 +232,7 @@ body, html {
   margin-bottom: -0.3rem;
 }
 
-.signup-input-custom-explanation {
+.login-input-custom-explanation {
   font-size: 11px;
   padding-right: 0.75rem;
 }
@@ -242,12 +242,12 @@ body, html {
   margin-bottom: 15px;
 }
 
-.signup-agreement-text {
+.login-agreement-text {
   color: rgba(89, 67, 130);
 }
 
-/* ======================== auth Success/Error Popup ======================== */
-.auth-warning-popup-card {
+/* ======================== login Success/Error Popup ======================== */
+.login-warning-popup-card {
   position: absolute;
   inset: 0;
   background-color: transparent;
@@ -262,7 +262,7 @@ body, html {
   overflow: hidden;
 }
 
-.auth-warning-popup-card::before {
+.login-warning-popup-card::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -272,39 +272,39 @@ body, html {
   transition: all 0.1s ease;
 }
 
-.auth-popup-warning-overlay.error .auth-warning-popup-card::before {
+.login-popup-warning-overlay.error .login-warning-popup-card::before {
   background-color: rgba(255, 0, 0, 0.2);
 }
 
-.auth-popup-warning-overlay.success .auth-warning-popup-card::before {
+.login-popup-warning-overlay.success .login-warning-popup-card::before {
   background-color: rgba(40, 167, 69, 0.2);
 }
 
-.auth-warning-popup-card > * {
+.login-warning-popup-card > * {
   position: relative;
   z-index: 1;
 }
 
-.auth-warning-popup-card h5 {
+.login-warning-popup-card h5 {
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
-.auth-popup-warning-overlay.error .auth-warning-popup-card h5 {
+.login-popup-warning-overlay.error .login-warning-popup-card h5 {
   color: #e60023;
 }
 
-.auth-popup-warning-overlay.success .auth-warning-popup-card h5 {
+.login-popup-warning-overlay.success .login-warning-popup-card h5 {
   color: #28a745;
 }
 
-.auth-warning-popup-card p {
+.login-warning-popup-card p {
   color: #555;
   font-size: 14px;
   margin: 0;
 }
 
-.auth-warning-popup-close-btn {
+.login-warning-popup-close-btn {
   position: absolute;
   top: 17px;
   left: 25px;
@@ -315,14 +315,14 @@ body, html {
   cursor: pointer;
 }
 
-.auth-warning-popup-emoji {
+.login-warning-popup-emoji {
   width: 100px;
   height: 100px;
   object-fit: contain;
   margin-bottom: 1rem;
 }
 
-.auth-warning-popup-line-separator {
+.login-warning-popup-line-separator {
   width: 100%;
   max-width: 250px;
   height: 1px;
@@ -333,7 +333,7 @@ body, html {
 }
 
 /* ======================== Responsive ======================== */
-.auth-loading-overlay {
+.login-loading-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -346,7 +346,7 @@ body, html {
   z-index: 9999;
 }
 
-.auth-spinner {
+.login-spinner {
   width: 50px;
   height: 50px;
   border: 5px solid #ccc;
@@ -364,155 +364,73 @@ body, html {
 
 /* ======================== Responsive ======================== */
 
-/* @media (max-width: 480px) {
-  .auth-page-container {
+@media (max-width: 480px) {
+  .login-page-container {
     padding: 1.5rem 1rem;
   }
-  .auth-box {
+  .login-box {
     padding: 1.5rem 1rem;
   }
-  .auth-title {
+  .login-title {
     font-size: 2rem;
   }
-  .auth-subtitle {
+  .login-subtitle {
     font-size: 0.9rem;
   }
-  .auth-page-logo-img {
+  .login-page-logo-img {
     top: 1rem;
     left: 1rem;
   }
-  .auth-btn {
+  .login-btn {
     width: 100%;
   }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
-  .auth-page-container {
+  .login-page-container {
     padding: 2rem 1.5rem;
   }
-  .auth-box {
+  .login-box {
     padding: 2rem 1.5rem;
   }
-  .auth-title {
+  .login-title {
     font-size: 2.2rem;
   }
-  .auth-subtitle {
+  .login-subtitle {
     font-size: 1rem;
   }
-  .auth-page-logo-img {
+  .login-page-logo-img {
     top: 1.5rem;
     left: 1.5rem;
   }
-  .auth-btn {
+  .login-btn {
     width: 100%;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .auth-page-container {
+  .login-page-container {
     padding: 2.5rem 2rem;
   }
-  .auth-box {
+  .login-box {
     padding: 2.5rem 2rem;
   }
 }
 
 @media (min-width: 1025px) and (max-width: 1280px) {
-  .auth-page-container {
+  .login-page-container {
     padding: 3rem 2.5rem;
   }
-  .auth-box {
+  .login-box {
     padding: 3rem 2.5rem;
   }
 }
 
 @media (min-width: 1281px) and (max-width: 1440px) {
-  .auth-page-container {
+  .login-page-container {
     padding: 3rem 4rem;
   }
-  .auth-box {
+  .login-box {
     padding: 2.2rem;
-  }
-} */
-/* 1. 480px – 640px */
-@media (min-width: 480px) and (max-width: 640px) {
-  .auth-page-container {
-    padding: 1.5rem 1rem;
-  }
-  .auth-box {
-    padding: 1.5rem 1rem;
-  }
-  .auth-title {
-    font-size: 2rem;
-  }
-  .auth-subtitle {
-    font-size: 0.9rem;
-  }
-  .auth-page-logo-img {
-    top: 1rem;
-    left: 1rem;
-  }
-  .auth-btn {
-    width: 100%;
-  }
-}
-
-/* 2. 641px – 800px */
-@media (min-width: 641px) and (max-width: 800px) {
-  .auth-page-container {
-    padding: 2rem 1.2rem;
-  }
-  .auth-box {
-    padding: 2rem 1.2rem;
-  }
-  .auth-title {
-    font-size: 2.2rem;
-  }
-  .auth-subtitle {
-    font-size: 1rem;
-  }
-  .auth-page-logo-img {
-    top: 1.2rem;
-    left: 1.2rem;
-  }
-}
-
-/* 3. 801px – 960px */
-@media (min-width: 801px) and (max-width: 960px) {
-  .auth-page-container {
-    padding: 2.2rem 1.5rem;
-  }
-  .auth-box {
-    padding: 2.2rem 1.5rem;
-  }
-}
-
-/* 4. 961px – 1120px */
-@media (min-width: 961px) and (max-width: 1120px) {
-  .auth-page-container {
-    padding: 2.5rem 2rem;
-  }
-  .auth-box {
-    padding: 2.5rem 2rem;
-  }
-}
-
-/* 5. 1121px – 1280px */
-@media (min-width: 1121px) and (max-width: 1280px) {
-  .auth-page-container {
-    padding: 2.8rem 2.5rem;
-  }
-  .auth-box {
-    padding: 2.8rem 2.5rem;
-  }
-}
-
-/* 6. 1281px – 1440px */
-@media (min-width: 1281px) and (max-width: 1440px) {
-  .auth-page-container {
-    padding: 3rem 3rem;
-  }
-  .auth-box {
-    padding: 3rem 3rem;
   }
 }
