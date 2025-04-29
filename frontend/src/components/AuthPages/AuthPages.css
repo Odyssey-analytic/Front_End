@@ -9,53 +9,30 @@ body, html {
   box-sizing: border-box;
 }
 
-
-/* ======================== Layout & Container ======================== */
-/* .login-page-container {
+.auth-page-container {
   background-image: url('/src/assets/images/login-bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 20% center;
   background-color: #0e1a2b;
-  height: 100vh;
-  width: 100vw;
-} */
 
-.login-page-container {
-  background-image: url('/src/assets/images/login-bg.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 20% center;
-  background-color: #0e1a2b;
   min-height: 100vh;
   width: 100%;
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* padding: 3rem 4rem; */
 }
-
 
 /* ======================== Brand ======================== */
-.website-logo {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  z-index: 10;
-}
-
-.website-logo-img {
+.auth-page-logo-img {
   height: 32px;
   width: auto;
 }
 
-.website-brand-text {
+.auth-page-brand-text {
   font-size: 18px;
   letter-spacing: 2px;
 }
 
-/* ======================== Login Back To Home Link ======================== */
-.login-back-to-home {
+/* ======================== auth Back To Home Link ======================== */
+.auth-back-to-home {
   position: absolute;
   top: 1.2rem;
   left: 1.2rem;
@@ -64,84 +41,55 @@ body, html {
   transition: color 0.2s ease;
 }
 
-.login-back-to-home:hover {
+.auth-back-to-home:hover {
   color: #5c5c5c;
 }
 
-/* ======================== Login Form Box ======================== */
-/* .login-box {
+.auth-box {
   background-color: rgba(255, 255, 255, 0.8);
   width: 100%;
   max-width: 400px;
-  padding: 2rem;
-  border-radius: 12px;
-  height: auto;
-  position: relative; 
-} */
-
-.login-box {
-  background-color: rgba(255, 255, 255, 0.8);
-  width: 100%;
-  max-width: 400px;
-  /* padding: 2rem; */
   border-radius: 12px;
   height: auto;
   position: relative;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 }
 
-/* .login-title {
+.auth-title {
   font-size: 2.5rem;
   color: rgba(11, 20, 75);
   margin-bottom: 1rem;
 }
 
-.login-subtitle {
-  font-size: 1rem;
-  color: rgba(237, 237, 237);
-  margin-bottom: 1.5rem;
-} */
-
-.login-title {
-  font-size: 2.5rem;
-  color: rgba(11, 20, 75);
-  margin-bottom: 1rem;
-  /* text-align: right */
-}
-
-.login-subtitle {
+.auth-subtitle {
   font-size: 1rem;
   color: rgba(90, 90, 90);
   margin-bottom: 1.5rem;
-  /* text-align: right */
 }
 
 /* ======================== Input Fields ======================== */
-.login-input {
-  /* font-size: 1rem; */
+.auth-input {
   padding: 0.5rem 1rem;
   border-radius: 12px;
   padding-right: 3rem;
   box-shadow: inset 0 0 11px rgba(0, 0, 0, 0.16);
 }
 
-.login-input::placeholder {
+.auth-input::placeholder {
   font-size: 0.8rem;
   color: rgb(46, 46, 46);
 }
 
-.login-input:focus,
-.login-input:focus-visible {
+.auth-input:focus,
+.auth-input:focus-visible {
   outline: none !important;
   box-shadow: 0 0 0 1px rgba(113, 46, 141, 0.4) !important;
 }
 
-
 /* ======================== Icons ======================== */
-.login-email-icon,
-.login-password-icon {
+.auth-email-icon,
+.auth-password-icon {
   position: absolute;
   top: 50%;
   right: 1rem;
@@ -150,7 +98,7 @@ body, html {
   opacity: 1;
 }
 
-.login-eye-icon {
+.auth-eye-icon {
   position: absolute;
   top: 50%;
   left: 1rem;
@@ -160,30 +108,40 @@ body, html {
   opacity: 0.8;
 }
 
+.signup-form-container-user-icon {
+  position: absolute;
+  top: 30%;
+  right: 1rem;
+  transform: translateY(-50%);
+  width: 20px;
+}
+
+.signup-form-container-email-icon,
+.signup-form-container-padlock-icon {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  width: 20px;
+}
+
+.signup-form-container-eye-icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  width: 23px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
 /* ======================== Buttons ======================== */
-/* .login-btn {
-  display: block;
-  width: 110px;
-  height: 45px;
-  max-width: 100%;
-  margin-top: 2.5rem;
-
-  font-size: 16px;
-  font-weight: bold;
-  color: #c4c4c4;
-  background: linear-gradient(to right, #5d1b79, #00719a);
-  border: none;
-  border-radius: 12px;
-
-  filter: brightness(1.4);
-  transition: all 0.3s ease;
-} */
-
-.login-btn {
+.auth-btn {
   display: block;
   width: 100%;
   max-width: 350px;
   height: 44px;
+  
   margin: 2.5rem auto 0 auto;
   font-size: 16px;
   font-weight: bold;
@@ -191,27 +149,15 @@ body, html {
   background: linear-gradient(to right, #5d1b79, #00719a);
   border: none;
   border-radius: 12px;
+  
   filter: brightness(1.4);
   transition: all 0.3s ease;
   text-align: center;
 }
 
-/* .login-btn:hover {
-  background: linear-gradient(to right, #5d1b79, #00719a);
-  filter: brightness(1.1);
-  color: white;
-  cursor: pointer;
-}
-
-.login-btn:focus,
-.login-btn:active {
-  color: rgb(255, 255, 255) !important;
-  outline: none;
-} */
-
-.login-btn:hover,
-.login-btn:focus,
-.login-btn:active {
+.auth-btn:hover,
+.auth-btn:focus,
+.auth-btn:active {
   background: linear-gradient(to right, #5d1b79, #00719a);
   filter: brightness(1.1);
   color: white !important;
@@ -219,7 +165,7 @@ body, html {
   outline: none;
 }
 
-.login-google-btn {
+.auth-google-btn {
   background-color: rgb(84, 28, 121);
   color: white;
   font-weight: bold;
@@ -230,34 +176,34 @@ body, html {
   transition: all 0.3s ease;
 }
 
-.login-google-btn:hover {
+.auth-google-btn:hover {
   background-color: rgb(68, 20, 99);
 }
 
-.login-google-btn-enter-text {
+.auth-google-btn-enter-text {
   font-size: 13px;
 }
 
-.login-google-btn-google-text {
+.auth-google-btn-google-text {
   font-size: 14px;
   margin-top: auto;
 }
 
-.login-non-register-remember-password {
+.auth-non-register-remember-password {
   color: rgba(29, 29, 29);
   font-size: 12px;
 }
 
-.login-box-seperator-line {
+.auth-box-seperator-line {
   color: rgba(114, 114, 114);
 }
 
 /* ======================== Error Popup Over Input Fields ======================== */
-.login-input-wrapper {
+.auth-input-wrapper {
   position: relative;
 }
 
-.login-input-error-popup {
+.auth-input-error-popup {
   position: absolute;
   top: 0;
   left: 0;
@@ -277,7 +223,7 @@ body, html {
   -webkit-backdrop-filter: blur(2px);
 }
 
-.login-input-error-popup button {
+.auth-input-error-popup button {
   background: transparent;
   border: none;
   font-size: 1rem;
@@ -286,8 +232,22 @@ body, html {
   margin-bottom: -0.3rem;
 }
 
-/* ======================== Login Success/Error Popup ======================== */
-.login-warning-popup-card {
+.signup-input-custom-explanation {
+  font-size: 11px;
+  padding-right: 0.75rem;
+}
+
+.custom-exp {
+  margin-top: -15px;
+  margin-bottom: 15px;
+}
+
+.signup-agreement-text {
+  color: rgba(89, 67, 130);
+}
+
+/* ======================== auth Success/Error Popup ======================== */
+.auth-warning-popup-card {
   position: absolute;
   inset: 0;
   background-color: transparent;
@@ -302,7 +262,7 @@ body, html {
   overflow: hidden;
 }
 
-.login-warning-popup-card::before {
+.auth-warning-popup-card::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -312,39 +272,39 @@ body, html {
   transition: all 0.1s ease;
 }
 
-.login-popup-warning-overlay.error .login-warning-popup-card::before {
+.auth-popup-warning-overlay.error .auth-warning-popup-card::before {
   background-color: rgba(255, 0, 0, 0.2);
 }
 
-.login-popup-warning-overlay.success .login-warning-popup-card::before {
+.auth-popup-warning-overlay.success .auth-warning-popup-card::before {
   background-color: rgba(40, 167, 69, 0.2);
 }
 
-.login-warning-popup-card > * {
+.auth-warning-popup-card > * {
   position: relative;
   z-index: 1;
 }
 
-.login-warning-popup-card h5 {
+.auth-warning-popup-card h5 {
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
-.login-popup-warning-overlay.error .login-warning-popup-card h5 {
+.auth-popup-warning-overlay.error .auth-warning-popup-card h5 {
   color: #e60023;
 }
 
-.login-popup-warning-overlay.success .login-warning-popup-card h5 {
+.auth-popup-warning-overlay.success .auth-warning-popup-card h5 {
   color: #28a745;
 }
 
-.login-warning-popup-card p {
+.auth-warning-popup-card p {
   color: #555;
   font-size: 14px;
   margin: 0;
 }
 
-.login-warning-popup-close-btn {
+.auth-warning-popup-close-btn {
   position: absolute;
   top: 17px;
   left: 25px;
@@ -355,14 +315,14 @@ body, html {
   cursor: pointer;
 }
 
-.login-warning-popup-emoji {
+.auth-warning-popup-emoji {
   width: 100px;
   height: 100px;
   object-fit: contain;
   margin-bottom: 1rem;
 }
 
-.login-warning-popup-line-separator {
+.auth-warning-popup-line-separator {
   width: 100%;
   max-width: 250px;
   height: 1px;
@@ -372,81 +332,105 @@ body, html {
   border-radius: 2px;
 }
 
-/* extend bootstrap style*/
-/* .form-control:focus {
-  outline: none;
-  box-shadow: none;
-} */
+/* ======================== Responsive ======================== */
+.auth-loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.auth-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top-color: #5d1b79;
+  border-radius: 50%;
+  animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 
 /* ======================== Responsive ======================== */
 
 @media (max-width: 480px) {
-  .login-page-container {
+  .auth-page-container {
     padding: 1.5rem 1rem;
   }
-  .login-box {
+  .auth-box {
     padding: 1.5rem 1rem;
   }
-  .login-title {
+  .auth-title {
     font-size: 2rem;
   }
-  .login-subtitle {
+  .auth-subtitle {
     font-size: 0.9rem;
   }
-  .website-logo {
+  .auth-page-logo-img {
     top: 1rem;
     left: 1rem;
   }
-  .login-btn {
+  .auth-btn {
     width: 100%;
   }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
-  .login-page-container {
+  .auth-page-container {
     padding: 2rem 1.5rem;
   }
-  .login-box {
+  .auth-box {
     padding: 2rem 1.5rem;
   }
-  .login-title {
+  .auth-title {
     font-size: 2.2rem;
   }
-  .login-subtitle {
+  .auth-subtitle {
     font-size: 1rem;
   }
-  .website-logo {
+  .auth-page-logo-img {
     top: 1.5rem;
     left: 1.5rem;
   }
-  .login-btn {
+  .auth-btn {
     width: 100%;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .login-page-container {
+  .auth-page-container {
     padding: 2.5rem 2rem;
   }
-  .login-box {
+  .auth-box {
     padding: 2.5rem 2rem;
   }
 }
 
 @media (min-width: 1025px) and (max-width: 1280px) {
-  .login-page-container {
+  .auth-page-container {
     padding: 3rem 2.5rem;
   }
-  .login-box {
+  .auth-box {
     padding: 3rem 2.5rem;
   }
 }
 
 @media (min-width: 1281px) and (max-width: 1440px) {
-  .login-page-container {
+  .auth-page-container {
     padding: 3rem 4rem;
   }
-  .login-box {
+  .auth-box {
     padding: 2.2rem;
   }
 }

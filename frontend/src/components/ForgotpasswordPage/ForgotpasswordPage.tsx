@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { requestPasswordReset } from "../../services/userService";
 import "./ForgotpasswordPage.css";
+import '../AuthPages/AuthPages.css'
+import { Link, useNavigate } from 'react-router-dom';
 
 import odessay_logo from '/public/icons/odessay_logo.svg';
 import login_email_icon from '/public/icons/login_email_icon.svg';
@@ -15,6 +17,9 @@ const ForgotpasswordPage = () => {
   const [popupStatus, setPopupStatus] = useState<"success" | "error" | "">("");
 
   const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email);
+
+  // ============================== State: Loading ==============================
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,6 +38,8 @@ const ForgotpasswordPage = () => {
 
     setEmailError("");
 
+    setIsLoading(true);
+
     try {
       const res = await requestPasswordReset({ email });
       console.log("Reset request successful:", res);
@@ -40,44 +47,60 @@ const ForgotpasswordPage = () => {
     } catch (err: any) {
       console.error("Request error:", err.message);
       setPopupStatus("error");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 forgot-page-container px-3">
+    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 auth-page-container px-3">
+
       {/* ====== Brand Logo ====== */}
-      <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
-        <div className="website-brand-text english-text text-white me-3">ODESSAY</div>
-        <img src={odessay_logo} alt="Odessay Logo" className="website-logo-img me-4" />
+      <div className="d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
+        <div className="auth-page-brand-text english-text text-white me-3">ODESSAY</div>
+        <img src={odessay_logo} alt="Odessay Logo" className="auth-page-logo-img me-4" />
       </div>
 
-      {/* ====== Forgot Form Box ====== */}
-      <div className="forgot-box mx-auto ms-lg-5 position-relative">
-        <h2 className="fw-bold text-start mb-3 forgot-title">بازیابی رمز عبور</h2>
+      {/* ========== Loading ========== */}
+      {isLoading && (
+        <div className="auth-loading-overlay">
+          <div className="auth-spinner"></div>
+        </div>
+      )}
 
+      {/* ====== Forgot Form Box ====== */}
+      <div className="auth-box mx-auto ms-lg-5 position-relative">
+        <div className="forgot-title">
+          <h2 className="fw-bold text-start mb-3">بازیابی رمز عبور</h2>
+        </div>
+        
         <form onSubmit={handleSubmit}>
           {/* ====== Email Field ====== */}
-          <div className="mb-3 position-relative forgot-input-wrapper">
+          <div className="mb-3 position-relative auth-input-wrapper">
             <input
               type="text"
               name="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="form-control text-start pe-5 text-dark forgot-input"
+              className="form-control text-start pe-5 text-dark auth-input"
               placeholder="ایمیل خود را وارد کنید."
             />
-            <img src={login_email_icon} alt="Email Icon" className="forgot-email-icon" />
+            <img src={login_email_icon} alt="Email Icon" className="auth-email-icon" />
 
             {emailError && (
-              <div className="signup-input-error-popup" key={emailErrorKey}>
+              <div className="auth-input-error-popup" key={emailErrorKey}>
                 <span>{emailError}</span>
                 <button type="button" onClick={() => setEmailError("")}>×</button>
               </div>
             )}
           </div>
 
-          <p className="text-muted small text-start">
+          <Link to="/login" className="auth-back-to-home text-muted small">
+              ← بازگشت به صفحه ورود
+          </Link>
+
+          <p className="text-muted small text-start ">
             ما یک پیام برای تنظیم یا بازیابی رمز عبور جدید برایتان ارسال خواهیم کرد.
           </p>
 
@@ -94,7 +117,6 @@ const ForgotpasswordPage = () => {
               تست موفقیت (ماک)
             </button>
           </div> */}
-
 
         </form>
 
