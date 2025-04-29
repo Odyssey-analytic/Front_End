@@ -175,7 +175,6 @@ const LoginPage = () => {
     }
   };
 
-  // ============================== JSX ==============================
   return (
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 auth-page-container px-3">
 

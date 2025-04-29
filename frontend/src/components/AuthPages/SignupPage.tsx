@@ -152,7 +152,6 @@ const SignupPage = () => {
     }
   };
 
-  // ========================== JSX ==========================
   return (
     
     <div className="auth-page-container d-flex justify-content-center justify-content-lg-start align-items-center vh-100 px-3">

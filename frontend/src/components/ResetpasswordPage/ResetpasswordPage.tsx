@@ -70,30 +70,30 @@ const ResetpasswordPage = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 reset-page-container px-3">
+    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 auth-page-container px-3">
       {/* ===== Brand ===== */}
-      <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
-        <div className="website-brand-text english-text text-white me-3">ODESSAY</div>
-        <img src={odessay_logo} alt="Odessay Logo" className="website-logo-img me-4" />
+      <div className="d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
+        <div className="auth-page-brand-text english-text text-white me-3">ODESSAY</div>
+        <img src={odessay_logo} alt="Odessay Logo" className="auth-page-logo-img me-4" />
       </div>
 
       {/* ===== Reset Form Box ===== */}
       <div className="reset-box mx-auto ms-lg-5 position-relative">
-        <h2 className="fw-bold text-start mb-3 reset-title">تغییر رمز عبور</h2>
+        <h2 className="fw-bold text-start mb-3 auth-title">تغییر رمز عبور</h2>
 
         <form onSubmit={handleSubmit}>
           {/* ===== Password Field ===== */}
-          <div className="mb-3 position-relative reset-input-wrapper">
+          <div className="mb-3 position-relative auth-input-wrapper">
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="form-control text-start pe-5 text-dark reset-input"
+              className="form-control text-start pe-5 text-dark auth-input"
               placeholder="رمز عبور جدید"
             />
-            <img src={signup_padlock_icon} alt="lock icon" className="reset-icon" />
+            <img src={signup_padlock_icon} alt="lock icon" className="signup-form-container-padlock-icon" />
             {passwordError && (
-              <div className="reset-input-error-popup">
+              <div className="auth-input-error-popup">
                 <span>{passwordError}</span>
                 <button type="button" onClick={() => setPasswordError("")}>×</button>
               </div>
@@ -106,12 +106,12 @@ const ResetpasswordPage = () => {
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="form-control text-start pe-5 text-dark reset-input"
+              className="form-control text-start pe-5 text-dark auth-input"
               placeholder="تأیید رمز عبور جدید"
             />
-            <img src={signup_padlock_icon} alt="lock icon" className="reset-icon" />
+            <img src={signup_padlock_icon} alt="lock icon" className="signup-form-container-padlock-icon" />
             {confirmPasswordError && (
-              <div className="reset-input-error-popup">
+              <div className="auth-input-error-popup">
                 <span>{confirmPasswordError}</span>
                 <button type="button" onClick={() => setConfirmPasswordError("")}>×</button>
               </div>
