@@ -1,106 +1,6 @@
-/* =========================== header =========================== */
-/* Top header bar including logo, search and branding */
-/* .welcome-page-header {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem;
-
-  background-color: rgba(245, 245, 245);
-  border-bottom: 1px solid rgba(191, 191, 191, 0.38);
-  box-shadow: 0 .125rem .25rem rgba(202, 202, 202, 0.075);
-  height: 60px;
-}
-
-.header-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.welcome-page-header-search-box {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 350px;
-}
-
-.welcome-page-header-search-box-input {
-  width: 100%;
-  padding: 0.5rem 1rem;
-  font-size: 12px;
-  text-align: right;
-
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  background-color: rgb(255, 255, 255);
-  outline: none;
-  box-shadow: none;   
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.welcome-page-header-search-box-input:focus {
-  box-shadow: 0 0 0 1px #6c63ff;
-}
-
-.website-logo-img {
-  height: 32px;
-  width: auto;
-}
-
-.website-brand-text {
-  font-size: 18px;
-  letter-spacing: 2px;
-  color: rgba(51, 54, 88);
-} */
-
-/* =========================== subheader =========================== */
-/* Bar under header with user/menu icons and admin label */
-/* .welcome-page-subheader {
-  background-color: #ffffff;
-  height: 60px;
-  width: 1440px;
-  box-shadow: 0px 1px 4px rgba(43, 43, 43, 0.4);
-  padding: 1rem;
-  position: absolute
-}
-
-.welcome-page-subheader-user-icon,
-.welcome-page-subheader-menu-icon,
-.welcome-page-header-help-icon {
-  width: 21px;
-  height: 21px;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.welcome-page-subheader-admin-label-container {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-.welcome-page-subheader-admin-label-container-label-text {
-  color: #7b7b7b;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.welcome-page-subheader-admin-label-container-divider {
-  width: 1px;
-  height: 24px;
-  background-color: rgba(84, 84, 84, 0.1);
-} */
-
-
-/* ////////////////////////////////////////////////////////// */
-
-
 /* =========================== body =========================== */
 .welcome-page-body {
-  background-color: rgb(27, 127, 177);
+  background-color: rgba(198, 202, 238, 0.856);
   min-height: 100vh;
 
   display: flex;
@@ -108,7 +8,6 @@
   align-items: center;
   padding: 2rem;
 }
-
 
 /* =========================== main box =========================== */
 .welcome-page-main-box {
@@ -121,7 +20,7 @@
   width: 80%;
   min-height: 75vh;
 
-  background-color: white;
+  background-color: rgba(252, 251, 255, 0.976);
   border-radius: 12px;
   box-shadow: 0px 4px 16px rgba(100, 100, 100, 0.12);
 }
