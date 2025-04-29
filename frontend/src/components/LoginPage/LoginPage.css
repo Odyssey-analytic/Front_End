@@ -53,6 +53,12 @@ body, html {
   flex-direction: column;
   position: fixed;
   height: 500px;
+
+  /* position: fixed;
+  padding: 2.2rem;
+  top: 20vh;
+  right: 7vw;
+  max-width: 400px; */
 }
 
 .login-title {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { requestPasswordReset } from "../../services/userService";
 import "./ForgotpasswordPage.css";
+import { Link, useNavigate } from 'react-router-dom';
 
 import odessay_logo from '/public/icons/odessay_logo.svg';
 import login_email_icon from '/public/icons/login_email_icon.svg';
@@ -45,14 +46,24 @@ const ForgotpasswordPage = () => {
 
   return (
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 forgot-page-container px-3">
+     
       {/* ====== Brand Logo ====== */}
-      <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
-        <div className="website-brand-text english-text text-white me-3">ODESSAY</div>
-        <img src={odessay_logo} alt="Odessay Logo" className="website-logo-img me-4" />
+      <div className="d-flex align-items-center position-fixed top-0 end-0 ms-4 mt-4">
+        <div className="forgot-page-brand-text english-text text-white me-3">ODESSAY</div>
+        <img src={odessay_logo} alt="Odessay Logo" className="forgot-page-logo-img me-4" />
       </div>
 
+      {/* <Link to="/login" className="text-end forgot-page-back-to-login text-muted small text-end">
+        ← بازگشت به صفحه ورود
+      </Link> */}
+
       {/* ====== Forgot Form Box ====== */}
-      <div className="forgot-box mx-auto ms-lg-5 position-relative">
+      <div className="forgot-box">
+
+      <Link to="/login" className="text-end forgot-page-back-to-login text-muted small text-end">
+        ← بازگشت به صفحه ورود
+      </Link>
+
         <h2 className="fw-bold text-start mb-3 forgot-title">بازیابی رمز عبور</h2>
 
         <form onSubmit={handleSubmit}>
@@ -70,7 +81,7 @@ const ForgotpasswordPage = () => {
             <img src={login_email_icon} alt="Email Icon" className="forgot-email-icon" />
 
             {emailError && (
-              <div className="signup-input-error-popup" key={emailErrorKey}>
+              <div className="forgot-input-error-popup" key={emailErrorKey}>
                 <span>{emailError}</span>
                 <button type="button" onClick={() => setEmailError("")}>×</button>
               </div>
@@ -82,9 +93,9 @@ const ForgotpasswordPage = () => {
           </p>
 
           <div className="d-flex justify-content-center mt-3">
-            <button type="submit" className="btn d-flex align-items-center gap-1 forgot-btn">
+            <button type="submit" className="btn align-items-center gap-1 forgot-btn">
               <span className="text-white fw-bold forgot-btn-text">ارسال کد</span>
-              <img src={forgetpassword_sendcode_icon} alt="send icon" style={{ width: "30px", height: "25px" }} />
+              <img src={forgetpassword_sendcode_icon} alt="send icon" className="forgot-btn-sent-icon" />
             </button>
           </div>
 
