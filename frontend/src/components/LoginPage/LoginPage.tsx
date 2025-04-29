@@ -168,21 +168,20 @@ const LoginPage = () => {
     }
   };
 
-  // ============================== JSX ==============================
+
   return (
-    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 login-page-container px-3">
+    <div className="login-page-container">
 
       {/* ========== Brand Logo ========== */}
-      <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
-        <div className="website-brand-text english-text text-white me-3">ODESSAY</div>
-        <img src={OdessayLogo} alt="Odessay Logo" className="website-logo-img me-4" />
+      <div className="d-flex align-items-center position-fixed top-0 end-0 ms-4 mt-4">
+        <div className="login-brand-text english-text text-white me-3">ODESSAY</div>
+        <img src={OdessayLogo} alt="Odessay Logo" className="login-logo-img me-4" />
       </div>
 
-
       {/* ========== Login Box ========== */}
-      <div className="login-box mx-auto ms-lg-5 position-relative">
-        <Link to="/" className="login-back-to-home text-muted small">
-            ← بازگشت به صفحه اصلی
+      <div className="login-box">
+        <Link to="/" className="text-end login-back-to-home text-muted small">
+          ← بازگشت به صفحه اصلی
         </Link>
 
         <h2 className="fw-bold text-start mb-3 login-title">ورود</h2>
@@ -198,7 +197,9 @@ const LoginPage = () => {
               value={email}
               onChange={handleEmailChange}
             />
+
             <img src={login_email_icon} alt="email icon" className="login-email-icon" />
+            
             {emailError && (
               <div className="login-input-error-popup" key={emailErrorKey}>
                 <span>{emailError}</span>
@@ -217,12 +218,14 @@ const LoginPage = () => {
               onChange={handlePasswordChange}
             />
             <img src={login_padlock_icon} alt="password icon" className="login-password-icon" />
+            
             <img
               src={showPassword ? login_eye_icon : login_eye_off_icon}
               alt="toggle password"
               className="login-eye-icon"
               onClick={() => setShowPassword(prev => !prev)}
             />
+            
             {passwordError && (
               <div className="login-input-error-popup" key={passwordErrorKey}>
                 <span>{passwordError}</span>
@@ -241,6 +244,7 @@ const LoginPage = () => {
                 ایجاد حساب
               </Link>
             </span>
+
             <div>
               <Link to="/forgot-password" className="fw-bold text-decoration-none login-non-register-remember-password">
                 فراموشی رمز عبور
@@ -261,14 +265,17 @@ const LoginPage = () => {
                   alt="status-icon"
                 />
                 <div className="login-warning-popup-line-separator"></div>
+                
                 <h5 className="fw-bold mb-2">
                   {loginStatus === 'success' ? 'ورود با موفقیت انجام شد!' : 'خطایی رخ داده است!'}
                 </h5>
+
                 <p className="text-muted small">
                   {loginStatus === 'success'
                     ? 'در حال انتقال به حساب کاربری...'
                     : errorMessage}
                 </p>
+
               </div>
             </div>
           )}

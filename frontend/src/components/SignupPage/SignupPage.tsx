@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signup } from '../../services/userService';
 import './SignupPage.css';
 
@@ -135,24 +135,31 @@ const SignupPage = () => {
     }
   };
 
-  // ========================== JSX ==========================
   return (
-    <div className="signup-page-container d-flex justify-content-center justify-content-lg-start align-items-center vh-100 px-3">
+    <div className="signup-page-container">
+
       {/* Logo */}
-      <div className="d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
+      <div className="d-flex align-items-center position-fixed top-0 end-0 ms-4 mt-4">
         <div className="signup-page-brand-text english-text text-white me-3">ODESSAY</div>
         <img src={odessay_logo} alt="Odessay Logo" className="signup-page-logo-img me-4" />
       </div>
 
       {/* Signup Form */}
-      <div className="signup-page-form-container mx-auto ms-lg-5 position-relative">
-        <h2 className="signup-page-form-container-title fw-bold text-start mb-3">ثبت‌نام</h2>
+      <div className="signup-page-box">
+
+        <Link to="/login" className="text-end login-back-to-home text-muted small text-end">
+          ← بازگشت به صفحه ورود
+        </Link>
+
+        <h2 className="signup-page-title fw-bold text-start mb-3">ثبت‌نام</h2>
 
         <form onSubmit={handleSubmit}>
           {/* Email field */}
           <div className="signup-input-wrapper mb-3 position-relative">
-            <input type="text" className="signup-page-form-container-input form-control no-focus-style text-start pe-5" placeholder="ایمیل" value={email} onChange={handleEmailChange} />
-            <img src={login_email_icon} alt="email icon" className="signup-form-container-email-icon" />
+          
+            <input type="text" className="signup-page-input form-control text-start text-dark pe-5" placeholder="ایمیل" value={email} onChange={handleEmailChange} />
+            <img src={login_email_icon} alt="email icon" className="signup-email-icon" />
+          
             {emailError && (
               <div className="signup-input-error-popup" key={emailErrorKey}>
                 <span>{emailError}</span>
@@ -163,13 +170,14 @@ const SignupPage = () => {
 
           {/* Username field */}
           <div className="signup-input-wrapper mb-3 position-relative">
-            <input type="text" className="signup-page-form-container-input form-control no-focus-style" value={username} onChange={handleUsernameChange} />
+            <input type="text" className="signup-page-input form-control no-focus-style" value={username} onChange={handleUsernameChange} />
             {!username && (
-              <div className="signup-page-form-container-input-custom-placeholder text-muted">
+              <div className="signup-page-placeholder text-muted">
                 نام کاربری <span className="hint">(بین ۳ تا ۱۵ کاراکتر و شامل حروف، عدد، . یا _)</span>
               </div>
             )}
-            <img src={signup_user_icon} alt="username icon" className="signup-form-container-user-icon" />
+            
+            <img src={signup_user_icon} alt="username icon" className="signup-user-icon" />
             {usernameError && (
               <div className="signup-input-error-popup" key={usernameErrorKey}>
                 <span>{usernameError}</span>
@@ -180,16 +188,16 @@ const SignupPage = () => {
 
           {/* Password field */}
           <div className="mb-3 position-relative">
-            <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="signup-page-form-container-input form-control" placeholder="رمز عبور" />
-            <img src={signup_padlock_icon} alt="password icon" className="signup-form-container-padlock-icon" />
-            <img src={showPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle password" className="signup-form-container-eye-icon" onClick={() => setShowPassword((prev) => !prev)} />
+            <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="signup-page-input form-control" placeholder="رمز عبور" />
+            <img src={signup_padlock_icon} alt="password icon" className="signup-padlock-icon" />
+            <img src={showPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle password" className="signup-eye-icon" onClick={() => setShowPassword((prev) => !prev)} />
           </div>
 
           {/* Confirm password field */}
           <div className="mb-3 position-relative">
-            <input type={showConfirmPassword ? 'text' : 'password'} value={confirmPassword} onChange={handleConfirmPasswordChange} className="signup-page-form-container-input form-control" placeholder="تأیید رمز عبور" />
-            <img src={signup_padlock_icon} alt="confirm password icon" className="signup-form-container-padlock-icon" />
-            <img src={showConfirmPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle confirm password" className="signup-form-container-eye-icon" onClick={() => setShowConfirmPassword((prev) => !prev)} />
+            <input type={showConfirmPassword ? 'text' : 'password'} value={confirmPassword} onChange={handleConfirmPasswordChange} className="signup-page-input form-control" placeholder="تأیید رمز عبور" />
+            <img src={signup_padlock_icon} alt="confirm password icon" className="signup-padlock-icon" />
+            <img src={showConfirmPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle confirm password" className="signup-eye-icon" onClick={() => setShowConfirmPassword((prev) => !prev)} />
             {confirmPasswordError && (
               <div className="signup-input-error-popup" key={`confirm-password-error-${confirmPasswordErrorKey}`}>
                 <span>{confirmPasswordError}</span>
@@ -200,14 +208,6 @@ const SignupPage = () => {
 
           {/* Submit Button */}
           <button type="submit" className="signup-btn btn w-100">ثبت نام</button>
-
-          <button
-            type="button"
-            className="btn btn-link text-muted mt-2"
-            onClick={() => navigate('/login')}
-          >
-            ← بازگشت به صفحه ورود
-          </button>
 
           <p className="text-muted small mt-3">
             با ثبت‌نام، شما با <a href="#" className="signup-agreement-text">قوانین و شرایط</a> ما موافقت می‌کنید.

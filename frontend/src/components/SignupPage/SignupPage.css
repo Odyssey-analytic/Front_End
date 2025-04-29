@@ -5,8 +5,9 @@
   background-repeat: no-repeat;
   background-position: 20% center;
   background-color: #0e1a2b;
-  height: 100vh;
-  width: 100vw;
+
+  min-height: 100vh;
+  width: 100%;
 }
 
 /* ===================================  Brand & Logo  =================================== */
@@ -21,32 +22,51 @@
 }
 
 /* ===================================  Signup Form  =================================== */
-.signup-page-form-container {
+.signup-page-box {
+  padding: 1.5rem 1.5rem;
+
   background-color: rgba(255, 255, 255, 0.8);
   width: 100%;
   max-width: 400px;
-  padding: 2rem;
   border-radius: 12px;
   height: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-.signup-page-form-container-title {
+.signup-page-title {
   font-size: 2.5rem;
   color: rgba(11, 20, 75);
   margin-bottom: 1rem;
 }
 
-.signup-page-form-container-input {
-  font-size: 1rem;
+.signup-page-input {
+  /* font-size: 1rem;
   padding: 0.5rem 1rem;
   padding-right: 4rem;
   border-radius: 12px;
   box-shadow: inset 0 0 11px rgba(0, 0, 0, 0.16);
   line-height: 1.4;
-  height: auto;
+  height: auto; */
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  padding-right: 3rem;
+  box-shadow: inset 0 0 11px rgba(0, 0, 0, 0.16);
 }
 
-.signup-page-form-container-input-custom-placeholder {
+/* .signup-page-input::placeholder {
+  font-size: 0.8rem;
+  color: rgb(46, 46, 46);
+} */
+
+.signup-page-input:focus,
+.signup-page-input:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 1px rgba(113, 46, 141, 0.4) !important;
+}
+
+.signup-page-placeholder {
   position: absolute;
   padding: 0.5rem 1rem;
   border-radius: 12px;
@@ -58,40 +78,40 @@
   color: rgba(29, 29, 29);
 }
 
-.signup-page-form-container-input-custom-placeholder .hint {
+.signup-page-placeholder .hint {
   font-size: 0.6rem;
   color: rgba(0, 0, 0, 0.5);
   margin-right: 4px;
 }
 
 /* ===================================  Form Icons  =================================== */
-.signup-form-container-email-icon,
-.signup-form-container-user-icon,
-.signup-form-container-padlock-icon {
+.signup-email-icon,
+.signup-user-icon,
+.signup-padlock-icon {
   position: absolute;
   top: 50%;
   right: 1rem;
   transform: translateY(-50%);
 }
 
-.signup-form-container-email-icon {
+.signup-email-icon {
   width: 20px;
   opacity: 0.7;
   pointer-events: none;
 }
 
-.signup-form-container-user-icon {
+.signup-user-icon {
   width: 23px;
   opacity: 1;
   margin-right: -0.1rem;
 }
 
-.signup-form-container-padlock-icon {
+.signup-padlock-icon {
   width: 20px;
   opacity: 0.7;
 }
 
-.signup-form-container-eye-icon {
+.signup-eye-icon {
   position: absolute;
   top: 50%;
   left: 1rem;
@@ -103,7 +123,7 @@
 
 /* ===================================  Signup Button  =================================== */
 .signup-btn {
-  display: block;
+  /* display: block;
   width: 110px;
   height: 45px;
   max-width: 100%;
@@ -117,12 +137,36 @@
   border-radius: 12px;
 
   filter: brightness(1.4);
+  transition: all 0.3s ease; */
+
+  display: block;
+  width: 100%;
+  max-width: 350px;
+  height: 44px;
+  margin: 2.5rem auto 0 auto;
+  font-size: 16px;
+  font-weight: bold;
+  color: #c4c4c4;
+  background: linear-gradient(to right, #5d1b79, #00719a);
+  border: none;
+  border-radius: 12px;
+  filter: brightness(1.4);
   transition: all 0.3s ease;
+  text-align: center;
 }
 
-.signup-btn:hover {
+.signup-btn:hover,
+.signup-btn:focus,
+.signup-btn:active {
   background: linear-gradient(to right, #5d1b79, #00719a);
-  /* background: linear-gradient(to right, #79291b, #00719a); */
+  filter: brightness(1.1);
+  color: white !important;
+  cursor: pointer;
+  outline: none;
+}
+
+/* .signup-btn:hover {
+  background: linear-gradient(to right, #5d1b79, #00719a);
   filter: brightness(1.1);
   color: white;
   cursor: pointer;
@@ -132,10 +176,9 @@
 .signup-btn:active {
   background: linear-gradient(to right, #5d1b79, #00719a);
   filter: brightness(1.1);
-  /* color: white; */
   color: white !important;
   outline: none;
-}
+} */
 
 /* ===================================  Aggrement Text  =================================== */
 .signup-agreement-text {
@@ -277,3 +320,76 @@
     visibility: hidden;
   }
 }
+
+/* ======================== Responsive ======================== */
+
+@media (max-width: 480px) {
+  .signup-page-container {
+    padding: 1.5rem 1rem;
+  }
+  .signup-page-box {
+    padding: 1.5rem 1rem;
+  }
+  .signup-page--title {
+    font-size: 2rem;
+  }
+  .signup-page--subtitle {
+    font-size: 0.9rem;
+  }
+  .website-logo {
+    top: 1rem;
+    left: 1rem;
+  }
+  .signup-page--btn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .signup-page-container {
+    padding: 2rem 1.5rem;
+  }
+  .signup-box {
+    padding: 2rem 1.5rem;
+  }
+  .signup-title {
+    font-size: 2.2rem;
+  }
+  .signup-subtitle {
+    font-size: 1rem;
+  }
+  .website-logo {
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+  .signup-btn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .signup-page-container {
+    padding: 2.5rem 2rem;
+  }
+  .signup-box {
+    padding: 2.5rem 2rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .signup-page-container {
+    padding: 3rem 2.5rem;
+  }
+  .signup-box {
+    padding: 3rem 2.5rem;
+  }
+}
+
+/* @media (min-width: 1281px) and (max-width: 1440px) {
+  .signup-page-container {
+    padding: 3rem 4rem;
+  }
+  .signup-box {
+    padding: 2rem;
+  }
+} */
