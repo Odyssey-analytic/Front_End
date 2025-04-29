@@ -18,6 +18,9 @@ const ForgotpasswordPage = () => {
 
   const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email);
 
+  // ============================== State: Loading ==============================
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -35,6 +38,8 @@ const ForgotpasswordPage = () => {
 
     setEmailError("");
 
+    setIsLoading(true);
+
     try {
       const res = await requestPasswordReset({ email });
       console.log("Reset request successful:", res);
@@ -42,16 +47,26 @@ const ForgotpasswordPage = () => {
     } catch (err: any) {
       console.error("Request error:", err.message);
       setPopupStatus("error");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 auth-page-container px-3">
+
       {/* ====== Brand Logo ====== */}
       <div className="d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
         <div className="auth-page-brand-text english-text text-white me-3">ODESSAY</div>
         <img src={odessay_logo} alt="Odessay Logo" className="auth-page-logo-img me-4" />
       </div>
+
+      {/* ========== Loading ========== */}
+      {isLoading && (
+        <div className="auth-loading-overlay">
+          <div className="auth-spinner"></div>
+        </div>
+      )}
 
       {/* ====== Forgot Form Box ====== */}
       <div className="auth-box mx-auto ms-lg-5 position-relative">

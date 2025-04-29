@@ -24,7 +24,6 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   // ============================== State: Loading ==============================
-
   const [isLoading, setIsLoading] = useState(false);
 
   // ============================== State: Form Fields ==============================

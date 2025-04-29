@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import "./ResetpasswordPage.css";
+import "../AuthPages/AuthPages.css"
 
 import odessay_logo from '/public/icons/odessay_logo.svg';
 import signup_padlock_icon from '/public/icons/signup_padlock_icon.svg';
@@ -121,6 +122,10 @@ const ResetpasswordPage = () => {
           {errorMessage && (
             <div className="alert alert-danger text-center my-2">{errorMessage}</div>
           )}
+
+          <Link to="/login" className="auth-back-to-home text-muted small">
+              ← بازگشت به صفحه ورود
+          </Link>
 
           {/* ===== Submit Button ===== */}
           <div className="d-flex justify-content-center mt-3">
