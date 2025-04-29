@@ -110,7 +110,7 @@ body, html {
 
 .signup-form-container-user-icon {
   position: absolute;
-  top: 30%;
+  top: 50%;
   right: 1rem;
   transform: translateY(-50%);
   width: 20px;

@@ -485,6 +485,7 @@
   text-align: left;
   direction: ltr;
   margin-top: 3rem;
+  width: 60px;
 }
 
 .welcome-page-token-value {
