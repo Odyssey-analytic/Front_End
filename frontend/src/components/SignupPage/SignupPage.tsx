@@ -16,6 +16,9 @@ import signup_padlock_icon from '/public/icons/signup_padlock_icon.svg';
 const SignupPage = () => {
   const navigate = useNavigate();
 
+  // ============================== State: Loading ==============================
+  const [isLoading, setIsLoading] = useState(false);
+
   // ========================== Form state ==========================
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -118,6 +121,8 @@ const SignupPage = () => {
 
     if (!valid) return;
 
+    setIsLoading(true);
+
     // API call to register
     try {
       const data = { username, email, password, confirm_password: confirmPassword };
@@ -132,6 +137,8 @@ const SignupPage = () => {
       console.error('Signup failed:', error.message);
       setErrorMessage('');
       setSignupStatus('error');
+    } finally {
+      setIsLoading(false); // بعد از موفق یا ناموفق، لودینگ قطع بشه
     }
   };
 
@@ -143,6 +150,13 @@ const SignupPage = () => {
         <div className="signup-page-brand-text english-text text-white me-3">ODESSAY</div>
         <img src={odessay_logo} alt="Odessay Logo" className="signup-page-logo-img me-4" />
       </div>
+
+      {/* ========== Loading ========== */}
+      {isLoading && (
+        <div className="signup-loading-overlay">
+          <div className="signup-spinner"></div>
+        </div>
+      )}
 
       {/* Signup Form */}
       <div className="signup-page-box">

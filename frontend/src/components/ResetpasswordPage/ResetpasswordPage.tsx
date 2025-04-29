@@ -9,6 +9,10 @@ import successful_signup_icon from '/public/icons/successful_signup_icon.svg';
 import unsuccessful_signup_icon from '/public/icons/unsuccessful_signup_icon.svg';
 
 const ResetpasswordPage = () => {
+
+  // ============================== State: Loading ==============================
+  const [isLoading, setIsLoading] = useState(false);
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -45,6 +49,8 @@ const ResetpasswordPage = () => {
 
     if (!valid) return;
 
+    setIsLoading(true);
+
     try {
       const response = await fetch(`https://odysseyanalytics.ir/api/api/reset-password/${token}/`, {
         method: 'POST',
@@ -65,6 +71,8 @@ const ResetpasswordPage = () => {
       console.error("Reset error:", error.message);
       // setErrorMessage(error.message || "Failed to reset password. Please try again.");
       setPopupStatus('error');
+    } finally {
+      setIsLoading(false); // بعد از موفق یا ناموفق، لودینگ قطع بشه
     }
   };
 
@@ -75,6 +83,13 @@ const ResetpasswordPage = () => {
         <div className="website-brand-text english-text text-white me-3">ODESSAY</div>
         <img src={odessay_logo} alt="Odessay Logo" className="website-logo-img me-4" />
       </div>
+
+      {/* ========== Loading ========== */}
+      {isLoading && (
+        <div className="reset-loading-overlay">
+          <div className="reset-spinner"></div>
+        </div>
+      )}
 
       {/* ===== Reset Form Box ===== */}
       <div className="reset-box mx-auto ms-lg-5 position-relative">

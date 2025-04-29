@@ -10,6 +10,10 @@ import successful_signup_icon from "/public/icons/successful_signup_icon.svg";
 import unsuccessful_signup_icon from "/public/icons/unsuccessful_signup_icon.svg";
 
 const ForgotpasswordPage = () => {
+
+  // ============================== State: Loading ==============================
+  const [isLoading, setIsLoading] = useState(false);
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [emailErrorKey, setEmailErrorKey] = useState(0);
@@ -34,6 +38,8 @@ const ForgotpasswordPage = () => {
 
     setEmailError("");
 
+    setIsLoading(true);
+
     try {
       const res = await requestPasswordReset({ email });
       console.log("Reset request successful:", res);
@@ -41,6 +47,8 @@ const ForgotpasswordPage = () => {
     } catch (err: any) {
       console.error("Request error:", err.message);
       setPopupStatus("error");
+    } finally {
+      setIsLoading(false); // بعد از موفق یا ناموفق، لودینگ قطع بشه
     }
   };
 
@@ -53,9 +61,12 @@ const ForgotpasswordPage = () => {
         <img src={odessay_logo} alt="Odessay Logo" className="forgot-page-logo-img me-4" />
       </div>
 
-      {/* <Link to="/login" className="text-end forgot-page-back-to-login text-muted small text-end">
-        ← بازگشت به صفحه ورود
-      </Link> */}
+      {/* ========== Loading ========== */}
+      {isLoading && (
+        <div className="forgot-loading-overlay">
+          <div className="forgot-spinner"></div>
+        </div>
+      )}
 
       {/* ====== Forgot Form Box ====== */}
       <div className="forgot-box">
