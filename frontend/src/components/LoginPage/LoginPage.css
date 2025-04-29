@@ -52,6 +52,7 @@ body, html {
   display: flex;
   flex-direction: column;
   position: fixed;
+  height: 500px;
 }
 
 .login-title {
@@ -61,9 +62,9 @@ body, html {
 }
 
 .login-subtitle {
-  font-size: 1rem;
+  font-size: 14.5px;
   color: rgba(90, 90, 90);
-  margin-bottom: 1.5rem;
+  /* margin-bottom: 1.5rem; */
 }
 
 /* ======================== Input Fields ======================== */
@@ -287,8 +288,8 @@ body, html {
   border-radius: 2px;
 }
 
-/* ======================== Responsive ======================== */
-@media (max-width: 349px) {
+/* ======================== Responsive Detailed Version ======================== */
+/* @media (max-width: 349px) {
   .login-box {
     position: fixed;
     padding: 1.1rem;
@@ -531,5 +532,80 @@ body, html {
     max-width: 450px;
     top: 8vh;
     right: 12vw;
+  }
+} */
+
+
+/* ======================== Responsive Normal Version ======================== */
+@media (max-width: 480px) {
+  .login-box {
+    position: fixed;
+    padding: 1.5rem;
+    max-width: 360px;
+    top: 20vh;
+    right: 8vw;
+  }
+  .login-title {
+    font-size: 2.1rem;
+  }
+  .login-subtitle {
+    font-size: 1rem;
+  }
+  .login-page-logo-img {
+    top: 1.2rem;
+    left: 1.2rem;
+  }
+  .login-btn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .login-box {
+    position: fixed;
+    padding: 1.5rem;
+    max-width: 380px;
+    top: 14vh;
+    right: 20vw;
+  }
+  .login-title {
+    font-size: 2.2rem;
+  }
+  .login-page-logo-img {
+    top: 1.5rem;
+    left: 1.5rem;
+  }
+  .login-btn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .login-box {
+    position: fixed;
+    padding: 2rem;
+    top: 6vh;
+    right: 6vw;
+    max-width: 350px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .login-box {
+    position: fixed;
+    padding: 2.2rem;
+    top: 15vh;
+    right: 7vw;
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .login-box {
+    position: fixed;
+    padding: 2.2rem;
+    top: 8vh;
+    right: 7vw;
+    max-width: 400px;
   }
 }

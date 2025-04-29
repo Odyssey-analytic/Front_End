@@ -147,7 +147,7 @@ const SignupPage = () => {
       {/* Signup Form */}
       <div className="signup-page-box">
 
-        <Link to="/login" className="text-end login-back-to-home text-muted small text-end">
+        <Link to="/login" className="text-end signup-page-back-to-login text-muted small text-end">
           ← بازگشت به صفحه ورود
         </Link>
 
@@ -173,7 +173,7 @@ const SignupPage = () => {
             <input type="text" className="signup-page-input form-control no-focus-style" value={username} onChange={handleUsernameChange} />
             {!username && (
               <div className="signup-page-placeholder text-muted">
-                نام کاربری <span className="hint">(بین ۳ تا ۱۵ کاراکتر و شامل حروف، عدد، . یا _)</span>
+                نام کاربری<span className="hint">(بین ۳ تا ۱۵ کاراکتر و شامل حروف، عدد، . یا _)</span>
               </div>
             )}
             

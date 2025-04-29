@@ -252,7 +252,7 @@ const LoginPage = () => {
             </div>
           </div>
 
-          <hr className="my-4" />
+          <hr className="my-3" />
 
           {/* ========== Popup Result ========== */}
           {loginStatus && (
