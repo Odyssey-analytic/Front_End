@@ -58,20 +58,16 @@ const DashboardPage = () => {
 
               </div>
 
-
-            <div className="game-info text-end">
+              <div className="game-info text-end">
 
               <h4 className="game-title fw-semibold mb-0">{game.title}</h4>
               <img src={game.icon} alt={game.title} className="game-icon me-3" />
-        
             </div>
-
 
           </div>
         ))}
       </div>
     </div>
-
   </div>
 
   );
