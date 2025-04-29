@@ -35,6 +35,9 @@ const SignupPage = () => {
   const [usernameErrorType, setUsernameErrorType] = useState<'empty' | 'invalid' | ''>('');
   const [usernameErrorKey, setUsernameErrorKey] = useState(0);
 
+  const [passwordError, setPasswordError] = useState('');
+  const [passwordErrorKey, setPasswordErrorKey] = useState(0);  
+
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [confirmPasswordErrorKey, setConfirmPasswordErrorKey] = useState(0);
 
@@ -112,6 +115,13 @@ const SignupPage = () => {
       valid = false;
     }
 
+    // Password validation
+    if (!password.trim()) {
+      setPasswordError('رمز عبور را وارد کنید.');
+      setPasswordErrorKey(prev => prev + 1);
+      valid = false;
+    }
+    
     // Password match validation
     if (confirmPassword !== password) {
       setConfirmPasswordError('رمز عبور و تأیید آن یکی نیستند.');
@@ -153,7 +163,7 @@ const SignupPage = () => {
       </div>
 
       {/* Signup Form */}
-      <div className="auth-box mx-auto ms-lg-5 position-relative">
+      <div className="auth-box position-relative">
         <h2 className="auth-title fw-bold text-start mb-3">ثبت‌نام</h2>
 
         <form onSubmit={handleSubmit}>
@@ -171,25 +181,39 @@ const SignupPage = () => {
           </div>
 
           {/* Username field */}
+          
           <div className="auth-input-wrapper mb-3 position-relative">
             <input type="text" className="auth-input form-control no-focus-style text-start pe-5" placeholder='نام کاربری' value={username} onChange={handleUsernameChange} />
             <img src={signup_user_icon} alt="username icon" className="signup-form-container-user-icon" />
 
-            <span className="hint signup-input-custom-explanation">نام کاربری باید بین ۳ تا ۱۵ کاراکتر  (شامل حروف، عدد، . یا _) باشد.</span>
-            
             {usernameError && (
               <div className="auth-input-error-popup" key={usernameErrorKey}>
                 <span>{usernameError}</span>
                 <button type="button" onClick={() => setUsernameError('')}>×</button>
               </div>
             )}
+
+    
           </div>
+          
+          <div className='custom-exp'>
+            <span className="signup-input-custom-explanation">نام کاربری باید بین ۳ تا ۱۵ کاراکتر  (شامل حروف، عدد، . یا _) باشد.</span>
+          
+          </div>
+
 
           {/* Password field */}
           <div className="mb-3 position-relative">
             <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="auth-input form-control" placeholder="رمز عبور" />
             <img src={signup_padlock_icon} alt="password icon" className="auth-password-icon" />
             <img src={showPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle password" className="signup-form-container-eye-icon" />
+          
+            {passwordError && (
+              <div className="auth-input-error-popup" key={passwordErrorKey}>
+                <span>{passwordError}</span>
+                <button type="button" onClick={() => setPasswordError('')}>×</button>
+              </div>
+            )}
           </div>
           
           {/* Confirm password field */}
