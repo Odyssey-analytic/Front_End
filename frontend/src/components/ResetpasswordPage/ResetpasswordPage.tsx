@@ -17,6 +17,9 @@ const ResetpasswordPage = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [popupStatus, setPopupStatus] = useState<'success' | 'error' | ''>('');
 
+  // ============================== State: Loading ==============================
+  const [isLoading, setIsLoading] = useState(false);
+
   const { token } = useParams();
   const navigate = useNavigate();
 
@@ -46,6 +49,8 @@ const ResetpasswordPage = () => {
 
     if (!valid) return;
 
+    setIsLoading(true);
+
     try {
       const response = await fetch(`https://odysseyanalytics.ir/api/api/reset-password/${token}/`, {
         method: 'POST',
@@ -66,6 +71,8 @@ const ResetpasswordPage = () => {
       console.error("Reset error:", error.message);
       // setErrorMessage(error.message || "Failed to reset password. Please try again.");
       setPopupStatus('error');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -77,6 +84,12 @@ const ResetpasswordPage = () => {
         <img src={odessay_logo} alt="Odessay Logo" className="auth-page-logo-img me-4" />
       </div>
 
+      {isLoading && (
+        <div className="auth-loading-overlay">
+          <div className="auth-spinner"></div>
+        </div>
+      )}
+      
       {/* ===== Reset Form Box ===== */}
       <div className="reset-box mx-auto ms-lg-5 position-relative">
         <h2 className="fw-bold text-start mb-3 auth-title">تغییر رمز عبور</h2>
