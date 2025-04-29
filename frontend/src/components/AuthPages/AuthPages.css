@@ -364,7 +364,7 @@ body, html {
 
 /* ======================== Responsive ======================== */
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .auth-page-container {
     padding: 1.5rem 1rem;
   }
@@ -432,5 +432,87 @@ body, html {
   }
   .auth-box {
     padding: 2.2rem;
+  }
+} */
+/* 1. 480px – 640px */
+@media (min-width: 480px) and (max-width: 640px) {
+  .auth-page-container {
+    padding: 1.5rem 1rem;
+  }
+  .auth-box {
+    padding: 1.5rem 1rem;
+  }
+  .auth-title {
+    font-size: 2rem;
+  }
+  .auth-subtitle {
+    font-size: 0.9rem;
+  }
+  .auth-page-logo-img {
+    top: 1rem;
+    left: 1rem;
+  }
+  .auth-btn {
+    width: 100%;
+  }
+}
+
+/* 2. 641px – 800px */
+@media (min-width: 641px) and (max-width: 800px) {
+  .auth-page-container {
+    padding: 2rem 1.2rem;
+  }
+  .auth-box {
+    padding: 2rem 1.2rem;
+  }
+  .auth-title {
+    font-size: 2.2rem;
+  }
+  .auth-subtitle {
+    font-size: 1rem;
+  }
+  .auth-page-logo-img {
+    top: 1.2rem;
+    left: 1.2rem;
+  }
+}
+
+/* 3. 801px – 960px */
+@media (min-width: 801px) and (max-width: 960px) {
+  .auth-page-container {
+    padding: 2.2rem 1.5rem;
+  }
+  .auth-box {
+    padding: 2.2rem 1.5rem;
+  }
+}
+
+/* 4. 961px – 1120px */
+@media (min-width: 961px) and (max-width: 1120px) {
+  .auth-page-container {
+    padding: 2.5rem 2rem;
+  }
+  .auth-box {
+    padding: 2.5rem 2rem;
+  }
+}
+
+/* 5. 1121px – 1280px */
+@media (min-width: 1121px) and (max-width: 1280px) {
+  .auth-page-container {
+    padding: 2.8rem 2.5rem;
+  }
+  .auth-box {
+    padding: 2.8rem 2.5rem;
+  }
+}
+
+/* 6. 1281px – 1440px */
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .auth-page-container {
+    padding: 3rem 3rem;
+  }
+  .auth-box {
+    padding: 3rem 3rem;
   }
 }
