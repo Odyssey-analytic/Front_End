@@ -163,7 +163,7 @@ const WelcomePage = () => {
 
             {step === 1 && (
               <>
-                <p className="welcome-page-popup-title">محصولی که می‌خوای آنالیزشون رو انجام بدی رو انتخاب کن :</p>
+                <p className="welcome-page-popup-title">محصولی که می‌خوای آنالیزشون رو انجام بدی رو انتخاب کن:</p>
                 <div className="product-options-list">
                   <label className={`product-option ${selectedProduct === 'game' ? 'checked' : ''}`}>
 
@@ -177,6 +177,7 @@ const WelcomePage = () => {
                     
                     <span className="checkmark" /> بازی
                   </label>
+
                   <label className={`product-option ${selectedProduct === 'website' ? 'checked' : ''}`}>
                     <input
                       type="checkbox"
@@ -185,9 +186,12 @@ const WelcomePage = () => {
                         setSelectedProduct(selectedProduct === 'website' ? '' : 'website')
                       }
                     />
+
                     <span className="checkmark" /> وب‌سایت
                   </label>
+
                 </div>
+                
                 <div className="product-buttons-row">
                   <button
                     className="continue-btn"
@@ -345,8 +349,8 @@ const WelcomePage = () => {
               </div>
 
               <div className="d-flex justify-content-center gap-3 mt-3">
-                <button className="action-btn" onClick={() => setStep(1)}>بازگشت</button>
-                <button className="action-btn" onClick={handleSubmitGame}>ثبت</button>
+                <button className="continue-btn" onClick={() => setStep(1)}>بازگشت</button>
+                <button className="continue-btn" onClick={handleSubmitGame}>ثبت</button>
               </div>
 
             </div>

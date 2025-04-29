@@ -26,12 +26,12 @@
 }
 
 .welcome-page-main-box-icon img {
-  width: 120px; 
+  width: 130px; 
   margin-bottom: 1rem;
 }
 
 .welcome-page-main-box-heading {
-  font-size: 32px;
+  font-size: 30px;
   font-weight: bold;
   color: #1a1a1a;
   margin-bottom: 2rem;
@@ -44,7 +44,7 @@
   margin-bottom: -10px;
 }
 
-.welcome-page-main-box-start-btn {
+/* .welcome-page-main-box-start-btn {
   display: block;
   width: 130px;
   max-width: 100%;
@@ -66,6 +66,34 @@
   filter: brightness(1.1);
   color: white;
   cursor: pointer;
+} */
+
+.welcome-page-main-box-start-btn {
+  display: block;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 250px;
+
+  padding: 0.75rem 0.5rem;
+  font-size: 15px;
+  color: #c4c4c4;
+  background: linear-gradient(to right, #5d1b79, #00719a);
+  border: none;
+  border-radius: 12px;
+
+  filter: brightness(1.4);
+  transition: all 0.3s ease;
+}
+
+.welcome-page-main-box-start-btn:hover,
+.welcome-page-main-box-start-btn:focus,
+.welcome-page-main-box-start-btn:active {
+  background: linear-gradient(to right, #5d1b79, #00719a);
+  filter: brightness(1.1);
+  color: white !important;
+  cursor: pointer;
+  outline: none;
 }
 
 /* =========================== popup overlay =========================== */
@@ -97,6 +125,7 @@
   border-radius: 12px;
   margin-top: 8rem;
   box-shadow: 0 4px 20px rgba(60, 60, 60, 0.2);
+
   max-width: 600px;
   width: 100%;
   min-height: 470px;
@@ -106,6 +135,7 @@
   position: relative;
   z-index: 1001;
   pointer-events: all;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -228,7 +258,6 @@
   background: linear-gradient(to right, #4c1764, #005d7a);
 }
 
-
 .welcome-page-delete-image-text-btn {
   background: none;
   border: none;
@@ -299,7 +328,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 2px solid #ccc;
+  border: 2px solid #dfdfdf;
   background-color: white;
   color: #ccc;
   display: flex;
@@ -344,7 +373,7 @@
 .product-options-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   text-align: right;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -353,13 +382,14 @@
 .product-option {
   position: relative;
   padding: 0.75rem 1.5rem 0.75rem 2rem;
-  border: 2px solid #ccc;
+  /* border: 1px #dbdbdb; */
   border-radius: 10px;
   cursor: pointer;
-  font-weight: 500;
+
+  font-weight: 400;
   transition: all 0.3s ease;
-  background-color: #ebeaea;
-  box-shadow: 0 2px 6px rgba(93, 27, 121, 0.3);
+  background-color: #f7f5f5;
+  box-shadow: 0 2px 2px rgb(188, 159, 202);
 }
 
 .product-option input {
@@ -371,9 +401,10 @@
   left: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  border: 2px solid #ccc;
+  
+  width: 19px;
+  height: 19px;
+  border: 1px solid #525252;
   border-radius: 4px;
   background: white;
   transition: all 0.3s ease;
@@ -381,16 +412,16 @@
 
 .product-option.checked {
   background-color: #f1f1f1;
-  border-color: rgb(93, 27, 121);
-  color: rgb(93, 27, 121);
+  border-color: rgb(129, 70, 155);
+  color: rgb(141, 84, 165);
   padding-top: 1rem;
   padding-bottom: 1rem;
-  box-shadow: 0 2px 6px rgba(93, 27, 121, 0.6);
+  box-shadow: 0 2px 6px rgba(135, 64, 166, 0.6);
 }
 
 .product-option.checked .checkmark {
-  background-color:rgb(93, 27, 121);
-  border-color: rgb(93, 27, 121);
+  background-color:rgb(139, 71, 169);
+  border-color: rgb(136, 68, 165);
 }
 
 .product-option.checked::before {
@@ -404,7 +435,6 @@
   z-index: 1;
 }
 
-
 /* =========================== success message =========================== */
 .welcome-page-step-success-container {
   text-align: center;
@@ -416,7 +446,6 @@
   height: 70px;
   margin-bottom: 1rem;
 }
-
 
 /* =========================== step 2 inputs =========================== */
 .step-2-compact .popup-options label {
@@ -432,7 +461,6 @@
   pointer-events: none;
   opacity: 0.5;
 }
-
 
 /* =========================== token and SDK link =========================== */
 .welcome-page-sdk-download-link {
@@ -480,24 +508,65 @@
 }
 
 .continue-btn {
-  padding: 0.6rem 3rem;
+  display: block;
+  margin-top: 1rem;
+  /* margin-bottom: 1rem; */
+  width: 100%;
+  max-width: 150px;
+
+  padding: 0.75rem 0.5rem;
   font-size: 15px;
-  font-weight: 600;
-  color: white;
+  color: #c4c4c4;
+  background: linear-gradient(to right, #5d1b79, #00719a);
   border: none;
-  border-radius: 8px;
-  min-width: 120px;
-  background: linear-gradient(to right, rgba(93, 27, 121), rgba(0, 113, 154));
+  border-radius: 12px;
+
+  filter: brightness(1.4);
   transition: all 0.3s ease;
 }
 
-.continue-btn:hover {
-  background: linear-gradient(to right, rgba(78, 20, 103), rgba(0, 95, 130));
+.continue-btn:hover,
+.continue-btn:focus,
+.continue-btn:active {
+  background: linear-gradient(to right, #5d1b79, #00719a);
+  filter: brightness(1.1);
+  color: white !important;
+  cursor: pointer;
+  outline: none;
 }
 
 .continue-btn:disabled {
   opacity: 0.6;
 }
+/* 
+.welcome-page-main-box-start-btn {
+  display: block;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 250px;
+
+  padding: 0.75rem 0.5rem;
+  font-size: 15px;
+  color: #c4c4c4;
+  background: linear-gradient(to right, #5d1b79, #00719a);
+  border: none;
+  border-radius: 12px;
+
+  filter: brightness(1.4);
+  transition: all 0.3s ease;
+}
+
+.welcome-page-main-box-start-btn:hover,
+.welcome-page-main-box-start-btn:focus,
+.welcome-page-main-box-start-btn:active {
+  background: linear-gradient(to right, #5d1b79, #00719a);
+  filter: brightness(1.1);
+  color: white !important;
+  cursor: pointer;
+  outline: none;
+} */
+
 
 .radio-group-grid {
   display: grid;

@@ -33,8 +33,6 @@ const MainLayout = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-  
-
 
   return (
     <div className="main-layout">
@@ -78,7 +76,7 @@ const MainLayout = () => {
 
         </div>
 
-        <div className="main-layout-admin-info ms-auto d-flex align-items-center gap-2">
+        <div className="d-flex align-items-center gap-3">
           <span className="main-layout-subheader-admin-divider"></span>
           <div className="main-layout-subheader-admin-text">Admin</div>
         </div>        
