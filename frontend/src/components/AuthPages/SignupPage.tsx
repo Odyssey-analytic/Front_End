@@ -38,6 +38,9 @@ const SignupPage = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [confirmPasswordErrorKey, setConfirmPasswordErrorKey] = useState(0);
 
+  // ========================== Loading ==========================
+  const [isLoading, setIsLoading] = useState(false);
+
   // ========================== Popup state ==========================
   const [signupStatus, setSignupStatus] = useState<'success' | 'error' | ''>('');
 
@@ -118,6 +121,8 @@ const SignupPage = () => {
 
     if (!valid) return;
 
+    setIsLoading(true);
+
     // API call to register
     try {
       const data = { username, email, password, confirm_password: confirmPassword };
@@ -132,6 +137,8 @@ const SignupPage = () => {
       console.error('Signup failed:', error.message);
       setErrorMessage('');
       setSignupStatus('error');
+    } finally {
+      setIsLoading(false);
     }
   };
 
