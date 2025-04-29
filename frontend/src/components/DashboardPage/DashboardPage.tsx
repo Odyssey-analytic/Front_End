@@ -136,51 +136,50 @@ const DashboardPage = () => {
   }, []);
 
   return (
-    <MainLayout>
-      <div className="dashboard-container px-4 py-4">
-        {/* هدر داشبورد */}
-        <div className="dashboard-header d-flex justify-content-between align-items-center mb-4">
-          <h1 className="fw-bold">لیست بازی‌ها</h1>
-          <button className="add-game-btn">افزودن محصول جدید</button>
-        </div>
+    // <MainLayout></MainLayout>
+    <div className="dashboard-container px-4 py-4">
+      {/* هدر داشبورد */}
+      <div className="dashboard-header d-flex justify-content-between align-items-center mb-4">
+        <h1 className="fw-bold">لیست بازی‌ها</h1>
+        <button className="add-game-btn">افزودن محصول جدید</button>
+      </div>
 
-        {/* لیست بازی‌ها */}
-        <div className="game-list d-flex flex-column gap-4">
-          {games.map((game) => (
-            <div
-              key={game.id}
-              className="game-card d-flex justify-content-between align-items-start p-3 shadow-sm rounded bg-white"
-            >
-              <div className="game-summary d-flex flex-column align-items-end text-end">
-                <div className="game-metrics d-flex gap-4 mt-2">
-                  <div>
-                    <strong>{game.dnu}+</strong>
-                    <br />
-                    <span className="text-muted small">DNU</span>
-                  </div>
-                  <div>
-                    <strong>{game.dau}+</strong>
-                    <br />
-                    <span className="text-muted small">DAU</span>
-                  </div>
-                  <div>
-                    <strong>{game.retention}+</strong>
-                    <br />
-                    <span className="text-muted small">Retention</span>
-                  </div>
-                </div>
-                <p className="game-description mb-2">{game.description}</p>
+      {/* لیست بازی‌ها */}
+    <div className="game-list d-flex flex-column gap-4">
+      {games.map((game) => (
+        <div
+          key={game.id}
+          className="game-card d-flex justify-content-between align-items-start p-3 shadow-sm rounded bg-white"
+        >
+          <div className="game-summary d-flex flex-column align-items-end text-end">
+            <div className="game-metrics d-flex gap-4 mt-2">
+              <div>
+                <strong>{game.dnu}+</strong>
+                <br />
+                <span className="text-muted small">DNU</span>
               </div>
-
-              <div className="game-info text-end">
-                <h4 className="game-title fw-semibold mb-0">{game.title}</h4>
-                <img src={game.icon} alt={game.title} className="game-icon me-3" />
+              <div>
+                <strong>{game.dau}+</strong>
+                <br />
+                <span className="text-muted small">DAU</span>
+              </div>
+              <div>
+                <strong>{game.retention}+</strong>
+                <br />
+                <span className="text-muted small">Retention</span>
               </div>
             </div>
-          ))}
-        </div>
+            <p className="game-description mb-2">{game.description}</p>
+          </div>
+
+            <div className="game-info text-end">
+              <h4 className="game-title fw-semibold mb-0">{game.title}</h4>
+              <img src={game.icon} alt={game.title} className="game-icon me-3" />
+            </div>
+          </div>
+        ))}
       </div>
-    </MainLayout>
+    </div>
   );
 };
 

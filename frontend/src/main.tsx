@@ -28,7 +28,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/kpi" element={<ActiveUsersKPI />} /> 
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/reset-password/:token" element={<ResetpasswordPage />} />
-        <Route path="/" element={<LandingPage />} />
+        {/* <Route path="/" element={<LandingPage />} /> */}
         <Route path="/dashboard" element={<DashboardPage />} />
       </Routes>
     </BrowserRouter>
