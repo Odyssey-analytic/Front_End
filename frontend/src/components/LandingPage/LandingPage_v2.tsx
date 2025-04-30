@@ -1,11 +1,10 @@
-
 import React, { useEffect } from "react";
 import styles from "./LandingPage_v2.module.css";
-import TestimonialsCarousel from './TestimonialsCarousel'; 
+import TestimonialsCarousel from "./TestimonialsCarousel";
 import OdessayLogo from "/public/icons/odessay_logo.svg";
 import CircleAnimation from "./CircleAnimation";
 
-const LandingPage_v2: React.FC = () => {
+const LandingPage: React.FC = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -35,7 +34,7 @@ const LandingPage_v2: React.FC = () => {
 
       <div className={styles.landingContent}>
         <header className={styles.landingHeader}>
-          <div className={styles.authButtons}>
+        <div className={styles.authButtons}>
             <button className={styles.signupBtn}>ثبت‌نام</button>
             <button className={styles.loginBtn}>ورود</button>
           </div>
@@ -43,14 +42,40 @@ const LandingPage_v2: React.FC = () => {
             <img src={OdessayLogo} alt="Odessay Logo" className={styles.logoImage} />
             <span>ODESSAY</span>
           </div>
+
         </header>
 
         <main className={styles.mainSection}>
-          <CircleAnimation />
+          {/* Section 1: Hero */}
+          <section className={`${styles.section} ${styles.heroSection}`}>
+            <CircleAnimation />
+            {/* <div className={styles.heroText}>
+              <h1>هدایت مسیر رشد محصول شما</h1>
+              <p>در چشم‌انداز داده‌محور جهانی</p>
+            </div> */}
+          </section>
+
+          {/* Section 2: Feature Highlights */}
+          <section className={styles.section}>ویژگی‌های کلیدی</section>
+
+          {/* Section 3: Services */}
+          <section className={styles.section}>سرویس‌ها</section>
+
+          {/* Section 4: Testimonials */}
+          <section className={styles.section}><TestimonialsCarousel /></section>
+
+          {/* Section 5: Getting Started Steps */}
+          <section className={styles.section}>چطور شروع کنیم؟</section>
+
+          {/* Section 6: Achievements */}
+          <section className={styles.section}>دستاوردها</section>
+
+          {/* Section 7: Video + Contact */}
+          <section className={styles.section}>آموزش و ارتباط با ما</section>
         </main>
       </div>
     </div>
   );
 };
 
-export default LandingPage_v2;
+export default LandingPage;

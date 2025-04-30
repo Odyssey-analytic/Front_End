@@ -1,35 +1,35 @@
-/* LandingPage_v2.module.css */
-
+/* ===== Global Layout ===== */
 .landingPage {
   position: relative;
   width: 100%;
   overflow-x: hidden;
-  height: auto;
+  background-color: #0c0b1f;
 }
 
 .landingBackground {
-  width: 100%;
-  /* this shit */
-  max-height: 570vh;
-  height: auto;
-  object-position: center top;
-  display: block;
-  z-index: 1;
-}
-
-.landingContent {
   position: absolute;
   top: 0;
+  left: 0;
   width: 100%;
-  padding: 20px;
+  min-height: 570vh;
+  max-height: 600vh;
+  /* object-fit: cover; */
+  z-index: 0;
+}
+
+/* ===== Header ===== */
+.landingContent {
+  position: relative;
   z-index: 2;
+  padding: 20px;
+  width: 100%;
 }
 
 .landingHeader {
-  padding: 12px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 16px 32px;
 }
 
 .logo {
@@ -41,20 +41,20 @@
   letter-spacing: 2px;
 }
 
-.logoImage{
+.logoImage {
   height: 50px;
   width: auto;
 }
 
 .authButtons {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .signupBtn {
   background: #ddd;
   border: none;
-  padding: 6px 16px;
+  padding: 8px 20px;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
@@ -68,31 +68,42 @@
   cursor: pointer;
 }
 
-.fadeIn {
-  opacity: 0;
-  transform: translateY(40px);
-  animation: fadeSlideIn 1s ease forwards;
+/* ===== Main Content Sections ===== */
+.mainSection {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  padding: 0 24px;
 }
 
-.delay1 {
-  animation-delay: 0.4s;
+/* هر بخش تمام عرض با ارتفاع مینیمم مناسب */
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 2;
 }
 
-.delay2 {
-  animation-delay: 0.8s;
+/* ===== Specific Section Styling ===== */
+.circleSection {
+  background: transparent;
 }
 
-.delay3 {
-  animation-delay: 1.2s;
+.carouselSection {
+  background: linear-gradient(to bottom, #0c0b1f, #0e1a38);
+  padding-top: 100px;
 }
 
-@keyframes fadeSlideIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.section3, .section4, .section5, .section6, .section7 {
+  background: #0c0b1f;
 }
 
+/* ===== Animation Utilities ===== */
 .hiddenOnLoad {
   opacity: 0;
   transform: translateY(60px);
@@ -104,42 +115,29 @@
   transform: translateY(0);
 }
 
-.servicesSection {
-  margin-top: 400px;
-  padding: 80px 40px;
-  text-align: center;
-  color: white;
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .landingHeader {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .authButtons {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .signupBtn, .loginBtn {
+    width: 100%;
+  }
+
+  .mainSection {
+    gap: 60px;
+    padding: 0 16px;
+  }
+
+  .section {
+    padding: 60px 16px;
+  }
 }
-
-.mainSection {
-  margin-top: 14%;
-  text-align: center;
-}
-
-.subtext {
-  margin-top: 20px;
-  font-size: 1rem;
-}
-
-.servicesBtn {
-  margin-top: 24px;
-  padding: 10px 24px;
-  background-color: #ffffff;
-  color: #000;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.features ul {
-  list-style: none;
-  padding: 0;
-  margin: 24px 0;
-}
-
-.features li {
-  margin: 8px 0;
-}
-
-

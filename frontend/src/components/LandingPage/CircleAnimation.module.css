@@ -1,14 +1,29 @@
+/* این کلاس پدر نسبی دایره است */
+.circleSection {
+  position: relative;
+  height: 100vh;
+  z-index: 2;
+}
+
 .planetContainer {
-    position: absolute;
-    top: clamp(87%, 94%, 110%);
-    left: clamp(70%, 70%, 80%);
-    transform: translate(-50%, -50%);
-    width: clamp(150px, 35vw, 600px);
-    height: clamp(150px, 35vw, 600px);
-    z-index: 10;
-    pointer-events: none;
+  position: absolute;
+  top: 30%;          /* ✅ پایین‌تر از وسط */
+  left: 75%;         /* ✅ متمایل به راست */
+  transform: translate(-50%, -50%);
+  width: clamp(180px, 28vw, 650px);  /* ✅ اندازه‌ی تطبیق‌پذیر با حداکثر محدودیت */
+  height: clamp(180px, 28vw, 650px);
+  z-index: 5;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .planetContainer {
+    top: 30%;
+    left: 75%;
   }
-  
+}
+
+
   
   .planetDotted {
     stroke: #ffffff;
