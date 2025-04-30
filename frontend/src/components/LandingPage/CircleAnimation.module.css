@@ -1,0 +1,28 @@
+.planetContainer {
+    position: absolute;
+    top: clamp(87%, 94%, 110%);
+    left: clamp(70%, 70%, 80%);
+    transform: translate(-50%, -50%);
+    width: clamp(150px, 35vw, 600px);
+    height: clamp(150px, 35vw, 600px);
+    z-index: 10;
+    pointer-events: none;
+  }
+  
+  
+  .planetDotted {
+    stroke: #ffffff;
+    stroke-width: 2;
+    stroke-dasharray: 6 10;
+    stroke-linecap: round;
+    fill: none;
+  }
+  
+  .planetDottedAnimated {
+    stroke: white;
+    stroke-width: 12;
+    fill: none;
+    stroke-dasharray: 1130;     /* محیط دایره با r=180 */
+    stroke-dashoffset: 1130;
+  }
+  
