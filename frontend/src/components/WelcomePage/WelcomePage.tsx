@@ -64,7 +64,7 @@ const WelcomePage = () => {
   // final part
   const handleSubmitGame = async () => {
 
-    setStep(3);
+    // setStep(3);
 
     let valid = true;
   
@@ -142,9 +142,11 @@ const WelcomePage = () => {
       <>
         <div className="welcome-page-main-box-body" />
         <div className="welcome-page-main-box-body-overlay">
+
           <div className="welcome-page-main-box-body-popup-card">
 
-            {((step === 1) || (step === 2 && selectedProduct === 'game') || (step === 3)) && (
+          {/* <div> */}
+          {((step === 1) || (step === 2 && selectedProduct === 'game') || (step === 3)) && (
               <img
                 src={close_icon}
                 alt="بستن"
@@ -152,12 +154,13 @@ const WelcomePage = () => {
                 onClick={() => setShowPopup(false)}
               />
             )} 
+          {/* </div> */}
 
             <div className="stepper-container">
               <div className={`stepper-item ${step >= 1 ? 'active' : ''}`}><div className="stepper-circle">1</div><div className="stepper-label">انتخاب محصول</div></div>
-              <div className={`stepper-line ${step >= 2 ? 'active' : ''}`} />
+              <div className={`stepper-line1 ${step >= 2 ? 'active' : ''}`} />
               <div className={`stepper-item ${step >= 2 ? 'active' : ''}`}><div className="stepper-circle">2</div><div className="stepper-label">اطلاعات</div></div>
-              <div className={`stepper-line ${step >= 3 ? 'active' : ''}`} />
+              <div className={`stepper-line2 ${step >= 3 ? 'active' : ''}`} />
               <div className={`stepper-item ${step >= 3 ? 'active' : ''}`}><div className="stepper-circle">3</div><div className="stepper-label">ثبت نهایی</div></div>
             </div>
 
@@ -210,9 +213,13 @@ const WelcomePage = () => {
 
               {/* نام بازی + آپلود تصویر */}
               <div className="d-flex justify-content-between align-items-start mb-4">
+                    
                     {/* نام بازی */}
                     <div className="flex-fill me-3">
-                      <label className="d-block mb-1 small-label text-start">نام بازی :</label>
+                      <label className="d-block mb-3 small-label text-start">
+                        نام بازی: <span style={{ color: 'red' }}>*</span>
+                      </label>
+                      
                       <input
                         type="text"
                         className="form-control game-name-input-sm text-start"
@@ -220,11 +227,17 @@ const WelcomePage = () => {
                         onChange={(e) => setGameName(e.target.value)}
                       />
 
-                      {gameNameError && <p className="text-danger small mt-1 text-start">{gameNameError}</p>}
+                      {/* {gameNameError && <p className="text-danger small mt-1 text-start">{gameNameError}</p>} */}
+                    
+                      <div className="error-placeholder text-start" style={{ minHeight: '18px' }}>
+                        {gameNameError && <p className="text-danger small mt-1 mb-0">{gameNameError}</p>}
+                      </div>
+                    
                     </div>
 
                     {/* آپلود تصویر دایره‌ای */}
                     <div className="upload-section text-center">
+
                       <div className="upload-preview-wrapper">
                         {thumbnail ? (
                           <img
@@ -240,7 +253,6 @@ const WelcomePage = () => {
                           />
                         )}
                       </div>
-
 
                       {/* آیکون انتخاب و حذف تصویر در یک ردیف */}
                       <div className="d-flex justify-content-center gap-3 mt-2">
@@ -288,61 +300,143 @@ const WelcomePage = () => {
                   </div>
 
               {/* <!-- انتخاب موتور بازی --> */}
-              <div className="d-flex flex-column flex-md-row gap-4 mb-4">
+              <div className="d-flex flex-column flex-md-row gap-4 ">
                 <div className="text-start flex-fill mt-3 mt-md-0 mb-4">
-                  <label className="d-block mb-3">انتخاب موتور بازی :</label>
+                  <label className="d-block mb-3">
+                    انتخاب موتور بازی: <span style={{ color: 'red' }}>*</span>
+                    </label>
 
-                  <div className="radio-group-grid">
+                  {/* <div className="radio-group-grid">
                     <label className="radio-label">
-                      <input type="radio" checked={engine === 'unity'} onChange={() => setEngine('unity')} />
+                      <input type="checkbox" checked={engine === 'unity'} onChange={() => setEngine('unity')} />
                       Unity
                     </label>
 
                     <label className="radio-label engine-disabled-option">
-                      <input type="radio" disabled />
+                      <input type="checkbox" disabled />
                       Godot
                     </label>
 
                     <label className="radio-label engine-disabled-option">
-                      <input type="radio" disabled />
+                      <input type="checkbox" disabled />
                       Custom
                     </label>
                   </div>
+                   */}
                   
-                  {engineError && <p className="text-danger small mt-1">{engineError}</p>}
+                  <div className="radio-group-grid">
+                    <label className="radio-label">
+                      <input
+                        type="checkbox"
+                        checked={engine === 'unity'}
+                        onChange={() => {
+                          if (engine === 'unity') {
+                            setEngine(''); // لغو انتخاب
+                          } else {
+                            setEngine('unity'); // انتخاب جدید
+                          }
+                        }}
+                      />
+                      Unity
+                    </label>
+
+                    <label className="radio-label engine-disabled-option">
+                      <input
+                        type="checkbox"
+                        checked={engine === 'godot'}
+                        onChange={() => {
+                          if (engine === 'godot') {
+                            setEngine('');
+                          } else {
+                            setEngine('godot');
+                          }
+                        }}
+                      />
+                      Godot
+                    </label>
+
+                    <label className="radio-label engine-disabled-option">
+                      <input
+                        type="checkbox"
+                        checked={engine === 'custom'}
+                        onChange={() => {
+                          if (engine === 'custom') {
+                            setEngine('');
+                          } else {
+                            setEngine('custom');
+                          }
+                        }}
+                      />
+                      Custom
+                    </label>
+                  </div>
+
                   
+                  
+                  
+                  {/* {engineError && <p className="text-danger small mt-1">{engineError}</p>} */}
+                  
+                  <div className="error-placeholder" style={{ minHeight: '18px' }}>
+                    {engineError && <p className="text-danger small mt-1 mb-0">{engineError}</p>}
+                  </div>
+
                 </div>
               </div>
 
               {/* <!-- انتخاب پلتفرم هدف --> */}
-              <div className="d-flex flex-column flex-md-row gap-4 mb-4">
+              <div className="d-flex flex-column flex-md-row mb-4">
                 <div className="text-start flex-fill mt-3 mt-md-0 mb-4">
-                  <label className="d-block mb-3">انتخاب پلتفرم هدف :</label>
+                  <label className="d-block mb-3">
+                    انتخاب پلتفرم هدف: <span style={{ color: 'red' }}>*</span>
+                  </label>
 
                   <div className="radio-group-grid">
+
                     <label className="radio-label">
-                      <input type="radio" name="platform" onChange={() => handlePlatformChange('ios')} />
+                      {/* <input type="radio" name="platform" onChange={() => handlePlatformChange('ios')} /> */}
+                      <input
+                        type="checkbox"
+                        checked={platforms.includes('ios')}
+                        onChange={() => handlePlatformChange('ios')}
+                      />
                       iOS
                     </label>
+
                     <label className="radio-label">
-                      <input type="radio" name="platform" onChange={() => handlePlatformChange('android')} />
+                      {/* <input type="radio" name="platform" onChange={() => handlePlatformChange('android')} /> */}
+                      <input
+                        type="checkbox"
+                        checked={platforms.includes('android')}
+                        onChange={() => handlePlatformChange('android')}
+                      />
                       Android
                     </label>
+
                     <label className="radio-label">
-                      <input type="radio" name="platform" onChange={() => handlePlatformChange('pc')} />
+                      {/* <input type="radio" name="platform" onChange={() => handlePlatformChange('pc')} /> */}
+                      <input
+                        type="checkbox"
+                        checked={platforms.includes('pc')}
+                        onChange={() => handlePlatformChange('pc')}
+                      />
                       Windows
                     </label>
                   </div>
 
-                  {platformError && <p className="text-danger small mt-1">{platformError}</p>}
+                  {/* {platformError && <p className="text-danger small mt-1">{platformError}</p>} */}
+
+
+                  <div className="error-placeholder" style={{ minHeight: '18px' }}>
+                    {platformError && <p className="text-danger small mt-1 mb-0">{platformError}</p>}
+                  </div>
 
                 </div>
               </div>
 
               <div className="w-100 text-start mb-4">
-                <label className="d-block mb-2">توضیحات (اختیاری) :</label>
+                <label className="d-block mb-2">توضیحات (اختیاری):</label>
                 <textarea
-                  className="form-control"
+                  className="form-control game-name-input-sm"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                 />
@@ -360,12 +454,12 @@ const WelcomePage = () => {
             {step === 3 && (
               <div className="welcome-page-step-success-container">
 
-                <img
+                {/* <img
                   src={close_icon}
                   alt="بستن"
                   className="welcome-page-popup-card-close-icon"
                   onClick={() => navigate('/dashboard')}
-                />
+                /> */}
 
                 <div className="welcome-page-success-icon-wrapper">
                   <img src={gift} alt="Success Icon" />
