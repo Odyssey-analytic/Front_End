@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import styles from "./LandingPage_v2.module.css";
 import TestimonialsCarousel from './TestimonialsCarousel'; 
+import OdessayLogo from '/public/icons/odessay_logo.svg';
 
 const LandingPage_v2: React.FC = () => {
   useEffect(() => {
@@ -34,11 +35,17 @@ const LandingPage_v2: React.FC = () => {
       />
       <div className={styles.landingContent}>
         <header className={styles.landingHeader}>
-          <div className={styles.logo}>Odessay Logo</div>
           <div className={styles.authButtons}>
             <button className={styles.signupBtn}>ثبت‌نام</button>
             <button className={styles.loginBtn}>ورود</button>
           </div>
+          <div className={styles.logo}>
+            <div className={`english-text ${styles.logoText}`}>ODESSAY</div>
+
+            <img src={OdessayLogo} alt="Odessay Logo" className={styles.logoImage} />
+          </div>
+
+         
         </header>
 
         <main className={styles.mainSection}>
