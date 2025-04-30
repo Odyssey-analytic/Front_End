@@ -1,5 +1,6 @@
+// LandingPage_v2.tsx
 import React, { useEffect } from "react";
-import "./LandingPage_v2.css";
+import styles from "./LandingPage_v2.module.css";
 import TestimonialsCarousel from './TestimonialsCarousel'; 
 
 const LandingPage_v2: React.FC = () => {
@@ -8,57 +9,54 @@ const LandingPage_v2: React.FC = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("animate");
+            entry.target.classList.add(styles.animate);
           }
         });
       },
       {
-        threshold: 0.6, // یعنی حداقل ۶۰٪ از بخش دوم وارد صفحه بشه
-        rootMargin: "0px 0px -30% 0px", // یعنی ۳۰٪ پایین صفحه رو حذف کنه از دیدرس
+        threshold: 0.6,
+        rootMargin: "0px 0px -30% 0px",
       }
     );
-  
-    const targets = document.querySelectorAll(".hidden-on-load");
+
+    const targets = document.querySelectorAll("." + styles.hiddenOnLoad);
     targets.forEach((el) => observer.observe(el));
-  
+
     return () => observer.disconnect();
   }, []);
-  
-  
 
   return (
-    <div className="landing-page">
+    <div className={styles.landingPage}>
       <img
         src="/src/assets/images/Landing_Page_Background.png"
         alt="Background"
-        className="landing-background"
+        className={styles.landingBackground}
       />
-      <div className="landing-content">
-        <header className="landing-header">
-          <div className="logo">Odessay Logo</div>
-          <div className="auth-buttons">
-            <button className="signup-btn">ثبت‌نام</button>
-            <button className="login-btn">ورود</button>
+      <div className={styles.landingContent}>
+        <header className={styles.landingHeader}>
+          <div className={styles.logo}>Odessay Logo</div>
+          <div className={styles.authButtons}>
+            <button className={styles.signupBtn}>ثبت‌نام</button>
+            <button className={styles.loginBtn}>ورود</button>
           </div>
         </header>
 
-        <main className="main-section">
-          <h1 className="fade-in">هدایت مسیر رشد محصول شما</h1>
-          <p className="fade-in delay1">در چشم‌انداز داده‌محور جهانی</p>
-          <p className="fade-in delay2 subtext">
+        <main className={styles.mainSection}>
+          <h1 className={styles.fadeIn}>هدایت مسیر رشد محصول شما</h1>
+          <p className={`${styles.fadeIn} ${styles.delay1}`}>در چشم‌انداز داده‌محور جهانی</p>
+          <p className={`${styles.fadeIn} ${styles.delay2} ${styles.subtext}`}>
             ما به شما کمک می‌کنیم تا با تحلیل داده‌های دقیق و داشبوردهای سفارشی، تصمیم‌های هوشمندانه‌تری
             بگیرید و تجربه کاربران را بهینه‌سازی کنید.
           </p>
-          <button className="fade-in delay3 services-btn">بررسی سرویس‌ها</button>
+          <button className={`${styles.fadeIn} ${styles.delay3} ${styles.servicesBtn}`}>بررسی سرویس‌ها</button>
         </main>
 
-        {/* سکشن دوم */}
-        <section className="services-section hidden-on-load" id="services">
+        <section className={`${styles.servicesSection} ${styles.hiddenOnLoad}`} id="services">
           <h2>سرویس‌ها جهت آنالیز و بهینه‌سازی</h2>
           <p>
             با ابزارهای تحلیل ما، عملکرد محصول خود را با دقت بررسی کرده و مسیر رشد را هوشمندانه‌تر ترسیم کنید.
           </p>
-          <div className="features">
+          <div className={styles.features}>
             <ul>
               <li>داشبورد سفارشی</li>
               <li>شاخص‌های کلیدی</li>
@@ -67,8 +65,9 @@ const LandingPage_v2: React.FC = () => {
               <li>رویدادهای منعطف</li>
             </ul>
           </div>
-          <button className="services-btn">بررسی سرویس‌ها</button>
+          <button className={styles.servicesBtn}>بررسی سرویس‌ها</button>
         </section>
+
         <TestimonialsCarousel />
       </div>
     </div>
