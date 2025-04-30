@@ -99,21 +99,21 @@
 /* =========================== popup overlay =========================== */
 .welcome-page-main-box-body {
   position: absolute;
-  top: 93px;
+  top: 94px;
   left: 0;
   right: 0;
   bottom: 0;
   backdrop-filter: blur(6px);
   background-color: rgba(255, 255, 255, 0.15);
-  /* z-index: 998; */
 }
 
 .welcome-page-main-box-body-overlay {
   position: absolute;
   inset: 0;
-  /* z-index: 1000; */
+
   display: flex;
   justify-content: center;
+
   align-items: center;
   pointer-events: none;
   border-radius: inherit;
@@ -123,26 +123,78 @@
 
 .welcome-page-main-box-body-popup-card {
   background: white;
-  padding: 4rem;
+  padding-right: 4rem;
+  padding-left: 4rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   border-radius: 12px;
   margin-top: 7rem;
   box-shadow: 0 4px 20px rgba(60, 60, 60, 0.2);
 
-  max-width: 600px;
+  max-width: 550px;
+  
   width: 100%;
+
+  /* padding-top: 1rem; */
   min-height: 470px;
   max-height: 470px;
   overflow-y: auto; 
   text-align: center;
   position: relative;
+
   z-index: 1001;
+
   pointer-events: all;
 
   display: flex;
+
   flex-direction: column;
   justify-content: flex-start;
   padding-top: 1.5rem;
 }
+
+
+/* .welcome-page-main-box-body {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(6px);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.welcome-page-main-box-body-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  pointer-events: none;
+  width: 100%;
+}
+
+.welcome-page-main-box-body-popup-card {
+  background: white;
+  padding: 1rem 4rem;
+  border-radius: 12px;
+  position: absolute;
+  box-shadow: 0 4px 20px rgba(60, 60, 60, 0.2);
+
+  max-width: 500px;
+  width: 100%;
+
+  min-height: 470px;
+  max-height: 550px;
+  overflow-y: auto; 
+  text-align: center;
+
+  pointer-events: all;
+  flex-direction: column;
+} */
+
+/* end of changes */
 
 .welcome-page-popup-card-close-icon {
   position: absolute;
@@ -378,7 +430,7 @@
   gap: 1.5rem;
   text-align: right;
   padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  /* padding-bottom: 0.5rem; */
 }
 
 .product-option {

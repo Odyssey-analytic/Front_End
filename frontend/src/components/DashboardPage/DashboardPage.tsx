@@ -5,8 +5,8 @@ import './DashboardPage.css';
 import { useEffect, useState } from 'react';
 import MainLayout from '../MainLayout/MainLayout';
 
-import pocket_champs_icon from "../../../public/icons/pocket-champs-icon.png"
-import tower_war_icon from "../../../public/icons/tower-war-icon.png"
+import pocket_champs_icon from "../../../public/icons/pocket-champs-icon.svg"
+import tower_war_icon from "../../../public/icons/tower-war-icon.svg"
 
 const DashboardPage = () => {
   const [games, setGames] = useState<any[]>([]);

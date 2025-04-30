@@ -13,9 +13,9 @@ import welcome_subheader_user from '/public/icons/welcome_subheader_user.svg';
 import welcome_subheader_menu from '/public/icons/welcome_subheader_menu.svg';
 import welcome_page_main_box_welcome_icon from '/public/icons/welcome_page_main_box_welcome_icon.svg';
 import gift from '/public/icons/gift.svg';
-import close_icon from '/public/icons/close_icon.png';
-import uploading_game_image_icon from '/public/icons/game-console-icon.png';
-import uploading_game_image_icon_ghost from '/public/icons/game-ghost-icon.png';
+import close_icon from '/public/icons/close_icon.svg';
+import uploading_game_image_icon from '/public/icons/game-console-icon.svg';
+import uploading_game_image_icon_ghost from '/public/icons/game-ghost-icon.svg';
 
 
 const WelcomePage = () => {
