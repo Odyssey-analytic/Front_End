@@ -1,15 +1,181 @@
-/* =========================== body =========================== */
-.welcome-page-body {
-  background-color: rgba(198, 202, 238, 0.856);
+/* =========================== main container =========================== */
+/* General layout container */
+.welcome-page-container {
+  color: #121212;
+  font-family: 'Shabnam', sans-serif;
+  position: relative; 
+  background-color: rgb(241, 243, 244);
   min-height: 100vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
 }
 
+
+/* =========================== header =========================== */
+/* Top header bar including logo, search and branding */
+.welcome-page-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  background-color: rgba(245, 245, 245);
+  border-bottom: 1px solid rgba(191, 191, 191, 0.38);
+  box-shadow: 0 .125rem .25rem rgba(202, 202, 202, 0.075);
+  height: 60px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.welcome-page-header-search-box {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 350px;
+}
+
+/* .welcome-page-header-search-box-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 10px;
+  text-align: right;
+  border: 1px solid #e4e4e4;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.welcome-page-header-search-box-input:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 0 0.15rem rgba(108, 99, 255, 0.25);
+} */
+
+
+.welcome-page-header-search-box-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 12px;
+  text-align: right;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  outline: none;
+  box-shadow: none;   
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.welcome-page-header-search-box-input:focus {
+  /* border-color: #6c63ff; */
+  box-shadow: 0 0 0 1px #6c63ff;
+}
+
+
+.website-logo-img {
+  height: 32px;
+  width: auto;
+}
+
+.website-brand-text {
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: rgba(51, 54, 88);
+}
+
+/* =========================== subheader =========================== */
+/* Bar under header with user/menu icons and admin label */
+.welcome-page-subheader {
+  background-color: #ffffff;
+  height: 60px;
+  width: 1440px;
+  box-shadow: 0px 1px 4px rgba(43, 43, 43, 0.4);
+  padding: 1rem;
+  position: absolute
+  /* width: 21px; */
+  
+}
+
+.welcome-page-subheader-user-icon,
+.welcome-page-subheader-menu-icon,
+.welcome-page-header-help-icon {
+  width: 21px;
+  height: 21px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.welcome-page-subheader-admin-label-container {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* d-flex align-items-center */
+.welcome-page-subheader-admin-label-container-label-text {
+  color: #7b7b7b;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.welcome-page-subheader-admin-label-container-divider {
+  width: 1px;
+  height: 24px;
+  /* margin-left: 10px; */
+  background-color: rgba(84, 84, 84, 0.1);
+}
+
+/* =========================== body =========================== */
+
+.welcome-page-menu-icon-wrapper {
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+}
+
+.welcome-page-dropdown-menu {
+  position: absolute;
+  /* align-items: center; */
+  width: 130px;
+  top: 2rem; 
+  right: -0.5rem;
+  /* left: 0.1rem; */
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(64, 63, 63, 0.15);
+  z-index: 20;
+}
+
+.welcome-page-dropdown-item {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 0.75rem;
+  padding-left: 0.5rem;
+
+  font-size: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: right;
+}
+
+.welcome-page-dropdown-item:hover {
+  background-color: #f8f8f8;
+}
+
+/* =========================== body =========================== */
+/* Main scrollable body section */
+.welcome-page-body {
+  /* flex-grow: 1; */
+  background-color: rgb(241, 243, 244);
+  margin-top: 2px;
+  /* padding: 2rem; */
+}
+
+
 /* =========================== main box =========================== */
+/* Welcome card with heading and CTA */
 .welcome-page-main-box {
   display: flex;
   flex-direction: column;
@@ -17,21 +183,24 @@
   align-items: center;
   gap: 1.5rem;
 
-  width: 80%;
-  min-height: 75vh;
+  width: 100%;
+  min-height: 470px;
 
-  background-color: rgba(252, 251, 255, 0.976);
+  background-color: white;
   border-radius: 12px;
   box-shadow: 0px 4px 16px rgba(100, 100, 100, 0.12);
+
+  margin-top: 37rem;
 }
 
+
 .welcome-page-main-box-icon img {
-  width: 130px; 
+  width: 120px; 
   margin-bottom: 1rem;
 }
 
 .welcome-page-main-box-heading {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: bold;
   color: #1a1a1a;
   margin-bottom: 2rem;
@@ -44,7 +213,7 @@
   margin-bottom: -10px;
 }
 
-/* .welcome-page-main-box-start-btn {
+.welcome-page-main-box-start-btn {
   display: block;
   width: 130px;
   max-width: 100%;
@@ -66,68 +235,40 @@
   filter: brightness(1.1);
   color: white;
   cursor: pointer;
-} */
-
-.welcome-page-main-box-start-btn {
-  display: block;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  width: 100%;
-  max-width: 250px;
-
-  padding: 0.75rem 0.5rem;
-  font-size: 15px;
-  color: #c4c4c4;
-  background: linear-gradient(to right, #5d1b79, #00719a);
-  border: none;
-  border-radius: 12px;
-
-  filter: brightness(1.4);
-  transition: all 0.3s ease;
 }
 
-.welcome-page-main-box-start-btn:hover,
-.welcome-page-main-box-start-btn:focus,
-.welcome-page-main-box-start-btn:active {
-  background: linear-gradient(to right, #5d1b79, #00719a);
-  filter: brightness(1.1);
-  color: white !important;
-  cursor: pointer;
-  outline: none;
-}
 
 /* =========================== popup overlay =========================== */
+/* Blur effect + modal positioning */
 .welcome-page-main-box-body {
   position: absolute;
-  top: 93px;
+  top: 120px;
   left: 0;
   right: 0;
   bottom: 0;
   backdrop-filter: blur(6px);
   background-color: rgba(255, 255, 255, 0.15);
-  /* z-index: 998; */
+  z-index: 998;
 }
 
 .welcome-page-main-box-body-overlay {
   position: absolute;
   inset: 0;
-  /* z-index: 1000; */
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
   pointer-events: none;
   border-radius: inherit;
-  width: 100%;
-  height: 100vh;
 }
 
+/* Modal card for stepper */
 .welcome-page-main-box-body-popup-card {
   background: white;
   padding: 4rem;
   border-radius: 12px;
-  margin-top: 7rem;
+  margin-top: 8rem;
   box-shadow: 0 4px 20px rgba(60, 60, 60, 0.2);
-
   max-width: 600px;
   width: 100%;
   min-height: 470px;
@@ -137,7 +278,6 @@
   position: relative;
   z-index: 1001;
   pointer-events: all;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -161,13 +301,20 @@
   opacity: 0.7;
 }
 
+
 /* =========================== popup content =========================== */
+/* Modal title and layout */
 .welcome-page-popup-title {
   font-size: 15px;
   text-align: right;
   color: #333;
   margin-bottom: 1rem;
 }
+
+/* .small-label {
+  font-size: 16px;
+} */
+
 
 .game-name-input-sm {
   font-size: 0.9rem;
@@ -225,6 +372,8 @@
   width: 20px;
 }
 
+
+
 /* .popup-options label {
   display: block;
   text-align: right;
@@ -260,6 +409,7 @@
   background: linear-gradient(to right, #4c1764, #005d7a);
 }
 
+
 .welcome-page-delete-image-text-btn {
   background: none;
   border: none;
@@ -280,6 +430,7 @@
 }
 
 /* =========================== responsive breakpoints =========================== */
+/* Padding adjustments for screen sizes */
 @media (max-width: 480px) {
   .welcome-page-body {
     padding: 1.5rem 1rem;
@@ -308,6 +459,7 @@
 
 
 /* =========================== stepper =========================== */
+/* Visual step indicator in modal */
 .stepper-container {
   display: flex;
   align-items: center;
@@ -330,7 +482,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 2px solid #dfdfdf;
+  border: 2px solid #ccc;
   background-color: white;
   color: #ccc;
   display: flex;
@@ -372,10 +524,11 @@
 
 
 /* =========================== product option checkboxes =========================== */
+/* Style for 'game' and 'website' option cards */
 .product-options-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
   text-align: right;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -384,14 +537,13 @@
 .product-option {
   position: relative;
   padding: 0.75rem 1.5rem 0.75rem 2rem;
-  /* border: 1px #dbdbdb; */
+  border: 2px solid #ccc;
   border-radius: 10px;
   cursor: pointer;
-
-  font-weight: 400;
+  font-weight: 500;
   transition: all 0.3s ease;
-  background-color: #f7f5f5;
-  box-shadow: 0 2px 2px rgb(188, 159, 202);
+  background-color: #ebeaea;
+  box-shadow: 0 2px 6px rgba(93, 27, 121, 0.3);
 }
 
 .product-option input {
@@ -403,10 +555,9 @@
   left: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  
-  width: 19px;
-  height: 19px;
-  border: 1px solid #525252;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ccc;
   border-radius: 4px;
   background: white;
   transition: all 0.3s ease;
@@ -414,16 +565,16 @@
 
 .product-option.checked {
   background-color: #f1f1f1;
-  border-color: rgb(129, 70, 155);
-  color: rgb(141, 84, 165);
+  border-color: rgb(93, 27, 121);
+  color: rgb(93, 27, 121);
   padding-top: 1rem;
   padding-bottom: 1rem;
-  box-shadow: 0 2px 6px rgba(135, 64, 166, 0.6);
+  box-shadow: 0 2px 6px rgba(93, 27, 121, 0.6);
 }
 
 .product-option.checked .checkmark {
-  background-color:rgb(139, 71, 169);
-  border-color: rgb(136, 68, 165);
+  background-color:rgb(93, 27, 121);
+  border-color: rgb(93, 27, 121);
 }
 
 .product-option.checked::before {
@@ -437,7 +588,9 @@
   z-index: 1;
 }
 
+
 /* =========================== success message =========================== */
+/* Step 3 success UI */
 .welcome-page-step-success-container {
   text-align: center;
   padding: 2rem 0;
@@ -448,6 +601,7 @@
   height: 70px;
   margin-bottom: 1rem;
 }
+
 
 /* =========================== step 2 inputs =========================== */
 .step-2-compact .popup-options label {
@@ -463,6 +617,7 @@
   pointer-events: none;
   opacity: 0.5;
 }
+
 
 /* =========================== token and SDK link =========================== */
 .welcome-page-sdk-download-link {
@@ -487,7 +642,6 @@
   text-align: left;
   direction: ltr;
   margin-top: 3rem;
-  width: 60px;
 }
 
 .welcome-page-token-value {
@@ -504,6 +658,7 @@
 
 
 /* =========================== continue button =========================== */
+/* Continue button below product choices */
 .product-buttons-row {
   display: flex;
   justify-content: center;
@@ -511,64 +666,26 @@
 }
 
 .continue-btn {
-  display: block;
-  margin-top: 1rem;
-  /* margin-bottom: 1rem; */
-  width: 100%;
-  max-width: 150px;
-
-  padding: 0.75rem 0.5rem;
+  padding: 0.6rem 3rem;
   font-size: 15px;
-  color: #c4c4c4;
-  background: linear-gradient(to right, #5d1b79, #00719a);
+  font-weight: 600;
+  color: white;
   border: none;
-  border-radius: 12px;
-
-  filter: brightness(1.4);
+  border-radius: 8px;
+  min-width: 120px;
+  background: linear-gradient(to right, rgba(93, 27, 121), rgba(0, 113, 154));
   transition: all 0.3s ease;
 }
 
-.continue-btn:hover,
-.continue-btn:focus,
-.continue-btn:active {
-  background: linear-gradient(to right, #5d1b79, #00719a);
-  filter: brightness(1.1);
-  color: white !important;
-  cursor: pointer;
-  outline: none;
+.continue-btn:hover {
+  background: linear-gradient(to right, rgba(78, 20, 103), rgba(0, 95, 130));
 }
 
 .continue-btn:disabled {
   opacity: 0.6;
-}
-/* 
-.welcome-page-main-box-start-btn {
-  display: block;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  width: 100%;
-  max-width: 250px;
-
-  padding: 0.75rem 0.5rem;
-  font-size: 15px;
-  color: #c4c4c4;
-  background: linear-gradient(to right, #5d1b79, #00719a);
-  border: none;
-  border-radius: 12px;
-
-  filter: brightness(1.4);
-  transition: all 0.3s ease;
+  /* cursor: not-allowed; */
 }
 
-.welcome-page-main-box-start-btn:hover,
-.welcome-page-main-box-start-btn:focus,
-.welcome-page-main-box-start-btn:active {
-  background: linear-gradient(to right, #5d1b79, #00719a);
-  filter: brightness(1.1);
-  color: white !important;
-  cursor: pointer;
-  outline: none;
-} */
 
 
 .radio-group-grid {
