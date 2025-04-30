@@ -1,0 +1,33 @@
+.testimonials-container {
+    background: linear-gradient(to bottom, #0e1e2e, #012a4a); /* یا رنگ دلخواه */
+    padding: 60px 20px;
+    font-size: 0; /* حذف فاصله نامرئی بین اسلایدها */
+    overflow: hidden;
+  }
+  
+  .swiper-wrapper {
+    transition-timing-function: linear !important;
+    gap: 0 !important; /* اطمینان از نبود فاصله */
+  }
+  
+  .swiper-slide {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .testimonial-card {
+    color: #fff0dd;
+    border-radius: 12px;
+    padding: 16px;
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+    box-sizing: border-box;
+    text-align: right;
+    font-size: 16px; /* بازگرداندن فونت داخل باکس */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0;
+  }
+  
