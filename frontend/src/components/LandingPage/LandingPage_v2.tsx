@@ -2,10 +2,16 @@
 import React, { useEffect } from "react";
 import styles from "./LandingPage_v2.module.css";
 import TestimonialsCarousel from './TestimonialsCarousel'; 
-import OdessayLogo from '/public/icons/odessay_logo.svg';
+import OdessayLogo from "/public/icons/odessay_logo.svg";
+import { gsap } from "gsap";
+// import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import { DrawSVGPlugin } from "gsap-trial/DrawSVGPlugin";
+
+gsap.registerPlugin(DrawSVGPlugin);
 
 const LandingPage_v2: React.FC = () => {
   useEffect(() => {
+    // Intersection observer (قبلی)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -19,13 +25,27 @@ const LandingPage_v2: React.FC = () => {
         rootMargin: "0px 0px -30% 0px",
       }
     );
-
     const targets = document.querySelectorAll("." + styles.hiddenOnLoad);
     targets.forEach((el) => observer.observe(el));
-
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    // دایره اول (ساعت‌گرد)
+    gsap.fromTo(
+      "#circleAnim1",
+      { strokeDashoffset: 565 },
+      { strokeDashoffset: 0, duration: 3, ease: "power1.out" }
+    );
+  
+    // دایره دوم (پادساعت‌گرد)
+    gsap.fromTo(
+      "#circleAnim2",
+      { strokeDashoffset: 0 },
+      { strokeDashoffset: 565, duration: 3, ease: "power1.out" }
+    );
+  }, []);
+  
   return (
     <div className={styles.landingPage}>
       <img
@@ -33,32 +53,88 @@ const LandingPage_v2: React.FC = () => {
         alt="Background"
         className={styles.landingBackground}
       />
+
       <div className={styles.landingContent}>
         <header className={styles.landingHeader}>
-          <div className={styles.authButtons}>
+        <div className={styles.authButtons}>
             <button className={styles.signupBtn}>ثبت‌نام</button>
             <button className={styles.loginBtn}>ورود</button>
           </div>
           <div className={styles.logo}>
-            <div className={`english-text ${styles.logoText}`}>ODESSAY</div>
-
             <img src={OdessayLogo} alt="Odessay Logo" className={styles.logoImage} />
+            <span>ODESSAY</span>
           </div>
 
-         
         </header>
 
         <main className={styles.mainSection}>
-          <h1 className={styles.fadeIn}>هدایت مسیر رشد محصول شما</h1>
-          <p className={`${styles.fadeIn} ${styles.delay1}`}>در چشم‌انداز داده‌محور جهانی</p>
-          <p className={`${styles.fadeIn} ${styles.delay2} ${styles.subtext}`}>
-            ما به شما کمک می‌کنیم تا با تحلیل داده‌های دقیق و داشبوردهای سفارشی، تصمیم‌های هوشمندانه‌تری
-            بگیرید و تجربه کاربران را بهینه‌سازی کنید.
-          </p>
-          <button className={`${styles.fadeIn} ${styles.delay3} ${styles.servicesBtn}`}>بررسی سرویس‌ها</button>
+          <div className={styles.planetContainer}>
+          <svg width="200" height="200" style={{ overflow: 'visible' }}>
+  <defs>
+    {/* دایره اول */}
+    <mask id="circle-mask-1">
+      <circle
+        id="circleAnim1"
+        className={styles.planetDottedAnimated}
+        cx="100"
+        cy="100"
+        r="90"
+        stroke="white"
+        strokeWidth="10"
+        fill="none"
+      />
+    </mask>
+
+    {/* دایره دوم */}
+    <mask id="circle-mask-2">
+      <circle
+        id="circleAnim2"
+        className={styles.planetDottedAnimated}
+        cx="100"
+        cy="100"
+        r="70"
+        stroke="white"
+        strokeWidth="10"
+        fill="none"
+      />
+    </mask>
+  </defs>
+
+  {/* دایره اول با ماسک */}
+  <g mask="url(#circle-mask-1)">
+    <circle
+      className={styles.planetDotted}
+      cx="100"
+      cy="100"
+      r="90"
+      stroke="#fff"
+      strokeWidth="2"
+      strokeDasharray="6 10"
+      strokeLinecap="round"
+      fill="none"
+    />
+  </g>
+
+  {/* دایره دوم با ماسک */}
+  <g mask="url(#circle-mask-2)">
+    <circle
+      className={styles.planetDotted}
+      cx="100"
+      cy="100"
+      r="70"
+      stroke="#fff"
+      strokeWidth="2"
+      strokeDasharray="6 10"
+      strokeLinecap="round"
+      fill="none"
+    />
+  </g>
+</svg>
+
+      </div>
         </main>
 
-        <section className={`${styles.servicesSection} ${styles.hiddenOnLoad}`} id="services">
+        {/* <section className={`${styles.servicesSection} ${styles.hiddenOnLoad}`} id="services">
           <h2>سرویس‌ها جهت آنالیز و بهینه‌سازی</h2>
           <p>
             با ابزارهای تحلیل ما، عملکرد محصول خود را با دقت بررسی کرده و مسیر رشد را هوشمندانه‌تر ترسیم کنید.
@@ -75,8 +151,11 @@ const LandingPage_v2: React.FC = () => {
           <button className={styles.servicesBtn}>بررسی سرویس‌ها</button>
         </section>
 
-        <TestimonialsCarousel />
+        <TestimonialsCarousel /> */}
       </div>
+
+      {/* SVG with mask and animated circle */}
+      
     </div>
   );
 };

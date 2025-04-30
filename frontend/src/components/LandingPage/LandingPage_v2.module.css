@@ -12,6 +12,7 @@
   height: auto;
   object-position: center top;
   display: block;
+  z-index: 1;
 }
 
 .landingContent {
@@ -137,4 +138,48 @@
 
 .features li {
   margin: 8px 0;
+}
+
+
+.circleAnimated {
+  fill: none;
+  stroke: red;
+  stroke-width: 2;
+  stroke-dasharray: 10 10;      /* dashed style */
+  stroke-dashoffset: 1000;      /* شروع کامل از مخفی */
+  transform: rotate(-90deg);
+  transform-origin: center;
+  animation: drawDashed 3s steps(60) forwards;
+  z-index: 3;
+}
+
+@keyframes drawDashed {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+.planetContainer {
+  position: absolute;
+  top: 20%;
+  right: 5%;
+  z-index: 10; /* 👈 بالاتر از landingBackground که احتمالاً z-index پایین‌تری داره */
+  pointer-events: none; /* اختیاری: جلوگیری از مزاحمت کلیک */
+}
+
+.planetDotted {
+  stroke: #ffffff;
+  stroke-width: 2;
+  stroke-dasharray: 6 10;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.planetDottedAnimated {
+  stroke: white;
+  stroke-width: 10;
+  fill: none;
+  stroke-dasharray: 565;
+  stroke-dashoffset: 565;
 }
