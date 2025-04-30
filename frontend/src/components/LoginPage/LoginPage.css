@@ -84,11 +84,11 @@ body, html {
   position: fixed;
   height: 500px;
 
-  /* position: fixed;
+  position: fixed;
   padding: 2.2rem;
-  top: 20vh;
+  top: 13vh;
   right: 7vw;
-  max-width: 400px; */
+  max-width: 400px;
 }
 
 .login-title {
@@ -573,75 +573,77 @@ body, html {
 
 
 /* ======================== Responsive Normal Version ======================== */
+/* 412 - 360 - 430 - 390 - 414 */
 @media (max-width: 480px) {
   .login-box {
     position: fixed;
+    top: 20%;
     padding: 1.5rem;
-    max-width: 360px;
-    top: 20vh;
-    right: 8vw;
+    max-width: 85%;
+    right: 7.5%;
   }
   .login-title {
     font-size: 2.1rem;
   }
-  .login-subtitle {
-    font-size: 1rem;
-  }
-  .login-page-logo-img {
+  .login-logo-img {
     top: 1.2rem;
     left: 1.2rem;
   }
-  .login-btn {
+  .signup-btn {
     width: 100%;
   }
 }
 
+/* 540 -  */
 @media (min-width: 481px) and (max-width: 768px) {
   .login-box {
     position: fixed;
-    padding: 1.5rem;
-    max-width: 380px;
-    top: 14vh;
-    right: 20vw;
+    padding: 2.2rem;
+
+    max-width: 60%;
+    top: 13%;
+    right: 20%;
   }
   .login-title {
     font-size: 2.2rem;
   }
-  .login-page-logo-img {
+  .login-logo-img {
     top: 1.5rem;
     left: 1.5rem;
   }
-  .login-btn {
+  .signup-btn {
     width: 100%;
   }
 }
 
+/* 1024 -  */
 @media (min-width: 769px) and (max-width: 1024px) {
   .login-box {
     position: fixed;
     padding: 2rem;
-    top: 6vh;
-    right: 6vw;
+    top: 8%;
+    right: 5%;
     max-width: 350px;
   }
 }
 
+/* 1280 -  */
 @media (min-width: 1025px) and (max-width: 1280px) {
   .login-box {
     position: fixed;
-    padding: 2.2rem;
-    top: 15vh;
-    right: 7vw;
-    max-width: 400px;
+    padding: 2.3rem;
+    top: 15%;
+    right: 7%;
+    max-width: 380px;
   }
 }
 
 @media (min-width: 1281px) and (max-width: 1440px) {
   .login-box {
     position: fixed;
-    padding: 2.2rem;
+    padding: 2.3rem;
     top: 8vh;
     right: 7vw;
-    max-width: 400px;
+    max-width: 380px;
   }
 }

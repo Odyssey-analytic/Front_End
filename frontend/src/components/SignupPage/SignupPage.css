@@ -53,19 +53,7 @@
 
 /* ===================================  Signup Form  =================================== */
 .signup-page-box {
-  /* padding: 1.5rem 1.5rem;
-
-  background-color: rgba(255, 255, 255, 0.8);
-  width: 100%;
-  max-width: 400px;
-  border-radius: 12px;
-  height: auto;
-  position: relative;
-  display: flex;
-  flex-direction: column; */
-
-
-  position: fixed;
+  /* position: fixed;
   background-color: rgba(255, 255, 255, 0.8);
   width: 100%;
   max-width: 400px;
@@ -73,7 +61,22 @@
   height: auto;
   display: flex;
   flex-direction: column;
+  height: 500px; */
+
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 100%;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
   height: 500px;
+
+  position: fixed;
+  padding: 2.2rem;
+  top: 13vh;
+  right: 7vw;
+  max-width: 400px;
+
 }
 
 .signup-page-title {
@@ -108,7 +111,34 @@
   box-shadow: 0 0 0 1px rgba(113, 46, 141, 0.4) !important;
 }
 
-.signup-page-placeholder {
+.signup-page-user-placeholder {
+  position: absolute;
+  /* padding: 0.5rem 1rem; */
+  border-radius: 12px;
+  padding-right: 34%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  pointer-events: none;
+  color: rgba(29, 29, 29);
+}
+
+.signup-page-user-placeholder .hint {
+  font-size: 0.6rem;
+  color: rgba(0, 0, 0, 0.5);
+  /* margin-right: 4px; */
+  /* padding-right: 25%; */
+}
+
+.signup-page-back-to-login {
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* ===================================  Form Icons  =================================== */
+
+/* .signup-page-input-custom-placeholder {
   position: absolute;
   padding: 0.5rem 1rem;
   border-radius: 12px;
@@ -120,19 +150,12 @@
   color: rgba(29, 29, 29);
 }
 
-.signup-page-placeholder .hint {
+.signup-page-input-custom-placeholder .hint {
   font-size: 0.6rem;
   color: rgba(0, 0, 0, 0.5);
   margin-right: 4px;
-}
+} */
 
-.signup-page-back-to-login {
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-/* ===================================  Form Icons  =================================== */
 .signup-email-icon,
 .signup-user-icon,
 .signup-padlock-icon {
@@ -140,13 +163,16 @@
   top: 50%;
   right: 1rem;
   transform: translateY(-50%);
-}
-
-.signup-email-icon {
   width: 20px;
   opacity: 0.7;
   pointer-events: none;
 }
+
+/* .signup-email-icon {
+  width: 20px;
+  opacity: 0.7;
+  pointer-events: none;
+} */
 
 .signup-user-icon {
   width: 23px;
@@ -553,13 +579,14 @@
 
 
 /* ======================== Responsive Normal Version ======================== */
+/* 412 - 360 - 430 - 390 - 414 */
 @media (max-width: 480px) {
   .signup-page-box {
     position: fixed;
+    top: 20%;
     padding: 1.5rem;
-    max-width: 360px;
-    top: 20vh;
-    right: 8vw;
+    max-width: 85%;
+    right: 7.5%;
   }
   .signup-page-title {
     font-size: 2.1rem;
@@ -573,13 +600,15 @@
   }
 }
 
+/* 540 -  */
 @media (min-width: 481px) and (max-width: 768px) {
   .signup-page-box {
     position: fixed;
-    padding: 1.5rem;
-    max-width: 380px;
-    top: 14vh;
-    right: 20vw;
+    padding: 2.2rem;
+
+    max-width: 60%;
+    top: 13%;
+    right: 20%;
   }
   .signup-page-title {
     font-size: 2.2rem;
@@ -593,32 +622,34 @@
   }
 }
 
+/* 1024 -  */
 @media (min-width: 769px) and (max-width: 1024px) {
   .signup-page-box {
     position: fixed;
     padding: 2rem;
-    top: 6vh;
-    right: 6vw;
+    top: 8%;
+    right: 5%;
     max-width: 350px;
   }
 }
 
+/* 1280 -  */
 @media (min-width: 1025px) and (max-width: 1280px) {
   .signup-page-box {
     position: fixed;
-    padding: 2.2rem;
-    top: 15vh;
-    right: 7vw;
-    max-width: 400px;
+    padding: 2.3rem;
+    top: 15%;
+    right: 7%;
+    max-width: 380px;
   }
 }
 
 @media (min-width: 1281px) and (max-width: 1440px) {
   .signup-page-box {
     position: fixed;
-    padding: 2.2rem;
+    padding: 2.3rem;
     top: 8vh;
     right: 7vw;
-    max-width: 400px;
+    max-width: 380px;
   }
 }

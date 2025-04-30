@@ -182,16 +182,51 @@ const SignupPage = () => {
             )}
           </div>
 
-          {/* Username field */}
-          <div className="signup-input-wrapper mb-3 position-relative">
+
+          
+          {/* <div className="signup-input-wrapper mb-3 position-relative">
             <input type="text" className="signup-page-input form-control no-focus-style" value={username} onChange={handleUsernameChange} />
             {!username && (
-              <div className="signup-page-placeholder text-muted">
-                نام کاربری<span className="hint">(بین ۳ تا ۱۵ کاراکتر و شامل حروف، عدد، . یا _)</span>
+              <div className="signup-page-input-custom-placeholder text-muted">
+                نام کاربری <span className="hint">(بین ۳ تا ۱۵ کاراکتر و شامل حروف، عدد، . یا _)</span>
               </div>
             )}
+            <img src={signup_user_icon} alt="username icon" className="signup-user-icon" />
+            {usernameError && (
+              <div className="signup-input-error-popup" key={usernameErrorKey}>
+                <span>{usernameError}</span>
+                <button type="button" onClick={() => setUsernameError('')}>×</button>
+              </div>
+            )}
+          </div> */}
+
+          {/* Username field */}
+          {/* <div className="signup-input-wrapper mb-3 position-relative">
+            <input type="text" className="signup-page-input form-control no-focus-style" value={username} onChange={handleUsernameChange} />
+            {!username && (
+              <div className="signup-page-input-custom-placeholder text-muted">
+                نام کاربری <span className="hint">(بین ۳ تا ۱۵ کاراکتر و شامل حروف، عدد، . یا _)</span>
+              </div>
+            )}
+            <img src={signup_user_icon} alt="username icon" className="signup-user-icon" />
+            {usernameError && (
+              <div className="signup-input-error-popup" key={usernameErrorKey}>
+                <span>{usernameError}</span>
+                <button type="button" onClick={() => setUsernameError('')}>×</button>
+              </div>
+            )}
+          </div> */}
+
+          <div className="signup-input-wrapper mb-3 position-relative">
+            <input type="text" className="signup-page-input form-control no-focus-style" placeholder="نام کاربری" value={username} onChange={handleUsernameChange} />
             
             <img src={signup_user_icon} alt="username icon" className="signup-user-icon" />
+                        
+            {!username && (
+              <div className="signup-page-user-placeholder text-muted">
+                <span className="hint">(بین ۳ تا ۱۵ کاراکتر و شامل حروف، عدد، . یا _)</span>
+              </div>
+            )}  
             {usernameError && (
               <div className="signup-input-error-popup" key={usernameErrorKey}>
                 <span>{usernameError}</span>
