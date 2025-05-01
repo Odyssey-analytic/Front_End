@@ -1,158 +1,157 @@
-/* LandingPage_Navbar.module.css */
-
+/* ======================= Navbar container ======================= */
 .navbar {
-    position: fixed;
-    top: 24px; /* فاصله از بالای صفحه */
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 50px);
-    /* max-width: 1280px; */
-    z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 32px;
-    /* background-color: rgba(255, 255, 255, 0.3); */
-    backdrop-filter: blur(10px);
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    /* border: 1px solid rgba(255, 255, 255, 0.2); */
-  }
-  
-  .rightSection {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  
-  .logoImage {
-    height: 40px;
-    width: auto;
-  }
-  
-  .logoText {
-    color: white;
-    font-size: 20px;
-    letter-spacing: 2px;
-    font-weight: bold;
-    font-family: 'Aboreto', sans-serif;
-  }
-  
-  .navLinks {
-    display: flex;
-    gap: 24px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .link {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    position: relative;
-  }
-  
-  .link:hover,
-  .link.active {
-    color: #00b4ff;
-  }
-  
+  position: fixed;
+  top: 24px; /* distance from top */
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 50px);
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  backdrop-filter: blur(10px); /* blurred glass effect */
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* ======================= Right section: Logo ======================= */
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoImage {
+  height: 40px;
+  width: auto;
+}
+
+.logoText {
+  color: white;
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-family: 'Aboreto', sans-serif;
+}
+
+/* ======================= Navigation links ======================= */
+.navLinks {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+
+.link:hover,
+.link.active {
+  color: #00b4ff;
+}
+
+/* ======================= Left section: Auth buttons ======================= */
 .authButtons {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-  
-  .signupBtn {
-    background: #ddd;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .loginBtn {
-    background: none;
-    border: none;
-    color: white;
-    font-weight: normal;
-    cursor: pointer;
-  }
-  
-  @media (max-width: 768px) {
-    .navbar {
-      padding: 10px 16px;
- 
-      border-radius: 12px;
-    }
-  
-    .navLinks {
-      gap: 12px;
-    }
-  
-    .link {
-      font-size: 14px;
-    }
-  
-    .logoText {
-      font-size: 16px;
-    }
-  
-    .signupBtn,
-    .loginBtn {
-      font-size: 14px;
-      padding: 6px 12px;
-    }
-  }
-  
+.signupBtn {
+  background: #ddd;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-  .activeNavLink {
-    color: #00b4ff;
-    font-weight: bold;
+.loginBtn {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+/* ======================= Mobile adjustments ======================= */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 16px;
+    border-radius: 12px;
   }
-  
+
+  .navLinks {
+    gap: 12px;
+  }
+
+  .link {
+    font-size: 14px;
+  }
+
+  .logoText {
+    font-size: 16px;
+  }
+
+  .signupBtn,
+  .loginBtn {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
+
+/* ======================= Active nav link style ======================= */
+.activeNavLink {
+  color: #00b4ff;
+  font-weight: bold;
+}
+
+/* ======================= Hamburger menu button for mobile ======================= */
+.menuToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* ======================= Mobile nav menu ======================= */
+@media (max-width: 768px) {
   .menuToggle {
+    display: block;
+  }
+
+  .navLinks {
     display: none;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    position: absolute;
+    top: 70px;
+    right: 16px;
+    padding: 16px;
+    backdrop-filter: blur(12px);
   }
-  
-  @media (max-width: 768px) {
-    .menuToggle {
-      display: block;
-    }
-  
-    .navLinks {
-      display: none;
-      flex-direction: column;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      position: absolute;
-      top: 70px;
-      right: 16px;
-      padding: 16px;
-      backdrop-filter: blur(12px);
-    }
-  
-    .navLinks.open {
-      display: flex;
-    }
-  
-    .authButtons {
-      display: none;
-    }
-  
-    .mobileAuthButtons {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 16px;
-    }
+
+  .navLinks.open {
+    display: flex;
   }
-  
+
+  .authButtons {
+    display: none;
+  }
+
+  .mobileAuthButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+  }
+}

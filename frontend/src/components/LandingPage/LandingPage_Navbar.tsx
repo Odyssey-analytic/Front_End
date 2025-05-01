@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./LandingPage_Navbar.module.css";
 import OdessayLogo from "/public/icons/odessay_logo.svg";
 
+// ======================= Section anchors used in scroll tracking =======================
 const sections = [
   { id: "features", label: "ویژگی‌ها" },
   { id: "services", label: "سرویس‌ها" },
@@ -16,6 +17,7 @@ const LandingPage_Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState("features");
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // ======================= Observe section visibility for scroll spy =======================
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -43,7 +45,7 @@ const LandingPage_Navbar: React.FC = () => {
 
   return (
     <nav className={styles.navbar}>
-      {/* بخش ورود و ثبت‌نام سمت چپ */}
+      {/* ======================= Left side: Auth buttons ======================= */}
       <div className={styles.authButtons}>
         <Link to="/signup" className={styles.signupBtn}>
           ثبت‌نام
@@ -53,20 +55,18 @@ const LandingPage_Navbar: React.FC = () => {
         </Link>
       </div>
 
-      {/* دکمه منو برای موبایل */}
+      {/* ======================= Mobile menu toggle button ======================= */}
       <button className={styles.menuToggle} onClick={() => setMenuOpen(!menuOpen)}>
         ☰
       </button>
 
-      {/* لینک‌های ناوبری وسط */}
+      {/* ======================= Center: Navigation links ======================= */}
       <ul className={`${styles.navLinks} ${menuOpen ? styles.open : ""}`}>
         {sections.map(({ id, label }) => (
           <li key={id}>
             <a
               href={`#${id}`}
-              className={`${styles.link} ${
-                activeSection === id ? styles.activeNavLink : ""
-              }`}
+              className={`${styles.link} ${activeSection === id ? styles.activeNavLink : ""}`}
               onClick={() => setMenuOpen(false)}
             >
               {label}
@@ -75,7 +75,7 @@ const LandingPage_Navbar: React.FC = () => {
         ))}
       </ul>
 
-      {/* لوگو سمت راست */}
+      {/* ======================= Right side: Logo and text ======================= */}
       <div className={styles.rightSection}>
         <span className={styles.logoText}>ODESSAY</span>
         <img src={OdessayLogo} alt="Odessay Logo" className={styles.logoImage} />
