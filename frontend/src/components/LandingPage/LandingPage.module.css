@@ -1,0 +1,92 @@
+/* ======================= Wrapper for whole landing page =================== */
+.wrapper {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #0c0b1f;
+}
+
+/* ======================= Background image of landing page =================== */
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 570vh;
+  max-height: 600vh;
+  z-index: 0;
+}
+
+/* ======================= Wrapper for all landing content (above background) =================== */
+.contentWrapper {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+  width: 100%;
+  margin-top: 80px; /* space for fixed navbar */
+}
+
+/* ======================= Wrapper for all main vertical sections =================== */
+.mainSections {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  padding: 0 24px;
+}
+
+/* ======================= Reusable section style =================== */
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+/* ======================= Animation for loading content (before visible) =================== */
+.hiddenOnLoad {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1s ease-out;
+}
+
+/* ======================= Applied when section becomes visible =================== */
+.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ======================= Title wrapper inside section with line under it =================== */
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.titleUnderline {
+  width: 80px;
+  height: 4px;
+  background-color: white;
+  margin-top: 8px;
+}
+
+/* ======================= Responsive adjustments =================== */
+@media (max-width: 768px) {
+  .mainSections {
+    gap: 60px;
+    padding: 0 16px;
+  }
+
+  .section {
+    padding: 60px 16px;
+  }
+}

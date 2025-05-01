@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import styles from "./LandingPage_v2.module.css";
+import styles from "./LandingPage.module.css";
 
 import TestimonialsCarousel from "./TestimonialsCarousel";
 import CircleAnimation from "./CircleAnimation";
@@ -10,6 +9,7 @@ import LandingPage_Start from "./LandingPage_Start";
 
 const LandingPage: React.FC = () => {
   useEffect(() => {
+    // ======================= Intersection Observer to animate hidden sections on scroll ===================
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -29,48 +29,48 @@ const LandingPage: React.FC = () => {
   }, []);
 
   return (
-    <div className={styles.landingPage}>
+    <div className={styles.wrapper}>
       <img
         src="/src/assets/images/Landing_Page_Background.png"
         alt="Background"
-        className={styles.landingBackground}
+        className={styles.backgroundImage}
       />
 
-      {/* Navbar ثابت */}
+      {/* ======================= Fixed Navbar =================== */}
       <LandingPage_Navbar />
 
-      <div className={styles.landingContent}>
-        <main className={styles.mainSection}>
-          {/* سکشن اول - انیمیشن دایره */}
+      <div className={styles.contentWrapper}>
+        <main className={styles.mainSections}>
+          {/* ======================= Section 1 - Circle Animation =================== */}
           <section id="features" className={`${styles.section} ${styles.hiddenOnLoad}`}>
             <CircleAnimation />
           </section>
 
-          {/* سکشن دوم - سرویس‌ها */}
+          {/* ======================= Section 2 - Services =================== */}
           <section id="services" className={`${styles.section} ${styles.hiddenOnLoad}`}>
             سرویس‌ها
           </section>
 
-          {/* سکشن سوم - نظرات کاربران */}
+          {/* ======================= Section 3 - Testimonials =================== */}
           <section id="testimonials" className={styles.section}>
-            <div className={`hiddenOnLoad ${styles.sectionTitleBox}`}>
+            <div className={`hiddenOnLoad ${styles.titleWrapper}`}>
               <div className={styles.sectionTitle}>نظرات کاربران</div>
-              <div className={styles.sectionTitleLine}></div>
+              <div className={styles.titleUnderline}></div>
             </div>
             <TestimonialsCarousel />
           </section>
 
-          {/* سکشن چهارم - شروع کار */}
+          {/* ======================= Section 4 - Getting Started =================== */}
           <section id="start" className={styles.section}>
             <LandingPage_Start />
           </section>
 
-          {/* سکشن پنجم - دستاوردها */}
+          {/* ======================= Section 5 - Achievement Counters =================== */}
           <section id="achievements" className={`${styles.section} ${styles.hiddenOnLoad}`}>
             <LandingPage_AchievementCounters />
           </section>
 
-          {/* سکشن ششم - تماس با ما */}
+          {/* ======================= Section 6 - Contact Us =================== */}
           <section id="contact" className={`${styles.section} ${styles.hiddenOnLoad}`}>
             آموزش و ارتباط با ما
           </section>
