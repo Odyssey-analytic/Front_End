@@ -5,7 +5,7 @@ import TestimonialsCarousel from "./LandingPage_Testimonials";
 import LandingPage_InsightOrbit from "./LandingPage_InsightOrbit";
 import LandingPage_Navbar from "./LandingPage_Navbar";
 import LandingPage_AchievementCounters from "./LandingPage_AchievementCounters";
-import LandingPage_Start from "./LandingPage_Start";
+import LandingPage_HowToStart from "./LandingPage_HowToStart";
 
 const LandingPage: React.FC = () => {
   useEffect(() => {
@@ -62,7 +62,7 @@ const LandingPage: React.FC = () => {
 
           {/* ======================= Section 4 - Getting Started =================== */}
           <section id="start" className={styles.section}>
-            <LandingPage_Start />
+            <LandingPage_HowToStart />
           </section>
 
           {/* ======================= Section 5 - Achievement Counters =================== */}
