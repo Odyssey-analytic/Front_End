@@ -1,0 +1,113 @@
+.testimonialsContainer {
+  padding: 60px 0;
+  font-size: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.testimonialCard {
+  position: relative;
+  border-radius: 12px;
+  padding: 24px 20px 20px 20px;
+  width: 100%;
+  min-height: 180px;
+  box-sizing: border-box;
+  text-align: right;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* رنگ‌های متناوب */
+.dark {
+  background-color: #1e1e2f;
+  color: white;
+}
+.light {
+  background-color: #d2d2d2;
+  color: #000;
+}
+
+/* نقطه بالا سمت راست */
+.avatarDot {
+  position: absolute;
+  top: 12%;        /* پایین‌ترش کن */
+  right: 5%;      /* اگه RTL هست، بذار left به‌جاش */
+  width: 24px;      /* بزرگ‌ترش کن */
+  height: 24px;
+  z-index: 3;
+  filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
+}
+
+.avatarDotLight {
+  filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
+}
+
+.avatarDotDark {
+  filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
+}
+
+
+
+.avatarDot img {
+  width: 100%;
+  height: auto;
+}
+
+/* علامت ویرگول پایین سمت چپ */
+.quoteIcon {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  width: 24px;
+  height: 24px;
+}
+
+/* انیمیشن */
+:global(.hiddenOnLoad) {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1s ease-out;
+}
+:global(.animate) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.personInfo {
+  text-align: right;
+  margin-bottom: 16px;
+  padding-right: 8%;
+}
+
+.personName {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.personRole {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* رنگ نقش در حالت روشن */
+.light .personRole {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.commentText {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-top: 16px;
+  text-align: right;
+}
+
+.dark .commentText {
+  color: #b5b5b5;
+}
+
+.light .commentText {
+  color: #5f5f5f;
+}

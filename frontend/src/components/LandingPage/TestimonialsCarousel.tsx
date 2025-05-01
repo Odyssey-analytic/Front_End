@@ -1,73 +1,125 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
-import "./TestimonialsCarousel.css";
+import styles from "./TestimonialsCarousel.module.css";
 
 const testimonials = [
-  { text: "عالی بود ", name: "کاربر ۱" },
-  { text: "پشتیبانی قوی", name: "کاربر ۲" },
-  { text: "راضی بودم ", name: "کاربر ۳" },
-  { text: "خیلی حرفه‌ای", name: "کاربر ۴" },
-  { text: "قیمت مناسب", name: "کاربر ۵" },
-  { text: "تجربه عالی", name: "کاربر ۶" },
+  {
+    name: "رضا قاسمی",
+    role: "تحلیل‌گر داده، گروه تکتا",
+    text: "یکی از بهترین مزیت‌ها برای ما گزارش‌های لحظه‌ای بود. منتظر آخر ماه بمونیم تا بدونیم چی کار کردیم؟",
+  },
+  {
+    name: "شیما پارسا",
+    role: "مدیر مارکتینگ، سایت زیبال",
+    text: "از زمانی که این سیستم‌ و استفاده کردیم، نرخ کلیک و بازده تبلیغات‌مون کلی بهتر شده.",
+  },
+  {
+    name: "سعید محمدی",
+    role: "مهندس فنی، استارتاپ بیدو",
+    text: "نیاز نداشتیم تیم آنالیز جدا استخدام کنیم! فقط با یه ادغام ساده، کلی دیتا پشتیبون رسید.",
+  },
+  {
+    name: "نیلوفر سادات",
+    role: "مدیر محصول، اپلیکیشن کندو",
+    text: "قابلیت‌های گزارش‌گیری لحظه‌ای واقعاً نجات‌بخشن. همیشه می‌دونیم توی محصول‌مون دقیقاً چی داره اتفاق می‌افته.",
+  },
+  {
+    name: "امیر رضایی",
+    role: "مدیرعامل، گروه اوپتک",
+    text: "با استفاده از این پلتفرم، خیلی راحت تونستیم رفتار کاربران رو تحلیل کنیم و تصمیم‌های بهتری بگیریم.",
+  },
+  {
+    name: "سارا معتقدی",
+    role: "مدیرمارکتینگ، اپلیکیشن ویواکم",
+    text: "ما از روز اول قصد استفاده از این سرویسو داشتیم چونش دید بهتری به داده‌هامون داده و سریع و قابل اعتماده.",
+  },
 ];
 
 const TestimonialsCarousel: React.FC = () => {
-  return (
-    <section className="testimonials-container">
-      {/* ردیف اول: حرکت به چپ */}
-      <Swiper
-  modules={[Autoplay, FreeMode]}
-  slidesPerView={4}
-  spaceBetween={0} // 👈 فاصله بین اسلایدها حذف شد
-  loop={true}
-  freeMode={true}
-  speed={5000}
-  autoplay={{
-    delay: 0,
-    disableOnInteraction: false,
-    reverseDirection: false, // برای ردیف اول، به چپ
-  }}
-  allowTouchMove={false}
->
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-        {testimonials.map((t, index) => (
-          <SwiperSlide key={`top-${index}`}>
-            <div className="testimonial-card">
-              <p>{t.text}</p>
-              <strong>{t.name}</strong>
-            </div>
-          </SwiperSlide>
-        ))}
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), 100);
+        }
+      },
+      { threshold: 0.6 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const renderSlides = (reverse = false) =>
+    testimonials.map((t, i) => (
+      <SwiperSlide key={reverse ? `rev-${i}` : i}>
+        <div
+          className={`
+            ${styles.testimonialCard}
+            ${i % 2 === 0 ? styles.dark : styles.light}
+          `}
+        >
+          {/* Top-right circle */}
+          <img
+            src={i % 2 === 0 ? "/icons/avatarDot-light.svg" : "/icons/avatarDot-dark.svg"}
+            className={`${styles.avatarDot} ${i % 2 === 0 ? styles.avatarDotLight : styles.avatarDotDark}`}
+            alt="avatar dot"
+          />
+
+          {/* Bottom-left quote mark */}
+          <img
+            src={i % 2 === 0 ? "/icons/quote-light.svg" : "/icons/quote-dark.svg"}
+            className={styles.quoteIcon}
+            alt="quote"
+          />
+
+          {/* Person info */}
+          <div className={styles.personInfo}>
+            <div className={styles.personName}>{t.name}</div>
+            <div className={styles.personRole}>{t.role}</div>
+          </div>
+
+          {/* Comment text */}
+          <p className={styles.commentText}>{t.text}</p>
+        </div>
+      </SwiperSlide>
+    ));
+
+  return (
+    <section
+      id="testimonials"
+      ref={sectionRef}
+      className={`${styles.testimonialsContainer} ${isVisible ? "animate" : "hiddenOnLoad"}`}
+    >
+      <Swiper
+        modules={[Autoplay, FreeMode]}
+        slidesPerView={3}
+        spaceBetween={20}
+        loop
+        freeMode
+        speed={5000}
+        autoplay={{ delay: 0, disableOnInteraction: false }}
+        allowTouchMove={false}
+      >
+        {renderSlides()}
       </Swiper>
 
-      {/* ردیف دوم: حرکت به راست */}
       <Swiper
-  modules={[Autoplay, FreeMode]}
-  slidesPerView={4}
-  spaceBetween={0}
-  loop={true}
-  freeMode={true}
-  speed={5000}
-  autoplay={{
-    delay: 0,
-    disableOnInteraction: false,
-    reverseDirection: true,
-  }}
-  allowTouchMove={false}
-  style={{ marginTop: "50px" }} // 👈 فاصله دلخواه بین ردیف بالا و پایین
->
-
-
-        {testimonials.map((t, index) => (
-          <SwiperSlide key={`bottom-${index}`}>
-            <div className="testimonial-card">
-              <p>{t.text}</p>
-              <strong>{t.name}</strong>
-            </div>
-          </SwiperSlide>
-        ))}
+        modules={[Autoplay, FreeMode]}
+        slidesPerView={3}
+        spaceBetween={20}
+        loop
+        freeMode
+        speed={5000}
+        autoplay={{ delay: 0, disableOnInteraction: false, reverseDirection: true }}
+        allowTouchMove={false}
+        style={{ marginTop: "50px" }}
+      >
+        {renderSlides(true)}
       </Swiper>
     </section>
   );

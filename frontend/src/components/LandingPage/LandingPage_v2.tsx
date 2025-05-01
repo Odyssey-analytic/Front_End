@@ -5,7 +5,7 @@ import TestimonialsCarousel from "./TestimonialsCarousel";
 import CircleAnimation from "./CircleAnimation";
 import LandingPage_Navbar from "./LandingPage_Navbar";
 import LandingPage_AchievementCounters from "./LandingPage_AchievementCounters";
-import LandingPage_Start from "./LandingPage_Start";
+import LandingPage_Start from "./LandingPage_Start"
 
 const LandingPage: React.FC = () => {
   useEffect(() => {
@@ -50,14 +50,22 @@ const LandingPage: React.FC = () => {
 
 
            */}
-            <TestimonialsCarousel />
-           <section id="testimonials" className={`${styles.section}`}>
-  <div className={`${styles.sectionTitleBox} ${styles.hiddenOnLoad}`}>
+           <TestimonialsCarousel />
+<section id="testimonials" className={styles.section}>
+  {/* فقط تیتر انیمیت بشه */}
+  <div className={`hiddenOnLoad ${styles.sectionTitleBox}`}>
     <div className={styles.sectionTitle}>نظرات کاربران</div>
     <div className={styles.sectionTitleLine}></div>
   </div>
- 
+
+  {/* بدون انیمیشن، چون خودش dynamic لود داره */}
+  <div className={styles.carouselWrapper}>
+    
+  </div>
 </section>
+
+
+
 
            
           {/* <section className={`${styles.section} ${styles.hiddenOnLoad}`}></section> */}
