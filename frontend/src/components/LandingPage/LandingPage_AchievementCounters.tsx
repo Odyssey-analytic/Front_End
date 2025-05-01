@@ -1,49 +1,49 @@
-// components/AchievementCounters.tsx
-import React, { useEffect } from "react";
+// components/LandingPage_AchievementCounters.tsx
+import React, { useEffect, useState } from "react";
 import styles from "./LandingPage_AchievementCounters.module.css";
 
 const achievements = [
-  { className: "odometer-users", value: 55000, label: "کاربران مبتنی بر داده" },
-  { className: "odometer-studios", value: 2000, label: "استودیو و کمپانی‌های فعال" },
-  { className: "odometer-years", value: 3, label: "بزرگترین سرویس تحلیلی", suffix: "سال" },
-  { className: "odometer-countries", value: 4, label: "جامعه جهانی", suffix: "کشور دنیا" },
+  { key: "users", value: 55000, label: "کاربران مبتنی بر داده" },
+  { key: "studios", value: 2000, label: "استودیو و کمپانی‌های فعال" },
+  { key: "years", value: 3, label: "بزرگترین سرویس تحلیلی", suffix: "سال" },
+  { key: "countries", value: 4, label: "جامعه جهانی", suffix: "کشور دنیا" },
 ];
 
-declare global {
-  interface Window {
-    Odometer: any;
-  }
+function toPersianDigits(num: number): string {
+  return num.toLocaleString().replace(/\d/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[+d]);
 }
 
-const LandingPage_AchievementCounters : React.FC = () => {
+const Counter: React.FC<{ end: number; duration?: number; steps?: number }> = ({
+  end,
+  duration = 5000, // مدت زمان نهایی شمارش (آهسته‌تر شد)
+  steps = 100      // تعداد گام‌های شمارش
+}) => {
+  const [count, setCount] = useState(0);
+
   useEffect(() => {
-    achievements.forEach(({ className, value }) => {
-      const el = document.querySelector(`.${className}`);
-      if (!el) return;
+    const increment = end / steps;
+    let current = 0;
+    let step = 0;
 
-      const odometer = new window.Odometer({
-        el,
-        value: 0,
-        format: "(,ddd)",
-      });
+    const interval = setInterval(() => {
+      step++;
+      current += increment;
+      if (step >= steps) {
+        current = end;
+        clearInterval(interval);
+      }
+      setCount(Math.floor(current));
+    }, duration / steps);
 
-      let hasRun = false;
+    return () => clearInterval(interval);
+  }, [end, duration, steps]);
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && !hasRun) {
-              odometer.update(value);
-              hasRun = true;
-            }
-          });
-        },
-        { threshold: 0.6 }
-      );
+  return <span>{toPersianDigits(count)}</span>;
+};
 
-      observer.observe(el);
-    });
-  }, []);
+
+const LandingPage_AchievementCounters: React.FC = () => {
+  const DURATION = 3000; // همه با هم توی این مدت تموم بشن
 
   return (
     <div className={styles.container}>
@@ -53,9 +53,11 @@ const LandingPage_AchievementCounters : React.FC = () => {
       </p>
 
       <div className={styles.statsGrid}>
-        {achievements.map(({ className, label, suffix }) => (
-          <div key={className} className={styles.card}>
-            <div className={`odometer ${className}`}>0</div>
+        {achievements.map(({ key, value, label, suffix }) => (
+          <div key={key} className={styles.card}>
+            <div className={styles.odometer}>
+              <Counter end={value} duration={5000} steps={120}  />
+            </div>
             <div className={styles.label}>
               {label}
               {suffix && <span className={styles.suffix}> در {suffix}</span>}
@@ -67,4 +69,4 @@ const LandingPage_AchievementCounters : React.FC = () => {
   );
 };
 
-export default LandingPage_AchievementCounters ;
+export default LandingPage_AchievementCounters;
