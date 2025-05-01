@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./LandingPage.module.css";
 
-import TestimonialsCarousel from "./TestimonialsCarousel";
+import TestimonialsCarousel from "./LandingPage_Testimonials";
 import LandingPage_InsightOrbit from "./LandingPage_InsightOrbit";
 import LandingPage_Navbar from "./LandingPage_Navbar";
 import LandingPage_AchievementCounters from "./LandingPage_AchievementCounters";

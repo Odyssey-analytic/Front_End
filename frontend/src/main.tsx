@@ -17,7 +17,7 @@ import ActiveUsersKPI from "./components/KPICharts/ActiveUsersKPI";
 import DashboardPage from "./components/DashboardPage/DashboardPage";
 import LandingPage from "./components/LandingPage/LandingPage";
 import SignIn from './components/OAuthPortal/SignIn';
-import TestimonialsCarousel from "./components/LandingPage/TestimonialsCarousel";
+import TestimonialsCarousel from "./components/LandingPage/LandingPage_Testimonials";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

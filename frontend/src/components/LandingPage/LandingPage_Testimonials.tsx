@@ -2,8 +2,9 @@ import React, { useRef, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
-import styles from "./TestimonialsCarousel.module.css";
+import styles from "./LandingPage_Testimonials.module.css";
 
+// ======================= Static testimonial data =======================
 const testimonials = [
   {
     name: "رضا قاسمی",
@@ -37,10 +38,11 @@ const testimonials = [
   },
 ];
 
-const TestimonialsCarousel: React.FC = () => {
+const LandingPage_Testimonials: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
+  // ======================= Fade-in when in viewport =======================
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -54,37 +56,38 @@ const TestimonialsCarousel: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  // ======================= Generate testimonial cards =======================
   const renderSlides = (reverse = false) =>
     testimonials.map((t, i) => (
       <SwiperSlide key={reverse ? `rev-${i}` : i}>
         <div
           className={`
-            ${styles.testimonialCard}
+            ${styles.card}
             ${i % 2 === 0 ? styles.dark : styles.light}
           `}
         >
-          {/* Top-right circle */}
+          {/* Avatar dot */}
           <img
             src={i % 2 === 0 ? "/icons/avatarDot-light.svg" : "/icons/avatarDot-dark.svg"}
             className={`${styles.avatarDot} ${i % 2 === 0 ? styles.avatarDotLight : styles.avatarDotDark}`}
             alt="avatar dot"
           />
 
-          {/* Bottom-left quote mark */}
+          {/* Quote icon */}
           <img
             src={i % 2 === 0 ? "/icons/quote-light.svg" : "/icons/quote-dark.svg"}
             className={styles.quoteIcon}
             alt="quote"
           />
 
-          {/* Person info */}
+          {/* Name and role */}
           <div className={styles.personInfo}>
             <div className={styles.personName}>{t.name}</div>
             <div className={styles.personRole}>{t.role}</div>
           </div>
 
           {/* Comment text */}
-          <p className={styles.commentText}>{t.text}</p>
+          <p className={styles.comment}>{t.text}</p>
         </div>
       </SwiperSlide>
     ));
@@ -93,8 +96,9 @@ const TestimonialsCarousel: React.FC = () => {
     <section
       id="testimonials"
       ref={sectionRef}
-      className={`${styles.testimonialsContainer} ${isVisible ? "animate" : "hiddenOnLoad"}`}
+      className={`${styles.testimonialsWrapper} ${isVisible ? "animate" : "hiddenOnLoad"}`}
     >
+      {/* Top swiper */}
       <Swiper
         modules={[Autoplay, FreeMode]}
         slidesPerView={3}
@@ -108,6 +112,7 @@ const TestimonialsCarousel: React.FC = () => {
         {renderSlides()}
       </Swiper>
 
+      {/* Bottom swiper in reverse direction */}
       <Swiper
         modules={[Autoplay, FreeMode]}
         slidesPerView={3}
@@ -125,4 +130,4 @@ const TestimonialsCarousel: React.FC = () => {
   );
 };
 
-export default TestimonialsCarousel;
+export default LandingPage_Testimonials;
