@@ -72,10 +72,13 @@ const LandingPage_AchievementCounters: React.FC = () => {
 
   return (
     <div className={styles.container} ref={containerRef}>
-      <h3 className={styles.title}>دستاوردهای ما در یک نگاه :</h3>
-      <p className={styles.subtitle}>
-        هزاران استودیو، ناشر و توسعه‌دهنده با استفاده از سرویس‌های ما مسیر جذابی برای تحلیل و رشد پیدا کرده‌اند. ثبت‌نام کنید!
-      </p>
+      <h3 className={styles.title}>دست‌آوردهای ما در یک نگاه :</h3>
+      <div className={styles.subtitleWrapper}>
+  <p className={styles.subtitle}>
+    هزاران استودیو، ناشر و توسعه‌دهنده با استفاده از سرویس‌های ما مسیر بهتری برای تحلیل و رشد پیدا کرده‌اند. نوبت شماست!
+  </p>
+</div>
+
 
       <div className={styles.statsGrid}>
         {achievements.map(({ key, value, label, suffix }) => (

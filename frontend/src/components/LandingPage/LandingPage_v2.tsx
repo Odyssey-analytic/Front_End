@@ -75,7 +75,7 @@ const LandingPage: React.FC = () => {
   <LandingPage_Start />
 </section>
 
-          <section id="achievements" className={`${styles.section} ${styles.hiddenOnLoad}`}>دستاوردها <LandingPage_AchievementCounters /></section>
+          <section id="achievements" className={`${styles.section} ${styles.hiddenOnLoad}`}><LandingPage_AchievementCounters /></section>
 
           <section id="contact" className={`${styles.section} ${styles.hiddenOnLoad}`}>آموزش و ارتباط با ما</section>
         </main>

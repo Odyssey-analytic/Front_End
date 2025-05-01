@@ -13,8 +13,10 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 100px 100px; /* عمودی، افقی */
 }
+
+
 
 .stepItem {
   width: 200px;
@@ -24,11 +26,20 @@
   color: white;
 }
 
-.icon {
+/* .icon {
   width: 64px;
   height: 64px;
   margin-bottom: 16px;
+} */
+
+.icon {
+  width: 8vw;   
+  height: auto; 
+  max-width: 100px; 
+  min-width: 48px;  
+  margin-bottom: 16px;
 }
+
 
 .stepTitle {
   font-size: 18px;

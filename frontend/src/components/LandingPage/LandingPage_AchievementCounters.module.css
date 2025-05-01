@@ -7,7 +7,10 @@
   .title {
     font-size: 20px;
     margin-bottom: 12px;
+    color: rgba(217, 217, 217, 0.8); /* 👈 دقیقاً مطابق تصویر */
+    font-weight: 500;
   }
+  
   
   .subtitle {
     font-size: 14px;
@@ -15,43 +18,28 @@
     opacity: 0.8;
   }
   
-  /* .statsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 24px;
-    justify-items: center;
-  } */
-
-  /* .statsGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 24px;
-    justify-items: center;
-  } */
-
   .statsGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    align-items: stretch; /* 👈 این مهمه */
+    display: flex;
+    flex-wrap: wrap; /* برای جمع شدن در موبایل */
+    justify-content: center;
+    gap: 32px; /* فاصله بین کارت‌ها */
+    row-gap: 40px; /* فاصله عمودی بیشتر */
   }
-  
-  
   
   .card {
     background: #f2f2f2;
     color: #111;
-    padding: 24px;
-    border-radius: 12px;
-    min-width: 180px;
+    padding: 32px 24px;
+    border-radius: 16px;
     font-size: 18px;
-  
-    height: 100%;           /* 👈 این کمک می‌کنه وقتی داخل container کش میاد */
-    display: flex;          /* 👇 برای چیدمان درست متن */
+    width: 290px; 
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 180px;
   }
+  
   
   
   .odometer {
@@ -68,5 +56,18 @@
     font-size: 14px;
     display: block;
     color: #444;
+  }
+  
+  .subtitleWrapper {
+    display: flex;
+    justify-content: flex-start; /* ⬅️ از سمت راست در RTL شروع می‌شه */
+    max-width: 1200px;           /* هم‌اندازه کل کارت‌ها */
+    /* margin: 0 auto 40px auto;     */
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    opacity: 0.8;
+    text-align: right;
   }
   
