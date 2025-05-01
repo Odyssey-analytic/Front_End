@@ -1,73 +1,95 @@
+/* ======================= Main container for the achievement section ======================= */
 .container {
-    text-align: center;
-    color: white;
-    padding: 40px 20px;
+  text-align: center;
+  color: white;
+  padding: 40px 20px;
+}
+
+/* ======================= Section title ======================= */
+.title {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: rgba(217, 217, 217, 0.8); /* matches design */
+  font-weight: 500;
+}
+
+/* ======================= Subtitle section aligned right for RTL ======================= */
+.subtitleWrapper {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 1200px;
+}
+
+/* ======================= Descriptive subtitle ======================= */
+.subtitle {
+  font-size: 14px;
+  opacity: 0.8;
+  text-align: right;
+  margin-bottom: 40px;
+}
+
+/* ======================= Grid layout for stat cards ======================= */
+.statsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;       /* horizontal spacing */
+  row-gap: 40px;   /* vertical spacing */
+}
+
+/* ======================= Individual stat card styling ======================= */
+.card {
+  background: #f2f2f2;
+  color: #111;
+  padding: 32px 24px;
+  border-radius: 16px;
+  font-size: 18px;
+  width: 290px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* Initial state for animation */
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+/* ======================= Animation trigger class for cards ======================= */
+.fadeUp {
+  animation: fadeUpAnim 1.4s ease forwards; /* ⬅️ slowed down and smoother */
+}
+
+/* ======================= Keyframes for upward fade animation ======================= */
+@keyframes fadeUpAnim {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
   }
-  
-  .title {
-    font-size: 20px;
-    margin-bottom: 12px;
-    color: rgba(217, 217, 217, 0.8); /* 👈 دقیقاً مطابق تصویر */
-    font-weight: 500;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  
-  .subtitle {
-    font-size: 14px;
-    margin-bottom: 40px;
-    opacity: 0.8;
-  }
-  
-  .statsGrid {
-    display: flex;
-    flex-wrap: wrap; /* برای جمع شدن در موبایل */
-    justify-content: center;
-    gap: 32px; /* فاصله بین کارت‌ها */
-    row-gap: 40px; /* فاصله عمودی بیشتر */
-  }
-  
-  .card {
-    background: #f2f2f2;
-    color: #111;
-    padding: 32px 24px;
-    border-radius: 16px;
-    font-size: 18px;
-    width: 290px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 180px;
-  }
-  
-  
-  
-  .odometer {
-    font-size: 28px;
-    font-weight: bold;
-    color: #111;
-  }
-  
-  .label {
-    margin-top: 8px;
-  }
-  
-  .suffix {
-    font-size: 14px;
-    display: block;
-    color: #444;
-  }
-  
-  .subtitleWrapper {
-    display: flex;
-    justify-content: flex-start; /* ⬅️ از سمت راست در RTL شروع می‌شه */
-    max-width: 1200px;           /* هم‌اندازه کل کارت‌ها */
-    /* margin: 0 auto 40px auto;     */
-  }
-  
-  .subtitle {
-    font-size: 14px;
-    opacity: 0.8;
-    text-align: right;
-  }
-  
+}
+
+
+/* ======================= Animated counter number styling ======================= */
+.odometer {
+  font-size: 28px;
+  font-weight: bold;
+  color: #111;
+}
+
+/* ======================= Stat label (e.g., "active studios") ======================= */
+.label {
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+/* ======================= Suffix (e.g., "in 10 countries") ======================= */
+.suffix {
+  font-size: 14px;
+  display: block;
+  color: #444;
+}
