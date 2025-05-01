@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend, ChartData } from 'chart.js';
+import MainLayout from '../MainLayout/MainLayout';
+import './ActiveUsersKPI.css';
 
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 
@@ -9,7 +11,7 @@ const RealTimeChart = () => {
     labels: [],
     datasets: [
       {
-        label: 'Random Data',
+        label: 'Average Session Length',
         data: [],
         borderColor: 'rgba(75, 192, 192, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -17,6 +19,19 @@ const RealTimeChart = () => {
       },
     ],
   });
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Average Session Length',
+      },
+    },
+  };
 
   const searchParams = new URLSearchParams(window.location.search);
   const urlToken = searchParams.get('token') || '';
@@ -89,9 +104,19 @@ const RealTimeChart = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Real-Time Data Chart</h2>
-      <Line width={1500} height={550} data={chartData} />
+    <div className="welcome-page-container vh-100 d-flex flex-column">
+    <MainLayout>
+      <div className='kpichart-page-container'>
+        <div className='kpi-sessionavr-main-box'>
+          <div className='kpi-chart-header'>
+            <h2 style={{fontSize: "1.5rem"}}><u>میانگین طول بازی:</u></h2>
+          </div>
+          <div className='kpi-chart-body'>
+            <Line width={1100} height={350} options={options} data={chartData} />
+          </div>
+        </div>
+      </div>
+    </MainLayout>
     </div>
   );
 };
