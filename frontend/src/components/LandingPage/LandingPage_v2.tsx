@@ -5,6 +5,7 @@ import TestimonialsCarousel from "./TestimonialsCarousel";
 import CircleAnimation from "./CircleAnimation";
 import LandingPage_Navbar from "./LandingPage_Navbar";
 import LandingPage_AchievementCounters from "./LandingPage_AchievementCounters";
+import LandingPage_Start from "./LandingPage_Start";
 
 const LandingPage: React.FC = () => {
   useEffect(() => {
@@ -61,7 +62,10 @@ const LandingPage: React.FC = () => {
            
           {/* <section className={`${styles.section} ${styles.hiddenOnLoad}`}></section> */}
 
-          <section id="start" className={`${styles.section} ${styles.hiddenOnLoad}`}>چطور شروع کنیم؟</section>
+          {/* <section id="start" className={`${styles.section} ${styles.hiddenOnLoad}`}>چطور شروع کنیم؟</section> */}
+          <section id="start" className={styles.section}>
+  <LandingPage_Start />
+</section>
 
           <section id="achievements" className={`${styles.section} ${styles.hiddenOnLoad}`}>دستاوردها <LandingPage_AchievementCounters /></section>
 

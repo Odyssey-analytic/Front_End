@@ -1,0 +1,41 @@
+.startContainer {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.stepsWrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.stepItem {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+}
+
+.stepTitle {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.stepDescription {
+  font-size: 14px;
+  opacity: 0.8;
+}
