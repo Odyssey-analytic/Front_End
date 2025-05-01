@@ -5,9 +5,9 @@ import OdessayLogo from "/public/icons/odessay_logo.svg";
 const sections = [
   { id: "features", label: "ویژگی‌ها" },
   { id: "services", label: "سرویس‌ها" },
-  { id: "testimonials", label: "نظرات" }, // 👈 اینو اضافه کن
+  { id: "testimonials", label: "نظرات" }, 
   { id: "start", label: "شروع" },
-  { id: "achievements", label: "دستاوردها" },
+  { id: "achievements", label: "دست‌آورد‌ها" },
   { id: "contact", label: "ارتباط" },
 ];
 

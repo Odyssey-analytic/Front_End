@@ -15,12 +15,28 @@
     opacity: 0.8;
   }
   
-  .statsGrid {
+  /* .statsGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 24px;
     justify-items: center;
+  } */
+
+  /* .statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 24px;
+    justify-items: center;
+  } */
+
+  .statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    align-items: stretch; /* 👈 این مهمه */
   }
+  
+  
   
   .card {
     background: #f2f2f2;
@@ -29,7 +45,14 @@
     border-radius: 12px;
     min-width: 180px;
     font-size: 18px;
+  
+    height: 100%;           /* 👈 این کمک می‌کنه وقتی داخل container کش میاد */
+    display: flex;          /* 👇 برای چیدمان درست متن */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
+  
   
   .odometer {
     font-size: 28px;
