@@ -15,9 +15,8 @@ import ResetpasswordPage from "./components/ResetpasswordPage/ResetpasswordPage"
 import WelcomePage from "./components/WelcomePage/WelcomePage";
 import ActiveUsersKPI from "./components/KPICharts/ActiveUsersKPI";
 import DashboardPage from "./components/DashboardPage/DashboardPage";
-import LandingPage from "./components/LandingPage/LandingPage";
+import LandingPage from "./components/LandingPage/LandingPage/LandingPage";
 import SignIn from './components/OAuthPortal/SignIn';
-import TestimonialsCarousel from "./components/LandingPage/LandingPage_Testimonials";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -31,7 +30,6 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/reset-password/:token" element={<ResetpasswordPage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/start" element={<TestimonialsCarousel />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

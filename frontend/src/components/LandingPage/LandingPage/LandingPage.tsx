@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import styles from "./LandingPage.module.css";
 
-import TestimonialsCarousel from "./LandingPage_Testimonials";
-import LandingPage_InsightOrbit from "./LandingPage_InsightOrbit";
-import LandingPage_Navbar from "./LandingPage_Navbar";
-import LandingPage_AchievementCounters from "./LandingPage_AchievementCounters";
-import LandingPage_HowToStart from "./LandingPage_HowToStart";
+import LandingPage_Testimonials from "../LandingPage_Testimonials/LandingPage_Testimonials";
+import LandingPage_InsightOrbit from "../LandingPage_InsightOrbit/LandingPage_InsightOrbit";
+import LandingPage_Navbar from "../LandingPage_Navbar/LandingPage_Navbar";
+import LandingPage_AchievementCounters from "../LandingPage_AchievementCounters/LandingPage_AchievementCounters";
+import LandingPage_HowToStart from "../LandingPage_HowToStart/LandingPage_HowToStart";
 
 const LandingPage: React.FC = () => {
   useEffect(() => {
@@ -57,7 +57,7 @@ const LandingPage: React.FC = () => {
               <div className={styles.sectionTitle}>نظرات کاربران</div>
               <div className={styles.titleUnderline}></div>
             </div>
-            <TestimonialsCarousel />
+            <LandingPage_Testimonials />
           </section>
 
           {/* ======================= Section 4 - Getting Started =================== */}
