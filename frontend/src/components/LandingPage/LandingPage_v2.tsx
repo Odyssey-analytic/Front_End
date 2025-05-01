@@ -1,8 +1,9 @@
+// LandingPage.tsx
 import React, { useEffect } from "react";
 import styles from "./LandingPage_v2.module.css";
 import TestimonialsCarousel from "./TestimonialsCarousel";
-import OdessayLogo from "/public/icons/odessay_logo.svg";
 import CircleAnimation from "./CircleAnimation";
+import LandingPage_Navbar from "./LandingPage_Navbar";
 
 const LandingPage: React.FC = () => {
   useEffect(() => {
@@ -32,46 +33,26 @@ const LandingPage: React.FC = () => {
         className={styles.landingBackground}
       />
 
+      {/* Fixed Navbar */}
+      <LandingPage_Navbar />
+
       <div className={styles.landingContent}>
-        <header className={styles.landingHeader}>
-        <div className={styles.authButtons}>
-            <button className={styles.signupBtn}>ثبت‌نام</button>
-            <button className={styles.loginBtn}>ورود</button>
-          </div>
-          <div className={styles.logo}>
-            <img src={OdessayLogo} alt="Odessay Logo" className={styles.logoImage} />
-            <span>ODESSAY</span>
-          </div>
-
-        </header>
-
         <main className={styles.mainSection}>
-          {/* Section 1: Hero */}
-          <section className={`${styles.section} ${styles.heroSection}`}>
+          <section id="features" className={`${styles.section} ${styles.hiddenOnLoad}`}>
             <CircleAnimation />
-            {/* <div className={styles.heroText}>
-              <h1>هدایت مسیر رشد محصول شما</h1>
-              <p>در چشم‌انداز داده‌محور جهانی</p>
-            </div> */}
           </section>
 
-          {/* Section 2: Feature Highlights */}
-          <section className={styles.section}>ویژگی‌های کلیدی</section>
+          <section id="services" className={`${styles.section} ${styles.hiddenOnLoad}`}>سرویس‌ها</section>
 
-          {/* Section 3: Services */}
-          <section className={styles.section}>سرویس‌ها</section>
+          <section className={`${styles.section} ${styles.hiddenOnLoad}`}>سرویس‌ها</section>
 
-          {/* Section 4: Testimonials */}
-          <section className={styles.section}><TestimonialsCarousel /></section>
+          {/* <section className={`${styles.section} ${styles.hiddenOnLoad}`}><TestimonialsCarousel /></section> */}
 
-          {/* Section 5: Getting Started Steps */}
-          <section className={styles.section}>چطور شروع کنیم؟</section>
+          <section id="start" className={`${styles.section} ${styles.hiddenOnLoad}`}>چطور شروع کنیم؟</section>
 
-          {/* Section 6: Achievements */}
-          <section className={styles.section}>دستاوردها</section>
+          <section id="achievements" className={`${styles.section} ${styles.hiddenOnLoad}`}>دستاوردها</section>
 
-          {/* Section 7: Video + Contact */}
-          <section className={styles.section}>آموزش و ارتباط با ما</section>
+          <section id="contact" className={`${styles.section} ${styles.hiddenOnLoad}`}>آموزش و ارتباط با ما</section>
         </main>
       </div>
     </div>

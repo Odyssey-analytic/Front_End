@@ -1,4 +1,4 @@
-/* ===== Global Layout ===== */
+
 .landingPage {
   position: relative;
   width: 100%;
@@ -13,62 +13,17 @@
   width: 100%;
   min-height: 570vh;
   max-height: 600vh;
-  /* object-fit: cover; */
   z-index: 0;
 }
 
-/* ===== Header ===== */
 .landingContent {
   position: relative;
   z-index: 2;
   padding: 20px;
   width: 100%;
+  margin-top: 80px; /* to give space for fixed navbar */
 }
 
-.landingHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 32px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: white;
-  font-size: 20px;
-  letter-spacing: 2px;
-}
-
-.logoImage {
-  height: 50px;
-  width: auto;
-}
-
-.authButtons {
-  display: flex;
-  gap: 12px;
-}
-
-.signupBtn {
-  background: #ddd;
-  border: none;
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.loginBtn {
-  background: none;
-  border: none;
-  color: white;
-  font-weight: normal;
-  cursor: pointer;
-}
-
-/* ===== Main Content Sections ===== */
 .mainSection {
   display: flex;
   flex-direction: column;
@@ -76,7 +31,6 @@
   padding: 0 24px;
 }
 
-/* هر بخش تمام عرض با ارتفاع مینیمم مناسب */
 .section {
   display: flex;
   flex-direction: column;
@@ -89,7 +43,6 @@
   z-index: 2;
 }
 
-/* ===== Specific Section Styling ===== */
 .circleSection {
   background: transparent;
 }
@@ -103,7 +56,6 @@
   background: #0c0b1f;
 }
 
-/* ===== Animation Utilities ===== */
 .hiddenOnLoad {
   opacity: 0;
   transform: translateY(60px);
@@ -115,23 +67,7 @@
   transform: translateY(0);
 }
 
-/* ===== Responsive Design ===== */
 @media (max-width: 768px) {
-  .landingHeader {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .authButtons {
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-  }
-
-  .signupBtn, .loginBtn {
-    width: 100%;
-  }
-
   .mainSection {
     gap: 60px;
     padding: 0 16px;
