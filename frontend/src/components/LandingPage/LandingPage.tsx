@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styles from "./LandingPage.module.css";
 
 import TestimonialsCarousel from "./TestimonialsCarousel";
-import CircleAnimation from "./CircleAnimation";
+import LandingPage_InsightOrbit from "./LandingPage_InsightOrbit";
 import LandingPage_Navbar from "./LandingPage_Navbar";
 import LandingPage_AchievementCounters from "./LandingPage_AchievementCounters";
 import LandingPage_Start from "./LandingPage_Start";
@@ -43,7 +43,7 @@ const LandingPage: React.FC = () => {
         <main className={styles.mainSections}>
           {/* ======================= Section 1 - Circle Animation =================== */}
           <section id="features" className={`${styles.section} ${styles.hiddenOnLoad}`}>
-            <CircleAnimation />
+            <LandingPage_InsightOrbit />
           </section>
 
           {/* ======================= Section 2 - Services =================== */}
