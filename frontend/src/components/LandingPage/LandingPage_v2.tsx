@@ -4,6 +4,7 @@ import styles from "./LandingPage_v2.module.css";
 import TestimonialsCarousel from "./TestimonialsCarousel";
 import CircleAnimation from "./CircleAnimation";
 import LandingPage_Navbar from "./LandingPage_Navbar";
+import LandingPage_AchievementCounters from "./LandingPage_AchievementCounters";
 
 const LandingPage: React.FC = () => {
   useEffect(() => {
@@ -44,13 +45,25 @@ const LandingPage: React.FC = () => {
 
           <section id="services" className={`${styles.section} ${styles.hiddenOnLoad}`}>سرویس‌ها</section>
 
-          <section className={`${styles.section} ${styles.hiddenOnLoad}`}>سرویس‌ها</section>
+          {/* <section id="testimonials" className={`${styles.section} ${styles.hiddenOnLoad}`} > <TestimonialsCarousel />نظرات</section>
 
-          {/* <section className={`${styles.section} ${styles.hiddenOnLoad}`}><TestimonialsCarousel /></section> */}
+
+           */}
+            <TestimonialsCarousel />
+           <section id="testimonials" className={`${styles.section}`}>
+  <div className={`${styles.sectionTitleBox} ${styles.hiddenOnLoad}`}>
+    <div className={styles.sectionTitle}>نظرات کاربران</div>
+    <div className={styles.sectionTitleLine}></div>
+  </div>
+ 
+</section>
+
+           
+          {/* <section className={`${styles.section} ${styles.hiddenOnLoad}`}></section> */}
 
           <section id="start" className={`${styles.section} ${styles.hiddenOnLoad}`}>چطور شروع کنیم؟</section>
 
-          <section id="achievements" className={`${styles.section} ${styles.hiddenOnLoad}`}>دستاوردها</section>
+          <section id="achievements" className={`${styles.section} ${styles.hiddenOnLoad}`}>دستاوردها <LandingPage_AchievementCounters /></section>
 
           <section id="contact" className={`${styles.section} ${styles.hiddenOnLoad}`}>آموزش و ارتباط با ما</section>
         </main>

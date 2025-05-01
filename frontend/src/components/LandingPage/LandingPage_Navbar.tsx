@@ -5,6 +5,7 @@ import OdessayLogo from "/public/icons/odessay_logo.svg";
 const sections = [
   { id: "features", label: "ویژگی‌ها" },
   { id: "services", label: "سرویس‌ها" },
+  { id: "testimonials", label: "نظرات" }, // 👈 اینو اضافه کن
   { id: "start", label: "شروع" },
   { id: "achievements", label: "دستاوردها" },
   { id: "contact", label: "ارتباط" },
@@ -17,26 +18,29 @@ const LandingPage_Navbar: React.FC = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
+        const visible = entries.filter((entry) => entry.isIntersecting);
+        if (visible.length > 0) {
+          // انتخاب سکشنی که بیشتر در viewport هست
+          const mostVisible = visible.reduce((prev, current) =>
+            prev.intersectionRatio > current.intersectionRatio ? prev : current
+          );
+          setActiveSection(mostVisible.target.id);
+        }
       },
-      { threshold: 0.6 }
+      {
+        threshold: 0.4, // نسبت به ارتفاع سکشن‌ها بهتر جواب می‌ده
+        rootMargin: "0px 0px -35% 0px", // بهتر scroll detection
+      }
     );
-
+  
     sections.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
-
+  
     return () => observer.disconnect();
   }, []);
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  
 
   return (
     <nav className={styles.navbar}>
@@ -45,7 +49,7 @@ const LandingPage_Navbar: React.FC = () => {
         <button className={styles.loginBtn}>ورود</button>
       </div>
 
-      <button className={styles.menuToggle} onClick={toggleMenu}>
+      <button className={styles.menuToggle} >
         ☰
       </button>
 

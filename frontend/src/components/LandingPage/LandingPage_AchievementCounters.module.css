@@ -1,0 +1,49 @@
+.container {
+    text-align: center;
+    color: white;
+    padding: 40px 20px;
+  }
+  
+  .title {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 40px;
+    opacity: 0.8;
+  }
+  
+  .statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    justify-items: center;
+  }
+  
+  .card {
+    background: #f2f2f2;
+    color: #111;
+    padding: 24px;
+    border-radius: 12px;
+    min-width: 180px;
+    font-size: 18px;
+  }
+  
+  .odometer {
+    font-size: 28px;
+    font-weight: bold;
+    color: #111;
+  }
+  
+  .label {
+    margin-top: 8px;
+  }
+  
+  .suffix {
+    font-size: 14px;
+    display: block;
+    color: #444;
+  }
+  

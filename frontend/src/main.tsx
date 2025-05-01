@@ -18,6 +18,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import DashboardPage from "./components/DashboardPage/DashboardPage";
 import LandingPage_v2 from "./components/LandingPage/LandingPage_v2";
 import SignIn from './components/OAuthPortal/SignIn';
+import TestimonialsCarousel from './components/LandingPage/TestimonialsCarousel';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -32,6 +33,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/land" element={<LandingPage_v2 />}></Route>
+        <Route path="/swiper" element={<TestimonialsCarousel />}></Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>
