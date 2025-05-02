@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { submitGameInfo } from '../../services/userService';
 import MainLayout from '../MainLayout/MainLayout';
-import { Copy } from "lucide-react";
+// import { Copy } from "lucide-react";
+import { motion } from "framer-motion";
+
 
 // =========================== assets ===========================
 import OdessayLogo from '/public/icons/odessay_logo.svg';
@@ -17,7 +19,8 @@ import gift from '/public/icons/gift.svg';
 import close_icon from '/public/icons/close_icon.svg';
 import uploading_game_image_icon from '/public/icons/game-console-icon.svg';
 import uploading_game_image_icon_ghost from '/public/icons/game-ghost-icon.svg';
-
+// import copyIcon from '../../../public/icons/copy-icon-solid.svg';
+import copyIcon from '/public/icons/copy-icon-gradient.svg';
 
 const WelcomePage = () => {
   const [username, setUsername] = useState('');
@@ -35,9 +38,22 @@ const WelcomePage = () => {
   const [gameNameError, setGameNameError] = useState('');
   const [engineError, setEngineError] = useState('');
   const [platformError, setPlatformError] = useState('');
+
+  const [copySuccess, setCopySuccess] = useState(false);
  
   // loading between steps
   const [isLoading, setIsLoading] = useState(false);
+
+
+  // Fading between steps
+  const [isFading, setIsFading] = useState(false);
+
+
+  const [token, setToken] = useState('');
+
+  const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+
 
   // const handleClick = () => {
   //   setIsLoading(true);
@@ -47,6 +63,8 @@ const WelcomePage = () => {
   //   }, 300);
   // };
 
+
+  // copying in local and server handling
   const handleClick = () => {
     setIsLoading(true);
     setIsFading(true); // شروع fade
@@ -55,18 +73,52 @@ const WelcomePage = () => {
       setStep(2);
       setIsLoading(false);
       setIsFading(false); // ریست برای مرحله بعد
-    }, 2000);
+    }, 300);
   };
   
+  const copyToClipboard = (text: string) => {
+    if (navigator.clipboard && window.isSecureContext) {
+      
+      // ✅ Clipboard API مدرن در محیط امن در دسترس است
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          setCopySuccess(true);
+          setTimeout(() => setCopySuccess(false), 3000);
+        })
+        .catch((err) => {
+          console.error("خطا در کپی:", err);
+        });
+    } else {
+      // ❗ Clipboard API در دسترس نیست → استفاده از fallback کلاسیک
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
   
-  // Fading between steps
-  const [isFading, setIsFading] = useState(false);
+      // از دید خارجش کنیم
+      textArea.style.position = "fixed";
+      textArea.style.top = "-1000px";
+      textArea.style.left = "-1000px";
+  
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+  
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          setCopySuccess(true);
+          setTimeout(() => setCopySuccess(false), 3000);
+        } else {
+          console.error("کپی با execCommand شکست خورد.");
+        }
+      } catch (err) {
+        console.error("خطا در کپی (fallback):", err);
+      }
+  
+      document.body.removeChild(textArea);
+    }
+  };
+  
 
-
-  const [token, setToken] = useState('');
-
-  const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
 
   // const handleLogout = () => {
   //   localStorage.removeItem('accessToken');
@@ -133,7 +185,16 @@ const WelcomePage = () => {
     try {
       // const result = await submitGameInfo(data);
       // setToken(result.token);
-      setStep(3);
+
+
+      // setStep(3);
+      setIsLoading(true);
+      setTimeout(() => {
+        setStep(3);
+        setIsLoading(false);
+      }, 200);
+      
+    
     } catch (err: any) {
       console.error('API error:', err.response?.data || err.message);
       alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
@@ -192,7 +253,12 @@ const WelcomePage = () => {
             </div>
 
             {step === 1 && (
-              <>
+              // <>
+              <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              >
                 <p className="welcome-page-popup-title">محصولی که می‌خوای آنالیزشون رو انجام بدی رو انتخاب کن:</p>
                 <div className="product-options-list">
                   <label className={`product-option ${selectedProduct === 'game' ? 'checked' : ''}`}>
@@ -243,7 +309,7 @@ const WelcomePage = () => {
                   </button> */}
 
                   <button
-                    className="continue-btn"
+                    className="welcome-page-continue-btn"
                     disabled={!selectedProduct || isLoading}
                     onClick={handleClick}
                     // onClick={() => setStep(2)}
@@ -253,12 +319,19 @@ const WelcomePage = () => {
 
 
                 </div>
-              </>
+              {/* </> */}
+              </motion.div>
             )}
             {step === 2 && selectedProduct === 'game' && (
             
             // Fading option
             // <div className="welcome-page-steps-fade-in">
+
+            <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            >
 
             <div className="step-2-compact">
               <p className="text-start mb-3">اطلاعات بازیت رو وارد کن :</p>
@@ -492,17 +565,55 @@ const WelcomePage = () => {
               </div>
 
               <div className="d-flex justify-content-center gap-3 mt-3">
-                <button className="continue-btn" onClick={() => setStep(1)}>بازگشت</button>
-                <button className="continue-btn" onClick={handleSubmitGame}>ثبت</button>
+                {/* <button className="continue-btn" onClick={() => setStep(1)}>بازگشت</button> */}
+
+                <button
+                  className="welcome-page-continue-btn"
+                  onClick={() => {
+                    setIsLoading(true);
+                    setTimeout(() => {
+                      setStep(1);
+                      setIsLoading(false);
+                    }, 200);
+                  }}
+                >
+                  بازگشت
+                </button>
+
+
+
+                {/* <button 
+                  className="welcome-page-continue-btn" 
+                  onClick={handleSubmitGame}>ثبت
+                </button> */}
+
+                <button
+                    className="welcome-page-continue-btn"
+                    disabled={!selectedProduct || isLoading}
+                    onClick={handleSubmitGame}
+                    // onClick={() => setStep(2)}
+                    >
+                    {isLoading ? "در حال بارگذاری..." : "ثبت"}
+                  </button>
+
+              
               </div>
 
             {/* </div> */}
 
+            
             </div>
+            </motion.div>
             
             )}
 
             {step === 3 && (
+              <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              >
+
               <div className="welcome-page-step-success-container">
 
                 {/* <img
@@ -526,13 +637,67 @@ const WelcomePage = () => {
                 </div> */}
                 
                 <div className="welcome-page-access-token-box mb-3">
-                  <strong>Access Token:</strong><br />
-                  
-                  <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  {/* <strong>Access Token:</strong><br /> */}
+                  <strong className="welcome-page-access-token-label">Access Token:</strong><br />
 
-                    <button className="welcome-page-token-button" onClick={() => navigator.clipboard.writeText(token)}>
+                  
+                  {/* <div className='welcome-page-acces-token-inside-box'> */}
+
+                  
+
+                    {/* <button 
+                      className="welcome-page-token-button" onClick={() => navigator.clipboard.writeText(token)}>
                       کپی
-                    </button>
+                    </button> */}
+
+                    {/* <img
+                      src={copyIcon}
+                      alt="Copy"
+                      className="welcome-page-token-copy-icon-img"
+                      onClick={() => {
+                        navigator.clipboard.writeText(token);
+                        setCopySuccess(true);
+                        setTimeout(() => setCopySuccess(false), 2000); // پیام بعد از ۲ ثانیه محو میشه
+                      }}
+                      style={{ cursor: 'pointer' }}
+                    />
+
+                    {copySuccess && <span className="welcome-page-copy-success-msg">کپی شد!</span>}
+ */}
+
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+
+
+                      <div>
+                    {/* <div className="welcome-page-copy-icon-wrapper"> */}
+                      <div className="welcome-page-copy-icon-wrapper">
+                        <img
+                          src={copyIcon}
+                          alt="Copy"
+                          className={`welcome-page-token-copy-icon-img ${copySuccess ? 'active' : ''}`}
+                          
+                          // onClick={() => {
+                          //   console.log("کلیک شد");
+                          //   navigator.clipboard.writeText(token);
+                          //   setCopySuccess(true);
+                          //   setTimeout(() => setCopySuccess(false), 2000);
+                          // }}
+                          onClick={() => copyToClipboard(token)}
+
+                        />
+
+                        {/* {copySuccess && <span className="welcome-page-copy-success-msg">کپی شد!</span>} */}
+                        {/* <span className="welcome-page-copy-success-msg">کپی شد!</span> */}
+
+                        {copySuccess && (
+                          <div className="welcome-page-copy-done-msg-tooltip">
+                            !کپی شد
+                          </div>
+                        )}
+
+                      </div>
+                    </div>
+
 
                   {/* <button 
                     onClick={() => navigator.clipboard.writeText(token)} 
@@ -553,6 +718,8 @@ const WelcomePage = () => {
 
                 <p className="welcome-page-token-note">برای اطلاع از دستور نصب، به بخش داکیومنت در منو مراجعه کنید!</p>
               </div>
+              </motion.div>
+
             )}
 
           </div>

@@ -126,7 +126,7 @@
   padding-right: 4rem;
   padding-left: 4rem;
   padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 0.5rem;
   border-radius: 12px;
   margin-top: 7rem;
   box-shadow: 0 4px 20px rgba(60, 60, 60, 0.2);
@@ -317,7 +317,7 @@
   margin-bottom: 1rem;
 } */
 
-.action-btn {
+/* .welcome-page-action-btn {
   background: linear-gradient(to right, #5d1b79, #00719a);
   color: white;
   border-radius: 12px;
@@ -330,9 +330,9 @@
   max-width: 100%;
 }
 
-.action-btn:hover {
+.welcome-page-action-btn:hover {
   background: linear-gradient(to right, #4c1764, #005d7a);
-}
+} */
 
 .welcome-page-delete-image-text-btn {
   background: none;
@@ -525,6 +525,7 @@
 .welcome-page-step-success-container {
   text-align: center;
   /* padding: 2rem 0; */
+  
 }
 
 .welcome-page-success-icon-wrapper img {
@@ -534,54 +535,27 @@
 }
 
 .welcome-page-success-text-title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   /* padding: 1rem; */
 }
 
+/* =========================== token and SDK link success =========================== */
+
 .welcome-page-success-text-explain {
-  font-size: 14px;
-  padding: 1.5rem;
+  font-size: 12.5px;
+  /* padding-right: 2.5rem;
+  padding-left: 2.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem; */
+  padding: 1rem 2.5rem;
 }
 
-/* =========================== step 2 inputs =========================== */
-.step-2-compact .popup-options label {
-  font-size: 14px;
-}
-
-.step-2-compact .popup-options input,
-.step-2-compact .popup-options textarea {
-  margin-bottom: 3rem;
-}
-
-.engine-disabled-option {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-/* =========================== Fading between steps =========================== */
-.welcome-page-steps-fade-in {
-  animation: fadeIn 0.4s ease-in forwards;
-}
-
-@keyframes welcome-page-steps-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-/* =========================== token and SDK link =========================== */
 .welcome-page-sdk-download-link {
   color: #00719a;
   font-weight: 400;
   /* text-decoration: underline; */
   transition: color 0.3s;
-  font-size: 15px;
+  font-size: 13px;
   /* margin-top: 0.5rem; */
 }
 
@@ -589,32 +563,61 @@
   color: #0a4053;
 } */
 
-.welcome-page-access-token-box {
-  background-color: #f6f6f6;
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 5px;
-  font-family: monospace;
-  text-align: left;
-  direction: ltr;
-  margin-top: 2rem;
-  /* width: 60px; */
-}
-
 /* .welcome-page-token-value {
   color: #333;
   font-size: 13px;
 } */
+
+.welcome-page-access-token-box {
+  background-color: #f0f0f6;
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+
+  border-radius: 3px;
+  font-family: monospace;
+  text-align: left;
+  align-items: center;
+  /* display: flex; */
+  /* position: flex; */
+
+  direction: ltr;
+  margin-top: 2rem;
+  margin-right: -1.3rem;
+
+  /* min-width: 50px; */
+  width: 450px;
+  /* width: 60px; */
+}
+
+.welcome-page-access-token-label {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-page-acces-token-inside-box {
+  display: fles;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+/* style={{ display: "flex", alignItems: "center", text-align: "center", gap: "8px" }} */
+
 
 .welcome-page-token-value {
   display: inline-block;
   background-color: white;
   padding: 8px 12px;
   border-radius: 2px;
-  /* font-family: monospace; */
+
+  font-family: monospace;
   max-width: 100%;
   overflow-x: auto;
   white-space: nowrap;
+
   border: 1px solid #ccc;
   color: #333;
   font-size: 13px;
@@ -636,7 +639,7 @@
 .welcome-page-token-note {
   font-size: 12px;
   color: #888;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .welcome-page-token-value::-webkit-scrollbar {
@@ -659,6 +662,167 @@
   /* transition: all 0.3s ease; */
 }
 
+/* .welcome-page-token-copy-icon-img {
+
+} */
+
+
+/* .welcome-page-token-copy-icon-img {
+  width: 24px;
+  height: 24px;
+}
+
+.welcome-page-copy-success-msg {
+  font-size: 0.85rem;
+  color: green;
+  margin-top: 4px;
+  animation: fadeInOut 2s ease-in-out forwards;
+} */
+
+
+/* .welcome-page-copy-icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px; */
+
+
+  /* display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px; */
+
+/* } */
+
+.welcome-page-token-copy-icon-img {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 8px;
+  transition: filter 0.3s ease;
+  cursor: pointer;
+  filter: brightness(1.2)
+  
+  
+}
+
+.welcome-page-token-copy-icon-img:hover,
+.welcome-page-token-copy-icon-img:focus,
+.welcome-page-token-copy-icon-img:active {
+  filter: brightness(0.9)
+}
+
+
+.welcome-page-copy-icon-wrapper {
+  /* position: relative;
+  display: inline-block; */
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* display: flex;
+  align-items: center;
+  gap: 8px; */
+  
+
+}
+
+.welcome-page-copy-done-msg-tooltip {
+  position: absolute;
+  bottom: 120%; /* نمایش بالای آیکون */
+  left: 1px;
+  /* font-family: monospace; */
+  font-family: Vazirmatn, sans-serif;
+
+  /* right: 1px; */
+
+  transform: translateX(-50%);
+  background-color: #426bd1;
+  color: white;
+
+  padding: 6px 10px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+
+  white-space: nowrap;
+  opacity: 0;
+  animation: tooltipFade 2s ease forwards;
+  z-index: 10;
+}
+
+/* @keyframes tooltipFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(5px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-5px);
+  }
+} */
+
+@keyframes tooltipFade {
+  0% { opacity: 0; transform: translateY(5px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-5px); }
+}
+
+
+
+/* .welcome-page-copy-success-msg {
+  font-size: 0.85rem;
+  color: green;
+  animation: fadeInOut 2s ease forwards;
+} */
+
+/* @keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+} */
+
+/* =========================== Fading between steps =========================== */
+/* .welcome-page-steps-fade-in {
+  animation: fadeIn 0.4s ease-in forwards;
+}
+
+@keyframes welcome-page-steps-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} */
+
+/* =========================== step 2 inputs =========================== */
+.step-2-compact .popup-options label {
+  font-size: 14px;
+}
+
+.step-2-compact .popup-options input,
+.step-2-compact .popup-options textarea {
+  margin-bottom: 3rem;
+}
+
+.engine-disabled-option {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+
 /* =========================== continue button =========================== */
 .product-buttons-row {
   display: flex;
@@ -666,10 +830,10 @@
   margin-top: 2rem;
 }
 
-.continue-btn {
+.welcome-page-continue-btn {
   display: block;
   margin-top: 1rem;
-  /* margin-bottom: 1rem; */
+  margin-bottom: 1.5rem;
   width: 100%;
   max-width: 130px;
 
@@ -684,9 +848,9 @@
   transition: all 0.3s ease;
 }
 
-.continue-btn:hover,
-.continue-btn:focus,
-.continue-btn:active {
+.welcome-page-continue-btn:hover,
+.welcome-page-continue-btn:focus,
+.welcome-page-continue-btn:active {
   background: linear-gradient(to right, #5d1b79, #00719a);
   filter: brightness(1.1);
   color: white !important;
