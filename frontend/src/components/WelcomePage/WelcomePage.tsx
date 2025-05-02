@@ -5,9 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { submitGameInfo } from '../../services/userService';
 import MainLayout from '../MainLayout/MainLayout';
-// import { Copy } from "lucide-react";
 import { motion } from "framer-motion";
-
 
 // =========================== assets ===========================
 import OdessayLogo from '/public/icons/odessay_logo.svg';
@@ -55,31 +53,22 @@ const WelcomePage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
 
-  // const handleClick = () => {
-  //   setIsLoading(true);
-  //   setTimeout(() => {
-  //     setStep(2);
-  //     setIsLoading(false);
-  //   }, 300);
-  // };
-
-
   // copying in local and server handling
   const handleClick = () => {
     setIsLoading(true);
-    setIsFading(true); // شروع fade
+    setIsFading(true);
   
     setTimeout(() => {
       setStep(2);
       setIsLoading(false);
-      setIsFading(false); // ریست برای مرحله بعد
+      setIsFading(false);
     }, 300);
   };
   
   const copyToClipboard = (text: string) => {
     if (navigator.clipboard && window.isSecureContext) {
       
-      // ✅ Clipboard API مدرن در محیط امن در دسترس است
+      // Clipboard API, modern access
       navigator.clipboard.writeText(text)
         .then(() => {
           setCopySuccess(true);
@@ -89,11 +78,11 @@ const WelcomePage = () => {
           console.error("خطا در کپی:", err);
         });
     } else {
-      // ❗ Clipboard API در دسترس نیست → استفاده از fallback کلاسیک
+      // Clipboard API, classic fallback
       const textArea = document.createElement("textarea");
       textArea.value = text;
   
-      // از دید خارجش کنیم
+      // removing from sight
       textArea.style.position = "fixed";
       textArea.style.top = "-1000px";
       textArea.style.left = "-1000px";
@@ -117,14 +106,6 @@ const WelcomePage = () => {
       document.body.removeChild(textArea);
     }
   };
-  
-
-
-  // const handleLogout = () => {
-  //   localStorage.removeItem('accessToken');
-  //   localStorage.removeItem('username');
-  //   navigate('/');
-  // };  
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
@@ -143,11 +124,8 @@ const WelcomePage = () => {
   // final part
   const handleSubmitGame = async () => {
 
-    // setStep(3);
-
     let valid = true;
   
-    // بررسی نام بازی
     if (!gameName.trim()) {
       setGameNameError('وارد کردن نام بازی الزامی است.');
       valid = false;
@@ -155,7 +133,6 @@ const WelcomePage = () => {
       setGameNameError('');
     }
   
-    // بررسی موتور بازی
     if (!engine.trim()) {
       setEngineError('انتخاب موتور بازی الزامی است.');
       valid = false;
@@ -163,7 +140,6 @@ const WelcomePage = () => {
       setEngineError('');
     }
   
-    // بررسی پلتفرم‌ها
     if (platforms.length === 0) {
       setPlatformError('انتخاب حداقل یک پلتفرم الزامی است.');
       valid = false;
@@ -171,7 +147,7 @@ const WelcomePage = () => {
       setPlatformError('');
     }
   
-    if (!valid) return; // اگر چیزی خالی بود، جلو برو نگیریم
+    if (!valid) return;
 
     const data = {
       name: gameName,
@@ -186,20 +162,16 @@ const WelcomePage = () => {
       // const result = await submitGameInfo(data);
       // setToken(result.token);
 
-
       // setStep(3);
       setIsLoading(true);
       setTimeout(() => {
         setStep(3);
         setIsLoading(false);
       }, 200);
-      
-    
     } catch (err: any) {
       console.error('API error:', err.response?.data || err.message);
       alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
     }
-    
   };
 
 
@@ -221,9 +193,7 @@ const WelcomePage = () => {
         <button className="btn welcome-page-main-box-start-btn" onClick={() => setShowPopup(true)}> 
           اضافه کردن بازی 
         </button>
-
       </div>
-
     </div>
 
     {showPopup && (
@@ -233,7 +203,6 @@ const WelcomePage = () => {
 
           <div className="welcome-page-main-box-body-popup-card">
 
-          {/* <div> */}
           {((step === 1) || (step === 2 && selectedProduct === 'game') || (step === 3)) && (
               <img
                 src={close_icon}
@@ -242,26 +211,24 @@ const WelcomePage = () => {
                 onClick={() => setShowPopup(false)}
               />
             )} 
-          {/* </div> */}
 
-            <div className="stepper-container">
-              <div className={`stepper-item ${step >= 1 ? 'active' : ''}`}><div className="stepper-circle">1</div><div className="stepper-label">انتخاب محصول</div></div>
-              <div className={`stepper-line1 ${step >= 2 ? 'active' : ''}`} />
-              <div className={`stepper-item ${step >= 2 ? 'active' : ''}`}><div className="stepper-circle">2</div><div className="stepper-label">اطلاعات</div></div>
-              <div className={`stepper-line2 ${step >= 3 ? 'active' : ''}`} />
-              <div className={`stepper-item ${step >= 3 ? 'active' : ''}`}><div className="stepper-circle">3</div><div className="stepper-label">ثبت نهایی</div></div>
+            <div className="welcome-page-stepper-container">
+              <div className={`welcome-page-stepper-item ${step >= 1 ? 'active' : ''}`}><div className="welcome-page-stepper-circle">1</div><div className="welcome-page-stepper-label">انتخاب محصول</div></div>
+              <div className={`welcome-page-stepper-line1 ${step >= 2 ? 'active' : ''}`} />
+              <div className={`welcome-page-stepper-item ${step >= 2 ? 'active' : ''}`}><div className="welcome-page-stepper-circle">2</div><div className="welcome-page-stepper-label">اطلاعات</div></div>
+              <div className={`welcome-page-stepper-line2 ${step >= 3 ? 'active' : ''}`} />
+              <div className={`welcome-page-stepper-item ${step >= 3 ? 'active' : ''}`}><div className="welcome-page-stepper-circle">3</div><div className="welcome-page-stepper-label">ثبت نهایی</div></div>
             </div>
 
             {step === 1 && (
-              // <>
               <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
               >
                 <p className="welcome-page-popup-title">محصولی که می‌خوای آنالیزشون رو انجام بدی رو انتخاب کن:</p>
-                <div className="product-options-list">
-                  <label className={`product-option ${selectedProduct === 'game' ? 'checked' : ''}`}>
+                <div className="welcome-page-product-options-list">
+                  <label className={`welcome-page-product-option ${selectedProduct === 'game' ? 'checked' : ''}`}>
 
                     <input
                       type="checkbox"
@@ -274,7 +241,7 @@ const WelcomePage = () => {
                     <span className="checkmark" /> بازی
                   </label>
 
-                  <label className={`product-option ${selectedProduct === 'website' ? 'checked' : ''}`}>
+                  <label className={`welcome-page-product-option ${selectedProduct === 'website' ? 'checked' : ''}`}>
                     <input
                       type="checkbox"
                       checked={selectedProduct === 'website'}
@@ -282,56 +249,28 @@ const WelcomePage = () => {
                         setSelectedProduct(selectedProduct === 'website' ? '' : 'website')
                       }
                     />
-
                     <span className="checkmark" /> وب‌سایت
                   </label>
-
                 </div>
                 
-                <div className="product-buttons-row">
-                  {/* <button
-                    className="continue-btn"
-                    disabled={!selectedProduct}
-                  
-                    onClick={() => setStep(2)}
-                  
-                    onClick={() => {
-                      setIsLoading(true);
-                      setTimeout(() => {
-                        setStep(2);
-                        setIsLoading(false);
-                      }, 1000);
-                    }}
-                    
-                  
-                  >
-                    ادامه
-                  </button> */}
-
+                <div className="welcome-page-product-buttons-row">
                   <button
                     className="welcome-page-continue-btn"
                     disabled={!selectedProduct || isLoading}
                     onClick={handleClick}
-                    // onClick={() => setStep(2)}
                     >
                     {isLoading ? "در حال بارگذاری..." : "ادامه"}
                   </button>
-
-
                 </div>
-              {/* </> */}
               </motion.div>
             )}
-            {step === 2 && selectedProduct === 'game' && (
-            
-            // Fading option
-            // <div className="welcome-page-steps-fade-in">
 
-            <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            >
+            {step === 2 && selectedProduct === 'game' && (
+              <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              >
 
             <div className="step-2-compact">
               <p className="text-start mb-3">اطلاعات بازیت رو وارد کن :</p>
@@ -351,37 +290,34 @@ const WelcomePage = () => {
                         value={gameName}
                         onChange={(e) => setGameName(e.target.value)}
                       />
-
-                      {/* {gameNameError && <p className="text-danger small mt-1 text-start">{gameNameError}</p>} */}
                     
-                      <div className="error-placeholder text-start" style={{ minHeight: '18px' }}>
+                      <div className="welcome-page-error-placeholder text-start" style={{ minHeight: '20px' }}>
                         {gameNameError && <p className="text-danger small mt-1 mb-0">{gameNameError}</p>}
-                      </div>
-                    
+                      </div>                    
                     </div>
 
                     {/* آپلود تصویر دایره‌ای */}
-                    <div className="upload-section text-center">
+                    <div className="welcome-page-upload-section text-center">
 
-                      <div className="upload-preview-wrapper">
+                      <div className="welcome-page-upload-preview-wrapper">
                         {thumbnail ? (
                           <img
                             src={URL.createObjectURL(thumbnail)}
                             alt="thumbnail"
-                            className="upload-preview-image"
+                            className="welcome-page-upload-preview-image"
                           />
                         ) : (
                           <img
                             src={uploading_game_image_icon_ghost}
                             alt="انتخاب تصویر"
-                            className="upload-placeholder-icon"
+                            className="welcome-page-upload-placeholder-icon"
                           />
                         )}
                       </div>
 
                       {/* آیکون انتخاب و حذف تصویر در یک ردیف */}
                       <div className="d-flex justify-content-center gap-3 mt-2">
-                        <label className="upload-select-label mb-0">
+                        <label className="welcome-page-upload-select-label mb-0">
                           انتخاب تصویر
                           <input
                             type="file"
@@ -430,42 +366,24 @@ const WelcomePage = () => {
                   <label className="d-block mb-3">
                     انتخاب موتور بازی: <span style={{ color: 'red' }}>*</span>
                     </label>
-
-                  {/* <div className="radio-group-grid">
-                    <label className="radio-label">
-                      <input type="checkbox" checked={engine === 'unity'} onChange={() => setEngine('unity')} />
-                      Unity
-                    </label>
-
-                    <label className="radio-label engine-disabled-option">
-                      <input type="checkbox" disabled />
-                      Godot
-                    </label>
-
-                    <label className="radio-label engine-disabled-option">
-                      <input type="checkbox" disabled />
-                      Custom
-                    </label>
-                  </div>
-                   */}
                   
-                  <div className="radio-group-grid">
-                    <label className="radio-label">
+                  <div className="welcome-page-radio-group-grid">
+                    <label className="welcome-page-radio-label">
                       <input
                         type="checkbox"
                         checked={engine === 'unity'}
                         onChange={() => {
                           if (engine === 'unity') {
-                            setEngine(''); // لغو انتخاب
+                            setEngine('');
                           } else {
-                            setEngine('unity'); // انتخاب جدید
+                            setEngine('unity');
                           }
                         }}
                       />
                       Unity
                     </label>
 
-                    <label className="radio-label engine-disabled-option">
+                    <label className="welcome-page-radio-label welcome-page-engine-disabled-option">
                       <input
                         type="checkbox"
                         checked={engine === 'godot'}
@@ -480,7 +398,7 @@ const WelcomePage = () => {
                       Godot
                     </label>
 
-                    <label className="radio-label engine-disabled-option">
+                    <label className="welcome-page-radio-label welcome-page-engine-disabled-option">
                       <input
                         type="checkbox"
                         checked={engine === 'custom'}
@@ -496,9 +414,7 @@ const WelcomePage = () => {
                     </label>
                   </div>
                   
-                  {/* {engineError && <p className="text-danger small mt-1">{engineError}</p>} */}
-                  
-                  <div className="error-placeholder" style={{ minHeight: '18px' }}>
+                  <div className="welcome-page-error-placeholder" style={{ minHeight: '20px' }}>
                     {engineError && <p className="text-danger small mt-1 mb-0">{engineError}</p>}
                   </div>
 
@@ -512,10 +428,9 @@ const WelcomePage = () => {
                     انتخاب پلتفرم هدف: <span style={{ color: 'red' }}>*</span>
                   </label>
 
-                  <div className="radio-group-grid">
+                  <div className="welcome-page-radio-group-grid">
 
-                    <label className="radio-label">
-                      {/* <input type="radio" name="platform" onChange={() => handlePlatformChange('ios')} /> */}
+                    <label className="welcome-page-radio-label">
                       <input
                         type="checkbox"
                         checked={platforms.includes('ios')}
@@ -524,8 +439,7 @@ const WelcomePage = () => {
                       iOS
                     </label>
 
-                    <label className="radio-label">
-                      {/* <input type="radio" name="platform" onChange={() => handlePlatformChange('android')} /> */}
+                    <label className="welcome-page-radio-label">
                       <input
                         type="checkbox"
                         checked={platforms.includes('android')}
@@ -534,8 +448,7 @@ const WelcomePage = () => {
                       Android
                     </label>
 
-                    <label className="radio-label">
-                      {/* <input type="radio" name="platform" onChange={() => handlePlatformChange('pc')} /> */}
+                    <label className="welcome-page-radio-label">
                       <input
                         type="checkbox"
                         checked={platforms.includes('pc')}
@@ -545,10 +458,7 @@ const WelcomePage = () => {
                     </label>
                   </div>
 
-                  {/* {platformError && <p className="text-danger small mt-1">{platformError}</p>} */}
-
-
-                  <div className="error-placeholder" style={{ minHeight: '18px' }}>
+                  <div className="welcome-page-error-placeholder" style={{ minHeight: '20px' }}>
                     {platformError && <p className="text-danger small mt-1 mb-0">{platformError}</p>}
                   </div>
 
@@ -565,7 +475,6 @@ const WelcomePage = () => {
               </div>
 
               <div className="d-flex justify-content-center gap-3 mt-3">
-                {/* <button className="continue-btn" onClick={() => setStep(1)}>بازگشت</button> */}
 
                 <button
                   className="welcome-page-continue-btn"
@@ -580,31 +489,18 @@ const WelcomePage = () => {
                   بازگشت
                 </button>
 
-
-
-                {/* <button 
-                  className="welcome-page-continue-btn" 
-                  onClick={handleSubmitGame}>ثبت
-                </button> */}
-
                 <button
                     className="welcome-page-continue-btn"
                     disabled={!selectedProduct || isLoading}
                     onClick={handleSubmitGame}
-                    // onClick={() => setStep(2)}
                     >
                     {isLoading ? "در حال بارگذاری..." : "ثبت"}
                   </button>
 
-              
               </div>
-
-            {/* </div> */}
-
             
             </div>
             </motion.div>
-            
             )}
 
             {step === 3 && (
@@ -616,13 +512,6 @@ const WelcomePage = () => {
 
               <div className="welcome-page-step-success-container">
 
-                {/* <img
-                  src={close_icon}
-                  alt="بستن"
-                  className="welcome-page-popup-card-close-icon"
-                  onClick={() => navigate('/dashboard')}
-                /> */}
-
                 <div className="welcome-page-success-icon-wrapper">
                   <img src={gift} alt="Success Icon" />
                 </div>
@@ -631,63 +520,19 @@ const WelcomePage = () => {
                 <p className="welcome-page-success-text-explain">همه‌چیز آماده‌ست. حالا فقط کافیه SDK رو داخل بازی/وب‌سایت‌تون قرار بدید.</p>
                 <p className="mb-3 welcome-page-sdk-download-link"><a href="#">لینک دانلود SDK</a></p>
                 
-                {/* <div className="welcome-page-access-token-box mb-3">
-                  <strong>Access Token:</strong><br />
-                  <span className="welcome-page-token-value">{token}</span>
-                </div> */}
-                
                 <div className="welcome-page-access-token-box mb-3">
-                  {/* <strong>Access Token:</strong><br /> */}
                   <strong className="welcome-page-access-token-label">Access Token:</strong><br />
-
-                  
-                  {/* <div className='welcome-page-acces-token-inside-box'> */}
-
-                  
-
-                    {/* <button 
-                      className="welcome-page-token-button" onClick={() => navigator.clipboard.writeText(token)}>
-                      کپی
-                    </button> */}
-
-                    {/* <img
-                      src={copyIcon}
-                      alt="Copy"
-                      className="welcome-page-token-copy-icon-img"
-                      onClick={() => {
-                        navigator.clipboard.writeText(token);
-                        setCopySuccess(true);
-                        setTimeout(() => setCopySuccess(false), 2000); // پیام بعد از ۲ ثانیه محو میشه
-                      }}
-                      style={{ cursor: 'pointer' }}
-                    />
-
-                    {copySuccess && <span className="welcome-page-copy-success-msg">کپی شد!</span>}
- */}
 
                     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
 
-
                       <div>
-                    {/* <div className="welcome-page-copy-icon-wrapper"> */}
                       <div className="welcome-page-copy-icon-wrapper">
                         <img
                           src={copyIcon}
                           alt="Copy"
                           className={`welcome-page-token-copy-icon-img ${copySuccess ? 'active' : ''}`}
-                          
-                          // onClick={() => {
-                          //   console.log("کلیک شد");
-                          //   navigator.clipboard.writeText(token);
-                          //   setCopySuccess(true);
-                          //   setTimeout(() => setCopySuccess(false), 2000);
-                          // }}
                           onClick={() => copyToClipboard(token)}
-
                         />
-
-                        {/* {copySuccess && <span className="welcome-page-copy-success-msg">کپی شد!</span>} */}
-                        {/* <span className="welcome-page-copy-success-msg">کپی شد!</span> */}
 
                         {copySuccess && (
                           <div className="welcome-page-copy-done-msg-tooltip">
@@ -698,20 +543,7 @@ const WelcomePage = () => {
                       </div>
                     </div>
 
-
-                  {/* <button 
-                    onClick={() => navigator.clipboard.writeText(token)} 
-                    style={{ background: "none", border: "none", cursor: "pointer" }}
-                    aria-label="کپی"
-                  >
-                    <Copy size={20} />
-                  </button> */}
-
-
                     <span className="welcome-page-token-value">ljkhbhjmjdbvjncjdvjfjgjfhakjjlajlgfkjlkksdkcnnlslbfksdvlsmlhskbvmsnlnkvbfvblsnvl</span>
-
-
-                    {/* <span className="welcome-page-token-value">{token}</span> */}
 
                   </div>
                 </div>
@@ -719,7 +551,6 @@ const WelcomePage = () => {
                 <p className="welcome-page-token-note">برای اطلاع از دستور نصب، به بخش داکیومنت در منو مراجعه کنید!</p>
               </div>
               </motion.div>
-
             )}
 
           </div>
