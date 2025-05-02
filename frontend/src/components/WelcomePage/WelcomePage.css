@@ -487,7 +487,11 @@
   text-align: left;
   direction: ltr;
   margin-top: 3rem;
-  width: 60px;
+  width: 100%;
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .welcome-page-token-value {
