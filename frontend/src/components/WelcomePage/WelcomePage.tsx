@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { submitGameInfo } from '../../services/userService';
 import MainLayout from '../MainLayout/MainLayout';
+import { Copy } from "lucide-react";
 
 // =========================== assets ===========================
 import OdessayLogo from '/public/icons/odessay_logo.svg';
@@ -34,18 +35,44 @@ const WelcomePage = () => {
   const [gameNameError, setGameNameError] = useState('');
   const [engineError, setEngineError] = useState('');
   const [platformError, setPlatformError] = useState('');
+ 
+  // loading between steps
+  const [isLoading, setIsLoading] = useState(false);
+
+  // const handleClick = () => {
+  //   setIsLoading(true);
+  //   setTimeout(() => {
+  //     setStep(2);
+  //     setIsLoading(false);
+  //   }, 300);
+  // };
+
+  const handleClick = () => {
+    setIsLoading(true);
+    setIsFading(true); // شروع fade
   
+    setTimeout(() => {
+      setStep(2);
+      setIsLoading(false);
+      setIsFading(false); // ریست برای مرحله بعد
+    }, 2000);
+  };
+  
+  
+  // Fading between steps
+  const [isFading, setIsFading] = useState(false);
+
 
   const [token, setToken] = useState('');
 
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('username');
-    navigate('/');
-  };  
+  // const handleLogout = () => {
+  //   localStorage.removeItem('accessToken');
+  //   localStorage.removeItem('username');
+  //   navigate('/');
+  // };  
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
@@ -104,8 +131,8 @@ const WelcomePage = () => {
     console.log('داده ارسالی:', data);
     
     try {
-      const result = await submitGameInfo(data);
-      setToken(result.token);
+      // const result = await submitGameInfo(data);
+      // setToken(result.token);
       setStep(3);
     } catch (err: any) {
       console.error('API error:', err.response?.data || err.message);
@@ -196,17 +223,42 @@ const WelcomePage = () => {
                 </div>
                 
                 <div className="product-buttons-row">
-                  <button
+                  {/* <button
                     className="continue-btn"
                     disabled={!selectedProduct}
+                  
                     onClick={() => setStep(2)}
+                  
+                    onClick={() => {
+                      setIsLoading(true);
+                      setTimeout(() => {
+                        setStep(2);
+                        setIsLoading(false);
+                      }, 1000);
+                    }}
+                    
+                  
                   >
                     ادامه
+                  </button> */}
+
+                  <button
+                    className="continue-btn"
+                    disabled={!selectedProduct || isLoading}
+                    onClick={handleClick}
+                    // onClick={() => setStep(2)}
+                    >
+                    {isLoading ? "در حال بارگذاری..." : "ادامه"}
                   </button>
+
+
                 </div>
               </>
             )}
             {step === 2 && selectedProduct === 'game' && (
+            
+            // Fading option
+            // <div className="welcome-page-steps-fade-in">
 
             <div className="step-2-compact">
               <p className="text-start mb-3">اطلاعات بازیت رو وارد کن :</p>
@@ -370,9 +422,6 @@ const WelcomePage = () => {
                       Custom
                     </label>
                   </div>
-
-                  
-                  
                   
                   {/* {engineError && <p className="text-danger small mt-1">{engineError}</p>} */}
                   
@@ -385,7 +434,7 @@ const WelcomePage = () => {
 
               {/* <!-- انتخاب پلتفرم هدف --> */}
               <div className="d-flex flex-column flex-md-row mb-4">
-                <div className="text-start flex-fill mt-3 mt-md-0 mb-4">
+                <div className="text-start flex-fill mt-3 mt-md-0 mb-2">
                   <label className="d-block mb-3">
                     انتخاب پلتفرم هدف: <span style={{ color: 'red' }}>*</span>
                   </label>
@@ -447,6 +496,8 @@ const WelcomePage = () => {
                 <button className="continue-btn" onClick={handleSubmitGame}>ثبت</button>
               </div>
 
+            {/* </div> */}
+
             </div>
             
             )}
@@ -465,13 +516,41 @@ const WelcomePage = () => {
                   <img src={gift} alt="Success Icon" />
                 </div>
 
-                <h4 className="mb-3 fw-bold">محصول شما با موفقیت ثبت شد!</h4>
-                <p className="mb-2">همه‌چیز آماده‌ست. حالا فقط کافیه SDK رو داخل بازی/وب‌سایت‌تون قرار بدید.</p>
+                <h4 className="welcome-page-success-text-title">محصول شما با موفقیت ثبت شد!</h4>
+                <p className="welcome-page-success-text-explain">همه‌چیز آماده‌ست. حالا فقط کافیه SDK رو داخل بازی/وب‌سایت‌تون قرار بدید.</p>
                 <p className="mb-3 welcome-page-sdk-download-link"><a href="#">لینک دانلود SDK</a></p>
-                <div className="welcome-page-access-token-box mb-3">
+                
+                {/* <div className="welcome-page-access-token-box mb-3">
                   <strong>Access Token:</strong><br />
                   <span className="welcome-page-token-value">{token}</span>
+                </div> */}
+                
+                <div className="welcome-page-access-token-box mb-3">
+                  <strong>Access Token:</strong><br />
+                  
+                  <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+
+                    <button className="welcome-page-token-button" onClick={() => navigator.clipboard.writeText(token)}>
+                      کپی
+                    </button>
+
+                  {/* <button 
+                    onClick={() => navigator.clipboard.writeText(token)} 
+                    style={{ background: "none", border: "none", cursor: "pointer" }}
+                    aria-label="کپی"
+                  >
+                    <Copy size={20} />
+                  </button> */}
+
+
+                    <span className="welcome-page-token-value">ljkhbhjmjdbvjncjdvjfjgjfhakjjlajlgfkjlkksdkcnnlslbfksdvlsmlhskbvmsnlnkvbfvblsnvl</span>
+
+
+                    {/* <span className="welcome-page-token-value">{token}</span> */}
+
+                  </div>
                 </div>
+
                 <p className="welcome-page-token-note">برای اطلاع از دستور نصب، به بخش داکیومنت در منو مراجعه کنید!</p>
               </div>
             )}
