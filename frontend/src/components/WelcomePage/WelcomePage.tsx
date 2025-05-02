@@ -107,6 +107,24 @@ const WelcomePage = () => {
     }
   };
 
+  // reseting the informations after closing the card
+  const resetPopupState = () => {
+    setStep(1);
+    setSelectedProduct('');
+    setGameName('');
+    setDescription('');
+    setEngine('');
+    setPlatforms([]);
+    setThumbnail(null);
+    setImageError('');
+    setGameNameError('');
+    setEngineError('');
+    setPlatformError('');
+    setToken('');
+    setCopySuccess(false);
+  };
+
+
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
     setUsername(storedUsername || '');
@@ -190,9 +208,25 @@ const WelcomePage = () => {
         <p className="welcome-page-main-box-description">شروع کن تا ببینی توی محصولات دقیقاً چه خبره</p>
         <p className="welcome-page-main-box-description">و چطور می‌تونی بهترین تجربه رو برای کاربرات بسازی.</p>
         
-        <button className="btn welcome-page-main-box-start-btn" onClick={() => setShowPopup(true)}> 
+        <button className="btn welcome-page-main-box-start-btn" 
+          onClick={() => setShowPopup(true)}> 
           اضافه کردن بازی 
         </button>
+
+        {/* هربار که روی اضافه کردن بازی میزنه بیاد step1 */}
+        {/* <button
+          className="btn welcome-page-main-box-start-btn"
+          onClick={() => {
+            setStep(1);         
+            setSelectedProduct(''); 
+            setShowPopup(true);
+          }}
+        >
+          اضافه کردن بازی
+        </button> */}
+
+
+
       </div>
     </div>
 
@@ -208,7 +242,12 @@ const WelcomePage = () => {
                 src={close_icon}
                 alt="بستن"
                 className="welcome-page-popup-card-close-icon"
-                onClick={() => setShowPopup(false)}
+                // onClick={() => setShowPopup(false)}
+                onClick={() => {
+                  setShowPopup(false);
+                  resetPopupState();
+                }}
+                
               />
             )} 
 

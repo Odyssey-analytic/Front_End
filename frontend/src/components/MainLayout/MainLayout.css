@@ -11,7 +11,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* padding: 0.5rem 1rem; */
 
   background-color: rgb(239, 239, 239);
   border-bottom: 1px solid rgba(191, 191, 191, 0.38);
@@ -82,11 +81,12 @@
 
 .main-layout-dropdown-menu {
   position: absolute;
-  top: 55px;
-  right: 15px;
-  background: white;
+  top: 44px;
+  right: 18px;
+  background: #fbfbfb;
+
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
   
   transform: scale(0.95);
@@ -112,17 +112,16 @@
 }
 
 .main-layout-dropdown-item:hover {
-  background-color: #f5f5f5;
+  background: white;
+  border-radius: 5px;
 }
 
 /* =========================== Subheader =========================== */
 .main-layout-subheader {
   background-color: #ffffff;
   height: 60px;
-  /* width: 1440px; */
   width: 100%;
   box-shadow: 0px 1px 4px rgba(43, 43, 43, 0.4);
-  /* padding: 1rem; */
   position: absolute;
 }
 
@@ -135,14 +134,6 @@
 }
 
 /* =========================== Admin =========================== */
-/* .main-layout-admin-info {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 7rem;
-
-} */
-
 .main-layout-subheader-admin-divider {
   width: 1px;
   height: 24px;
