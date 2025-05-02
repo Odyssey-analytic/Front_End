@@ -607,6 +607,49 @@
   opacity: 0.5;
 }
 
+
+/* =========================== token and SDK link =========================== */
+.welcome-page-sdk-download-link {
+  color: #00719a;
+  font-weight: 500;
+  text-decoration: underline;
+  transition: color 0.3s;
+  font-size: 15px;
+  margin-top: 1rem;
+}
+
+.welcome-page-sdk-download-link:hover {
+  color: #4c1764;
+}
+
+.welcome-page-access-token-box {
+  background-color: #f6f6f6;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: monospace;
+  text-align: left;
+  direction: ltr;
+  margin-top: 3rem;
+  width: 100%;
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.welcome-page-token-value {
+  color: #333;
+  font-size: 13px;
+}
+
+.welcome-page-token-note {
+  margin-top: 1rem;
+  font-size: 12px;
+  color: #888;
+  margin-top: 2rem;
+}
+
 /* =========================== continue button =========================== */
 .welcome-page-product-buttons-row {
   display: flex;
