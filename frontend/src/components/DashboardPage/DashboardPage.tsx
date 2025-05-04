@@ -18,7 +18,7 @@ const DashboardPage = () => {
         console.log(data)
         const userGames = data.map(data => ({
           id: data.id,
-          icon: pocket_champs_icon,
+          icon: data.thumbnail,
           title: data.name,
           genre: 'Racing',
           description: data.description,
