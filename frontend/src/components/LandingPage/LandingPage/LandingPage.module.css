@@ -36,23 +36,29 @@
 
 /* ======================= Reusable section style =================== */
 .section {
-  display: flex;
+  /* display: flex; */
+  /* display: flex; */
+  
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* align-items: center; */
+  
+  /* justify-content: center; */
   min-height: 100vh;
+  /* text-align: center; */
   text-align: center;
+  
   color: white;
   position: relative;
   z-index: 2;
 }
 
 /* ======================= Animation for loading content (before visible) =================== */
-.hiddenOnLoad {
+/* .hiddenOnLoad {
   opacity: 0;
   transform: translateY(60px);
   transition: all 1s ease-out;
-}
+} */
 
 /* ======================= Applied when section becomes visible =================== */
 .animate {
@@ -79,8 +85,61 @@
   margin-top: 8px;
 }
 
+/* ======================= Section1 Content =================== */
+.featuresText {
+  text-align: right;
+  position: absolute;
+  right: 53%;
+  top: 12%;                          
+  /* left: 15%;                       */
+  
+  /* transform: translate(-50%, -50%);  */
+  width: clamp(180px, 35vw, 650px);  
+  height: clamp(180px, 33vw, 650px);
+
+  /* z-index: 5; */
+  /* pointer-events: none; */
+}
+
+.featuresText h2 {
+  font-size: 2.3rem;
+  font-weight: bold;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.featuresText p {
+  font-size: 1rem;
+  line-height: 2;
+  color: #cccccc;
+  /* max-width: 500px; */
+}
+
+.highlight {
+  color: #63c6e4;
+}
+
+.section1_year_img {
+  position: absolute;
+  /* text-align: right; */
+  
+  /* width: 20rem; */
+  left: 73%;
+  bottom: 55%;
+  /* right: 50%; */
+  /* top: 3%; */
+  /* left: 75%; */
+
+  width: clamp(100px, 35vw, 440px);  
+  /* height: clamp(300px, 18vw, 650px); */
+
+  /* height: ; */
+  /* z-index: 5; */
+  /* pointer-events: none; */
+}
+
 /* ======================= Responsive adjustments =================== */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .mainSections {
     gap: 60px;
     padding: 0 16px;
@@ -88,5 +147,149 @@
 
   .section {
     padding: 60px 16px;
+  }
+
+  .featuresText {
+    top: 17%;                          
+    left: 14%;                      
+  }
+
+  .featuresText h2 {
+    font-size: 1rem;
+  }
+
+  .featuresText p {
+    font-size: 0.75rem;
+    line-height: 1.8;
+  }
+
+} */
+
+
+/* ======================= Responsive Breakpoints ======================= */
+
+/* 📱 موبایل خیلی کوچک: تا 480px */
+/* @media (max-width: 480px) {
+  .featuresText {
+    top: 6%;
+    left: 6%;
+    width: 88vw;
+    text-align: center;
+  }
+
+  .featuresText h2 {
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+
+  .featuresText p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+} */
+
+/* 📱 موبایل متوسط: 481px تا 768px */
+@media (min-width: 481px) and (max-width: 768px) {
+  .featuresText {
+    top: 18%;
+    left: 8%;
+    width: 40vw;
+    /* text-align: center; */
+  }
+
+  .featuresText h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .featuresText p {
+    font-size: 0.7rem;
+  }
+
+  .section1_year_img {
+    position: absolute;
+
+    left: 74%;
+    bottom: 61%;
+  
+    width: clamp(100px, 30vw, 330px);  
+  }
+
+}
+
+/* 💻 تبلت: 769px تا 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .featuresText {
+    top: 18%;
+    /* left: 15%; */
+    width: 40vw;
+    /* text-align: left; */
+  }
+
+  .featuresText h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .featuresText p {
+    font-size: 0.7rem;
+  }
+
+
+  .section1_year_img {
+    position: absolute;
+
+    left: 73%;
+    bottom: 61%;
+  
+    width: clamp(100px, 30vw, 350px);  
+  }
+
+
+}
+
+/* 💻 لپ‌تاپ: 1025px تا 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .featuresText {
+    top: 20%;
+    left: 12%;
+    width: 40vw;
+  }
+
+  .featuresText h2 {
+    font-size: 2.1rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .featuresText p {
+    font-size: 0.9rem;
+  }
+/* 
+  .section1_year_img {
+    position: absolute;
+
+    left: 75%;
+    bottom: 55%;
+  
+    width: clamp(100px, 35vw, 400px);  
+  } */
+
+}
+
+/* 🖥️ دسکتاپ عریض: 1281px تا 1440px */
+@media (min-width: 1281px) and (max-width: 1440px) {
+  .featuresText {
+    top: 10%;
+    left: 13%;
+    width: 35vw;
+  }
+
+  .section1_year_img {
+    position: absolute;
+
+    left: 75%;
+    bottom: 55%;
+  
+    width: clamp(100px, 35vw, 400px);  
   }
 }

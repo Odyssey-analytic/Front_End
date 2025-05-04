@@ -10,9 +10,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px 32px;
+
+  background-color: rgba(7, 4, 26, 0.777);
+  /* background-color: rgba(21, 19, 40, 100); */
   backdrop-filter: blur(10px); /* blurred glass effect */
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 14px rgba(255, 255, 255, 0.106);
 }
 
 /* ======================= Right section: Logo ======================= */

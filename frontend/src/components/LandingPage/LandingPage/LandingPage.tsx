@@ -7,6 +7,8 @@ import LandingPage_Navbar from "../LandingPage_Navbar/LandingPage_Navbar";
 import LandingPage_AchievementCounters from "../LandingPage_AchievementCounters/LandingPage_AchievementCounters";
 import LandingPage_HowToStart from "../LandingPage_HowToStart/LandingPage_HowToStart";
 
+import Section1_Years from "../../../../public/icons/Landing/Section1_years.svg"
+
 const LandingPage: React.FC = () => {
   useEffect(() => {
     // ======================= Intersection Observer to animate hidden sections on scroll ===================
@@ -42,9 +44,35 @@ const LandingPage: React.FC = () => {
       <div className={styles.contentWrapper}>
         <main className={styles.mainSections}>
           {/* ======================= Section 1 - Circle Animation =================== */}
-          <section id="features" className={`${styles.section} ${styles.hiddenOnLoad}`}>
-            <LandingPage_InsightOrbit />
+          
+          <section id="features" className={`${styles.section} ${styles.hiddenOnLoad}`}>        
+          {/* <div className={styles.featuresRow}> */}
+              <div className={styles.featuresText}>
+                <h2>
+                  هدایت مسیر رشد محصول شما<br />
+                  در چشم‌انداز داده‌محور <span className={styles.highlight}>جهانی</span>
+                </h2>
+
+                <p>
+                  ما به شما کمک می‌کنیم تا با تحلیل داده‌های دقیق و داشبوردهای سفارشی، تصمیم‌های هوشمندانه‌تری بگیرید
+                  و تجربه کاربران را بهینه‌سازی کنید.
+                </p>
+              </div>
+
+            {/* <div> */}
+
+            {/* <div className="welcome-page-main-box-icon"> */}
+                <img src={Section1_Years} className={`${styles.section1_year_img}`}/>
+              {/* </div> */}
+              
+
+
+              <LandingPage_InsightOrbit />
+              {/* </div> */}
+              {/* </div> */}
           </section>
+
+
 
           {/* ======================= Section 2 - Services =================== */}
           <section id="services" className={`${styles.section} ${styles.hiddenOnLoad}`}>

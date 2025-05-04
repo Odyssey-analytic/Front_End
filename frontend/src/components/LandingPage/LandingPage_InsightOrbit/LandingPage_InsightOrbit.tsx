@@ -7,6 +7,8 @@ import { gsap } from "gsap";
 import { DrawSVGPlugin } from "gsap-trial/DrawSVGPlugin";
 import { MotionPathPlugin } from "gsap-trial/MotionPathPlugin";
 
+// import Section1_Years from "../../../../public/icons/Landing/Section1_years.svg"
+
 // Register GSAP plugins
 gsap.registerPlugin(DrawSVGPlugin, MotionPathPlugin);
 
