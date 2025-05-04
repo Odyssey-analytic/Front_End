@@ -1,0 +1,104 @@
+.analysisToolsWrapper {
+  display: flex;
+  position: absolute;
+  justify-content: space-between;
+  /* align-items: center; */
+
+  gap: 48px;
+  flex-wrap: wrap-reverse;
+  padding: 0 4rem;
+  top: 35%;
+}
+
+.imageContainer {
+  /* flex: 1; */
+  /* min-width: 300px; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* top: 50%; */
+  /* max-width: 15%; */
+}
+
+.illustrationImage {
+  max-width: 75%;
+  /* top: 20%; */
+  /* max */
+  /* max-width: 80%; */
+  /* top: 30%; */
+  /* width: 100%; */
+  /* height: auto; */
+  /* top: 80%; */
+  /* top: 300px; */
+}
+
+.textContent {
+  flex: 1;
+  min-width: 320px;
+  text-align: right;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.6;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1rem;
+  color: #cccccc;
+  line-height: 2;
+  margin-bottom: 2rem;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px 24px;
+  margin-bottom: 2rem;
+}
+
+.serviceItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+  white-space: nowrap;
+}
+
+.serviceItem img {
+  width: 28px;
+  height: 28px;
+}
+
+.ctaButton {
+  padding: 10px 24px;
+  background: none;
+  color: #ffffff;
+  border: 1px solid #63c6e4;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #63c6e4;
+  color: #0c0b1f;
+}
+
+@media (max-width: 768px) {
+  .analysisToolsWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .textContent {
+    text-align: center;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+}

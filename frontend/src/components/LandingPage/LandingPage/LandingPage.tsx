@@ -6,6 +6,7 @@ import LandingPage_InsightOrbit from "../LandingPage_InsightOrbit/LandingPage_In
 import LandingPage_Navbar from "../LandingPage_Navbar/LandingPage_Navbar";
 import LandingPage_AchievementCounters from "../LandingPage_AchievementCounters/LandingPage_AchievementCounters";
 import LandingPage_HowToStart from "../LandingPage_HowToStart/LandingPage_HowToStart";
+import LandingPage_AnalysisTools from "../LandingPage_AnalysisTools/LandingPage_AnalysisTools";
 
 import Section1_Years from "../../../../public/icons/Landing/Section1_years.svg"
 
@@ -49,7 +50,7 @@ const LandingPage: React.FC = () => {
               <div className={styles.featuresText}>
                 <h2>
                   هدایت مسیر رشد محصول شما<br />
-                  در چشم‌انداز داده‌محور <span className={styles.highlight}>جهانی</span>
+                  در چشم‌انداز داده‌محور <span className={styles.featureHighlight}>جهانی</span>
                 </h2>
                 <p>
                   ما به شما کمک می‌کنیم تا با تحلیل داده‌های دقیق و داشبوردهای سفارشی، تصمیم‌های هوشمندانه‌تری بگیرید
@@ -57,20 +58,19 @@ const LandingPage: React.FC = () => {
                 </p>
               </div>
 
-              <img src={Section1_Years} className={`${styles.section1_year_img}`}/>
+              <img src={Section1_Years} className={`${styles.feature_year_img}`}/>
               <LandingPage_InsightOrbit />
           </section>
 
           {/* ======================= Section 2 - Services =================== */}
-          {/* <section id="services" className={`${styles.section} ${styles.hiddenOnLoad}`}>
-            سرویس‌ها
-          </section> */}
-
           <section id="services" className={`${styles.section} ${styles.hiddenOnLoad}`}>
-            <div className={styles.titleWrapper}>
-              <div className={styles.sectionTitle}>سرویس‌ها</div>
-              <div className={styles.titleUnderline}></div>
+            <div className={styles.servicesTitleWrapper}>
+              <div className={styles.servicesSectionBox}>
+                سرویس‌ها
+              </div>
+              <div className={styles.servicesTitleLine}></div>
             </div>
+            <LandingPage_AnalysisTools />
           </section>
 
 
