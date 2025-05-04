@@ -17,6 +17,20 @@ const LandingPage_Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState("features");
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const [isShrunk, setIsShrunk] = useState(false);
+
+  // ======================= Shrink navbar on scroll =======================
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsShrunk(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+
   // ======================= Observe section visibility for scroll spy =======================
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -44,15 +58,23 @@ const LandingPage_Navbar: React.FC = () => {
   }, []);
 
   return (
-    <nav className={styles.navbar}>
+    // <nav className={styles.navbar}>
+    <nav className={`${styles.navbar} ${isShrunk ? styles.shrink : ""}`}>
       {/* ======================= Left side: Auth buttons ======================= */}
       <div className={styles.authButtons}>
         <Link to="/signup" className={styles.signupBtn}>
-          ثبت‌نام
+          <span className={styles.signupText}>ثبت‌نام</span>
+          {/* ثبت‌نام */}
         </Link>
         <Link to="/login" className={styles.loginBtn}>
           ورود
         </Link>
+
+
+        {/* <button type="submit" className="btn w-100 login-btn">ورود</button> */}
+
+
+
       </div>
 
       {/* ======================= Mobile menu toggle button ======================= */}

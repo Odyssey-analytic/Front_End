@@ -45,39 +45,34 @@ const LandingPage: React.FC = () => {
         <main className={styles.mainSections}>
           {/* ======================= Section 1 - Circle Animation =================== */}
           
-          <section id="features" className={`${styles.section} ${styles.hiddenOnLoad}`}>        
-          {/* <div className={styles.featuresRow}> */}
+          <section id="features" className={`${styles.section} ${styles.hiddenOnLoad}`}>  
               <div className={styles.featuresText}>
                 <h2>
                   هدایت مسیر رشد محصول شما<br />
                   در چشم‌انداز داده‌محور <span className={styles.highlight}>جهانی</span>
                 </h2>
-
                 <p>
                   ما به شما کمک می‌کنیم تا با تحلیل داده‌های دقیق و داشبوردهای سفارشی، تصمیم‌های هوشمندانه‌تری بگیرید
                   و تجربه کاربران را بهینه‌سازی کنید.
                 </p>
               </div>
 
-            {/* <div> */}
-
-            {/* <div className="welcome-page-main-box-icon"> */}
-                <img src={Section1_Years} className={`${styles.section1_year_img}`}/>
-              {/* </div> */}
-              
-
-
+              <img src={Section1_Years} className={`${styles.section1_year_img}`}/>
               <LandingPage_InsightOrbit />
-              {/* </div> */}
-              {/* </div> */}
           </section>
-
-
 
           {/* ======================= Section 2 - Services =================== */}
-          <section id="services" className={`${styles.section} ${styles.hiddenOnLoad}`}>
+          {/* <section id="services" className={`${styles.section} ${styles.hiddenOnLoad}`}>
             سرویس‌ها
+          </section> */}
+
+          <section id="services" className={`${styles.section} ${styles.hiddenOnLoad}`}>
+            <div className={styles.titleWrapper}>
+              <div className={styles.sectionTitle}>سرویس‌ها</div>
+              <div className={styles.titleUnderline}></div>
+            </div>
           </section>
+
 
           {/* ======================= Section 3 - Testimonials =================== */}
           <section id="testimonials" className={styles.section}>
