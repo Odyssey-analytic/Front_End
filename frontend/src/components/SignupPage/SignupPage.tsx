@@ -38,6 +38,15 @@ const SignupPage = () => {
   const [usernameErrorType, setUsernameErrorType] = useState<'empty' | 'invalid' | ''>('');
   const [usernameErrorKey, setUsernameErrorKey] = useState(0);
 
+  const [passwordError, setPasswordError] = useState('');
+  const [passwordErrorKey, setPasswordErrorKey] = useState(0);
+
+  // const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  // const [confirmPasswordErrorKey, setConfirmPasswordErrorKey] = useState(0);
+
+
+
+
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [confirmPasswordErrorKey, setConfirmPasswordErrorKey] = useState(0);
 
@@ -113,11 +122,35 @@ const SignupPage = () => {
     }
 
     // Password match validation
-    if (confirmPassword !== password) {
-      setConfirmPasswordError('رمز عبور و تأیید آن یکی نیستند.');
+    // if (confirmPassword !== password) {
+    //   setConfirmPasswordError('رمز عبور و تأیید آن یکی نیستند.');
+    //   setConfirmPasswordErrorKey(prev => prev + 1);
+    //   valid = false;
+    // }
+
+    // Password validation
+    if (!password.trim()) {
+      setPasswordError('رمز عبور را وارد کنید.');
+      setPasswordErrorKey(prev => prev + 1);
+      valid = false;
+    } else {
+      setPasswordError('');
+    }
+
+    // Confirm password validation
+    if (!confirmPassword.trim()) {
+      setConfirmPasswordError('تأیید رمز عبور را وارد کنید.');
       setConfirmPasswordErrorKey(prev => prev + 1);
       valid = false;
+    } else if (confirmPassword !== password) {
+      setConfirmPasswordError('رمز عبور و تأیید آن مطابقت ندارند.');
+      setConfirmPasswordErrorKey(prev => prev + 1);
+      valid = false;
+    } else {
+      setConfirmPasswordError('');
     }
+
+
 
     if (!valid) return;
 
@@ -236,17 +269,56 @@ const SignupPage = () => {
           </div>
 
           {/* Password field */}
-          <div className="mb-3 position-relative">
+          {/* <div className="mb-3 position-relative">
             <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="signup-page-input form-control" placeholder="رمز عبور" />
             <img src={signup_padlock_icon} alt="password icon" className="signup-padlock-icon" />
             <img src={showPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle password" className="signup-eye-icon" onClick={() => setShowPassword((prev) => !prev)} />
+          </div> */}
+
+          {/* Password field */}
+          <div className="mb-3 position-relative">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="signup-page-input form-control"
+              placeholder="رمز عبور"
+            />
+
+            <img src={signup_padlock_icon} alt="password icon" className="signup-padlock-icon" />
+            <img
+              src={showPassword ? signup_eye_icon : signup_eye_off_icon}
+              alt="toggle password"
+              className="signup-eye-icon"
+              onClick={() => setShowPassword((prev) => !prev)}
+            />
+
+            {passwordError && (
+              <div className="signup-input-error-popup" key={passwordErrorKey}>
+                <span>{passwordError}</span>
+                <button type="button" onClick={() => setPasswordError('')}>×</button>
+              </div>
+            )}
           </div>
+
 
           {/* Confirm password field */}
           <div className="mb-3 position-relative">
-            <input type={showConfirmPassword ? 'text' : 'password'} value={confirmPassword} onChange={handleConfirmPasswordChange} className="signup-page-input form-control" placeholder="تأیید رمز عبور" />
+            <input 
+              type={showConfirmPassword ? 'text' : 'password'} 
+              value={confirmPassword} onChange={handleConfirmPasswordChange} 
+              className="signup-page-input form-control" 
+              placeholder="تأیید رمز عبور" 
+            />
+            
             <img src={signup_padlock_icon} alt="confirm password icon" className="signup-padlock-icon" />
-            <img src={showConfirmPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle confirm password" className="signup-eye-icon" onClick={() => setShowConfirmPassword((prev) => !prev)} />
+            <img
+              src={showConfirmPassword ? signup_eye_icon : signup_eye_off_icon} 
+              alt="toggle confirm password" 
+              className="signup-eye-icon" 
+              onClick={() => setShowConfirmPassword((prev) => !prev)} 
+            />
+            
             {confirmPasswordError && (
               <div className="signup-input-error-popup" key={`confirm-password-error-${confirmPasswordErrorKey}`}>
                 <span>{confirmPasswordError}</span>
