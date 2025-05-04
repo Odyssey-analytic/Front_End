@@ -99,6 +99,7 @@ const WelcomePage = () => {
       description: description,
       engine: engine,
       platform: platforms,
+      thumbnail: thumbnail
     };
     
     console.log('داده ارسالی:', data);
