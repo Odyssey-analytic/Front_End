@@ -7,6 +7,7 @@ import LandingPage_Navbar from "../LandingPage_Navbar/LandingPage_Navbar";
 import LandingPage_AchievementCounters from "../LandingPage_AchievementCounters/LandingPage_AchievementCounters";
 import LandingPage_HowToStart from "../LandingPage_HowToStart/LandingPage_HowToStart";
 import LandingPage_AnalysisTools from "../LandingPage_AnalysisTools/LandingPage_AnalysisTools";
+import LandingPage_Contact from "../LandingPage_Contact/LandingPage_Contanct";
 
 import Section1_Years from "../../../../public/icons/Landing/Section1_years.svg"
 
@@ -131,10 +132,17 @@ const LandingPage: React.FC = () => {
 
           </section>
 
-          {/* ======================= Section 6 - Contact Us =================== */}
+          {/* ======================= Section 7 - Contact Us =================== */}
           <section id="contact" className={`${styles.section} ${styles.hiddenOnLoad}`}>
-            آموزش و ارتباط با ما
+        
+            <div className={styles.contactInsidePart}> 
+            <LandingPage_Contact />
+            </div>
+        
           </section>
+        
+        
+        
         </main>
       </div>
     </div>

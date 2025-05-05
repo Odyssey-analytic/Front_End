@@ -21,7 +21,7 @@
 .contentWrapper {
   position: relative;
   z-index: 2;
-  padding: 20px;
+  /* padding: 20px; */
   width: 100%;
   margin-top: 80px; /* space for fixed navbar */
 }
@@ -31,7 +31,7 @@
   display: flex;
   flex-direction: column;
   gap: 100px;
-  padding: 0 24px;
+  /* padding: 0 24px; */
 }
 
 /* ======================= Reusable section style =================== */
@@ -277,6 +277,59 @@
   width: 100%;
   
 }
+
+
+/* ======================= Section5 Content =================== */
+.achievementsTitleWrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  right: 2%;
+  top: 15%;
+  gap: 16px;
+}
+
+.achievementsTitleBox {
+  background-color: rgba(85, 166, 188, 0.3);
+
+  color: #63c6e4;
+  padding: 12px 20px;
+  border-radius: 3px;
+
+  font-size: 0.9rem;
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+.achievementsTitleLine {
+  width: 80px;
+  height: 1.5px;
+  background-color: #63c6e4;
+  border-radius: 1px;
+}
+
+.achievementsInsidePart {
+  display: flex;
+  position: absolute;
+  top: 25%;
+  width: 100%;  
+}
+
+
+
+/* ======================= Section7 Content - footer =================== */
+
+.contactInsidePart {
+  display: flex;
+  position: absolute;
+  top: 17%;
+  /* flex-direction: column; */
+  width: 100%;
+  height: 100%;
+  
+}
+
 
 
 /* ======================= Responsive Breakpoints ======================= */
