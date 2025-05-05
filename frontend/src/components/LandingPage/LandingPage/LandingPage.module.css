@@ -126,11 +126,11 @@
   flex-direction: row;
   align-items: center;
   right: 2%;
-  top: 12%;
+  top: 15%;
   gap: 16px;
 }
 
-.servicesSectionBox {
+.servicesTitleBox {
   background-color: rgba(85, 166, 188, 0.3);
   
   color: #63c6e4;
@@ -149,14 +149,135 @@
   border-radius: 1px;
 }
 
-.AnalysisToolPart {
+.servicesInsidePart {
   display: flex;
   position: absolute;
-  top: 15%;
+  top: 20%;
   /* flex-direction: column; */
   width: 100%;
   
 }
+
+
+/* ======================= Section3 Content =================== */
+.testimonialsTitleWrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  right: 2%;
+  top: 15%;
+  gap: 16px;
+}
+
+.testimonialsTitleBox {
+  background-color: rgba(85, 166, 188, 0.3);
+  
+  color: #63c6e4;
+  padding: 12px 20px;
+  border-radius: 3px;
+
+  font-size: 0.9rem;
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+.testimonialsTitleLine {
+  width: 80px;
+  height: 1.5px;
+  background-color: #63c6e4;
+  border-radius: 1px;
+}
+
+.testimonialsInsidePart {
+  display: flex;
+  position: absolute;
+  top: 20%;
+  /* flex-direction: column; */
+  width: 100%;
+  
+}
+
+
+/* ======================= Section4 Content =================== */
+.startTitleWrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  right: 2%;
+  top: 15%;
+  gap: 16px;
+}
+
+.startTitleBox {
+  background-color: rgba(85, 166, 188, 0.3);
+  
+  color: #63c6e4;
+  padding: 12px 20px;
+  border-radius: 3px;
+
+  font-size: 0.9rem;
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+.startTitleLine {
+  width: 80px;
+  height: 1.5px;
+  background-color: #63c6e4;
+  border-radius: 1px;
+}
+
+.startInsidePart {
+  display: flex;
+  position: absolute;
+  top: 25%;
+  /* flex-direction: column; */
+  width: 100%;
+  
+}
+
+
+/* ======================= Section5 Content =================== */
+.achievementsTitleWrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  right: 2%;
+  top: 15%;
+  gap: 16px;
+}
+
+.achievementsTitleBox {
+  background-color: rgba(85, 166, 188, 0.3);
+  
+  color: #63c6e4;
+  padding: 12px 20px;
+  border-radius: 3px;
+
+  font-size: 0.9rem;
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+.achievementsTitleLine {
+  width: 80px;
+  height: 1.5px;
+  background-color: #63c6e4;
+  border-radius: 1px;
+}
+
+.achievementsInsidePart {
+  display: flex;
+  position: absolute;
+  top: 25%;
+  /* flex-direction: column; */
+  width: 100%;
+  
+}
+
 
 /* ======================= Responsive Breakpoints ======================= */
 

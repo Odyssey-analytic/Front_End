@@ -65,12 +65,13 @@ const LandingPage: React.FC = () => {
           {/* ======================= Section 2 - Services =================== */}
           <section id="services" className={`${styles.section} ${styles.hiddenOnLoad}`}>
             <div className={styles.servicesTitleWrapper}>
-              <div className={styles.servicesSectionBox}>
+              <div className={styles.servicesTitleBox}>
                 سرویس‌ها
               </div>
               <div className={styles.servicesTitleLine}></div>
             </div>
-            <div className={styles.AnalysisToolPart}> 
+
+            <div className={styles.servicesInsidePart}> 
             <LandingPage_AnalysisTools />
             </div>
           </section>
@@ -78,21 +79,56 @@ const LandingPage: React.FC = () => {
 
           {/* ======================= Section 3 - Testimonials =================== */}
           <section id="testimonials" className={styles.section}>
-            <div className={`hiddenOnLoad ${styles.titleWrapper}`}>
+            {/* <div className={`hiddenOnLoad ${styles.titleWrapper}`}>
               <div className={styles.sectionTitle}>نظرات کاربران</div>
               <div className={styles.titleUnderline}></div>
-            </div>
+            </div> */}
+
+              <div className={styles.testimonialsTitleWrapper}>
+              <div className={styles.testimonialsTitleBox}>
+                نظرات کاربران
+              </div>
+              <div className={styles.testimonialsTitleLine}></div>
+              </div> 
+
+              <div className={styles.testimonialsInsidePart}> 
             <LandingPage_Testimonials />
+            </div>
           </section>
 
           {/* ======================= Section 4 - Getting Started =================== */}
           <section id="start" className={styles.section}>
+
+          <div className={styles.startTitleWrapper}>
+              <div className={styles.startTitleBox}>
+                 نحوه شروع
+              </div>
+              <div className={styles.startTitleLine}></div>
+              </div> 
+
+              <div className={styles.startInsidePart}> 
             <LandingPage_HowToStart />
+          </div>
+
+            
           </section>
 
           {/* ======================= Section 5 - Achievement Counters =================== */}
           <section id="achievements" className={`${styles.section} ${styles.hiddenOnLoad}`}>
+            {/* <LandingPage_AchievementCounters /> */}
+
+            <div className={styles.achievementsTitleWrapper}>
+              <div className={styles.achievementsTitleBox}>
+                  دستاوردها
+              </div>
+              <div className={styles.achievementsTitleLine}></div>
+              </div> 
+
+              <div className={styles.achievementsInsidePart}> 
             <LandingPage_AchievementCounters />
+          </div>
+
+
           </section>
 
           {/* ======================= Section 6 - Contact Us =================== */}
