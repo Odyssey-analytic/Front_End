@@ -25,15 +25,14 @@ const RealTimeChart = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top',
+        position: 'right' as const,
       },
       title: {
         display: true,
-        text: 'Average Session Length',
+        text: 'Active Users Over Time',
       },
     },
   };
-
   const searchParams = new URLSearchParams(window.location.search);
   const urlToken = searchParams.get('token') || '';
   const [initialPayload] = useState({
