@@ -178,10 +178,10 @@ const WelcomePage = () => {
     console.log('داده ارسالی:', data);
     
     try {
-      // const result = await submitGameInfo(data);
-      // setToken(result.token);
+      const result = await submitGameInfo(data);
+      setToken(result.token);
 
-      // setStep(3);
+      setStep(3);
       setIsLoading(true);
       setTimeout(() => {
         setStep(3);
@@ -583,7 +583,7 @@ const WelcomePage = () => {
                       </div>
                     </div>
 
-                    <span className="welcome-page-token-value">ljkhbhjmjdbvjncjdvjfjgjfhakjjlajlgfkjlkksdkcnnlslbfksdvlsmlhskbvmsnlnkvbfvblsnvl</span>
+                    <span className="welcome-page-token-value">{token}</span>
 
                   </div>
                 </div>
