@@ -25,7 +25,7 @@ const RealTimeChart = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'right' as const,
+        position: 'top' as const,
       },
       title: {
         display: true,
@@ -45,7 +45,7 @@ const RealTimeChart = () => {
 
   useEffect(() => {
     // Create SSE connection
-    sseRef.current = new EventSource(`https://odysseyanalytics.ir/test/api/kpi/sse/SessionLengthAvr?kpi=${initialPayload.kpi}&token=${initialPayload.token}`);
+    sseRef.current = new EventSource(`https://odysseyanalytics.ir/api/kpi/sse/SessionLengthAvr?kpi=${initialPayload.kpi}&token=${initialPayload.token}`);
 
     const handleMessage = (event: MessageEvent) => {
       const newData = JSON.parse(event.data);
