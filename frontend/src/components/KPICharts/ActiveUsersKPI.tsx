@@ -1,124 +1,125 @@
-import { useEffect, useState, useRef } from 'react';
-import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend, ChartData } from 'chart.js';
-import MainLayout from '../MainLayout/MainLayout';
-import './ActiveUsersKPI.css';
+// import { useEffect, useState, useRef } from 'react';
+// import { Line } from 'react-chartjs-2';
+// import { Chart as ChartJS, LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend, ChartData } from 'chart.js';
+// import MainLayout from '../MainLayout/MainLayout';
+// import './ActiveUsersKPI.css';
 
-ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 
-const RealTimeChart = () => {
-  const [chartData, setChartData] = useState<ChartData<'line'>>({
-    labels: [],
-    datasets: [
-      {
-        label: 'Average Session Length',
-        data: [],
-        borderColor: 'rgba(75, 192, 192, 1)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        fill: true,
-      },
-    ],
-  });
+// ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend);
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Average Session Length',
-      },
-    },
-  };
+// const RealTimeChart = () => {
+//   const [chartData, setChartData] = useState<ChartData<'line'>>({
+//     labels: [],
+//     datasets: [
+//       {
+//         label: 'Average Session Length',
+//         data: [],
+//         borderColor: 'rgba(75, 192, 192, 1)',
+//         backgroundColor: 'rgba(75, 192, 192, 0.2)',
+//         fill: true,
+//       },
+//     ],
+//   });
 
-  const searchParams = new URLSearchParams(window.location.search);
-  const urlToken = searchParams.get('token') || '';
-  const [initialPayload] = useState({
-    kpi: "sessionTime_average",
-    token: urlToken
-  });
+//   const options = {
+//     responsive: true,
+//     plugins: {
+//       legend: {
+//         position: 'top',
+//       },
+//       title: {
+//         display: true,
+//         text: 'Average Session Length',
+//       },
+//     },
+//   };
 
-  // Use a ref to store the SSE connection
-  const sseRef = useRef<EventSource | null>(null);
+//   const searchParams = new URLSearchParams(window.location.search);
+//   const urlToken = searchParams.get('token') || '';
+//   const [initialPayload] = useState({
+//     kpi: "sessionTime_average",
+//     token: urlToken
+//   });
 
-  useEffect(() => {
-    // Create SSE connection
-    sseRef.current = new EventSource(`https://odysseyanalytics.ir/test/api/kpi/sse/SessionLengthAvr?kpi=${initialPayload.kpi}&token=${initialPayload.token}`);
+//   // Use a ref to store the SSE connection
+//   const sseRef = useRef<EventSource | null>(null);
 
-    const handleMessage = (event: MessageEvent) => {
-      const newData = JSON.parse(event.data);
-      console.log("SSE message:", newData);
+//   useEffect(() => {
+//     // Create SSE connection
+//     sseRef.current = new EventSource(`https://odysseyanalytics.ir/test/api/kpi/sse/SessionLengthAvr?kpi=${initialPayload.kpi}&token=${initialPayload.token}`);
 
-      setChartData(prevData => {
-        const updatedLabels = [...(prevData.labels || []), newData.timestamp];
-        const updatedData = [...(prevData.datasets[0].data || []), newData.value];
+//     const handleMessage = (event: MessageEvent) => {
+//       const newData = JSON.parse(event.data);
+//       console.log("SSE message:", newData);
 
-        if (updatedLabels.length > 10) {
-          updatedLabels.shift();
-          updatedData.shift();
-        }
+//       setChartData(prevData => {
+//         const updatedLabels = [...(prevData.labels || []), newData.timestamp];
+//         const updatedData = [...(prevData.datasets[0].data || []), newData.value];
 
-        return {
-          labels: updatedLabels,
-          datasets: [{
-            ...prevData.datasets[0],
-            data: updatedData,
-          }],
-        };
-      });
-    };
+//         if (updatedLabels.length > 10) {
+//           updatedLabels.shift();
+//           updatedData.shift();
+//         }
 
-    const handleError = (error: Event) => {
-      console.error("SSE connection error:", error);
-      if (sseRef.current) {
-        sseRef.current.close();
-      }
-    };
+//         return {
+//           labels: updatedLabels,
+//           datasets: [{
+//             ...prevData.datasets[0],
+//             data: updatedData,
+//           }],
+//         };
+//       });
+//     };
 
-    sseRef.current.onmessage = handleMessage;
-    sseRef.current.onerror = handleError;
+//     const handleError = (error: Event) => {
+//       console.error("SSE connection error:", error);
+//       if (sseRef.current) {
+//         sseRef.current.close();
+//       }
+//     };
 
-    // Cleanup function for component unmount
-    return () => {
-      if (sseRef.current) {
-        sseRef.current.close();
-      }
-    };
-  }, [initialPayload]);
+//     sseRef.current.onmessage = handleMessage;
+//     sseRef.current.onerror = handleError;
 
-  // Handle tab/window closing
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      if (sseRef.current) {
-        sseRef.current.close();
-      }
-    };
+//     // Cleanup function for component unmount
+//     return () => {
+//       if (sseRef.current) {
+//         sseRef.current.close();
+//       }
+//     };
+//   }, [initialPayload]);
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
+//   // Handle tab/window closing
+//   useEffect(() => {
+//     const handleBeforeUnload = () => {
+//       if (sseRef.current) {
+//         sseRef.current.close();
+//       }
+//     };
 
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, []);
+//     window.addEventListener('beforeunload', handleBeforeUnload);
 
-  return (
-    <div className="welcome-page-container vh-100 d-flex flex-column">
-    <MainLayout>
-      <div className='kpichart-page-container'>
-        <div className='kpi-sessionavr-main-box'>
-          <div className='kpi-chart-header'>
-            <h2 style={{fontSize: "1.5rem"}}><u>میانگین طول بازی:</u></h2>
-          </div>
-          <div className='kpi-chart-body'>
-            <Line width={1100} height={350} options={options} data={chartData} />
-          </div>
-        </div>
-      </div>
-    </MainLayout>
-    </div>
-  );
-};
+//     return () => {
+//       window.removeEventListener('beforeunload', handleBeforeUnload);
+//     };
+//   }, []);
 
-export default RealTimeChart;
+//   return (
+//     <div className="welcome-page-container vh-100 d-flex flex-column">
+//       <MainLayout></MainLayout>
+//         <div className='kpichart-page-container'>
+//           <div className='kpi-sessionavr-main-box'>
+//             <div className='kpi-chart-header'>
+//               <h2 style={{fontSize: "1.5rem"}}><u>میانگین طول بازی:</u></h2>
+//             </div>
+//             <div className='kpi-chart-body'>
+//               <Line width={1100} height={350} options={options} data={chartData} />
+//             </div>
+//           </div>
+//         </div>
+      
+//     </div>
+//   );
+// };
+
+// export default RealTimeChart;

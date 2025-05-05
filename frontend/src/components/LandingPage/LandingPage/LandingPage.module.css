@@ -44,6 +44,9 @@
 /* ======================= Reusable section style =================== */
 .section {
   min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
   
   color: white;
   position: relative;
@@ -113,7 +116,7 @@
   position: absolute;
   left: 73%;
   bottom: 53%;
-  width: clamp(100px, 35vw, 440px);
+  width: clamp(100px, 35vw, 400px);
   z-index: 10;  
 }
 

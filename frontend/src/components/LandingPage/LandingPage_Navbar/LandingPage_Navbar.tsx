@@ -5,7 +5,7 @@ import OdessayLogo from "/public/icons/odessay_logo.svg";
 
 // ======================= Section anchors used in scroll tracking =======================
 const sections = [
-  { id: "features", label: "ویژگی‌ها" },
+  // { id: "features", label: "ویژگی‌ها" },
   { id: "services", label: "سرویس‌ها" },
   { id: "testimonials", label: "نظرات" },
   { id: "start", label: "شروع" },
