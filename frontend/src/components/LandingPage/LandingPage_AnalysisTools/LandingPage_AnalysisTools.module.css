@@ -1,41 +1,56 @@
 .analysisToolsWrapper {
-  display: flex;
-  position: absolute;
-  justify-content: space-between;
+  /* display: flex; */
+  flex-direction: row; 
+  /* justify-content: space-between; */
   /* align-items: center; */
-
-  gap: 48px;
-  flex-wrap: wrap-reverse;
-  padding: 0 4rem;
-  top: 35%;
+  width: 100%;
+  /* padding: 0 3rem; */
+  /* gap: 48px; */
+  /* position: relative; */
+  /* top: 30%; */
 }
 
 .imageContainer {
-  /* flex: 1; */
-  /* min-width: 300px; */
+  /* width: 50%; */
   /* display: flex; */
-  /* justify-content: center; */
-  /* top: 50%; */
-  /* max-width: 15%; */
-}
-
-.illustrationImage {
-  max-width: 75%;
-  /* top: 20%; */
-  /* max */
-  /* max-width: 80%; */
-  /* top: 30%; */
-  /* width: 100%; */
-  /* height: auto; */
+  justify-content: center;
+  /* position: absolute; */
+  right: 50%;
+  /* align-items: center; */
+  position: relative;
+  bottom: 38%;
   /* top: 80%; */
-  /* top: 300px; */
+  /* margin-top: 15%; */
 }
 
 .textContent {
-  flex: 1;
-  min-width: 320px;
-  text-align: right;
+  position: relative;
+  right: 8%;
+  top: 10%;
+  /* width: 100%; */
+  /* width: 50%; */
+  /* right: 50%; */
+  /* text-align: left; */
+  /* position: relative; */
+  /* top: 10%; */
+  /* margin-top: 10%; */
+  /* position: absolute; */
+  /* right: 10%; */
 }
+
+
+/* خود عکس */
+.illustrationImage {
+  max-width: 40%;
+  height: auto;
+}
+
+/* متن سمت راست */
+/* .textContent {
+  width: 50%;
+  text-align: right;
+} */
+
 
 .title {
   font-size: 2rem;

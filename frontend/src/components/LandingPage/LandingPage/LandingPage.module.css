@@ -39,7 +39,7 @@
   /* display: flex; */
   /* display: flex; */
   
-  flex-direction: column;
+  /* flex-direction: column; */
   /* align-items: center; */
   /* align-items: center; */
   
@@ -70,7 +70,6 @@
 .titleWrapper {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 }
 
 .sectionTitle {
@@ -91,14 +90,9 @@
   position: absolute;
   right: 53%;
   top: 12%;                          
-  /* left: 15%;                       */
-  
-  /* transform: translate(-50%, -50%);  */
+
   width: clamp(180px, 35vw, 650px);  
   height: clamp(180px, 33vw, 650px);
-
-  /* z-index: 5; */
-  /* pointer-events: none; */
 }
 
 .featuresText h2 {
@@ -125,35 +119,14 @@
   width: clamp(100px, 35vw, 440px);  
 }
 
-
 /* ======================= Section2 Content =================== */
-/* .servicesTitleWrapper {
-  position: absolute;
-  flex-direction: column;
-  right: 2%;
-  top: 20%;
-}
-
-.servicesSectionTitle {
-  font-size: 1rem;
-  font-weight: normal;
-  color: #63c6e4;
-}
-
-.servicesTitleUnderline {
-  width: 80px;
-  height: 2px;
-  background-color: #63c6e4;
-  margin-top: 8px;
-} */
-
 .servicesTitleWrapper {
   position: absolute;
   display: flex;
   flex-direction: row;
   align-items: center;
   right: 2%;
-  top: 20%;
+  top: 12%;
   gap: 16px;
 }
 
@@ -176,6 +149,14 @@
   border-radius: 1px;
 }
 
+.AnalysisToolPart {
+  display: flex;
+  position: absolute;
+  top: 15%;
+  /* flex-direction: column; */
+  width: 100%;
+  
+}
 
 /* ======================= Responsive Breakpoints ======================= */
 

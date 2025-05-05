@@ -70,7 +70,9 @@ const LandingPage: React.FC = () => {
               </div>
               <div className={styles.servicesTitleLine}></div>
             </div>
+            <div className={styles.AnalysisToolPart}> 
             <LandingPage_AnalysisTools />
+            </div>
           </section>
 
 
