@@ -1,0 +1,197 @@
+/* ======================= Navbar container ======================= */
+.navbar {
+  position: fixed;
+  top: 15px; /* distance from top */
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: calc(100% - 40px);
+  height: 5rem;
+
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+
+  background-color: rgba(7, 4, 26, 0.777);
+
+  backdrop-filter: blur(10px); /* blurred glass effect */
+  border-radius: 12px;
+  box-shadow: 0 6px 10px rgba(231, 231, 238, 0.106);
+
+  transition: height 0.3s ease, padding 0.3s ease;
+}
+
+/* ======================= Shrink navbar on scroll ======================= */
+.shrink {
+  height: 4.2rem;
+  background-color: rgba(7, 4, 26, 0.777);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 14px rgba(255, 255, 255, 0.106);
+}
+
+/* ======================= Left section: Logo ======================= */
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoImage {
+  height: 35px;
+  width: auto;
+}
+
+.logoText {
+  color: white;
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-family: 'Aboreto', sans-serif;
+}
+
+/* ======================= Navigation links ======================= */
+.navLinks {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+}
+
+.link:hover,
+.link.active {
+  color: #3a90aa;
+}
+
+/* ======================= Left section: Auth buttons ======================= */
+.authButtons {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.signupBtn {
+  background: linear-gradient(135deg, #4e3da7ae , #984fb8a6);
+
+  padding: 8px 20px;
+  border-radius: 10px;
+
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.signupBtn:hover {
+  background: linear-gradient(to right, rgb(42, 29, 110) , #4d1665);
+}
+
+.signupText {
+  font-size: 14px;
+
+  color: rgba(255, 255, 255, 0.853);
+  font-weight: normal;
+
+  text-decoration: none !important;
+ }
+
+.signupText:hover {
+  color: aliceblue;
+}
+
+.loginBtn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.853);
+  
+  font-weight: normal;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.loginBtn:hover {
+ color: aliceblue;
+}
+
+/* ======================= Mobile adjustments ======================= */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 16px;
+    border-radius: 12px;
+  }
+
+  .navLinks {
+    gap: 12px;
+  }
+
+  .link {
+    font-size: 14px;
+  }
+
+  .logoText {
+    font-size: 16px;
+  }
+
+  .signupBtn,
+  .loginBtn {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
+
+/* ======================= Active nav link style ======================= */
+.activeNavLink {
+  color: #63c6e4;
+  font-weight: bold;
+}
+
+/* ======================= Hamburger menu button for mobile ======================= */
+.menuToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* ======================= Mobile nav menu ======================= */
+@media (max-width: 768px) {
+  .menuToggle {
+    display: block;
+  }
+
+  .navLinks {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    position: absolute;
+    top: 70px;
+    right: 16px;
+    padding: 16px;
+    backdrop-filter: blur(12px);
+  }
+
+  .navLinks.open {
+    display: flex;
+  }
+
+  .authButtons {
+    display: none;
+  }
+
+  .mobileAuthButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+  }
+}
