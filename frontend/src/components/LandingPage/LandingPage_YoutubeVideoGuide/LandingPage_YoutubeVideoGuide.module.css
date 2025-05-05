@@ -1,26 +1,19 @@
 .wrapper {
   display: flex;
-  /* align-items: center; */
   justify-content: space-between;
-  /* padding: 4rem 2rem; */
+
   gap: 3rem;
   direction: rtl;
   flex-wrap: wrap;
-  /* background-color: #131129; */
   width: 100%;
 }
 
 .videoBox {
   flex: 1;
-  /* min-width: 300px;
-  max-width: 600px; */
   max-width: 50%;
-  /* max */
   left: 5%;
 
   position: relative;
-  /* top: 30%; */
-
   aspect-ratio: 16 / 9;
   border-radius: 10px;
   overflow: hidden;
@@ -38,23 +31,14 @@
   min-width: 300px;
   max-width: 600px;
 
-  /* width: clamp(300px, 35vw, 650px);  
-  height: clamp(180px, 33vw, 650px); */
-
-
-  /* width: 60%; */
   color: white;
-  /* top: 10%; */
   position: relative;
-  /* top: 5%; */
   right: 5%;
 }
 
 .textBoxInside {
   position: relative;
   top: 15%;
-  /* right: 12%; */
-
 }
 
 .subheading {

@@ -3,7 +3,6 @@
   position: relative;
   width: 100%;
   overflow-x: hidden;
-  /* background-color: #0c0b1f; */
 }
 
 /* ======================= Background image of landing page =================== */
@@ -17,14 +16,7 @@
   z-index: 0;
 }
 
-
 .FirstSectionBackGroundImage {
-  /* max-height: 800vh;  */
-  /* bottom: 15%; */
-  /* position: relative; */
-  /* min-height: 600vh; */
-  /* margin-bottom: 500px; */
-
   position: absolute;
   top: 0;
   left: 0;
@@ -38,9 +30,8 @@
 .contentWrapper {
   position: relative;
   z-index: 2;
-  /* padding: 20px; */
   width: 100%;
-  margin-top: 80px; /* space for fixed navbar */
+  margin-top: 80px;
 }
 
 /* ======================= Wrapper for all main vertical sections =================== */
@@ -48,22 +39,11 @@
   display: flex;
   flex-direction: column;
   gap: 100px;
-  /* padding: 0 24px; */
 }
 
 /* ======================= Reusable section style =================== */
 .section {
-  /* display: flex; */
-  /* display: flex; */
-  
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* align-items: center; */
-  
-  /* justify-content: center; */
   min-height: 100vh;
-  /* text-align: center; */
-  /* text-align: center; */
   
   color: white;
   position: relative;
@@ -134,13 +114,7 @@
   left: 73%;
   bottom: 53%;
   width: clamp(100px, 35vw, 440px);
-  /* color: #63c6e4; */
-  z-index: 10;
-  
-}
-
-.year_img {
-  /* position: absolute; */
+  z-index: 10;  
 }
 
 /* ======================= Section2 Content =================== */
@@ -152,7 +126,6 @@
   right: 2%;
   top: 15%;
   gap: 16px;
-  
 }
 
 .servicesTitleBox {
@@ -178,14 +151,8 @@
   display: flex;
   position: absolute;
   top: 16%;
-  /* flex-direction: column; */
   width: 100%;
-
-  /* width: clamp(180px, 35vw, 650px);  
-  height: clamp(180px, 33vw, 650px); */
-  
 }
-
 
 /* ======================= Section3 Content =================== */
 .testimonialsTitleWrapper {
@@ -221,11 +188,8 @@
   display: flex;
   position: absolute;
   top: 20%;
-  /* flex-direction: column; */
-  width: 100%;
-  
+  width: 100%;  
 }
-
 
 /* ======================= Section4 Content =================== */
 .startTitleWrapper {
@@ -261,11 +225,8 @@
   display: flex;
   position: absolute;
   top: 25%;
-  /* flex-direction: column; */
-  width: 100%;
-  
+  width: 100%;  
 }
-
 
 /* ======================= Section5 Content =================== */
 .achievementsTitleWrapper {
@@ -301,11 +262,8 @@
   display: flex;
   position: absolute;
   top: 25%;
-  /* flex-direction: column; */
-  width: 100%;
-  
+  width: 100%;  
 }
-
 
 /* ======================= Section6 Content =================== */
 .youtubeTitleWrapper {
@@ -350,13 +308,9 @@
   display: flex;
   position: absolute;
   top: 17%;
-  /* flex-direction: column; */
   width: 100%;
-  height: 100%;
-  
+  height: 100%;  
 }
-
-
 
 /* ======================= Responsive Breakpoints ======================= */
 
@@ -385,7 +339,6 @@
   
     width: clamp(100px, 30vw, 330px);  
   }
-
 }
 
 /* 💻 تبلت: 769px تا 1024px */

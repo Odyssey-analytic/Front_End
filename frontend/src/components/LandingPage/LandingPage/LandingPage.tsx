@@ -11,8 +11,6 @@ import LandingPage_Contact from "../LandingPage_Contact/LandingPage_Contanct";
 import LandingPage_YoutubeVideoGuide from "../LandingPage_YoutubeVideoGuide/LandingPage_YoutubeVideoGuide";
 
 import Section1_Years from "../../../../public/icons/Landing/Section1_years.svg"
-// import BackGroundImage from "/src/assets/images/Landing_Page_Background.png"
-// import BackGroundImage from "../../../../src/assets/images/Landing_Page_Background1.png"
 import BackGroundImage from "../../../../src/assets/images/TotalBackGround.png"
 import FirstSectionBackGround from "../../../../src/assets/images/FirstSectionBackGround.png"
 
@@ -51,29 +49,28 @@ const LandingPage: React.FC = () => {
 
       <div className={styles.contentWrapper}>
         <main className={styles.mainSections}>
+
           {/* ======================= Section 1 - Circle Animation =================== */}
-          
           <section id="features" className={`${styles.section} ${styles.hiddenOnLoad}`}>  
+            <img
+              src={FirstSectionBackGround}
+              alt="FirstSectionBackground"
+              className={styles.FirstSectionBackGroundImage}
+            />
 
-          <img
-            src={FirstSectionBackGround}
-            alt="FirstSectionBackground"
-            className={styles.FirstSectionBackGroundImage}
-          />
+            <div className={styles.featuresText}>
+              <h2>
+                هدایت مسیر رشد محصول شما<br />
+                در چشم‌انداز داده‌محور <span className={styles.featureHighlight}>جهانی</span>
+              </h2>
+              <p>
+                ما به شما کمک می‌کنیم تا با تحلیل داده‌های دقیق و داشبوردهای سفارشی، تصمیم‌های هوشمندانه‌تری بگیرید
+                و تجربه کاربران را بهینه‌سازی کنید.
+              </p>
+            </div>
 
-              <div className={styles.featuresText}>
-                <h2>
-                  هدایت مسیر رشد محصول شما<br />
-                  در چشم‌انداز داده‌محور <span className={styles.featureHighlight}>جهانی</span>
-                </h2>
-                <p>
-                  ما به شما کمک می‌کنیم تا با تحلیل داده‌های دقیق و داشبوردهای سفارشی، تصمیم‌های هوشمندانه‌تری بگیرید
-                  و تجربه کاربران را بهینه‌سازی کنید.
-                </p>
-              </div>
-
-              <img src={Section1_Years} className={`${styles.feature_year_img}`}/>
-              <LandingPage_InsightOrbit />
+            <img src={Section1_Years} className={`${styles.feature_year_img}`}/>
+            <LandingPage_InsightOrbit />
           </section>
 
           {/* ======================= Section 2 - Services =================== */}
@@ -90,20 +87,14 @@ const LandingPage: React.FC = () => {
             </div>
           </section>
 
-
           {/* ======================= Section 3 - Testimonials =================== */}
           <section id="testimonials" className={styles.section}>
-            {/* <div className={`hiddenOnLoad ${styles.titleWrapper}`}>
-              <div className={styles.sectionTitle}>نظرات کاربران</div>
-              <div className={styles.titleUnderline}></div>
-            </div> */}
-
-              <div className={styles.testimonialsTitleWrapper}>
+            <div className={styles.testimonialsTitleWrapper}>
               <div className={styles.testimonialsTitleBox}>
                 نظرات کاربران
               </div>
               <div className={styles.testimonialsTitleLine}></div>
-              </div> 
+            </div> 
 
               <div className={styles.testimonialsInsidePart}> 
             <LandingPage_Testimonials />
@@ -113,63 +104,52 @@ const LandingPage: React.FC = () => {
           {/* ======================= Section 4 - Getting Started =================== */}
           <section id="start" className={styles.section}>
 
-          <div className={styles.startTitleWrapper}>
+            <div className={styles.startTitleWrapper}>
               <div className={styles.startTitleBox}>
-                 نحوه شروع
+                نحوه شروع
               </div>
               <div className={styles.startTitleLine}></div>
-              </div> 
+            </div> 
 
-              <div className={styles.startInsidePart}> 
-            <LandingPage_HowToStart />
-          </div>
-
-            
+            <div className={styles.startInsidePart}> 
+              <LandingPage_HowToStart />
+            </div>    
           </section>
 
           {/* ======================= Section 5 - Achievement Counters =================== */}
           <section id="achievements" className={`${styles.section} ${styles.hiddenOnLoad}`}>
-            {/* <LandingPage_AchievementCounters /> */}
-
             <div className={styles.achievementsTitleWrapper}>
               <div className={styles.achievementsTitleBox}>
                   دستاوردها
               </div>
               <div className={styles.achievementsTitleLine}></div>
-              </div> 
+            </div> 
 
-              <div className={styles.achievementsInsidePart}> 
-            <LandingPage_AchievementCounters />
-          </div>
+            <div className={styles.achievementsInsidePart}> 
+              <LandingPage_AchievementCounters />
+            </div>
           </section>
 
           {/* ======================= Section 6 - Achievement Counters =================== */}
           <section id="youtubeGuide" className={`${styles.section} ${styles.hiddenOnLoad}`}>
-            {/* <LandingPage_AchievementCounters /> */}
-
             <div className={styles.youtubeTitleWrapper}>
               <div className={styles.youtubeTitleBox}>
                   آموزش گام به گام
               </div>
               <div className={styles.youtubeTitleLine}></div>
-              </div> 
+            </div> 
 
-              <div className={styles.youtubeInsidePart}> 
-            <LandingPage_YoutubeVideoGuide />
-          </div>
+            <div className={styles.youtubeInsidePart}> 
+              <LandingPage_YoutubeVideoGuide />
+            </div>
           </section>
-
 
           {/* ======================= Section 7 - Contact Us =================== */}
           <section id="contact" className={`${styles.section} ${styles.hiddenOnLoad}`}>
-        
             <div className={styles.contactInsidePart}> 
-            <LandingPage_Contact />
+              <LandingPage_Contact />
             </div>
-        
           </section>
-        
-        
         
         </main>
       </div>

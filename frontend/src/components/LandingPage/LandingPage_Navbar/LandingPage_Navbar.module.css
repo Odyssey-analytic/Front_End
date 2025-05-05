@@ -69,7 +69,6 @@
 
 .link:hover,
 .link.active {
-  /* color: #00b4ff; */
   color: #3a90aa;
 }
 
@@ -82,8 +81,7 @@
 
 .signupBtn {
   background: linear-gradient(135deg, #4e3da7ae , #984fb8a6);
-  
-  /* border: none; */
+
   padding: 8px 20px;
   border-radius: 10px;
 
@@ -150,7 +148,6 @@
 
 /* ======================= Active nav link style ======================= */
 .activeNavLink {
-  /* color: #00b4ff; */
   color: #63c6e4;
   font-weight: bold;
 }

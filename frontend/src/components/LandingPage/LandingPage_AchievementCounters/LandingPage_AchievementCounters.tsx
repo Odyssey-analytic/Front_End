@@ -95,10 +95,6 @@ const LandingPage_AchievementCounters: React.FC = () => {
             <div className={styles.odometer}>
               <Counter end={value} trigger={visible} speed={30} />
             </div>
-            {/* <div className={styles.label}>
-              {label}
-              {suffix && <span className={styles.suffix}> در {suffix}</span>}
-            </div> */}
           </div>
         ))}
       </div>

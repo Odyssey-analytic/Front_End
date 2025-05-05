@@ -44,7 +44,6 @@ const LandinPage_Contact = () => {
             <li>شبکه‌های اجتماعی</li>
           </ul>
         </div>
-
       </div>
 
       <div className={styles.footerBottom}>
