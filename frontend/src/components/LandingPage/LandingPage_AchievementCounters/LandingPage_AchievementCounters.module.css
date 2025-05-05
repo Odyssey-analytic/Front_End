@@ -2,7 +2,8 @@
 .container {
   text-align: center;
   color: white;
-  padding: 40px 20px;
+  /* padding: 30px 20px; */
+  /* top: 35%; */
 
   /* text-align: center; */
   /* padding: 40px 20px; */
@@ -13,7 +14,7 @@
 /* ======================= Section title ======================= */
 .title {
   font-size: 28px;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
   color: rgba(217, 217, 217, 0.8); /* matches design */
   font-weight: 500;
 }
@@ -50,11 +51,13 @@
 .card {
   background: #f2f2f2;
   color: #111;
-  padding: 32px 24px;
+  /* padding: 32px 24px; */
   border-radius: 16px;
   font-size: 18px;
+
   width: 290px;
   height: 180px;
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,7 +95,8 @@
 
 /* ======================= Stat label (e.g., "active studios") ======================= */
 .label {
-  margin-top: 8px;
+  /* margin-top: 4px; */
+  margin-bottom: 1rem;
   font-size: 16px;
 }
 

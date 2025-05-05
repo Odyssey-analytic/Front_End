@@ -11,7 +11,10 @@ import LandingPage_Contact from "../LandingPage_Contact/LandingPage_Contanct";
 import LandingPage_YoutubeVideoGuide from "../LandingPage_YoutubeVideoGuide/LandingPage_YoutubeVideoGuide";
 
 import Section1_Years from "../../../../public/icons/Landing/Section1_years.svg"
-import BackGroundImage from "/src/assets/images/Landing_Page_Background.png"
+// import BackGroundImage from "/src/assets/images/Landing_Page_Background.png"
+// import BackGroundImage from "../../../../src/assets/images/Landing_Page_Background1.png"
+import BackGroundImage from "../../../../src/assets/images/TotalBackGround.png"
+import FirstSectionBackGround from "../../../../src/assets/images/FirstSectionBackGround.png"
 
 const LandingPage: React.FC = () => {
   useEffect(() => {
@@ -51,6 +54,13 @@ const LandingPage: React.FC = () => {
           {/* ======================= Section 1 - Circle Animation =================== */}
           
           <section id="features" className={`${styles.section} ${styles.hiddenOnLoad}`}>  
+
+          <img
+            src={FirstSectionBackGround}
+            alt="FirstSectionBackground"
+            className={styles.FirstSectionBackGroundImage}
+          />
+
               <div className={styles.featuresText}>
                 <h2>
                   هدایت مسیر رشد محصول شما<br />

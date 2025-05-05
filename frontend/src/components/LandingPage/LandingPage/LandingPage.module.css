@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   overflow-x: hidden;
-  background-color: #0c0b1f;
+  /* background-color: #0c0b1f; */
 }
 
 /* ======================= Background image of landing page =================== */
@@ -12,8 +12,25 @@
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 570vh;
-  max-height: 600vh;
+
+  max-height: 100%;
+  z-index: 0;
+}
+
+
+.FirstSectionBackGroundImage {
+  /* max-height: 800vh;  */
+  /* bottom: 15%; */
+  /* position: relative; */
+  /* min-height: 600vh; */
+  /* margin-bottom: 500px; */
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  max-height: 85%;
   z-index: 0;
 }
 
@@ -115,8 +132,15 @@
 .feature_year_img {
   position: absolute;
   left: 73%;
-  bottom: 55%;
-  width: clamp(100px, 35vw, 440px);  
+  bottom: 53%;
+  width: clamp(100px, 35vw, 440px);
+  /* color: #63c6e4; */
+  z-index: 10;
+  
+}
+
+.year_img {
+  /* position: absolute; */
 }
 
 /* ======================= Section2 Content =================== */
@@ -153,7 +177,7 @@
 .servicesInsidePart {
   display: flex;
   position: absolute;
-  top: 20%;
+  top: 16%;
   /* flex-direction: column; */
   width: 100%;
 

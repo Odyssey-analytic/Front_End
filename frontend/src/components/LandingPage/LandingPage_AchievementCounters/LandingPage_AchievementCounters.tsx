@@ -87,13 +87,18 @@ const LandingPage_AchievementCounters: React.FC = () => {
             className={`${styles.card} ${visible ? styles.fadeUp : ""}`}
             style={{ animationDelay: `${index * 0.1}s` }} // 🌟 staggered entry
           >
-            <div className={styles.odometer}>
-              <Counter end={value} trigger={visible} speed={30} />
-            </div>
             <div className={styles.label}>
               {label}
               {suffix && <span className={styles.suffix}> در {suffix}</span>}
             </div>
+            
+            <div className={styles.odometer}>
+              <Counter end={value} trigger={visible} speed={30} />
+            </div>
+            {/* <div className={styles.label}>
+              {label}
+              {suffix && <span className={styles.suffix}> در {suffix}</span>}
+            </div> */}
           </div>
         ))}
       </div>
