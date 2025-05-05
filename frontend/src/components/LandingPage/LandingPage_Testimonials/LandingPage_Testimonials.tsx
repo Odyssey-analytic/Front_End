@@ -1,0 +1,133 @@
+import React, { useRef, useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, FreeMode } from "swiper/modules";
+import "swiper/css";
+import styles from "./LandingPage_Testimonials.module.css";
+
+// ======================= Static testimonial data =======================
+const testimonials = [
+  {
+    name: "رضا قاسمی",
+    role: "تحلیل‌گر داده، گروه تکتا",
+    text: "یکی از بهترین مزیت‌ها برای ما گزارش‌های لحظه‌ای بود. منتظر آخر ماه بمونیم تا بدونیم چی کار کردیم؟",
+  },
+  {
+    name: "شیما پارسا",
+    role: "مدیر مارکتینگ، سایت زیبال",
+    text: "از زمانی که این سیستم‌ و استفاده کردیم، نرخ کلیک و بازده تبلیغات‌مون کلی بهتر شده.",
+  },
+  {
+    name: "سعید محمدی",
+    role: "مهندس فنی، استارتاپ بیدو",
+    text: "نیاز نداشتیم تیم آنالیز جدا استخدام کنیم! فقط با یه ادغام ساده، کلی دیتا پشتیبون رسید.",
+  },
+  {
+    name: "نیلوفر سادات",
+    role: "مدیر محصول، اپلیکیشن کندو",
+    text: "قابلیت‌های گزارش‌گیری لحظه‌ای واقعاً نجات‌بخشن. همیشه می‌دونیم توی محصول‌مون دقیقاً چی داره اتفاق می‌افته.",
+  },
+  {
+    name: "امیر رضایی",
+    role: "مدیرعامل، گروه اوپتک",
+    text: "با استفاده از این پلتفرم، خیلی راحت تونستیم رفتار کاربران رو تحلیل کنیم و تصمیم‌های بهتری بگیریم.",
+  },
+  {
+    name: "سارا معتقدی",
+    role: "مدیرمارکتینگ، اپلیکیشن ویواکم",
+    text: "ما از روز اول قصد استفاده از این سرویسو داشتیم چونش دید بهتری به داده‌هامون داده و سریع و قابل اعتماده.",
+  },
+];
+
+const LandingPage_Testimonials: React.FC = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // ======================= Fade-in when in viewport =======================
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), 100);
+        }
+      },
+      { threshold: 0.6 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // ======================= Generate testimonial cards =======================
+  const renderSlides = (reverse = false) =>
+    testimonials.map((t, i) => (
+      <SwiperSlide key={reverse ? `rev-${i}` : i}>
+        <div
+          className={`
+            ${styles.card}
+            ${i % 2 === 0 ? styles.dark : styles.light}
+          `}
+        >
+          {/* Avatar dot */}
+          <img
+            src={i % 2 === 0 ? "/icons/avatarDot-light.svg" : "/icons/avatarDot-dark.svg"}
+            className={`${styles.avatarDot} ${i % 2 === 0 ? styles.avatarDotLight : styles.avatarDotDark}`}
+            alt="avatar dot"
+          />
+
+          {/* Quote icon */}
+          <img
+            src={i % 2 === 0 ? "/icons/quote-light.svg" : "/icons/quote-dark.svg"}
+            className={styles.quoteIcon}
+            alt="quote"
+          />
+
+          {/* Name and role */}
+          <div className={styles.personInfo}>
+            <div className={styles.personName}>{t.name}</div>
+            <div className={styles.personRole}>{t.role}</div>
+          </div>
+
+          {/* Comment text */}
+          <p className={styles.comment}>{t.text}</p>
+        </div>
+      </SwiperSlide>
+    ));
+
+  return (
+    <section
+      id="testimonials"
+      ref={sectionRef}
+      className={`${styles.testimonialsWrapper} ${isVisible ? "animate" : "hiddenOnLoad"}`}
+    >
+      {/* Top swiper */}
+      <Swiper
+        modules={[Autoplay, FreeMode]}
+        slidesPerView={3}
+        spaceBetween={20}
+        loop
+        freeMode
+        speed={5000}
+        autoplay={{ delay: 0, disableOnInteraction: false }}
+        allowTouchMove={false}
+      >
+        {renderSlides()}
+      </Swiper>
+
+      {/* Bottom swiper in reverse direction */}
+      <Swiper
+        modules={[Autoplay, FreeMode]}
+        slidesPerView={3}
+        spaceBetween={20}
+        loop
+        freeMode
+        speed={5000}
+        autoplay={{ delay: 0, disableOnInteraction: false, reverseDirection: true }}
+        allowTouchMove={false}
+        style={{ marginTop: "50px" }}
+      >
+        {renderSlides(true)}
+      </Swiper>
+    </section>
+  );
+};
+
+export default LandingPage_Testimonials;
