@@ -37,24 +37,28 @@
   line-height: 2;
   margin-bottom: 1rem;
   color: #e0e0e0;
+  font-family: 'Shabnam', sans-serif;
 }
 
 .email {
   font-size: 0.95rem;
   color: #b0cfff;
   text-decoration: none;
+  font-family: 'Aboreto', sans-serif;
 }
 
 .heading {
   font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 3rem;
+  font-family: 'Shabnam', sans-serif;
 }
 
 .list {
   list-style: none;
   padding: 0;
   margin: 0;
+  font-family: 'Shabnam', sans-serif;
 }
 
 .list li {
@@ -75,6 +79,7 @@
   position: absolute;
   width: 100%;
   top: 65%;
+  font-family: 'Shabnam', sans-serif;
 }
 
 @media (max-width: 768px) {

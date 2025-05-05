@@ -1,7 +1,7 @@
 /* ======================= Container holding the orbit SVG ======================= */
 .planetContainer {
   position: absolute;
-  top: 30%;                          /* Slightly below the center vertically */
+  top: 32%;                          /* Slightly below the center vertically */
   left: 75%;                         /* Positioned more to the right side */
   transform: translate(-50%, -50%);  /* Center the element from its top-left anchor */
   width: clamp(180px, 28vw, 650px);  /* Responsive sizing with min/max limits */
