@@ -128,6 +128,7 @@
   right: 2%;
   top: 15%;
   gap: 16px;
+  
 }
 
 .servicesTitleBox {
@@ -155,6 +156,9 @@
   top: 20%;
   /* flex-direction: column; */
   width: 100%;
+
+  /* width: clamp(180px, 35vw, 650px);  
+  height: clamp(180px, 33vw, 650px); */
   
 }
 
@@ -279,8 +283,8 @@
 }
 
 
-/* ======================= Section5 Content =================== */
-.achievementsTitleWrapper {
+/* ======================= Section6 Content =================== */
+.youtubeTitleWrapper {
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -290,7 +294,7 @@
   gap: 16px;
 }
 
-.achievementsTitleBox {
+.youtubeTitleBox {
   background-color: rgba(85, 166, 188, 0.3);
 
   color: #63c6e4;
@@ -302,21 +306,19 @@
   white-space: nowrap;
 }
 
-.achievementsTitleLine {
+.youtubeTitleLine {
   width: 80px;
   height: 1.5px;
   background-color: #63c6e4;
   border-radius: 1px;
 }
 
-.achievementsInsidePart {
+.youtubeInsidePart {
   display: flex;
   position: absolute;
   top: 25%;
   width: 100%;  
 }
-
-
 
 /* ======================= Section7 Content - footer =================== */
 

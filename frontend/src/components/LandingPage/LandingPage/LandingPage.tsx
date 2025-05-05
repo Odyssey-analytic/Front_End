@@ -8,8 +8,10 @@ import LandingPage_AchievementCounters from "../LandingPage_AchievementCounters/
 import LandingPage_HowToStart from "../LandingPage_HowToStart/LandingPage_HowToStart";
 import LandingPage_AnalysisTools from "../LandingPage_AnalysisTools/LandingPage_AnalysisTools";
 import LandingPage_Contact from "../LandingPage_Contact/LandingPage_Contanct";
+import LandingPage_YoutubeVideoGuide from "../LandingPage_YoutubeVideoGuide/LandingPage_YoutubeVideoGuide";
 
 import Section1_Years from "../../../../public/icons/Landing/Section1_years.svg"
+import BackGroundImage from "/src/assets/images/Landing_Page_Background.png"
 
 const LandingPage: React.FC = () => {
   useEffect(() => {
@@ -34,8 +36,9 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
+      
       <img
-        src="/src/assets/images/Landing_Page_Background.png"
+        src={BackGroundImage}
         alt="Background"
         className={styles.backgroundImage}
       />
@@ -128,9 +131,24 @@ const LandingPage: React.FC = () => {
               <div className={styles.achievementsInsidePart}> 
             <LandingPage_AchievementCounters />
           </div>
-
-
           </section>
+
+          {/* ======================= Section 6 - Achievement Counters =================== */}
+          <section id="youtubeGuide" className={`${styles.section} ${styles.hiddenOnLoad}`}>
+            {/* <LandingPage_AchievementCounters /> */}
+
+            <div className={styles.youtubeTitleWrapper}>
+              <div className={styles.youtubeTitleBox}>
+                  آموزش گام به گام
+              </div>
+              <div className={styles.youtubeTitleLine}></div>
+              </div> 
+
+              <div className={styles.youtubeInsidePart}> 
+            <LandingPage_YoutubeVideoGuide />
+          </div>
+          </section>
+
 
           {/* ======================= Section 7 - Contact Us =================== */}
           <section id="contact" className={`${styles.section} ${styles.hiddenOnLoad}`}>

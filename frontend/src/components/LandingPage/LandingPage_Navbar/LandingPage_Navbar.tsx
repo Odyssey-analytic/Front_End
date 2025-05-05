@@ -10,6 +10,7 @@ const sections = [
   { id: "testimonials", label: "نظرات" },
   { id: "start", label: "شروع" },
   { id: "achievements", label: "دست‌آورد‌ها" },
+  { id: "youtubeGuide", label: "آموزش استفاده"},
   { id: "contact", label: "ارتباط" },
 ];
 
