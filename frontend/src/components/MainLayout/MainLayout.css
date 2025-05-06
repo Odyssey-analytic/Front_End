@@ -84,6 +84,8 @@
   top: 44px;
   right: 18px;
   background: #fbfbfb;
+  z-index: 1;
+
 
   border: 1px solid #ddd;
   border-radius: 5px;

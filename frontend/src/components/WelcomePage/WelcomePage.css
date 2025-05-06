@@ -1,27 +1,24 @@
 /* =========================== body =========================== */
 .welcome-page-body {
-  /* min-height: 100vh; */
-  min-height: 100vh;
   width: 100%;
-  /* overflow-x: hidden; */
-  /* overflow-y: hidden; */
+  height: 84.6%;
 
-  /* padding: 2rem; */
-
-  display: flex;
   position: absolute;
   justify-content: center;
+  top: 15.4%;
 
   align-items: center;
 
-  background-color: rgba(198, 202, 238, 0.856);
+  background-color: rgba(186, 190, 226, 0.63);
 }
 
 /* =========================== main box =========================== */
 .welcome-page-main-box {
   width: 80%;
-  min-height: 75vh;
-  /* overflow-y: hidden; */
+  height: 85%;
+  position: absolute;
+  top: 7%;
+  right: 10%;
 
   display: flex;
   flex-direction: column;
@@ -84,7 +81,7 @@
 /* =========================== popup overlay =========================== */
 .welcome-page-main-box-body {
   position: absolute;
-  top: 94px;
+  top: 15.4%;
   left: 0;
   right: 0;
   bottom: 0;
@@ -112,16 +109,16 @@
   justify-content: flex-start;
 
   position: relative;
-  z-index: 1001;
+  z-index: 2;
   pointer-events: all;
 
-  width: 100%;
-  max-width: 550px;
-  min-height: 480px;
-  max-height: 480px;
-  overflow-y: auto;
+  width: 35%;
 
-  margin-top: 7rem;
+  height: 70%;
+  top: 7%;
+
+  overflow-y: auto;
+  
   padding-right: 4rem;
   padding-left: 4rem;
   padding-top: 1.5rem;
@@ -361,7 +358,7 @@
   z-index: 1;
 }
 
-.welcome-page-stepper-item.active .stepper-circle {
+.welcome-page-stepper-item.active .welcome-page-stepper-circle {
   background: linear-gradient(to right, rgba(93, 27, 121), rgba(0, 113, 154));
   color: white;
   border: 2px solid white;
@@ -480,8 +477,6 @@
   align-items: center;
 
   direction: ltr;
-  margin-top: 2rem;
-  margin-right: -1.3rem;
   width: 450px;
 }
 
@@ -527,12 +522,6 @@
 
 .welcome-page-token-button:hover {
   background-color: #0056b3;
-}
-
-.welcome-page-token-note {
-  font-size: 12px;
-  color: #888;
-  margin-top: 1.5rem;
 }
 
 .welcome-page-token-value::-webkit-scrollbar {
@@ -638,7 +627,8 @@
   font-family: monospace;
   text-align: left;
   direction: ltr;
-  margin-top: 3rem;
+
+  margin-top: 2rem;
   width: 100%;
   display: inline-block;
   max-width: 100%;
@@ -652,10 +642,8 @@
 }
 
 .welcome-page-token-note {
-  margin-top: 1rem;
   font-size: 12px;
   color: #888;
-  margin-top: 2rem;
 }
 
 /* =========================== continue button =========================== */
