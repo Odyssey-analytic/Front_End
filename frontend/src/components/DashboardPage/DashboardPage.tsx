@@ -1,18 +1,38 @@
 import { useNavigate } from 'react-router-dom';
-import { submitGameInfo } from '../../services/userService';
+import { fetchUserGames, submitGameInfo } from '../../services/userService';
 
 import './DashboardPage.css';
 import { useEffect, useState } from 'react';
 import MainLayout from '../MainLayout/MainLayout';
 
-import pocket_champs_icon from "../../../public/icons/pocket-champs-icon.png"
-import tower_war_icon from "../../../public/icons/tower-war-icon.png"
+import pocket_champs_icon from "../../../public/icons/pocket-champs-icon.svg"
+import tower_war_icon from "../../../public/icons/tower-war-icon.svg"
 
 const DashboardPage = () => {
   const [games, setGames] = useState<any[]>([]);
 
   useEffect(() => {
-    setGames(mockGames);
+    const getGames = async () => {
+      try {
+        const data = (await fetchUserGames()).games;
+        console.log(data)
+        const userGames = data.map(data => ({
+          id: data.id,
+          icon: data.thumbnail,
+          title: data.name,
+          genre: 'Racing',
+          description: data.description,
+          dnu: parseInt(data.DNU_delta),
+          dau:  parseInt(data.DAU_delta),
+          retention:  parseInt(data.retention_delta),
+        }))
+        setGames(userGames);
+      } catch (err) {
+        console.error('Error fetching user games:', err);
+      }
+    };
+
+    getGames();
   }, []);
 
   return (

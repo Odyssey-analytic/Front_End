@@ -1,0 +1,52 @@
+/* ======================= Wrapper for the "How to Start" section ======================= */
+.startContainer {
+  text-align: center;
+  padding: 40px 20px;
+  width: 100%;
+}
+
+/* ======================= Section Title ======================= */
+.title {
+  /* top: 10%; */
+  font-size: 28px;
+  margin-bottom: 6rem;
+  color: white;
+}
+
+/* ======================= Steps Container Grid ======================= */
+.stepsWrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 100px 100px; /* vertical gap, horizontal gap */
+}
+
+/* ======================= Single Step Item ======================= */
+.stepItem {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+/* ======================= Step Icon (responsive) ======================= */
+.icon {
+  width: 8vw;             /* responsive width */
+  height: auto;           /* maintain aspect ratio */
+  max-width: 100px;       /* never exceed this */
+  min-width: 48px;        /* never go below this */
+  margin-bottom: 16px;
+}
+
+/* ======================= Step Title ======================= */
+.stepTitle {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+/* ======================= Step Description ======================= */
+.stepDescription {
+  font-size: 14px;
+  opacity: 0.8;
+}

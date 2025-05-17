@@ -14,8 +14,8 @@ import ForgotpasswordPage from "./components/ForgotpasswordPage/ForgotpasswordPa
 import ResetpasswordPage from "./components/ResetpasswordPage/ResetpasswordPage";
 import WelcomePage from "./components/WelcomePage/WelcomePage";
 import ActiveUsersKPI from "./components/KPICharts/ActiveUsersKPI";
-import LandingPage from "./components/LandingPage/LandingPage"
-import DashboardPage from "./components/DashboardPage/DashboardPage"
+import DashboardPage from "./components/DashboardPage/DashboardPage";
+import LandingPage from "./components/LandingPage/LandingPage/LandingPage";
 import SignIn from './components/OAuthPortal/SignIn';
 
 createRoot(document.getElementById('root')!).render(
