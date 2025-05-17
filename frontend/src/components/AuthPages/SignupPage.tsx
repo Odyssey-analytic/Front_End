@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signup } from '../../services/userService';
-import './SignupPage.css';
+import './AuthPages.css';
 
 // Importing icons
 import odessay_logo from '/public/icons/odessay_logo.svg';
