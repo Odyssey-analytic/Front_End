@@ -8,9 +8,7 @@ interface Props {
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-// ======================= Section anchors used in scroll tracking =======================
 const sections = [
-  // { id: "features", label: "ویژگی‌ها" },
   { id: "services", label: "سرویس‌ها" },
   { id: "testimonials", label: "نظرات" },
   { id: "start", label: "شروع" },
@@ -23,17 +21,14 @@ const LandingPage_Navbar: React.FC<Props> = ({ menuOpen, setMenuOpen }) => {
   const [activeSection, setActiveSection] = useState("features");
   const [isShrunk, setIsShrunk] = useState(false);
 
-  // ======================= Shrink navbar on scroll =======================
   useEffect(() => {
     const handleScroll = () => {
       setIsShrunk(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ======================= Observe section visibility for scroll spy =======================
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -61,7 +56,6 @@ const LandingPage_Navbar: React.FC<Props> = ({ menuOpen, setMenuOpen }) => {
 
   return (
     <nav className={`${styles.navbar} ${isShrunk ? styles.shrink : ""}`}>
-      {/* ======================= Left side: Auth buttons ======================= */}
       <div className={styles.authButtons}>
         <Link to="/signup" className={styles.signupBtn}>
           <span className={styles.signupText}>ثبت‌نام</span>
@@ -71,39 +65,29 @@ const LandingPage_Navbar: React.FC<Props> = ({ menuOpen, setMenuOpen }) => {
         </Link>
       </div>
 
-      {/* ======================= Mobile menu toggle button ======================= */}
-      <button
-        className={styles.menuToggle}
-        onClick={() => setMenuOpen(!menuOpen)}
-      >
+      <button className={styles.menuToggle} onClick={() => setMenuOpen(!menuOpen)}>
         ☰
       </button>
 
-      {/* ======================= Center: Navigation links ======================= */}
       <ul className={`${styles.navLinks} ${menuOpen ? styles.open : ""}`}>
         {sections.map(({ id, label }) => (
           <li key={id}>
             <a
               href={`#${id}`}
-              className={`${styles.link} ${
-                activeSection === id ? styles.activeNavLink : ""
-              }`}
+              className={`${styles.link} ${activeSection === id ? styles.activeNavLink : ""}`}
               onClick={() => setMenuOpen(false)}
             >
               {label}
             </a>
           </li>
         ))}
+        <li><Link to="/signup">ثبت‌نام</Link></li>
+        <li><Link to="/login">ورود</Link></li>
       </ul>
 
-      {/* ======================= Right side: Logo and text ======================= */}
       <div className={styles.rightSection}>
         <span className={styles.logoText}>ODESSAY</span>
-        <img
-          src={OdessayLogo}
-          alt="Odessay Logo"
-          className={styles.logoImage}
-        />
+        <img src={OdessayLogo} alt="Odessay Logo" className={styles.logoImage} />
       </div>
     </nav>
   );

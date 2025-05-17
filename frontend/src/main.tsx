@@ -23,7 +23,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
+        {/* <Route path="/signup" element={<SignupPage />} /> */}
         <Route path="/forgot-password" element={<ForgotpasswordPage />} /> 
         <Route path="/kpi" element={<ActiveUsersKPI />} /> 
         <Route path="/welcome" element={<WelcomePage />} />

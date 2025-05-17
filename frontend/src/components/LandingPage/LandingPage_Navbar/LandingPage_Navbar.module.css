@@ -153,6 +153,8 @@
 }
 
 /* ======================= Hamburger menu button for mobile ======================= */
+/* فقط قسمت‌هایی که اضافه یا تغییر داده شده‌اند پایین آمده‌اند */
+
 .menuToggle {
   display: none;
   background: none;
@@ -160,28 +162,46 @@
   color: white;
   font-size: 24px;
   cursor: pointer;
+  z-index: 20;
 }
 
-/* ======================= Mobile nav menu ======================= */
 @media (max-width: 768px) {
   .menuToggle {
     display: block;
   }
 
   .navLinks {
-    display: none;
+    display: flex;
     flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    position: absolute;
-    top: 70px;
-    right: 16px;
-    padding: 16px;
-    backdrop-filter: blur(12px);
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 24px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease;
+    z-index: 15;
   }
 
   .navLinks.open {
-    display: flex;
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .navLinks li {
+    font-size: 1.3rem;
   }
 
   .authButtons {
@@ -195,3 +215,7 @@
     margin-top: 16px;
   }
 }
+
+
+
+
