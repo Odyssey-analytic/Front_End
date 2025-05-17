@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import styles from "./LandingPage_Navbar.module.css";
 import OdessayLogo from "/public/icons/odessay_logo.svg";
 
+interface Props {
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 // ======================= Section anchors used in scroll tracking =======================
 const sections = [
   // { id: "features", label: "ویژگی‌ها" },
@@ -10,18 +15,15 @@ const sections = [
   { id: "testimonials", label: "نظرات" },
   { id: "start", label: "شروع" },
   { id: "achievements", label: "دست‌آورد‌ها" },
-  { id: "youtubeGuide", label: "آموزش استفاده"},
+  { id: "youtubeGuide", label: "آموزش استفاده" },
   { id: "contact", label: "ارتباط" },
 ];
 
-const LandingPage_Navbar: React.FC = () => {
+const LandingPage_Navbar: React.FC<Props> = ({ menuOpen, setMenuOpen }) => {
   const [activeSection, setActiveSection] = useState("features");
-  const [menuOpen, setMenuOpen] = useState(false);
-
   const [isShrunk, setIsShrunk] = useState(false);
 
   // ======================= Shrink navbar on scroll =======================
-
   useEffect(() => {
     const handleScroll = () => {
       setIsShrunk(window.scrollY > 50);
@@ -30,7 +32,6 @@ const LandingPage_Navbar: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
 
   // ======================= Observe section visibility for scroll spy =======================
   useEffect(() => {
@@ -71,7 +72,10 @@ const LandingPage_Navbar: React.FC = () => {
       </div>
 
       {/* ======================= Mobile menu toggle button ======================= */}
-      <button className={styles.menuToggle} onClick={() => setMenuOpen(!menuOpen)}>
+      <button
+        className={styles.menuToggle}
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
         ☰
       </button>
 
@@ -81,7 +85,9 @@ const LandingPage_Navbar: React.FC = () => {
           <li key={id}>
             <a
               href={`#${id}`}
-              className={`${styles.link} ${activeSection === id ? styles.activeNavLink : ""}`}
+              className={`${styles.link} ${
+                activeSection === id ? styles.activeNavLink : ""
+              }`}
               onClick={() => setMenuOpen(false)}
             >
               {label}
@@ -93,7 +99,11 @@ const LandingPage_Navbar: React.FC = () => {
       {/* ======================= Right side: Logo and text ======================= */}
       <div className={styles.rightSection}>
         <span className={styles.logoText}>ODESSAY</span>
-        <img src={OdessayLogo} alt="Odessay Logo" className={styles.logoImage} />
+        <img
+          src={OdessayLogo}
+          alt="Odessay Logo"
+          className={styles.logoImage}
+        />
       </div>
     </nav>
   );

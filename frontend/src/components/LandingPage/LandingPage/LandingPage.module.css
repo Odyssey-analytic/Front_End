@@ -405,3 +405,20 @@
     width: clamp(100px, 35vw, 400px);  
   }
 }
+
+
+
+
+
+
+.blurOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(40px);
+
+  z-index: 3;
+  transition: all 0.3s ease;
+}

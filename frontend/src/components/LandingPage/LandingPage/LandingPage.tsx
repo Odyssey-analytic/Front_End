@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState} from "react";
 import styles from "./LandingPage.module.css";
 
 import LandingPage_Testimonials from "../LandingPage_Testimonials/LandingPage_Testimonials";
@@ -15,6 +15,9 @@ import BackGroundImage from "../../../../src/assets/images/TotalBackGround.png"
 import FirstSectionBackGround from "../../../../src/assets/images/FirstSectionBackGround.png"
 
 const LandingPage: React.FC = () => {
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     // ======================= Intersection Observer to animate hidden sections on scroll ===================
     const observer = new IntersectionObserver(
@@ -43,9 +46,11 @@ const LandingPage: React.FC = () => {
         alt="Background"
         className={styles.backgroundImage}
       />
-
+      {menuOpen && <div className={styles.blurOverlay}></div>}
       {/* ======================= Fixed Navbar =================== */}
-      <LandingPage_Navbar />
+      {/* <LandingPage_Navbar /> */}
+      <LandingPage_Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+
 
       <div className={styles.contentWrapper}>
         <main className={styles.mainSections}>
