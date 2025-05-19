@@ -47,7 +47,7 @@
   overflow-x: hidden;
   overflow-y: hidden;
 
-  
+  justify-content: flex-start; 
   color: white;
   position: relative;
   z-index: 2;
@@ -228,7 +228,33 @@
   display: flex;
   /* position: absolute; */
   top: 25%;
-  width: 100%;  
+  width: 100%;
+  padding: 100px 20px;
+  }
+
+
+  /* موبایل: تک ستونه */
+@media (max-width: 768px) {
+  .startInsidePart {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* تبلت: دو ستونه */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .startInsidePart {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  
+}
+
+/* دسکتاپ: چهار ستونه */
+@media (min-width: 1025px) {
+  .startInsidePart {
+    grid-template-columns: repeat(4, 1fr);
+    padding-top: 130px; 
+  }
 }
 
 /* ======================= Section5 Content =================== */

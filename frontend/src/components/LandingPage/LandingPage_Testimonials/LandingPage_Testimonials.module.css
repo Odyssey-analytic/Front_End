@@ -19,8 +19,20 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  /* ✅ برای هم‌ارتفاع شدن در Swiper */
+  height: 100%;
 }
 
+/* ======================= Swiper Slide Equal Height Fix ======================= */
+:global(.swiper-wrapper) {
+  display: flex;
+}
+
+:global(.swiper-slide) {
+  display: flex !important;
+  align-items: stretch !important;
+}
 /* ======================= Alternating card backgrounds ======================= */
 .dark {
   background-color: #1e1e2f;
@@ -113,4 +125,22 @@
 
 .light .comment {
   color: #5f5f5f;
+}
+
+/* ======================= Responsive ======================= */
+@media (max-width: 768px) {
+  .testimonialsWrapper {
+    padding: 40px 12px;
+  }
+
+  :global(.swiper-slide) {
+    display: flex !important;
+    align-items: stretch !important;
+    height: auto !important; /* جلوگیری از محدودسازی توسط Swiper */
+  }
+
+  .card {
+    height: auto; /* جلوگیری از کش آمدن غیرطبیعی */
+    min-height: 220px; /* حداقل ارتفاع برابر */
+  }
 }

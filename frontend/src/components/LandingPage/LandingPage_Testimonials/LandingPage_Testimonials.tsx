@@ -101,8 +101,11 @@ const LandingPage_Testimonials: React.FC = () => {
       {/* Top swiper */}
       <Swiper
         modules={[Autoplay, FreeMode]}
-        slidesPerView={3}
-        spaceBetween={20}
+        breakpoints={{
+          320: { slidesPerView: 1.1, spaceBetween: 12 },  // موبایل
+          640: { slidesPerView: 2, spaceBetween: 16 },    // تبلت
+          1024: { slidesPerView: 3, spaceBetween: 20 },   // دسکتاپ
+        }}
         loop
         freeMode
         speed={5000}
@@ -115,8 +118,11 @@ const LandingPage_Testimonials: React.FC = () => {
       {/* Bottom swiper in reverse direction */}
       <Swiper
         modules={[Autoplay, FreeMode]}
-        slidesPerView={3}
-        spaceBetween={20}
+        breakpoints={{
+          320: { slidesPerView: 1.1, spaceBetween: 12 },  // موبایل
+          640: { slidesPerView: 2, spaceBetween: 16 },    // تبلت
+          1024: { slidesPerView: 3, spaceBetween: 20 },   // دسکتاپ
+        }}
         loop
         freeMode
         speed={5000}
