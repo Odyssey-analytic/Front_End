@@ -195,3 +195,13 @@
     margin-top: 16px;
   }
 }
+
+.blurOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
