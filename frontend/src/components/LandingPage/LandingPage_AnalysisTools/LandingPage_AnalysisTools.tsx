@@ -62,6 +62,7 @@
 // export default LandingPage_AnalysisTools;
 
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import styles from "./LandingPage_AnalysisTools.module.css";
 import serviceIllustration from "../../../../public/icons/Landing/Section2_services.svg"; 
 
@@ -126,11 +127,17 @@ useEffect(() => {
         </div>
       </div>
       <div className={styles.imageContainer}>
-  <img
-    src={Service_Box}
-    alt="box"
-    className={`${styles.boxImage} ${isVisible ? styles.boxImageAnimate : ''}`}
-  />
+      <motion.img
+  src={Service_Box}
+  alt="box"
+  className={styles.boxImage}
+  initial={{ opacity: 0, x: -100 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 1.2, ease: "easeOut" }}
+  viewport={{ once: false, amount: 0.5 }}
+  layout 
+/>
+
 </div>
 
     </div>
