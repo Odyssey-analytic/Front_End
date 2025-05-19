@@ -226,7 +226,7 @@
 
 .startInsidePart {
   display: flex;
-  position: absolute;
+  /* position: absolute; */
   top: 25%;
   width: 100%;  
 }
