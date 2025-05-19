@@ -52,28 +52,38 @@ const LandingPage_Navbar: React.FC = () => {
 
   return (
     <>
-      {/* ✅ Fullscreen mobile menu */}
       {menuOpen && (
-        <div className={styles.mobileMenuCentered} onClick={() => setMenuOpen(false)}>
-          {sections.map(({ id, label }) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className={styles.mobileMenuLink}
-              onClick={() => setMenuOpen(false)}
-            >
-              {label}
-            </a>
-          ))}
+  <div className={styles.mobileMenuCentered}>
+    <button
+      className={styles.closeMenuBtn}
+      onClick={() => setMenuOpen(false)}
+    >
+      ✖
+    </button>
 
-          <div className={styles.mobileAuth}>
-            <Link to="/login" className={styles.loginBtn}>ورود</Link>
-            <Link to="/signup" className={styles.signupBtn}>
-              <span className={styles.signupText}>ثبت‌نام</span>
-            </Link>
-          </div>
-        </div>
-      )}
+    <ul className={styles.mobileMenuList}>
+      {sections.map(({ id, label }, index) => (
+        <li key={id} className={styles.mobileMenuItem} style={{ animationDelay: `${index * 0.08}s` }}>
+          <a
+            href={`#${id}`}
+            className={styles.mobileMenuLink}
+            onClick={() => setMenuOpen(false)}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div className={styles.mobileAuth}>
+      <Link to="/login" className={styles.loginBtn}>ورود</Link>
+      <Link to="/signup" className={styles.signupBtn}>
+        <span className={styles.signupText}>ثبت‌نام</span>
+      </Link>
+    </div>
+  </div>
+)}
+
 
       <nav className={`${styles.navbar} ${isShrunk ? styles.shrink : ""}`}>
         <div className={styles.authButtons}>
