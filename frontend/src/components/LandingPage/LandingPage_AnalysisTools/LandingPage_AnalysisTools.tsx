@@ -61,39 +61,20 @@
 
 // export default LandingPage_AnalysisTools;
 
-import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import styles from "./LandingPage_AnalysisTools.module.css";
-import serviceIllustration from "../../../../public/icons/Landing/Section2_services.svg"; 
 
-import Custom_Dashboard from "../../../../public/icons/Landing/Custom Dashboard.svg"
-import Custom_KPIs from "../../../../public/icons/Landing/Custom KPIs.svg"
-import Real_time_Monitoring from "../../../../public/icons/Landing/Real-time Monitoring.svg"
-import Revenue_Tracking from "../../../../public/icons/Landing/Revenue Tracking.svg"
-import Flexible_Events from "../../../../public/icons/Landing/Flexible Events.svg"
-import Service_Box from "../../../../public/icons/Landing/box.svg"
-
+import Custom_Dashboard from "../../../../public/icons/Landing/Custom Dashboard.svg";
+import Custom_KPIs from "../../../../public/icons/Landing/Custom KPIs.svg";
+import Real_time_Monitoring from "../../../../public/icons/Landing/Real-time Monitoring.svg";
+import Revenue_Tracking from "../../../../public/icons/Landing/Revenue Tracking.svg";
+import Flexible_Events from "../../../../public/icons/Landing/Flexible Events.svg";
+import Service_Box from "../../../../public/icons/Landing/box.svg";
+import Topbar from "../../../../public/icons/Landing/topbar.svg";
 
 const LandingPage_AnalysisTools = () => {
-
-  const [isVisible, setIsVisible] = useState(false);
-const sectionRef = useRef(null);
-useEffect(() => {
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      console.log("isVisible:", entry.isIntersecting);
-      if (entry.isIntersecting) {
-        setIsVisible(true);
-      }
-    },
-    { threshold: 0.5 }
-  );
-  if (sectionRef.current) observer.observe(sectionRef.current);
-  return () => observer.disconnect();
-}, []);
-
   return (
-    <div className={styles.analysisToolsWrapper} ref={sectionRef}>
+    <div className={styles.analysisToolsWrapper}>
       <div className={styles.textContent}>
         <h2 className={styles.title}>
           سرویس‌ها جهت آنالیز و<br /> بهینه‌سازی محصول شما
@@ -126,20 +107,28 @@ useEffect(() => {
           </div>
         </div>
       </div>
+
       <div className={styles.imageContainer}>
-      <motion.img
-  src={Service_Box}
-  alt="box"
-  className={styles.boxImage}
-  initial={{ opacity: 0, x: -100 }}
-  whileInView={{ opacity: 1, x: 0 }}
-  transition={{ duration: 1.2, ease: "easeOut" }}
-  viewport={{ once: false, amount: 0.5 }}
-  layout 
-/>
+        <motion.img
+          src={Service_Box}
+          alt="box"
+          className={styles.boxImage}
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          viewport={{ once: false, amount: 0.5 }}
+        />
 
-</div>
-
+        <motion.img
+          src={Topbar}
+          alt="topbar"
+          className={styles.topbarImage}
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 12 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          viewport={{ once: false, amount: 0.5 }}
+        />
+      </div>
     </div>
   );
 };

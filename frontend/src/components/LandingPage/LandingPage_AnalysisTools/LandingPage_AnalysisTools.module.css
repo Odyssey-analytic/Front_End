@@ -113,16 +113,31 @@
   }
 }
 
-
-.boxImageAnimate {
-  animation: slideRightBox 1.4s ease-out forwards;
+.imageContainer {
+  position: relative;
+  justify-content: center;
+  right: 55%;
+  bottom: 38%;
+  max-width: 380px; 
 }
 
+.boxWrapper {
+  position: relative;
+  z-index: 1;
+}
 
 .boxImage {
   width: 100%;
-  max-width: 380px;
-  position: relative;
-  opacity: 0; /* خیلی مهمه برای انیمیشن */
-  margin-right: 0;
+  max-width: 400px;
+}
+
+.topbarImage {
+  position: absolute;
+  top: 0;
+  left: 0; /* مهم */
+  width: 100%;
+  max-width: 326px; /* یکسان با boxImage */
+  /* transform: translateY(-50%); */
+  z-index: 2;
+  margin-left: 6.5%;
 }
