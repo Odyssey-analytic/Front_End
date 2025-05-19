@@ -43,7 +43,7 @@
 
 /* ======================= Reusable section style =================== */
 .section {
-  min-height: 100vh;
+  min-height: 120vh;
   overflow-x: hidden;
   overflow-y: hidden;
 

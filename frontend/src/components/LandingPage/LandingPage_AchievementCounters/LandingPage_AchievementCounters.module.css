@@ -47,7 +47,8 @@
   font-size: 18px;
 
   width: 290px;
-  height: 180px;
+  min-height: 180px;
+  padding: 24px 16px; 
   
   display: flex;
   flex-direction: column;
@@ -93,4 +94,18 @@
   font-size: 14px;
   display: block;
   color: #444;
+}
+
+
+
+@media (max-width: 1255px) {
+  .statsGrid {
+    justify-content: center;
+  }
+
+  .card {
+    width: 45%;      /* دو کارت در هر ردیف جا می‌گیرن */
+    min-height: 120px;
+    height: 100%;
+  }
 }
