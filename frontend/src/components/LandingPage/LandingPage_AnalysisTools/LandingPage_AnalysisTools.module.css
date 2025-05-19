@@ -3,12 +3,12 @@
   width: 100%;
 }
 
-.imageContainer {
+/* .imageContainer {
   justify-content: center;
   right: 55%;
   position: relative;
   bottom: 38%;
-}
+} */
 
 .textContent {
   position: relative;
@@ -128,7 +128,8 @@
 
 .boxImage {
   width: 100%;
-  max-width: 400px;
+  min-width: 117.5%;
+  min-height: 150%;
 }
 
 .topbarImage {
@@ -136,8 +137,38 @@
   top: 0;
   left: 0; /* مهم */
   width: 100%;
-  max-width: 326px; /* یکسان با boxImage */
+  min-width: 101%;
   /* transform: translateY(-50%); */
   z-index: 2;
-  margin-left: 6.5%;
+  margin-left: -9.75%;
+}
+
+.firstChatImage {
+  position: absolute;
+  top: 16%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 300px;
+  z-index: 3;
+}
+
+.secondChatImage {
+  position: absolute;
+  top: 39%; /* فاصله نسبت به firstChat تنظیم کن */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 300px;
+  z-index: 3;
+}
+
+.thirdChatImage {
+  position: absolute;
+  top: 62%; /* بستگی به ارتفاع چت‌های قبلی داره */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 300px;
+  z-index: 3;
 }
