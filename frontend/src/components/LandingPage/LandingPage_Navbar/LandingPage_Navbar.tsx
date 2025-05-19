@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styles from "./LandingPage_Navbar.module.css";
 import OdessayLogo from "/public/icons/odessay_logo.svg";
 
-// ======================= Section anchors used in scroll tracking =======================
 const sections = [
   { id: "services", label: "سرویس‌ها" },
   { id: "testimonials", label: "نظرات" },
@@ -18,7 +17,6 @@ const LandingPage_Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isShrunk, setIsShrunk] = useState(false);
 
-  // Shrink navbar on scroll
   useEffect(() => {
     const handleScroll = () => {
       setIsShrunk(window.scrollY > 50);
@@ -27,7 +25,6 @@ const LandingPage_Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Scroll spy with IntersectionObserver
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -55,11 +52,30 @@ const LandingPage_Navbar: React.FC = () => {
 
   return (
     <>
+      {/* ✅ Fullscreen mobile menu */}
       {menuOpen && (
-        <div className={styles.blurOverlay} onClick={() => setMenuOpen(false)} />
+        <div className={styles.mobileMenuCentered} onClick={() => setMenuOpen(false)}>
+          {sections.map(({ id, label }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              className={styles.mobileMenuLink}
+              onClick={() => setMenuOpen(false)}
+            >
+              {label}
+            </a>
+          ))}
+
+          <div className={styles.mobileAuth}>
+            <Link to="/login" className={styles.loginBtn}>ورود</Link>
+            <Link to="/signup" className={styles.signupBtn}>
+              <span className={styles.signupText}>ثبت‌نام</span>
+            </Link>
+          </div>
+        </div>
       )}
+
       <nav className={`${styles.navbar} ${isShrunk ? styles.shrink : ""}`}>
-        {/* Auth Buttons */}
         <div className={styles.authButtons}>
           <Link to="/signup" className={styles.signupBtn}>
             <span className={styles.signupText}>ثبت‌نام</span>
@@ -67,7 +83,6 @@ const LandingPage_Navbar: React.FC = () => {
           <Link to="/login" className={styles.loginBtn}>ورود</Link>
         </div>
 
-        {/* Hamburger Menu Button */}
         <button
           className={styles.menuToggle}
           onClick={() => setMenuOpen(!menuOpen)}
@@ -75,8 +90,7 @@ const LandingPage_Navbar: React.FC = () => {
           ☰
         </button>
 
-        {/* Nav Links */}
-        <ul className={`${styles.navLinks} ${menuOpen ? styles.open : ""}`}>
+        <ul className={styles.navLinks}>
           {sections.map(({ id, label }) => (
             <li key={id}>
               <a
@@ -84,7 +98,6 @@ const LandingPage_Navbar: React.FC = () => {
                 className={`${styles.link} ${
                   activeSection === id ? styles.activeNavLink : ""
                 }`}
-                onClick={() => setMenuOpen(false)}
               >
                 {label}
               </a>
@@ -92,7 +105,6 @@ const LandingPage_Navbar: React.FC = () => {
           ))}
         </ul>
 
-        {/* Logo Section */}
         <div className={styles.rightSection}>
           <span className={styles.logoText}>ODESSAY</span>
           <img src={OdessayLogo} alt="Odessay Logo" className={styles.logoImage} />
