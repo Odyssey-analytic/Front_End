@@ -128,24 +128,22 @@
 
 .boxImage {
   width: 100%;
-  min-width: 117.5%;
-  min-height: 150%;
+  min-width: 125%;
+  min-height: 120%;
 }
 
 .topbarImage {
   position: absolute;
   top: 0;
-  left: 0; /* مهم */
+  left: -16.9%; 
   width: 100%;
-  min-width: 101%;
-  /* transform: translateY(-50%); */
+  min-width: 107.39%;
   z-index: 2;
-  margin-left: -9.75%;
 }
 
 .firstChatImage {
   position: absolute;
-  top: 16%;
+  top: 17%;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -155,7 +153,7 @@
 
 .secondChatImage {
   position: absolute;
-  top: 39%; /* فاصله نسبت به firstChat تنظیم کن */
+  top: 41%; /* فاصله نسبت به firstChat تنظیم کن */
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -165,7 +163,7 @@
 
 .thirdChatImage {
   position: absolute;
-  top: 62%; /* بستگی به ارتفاع چت‌های قبلی داره */
+  top: 65%; /* بستگی به ارتفاع چت‌های قبلی داره */
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
