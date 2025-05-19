@@ -100,3 +100,29 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+@keyframes slideRightBox {
+  from {
+    transform: translateX(-100%); /* از چپ شروع کن */
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0); /* در جای اصلی بایسته */
+    opacity: 1;
+  }
+}
+
+
+.boxImageAnimate {
+  animation: slideRightBox 1.4s ease-out forwards;
+}
+
+
+.boxImage {
+  width: 100%;
+  max-width: 380px;
+  position: relative;
+  opacity: 0; /* خیلی مهمه برای انیمیشن */
+  margin-right: 0;
+}
