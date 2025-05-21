@@ -170,3 +170,29 @@
   max-width: 300px;
   z-index: 3;
 }
+
+
+
+.firstChatProfile {
+  position: absolute;
+  top: 23%;
+  right: 10%; 
+  width: 40px;
+  z-index:4;
+}
+
+.secondChatProfile {
+  position: absolute;
+  top: 46%;
+  right: 10%;
+  width: 40px;
+  z-index: 4;
+}
+
+.thirdChatProfile {
+  position: absolute;
+  top: 70%;
+  right: 10%;
+  width: 40px;
+  z-index: 4;
+}

@@ -10,9 +10,12 @@ import Flexible_Events from "../../../../public/icons/Landing/Flexible Events.sv
 
 import Service_Box from "../../../../public/icons/Landing/box.svg";
 import Topbar from "../../../../public/icons/Landing/topbar.svg";
-import FirstChat from "../../../../public/icons/Landing/firstChat.svg";
-import SecondChat from "../../../../public/icons/Landing/secondChat.svg";
-import ThirdChat from "../../../../public/icons/Landing/thirdChat.svg";
+import ServiceSection_FirstChat from "../../../../public/icons/Landing/ServiceSection_FirstChat.svg";
+import ServiceSection_SecondChat from "../../../../public/icons/Landing/ServiceSection_SecondChat.svg";
+import ServiceSection_ThirdChat from "../../../../public/icons/Landing/ServiceSection_ThirdChat.svg";
+import ServiceSection_FirstChat_Profile from "../../../../public/icons/Landing/ServiceSection_FirstChat_Profile.svg";
+import ServiceSection_SecondChat_Profile from "../../../../public/icons/Landing/ServiceSection_SecondChat_Profile.svg";
+import ServiceSection_ThirdChat_Profile from "../../../../public/icons/Landing/ServiceSection_ThirdChat_Profile.svg";
 
 // ======================= Component =======================
 const LandingPage_AnalysisTools = () => {
@@ -80,8 +83,9 @@ const LandingPage_AnalysisTools = () => {
         />
 
         {/* ===== Chat Bubbles Over the Box (1st, 2nd, 3rd) ===== */}
+        {/* ===== Chat 1 ===== */}
         <motion.img
-          src={FirstChat}
+          src={ServiceSection_FirstChat}
           alt="first chat"
           className={styles.firstChatImage}
           initial={{ opacity: 0, x: -300 }}
@@ -89,9 +93,19 @@ const LandingPage_AnalysisTools = () => {
           transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.5 }}
         />
-
         <motion.img
-          src={SecondChat}
+          src={ServiceSection_FirstChat_Profile}
+          alt="first profile"
+          className={styles.firstChatProfile}
+          initial={{ opacity: 0, x: -500 }}
+          whileInView={{ opacity: 1, x: -407 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.1 }}
+          viewport={{ once: false, amount: 0.2 }}
+        />
+
+        {/* ===== Chat 2 ===== */}
+        <motion.img
+          src={ServiceSection_SecondChat}
           alt="second chat"
           className={styles.secondChatImage}
           initial={{ opacity: 0, x: -400 }}
@@ -99,13 +113,32 @@ const LandingPage_AnalysisTools = () => {
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }}
           viewport={{ once: false, amount: 0.5 }}
         />
-
         <motion.img
-          src={ThirdChat}
+          src={ServiceSection_SecondChat_Profile}
+          alt="second profile"
+          className={styles.secondChatProfile}
+          initial={{ opacity: 0, x: -700 }}
+          whileInView={{ opacity: 1, x: -337 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.7 }}
+          viewport={{ once: false, amount: 0.5 }}
+        />
+
+        {/* ===== Chat 3 ===== */}
+        <motion.img
+          src={ServiceSection_ThirdChat}
           alt="third chat"
           className={styles.thirdChatImage}
           initial={{ opacity: 0, x: -500 }}
           whileInView={{ opacity: 1, x: -160 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 1.2 }}
+          viewport={{ once: false, amount: 0.5 }}
+        />
+        <motion.img
+          src={ServiceSection_ThirdChat_Profile}
+          alt="third profile"
+          className={styles.thirdChatProfile}
+          initial={{ opacity: 0, x: -700 }}
+          whileInView={{ opacity: 1, x: -337 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }}
           viewport={{ once: false, amount: 0.5 }}
         />
