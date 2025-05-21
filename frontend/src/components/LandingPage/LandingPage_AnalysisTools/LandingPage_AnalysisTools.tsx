@@ -98,8 +98,8 @@ const LandingPage_AnalysisTools = () => {
           alt="first profile"
           className={styles.firstChatProfile}
           initial={{ opacity: 0, x: -500 }}
-          whileInView={{ opacity: 1, x: -407 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.1 }}
+          whileInView={{ opacity: 1, x: -360 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.2 }}
         />
 
@@ -110,19 +110,18 @@ const LandingPage_AnalysisTools = () => {
           className={styles.secondChatImage}
           initial={{ opacity: 0, x: -400 }}
           whileInView={{ opacity: 1, x: -160 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
           viewport={{ once: false, amount: 0.5 }}
         />
         <motion.img
           src={ServiceSection_SecondChat_Profile}
-          alt="second profile"
+          alt="first profile"
           className={styles.secondChatProfile}
-          initial={{ opacity: 0, x: -700 }}
-          whileInView={{ opacity: 1, x: -337 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.7 }}
-          viewport={{ once: false, amount: 0.5 }}
+          initial={{ opacity: 0, x: -600 }}
+          whileInView={{ opacity: 1, x: -360 }}
+          transition={{ duration: 1.2, ease: "easeOut" , delay: 0.4 }}
+          viewport={{ once: false, amount: 0.2 }}
         />
-
         {/* ===== Chat 3 ===== */}
         <motion.img
           src={ServiceSection_ThirdChat}
@@ -130,18 +129,19 @@ const LandingPage_AnalysisTools = () => {
           className={styles.thirdChatImage}
           initial={{ opacity: 0, x: -500 }}
           whileInView={{ opacity: 1, x: -160 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 1.2 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.5}}
           viewport={{ once: false, amount: 0.5 }}
         />
-        <motion.img
+        {/* <motion.img
           src={ServiceSection_ThirdChat_Profile}
-          alt="third profile"
-          className={styles.thirdChatProfile}
+          alt="first profile"
+          className={styles.secondChatProfile}
           initial={{ opacity: 0, x: -700 }}
-          whileInView={{ opacity: 1, x: -337 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.6 }}
-          viewport={{ once: false, amount: 0.5 }}
-        />
+          whileInView={{ opacity: 1, x: -360 }}
+          transition={{ duration: 1.2, ease: "easeOut" , delay: 0.5 }}
+          viewport={{ once: false, amount: 0.2 }}
+        /> */}
+
       </div>
     </div>
   );

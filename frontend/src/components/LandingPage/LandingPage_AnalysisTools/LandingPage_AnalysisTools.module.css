@@ -175,24 +175,25 @@
 
 .firstChatProfile {
   position: absolute;
-  top: 23%;
-  right: 10%; 
-  width: 40px;
+  top: 19%;
+  /* right: 10%;  */
+  width: 20%;
   z-index:4;
 }
 
 .secondChatProfile {
   position: absolute;
-  top: 46%;
-  right: 10%;
-  width: 40px;
+  top: 44%;
+  /* right: 10%; */
+  width: 20%;
   z-index: 4;
 }
 
 .thirdChatProfile {
   position: absolute;
-  top: 70%;
-  right: 10%;
-  width: 40px;
+  top: 67%;
+  /* right: 10%; */
+  /* width: 40px; */
+  width: 20%;
   z-index: 4;
 }
