@@ -39,8 +39,13 @@ const testimonials = [
 ];
 
 const LandingPage_Testimonials: React.FC = () => {
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+
+  const topSwiperRef = useRef<any>(null);
+  const bottomSwiperRef = useRef<any>(null);
+
 
   // ======================= Fade-in when in viewport =======================
   useEffect(() => {
@@ -98,40 +103,54 @@ const LandingPage_Testimonials: React.FC = () => {
       ref={sectionRef}
       className={`${styles.testimonialsWrapper} ${isVisible ? "animate" : "hiddenOnLoad"}`}
     >
-      {/* Top swiper */}
-      <Swiper
-        modules={[Autoplay, FreeMode]}
-        breakpoints={{
-          320: { slidesPerView: 1.1, spaceBetween: 12 },  // موبایل
-          640: { slidesPerView: 2, spaceBetween: 16 },    // تبلت
-          1024: { slidesPerView: 3, spaceBetween: 20 },   // دسکتاپ
-        }}
-        loop
-        freeMode
-        speed={5000}
-        autoplay={{ delay: 0, disableOnInteraction: false }}
-        allowTouchMove={false}
-      >
-        {renderSlides()}
-      </Swiper>
+    {/* ================= Top Swiper ================= */}
+<div
+  onMouseEnter={() => topSwiperRef.current?.autoplay?.stop()}
+  onMouseLeave={() => topSwiperRef.current?.autoplay?.start()}
+>
+  <Swiper
+    modules={[Autoplay, FreeMode]}
+    onSwiper={(swiper) => (topSwiperRef.current = swiper)}
+    breakpoints={{
+      320: { slidesPerView: 1.1, spaceBetween: 12 },
+      640: { slidesPerView: 2, spaceBetween: 16 },
+      1024: { slidesPerView: 3, spaceBetween: 20 },
+    }}
+    loop
+    freeMode
+    speed={5000}
+    autoplay={{ delay: 0, disableOnInteraction: false }}
+    allowTouchMove={false}
+  >
+    {renderSlides()}
+  </Swiper>
+</div>
 
-      {/* Bottom swiper in reverse direction */}
-      <Swiper
-        modules={[Autoplay, FreeMode]}
-        breakpoints={{
-          320: { slidesPerView: 1.1, spaceBetween: 12 },  // موبایل
-          640: { slidesPerView: 2, spaceBetween: 16 },    // تبلت
-          1024: { slidesPerView: 3, spaceBetween: 20 },   // دسکتاپ
-        }}
-        loop
-        freeMode
-        speed={5000}
-        autoplay={{ delay: 0, disableOnInteraction: false, reverseDirection: true }}
-        allowTouchMove={false}
-        style={{ marginTop: "50px" }}
-      >
-        {renderSlides(true)}
-      </Swiper>
+{/* ================= Bottom Swiper ================= */}
+<div
+  onMouseEnter={() => bottomSwiperRef.current?.autoplay?.stop()}
+  onMouseLeave={() => bottomSwiperRef.current?.autoplay?.start()}
+>
+  <Swiper
+    modules={[Autoplay, FreeMode]}
+    onSwiper={(swiper) => (bottomSwiperRef.current = swiper)}
+    breakpoints={{
+      320: { slidesPerView: 1.1, spaceBetween: 12 },
+      640: { slidesPerView: 2, spaceBetween: 16 },
+      1024: { slidesPerView: 3, spaceBetween: 20 },
+    }}
+    loop
+    freeMode
+    speed={5000}
+    autoplay={{ delay: 0, disableOnInteraction: false, reverseDirection: true }}
+    allowTouchMove={false}
+    style={{ marginTop: "50px" }}
+  >
+    {renderSlides(true)}
+  </Swiper>
+</div>
+
+     
     </section>
   );
 };
