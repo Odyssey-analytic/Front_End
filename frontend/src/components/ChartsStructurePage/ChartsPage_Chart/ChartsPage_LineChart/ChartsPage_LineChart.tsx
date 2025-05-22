@@ -97,7 +97,18 @@ const ChartsPage_AverageGameLength = () => {
   }, []);
 
   return (
-    <ChartCardWrapper title="Average Game Length">
+    // <ChartCardWrapper title="Average Game Length">
+    //   <div ref={ref} style={{ width: '100%' }}>
+    //     <LineChart
+    //       width={width}
+    //       height={300}
+    //       xAxis={[{ data: [1, 2, 3, 4, 5, 6] }]}
+    //       series={[{ data: [300, 310, 305, 320, 298, 330], area: true }]}
+    //     />
+    //   </div>
+    // </ChartCardWrapper>
+
+    <ChartCardWrapper title="Average Game Length" customHeight="400px">
       <div ref={ref} style={{ width: '100%' }}>
         <LineChart
           width={width}
@@ -107,6 +118,7 @@ const ChartsPage_AverageGameLength = () => {
         />
       </div>
     </ChartCardWrapper>
+
   );
 };
 
