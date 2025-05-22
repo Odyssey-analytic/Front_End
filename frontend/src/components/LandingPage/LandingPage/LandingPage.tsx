@@ -153,6 +153,16 @@ const LandingPage: React.FC = () => {
         
         </main>
       </div>
+      <button
+  className={styles.scrollToTopButton}
+  onClick={() => {
+    const sectionTop = document.getElementById("features");
+    sectionTop?.scrollIntoView({ behavior: "smooth" });
+  }}
+>
+  ↑
+</button>
+
     </div>
   );
 };
