@@ -28,12 +28,14 @@ const LandingPage_AnalysisTools = () => {
   // ========== Refs for animation targets ==========
   const chartRef = useRef<SVGPathElement>(null);
   const grayArcRef = useRef<SVGPathElement>(null);
-  const chartVisible = useRef(false);
+  // const chartVisible = useRef(false);
   const chartBoxRef = useRef<HTMLImageElement>(null);
   const line1Ref = useRef<SVGRectElement>(null);
   const line2Ref = useRef<SVGRectElement>(null);
   const line3Ref = useRef<SVGRectElement>(null);
+  const rightItemsRef = useRef<HTMLDivElement>(null);
 
+  const [animateRight, setAnimateRight] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
   const [showZero, setShowZero] = useState(false);
   const [showHundred, setShowHundred] = useState(false);
@@ -56,11 +58,12 @@ const LandingPage_AnalysisTools = () => {
     green.style.strokeDasharray = greenLength.toString();
     gray.style.strokeDasharray = grayLength.toString();
   
-    const observer = new IntersectionObserver(
+    // === Observer for chart animation ===
+    const chartObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Reset everything
+            // Reset arcs
             green.style.strokeDashoffset = greenLength.toString();
             gray.style.strokeDashoffset = grayLength.toString();
             if (line1Ref.current && line2Ref.current && line3Ref.current) {
@@ -69,23 +72,26 @@ const LandingPage_AnalysisTools = () => {
               line3Ref.current.setAttribute("width", "0");
             }
   
-            // Reset states
+            // Reset text states
             setShowTitle(false);
             setShowZero(false);
             setShowHundred(false);
             setShowCenterText(false);
             setShowLines(false);
   
-            // Stepwise trigger
-            setTimeout(() => setShowTitle(true), 1200);       // رشد سرمایه‌گذاری
-            setTimeout(() => setShowZero(true), 1400);        // ۰٪
+            // Trigger animations in order
+            setTimeout(() => setShowTitle(true), 1200);
+            setTimeout(() => setShowZero(true), 1400);
+  
             setTimeout(() => {
               const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
               tl.to(green, { strokeDashoffset: 0, duration: 1.3 });
               tl.to(gray, { strokeDashoffset: 0, duration: 0.6 }, "-=0.5");
               setShowHundred(true);
             }, 1200);
+  
             setTimeout(() => setShowCenterText(true), 2300);
+  
             setTimeout(() => {
               setShowLines(true);
               gsap.to(line1Ref.current, { attr: { width: 75 }, duration: 0.7 });
@@ -93,7 +99,7 @@ const LandingPage_AnalysisTools = () => {
               gsap.to(line3Ref.current, { attr: { width: 50 }, duration: 0.7, delay: 0.4 });
             }, 3000);
           } else {
-            // Reset states on exit to allow re-trigger
+            // Reset on exit
             setShowTitle(false);
             setShowZero(false);
             setShowHundred(false);
@@ -102,30 +108,47 @@ const LandingPage_AnalysisTools = () => {
           }
         });
       },
-      { threshold: 0.4 } // بهتره یه آستانه بالاتر بدی تا مطمئن شی واقعاً دیده شده
+      { threshold: 0.4 }
     );
   
-    observer.observe(chartBox);
-    return () => observer.disconnect();
+    chartObserver.observe(chartBox);
+  
+    // === Observer for right-side animation ===
+    const rightObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setAnimateRight(entry.isIntersecting); // Trigger framer-motion again
+        });
+      },
+      { threshold: 0.4 }
+    );
+  
+    if (rightItemsRef.current) rightObserver.observe(rightItemsRef.current);
+  
+    return () => {
+      chartObserver.disconnect();
+      rightObserver.disconnect();
+    };
   }, []);
   
   return (
     <div className={styles.analysisToolsWrapper}>
       {/* ======================= Right Side Text ======================= */}
-      <div className={styles.textContent}>
+      <div ref={rightItemsRef} className={styles.textContent}>
       <motion.h2
-        className={styles.title}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 2.6 }}
-      >
-        سرویس‌ها جهت آنالیز و<br /> بهینه‌سازی محصول شما
-      </motion.h2>
-      <motion.p
+  className={styles.title}
+  initial={{ opacity: 0, y: 20 }}
+  animate={animateRight ? { opacity: 1, y: 0 } : {}}
+  transition={{ duration: 0.8 }}
+>
+  سرویس‌ها جهت آنالیز و<br /> بهینه‌سازی محصول شما
+</motion.h2>
+
+<motion.p
   className={styles.description}
   initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.8, delay: 2.9 }}
+  animate={animateRight ? { opacity: 1, y: 0 } : {}}
+  transition={{ duration: 0.8, delay: 0.2 }}
 >
   با ابزارهای تحلیلی ما، عملکرد محصول خود را به‌دقت بررسی کرده<br />
   و مسیر رشد را هوشمندانه‌تر ترسیم کنید.
@@ -134,28 +157,27 @@ const LandingPage_AnalysisTools = () => {
 
         {/* ========== Services Grid ========== */}
         <div className={styles.servicesGrid}>
-        <div className={styles.servicesGrid}>
-  {[
-    { icon: Custom_Dashboard, label: "شاخص‌های کلیدی سفارشی", delay: 3.2 },
-    { icon: Custom_KPIs, label: "داشبورد سفارشی", delay: 3.4 },
-    { icon: Real_time_Monitoring, label: "پایش لحظه‌ای", delay: 3.6 },
-    { icon: Revenue_Tracking, label: "ردیابی درآمد", delay: 3.8 },
-    { icon: Flexible_Events, label: "رویدادهای منعطف", delay: 4.0 },
-  ].map((item, index) => (
-    <motion.div
-      key={index}
-      className={styles.serviceItem}
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6, delay: item.delay }}
-    >
-      <img src={item.icon} alt={item.label} />
-      <span>{item.label}</span>
-    </motion.div>
-  ))}
+        {[
+  { icon: Custom_Dashboard, label: "شاخص‌های کلیدی سفارشی", delay: 0.4 },
+  { icon: Custom_KPIs, label: "داشبورد سفارشی", delay: 0.6 },
+  { icon: Real_time_Monitoring, label: "پایش لحظه‌ای", delay: 0.8 },
+  { icon: Revenue_Tracking, label: "ردیابی درآمد", delay: 1.0 },
+  { icon: Flexible_Events, label: "رویدادهای منعطف", delay: 1.2 },
+].map((item, index) => (
+  <motion.div
+    key={index}
+    className={styles.serviceItem}
+    initial={{ opacity: 0, x: 50 }}
+    animate={animateRight ? { opacity: 1, x: 0 } : {}}
+    transition={{ duration: 0.6, delay: item.delay }}
+  >
+    <img src={item.icon} alt={item.label} />
+    <span>{item.label}</span>
+  </motion.div>
+))}
+
 </div>
 
-        </div>
       </div>
 
       {/* ======================= Left Side Illustration ======================= */}
