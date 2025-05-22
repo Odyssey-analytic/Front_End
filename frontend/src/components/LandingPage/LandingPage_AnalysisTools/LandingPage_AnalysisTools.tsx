@@ -1,6 +1,6 @@
 // ======================= Imports =======================
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef , useState} from "react";
 import { gsap } from "gsap";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import styles from "./LandingPage_AnalysisTools.module.css";
@@ -31,53 +31,54 @@ const LandingPage_AnalysisTools = () => {
   const chartRef = useRef<SVGPathElement>(null);
   const chartBoxRef = useRef<HTMLImageElement>(null);
   const grayArcRef = useRef<SVGPathElement>(null);
-
+  const chartVisible = useRef(false);
+  const [canAnimateChart, setCanAnimateChart] = useState(false);
+   
+  
 
   useEffect(() => {
     const green = chartRef.current;
     const gray = grayArcRef.current;
+    const chartBox = chartBoxRef.current;
   
-    if (!green || !gray) return;
+    if (!green || !gray || !chartBox) return;
   
-    // محاسبه طول مسیر
     const greenLength = green.getTotalLength();
     const grayLength = gray.getTotalLength();
   
     green.style.strokeDasharray = greenLength.toString();
-    green.style.strokeDashoffset = greenLength.toString();
-  
     gray.style.strokeDasharray = grayLength.toString();
-    gray.style.strokeDashoffset = grayLength.toString();
   
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const greenLength = green.getTotalLength();
-            const grayLength = gray.getTotalLength();
-    
+          if (entry.isIntersecting && !chartVisible.current) {
+            chartVisible.current = true;
+  
             green.style.strokeDashoffset = greenLength.toString();
             gray.style.strokeDashoffset = grayLength.toString();
-    
-            const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-    
-            tl.to(green, {
-              strokeDashoffset: 0,
-              duration: 1.3,
-            });
-            tl.to(gray, {
-              strokeDashoffset: 0,
-              duration: 0.6,
-            });
+  
+            // تاخیر طبیعی برای هم‌زمانی با ورود باکس
+            const tl = gsap.timeline({ defaults: { ease: "power2.out" }, delay: 0.2 });
+  
+            tl.to(green, { strokeDashoffset: 0, duration: 1.3 });
+            tl.to(gray, { strokeDashoffset: 0, duration: 0.6 }, "-=0.5"); // هم‌پوشانی جزئی
+  
+            // انیمیشن بعدی فقط بعد از خروج از ویو مجاز میشه
+          }
+  
+          if (!entry.isIntersecting) {
+            chartVisible.current = false;
           }
         });
       },
-      { threshold: 0.5 }
+      { threshold: 0.0 }
     );
-    
-    if (chartBoxRef.current) observer.observe(chartBoxRef.current);
+  
+    observer.observe(chartBox);
     return () => observer.disconnect();
   }, []);
+    
   
   return (
     <div className={styles.analysisToolsWrapper}>
@@ -171,6 +172,9 @@ const LandingPage_AnalysisTools = () => {
           initial={{ opacity: 0, x: -400 }}
           whileInView={{ opacity: 1, x: 160 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
+
+          
+          
           viewport={{ once: false }}
         />
 <svg viewBox="0 0 200 100" width="100%" height="auto" className={styles.chartArcContainer}>
