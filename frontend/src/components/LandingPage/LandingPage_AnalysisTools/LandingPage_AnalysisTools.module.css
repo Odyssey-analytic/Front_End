@@ -206,3 +206,22 @@
   max-width: 150%;
   z-index: 5;
 }
+
+
+.chartArcContainer {
+  position: absolute;
+  top: 48%;
+  left: 10%;
+  width: 80%;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.chartArcContainer {
+  position: absolute;
+  top: 48%;
+  left: 10%;
+  width: 80%;
+  z-index: 6;
+  pointer-events: none;
+}

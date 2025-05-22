@@ -1,7 +1,14 @@
 // ======================= Imports =======================
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import styles from "./LandingPage_AnalysisTools.module.css";
 
+// Register GSAP plugin
+gsap.registerPlugin(DrawSVGPlugin);
+
+// ======================= SVG & Images =======================
 import Custom_Dashboard from "../../../../public/icons/Landing/Custom Dashboard.svg";
 import Custom_KPIs from "../../../../public/icons/Landing/Custom KPIs.svg";
 import Real_time_Monitoring from "../../../../public/icons/Landing/Real-time Monitoring.svg";
@@ -20,10 +27,41 @@ import ServiceSection_ChartBox from "../../../../public/icons/Landing/ServiceSec
 
 // ======================= Component =======================
 const LandingPage_AnalysisTools = () => {
+  const chartRef = useRef<SVGPathElement>(null);
+  const chartBoxRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const el = chartRef.current;
+  
+    const resetAndAnimate = () => {
+      gsap.set(el, { drawSVG: "0% 0%" });
+      gsap.to(el, {
+        drawSVG: "0% 87%",
+        duration: 1.2,
+        ease: "power2.out",
+        delay: 0.2,
+      });
+    };
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            resetAndAnimate();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+  
+    if (chartBoxRef.current) observer.observe(chartBoxRef.current);
+    return () => observer.disconnect();
+  }, []);
+  
+
   return (
     <div className={styles.analysisToolsWrapper}>
-
-      {/* ========== Text Section (Right Side) ========== */}
+      {/* ================== Right Side Text ================== */}
       <div className={styles.textContent}>
         <h2 className={styles.title}>
           سرویس‌ها جهت آنالیز و<br /> بهینه‌سازی محصول شما
@@ -33,7 +71,6 @@ const LandingPage_AnalysisTools = () => {
           و مسیر رشد را هوشمندانه‌تر ترسیم کنید.
         </p>
 
-        {/* ========== Feature List ========== */}
         <div className={styles.servicesGrid}>
           <div className={styles.serviceItem}>
             <img src={Custom_Dashboard} alt="KPI" />
@@ -58,10 +95,9 @@ const LandingPage_AnalysisTools = () => {
         </div>
       </div>
 
-      {/* ========== Illustration Section (Left Side) ========== */}
+      {/* ================== Left Side Illustration ================== */}
       <div className={styles.imageContainer}>
 
-        {/* White background base box */}
         <motion.img
           src={Service_Box}
           alt="box"
@@ -72,7 +108,6 @@ const LandingPage_AnalysisTools = () => {
           viewport={{ once: false, amount: 0.5 }}
         />
 
-        {/* Top bar on the white box */}
         <motion.img
           src={Topbar}
           alt="topbar"
@@ -83,67 +118,59 @@ const LandingPage_AnalysisTools = () => {
           viewport={{ once: false, amount: 0.5 }}
         />
 
-        {/* Chat 1 */}
-        <motion.img
-          src={ServiceSection_FirstChat}
-          alt="first chat"
-          className={styles.firstChatImage}
-          initial={{ opacity: 0, x: -300 }}
-          whileInView={{ opacity: 1, x: -160 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          viewport={{ once: false, amount: 0.5 }}
+        {/* Chat Bubbles */}
+        <motion.img src={ServiceSection_FirstChat} alt="first chat" className={styles.firstChatImage}
+          initial={{ opacity: 0, x: -300 }} whileInView={{ opacity: 1, x: -160 }}
+          transition={{ duration: 1.2, ease: "easeOut" }} viewport={{ once: false, amount: 0.5 }}
         />
-        <motion.img
-          src={ServiceSection_FirstChat_Profile}
-          alt="first profile"
-          className={styles.firstChatProfile}
-          initial={{ opacity: 0, x: -500 }}
-          whileInView={{ opacity: 1, x: -360 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          viewport={{ once: false, amount: 0.2 }}
+        <motion.img src={ServiceSection_FirstChat_Profile} alt="first profile" className={styles.firstChatProfile}
+          initial={{ opacity: 0, x: -500 }} whileInView={{ opacity: 1, x: -360 }}
+          transition={{ duration: 1.2, ease: "easeOut" }} viewport={{ once: false, amount: 0.2 }}
         />
 
-        {/* Chat 2 */}
-        <motion.img
-          src={ServiceSection_SecondChat}
-          alt="second chat"
-          className={styles.secondChatImage}
-          initial={{ opacity: 0, x: -400 }}
-          whileInView={{ opacity: 1, x: -160 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
-          viewport={{ once: false, amount: 0.5 }}
+        <motion.img src={ServiceSection_SecondChat} alt="second chat" className={styles.secondChatImage}
+          initial={{ opacity: 0, x: -400 }} whileInView={{ opacity: 1, x: -160 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }} viewport={{ once: false, amount: 0.5 }}
         />
-        <motion.img
-          src={ServiceSection_SecondChat_Profile}
-          alt="second profile"
-          className={styles.secondChatProfile}
-          initial={{ opacity: 0, x: -600 }}
-          whileInView={{ opacity: 1, x: -360 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
-          viewport={{ once: false, amount: 0.2 }}
+        <motion.img src={ServiceSection_SecondChat_Profile} alt="second profile" className={styles.secondChatProfile}
+          initial={{ opacity: 0, x: -600 }} whileInView={{ opacity: 1, x: -360 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }} viewport={{ once: false, amount: 0.2 }}
         />
 
-        {/* Chat 3 */}
-        <motion.img
-          src={ServiceSection_ThirdChat}
-          alt="third chat"
-          className={styles.thirdChatImage}
-          initial={{ opacity: 0, x: -500 }}
-          whileInView={{ opacity: 1, x: -160 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
-          viewport={{ once: false, amount: 0.5 }}
+        <motion.img src={ServiceSection_ThirdChat} alt="third chat" className={styles.thirdChatImage}
+          initial={{ opacity: 0, x: -500 }} whileInView={{ opacity: 1, x: -160 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }} viewport={{ once: false, amount: 0.5 }}
         />
 
-        {/* Chart Box appears from right after chat animations finish */}
+        {/* Chart Box + Arc */}
         <motion.img
+          ref={chartBoxRef}
           src={ServiceSection_ChartBox}
           alt="chart box"
           className={styles.chartBoxImage}
-          initial={{ opacity: 0, x: 200 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 1.8 }}
+          initial={{ opacity: 0, x: -400 }}
+          whileInView={{ opacity: 1, x: 160 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
           viewport={{ once: false, amount: 0.5 }}
         />
+
+        <svg
+          viewBox="0 0 200 100"
+          width="100%"
+          height="auto"
+          className={styles.chartArcContainer}
+        >
+          <path
+            ref={chartRef}
+            id="chartArc"
+            d="M 10 90 A 90 90 0 0 1 190 90"
+            fill="none"
+            stroke="#00796b"
+            strokeWidth="20"
+            strokeLinecap="round"
+            style={{ strokeDasharray: '100%', strokeDashoffset: '100%' }} //
+          />
+        </svg>
 
       </div>
     </div>
