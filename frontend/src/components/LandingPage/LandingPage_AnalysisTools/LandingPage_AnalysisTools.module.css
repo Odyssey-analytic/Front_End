@@ -219,9 +219,9 @@
 
 .chartArcContainer {
   position: absolute;
-  top: 48%;
-  left: 10%;
-  width: 80%;
+  top: 30%;
+  left: 40%;
+  width: 60%;
   z-index: 6;
   pointer-events: none;
 }

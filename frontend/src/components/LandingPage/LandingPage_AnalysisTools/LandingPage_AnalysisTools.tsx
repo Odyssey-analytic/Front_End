@@ -27,27 +27,41 @@ import ServiceSection_ChartBox from "../../../../public/icons/Landing/ServiceSec
 
 // ======================= Component =======================
 const LandingPage_AnalysisTools = () => {
+
   const chartRef = useRef<SVGPathElement>(null);
   const chartBoxRef = useRef<HTMLImageElement>(null);
+  const grayArcRef = useRef<SVGPathElement>(null);
+
 
   useEffect(() => {
-    const el = chartRef.current;
+    const green = chartRef.current;
+    const gray = grayArcRef.current;
   
-    const resetAndAnimate = () => {
-      gsap.set(el, { drawSVG: "0% 0%" });
-      gsap.to(el, {
-        drawSVG: "0% 87%",
-        duration: 1.2,
-        ease: "power2.out",
-        delay: 0.2,
-      });
-    };
+    if (!green || !gray) return;
+  
+    // Start both at 0% width
+    gsap.set(green, { drawSVG: "0% 0%" });
+    gsap.set(gray, { drawSVG: "0% 0%" });
   
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            resetAndAnimate();
+            // Green part (0% to 87%)
+            gsap.to(green, {
+              drawSVG: "0% 87%",
+              duration: 1.2,
+              ease: "power2.out",
+              delay: 0.2,
+            });
+  
+            // Gray part (90% to 100%) - small gap creates space
+            gsap.to(gray, {
+              drawSVG: "90% 100%",
+              duration: 0.8,
+              ease: "power2.out",
+              delay: 1.5,
+            });
           }
         });
       },
@@ -58,7 +72,6 @@ const LandingPage_AnalysisTools = () => {
     return () => observer.disconnect();
   }, []);
   
-
   return (
     <div className={styles.analysisToolsWrapper}>
       {/* ================== Right Side Text ================== */}
@@ -153,24 +166,28 @@ const LandingPage_AnalysisTools = () => {
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
           viewport={{ once: false, amount: 0.5 }}
         />
+<svg viewBox="0 0 200 100" width="100%" height="auto" className={styles.chartArcContainer}>
+  {/* Green arc */}
+  <path
+    ref={chartRef}
+    d="M 10 90 A 90 90 0 0 1 190 90"
+    fill="none"
+    stroke="#00796b"
+    strokeWidth="20"
+    strokeLinecap="butt"
+  />
+  
+  {/* Gray arc (starts a bit after the green ends) */}
+  {/* <path
+    ref={grayArcRef}
+    d="M 10 90 A 90 90 0 0 1 190 90"
+    fill="none"
+    stroke="#e0e0e0"
+    strokeWidth="20"
+    strokeLinecap="butt"
+  /> */}
+</svg>
 
-        <svg
-          viewBox="0 0 200 100"
-          width="100%"
-          height="auto"
-          className={styles.chartArcContainer}
-        >
-          <path
-            ref={chartRef}
-            id="chartArc"
-            d="M 10 90 A 90 90 0 0 1 190 90"
-            fill="none"
-            stroke="#00796b"
-            strokeWidth="20"
-            strokeLinecap="round"
-            style={{ strokeDasharray: '100%', strokeDashoffset: '100%' }} //
-          />
-        </svg>
 
       </div>
     </div>
