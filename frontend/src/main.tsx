@@ -18,6 +18,8 @@ import DashboardPage from "./components/DashboardPage/DashboardPage";
 import LandingPage from "./components/LandingPage/LandingPage/LandingPage";
 import SignIn from './components/OAuthPortal/SignIn';
 
+import ChartsPage from './components/ChartsStructurePage/ChartsPage/ChartsPage';
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
@@ -30,6 +32,8 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/reset-password/:token" element={<ResetpasswordPage />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
+
+        <Route path="/ChartsPage" element={<ChartsPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
