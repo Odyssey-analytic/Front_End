@@ -33,74 +33,102 @@ const LandingPage_AnalysisTools = () => {
   const line1Ref = useRef<SVGRectElement>(null);
   const line2Ref = useRef<SVGRectElement>(null);
   const line3Ref = useRef<SVGRectElement>(null);
+
+  const [showTitle, setShowTitle] = useState(false);
+  const [showZero, setShowZero] = useState(false);
+  const [showHundred, setShowHundred] = useState(false);
+  const [showCenterText, setShowCenterText] = useState(false);
+  const [showLines, setShowLines] = useState(false);
+
+  
   
   // ========== Animation on intersection ==========
   useEffect(() => {
     const green = chartRef.current;
     const gray = grayArcRef.current;
     const chartBox = chartBoxRef.current;
-
+  
     if (!green || !gray || !chartBox) return;
-
+  
     const greenLength = green.getTotalLength();
     const grayLength = gray.getTotalLength();
-
+  
     green.style.strokeDasharray = greenLength.toString();
     gray.style.strokeDasharray = grayLength.toString();
-
+  
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !chartVisible.current) {
             chartVisible.current = true;
-
+  
             // Set initial dash offset
             green.style.strokeDashoffset = greenLength.toString();
             gray.style.strokeDashoffset = grayLength.toString();
-
+  
             // Reset horizontal bars
             if (line1Ref.current && line2Ref.current && line3Ref.current) {
-              line1Ref.current.setAttribute("x2", "0");
-              line2Ref.current.setAttribute("x2", "0");
-              line3Ref.current.setAttribute("x2", "0");
+              line1Ref.current.setAttribute("width", "0");
+              line2Ref.current.setAttribute("width", "0");
+              line3Ref.current.setAttribute("width", "0");
             }
-
-            // Timeline for animation
-            const tl = gsap.timeline({ defaults: { ease: "power2.out" }, delay: 0.2 });
-
-            // Arc drawing animation
-            tl.to(green, { strokeDashoffset: 0, duration: 1.3 });
-            tl.to(gray, { strokeDashoffset: 0, duration: 0.6 }, "-=0.5");
-
-            // Horizontal bar animation
-            tl.to(line1Ref.current, { attr: { width: 75 }, duration: 0.7 }, "+=0.1");
-            tl.to(line2Ref.current, { attr: { width: 60 }, duration: 0.7 }, "-=0.7");
-            tl.to(line3Ref.current, { attr: { width: 50 }, duration: 0.7 }, "-=0.7");            
+  
+            // ✅ ترتیب انیمیشن‌ها به شکل مرحله‌ای:
+            setShowTitle(true); // رشد سرمایه‌گذاری
+            setTimeout(() => setShowZero(true), 600); // ۰٪
+  
+            setTimeout(() => {
+              // قوس‌ها
+              const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+              tl.to(green, { strokeDashoffset: 0, duration: 1.3 });
+              tl.to(gray, { strokeDashoffset: 0, duration: 0.6 }, "-=0.5");
+              setShowHundred(true); // ۱۰۰٪
+            }, 1200);
+  
+            setTimeout(() => {
+              // متن وسط
+              setShowCenterText(true);
+            }, 2300);
+  
+            setTimeout(() => {
+              // خطوط رنگی
+              setShowLines(true);
+              gsap.to(line1Ref.current, { attr: { width: 75 }, duration: 0.7 });
+              gsap.to(line2Ref.current, { attr: { width: 60 }, duration: 0.7, delay: 0.2 });
+              gsap.to(line3Ref.current, { attr: { width: 50 }, duration: 0.7, delay: 0.4 });
+            }, 3000);
           }
-
+  
           if (!entry.isIntersecting) {
             chartVisible.current = false;
-
+  
             // Reset arcs
             green.style.strokeDashoffset = greenLength.toString();
             gray.style.strokeDashoffset = grayLength.toString();
-
+  
             // Reset bar widths
             if (line1Ref.current && line2Ref.current && line3Ref.current) {
               line1Ref.current?.setAttribute("width", "0");
               line2Ref.current?.setAttribute("width", "0");
               line3Ref.current?.setAttribute("width", "0");
             }
+  
+            // ریست نمایش متن‌ها
+            setShowTitle(false);
+            setShowZero(false);
+            setShowHundred(false);
+            setShowCenterText(false);
+            setShowLines(false);
           }
         });
       },
       { threshold: 0.0 }
     );
-
+  
     observer.observe(chartBox);
     return () => observer.disconnect();
   }, []);
-
+  
   return (
     <div className={styles.analysisToolsWrapper}>
       {/* ======================= Right Side Text ======================= */}
@@ -205,8 +233,54 @@ const LandingPage_AnalysisTools = () => {
           {/* Colored horizontal bars */}
           <rect ref={line1Ref} x="0" y="115" width="0" height="6" fill="#aaffaa" rx="3" ry="3" />
           <rect ref={line2Ref} x="85" y="115" width="0" height="6" fill="#00796b" rx="3" ry="3" />
-          <rect ref={line3Ref} x="150" y="115" width="0" height="6" fill="#ff6666" rx="3" ry="3" />
+          <rect ref={line3Ref} x="155" y="115" width="0" height="6" fill="#ff6666" rx="3" ry="3" />
         </svg>
+        {/* ===== Text Overlays for Chart ===== */}
+        {showTitle && (
+  <motion.h3
+    className={styles.chartTitle}
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+  >
+    رشد سرمایه‌گذاری
+  </motion.h3>
+)}
+
+{showZero && (
+  <motion.span
+    className={styles.chartLabelStart}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.4 }}
+  >
+    ٪۰
+  </motion.span>
+)}
+
+{showHundred && (
+  <motion.span
+    className={styles.chartLabelEnd}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.4 }}
+  >
+    ٪۱۰۰
+  </motion.span>
+)}
+
+{showCenterText && (
+  <motion.div
+    className={styles.chartCenterText}
+    initial={{ opacity: 0, scale: 0.9 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5 }}
+  >
+    <strong>٪۸۸.۷</strong>
+    <span>بر اساس نرخ بهره</span>
+  </motion.div>
+)}
+
       </div>
     </div>
   );
