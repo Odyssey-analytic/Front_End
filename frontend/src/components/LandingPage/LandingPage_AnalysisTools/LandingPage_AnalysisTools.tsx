@@ -68,9 +68,9 @@ const LandingPage_AnalysisTools = () => {
             tl.to(gray, { strokeDashoffset: 0, duration: 0.6 }, "-=0.5");
 
             // Lines animation after arc
-            tl.to(line1Ref.current, { attr: { width: 60 }, duration: 0.7, ease: "power2.out" }, "+=0.1");
+            tl.to(line1Ref.current, { attr: { width: 80 }, duration: 0.7, ease: "power2.out" }, "+=0.1");
             tl.to(line2Ref.current, { attr: { width: 60 }, duration: 0.7, ease: "power2.out" }, "-=0.7");
-            tl.to(line3Ref.current, { attr: { width: 60 }, duration: 0.7, ease: "power2.out" }, "-=0.7");            
+            tl.to(line3Ref.current, { attr: { width: 50 }, duration: 0.7, ease: "power2.out" }, "-=0.7");            
           }
 
           if (!entry.isIntersecting) {
