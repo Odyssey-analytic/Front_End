@@ -1,9 +1,11 @@
+// ======================= Imports =======================
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import styles from "./LandingPage_AnalysisTools.module.css";
 
+// Register GSAP Plugin
 gsap.registerPlugin(DrawSVGPlugin);
 
 // ======================= SVG & Images =======================
@@ -23,17 +25,16 @@ import ServiceSection_ThirdChat_Profile from "../../../../public/icons/Landing/S
 import ServiceSection_ChartBox from "../../../../public/icons/Landing/ServiceSection_ChartBox.svg";
 
 const LandingPage_AnalysisTools = () => {
+  // ========== Refs for animation targets ==========
   const chartRef = useRef<SVGPathElement>(null);
   const grayArcRef = useRef<SVGPathElement>(null);
   const chartVisible = useRef(false);
-  
   const chartBoxRef = useRef<HTMLImageElement>(null);
-
   const line1Ref = useRef<SVGRectElement>(null);
   const line2Ref = useRef<SVGRectElement>(null);
   const line3Ref = useRef<SVGRectElement>(null);
   
-
+  // ========== Animation on intersection ==========
   useEffect(() => {
     const green = chartRef.current;
     const gray = grayArcRef.current;
@@ -53,37 +54,42 @@ const LandingPage_AnalysisTools = () => {
           if (entry.isIntersecting && !chartVisible.current) {
             chartVisible.current = true;
 
+            // Set initial dash offset
             green.style.strokeDashoffset = greenLength.toString();
             gray.style.strokeDashoffset = grayLength.toString();
 
+            // Reset horizontal bars
             if (line1Ref.current && line2Ref.current && line3Ref.current) {
               line1Ref.current.setAttribute("x2", "0");
               line2Ref.current.setAttribute("x2", "0");
               line3Ref.current.setAttribute("x2", "0");
             }
 
+            // Timeline for animation
             const tl = gsap.timeline({ defaults: { ease: "power2.out" }, delay: 0.2 });
 
+            // Arc drawing animation
             tl.to(green, { strokeDashoffset: 0, duration: 1.3 });
             tl.to(gray, { strokeDashoffset: 0, duration: 0.6 }, "-=0.5");
 
-            // Lines animation after arc
-            tl.to(line1Ref.current, { attr: { width: 80 }, duration: 0.7, ease: "power2.out" }, "+=0.1");
-            tl.to(line2Ref.current, { attr: { width: 60 }, duration: 0.7, ease: "power2.out" }, "-=0.7");
-            tl.to(line3Ref.current, { attr: { width: 50 }, duration: 0.7, ease: "power2.out" }, "-=0.7");            
+            // Horizontal bar animation
+            tl.to(line1Ref.current, { attr: { width: 75 }, duration: 0.7 }, "+=0.1");
+            tl.to(line2Ref.current, { attr: { width: 60 }, duration: 0.7 }, "-=0.7");
+            tl.to(line3Ref.current, { attr: { width: 50 }, duration: 0.7 }, "-=0.7");            
           }
 
           if (!entry.isIntersecting) {
             chartVisible.current = false;
 
+            // Reset arcs
             green.style.strokeDashoffset = greenLength.toString();
             gray.style.strokeDashoffset = grayLength.toString();
 
+            // Reset bar widths
             if (line1Ref.current && line2Ref.current && line3Ref.current) {
               line1Ref.current?.setAttribute("width", "0");
               line2Ref.current?.setAttribute("width", "0");
               line3Ref.current?.setAttribute("width", "0");
-              
             }
           }
         });
@@ -97,7 +103,7 @@ const LandingPage_AnalysisTools = () => {
 
   return (
     <div className={styles.analysisToolsWrapper}>
-      {/* Right Side Text */}
+      {/* ======================= Right Side Text ======================= */}
       <div className={styles.textContent}>
         <h2 className={styles.title}>
           سرویس‌ها جهت آنالیز و<br /> بهینه‌سازی محصول شما
@@ -107,6 +113,7 @@ const LandingPage_AnalysisTools = () => {
           و مسیر رشد را هوشمندانه‌تر ترسیم کنید.
         </p>
 
+        {/* ========== Services Grid ========== */}
         <div className={styles.servicesGrid}>
           <div className={styles.serviceItem}>
             <img src={Custom_Dashboard} alt="KPI" />
@@ -131,8 +138,9 @@ const LandingPage_AnalysisTools = () => {
         </div>
       </div>
 
-      {/* Left Side Illustration */}
+      {/* ======================= Left Side Illustration ======================= */}
       <div className={styles.imageContainer}>
+        {/* ========== Box and Topbar Animations ========== */}
         <motion.img src={Service_Box} alt="box" className={styles.boxImage}
           initial={{ opacity: 0, x: -100 }} whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }} viewport={{ once: false, amount: 0.5 }}
@@ -141,6 +149,8 @@ const LandingPage_AnalysisTools = () => {
           initial={{ opacity: 0, y: -50 }} whileInView={{ opacity: 1, y: 12 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }} viewport={{ once: false, amount: 0.5 }}
         />
+
+        {/* ========== Chat Elements ========== */}
         <motion.img src={ServiceSection_FirstChat} alt="first chat" className={styles.firstChatImage}
           initial={{ opacity: 0, x: -300 }} whileInView={{ opacity: 1, x: -160 }}
           transition={{ duration: 1.2, ease: "easeOut" }} viewport={{ once: false, amount: 0.5 }}
@@ -162,7 +172,7 @@ const LandingPage_AnalysisTools = () => {
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }} viewport={{ once: false, amount: 0.5 }}
         />
 
-        {/* Chart Box + Arcs + Colored Lines */}
+        {/* ========== Chart Box + Arcs + Horizontal Bars ========== */}
         <motion.img
           ref={chartBoxRef}
           src={ServiceSection_ChartBox}
@@ -174,29 +184,29 @@ const LandingPage_AnalysisTools = () => {
           viewport={{ once: false }}
         />
 
-<svg viewBox="0 0 220 140" width="100%" height="auto" className={styles.chartArcContainer}>
-  <path
-    ref={chartRef}
-    d="M 10 90 A 90 90 0 0 1 160 28"
-    fill="none"
-    stroke="#00796b"
-    strokeWidth="20"
-    strokeLinecap="butt"
-  />
-  <path
-    ref={grayArcRef}
-    d="M 162 30 A 90 90 0 0 1 190 90"
-    fill="none"
-    stroke="#e0e0e0"
-    strokeWidth="20"
-    strokeLinecap="butt"
-  />
-  {/* خطوط رنگی افقی کنار هم */}
-  <rect ref={line1Ref} x="10" y="115" width="0" height="6" fill="#aaffaa" rx="3" ry="3" />
-  <rect ref={line2Ref} x="80" y="115" width="0" height="6" fill="#00796b" rx="3" ry="3" />
-  <rect ref={line3Ref} x="150" y="115" width="0" height="6" fill="#ff6666" rx="3" ry="3" />
-</svg>
-
+        {/* ========== Arc SVG and Bars ========== */}
+        <svg viewBox="0 0 220 140" width="100%" height="auto" className={styles.chartArcContainer}>
+          <path
+            ref={chartRef}
+            d="M 10 90 A 90 90 0 0 1 160 28"
+            fill="none"
+            stroke="#00796b"
+            strokeWidth="20"
+            strokeLinecap="butt"
+          />
+          <path
+            ref={grayArcRef}
+            d="M 162 30 A 90 90 0 0 1 190 90"
+            fill="none"
+            stroke="#e0e0e0"
+            strokeWidth="20"
+            strokeLinecap="butt"
+          />
+          {/* Colored horizontal bars */}
+          <rect ref={line1Ref} x="0" y="115" width="0" height="6" fill="#aaffaa" rx="3" ry="3" />
+          <rect ref={line2Ref} x="85" y="115" width="0" height="6" fill="#00796b" rx="3" ry="3" />
+          <rect ref={line3Ref} x="150" y="115" width="0" height="6" fill="#ff6666" rx="3" ry="3" />
+        </svg>
       </div>
     </div>
   );
