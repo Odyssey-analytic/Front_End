@@ -39,35 +39,42 @@ const LandingPage_AnalysisTools = () => {
   
     if (!green || !gray) return;
   
-    // Start both at 0% width
-    gsap.set(green, { drawSVG: "0% 0%" });
-    gsap.set(gray, { drawSVG: "0% 0%" });
+    // محاسبه طول مسیر
+    const greenLength = green.getTotalLength();
+    const grayLength = gray.getTotalLength();
+  
+    green.style.strokeDasharray = greenLength.toString();
+    green.style.strokeDashoffset = greenLength.toString();
+  
+    gray.style.strokeDasharray = grayLength.toString();
+    gray.style.strokeDashoffset = grayLength.toString();
   
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Green part (0% to 87%)
-            gsap.to(green, {
-              drawSVG: "0% 87%",
-              duration: 1.2,
-              ease: "power2.out",
-              delay: 0.2,
+            const greenLength = green.getTotalLength();
+            const grayLength = gray.getTotalLength();
+    
+            green.style.strokeDashoffset = greenLength.toString();
+            gray.style.strokeDashoffset = grayLength.toString();
+    
+            const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+    
+            tl.to(green, {
+              strokeDashoffset: 0,
+              duration: 1.3,
             });
-  
-            // Gray part (90% to 100%) - small gap creates space
-            gsap.to(gray, {
-              drawSVG: "90% 100%",
-              duration: 0.8,
-              ease: "power2.out",
-              delay: 1.5,
+            tl.to(gray, {
+              strokeDashoffset: 0,
+              duration: 0.6,
             });
           }
         });
       },
       { threshold: 0.5 }
     );
-  
+    
     if (chartBoxRef.current) observer.observe(chartBoxRef.current);
     return () => observer.disconnect();
   }, []);
@@ -163,30 +170,31 @@ const LandingPage_AnalysisTools = () => {
           className={styles.chartBoxImage}
           initial={{ opacity: 0, x: -400 }}
           whileInView={{ opacity: 1, x: 160 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          viewport={{ once: false }}
         />
 <svg viewBox="0 0 200 100" width="100%" height="auto" className={styles.chartArcContainer}>
-  {/* Green arc */}
-  <path
-    ref={chartRef}
-    d="M 10 90 A 90 90 0 0 1 190 90"
-    fill="none"
-    stroke="#00796b"
-    strokeWidth="20"
-    strokeLinecap="butt"
-  />
-  
-  {/* Gray arc (starts a bit after the green ends) */}
-  {/* <path
-    ref={grayArcRef}
-    d="M 10 90 A 90 90 0 0 1 190 90"
-    fill="none"
-    stroke="#e0e0e0"
-    strokeWidth="20"
-    strokeLinecap="butt"
-  /> */}
+<path
+  ref={chartRef}
+  d="M 10 90 A 90 90 0 0 1 160 28"
+  fill="none"
+  stroke="#00796b"
+  strokeWidth="20"
+  strokeLinecap="butt"
+/>
+
+<path
+  ref={grayArcRef}
+  d="M 162 30 A 90 90 0 0 1 190 90"
+  fill="none"
+  stroke="#e0e0e0"
+  strokeWidth="20"
+  strokeLinecap="butt"
+/>
+
+
 </svg>
+
 
 
       </div>
