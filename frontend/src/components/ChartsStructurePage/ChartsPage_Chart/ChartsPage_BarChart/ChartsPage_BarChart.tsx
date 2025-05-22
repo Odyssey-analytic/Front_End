@@ -73,6 +73,7 @@ const ChartsPage_BarChart = () => {
     //   </div>
     // </ChartCardWrapper>
 
+    // duration={0.7}
     <ChartCardWrapper title="Rainfall (Bar Chart)" customHeight="400px">
       <div ref={containerRef} style={{ width: '100%' }}>
         <BarChart

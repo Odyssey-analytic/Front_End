@@ -78,6 +78,7 @@ const ChartsPage_PieChart = () => {
     //   </div>
     // </ChartCardWrapper>
 
+    // duration={0.7}
     <ChartCardWrapper title="OS Usage (Pie Chart)" customHeight="500px">
       <div
         style={{

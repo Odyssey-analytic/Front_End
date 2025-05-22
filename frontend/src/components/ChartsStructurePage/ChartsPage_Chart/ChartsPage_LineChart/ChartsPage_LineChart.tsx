@@ -108,6 +108,7 @@ const ChartsPage_AverageGameLength = () => {
     //   </div>
     // </ChartCardWrapper>
 
+    // duration={0.7}
     <ChartCardWrapper title="Average Game Length" customHeight="400px">
       <div ref={ref} style={{ width: '100%' }}>
         <LineChart
