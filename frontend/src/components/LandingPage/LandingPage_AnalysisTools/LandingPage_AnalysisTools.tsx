@@ -213,6 +213,11 @@ const LandingPage_AnalysisTools = () => {
           initial={{ opacity: 0, x: -500 }} whileInView={{ opacity: 1, x: -160 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }} viewport={{ once: false, amount: 0.5 }}
         />
+        <motion.img src={ServiceSection_ThirdChat_Profile} alt="third profile" className={styles.thirdChatProfile}
+          initial={{ opacity: 0, x: -660 }} whileInView={{ opacity: 1, x: -360 }} 
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.7 }} viewport={{ once: false, amount: 0.2 }}
+        />
+
 
         {/* ========== Chart Box + Arcs + Horizontal Bars ========== */}
         <motion.img
@@ -251,53 +256,51 @@ const LandingPage_AnalysisTools = () => {
         </svg>
         {/* ===== Text Overlays for Chart ===== */}
         {showTitle && (
-  <motion.h3
-    className={styles.chartTitle}
-    initial={{ opacity: 0, y: 10 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6 }}
-  >
-    رشد سرمایه‌گذاری
-  </motion.h3>
-)}
+          <motion.h3
+            className={styles.chartTitle}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            رشد سرمایه‌گذاری
+          </motion.h3>
+          )}
 
-{showZero && (
-  <motion.span
-    className={styles.chartLabelStart}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.4 }}
-  >
-    ٪۰
-  </motion.span>
-)}
+          {showZero && (
+            <motion.span
+              className={styles.chartLabelStart}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              ٪۰
+            </motion.span>
+          )}
 
-{showHundred && (
-  <motion.span
-    className={styles.chartLabelEnd}
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.4 }}
-  >
-    ٪۱۰۰
-  </motion.span>
-)}
+          {showHundred && (
+            <motion.span
+              className={styles.chartLabelEnd}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              ٪۱۰۰
+            </motion.span>
+          )}
 
-{showCenterText && (
-  <motion.div
-    className={styles.chartCenterText}
-    initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.5 }}
-  >
-    <strong>٪۸۸.۷</strong>
-    <span>بر اساس نرخ بهره</span>
-  </motion.div>
-)}
-
+          {showCenterText && (
+            <motion.div
+              className={styles.chartCenterText}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <strong>٪۸۸.۷</strong>
+              <span>بر اساس نرخ بهره</span>
+            </motion.div>
+          )}
       </div>
     </div>
   );
 };
-
 export default LandingPage_AnalysisTools;
