@@ -1,7 +1,8 @@
 .header {
   background-color: white;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #ddd;
+  padding: 1.2rem 2rem;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -15,14 +16,22 @@
 
 .title {
   font-size: 1.8rem;
-  font-weight: bold;
+  font-weight: 600;
+  color: #1a1a1a;
 }
 
 .buttons button {
-  margin-left: 0.5rem;
-  padding: 0.4rem 1rem;
-  border: 1px solid #333;
-  background: white;
+  margin-left: 0.8rem;
+  padding: 0.4rem 1.2rem;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 6px;
+  font-size: 0.9rem;
   cursor: pointer;
-  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.buttons button:hover {
+  background-color: #0056b3;
 }

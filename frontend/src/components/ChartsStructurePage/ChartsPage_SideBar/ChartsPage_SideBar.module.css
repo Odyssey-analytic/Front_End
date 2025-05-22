@@ -1,30 +1,61 @@
-.sidebar {
-  width: 220px;
-  height: 100vh;
-  background-color: #1e1e2f;
+/* .sidebar {
+  width: 240px;
+  background-color: #151924;
   color: white;
-  padding: 1.5rem 1rem;
+  padding: 2rem 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100%;
+  min-height: 100vh;
+} */
+
+.sidebar {
+  width: 240px;
+  background-color: #151924;
+  color: white;
+  padding: 2rem 1rem 4rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  position: sticky;
-  top: 0;
-  right: 0;
+  position: relative;
+  height: 100%; /* ✅ مهم */
 }
 
-.logo {
-  font-size: 1.2rem;
-  font-weight: bold;
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 2rem;
 }
 
-.menu {
+.brandText {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #66ccff;
+  margin-right: 1rem;
+}
+
+.logoImg {
+  height: 32px;
+  width: auto;
+}
+
+.menu ul {
   list-style: none;
   padding: 0;
 }
 
 .menu ul li {
-  margin: 1rem 0;
+  padding: 0.8rem;
+  margin-bottom: 0.4rem;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.menu ul li:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
