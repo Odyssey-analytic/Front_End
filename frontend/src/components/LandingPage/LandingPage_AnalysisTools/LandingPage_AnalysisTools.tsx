@@ -113,36 +113,48 @@ const LandingPage_AnalysisTools = () => {
     <div className={styles.analysisToolsWrapper}>
       {/* ======================= Right Side Text ======================= */}
       <div className={styles.textContent}>
-        <h2 className={styles.title}>
-          سرویس‌ها جهت آنالیز و<br /> بهینه‌سازی محصول شما
-        </h2>
-        <p className={styles.description}>
-          با ابزارهای تحلیلی ما، عملکرد محصول خود را به‌دقت بررسی کرده<br />
-          و مسیر رشد را هوشمندانه‌تر ترسیم کنید.
-        </p>
+      <motion.h2
+        className={styles.title}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 2.6 }}
+      >
+        سرویس‌ها جهت آنالیز و<br /> بهینه‌سازی محصول شما
+      </motion.h2>
+      <motion.p
+  className={styles.description}
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 2.9 }}
+>
+  با ابزارهای تحلیلی ما، عملکرد محصول خود را به‌دقت بررسی کرده<br />
+  و مسیر رشد را هوشمندانه‌تر ترسیم کنید.
+</motion.p>
+
 
         {/* ========== Services Grid ========== */}
         <div className={styles.servicesGrid}>
-          <div className={styles.serviceItem}>
-            <img src={Custom_Dashboard} alt="KPI" />
-            <span>شاخص‌های کلیدی سفارشی</span>
-          </div>
-          <div className={styles.serviceItem}>
-            <img src={Custom_KPIs} alt="Dashboard" />
-            <span>داشبورد سفارشی</span>
-          </div>
-          <div className={styles.serviceItem}>
-            <img src={Real_time_Monitoring} alt="Live Monitoring" />
-            <span>پایش لحظه‌ای</span>
-          </div>
-          <div className={styles.serviceItem}>
-            <img src={Revenue_Tracking} alt="Revenue" />
-            <span>ردیابی درآمد</span>
-          </div>
-          <div className={styles.serviceItem}>
-            <img src={Flexible_Events} alt="Events" />
-            <span>رویدادهای منعطف</span>
-          </div>
+        <div className={styles.servicesGrid}>
+  {[
+    { icon: Custom_Dashboard, label: "شاخص‌های کلیدی سفارشی", delay: 3.2 },
+    { icon: Custom_KPIs, label: "داشبورد سفارشی", delay: 3.4 },
+    { icon: Real_time_Monitoring, label: "پایش لحظه‌ای", delay: 3.6 },
+    { icon: Revenue_Tracking, label: "ردیابی درآمد", delay: 3.8 },
+    { icon: Flexible_Events, label: "رویدادهای منعطف", delay: 4.0 },
+  ].map((item, index) => (
+    <motion.div
+      key={index}
+      className={styles.serviceItem}
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6, delay: item.delay }}
+    >
+      <img src={item.icon} alt={item.label} />
+      <span>{item.label}</span>
+    </motion.div>
+  ))}
+</div>
+
         </div>
       </div>
 
