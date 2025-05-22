@@ -163,12 +163,21 @@ const ChartsPage_DonutChart = () => {
             // width="100%"
           />
         </div>
-        <div className={styles.controls}>
+        {/* <div className={styles.controls}>
           <button className={styles.button} onClick={appendData}>+ ADD</button>
           <button className={styles.button} onClick={removeData}>- REMOVE</button>
           <button className={styles.button} onClick={randomize}>RANDOMIZE</button>
           <button className={styles.button} onClick={reset}>RESET</button>
+        </div> */}
+
+        <div className={styles.actionButtons}>
+            <button className={styles.button} onClick={appendData}>+ ADD</button>
+            <button className={styles.button} onClick={removeData}>- REMOVE</button>
+            <button className={styles.button} onClick={randomize}>RANDOMIZE</button>
+            <button className={styles.button} onClick={reset}>RESET</button>
         </div>
+
+
       </div>
 
 
