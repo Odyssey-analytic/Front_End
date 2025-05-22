@@ -1,25 +1,15 @@
+/* ============================ Layout Wrapper ============================ */
 .analysisToolsWrapper {
-  flex-direction: row; 
+  flex-direction: row; /* چیدمان افقی بین متن و تصویر */
   width: 100%;
 }
 
-/* .imageContainer {
-  justify-content: center;
-  right: 55%;
-  position: relative;
-  bottom: 38%;
-} */
-
+/* ============================ Text Section ============================ */
 .textContent {
   position: relative;
   right: 8%;
   top: 10%;
   max-width: 40%;
-}
-
-.illustrationImage {
-  max-width: 35%;
-  height: auto;
 }
 
 .title {
@@ -37,10 +27,10 @@
   margin-bottom: 2rem;
 }
 
+/* ============================ Service Icons Grid ============================ */
 .servicesGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  
   gap: 25px 24px;
   margin-bottom: 2rem;
 }
@@ -49,22 +39,24 @@
   display: flex;
   align-items: center;
   gap: 15px;
-
   font-size: 0.95rem;
   color: #e0e0e0;
   white-space: nowrap;
 }
 
+/* آخرین آیتم رو در یک ردیف کامل نشون بده */
 .serviceItem:nth-child(5) {
   grid-column: span 2;
   margin-right: 9rem;
 }
 
 .serviceItem img {
-  width: 28px;
-  height: 28px;
+  width: clamp(2rem, 4vw, 3.5rem); /* حداقل 2rem، حداکثر 3.5rem بر اساس عرض صفحه */
+  height: auto; /* ارتفاع خودکار برای حفظ نسبت تصویر */
+  flex-shrink: 0; /* جلوگیری از فشرده شدن آیکون‌ها */
 }
 
+/* ============================ CTA Button ============================ */
 .containerctaButton {
   position: absolute;
   top: 50%;
@@ -86,6 +78,7 @@
   color: #0c0b1f;
 }
 
+/* ============================ Responsive (Mobile) ============================ */
 @media (max-width: 768px) {
   .analysisToolsWrapper {
     flex-direction: column;
@@ -101,24 +94,25 @@
   }
 }
 
-
+/* ============================ Box Slide Animation ============================ */
 @keyframes slideRightBox {
   from {
-    transform: translateX(-100%); /* از چپ شروع کن */
+    transform: translateX(-100%);
     opacity: 0;
   }
   to {
-    transform: translateX(0); /* در جای اصلی بایسته */
+    transform: translateX(0);
     opacity: 1;
   }
 }
 
+/* ============================ Illustration (Left Section) ============================ */
 .imageContainer {
   position: relative;
   justify-content: center;
   right: 55%;
-  bottom: 38%;
-  max-width: 380px; 
+  bottom: 48%;
+  max-width: 380px;
 }
 
 .boxWrapper {
@@ -135,65 +129,111 @@
 .topbarImage {
   position: absolute;
   top: 0;
-  left: -16.9%; 
+  left: -16.9%;
   width: 100%;
   min-width: 107.39%;
   z-index: 2;
 }
 
-.firstChatImage {
-  position: absolute;
-  top: 17%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 300px;
-  z-index: 3;
-}
-
-.secondChatImage {
-  position: absolute;
-  top: 41%; /* فاصله نسبت به firstChat تنظیم کن */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 300px;
-  z-index: 3;
-}
-
+/* ============================ Chat Bubbles ============================ */
+.firstChatImage,
+.secondChatImage,
 .thirdChatImage {
   position: absolute;
-  top: 65%; /* بستگی به ارتفاع چت‌های قبلی داره */
   left: 50%;
-  transform: translateX(-50%);
   width: 90%;
   max-width: 300px;
   z-index: 3;
 }
 
+.firstChatImage { top: 17%; }
+.secondChatImage { top: 41%; }
+.thirdChatImage { top: 65%; }
 
-
-.firstChatProfile {
-  position: absolute;
-  top: 19%;
-  /* right: 10%;  */
-  width: 20%;
-  z-index:4;
-}
-
-.secondChatProfile {
-  position: absolute;
-  top: 44%;
-  /* right: 10%; */
-  width: 20%;
-  z-index: 4;
-}
-
+.firstChatProfile,
+.secondChatProfile,
 .thirdChatProfile {
   position: absolute;
-  top: 67%;
-  /* right: 10%; */
-  /* width: 40px; */
   width: 20%;
   z-index: 4;
+}
+
+.firstChatProfile { top: 19%; }
+.secondChatProfile { top: 44%; }
+.thirdChatProfile { top: 67%; }
+
+/* ============================ Chart Box & Arc ============================ */
+.chartBoxImage {
+  position: absolute;
+  top: 28%;
+  width: 120%;
+  max-width: 150%;
+  z-index: 5;
+}
+
+.chartArcContainer {
+  position: absolute;
+  top: 22%;
+  left: 85%;
+  transform: translateX(-50%);
+  width: 90%;         /* ✅ responsive using percentage */
+  max-width: 300px;   /* ✅ upper bound to avoid overgrowth */
+  min-width: 180px;   /* ✅ lower bound to keep clarity */
+  z-index: 6;
+  pointer-events: none;
+}
+
+
+
+
+/* ============================ Chart Text Overlays ============================ */
+.chartTitle {
+  position: absolute;
+  top: 40%;
+  right: -19%;
+  font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+  font-weight: 600;
+  color: #004d40; 
+  z-index: 10;
+}
+
+.chartLabelStart {
+  position: absolute;
+  bottom: 17%;
+  left: 47%;
+  font-size: clamp(0.7rem, 1vw, 1rem);
+  color: #999;
+  z-index: 10;
+}
+
+.chartLabelEnd {
+  position: absolute;
+  bottom: 17%;
+  right: -17%;
+  font-size: clamp(0.7rem, 1vw, 1rem);
+  color: #999;
+  z-index: 10;
+}
+
+.chartCenterText {
+  position: absolute;
+  top: 65%;
+  left: 66%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+  color: #0c0b1f;
+}
+
+.chartCenterText strong {
+  display: block;
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+  margin-bottom: 0.3rem;
+}
+
+.chartCenterText span {
+  font-size: clamp(0.7rem, 1vw, 0.95rem);
+  color: #666;
 }
