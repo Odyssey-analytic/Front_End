@@ -3,40 +3,25 @@
   color: white;
   width: 200px;
   transition: width 0.3s ease;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
-  /* height: 100vh; */
+  user-select: none;
 }
 
 .collapsed {
   width: 75px;
 }
 
-/* .top {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-} */
-
 .top {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   gap: 0.75rem;
   padding: 0.5rem 0;
 }
 
-/* .logoWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-} */
-
-
 .logoWrapper {
   display: flex;
-  justify-content: center; /* وسط‌چین افقی */
+  justify-content: center;
   width: 100%;
 }
 
@@ -44,7 +29,6 @@
   font-size: 1.2rem;
   cursor: pointer;
   color: white;
-  /* margin-right: 0.7rem; */
 }
 
 .logo {
@@ -68,100 +52,72 @@
 .divider {
   border: none;
   border-top: 1px solid rgb(255, 255, 255);
-  /* margin: 0.5rem 0 1rem 0; */
 }
 
 .menu {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  position: relative;
+  overflow: visible;
+  padding-right: 0;
+  margin-right: 0;
 }
-
-/* .menuItem {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.5rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-} */
-
-/* .menuItem:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-} */
 
 .menuItem {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  position: relative;
   padding: 0.75rem 1rem;
-  border-radius: 10px;
   cursor: pointer;
-  color: #a0a0a0;
-  transition: color 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
+  color: #888;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  /* border-radius: 8px 0 0 8px;  */
   background-color: transparent;
-}
-
-.menuItem:hover {
-  background-color: white;
-  color: #151924;
-  border-radius: 15px;
-  /* white-space: nowrap; */
-}
-
-/* .menuItem:hover {
-  color: white;
-  background-color: transparent;
-  z-index: 10;
-  mix-blend-mode: normal;
-  box-shadow: none;
-} */
-
-
-/* .menuItem {
-  position: relative;
-  color: white;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  transition: color 0.3s ease;
-  mix-blend-mode: difference;
   overflow: visible;
   z-index: 0;
 }
 
-.menuItem:hover {
-  color: white;
-  background-color: transparent;
-  z-index: 10;
-  mix-blend-mode: normal;
-  box-shadow: none;
+
+.menuItem:hover{
+  background-color: #ffffff;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
-.menuItem:hover .icon,
-.menuItem:hover .label {
-  color: white;
-  position: relative;
-  z-index: 11;
-  white-space: nowrap;
+
+/* .menuItem:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* margin-bottom: 50px; */
+  /* width: 100%;
+  height: 30px;  /* ارتفاع مستطیل */
+  /* background-color: rgb(13, 4, 87); */
+  /* border-radius: 25px;
+  z-index: 15; */
+/* } */
+
+
+.menuItem:hover::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 0px;
+  width: 100%;
+  height: 20px;
+  background-color: #1b243e;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  z-index: 15;
 }
 
-.menu {
-  position: relative;
-  overflow: visible; 
-  padding-right: 0; 
-  margin-right: 0;
-} */
 
-
-/* .menuItem:hover .icon,
-.menuItem:hover .label {
-  color: rgb(42, 27, 126);
-  position: relative;
-  z-index: 11;
+.menuContent {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   white-space: nowrap;
-} */
+}
 
 .icon {
   font-size: 1.25rem;
@@ -169,5 +125,4 @@
 
 .label {
   font-size: 1rem;
-  
 }
