@@ -1,5 +1,5 @@
 import styles from './ChartsPage_SideBar.module.css';
-import OdessayLogo from '../../assets/odessay-logo.png'; // مسیر مناسب به فایل تصویر
+import OdessayLogo from '../../../../public/icons/odessay_logo.svg';
 
 const ChartsPage_SideBar = () => (
   <aside className={styles.sidebar}>

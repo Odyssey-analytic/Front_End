@@ -20,7 +20,7 @@
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
-  height: 100%; /* ✅ مهم */
+  /* height: 100%; */
 }
 
 
