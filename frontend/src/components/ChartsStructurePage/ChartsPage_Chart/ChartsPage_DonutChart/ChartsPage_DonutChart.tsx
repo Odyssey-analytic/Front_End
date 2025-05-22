@@ -143,7 +143,7 @@ const ChartsPage_DonutChart = () => {
 
   return (
     // duration={1.4}
-    <ChartCardWrapper title="Device Usage (Donut Chart)" customHeight="500px">
+    <ChartCardWrapper title="Device Usage (Donut Chart)" customHeight="550px">
       {/* <div className={styles.cardContent}>
         <ReactApexChart options={state.options} series={state.series} type="donut" width="100%" />
         <div className={styles.controls}>
@@ -160,7 +160,7 @@ const ChartsPage_DonutChart = () => {
             options={state.options}
             series={state.series}
             type="donut"
-            width="100%"
+            // width="100%"
           />
         </div>
         <div className={styles.controls}>

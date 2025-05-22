@@ -6,8 +6,9 @@ import styles from './ChartsPage_CardWrapper.module.css';
 type ChartCardWrapperProps = {
   title: string;
   children: React.ReactNode;
-  customHeight?: string;
+  // customHeight?: string;
   // duration?: number;
+  customHeight?: string | number;
 };
 
 
@@ -23,7 +24,7 @@ const ChartCardWrapper = ({ title, children, customHeight }: ChartCardWrapperPro
     <motion.div
       ref={ref}
       className={styles.card}
-      style={{ height: customHeight || 'auto' }} // 👈 اینجا استفاده شده
+      style={{ height: customHeight || 'auto' }}
       initial="hidden"
       animate={controls}
       variants={{
