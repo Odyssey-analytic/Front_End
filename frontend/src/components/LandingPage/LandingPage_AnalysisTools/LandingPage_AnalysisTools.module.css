@@ -197,3 +197,12 @@
   width: 20%;
   z-index: 4;
 }
+
+
+.chartBoxImage {
+  position: absolute;
+  top: 32%;
+  width: 120%;
+  max-width: 150%;
+  z-index: 5;
+}

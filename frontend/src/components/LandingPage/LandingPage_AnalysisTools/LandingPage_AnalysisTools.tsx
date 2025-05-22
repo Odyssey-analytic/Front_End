@@ -16,13 +16,14 @@ import ServiceSection_ThirdChat from "../../../../public/icons/Landing/ServiceSe
 import ServiceSection_FirstChat_Profile from "../../../../public/icons/Landing/ServiceSection_FirstChat_Profile.svg";
 import ServiceSection_SecondChat_Profile from "../../../../public/icons/Landing/ServiceSection_SecondChat_Profile.svg";
 import ServiceSection_ThirdChat_Profile from "../../../../public/icons/Landing/ServiceSection_ThirdChat_Profile.svg";
+import ServiceSection_ChartBox from "../../../../public/icons/Landing/ServiceSection_ChartBox.svg";
 
 // ======================= Component =======================
 const LandingPage_AnalysisTools = () => {
   return (
     <div className={styles.analysisToolsWrapper}>
 
-      {/* ======================= Text Content (Right Side) ======================= */}
+      {/* ========== Text Section (Right Side) ========== */}
       <div className={styles.textContent}>
         <h2 className={styles.title}>
           سرویس‌ها جهت آنالیز و<br /> بهینه‌سازی محصول شما
@@ -32,7 +33,7 @@ const LandingPage_AnalysisTools = () => {
           و مسیر رشد را هوشمندانه‌تر ترسیم کنید.
         </p>
 
-        {/* ======================= List of Service Items ======================= */}
+        {/* ========== Feature List ========== */}
         <div className={styles.servicesGrid}>
           <div className={styles.serviceItem}>
             <img src={Custom_Dashboard} alt="KPI" />
@@ -57,10 +58,10 @@ const LandingPage_AnalysisTools = () => {
         </div>
       </div>
 
-      {/* ======================= Illustration Section (Left Side) ======================= */}
+      {/* ========== Illustration Section (Left Side) ========== */}
       <div className={styles.imageContainer}>
 
-        {/* ===== White Background Box Animation ===== */}
+        {/* White background base box */}
         <motion.img
           src={Service_Box}
           alt="box"
@@ -71,7 +72,7 @@ const LandingPage_AnalysisTools = () => {
           viewport={{ once: false, amount: 0.5 }}
         />
 
-        {/* ===== Top Blue Bar Above the Box ===== */}
+        {/* Top bar on the white box */}
         <motion.img
           src={Topbar}
           alt="topbar"
@@ -82,8 +83,7 @@ const LandingPage_AnalysisTools = () => {
           viewport={{ once: false, amount: 0.5 }}
         />
 
-        {/* ===== Chat Bubbles Over the Box (1st, 2nd, 3rd) ===== */}
-        {/* ===== Chat 1 ===== */}
+        {/* Chat 1 */}
         <motion.img
           src={ServiceSection_FirstChat}
           alt="first chat"
@@ -103,7 +103,7 @@ const LandingPage_AnalysisTools = () => {
           viewport={{ once: false, amount: 0.2 }}
         />
 
-        {/* ===== Chat 2 ===== */}
+        {/* Chat 2 */}
         <motion.img
           src={ServiceSection_SecondChat}
           alt="second chat"
@@ -115,32 +115,35 @@ const LandingPage_AnalysisTools = () => {
         />
         <motion.img
           src={ServiceSection_SecondChat_Profile}
-          alt="first profile"
+          alt="second profile"
           className={styles.secondChatProfile}
           initial={{ opacity: 0, x: -600 }}
           whileInView={{ opacity: 1, x: -360 }}
-          transition={{ duration: 1.2, ease: "easeOut" , delay: 0.4 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }}
           viewport={{ once: false, amount: 0.2 }}
         />
-        {/* ===== Chat 3 ===== */}
+
+        {/* Chat 3 */}
         <motion.img
           src={ServiceSection_ThirdChat}
           alt="third chat"
           className={styles.thirdChatImage}
           initial={{ opacity: 0, x: -500 }}
           whileInView={{ opacity: 1, x: -160 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.5}}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
           viewport={{ once: false, amount: 0.5 }}
         />
-        {/* <motion.img
-          src={ServiceSection_ThirdChat_Profile}
-          alt="first profile"
-          className={styles.secondChatProfile}
-          initial={{ opacity: 0, x: -700 }}
-          whileInView={{ opacity: 1, x: -360 }}
-          transition={{ duration: 1.2, ease: "easeOut" , delay: 0.5 }}
-          viewport={{ once: false, amount: 0.2 }}
-        /> */}
+
+        {/* Chart Box appears from right after chat animations finish */}
+        <motion.img
+          src={ServiceSection_ChartBox}
+          alt="chart box"
+          className={styles.chartBoxImage}
+          initial={{ opacity: 0, x: 200 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 1.8 }}
+          viewport={{ once: false, amount: 0.5 }}
+        />
 
       </div>
     </div>
