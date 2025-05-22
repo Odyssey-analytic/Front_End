@@ -201,7 +201,7 @@
 
 .chartBoxImage {
   position: absolute;
-  top: 32%;
+  top: 28%;
   width: 120%;
   max-width: 150%;
   z-index: 5;
@@ -219,9 +219,9 @@
 
 .chartArcContainer {
   position: absolute;
-  top: 30%;
-  left: 40%;
-  width: 60%;
+  top: 22%;
+  left: 42%;
+  width: 78%;
   z-index: 6;
   pointer-events: none;
 }

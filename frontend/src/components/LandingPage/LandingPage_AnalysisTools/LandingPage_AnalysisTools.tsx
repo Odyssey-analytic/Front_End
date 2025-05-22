@@ -1,11 +1,9 @@
-// ======================= Imports =======================
 import { motion } from "framer-motion";
-import { useEffect, useRef , useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import styles from "./LandingPage_AnalysisTools.module.css";
 
-// Register GSAP plugin
 gsap.registerPlugin(DrawSVGPlugin);
 
 // ======================= SVG & Images =======================
@@ -14,7 +12,6 @@ import Custom_KPIs from "../../../../public/icons/Landing/Custom KPIs.svg";
 import Real_time_Monitoring from "../../../../public/icons/Landing/Real-time Monitoring.svg";
 import Revenue_Tracking from "../../../../public/icons/Landing/Revenue Tracking.svg";
 import Flexible_Events from "../../../../public/icons/Landing/Flexible Events.svg";
-
 import Service_Box from "../../../../public/icons/Landing/box.svg";
 import Topbar from "../../../../public/icons/Landing/topbar.svg";
 import ServiceSection_FirstChat from "../../../../public/icons/Landing/ServiceSection_FirstChat.svg";
@@ -25,64 +22,82 @@ import ServiceSection_SecondChat_Profile from "../../../../public/icons/Landing/
 import ServiceSection_ThirdChat_Profile from "../../../../public/icons/Landing/ServiceSection_ThirdChat_Profile.svg";
 import ServiceSection_ChartBox from "../../../../public/icons/Landing/ServiceSection_ChartBox.svg";
 
-// ======================= Component =======================
 const LandingPage_AnalysisTools = () => {
-
   const chartRef = useRef<SVGPathElement>(null);
-  const chartBoxRef = useRef<HTMLImageElement>(null);
   const grayArcRef = useRef<SVGPathElement>(null);
   const chartVisible = useRef(false);
-  const [canAnimateChart, setCanAnimateChart] = useState(false);
-   
+  
+  const chartBoxRef = useRef<HTMLImageElement>(null);
+
+  const line1Ref = useRef<SVGRectElement>(null);
+  const line2Ref = useRef<SVGRectElement>(null);
+  const line3Ref = useRef<SVGRectElement>(null);
   
 
   useEffect(() => {
     const green = chartRef.current;
     const gray = grayArcRef.current;
     const chartBox = chartBoxRef.current;
-  
+
     if (!green || !gray || !chartBox) return;
-  
+
     const greenLength = green.getTotalLength();
     const grayLength = gray.getTotalLength();
-  
+
     green.style.strokeDasharray = greenLength.toString();
     gray.style.strokeDasharray = grayLength.toString();
-  
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !chartVisible.current) {
             chartVisible.current = true;
-  
+
             green.style.strokeDashoffset = greenLength.toString();
             gray.style.strokeDashoffset = grayLength.toString();
-  
-            // تاخیر طبیعی برای هم‌زمانی با ورود باکس
+
+            if (line1Ref.current && line2Ref.current && line3Ref.current) {
+              line1Ref.current.setAttribute("x2", "0");
+              line2Ref.current.setAttribute("x2", "0");
+              line3Ref.current.setAttribute("x2", "0");
+            }
+
             const tl = gsap.timeline({ defaults: { ease: "power2.out" }, delay: 0.2 });
-  
+
             tl.to(green, { strokeDashoffset: 0, duration: 1.3 });
-            tl.to(gray, { strokeDashoffset: 0, duration: 0.6 }, "-=0.5"); // هم‌پوشانی جزئی
-  
-            // انیمیشن بعدی فقط بعد از خروج از ویو مجاز میشه
+            tl.to(gray, { strokeDashoffset: 0, duration: 0.6 }, "-=0.5");
+
+            // Lines animation after arc
+            tl.to(line1Ref.current, { attr: { width: 60 }, duration: 0.7, ease: "power2.out" }, "+=0.1");
+            tl.to(line2Ref.current, { attr: { width: 60 }, duration: 0.7, ease: "power2.out" }, "-=0.7");
+            tl.to(line3Ref.current, { attr: { width: 60 }, duration: 0.7, ease: "power2.out" }, "-=0.7");            
           }
-  
+
           if (!entry.isIntersecting) {
             chartVisible.current = false;
+
+            green.style.strokeDashoffset = greenLength.toString();
+            gray.style.strokeDashoffset = grayLength.toString();
+
+            if (line1Ref.current && line2Ref.current && line3Ref.current) {
+              line1Ref.current?.setAttribute("width", "0");
+              line2Ref.current?.setAttribute("width", "0");
+              line3Ref.current?.setAttribute("width", "0");
+              
+            }
           }
         });
       },
       { threshold: 0.0 }
     );
-  
+
     observer.observe(chartBox);
     return () => observer.disconnect();
   }, []);
-    
-  
+
   return (
     <div className={styles.analysisToolsWrapper}>
-      {/* ================== Right Side Text ================== */}
+      {/* Right Side Text */}
       <div className={styles.textContent}>
         <h2 className={styles.title}>
           سرویس‌ها جهت آنالیز و<br /> بهینه‌سازی محصول شما
@@ -116,30 +131,16 @@ const LandingPage_AnalysisTools = () => {
         </div>
       </div>
 
-      {/* ================== Left Side Illustration ================== */}
+      {/* Left Side Illustration */}
       <div className={styles.imageContainer}>
-
-        <motion.img
-          src={Service_Box}
-          alt="box"
-          className={styles.boxImage}
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          viewport={{ once: false, amount: 0.5 }}
+        <motion.img src={Service_Box} alt="box" className={styles.boxImage}
+          initial={{ opacity: 0, x: -100 }} whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }} viewport={{ once: false, amount: 0.5 }}
         />
-
-        <motion.img
-          src={Topbar}
-          alt="topbar"
-          className={styles.topbarImage}
-          initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 12 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          viewport={{ once: false, amount: 0.5 }}
+        <motion.img src={Topbar} alt="topbar" className={styles.topbarImage}
+          initial={{ opacity: 0, y: -50 }} whileInView={{ opacity: 1, y: 12 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }} viewport={{ once: false, amount: 0.5 }}
         />
-
-        {/* Chat Bubbles */}
         <motion.img src={ServiceSection_FirstChat} alt="first chat" className={styles.firstChatImage}
           initial={{ opacity: 0, x: -300 }} whileInView={{ opacity: 1, x: -160 }}
           transition={{ duration: 1.2, ease: "easeOut" }} viewport={{ once: false, amount: 0.5 }}
@@ -148,7 +149,6 @@ const LandingPage_AnalysisTools = () => {
           initial={{ opacity: 0, x: -500 }} whileInView={{ opacity: 1, x: -360 }}
           transition={{ duration: 1.2, ease: "easeOut" }} viewport={{ once: false, amount: 0.2 }}
         />
-
         <motion.img src={ServiceSection_SecondChat} alt="second chat" className={styles.secondChatImage}
           initial={{ opacity: 0, x: -400 }} whileInView={{ opacity: 1, x: -160 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }} viewport={{ once: false, amount: 0.5 }}
@@ -157,13 +157,12 @@ const LandingPage_AnalysisTools = () => {
           initial={{ opacity: 0, x: -600 }} whileInView={{ opacity: 1, x: -360 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.4 }} viewport={{ once: false, amount: 0.2 }}
         />
-
         <motion.img src={ServiceSection_ThirdChat} alt="third chat" className={styles.thirdChatImage}
           initial={{ opacity: 0, x: -500 }} whileInView={{ opacity: 1, x: -160 }}
           transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }} viewport={{ once: false, amount: 0.5 }}
         />
 
-        {/* Chart Box + Arc */}
+        {/* Chart Box + Arcs + Colored Lines */}
         <motion.img
           ref={chartBoxRef}
           src={ServiceSection_ChartBox}
@@ -172,34 +171,31 @@ const LandingPage_AnalysisTools = () => {
           initial={{ opacity: 0, x: -400 }}
           whileInView={{ opacity: 1, x: 160 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-
-          
-          
           viewport={{ once: false }}
         />
-<svg viewBox="0 0 200 100" width="100%" height="auto" className={styles.chartArcContainer}>
-<path
-  ref={chartRef}
-  d="M 10 90 A 90 90 0 0 1 160 28"
-  fill="none"
-  stroke="#00796b"
-  strokeWidth="20"
-  strokeLinecap="butt"
-/>
 
-<path
-  ref={grayArcRef}
-  d="M 162 30 A 90 90 0 0 1 190 90"
-  fill="none"
-  stroke="#e0e0e0"
-  strokeWidth="20"
-  strokeLinecap="butt"
-/>
-
-
+<svg viewBox="0 0 220 140" width="100%" height="auto" className={styles.chartArcContainer}>
+  <path
+    ref={chartRef}
+    d="M 10 90 A 90 90 0 0 1 160 28"
+    fill="none"
+    stroke="#00796b"
+    strokeWidth="20"
+    strokeLinecap="butt"
+  />
+  <path
+    ref={grayArcRef}
+    d="M 162 30 A 90 90 0 0 1 190 90"
+    fill="none"
+    stroke="#e0e0e0"
+    strokeWidth="20"
+    strokeLinecap="butt"
+  />
+  {/* خطوط رنگی افقی کنار هم */}
+  <rect ref={line1Ref} x="10" y="115" width="0" height="6" fill="#aaffaa" rx="3" ry="3" />
+  <rect ref={line2Ref} x="80" y="115" width="0" height="6" fill="#00796b" rx="3" ry="3" />
+  <rect ref={line3Ref} x="150" y="115" width="0" height="6" fill="#ff6666" rx="3" ry="3" />
 </svg>
-
-
 
       </div>
     </div>
