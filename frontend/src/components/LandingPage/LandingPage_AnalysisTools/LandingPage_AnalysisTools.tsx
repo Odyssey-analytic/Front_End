@@ -59,61 +59,41 @@ const LandingPage_AnalysisTools = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !chartVisible.current) {
-            chartVisible.current = true;
-  
-            // Set initial dash offset
+          if (entry.isIntersecting) {
+            // Reset everything
             green.style.strokeDashoffset = greenLength.toString();
             gray.style.strokeDashoffset = grayLength.toString();
-  
-            // Reset horizontal bars
             if (line1Ref.current && line2Ref.current && line3Ref.current) {
               line1Ref.current.setAttribute("width", "0");
               line2Ref.current.setAttribute("width", "0");
               line3Ref.current.setAttribute("width", "0");
             }
   
-            // ✅ ترتیب انیمیشن‌ها به شکل مرحله‌ای:
-            setShowTitle(true); // رشد سرمایه‌گذاری
-            setTimeout(() => setShowZero(true), 600); // ۰٪
+            // Reset states
+            setShowTitle(false);
+            setShowZero(false);
+            setShowHundred(false);
+            setShowCenterText(false);
+            setShowLines(false);
   
+            // Stepwise trigger
+            setTimeout(() => setShowTitle(true), 1200);       // رشد سرمایه‌گذاری
+            setTimeout(() => setShowZero(true), 1400);        // ۰٪
             setTimeout(() => {
-              // قوس‌ها
               const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
               tl.to(green, { strokeDashoffset: 0, duration: 1.3 });
               tl.to(gray, { strokeDashoffset: 0, duration: 0.6 }, "-=0.5");
-              setShowHundred(true); // ۱۰۰٪
+              setShowHundred(true);
             }, 1200);
-  
+            setTimeout(() => setShowCenterText(true), 2300);
             setTimeout(() => {
-              // متن وسط
-              setShowCenterText(true);
-            }, 2300);
-  
-            setTimeout(() => {
-              // خطوط رنگی
               setShowLines(true);
               gsap.to(line1Ref.current, { attr: { width: 75 }, duration: 0.7 });
               gsap.to(line2Ref.current, { attr: { width: 60 }, duration: 0.7, delay: 0.2 });
               gsap.to(line3Ref.current, { attr: { width: 50 }, duration: 0.7, delay: 0.4 });
             }, 3000);
-          }
-  
-          if (!entry.isIntersecting) {
-            chartVisible.current = false;
-  
-            // Reset arcs
-            green.style.strokeDashoffset = greenLength.toString();
-            gray.style.strokeDashoffset = grayLength.toString();
-  
-            // Reset bar widths
-            if (line1Ref.current && line2Ref.current && line3Ref.current) {
-              line1Ref.current?.setAttribute("width", "0");
-              line2Ref.current?.setAttribute("width", "0");
-              line3Ref.current?.setAttribute("width", "0");
-            }
-  
-            // ریست نمایش متن‌ها
+          } else {
+            // Reset states on exit to allow re-trigger
             setShowTitle(false);
             setShowZero(false);
             setShowHundred(false);
@@ -122,7 +102,7 @@ const LandingPage_AnalysisTools = () => {
           }
         });
       },
-      { threshold: 0.0 }
+      { threshold: 0.4 } // بهتره یه آستانه بالاتر بدی تا مطمئن شی واقعاً دیده شده
     );
   
     observer.observe(chartBox);
