@@ -17,7 +17,21 @@ const DashboardPage = () => {
   const navigate = useNavigate();
 
   const [games, setGames] = useState<any[]>([]);
-  const colors = ["rgba(125, 43, 171, 0.9)", "rgba(197, 134, 255, 0.8)"];
+
+  // Chart setup
+  const chartData = Array.from({ length: 32 }, () =>
+    Math.floor(Math.random() * 50) + 10
+  );
+
+  const points = chartData.map((val, i) => {
+    const x = i * 10;
+    const y = 60 - val;
+    return [x, y];
+  });
+
+  const pathD = points.map((p, i) =>
+    i === 0 ? `M${p[0]},${p[1]}` : `L${p[0]},${p[1]}`
+  ).join(" ");
 
   useEffect(() => {
     setGames(mockGames);
@@ -37,29 +51,25 @@ const DashboardPage = () => {
           </div>
         </div>
 
-<div className={`d-flex justify-content-between align-items-center flex-wrap gap-3 ${styles["toolbar-bottom"]}`}>
+        <div className={`d-flex justify-content-between align-items-center flex-wrap gap-3 ${styles["toolbar-bottom"]}`}>
+          <span className={styles["filter-label"]}>لیست بازی‌ها</span>
 
-  <span className={styles["filter-label"]}>لیست بازی‌ها</span>
-    <div className="d-flex align-items-center gap-2">
-      <button className={styles["download-kit-btn"]}>دانلود Starter Kit</button>
-      <button className={styles["add-game-btn"]}>➕ افزودن بازی جدید</button>
-    </div>
+          <div className="d-flex align-items-center gap-2">
+            <button className={styles["download-kit-btn"]}>دانلود Starter Kit</button>
+            <button className={styles["add-game-btn"]}>➕ افزودن بازی جدید</button>
+          </div>
 
-<div className={`d-flex align-items-center gap-2 mx-auto ${styles["shifted-select"]}`}>
-  <select className={`${styles["filter-dropdown"]}`}>
-    <option>Mobile only</option>
-  </select>
-  <select className={`${styles["filter-dropdown"]}`}>
-    <option>Last edited</option>
-  </select>
-</div>
+          <div className={`d-flex align-items-center gap-2 mx-auto ${styles["shifted-select"]}`}>
+            <select className={`${styles["filter-dropdown"]}`}>
+              <option>Mobile only</option>
+            </select>
+            <select className={`${styles["filter-dropdown"]}`}>
+              <option>Last edited</option>
+            </select>
+          </div>
 
-  <span className={styles["toolbar-icon"]}>ℹ️</span>
-
-</div>
-
-
-
+          <span className={styles["toolbar-icon"]}>ℹ️</span>
+        </div>
       </div>
 
       {/* ========== Game List ========== */}
@@ -106,18 +116,25 @@ const DashboardPage = () => {
                   </div>
                 </div>
 
-                <div className={styles["stats-chart"]}>
-                  {[...Array(32)].map((_, i) => {
-                    const height = Math.floor(Math.random() * 60) + 10;
-                    const color = colors[Math.floor(Math.random() * colors.length)];
-                    return (
-                      <div
-                        key={i}
-                        className={styles["stats-bar"]}
-                        style={{ height: `${height}%`, backgroundColor: color }}
-                      ></div>
-                    );
-                  })}
+                <div className={styles["stats-line-chart"]}>
+                  <svg viewBox="0 0 320 60" preserveAspectRatio="none" className={styles["line-chart"]}>
+                    <defs>
+                      <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="rgba(125, 43, 171, 0.9)" />
+                        <stop offset="25%" stopColor="rgba(197, 134, 255, 0.8)" />
+                        <stop offset="50%" stopColor="rgba(125, 43, 171, 0.9)" />
+                        <stop offset="75%" stopColor="rgba(197, 134, 255, 0.8)" />
+                        <stop offset="100%" stopColor="rgba(125, 43, 171, 0.9)" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                      d={pathD}
+                      fill="none"
+                      stroke="url(#lineGradient)"
+                      strokeWidth="2"
+                      className={styles["line-path"]}
+                    />
+                  </svg>
                 </div>
               </div>
 
@@ -157,7 +174,6 @@ const DashboardPage = () => {
                   })}
                 </div>
               </div>
-
             </div>
           ))}
         </div>
