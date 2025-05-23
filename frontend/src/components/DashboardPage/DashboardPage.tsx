@@ -3,19 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import MainLayout from '../MainLayout/MainLayout';
 import styles from './DashboardPage.module.css';
 
-// ========== آیکون‌های تست ==========
+// ========== Import icons ==========
 import pocket_champs_icon from "../../../public/icons/pocket-champs-icon.svg";
 import tower_war_icon from "../../../public/icons/tower-war-icon.svg";
 import dashboard_collaborator_icon from '../../../public/icons/dashboard_collaborator_icon.svg';
 import dashboard_collaborator_wrapper_icon from '../../../public/icons/dashboard_collaborator_wrapper_icon.svg';
 import dashboard_add_collaborator from '../../../public/icons/dashboard_add_collaborator.svg';
 
-// =======================
-// Component: DashboardPage
-// =======================
+// ========== Component: DashboardPage ==========
 const DashboardPage = () => {
   const [games, setGames] = useState<any[]>([]);
-  const colors = ["rgba(125, 43, 171, 0.8)", "rgba(197, 134, 255, 0.8)"];
+  const colors = ["rgba(125, 43, 171, 0.9)", "rgba(197, 134, 255, 0.8)"];
 
   useEffect(() => {
     setGames(mockGames);
@@ -25,9 +23,9 @@ const DashboardPage = () => {
     <div>
       <MainLayout />
 
-      {/* ======================= Toolbar بالا ======================= */}
+      {/* ========== Top Toolbar ========== */}
       <div className={`${styles["dashboard-toolbar"]} px-4 py-3`}>
-        <div className={`d-flex justify-content-between align-items-center mb-3`}>
+        <div className="d-flex justify-content-between align-items-center mb-3">
           <h2 className={styles["dashboard-title"]}>مدیریت بازی‌ها</h2>
           <div className={`${styles["dashboard-user"]} d-flex align-items-center gap-2`}>
             <span className={styles["user-avatar"]}>👤</span>
@@ -53,13 +51,13 @@ const DashboardPage = () => {
         </div>
       </div>
 
-      {/* ======================= لیست بازی‌ها ======================= */}
+      {/* ========== Game List ========== */}
       <div className={`${styles["dashboard-container"]} px-4 py-4`}>
         <div className={`${styles["game-list"]} d-flex flex-column gap-4`}>
           {games.map((game) => (
             <div key={game.id} className={`${styles["game-card"]} d-flex justify-content-between align-items-center shadow-sm rounded`}>
 
-              {/* بخش 1: اطلاعات بازی */}
+              {/* ========== Section 1: Game Info ========== */}
               <div className={`${styles["game-section-info"]} d-flex align-items-start gap-3`}>
                 <div className={styles["game-icon-wrapper"]}>
                   <img src={game.icon} alt={game.title} className={styles["game-icon"]} />
@@ -79,18 +77,20 @@ const DashboardPage = () => {
                 </div>
               </div>
 
-              {/* بخش 2: آمار کاربران */}
-              <div className={`${styles["game-section-stats"]} d-flex flex-column text-center`}>
-                <div>
-                  <div className={styles["game-stat-label"]}>Monthly</div>
-                  <strong className={styles["game-stat-value"]}>879k</strong>
-                </div>
-                <div className="mt-2">
-                  <div className={styles["game-stat-label"]}>Daily</div>
-                  <strong className={styles["game-stat-value"]}>120k</strong>
+              {/* ========== Section 2: User Stats ========== */}
+              <div className={styles["game-section-stats"]}>
+                <div className={styles["user-stats-title"]}>کاربران فعال</div>
+                <div className="d-flex justify-content-around align-items-end mt-2">
+                  <div className="text-center">
+                    <div className={styles["game-stat-label"]}>Monthly</div>
+                    <strong className={styles["game-stat-value"]}>879k</strong>
+                  </div>
+                  <div className="text-center">
+                    <div className={styles["game-stat-label"]}>Daily</div>
+                    <strong className={styles["game-stat-value"]}>120k</strong>
+                  </div>
                 </div>
 
-                {/* ✅ نمودار میله‌ای پایین آمار */}
                 <div className={styles["stats-chart"]}>
                   {[...Array(32)].map((_, i) => {
                     const height = Math.floor(Math.random() * 60) + 10;
@@ -106,18 +106,18 @@ const DashboardPage = () => {
                 </div>
               </div>
 
-              {/* بخش 3: همکاران */}
-              <div className={`${styles["game-section-collaborators"]}`}>
-                <div className="d-flex justify-content-between align-items-center mb-2 px-2">
+              {/* ========== Section 3: Collaborators ========== */}
+              <div className={styles["game-section-collaborators"]}>
+                <div className="d-flex align-items-center justify-content-between w-100">
                   <span className={styles["collaborator-label"]}>همکاران</span>
                   <img
                     src={dashboard_add_collaborator}
-                    alt="Add collaborator"
+                    alt="افزودن همکار"
                     className={styles["add-collaborator-icon"]}
                   />
                 </div>
 
-                <div className="d-flex align-items-center gap-2">
+                <div className="d-flex flex-wrap gap-2 mt-2">
                   {[...Array(6)].map((_, i) => {
                     const isOnline = Math.random() > 0.5;
                     return (
@@ -142,6 +142,7 @@ const DashboardPage = () => {
                   })}
                 </div>
               </div>
+
             </div>
           ))}
         </div>
@@ -152,9 +153,7 @@ const DashboardPage = () => {
 
 export default DashboardPage;
 
-// =======================
-// Mock data
-// =======================
+// ========== Mock Data ==========
 const mockGames = [
   {
     id: 1,
