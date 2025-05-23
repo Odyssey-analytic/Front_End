@@ -309,3 +309,18 @@
 .offline {
   background-color: #e04545;
 }
+
+.stats-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 50px;
+  margin-top: 3%;
+  gap: 1px;
+}
+
+.stats-bar {
+  width: 2%;
+  border-radius: 2px;
+  transition: height 0.3s ease;
+}

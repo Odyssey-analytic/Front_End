@@ -13,6 +13,10 @@ import dashboard_collaborator_wrapper_icon from '../../../public/icons/dashboard
 // =======================
 const DashboardPage = () => {
   const [games, setGames] = useState<any[]>([]);
+const colors = ["rgba(125, 43, 171, 0.8)", "rgba(197, 134, 255, 0.8)"];
+
+  // color: #7D2BAB;
+
 
   useEffect(() => {
     setGames(mockGames);
@@ -84,15 +88,32 @@ const DashboardPage = () => {
 
   {/* بخش 2: آمار کاربران */}
   <div className={`${styles["game-section-stats"]} d-flex flex-column text-center`}>
-    <div>
-      <div className={styles["game-stat-label"]}>Monthly</div>
-      <strong className={styles["game-stat-value"]}>879k</strong>
-    </div>
-    <div className="mt-2">
-      <div className={styles["game-stat-label"]}>Daily</div>
-      <strong className={styles["game-stat-value"]}>120k</strong>
-    </div>
+  <div>
+    <div className={styles["game-stat-label"]}>Monthly</div>
+    <strong className={styles["game-stat-value"]}>879k</strong>
   </div>
+  <div className="mt-2">
+    <div className={styles["game-stat-label"]}>Daily</div>
+    <strong className={styles["game-stat-value"]}>120k</strong>
+  </div>
+
+  {/* ✅ نمودار میله‌ای پایین آمار */}
+  <div className={styles["stats-chart"]}>
+{[...Array(32)].map((_, i) => {
+  const height = Math.floor(Math.random() * 60) + 10;
+  const color = colors[Math.floor(Math.random() * colors.length)];
+  return (
+    <div
+      key={i}
+      className={styles["stats-bar"]}
+      style={{ height: `${height}%`, backgroundColor: color }}
+    ></div>
+  );
+})}
+
+  </div>
+</div>
+
 
   {/* بخش 3: همکاران */}
   
