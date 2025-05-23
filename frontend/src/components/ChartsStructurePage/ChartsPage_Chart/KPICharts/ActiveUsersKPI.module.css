@@ -1,13 +1,12 @@
-.kpi-page-container{
+.kpiPageContainer {
   color: #121212;
   font-family: 'Shabnam', sans-serif;
-  position: relative; 
+  position: relative;
   background-color: #F1F3F4;
   min-height: 100vh;
 }
 
-
-.kpichart-page-container{
+.kpichartPageContainer {
   margin-top: 50px;
   width: 100%;
   height: 100%;
@@ -18,7 +17,7 @@
   justify-content: center;
 }
 
-.kpi-sessionavr-main-box{
+.kpiSessionavrMainBox {
   width: 86%;
   height: 75%;
   padding-top: 20px;
@@ -33,20 +32,15 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.kpi-chart-header{
+.kpiChartHeader {
   display: flex;
   padding-right: 20px;
   align-items: center;
-  width: 100%;  
+  width: 100%;
   height: 15%;
 }
 
-/* .kpi-chart-body{
-  height: 85%;
-} */
-
-
-.kpi-chart-body {
+.kpiChartBody {
   height: 85%;
   width: 100%;
   background: linear-gradient(135deg, #0f1c2e, #142d47);
@@ -58,14 +52,13 @@
   justify-content: center;
 }
 
-.kpi-title {
+.kpiTitle {
   font-size: 1.7rem;
   color: #142d47;
   font-weight: 700;
   padding-right: 10px;
   border-right: 3px solid #00C4FF;
 }
-
 
 .container {
   width: 100%;
@@ -74,14 +67,13 @@
   padding: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-  
 
 .kpiBox {
   margin-bottom: 16px;
   text-align: center;
   color: #ffffff;
 }
-  
+
 .kpiLabel {
   font-size: 18px;
   color: #B8C4E0;
@@ -95,8 +87,7 @@
   color: #00C4FF;
 }
 
-
-.glass-container {
+.glassContainer {
   min-height: 100vh;
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   display: flex;
@@ -105,7 +96,7 @@
   padding: 20px;
 }
 
-.glass-box {
+.glassBox {
   width: 90%;
   max-width: 1100px;
   background: rgba(255, 255, 255, 0.05);
@@ -116,7 +107,7 @@
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.glass-header {
+.glassHeader {
   color: #fff;
   font-size: 1.6rem;
   font-weight: bold;
@@ -124,7 +115,7 @@
   text-align: center;
 }
 
-.glass-chart {
+.glassChart {
   width: 100%;
   height: 400px;
 }

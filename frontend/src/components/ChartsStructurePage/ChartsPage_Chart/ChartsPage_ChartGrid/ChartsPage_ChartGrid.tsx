@@ -1,14 +1,18 @@
-import ChartsPage_AverageGameLength from '../ChartsPage_LineChart/ChartsPage_LineChart';
-import ChartsPage_BarChart from '../ChartsPage_BarChart/ChartsPage_BarChart';
-import ChartsPage_PieChart from '../ChartsPage_PieChart/ChartsPage_PieChart';
-import ChartsPage_CustomizedPieChart from '../ChartsPage_DonutChart/ChartsPage_DonutChart'
+// import ChartsPage_LineChart from '../ChartsPage_LineChart/ChartsPage_LineChart';
+// import ChartsPage_BarChart from '../ChartsPage_BarChart/ChartsPage_BarChart';
+// import ChartsPage_PieChart from '../ChartsPage_PieChart/ChartsPage_PieChart';
+// import ChartsPage_CustomizedPieChart from '../ChartsPage_DonutChart/ChartsPage_DonutChart'
+import KPI_chart from '../KPICharts/ActiveUsersKPI'
+
+
 
 import styles from './ChartsPage_ChartGrid.module.css';
 
 const ChartsPage_ChartGrid = () => {
   return (
     <div className={styles.grid}>
-      <ChartsPage_AverageGameLength />
+      {/* <ChartsPage_LineChart /> */}
+      <KPI_chart/>
       {/* <ChartsPage_BarChart />
       <ChartsPage_PieChart />
       <ChartsPage_CustomizedPieChart /> */}
