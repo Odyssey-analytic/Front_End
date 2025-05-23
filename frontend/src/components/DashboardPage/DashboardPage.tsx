@@ -68,8 +68,8 @@ const DashboardPage = () => {
                   <h4 className={styles["game-title"]}>{game.title}</h4>
                   <p className={styles["game-description"]}>{game.description}</p>
                   <div className="d-flex gap-2 mt-2">
-                    <span className={styles["game-meta"]}>Created: 23 Nov 16</span>
-                    <span className={styles["game-meta"]}>Last edited: 20 min ago</span>
+                    <span className={styles["game-meta-colored"]}>Created: 23 Nov 16</span>
+                    <span className={styles["game-meta-colored"]}>Last edited: 20 min ago</span>
                   </div>
                 </div>
                 <div className="ms-auto">

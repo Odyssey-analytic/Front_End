@@ -138,7 +138,7 @@
 .game-tag {
   font-size: 0.75rem;
   background-color: #D3D6ED;
-  width: 95%;
+  width: 90%;
   padding-top: 0.5em;
   padding-bottom: 0.3em;
   border-radius: 0.5em;
@@ -154,16 +154,20 @@
   color: #111;
 }
 
+.game-meta-colored {
+  font-size: 12px;
+  color: #7D2BAB; 
+  font-weight: 500;
+  margin-top:3% ;
+}
+
+
 .game-description {
   font-size: 0.9rem;
   color: #444;
   margin-top: 0.3rem;
 }
 
-.game-meta {
-  font-size: 12px;
-  color: #999;
-}
 
 .game-settings-icon {
   font-size: 18px;
