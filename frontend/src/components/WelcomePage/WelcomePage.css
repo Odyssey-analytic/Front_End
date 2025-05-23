@@ -131,48 +131,6 @@
 }
 
 
-/* .welcome-page-main-box-body {
-  position: absolute;
-  top: 0px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  backdrop-filter: blur(6px);
-  background-color: rgba(255, 255, 255, 0.15);
-}
-
-.welcome-page-main-box-body-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  pointer-events: none;
-  width: 100%;
-}
-
-.welcome-page-main-box-body-popup-card {
-  background: white;
-  padding: 1rem 4rem;
-  border-radius: 12px;
-  position: absolute;
-  box-shadow: 0 4px 20px rgba(60, 60, 60, 0.2);
-
-  max-width: 500px;
-  width: 100%;
-
-  min-height: 470px;
-  max-height: 550px;
-  overflow-y: auto; 
-  text-align: center;
-
-  pointer-events: all;
-  flex-direction: column;
-} */
-
-/* end of changes */
-
 .welcome-page-popup-card-close-icon {
   position: sticky;
   top: 0.1rem;
