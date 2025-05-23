@@ -30,9 +30,12 @@
 }
 
 .toolbar-bottom {
-  gap: 1rem;
+  display: flex;
+  justify-content: center; /* Center horizontally */
   flex-wrap: wrap;
+  gap: 1rem;
 }
+
 
 .dashboard-controls {
   display: flex;
@@ -74,7 +77,13 @@
   border: 1px solid #ccc;
   background: #fff;
   font-size: 14px;
+  margin-inline-start: 4px;
 }
+
+.shifted-select {
+  transform: translateX(70%); 
+}
+
 
 .toolbar-icon {
   font-size: 18px;
