@@ -42,7 +42,7 @@
 
 .download-kit-btn,
 .add-game-btn {
-  background-color: #5c4dff;
+  background-color: #7D2BAB;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -54,8 +54,9 @@
 
 .download-kit-btn:hover,
 .add-game-btn:hover {
-  background-color: #4837e0;
+  background-color: #5c2d91; 
 }
+
 
 .toolbar-filters {
   font-size: 14px;

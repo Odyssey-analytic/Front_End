@@ -13,6 +13,8 @@ import dashboard_game_setting_icon from '../../../public/icons/dashboard_game_se
 
 // ========== Component: DashboardPage ==========
 const DashboardPage = () => {
+
+  const navigate = useNavigate();
   const [games, setGames] = useState<any[]>([]);
   const colors = ["rgba(125, 43, 171, 0.9)", "rgba(197, 134, 255, 0.8)"];
 
@@ -36,9 +38,10 @@ const DashboardPage = () => {
 
         <div className={`d-flex justify-content-between align-items-center ${styles["toolbar-bottom"]}`}>
           <span className={styles["filter-label"]}>لیست بازی‌ها</span>
-          <div className={`d-flex gap-2 ${styles["dashboard-controls"]}`}>
-            <button className={styles["download-kit-btn"]}>📥 دانلود Starter Kit</button>
-            <button className={styles["add-game-btn"]}>➕ افزودن بازی جدید</button>
+          <div className={`d-flex gap-2 ${styles["dashboard-controls"]} me-auto`}>
+            <button className={styles["download-kit-btn"]}>دانلود Starter Kit</button>
+          <button className={styles["add-game-btn"]} onClick={() => navigate('/welcome')}> ➕ افزودن بازی </button>
+
           </div>
           <div className={`d-flex gap-2 align-items-center ${styles["toolbar-filters"]}`}>
             <select className={styles["filter-dropdown"]}>
