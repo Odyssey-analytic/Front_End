@@ -99,23 +99,28 @@ const DashboardPage = () => {
   
   <div className={`${styles["game-section-collaborators"]} d-flex align-items-center gap-2`}>
             
-{[...Array(6)].map((_, i) => (
-  <div key={i} className={styles["collaborator-wrapper"]}>
-       <img
-      src={dashboard_collaborator_wrapper_icon}
-      alt="collaborator wrapper"
-      className={styles["collaborator-wrapper-icon"]}
-    />
-   
-    <img
-      src={dashboard_collaborator_icon}
-      alt="collaborator"
-      className={styles["collaborator-icon"]}
-    />
-
-  </div>
-))}
-
+{[...Array(6)].map((_, i) => {
+  const isOnline = Math.random() > 0.5;
+  return (
+    <div key={i} className={styles["collaborator-status-wrapper"]}>
+      <img
+        src={dashboard_collaborator_wrapper_icon}
+        alt="wrapper"
+        className={styles["collaborator-wrapper-icon"]}
+      />
+      <img
+        src={dashboard_collaborator_icon}
+        alt="user"
+        className={styles["collaborator-icon"]}
+      />
+      <span
+        className={`${styles["status-indicator"]} ${
+          isOnline ? styles["online"] : styles["offline"]
+        }`}
+      ></span>
+    </div>
+  );
+})}
 
 
 

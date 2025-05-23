@@ -252,14 +252,14 @@
 
 
 .collaborator-icon {
-  width: 30px;
-  height: 30px;
+  width: 110%;
+  height: 110%;
   object-fit: contain;
   border-radius: 50%;
   margin-bottom: 4px;
-  margin-right: 50%;
-  margin-top: -95%;
-  z-index: 20;
+  margin-right: 60%;
+  margin-top: -190%;
+  z-index: 5;
 /* margin-right: 50%; */
 }
 
@@ -268,9 +268,9 @@
 }
 
 .collaborator-wrapper-icon {
-  width: 100%;
-  height: 100%;
-  opacity: 0.35;
+  width: 130%;
+  height: 130%;
+  opacity: 0.2;
   margin-right: 50%;
   /* object-fit: contain; */
   /* display: block; */
@@ -281,4 +281,31 @@
   flex-direction: column;
   align-items: center;
   width: 36px;
+}
+
+
+.collaborator-status-wrapper {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin: 0 4px;
+}
+
+
+.status-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid white; /* دور سفید مثل واتساپ/تلگرام */
+}
+
+/* رنگ‌ها */
+.online {
+  background-color: #28c840;
+}
+.offline {
+  background-color: #e04545;
 }
