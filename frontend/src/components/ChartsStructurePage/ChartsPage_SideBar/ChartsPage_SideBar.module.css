@@ -100,8 +100,9 @@
 
 .sidebar {
   width: 230px;
-  background-color: #111;
-  color: #fff;
+  /* background-color: #111; */
+  background-color: #151924;
+  color: #ffffffd2;
   /* height: 100vh; */
   /* overflow-y: auto; */
   transition: width 0.3s ease;
@@ -210,11 +211,11 @@
   cursor: pointer;
 }
 
-.gameLogo {
+/* .gameLogo {
   width: 32px;
   height: 32px;
   border-radius: 8px;
-}
+} */
 
 .gameNameBox {
   display: flex;
@@ -222,10 +223,41 @@
   gap: 6px;
 }
 
-.gameName {
+/* .gameName {
   font-weight: 600;
   font-size: 1rem;
   color: #fff;
+} */
+
+
+.gameSelectorBox {
+  background-color: #dcdcdc31;
+  padding: 8px 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  /* justify-content: center; */
+}
+
+.gameSelectorBox:hover {
+  background-color: #ffffff6c;
+}
+
+.gameLogo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.gameName {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffffe8;
 }
 
 .dropdownIcon {
@@ -240,15 +272,16 @@
 
 .gameDropdown {
   position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  background: #1f1f1f;
-  color: #fff;
+  /* top: calc(100% + 8px); */
+  top: 11%;
+  right: 1.5%;
+  background: #d6dbe2;
+  color: #253459;
   border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 8px 8px rgba(167, 167, 167, 0.3);
   z-index: 1000;
   padding: 6px 0;
-  min-width: 140px;
+  min-width: 200px;
   animation: dropdownFade 0.2s ease-in-out;
 }
 
@@ -272,7 +305,8 @@
 }
 
 .gameDropdownItem:hover {
-  background-color: #333;
+  background-color: #bec2d3;
+  border-radius: 12px;
 }
 
 .selected {
@@ -303,14 +337,14 @@
 .menuItem {
   cursor: pointer;
   padding: 10px 12px;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   margin-bottom: 4px;
   transition: background 0.2s ease;
   font-size: 0.9rem;
 }
 
 .menuItem:hover {
-  background-color: #222;
+  background-color: #00c3ff59;
 }
 
 .menuContent {
@@ -353,7 +387,7 @@
 }
 
 .subMenuItem:hover {
-  background-color: #222;
+  background-color: #00c3ff57;
 }
 
 .subMenuItem .menuContent {

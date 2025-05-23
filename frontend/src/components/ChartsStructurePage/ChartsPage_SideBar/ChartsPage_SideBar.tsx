@@ -162,7 +162,7 @@ const ChartsPage_SideBar = () => {
   const [openSections, setOpenSections] = useState<number[]>([]);
   const [selectedGame, setSelectedGame] = useState('بازی A');
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const gameList = ['بازی A', 'بازی B', 'بازی C'];
+  const gameList = ['بازی اول', 'بازی دوم', 'بازی سوم'];
 
   const toggleSection = (index: number) => {
     setOpenSections(prev =>
@@ -231,7 +231,7 @@ const ChartsPage_SideBar = () => {
         </div>
         <hr className={styles.divider} />
       </div> */}
-
+{/* 
       <div className={styles.gameHeader}>
         <div className={styles.gameSelectorWrapper}>
           <div className={styles.gameSelector} onClick={() => setDropdownOpen(prev => !prev)}>
@@ -269,7 +269,47 @@ const ChartsPage_SideBar = () => {
           </div>
         </div>
         <hr className={styles.divider} />
+      </div> */}
+
+      <div className={styles.gameHeader}>
+        <div className={styles.gameSelectorWrapper}>
+          <div
+            className={styles.gameSelectorBox}
+            onClick={() => setDropdownOpen(prev => !prev)}
+          >
+            <img src={GameLogo} alt="Game Logo" className={styles.gameLogo} />
+            {!collapsed && <span className={styles.gameName}>{selectedGame}</span>}
+          </div>
+
+          <div
+            className={styles.toggle}
+            onClick={() => setCollapsed(!collapsed)}
+            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          >
+            {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
+          </div>
+        </div>
+
+        {dropdownOpen && (
+          <div className={styles.gameDropdown}>
+            {gameList.map((game) => (
+              <div
+                key={game}
+                className={styles.gameDropdownItem}
+                onClick={() => {
+                  setSelectedGame(game);
+                  setDropdownOpen(false);
+                }}
+              >
+                {game}
+              </div>
+            ))}
+          </div>
+        )}
+
+        <hr className={styles.divider} />
       </div>
+
 
 
 
