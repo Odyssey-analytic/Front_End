@@ -2,6 +2,7 @@ import { ChartOptions } from 'chart.js';
 import { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import styles from './ActiveUsersKPI.module.css';
+import ChartCardWrapper from '../ChartsPage_CardWrapper/ChartsPage_CardWrapper'
 
 import {
   Chart as ChartJS,
@@ -49,7 +50,7 @@ const AreaChartKPI = () => {
       },
       title: {
         display: true,
-        text: '📊 میانگین طول بازی - Area Chart',
+        text: 'میانگین طول بازی - Area Chart',
         color: '#ffffff',
         font: {
           size: 20,
@@ -109,16 +110,18 @@ const AreaChartKPI = () => {
   }, []);
 
   return (
-    <div className={styles.glassContainer}>
-      <div className={styles.glassBox}>
-        <div className={styles.glassHeader}>
-          <h2>📈 Area Chart میانگین طول بازی</h2>
-        </div>
-        <div className={styles.glassChart}>
-          <Line data={chartData} options={options} />
-        </div>
-      </div>
-    </div>
+    <ChartCardWrapper title="نمودار تعداد کاربران" customHeight="500px">
+      {/* <div className={styles.glassContainer}> */}
+        {/* <div className={styles.glassBox}> */}
+          {/* <div className={styles.glassHeader}>
+            <h2> Area Chart میانگین طول بازی</h2>
+          </div> */}
+          <div className={styles.glassChart}>
+            <Line data={chartData} options={options} />
+          </div>
+        {/* </div> */}
+      {/* </div> */}
+    </ChartCardWrapper>
   );
 };
 
