@@ -146,12 +146,6 @@ const menuItems = [
       { label: 'تنظیمات', icon: <FiSettings /> },
     ]
   },
-  // {
-  //   label: 'دسته‌بندی آزمایشی (Cohorts BETA)', icon: <FiUsers />
-  // },
-  // {
-  //   label: 'ویژگی‌های قدیمی (Legacy features)', icon: <FiBookOpen />
-  // }
 ];
 
 
@@ -172,104 +166,6 @@ const ChartsPage_SideBar = () => {
 
   return (
     <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ''}`}>
-      {/* <div className={styles.top}>
-        <div className={styles.logoWrapper}>
-          <div className={styles.logo}>
-            {!collapsed && <span className={styles.logoText}>ODESSAY</span>}
-            <img src={OdessayLogo} alt="Logo" className={styles.logoImg} />
-          </div>
-          <div
-            className={styles.toggle}
-            onClick={() => setCollapsed(!collapsed)}
-            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          >
-            {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
-          </div>
-        </div>
-        <hr className={styles.divider} />
-      </div> */}
-
-      {/* <div className={styles.gameHeader}>
-        <div className={styles.gameSelectorWrapper}>
-          <div className={styles.gameSelector}>
-            <img src={GameLogo} alt="Game Logo" className={styles.gameLogo} />
-            {!collapsed && (
-              <div className={styles.gameNameWrapper}>
-                <span
-                  className={styles.gameName}
-                  onClick={() => setDropdownOpen(prev => !prev)}
-                >
-                  {selectedGame}
-                </span>
-                {dropdownOpen && (
-                  <div className={styles.gameDropdown}>
-                    {gameList.map(game => (
-                      <div
-                        key={game}
-                        className={styles.gameDropdownItem}
-                        onClick={() => {
-                          setSelectedGame(game);
-                          setDropdownOpen(false);
-                        }}
-                      >
-                        {game}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-
-          <div
-            className={styles.toggle}
-            onClick={() => setCollapsed(!collapsed)}
-            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          >
-            {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
-          </div>
-        </div>
-        <hr className={styles.divider} />
-      </div> */}
-{/* 
-      <div className={styles.gameHeader}>
-        <div className={styles.gameSelectorWrapper}>
-          <div className={styles.gameSelector} onClick={() => setDropdownOpen(prev => !prev)}>
-            <img src={GameLogo} alt="Game Logo" className={styles.gameLogo} />
-            {!collapsed && (
-              <div className={styles.gameNameBox}>
-                <span className={styles.gameName}>{selectedGame}</span>
-                <FiChevronDown className={styles.dropdownIcon + (dropdownOpen ? ' ' + styles.rotate : '')} />
-              </div>
-            )}
-            {dropdownOpen && (
-              <div className={styles.gameDropdown}>
-                {gameList.map(game => (
-                  <div
-                    key={game}
-                    className={`${styles.gameDropdownItem} ${game === selectedGame ? styles.selected : ''}`}
-                    onClick={() => {
-                      setSelectedGame(game);
-                      setDropdownOpen(false);
-                    }}
-                  >
-                    {game}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <div
-            className={styles.toggle}
-            onClick={() => setCollapsed(!collapsed)}
-            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          >
-            {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
-          </div>
-        </div>
-        <hr className={styles.divider} />
-      </div> */}
 
       <div className={styles.gameHeader}>
         <div className={styles.gameSelectorWrapper}>
@@ -309,9 +205,6 @@ const ChartsPage_SideBar = () => {
 
         <hr className={styles.divider} />
       </div>
-
-
-
 
       <nav className={styles.menu}>
         {menuItems.map((item, index) => {

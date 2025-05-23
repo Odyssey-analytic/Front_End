@@ -1,12 +1,3 @@
 .glassChart {
-  /* flex-grow: 1; */
-  /* height: 100%; */
   height: 380px;
 }
-
-/* .chartWrapper {
-  flex-grow: 1;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-} */

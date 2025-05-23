@@ -31,10 +31,6 @@ const ChartsPage_Header = () => {
             <FiFilter className={styles.icon} />
             فیلترها
           </button>
-          {/* <button className={styles.button}>
-            <FiColumns className={styles.icon} />
-            نمایش بدون تفکیک
-          </button> */}
           <button className={styles.button}>
             <FiCalendar className={styles.icon} />
             <span>{dateRange}</span>

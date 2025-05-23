@@ -48,15 +48,6 @@ const AreaChartKPI = () => {
       legend: {
         display: false,
       },
-      // title: {
-      //   display: true,
-      //   text: 'میانگین طول بازی - Area Chart',
-      //   color: 'rgba(145, 21, 21, 0.606)',
-      //   font: {
-      //     size: 20,
-      //     family: 'Shabnam',
-      //   },
-      // },
       tooltip: {
         backgroundColor: '#ffffff',
         titleColor: '#000',
