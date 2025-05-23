@@ -175,26 +175,27 @@ const LoginPage = () => {
     }
   };
 
+
   return (
-    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 auth-page-container px-3">
+    <div className="login-page-container">
 
       {/* ========== Brand Logo ========== */}
-      <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
-        <div className="auth-page-brand-text english-text text-white me-3">ODESSAY</div>
-        <img src={OdessayLogo} alt="Odessay Logo" className="auth-page-logo-img me-4" />
+      <div className="d-flex align-items-center position-fixed top-0 end-0 ms-4 mt-4">
+        <div className="login-brand-text english-text text-white me-3">ODESSAY</div>
+        <img src={OdessayLogo} alt="Odessay Logo" className="login-logo-img me-4" />
       </div>
 
       {/* ========== Loading ========== */}
       {isLoading && (
-        <div className="auth-loading-overlay">
-          <div className="auth-spinner"></div>
+        <div className="login-loading-overlay">
+          <div className="login-spinner"></div>
         </div>
       )}
 
       {/* ========== Login Box ========== */}
-      <div className="auth-box mx-auto ms-lg-5 position-relative">
-        <Link to="/" className="auth-back-to-home text-muted small">
-            ← بازگشت به صفحه اصلی
+      <div className="login-box">
+        <Link to="/" className="text-end login-back-to-home text-muted small">
+          ← بازگشت به صفحه اصلی
         </Link>
 
         <h2 className="fw-bold text-start mb-3 auth-title">ورود</h2>
@@ -210,7 +211,9 @@ const LoginPage = () => {
               value={email}
               onChange={handleEmailChange}
             />
-            <img src={login_email_icon} alt="email icon" className="auth-email-icon" />
+
+            <img src={login_email_icon} alt="email icon" className="login-email-icon" />
+            
             {emailError && (
               <div className="auth-input-error-popup" key={emailErrorKey}>
                 <span>{emailError}</span>
@@ -228,13 +231,15 @@ const LoginPage = () => {
               value={password}
               onChange={handlePasswordChange}
             />
-            <img src={login_padlock_icon} alt="password icon" className="auth-password-icon" />
+            <img src={login_padlock_icon} alt="password icon" className="login-password-icon" />
+            
             <img
               src={showPassword ? login_eye_icon : login_eye_off_icon}
               alt="toggle password"
               className="auth-eye-icon"
               onClick={() => setShowPassword(prev => !prev)}
             />
+            
             {passwordError && (
               <div className="auth-input-error-popup" key={passwordErrorKey}>
                 <span>{passwordError}</span>
@@ -253,6 +258,7 @@ const LoginPage = () => {
                 ایجاد حساب
               </Link>
             </span>
+
             <div>
               <Link to="/forgot-password" className="fw-bold text-decoration-none auth-non-register-remember-password">
                 فراموشی رمز عبور
@@ -260,7 +266,7 @@ const LoginPage = () => {
             </div>
           </div>
 
-          <hr className="my-4" />
+          <hr className="my-3" />
 
           {/* ========== Popup Result ========== */}
           {loginStatus && (
@@ -272,15 +278,18 @@ const LoginPage = () => {
                   className="auth-warning-popup-emoji"
                   alt="status-icon"
                 />
-                <div className="auth-warning-popup-line-separator"></div>
+                <div className="login-warning-popup-line-separator"></div>
+                
                 <h5 className="fw-bold mb-2">
                   {loginStatus === 'success' ? 'ورود با موفقیت انجام شد!' : 'خطایی رخ داده است!'}
                 </h5>
+
                 <p className="text-muted small">
                   {loginStatus === 'success'
                     ? 'در حال انتقال به حساب کاربری...'
                     : errorMessage}
                 </p>
+
               </div>
             </div>
           )}

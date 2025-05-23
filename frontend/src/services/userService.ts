@@ -144,14 +144,19 @@ export const signup = async (data: {
     description?: string;
   }) => {
     const token = localStorage.getItem('accessToken');
-  
-    const response = await fetch('/api/api/game/', {
+    
+    const formData = new FormData();
+    for (const label in data){
+      if (data.hasOwnProperty(label))
+        formData.append(label, data[label])
+    }
+
+    const response = await fetch('https://odysseyanalytics.ir/api/api/game/', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
       },
-      body: JSON.stringify(data),
+      body: formData,
     });
   
     if (!response.ok) {
@@ -164,24 +169,24 @@ export const signup = async (data: {
   
 
 
-  // export const fetchUserGames = async () => {
-  //   const token = localStorage.getItem('accessToken');
+  export const fetchUserGames = async () => {
+    const token = localStorage.getItem('accessToken');
   
-  //   const response = await fetch('https://odysseyanalytics.ir/api/api/user/games/', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `Bearer ${token}`,
-  //     },
-  //   });
+    const response = await fetch('https://odysseyanalytics.ir/api/api/game/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
   
-  //   if (!response.ok) {
-  //     const errorData = await response.json();
-  //     throw new Error(errorData.message || 'خطا در دریافت بازی‌ها');
-  //   }
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'خطا در دریافت بازی‌ها');
+    }
   
-  //   return response.json();
-  // };
+    return response.json();
+  };
   
   
 

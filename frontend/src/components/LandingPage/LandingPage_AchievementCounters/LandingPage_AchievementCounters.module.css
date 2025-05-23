@@ -1,0 +1,111 @@
+/* ======================= Main container for the achievement section ======================= */
+.container {
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+
+/* ======================= Section title ======================= */
+.title {
+  font-size: 28px;
+  margin-bottom: 3.5rem;
+  color: rgba(217, 217, 217, 0.8); /* matches design */
+  font-weight: 500;
+}
+
+/* ======================= Subtitle section aligned right for RTL ======================= */
+.subtitleWrapper {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 1200px;
+}
+
+/* ======================= Descriptive subtitle ======================= */
+.subtitle {
+  font-size: 14px;
+  opacity: 0.8;
+  text-align: right;
+
+  margin-right: 7rem;
+  margin-bottom: 3rem;
+}
+
+/* ======================= Grid layout for stat cards ======================= */
+.statsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;       /* horizontal spacing */
+  row-gap: 40px;   /* vertical spacing */
+}
+
+/* ======================= Individual stat card styling ======================= */
+.card {
+  background: #f2f2f2;
+  color: #111;
+  border-radius: 16px;
+  font-size: 18px;
+
+  width: 290px;
+  min-height: 180px;
+  padding: 24px 16px; 
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+/* ======================= Animation trigger class for cards ======================= */
+.fadeUp {
+  animation: fadeUpAnim 1.4s ease forwards; /* ⬅️ slowed down and smoother */
+}
+
+/* ======================= Keyframes for upward fade animation ======================= */
+@keyframes fadeUpAnim {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======================= Animated counter number styling ======================= */
+.odometer {
+  font-size: 28px;
+  font-weight: bold;
+  color: #111;
+}
+
+/* ======================= Stat label (e.g., "active studios") ======================= */
+.label {
+  margin-bottom: 1rem;
+  font-size: 16px;
+}
+
+/* ======================= Suffix (e.g., "in 10 countries") ======================= */
+.suffix {
+  font-size: 14px;
+  display: block;
+  color: #444;
+}
+
+
+
+@media (max-width: 1258px) {
+  .statsGrid {
+    justify-content: center;
+  }
+
+  .card {
+    width: 45%;      /* دو کارت در هر ردیف جا می‌گیرن */
+    min-height: 120px;
+    height: 100%;
+  }
+}
