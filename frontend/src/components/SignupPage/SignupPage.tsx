@@ -215,41 +215,6 @@ const SignupPage = () => {
             )}
           </div>
 
-
-          
-          {/* <div className="signup-input-wrapper mb-3 position-relative">
-            <input type="text" className="signup-page-input form-control no-focus-style" value={username} onChange={handleUsernameChange} />
-            {!username && (
-              <div className="signup-page-input-custom-placeholder text-muted">
-                نام کاربری <span className="hint">(بین ۳ تا ۱۵ کاراکتر و شامل حروف، عدد، . یا _)</span>
-              </div>
-            )}
-            <img src={signup_user_icon} alt="username icon" className="signup-user-icon" />
-            {usernameError && (
-              <div className="signup-input-error-popup" key={usernameErrorKey}>
-                <span>{usernameError}</span>
-                <button type="button" onClick={() => setUsernameError('')}>×</button>
-              </div>
-            )}
-          </div> */}
-
-          {/* Username field */}
-          {/* <div className="signup-input-wrapper mb-3 position-relative">
-            <input type="text" className="signup-page-input form-control no-focus-style" value={username} onChange={handleUsernameChange} />
-            {!username && (
-              <div className="signup-page-input-custom-placeholder text-muted">
-                نام کاربری <span className="hint">(بین ۳ تا ۱۵ کاراکتر و شامل حروف، عدد، . یا _)</span>
-              </div>
-            )}
-            <img src={signup_user_icon} alt="username icon" className="signup-user-icon" />
-            {usernameError && (
-              <div className="signup-input-error-popup" key={usernameErrorKey}>
-                <span>{usernameError}</span>
-                <button type="button" onClick={() => setUsernameError('')}>×</button>
-              </div>
-            )}
-          </div> */}
-
           <div className="signup-input-wrapper mb-3 position-relative">
             <input type="text" className="signup-page-input form-control no-focus-style" placeholder="نام کاربری" value={username} onChange={handleUsernameChange} />
             
@@ -267,13 +232,6 @@ const SignupPage = () => {
               </div>
             )}
           </div>
-
-          {/* Password field */}
-          {/* <div className="mb-3 position-relative">
-            <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="signup-page-input form-control" placeholder="رمز عبور" />
-            <img src={signup_padlock_icon} alt="password icon" className="signup-padlock-icon" />
-            <img src={showPassword ? signup_eye_icon : signup_eye_off_icon} alt="toggle password" className="signup-eye-icon" onClick={() => setShowPassword((prev) => !prev)} />
-          </div> */}
 
           {/* Password field */}
           <div className="mb-3 position-relative">
@@ -300,7 +258,6 @@ const SignupPage = () => {
               </div>
             )}
           </div>
-
 
           {/* Confirm password field */}
           <div className="mb-3 position-relative">

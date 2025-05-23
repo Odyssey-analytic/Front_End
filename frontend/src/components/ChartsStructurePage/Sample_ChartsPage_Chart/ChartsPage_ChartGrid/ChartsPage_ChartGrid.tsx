@@ -9,9 +9,9 @@ const ChartsPage_ChartGrid = () => {
   return (
     <div className={styles.grid}>
       <ChartsPage_AverageGameLength />
-      {/* <ChartsPage_BarChart />
+      <ChartsPage_BarChart />
       <ChartsPage_PieChart />
-      <ChartsPage_CustomizedPieChart /> */}
+      <ChartsPage_CustomizedPieChart />
     </div>
   );
 };

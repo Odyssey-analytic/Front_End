@@ -214,20 +214,6 @@ const WelcomePage = () => {
           اضافه کردن بازی 
         </button>
 
-        {/* هربار که روی اضافه کردن بازی میزنه بیاد step1 */}
-        {/* <button
-          className="btn welcome-page-main-box-start-btn"
-          onClick={() => {
-            setStep(1);         
-            setSelectedProduct(''); 
-            setShowPopup(true);
-          }}
-        >
-          اضافه کردن بازی
-        </button> */}
-
-
-
       </div>
     </div>
 
@@ -393,10 +379,6 @@ const WelcomePage = () => {
                         <p className="text-danger small mt-1">{imageError}</p>
                       )}
 
-                      {/* نکته سایز و فرمت */}
-                      {/* <p className="text-muted small mt-1 img-exp">
-                        تصویر باید png یا jpg و حداکثر ۲۰۰MB باشد.
-                      </p> */}
                     </div>
                   </div>
 
