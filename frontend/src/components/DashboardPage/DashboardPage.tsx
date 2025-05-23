@@ -8,15 +8,14 @@ import pocket_champs_icon from "../../../public/icons/pocket-champs-icon.svg";
 import tower_war_icon from "../../../public/icons/tower-war-icon.svg";
 import dashboard_collaborator_icon from '../../../public/icons/dashboard_collaborator_icon.svg';
 import dashboard_collaborator_wrapper_icon from '../../../public/icons/dashboard_collaborator_wrapper_icon.svg';
+import dashboard_add_collaborator from '../../../public/icons/dashboard_add_collaborator.svg';
+
 // =======================
 // Component: DashboardPage
 // =======================
 const DashboardPage = () => {
   const [games, setGames] = useState<any[]>([]);
-const colors = ["rgba(125, 43, 171, 0.8)", "rgba(197, 134, 255, 0.8)"];
-
-  // color: #7D2BAB;
-
+  const colors = ["rgba(125, 43, 171, 0.8)", "rgba(197, 134, 255, 0.8)"];
 
   useEffect(() => {
     setGames(mockGames);
@@ -26,9 +25,7 @@ const colors = ["rgba(125, 43, 171, 0.8)", "rgba(197, 134, 255, 0.8)"];
     <div>
       <MainLayout />
 
-      {/* =======================
-          Toolbar بالا
-      ======================= */}
+      {/* ======================= Toolbar بالا ======================= */}
       <div className={`${styles["dashboard-toolbar"]} px-4 py-3`}>
         <div className={`d-flex justify-content-between align-items-center mb-3`}>
           <h2 className={styles["dashboard-title"]}>مدیریت بازی‌ها</h2>
@@ -56,99 +53,96 @@ const colors = ["rgba(125, 43, 171, 0.8)", "rgba(197, 134, 255, 0.8)"];
         </div>
       </div>
 
-      {/* =======================
-          لیست بازی‌ها
-      ======================= */}
+      {/* ======================= لیست بازی‌ها ======================= */}
       <div className={`${styles["dashboard-container"]} px-4 py-4`}>
         <div className={`${styles["game-list"]} d-flex flex-column gap-4`}>
           {games.map((game) => (
             <div key={game.id} className={`${styles["game-card"]} d-flex justify-content-between align-items-center shadow-sm rounded`}>
 
-  {/* بخش 1: اطلاعات بازی */}
-  <div className={`${styles["game-section-info"]} d-flex align-items-start gap-3`}>
-    {/* <img src={game.icon} alt={game.title} className={styles["game-icon"]} /> */}
-    <div className={styles["game-icon-wrapper"]}>
-  <img src={game.icon} alt={game.title} className={styles["game-icon"]} />
-  <span className={styles["game-tag"]}>iOS</span>
-</div>
+              {/* بخش 1: اطلاعات بازی */}
+              <div className={`${styles["game-section-info"]} d-flex align-items-start gap-3`}>
+                <div className={styles["game-icon-wrapper"]}>
+                  <img src={game.icon} alt={game.title} className={styles["game-icon"]} />
+                  <span className={styles["game-tag"]}>iOS</span>
+                </div>
 
-    <div>
-      <h4 className={styles["game-title"]}>{game.title}</h4>
-      <p className={styles["game-description"]}>{game.description}</p>
-      <div className="d-flex gap-2 mt-2">
-        {/* <span className={styles["game-tag"]}>iOS</span> */}
-        <span className={styles["game-meta"]}>Created: 23 Nov 16</span>
-        <span className={styles["game-meta"]}>Last edited: 20 min ago</span>
-      </div>
-    </div>
-    <div className="ms-auto">
-      <span className={styles["game-settings-icon"]}>⚙️</span>
-    </div>
-  </div>
+                <div>
+                  <h4 className={styles["game-title"]}>{game.title}</h4>
+                  <p className={styles["game-description"]}>{game.description}</p>
+                  <div className="d-flex gap-2 mt-2">
+                    <span className={styles["game-meta"]}>Created: 23 Nov 16</span>
+                    <span className={styles["game-meta"]}>Last edited: 20 min ago</span>
+                  </div>
+                </div>
+                <div className="ms-auto">
+                  <span className={styles["game-settings-icon"]}>⚙️</span>
+                </div>
+              </div>
 
-  {/* بخش 2: آمار کاربران */}
-  <div className={`${styles["game-section-stats"]} d-flex flex-column text-center`}>
-  <div>
-    <div className={styles["game-stat-label"]}>Monthly</div>
-    <strong className={styles["game-stat-value"]}>879k</strong>
-  </div>
-  <div className="mt-2">
-    <div className={styles["game-stat-label"]}>Daily</div>
-    <strong className={styles["game-stat-value"]}>120k</strong>
-  </div>
+              {/* بخش 2: آمار کاربران */}
+              <div className={`${styles["game-section-stats"]} d-flex flex-column text-center`}>
+                <div>
+                  <div className={styles["game-stat-label"]}>Monthly</div>
+                  <strong className={styles["game-stat-value"]}>879k</strong>
+                </div>
+                <div className="mt-2">
+                  <div className={styles["game-stat-label"]}>Daily</div>
+                  <strong className={styles["game-stat-value"]}>120k</strong>
+                </div>
 
-  {/* ✅ نمودار میله‌ای پایین آمار */}
-  <div className={styles["stats-chart"]}>
-{[...Array(32)].map((_, i) => {
-  const height = Math.floor(Math.random() * 60) + 10;
-  const color = colors[Math.floor(Math.random() * colors.length)];
-  return (
-    <div
-      key={i}
-      className={styles["stats-bar"]}
-      style={{ height: `${height}%`, backgroundColor: color }}
-    ></div>
-  );
-})}
+                {/* ✅ نمودار میله‌ای پایین آمار */}
+                <div className={styles["stats-chart"]}>
+                  {[...Array(32)].map((_, i) => {
+                    const height = Math.floor(Math.random() * 60) + 10;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    return (
+                      <div
+                        key={i}
+                        className={styles["stats-bar"]}
+                        style={{ height: `${height}%`, backgroundColor: color }}
+                      ></div>
+                    );
+                  })}
+                </div>
+              </div>
 
-  </div>
-</div>
+              {/* بخش 3: همکاران */}
+              <div className={`${styles["game-section-collaborators"]}`}>
+                <div className="d-flex justify-content-between align-items-center mb-2 px-2">
+                  <span className={styles["collaborator-label"]}>همکاران</span>
+                  <img
+                    src={dashboard_add_collaborator}
+                    alt="Add collaborator"
+                    className={styles["add-collaborator-icon"]}
+                  />
+                </div>
 
-
-  {/* بخش 3: همکاران */}
-  
-  
-  <div className={`${styles["game-section-collaborators"]} d-flex align-items-center gap-2`}>
-            
-{[...Array(6)].map((_, i) => {
-  const isOnline = Math.random() > 0.5;
-  return (
-    <div key={i} className={styles["collaborator-status-wrapper"]}>
-      <img
-        src={dashboard_collaborator_wrapper_icon}
-        alt="wrapper"
-        className={styles["collaborator-wrapper-icon"]}
-      />
-      <img
-        src={dashboard_collaborator_icon}
-        alt="user"
-        className={styles["collaborator-icon"]}
-      />
-      <span
-        className={`${styles["status-indicator"]} ${
-          isOnline ? styles["online"] : styles["offline"]
-        }`}
-      ></span>
-    </div>
-  );
-})}
-
-
-
-    {/* <span className={styles["game-more-icon"]}>⋯</span> */}
-  </div>
-</div>
-
+                <div className="d-flex align-items-center gap-2">
+                  {[...Array(6)].map((_, i) => {
+                    const isOnline = Math.random() > 0.5;
+                    return (
+                      <div key={i} className={styles["collaborator-status-wrapper"]}>
+                        <img
+                          src={dashboard_collaborator_wrapper_icon}
+                          alt="wrapper"
+                          className={styles["collaborator-wrapper-icon"]}
+                        />
+                        <img
+                          src={dashboard_collaborator_icon}
+                          alt="user"
+                          className={styles["collaborator-icon"]}
+                        />
+                        <span
+                          className={`${styles["status-indicator"]} ${
+                            isOnline ? styles["online"] : styles["offline"]
+                          }`}
+                        ></span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>

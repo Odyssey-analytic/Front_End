@@ -296,8 +296,9 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 8px;
-  height: 8px;
+  margin-bottom: -32% ;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   border: 2px solid white; /* دور سفید مثل واتساپ/تلگرام */
 }
@@ -323,4 +324,26 @@
   width: 2%;
   border-radius: 2px;
   transition: height 0.3s ease;
+}
+
+
+.collaborator-label {
+  font-size: 20px;
+  font-weight: 600;
+  color: #888;
+  margin-top:-25%;
+  /* text-transform: uppercase; */
+}
+
+.add-collaborator-icon {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  opacity: 0.7;
+  margin-top:-25%;
+  transition: opacity 0.2s ease;
+}
+
+.add-collaborator-icon:hover {
+  opacity: 1;
 }
