@@ -154,3 +154,68 @@
 .toolbar-icon:hover {
   opacity: 1;
 }
+
+
+.game-section-info {
+  flex: 2;
+  display: flex;
+  align-items: flex-start;
+  text-align: right;
+}
+
+.game-section-stats {
+  flex: 1;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+  padding: 0 20px;
+}
+
+.game-section-collaborators {
+  flex: 1;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.game-tag {
+  font-size: 12px;
+  background: #eee;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.game-meta {
+  font-size: 12px;
+  color: #999;
+}
+
+.game-settings-icon {
+  font-size: 18px;
+  opacity: 0.6;
+  cursor: pointer;
+  margin-right: 12px;
+}
+
+.game-stat-label {
+  font-size: 12px;
+  color: #888;
+}
+
+.game-stat-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #222;
+}
+
+.avatar-circle {
+  width: 24px;
+  height: 24px;
+  background-color: #dcdcdc;
+  border-radius: 50%;
+}
+
+.game-more-icon {
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 8px;
+  opacity: 0.6;
+}

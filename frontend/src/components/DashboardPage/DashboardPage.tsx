@@ -58,31 +58,45 @@ const DashboardPage = () => {
         <div className={`${styles["game-list"]} d-flex flex-column gap-4`}>
           {games.map((game) => (
             <div key={game.id} className={`${styles["game-card"]} d-flex justify-content-between align-items-center shadow-sm rounded`}>
-              {/* Right: Icon + Title + Description */}
-              <div className={`${styles["game-info"]} d-flex align-items-center text-end`}>
-                <img src={game.icon} alt={game.title} className={`${styles["game-icon"]} ms-3`} />
-                <div>
-                  <h4 className={styles["game-title"]}>{game.title}</h4>
-                  <p className={styles["game-description"]}>{game.description}</p>
-                </div>
-              </div>
 
-              {/* Left: Stats */}
-              <div className={`${styles["game-stats"]} d-flex align-items-center text-center gap-4`}>
-                <div>
-                  <strong>{game.retention}</strong>
-                  <div className="text-muted small">نرخ نگه‌داری</div>
-                </div>
-                <div>
-                  <strong>{game.dau}</strong>
-                  <div className="text-muted small">کاربر روزانه</div>
-                </div>
-                <div>
-                  <strong>{game.dnu}</strong>
-                  <div className="text-muted small">کاربر جدید</div>
-                </div>
-              </div>
-            </div>
+  {/* بخش 1: اطلاعات بازی */}
+  <div className={`${styles["game-section-info"]} d-flex align-items-start gap-3`}>
+    <img src={game.icon} alt={game.title} className={styles["game-icon"]} />
+    <div>
+      <h4 className={styles["game-title"]}>{game.title}</h4>
+      <p className={styles["game-description"]}>{game.description}</p>
+      <div className="d-flex gap-2 mt-2">
+        <span className={styles["game-tag"]}>iOS</span>
+        <span className={styles["game-meta"]}>Created: 23 Nov 16</span>
+        <span className={styles["game-meta"]}>Last edited: 20 min ago</span>
+      </div>
+    </div>
+    <div className="ms-auto">
+      <span className={styles["game-settings-icon"]}>⚙️</span>
+    </div>
+  </div>
+
+  {/* بخش 2: آمار کاربران */}
+  <div className={`${styles["game-section-stats"]} d-flex flex-column text-center`}>
+    <div>
+      <div className={styles["game-stat-label"]}>Monthly</div>
+      <strong className={styles["game-stat-value"]}>879k</strong>
+    </div>
+    <div className="mt-2">
+      <div className={styles["game-stat-label"]}>Daily</div>
+      <strong className={styles["game-stat-value"]}>120k</strong>
+    </div>
+  </div>
+
+  {/* بخش 3: همکاران */}
+  <div className={`${styles["game-section-collaborators"]} d-flex align-items-center gap-2`}>
+    {[...Array(6)].map((_, i) => (
+      <div key={i} className={styles["avatar-circle"]}></div>
+    ))}
+    <span className={styles["game-more-icon"]}>⋯</span>
+  </div>
+</div>
+
           ))}
         </div>
       </div>
