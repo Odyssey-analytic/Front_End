@@ -8,7 +8,8 @@ import pocket_champs_icon from "../../../public/icons/pocket-champs-icon.svg";
 import tower_war_icon from "../../../public/icons/tower-war-icon.svg";
 import dashboard_collaborator_icon from '../../../public/icons/dashboard_collaborator_icon.svg';
 import dashboard_collaborator_wrapper_icon from '../../../public/icons/dashboard_collaborator_wrapper_icon.svg';
-import dashboard_add_collaborator from '../../../public/icons/dashboard_add_collaborator.svg';
+import dashboard_add_collaborator_icon from '../../../public/icons/dashboard_add_collaborator_icon.svg';
+import dashboard_game_setting_icon from '../../../public/icons/dashboard_game_setting_icon.svg';
 
 // ========== Component: DashboardPage ==========
 const DashboardPage = () => {
@@ -73,7 +74,11 @@ const DashboardPage = () => {
                   </div>
                 </div>
                 <div className="ms-auto">
-                  <span className={styles["game-settings-icon"]}>⚙️</span>
+                  <img
+                    src={dashboard_game_setting_icon}
+                    alt="تنظیمات"
+                    className={styles["game-settings-icon"]}
+                  />
                 </div>
               </div>
 
@@ -111,7 +116,7 @@ const DashboardPage = () => {
                 <div className="d-flex align-items-center justify-content-between w-100">
                   <span className={styles["collaborator-label"]}>همکاران</span>
                   <img
-                    src={dashboard_add_collaborator}
+                    src={dashboard_add_collaborator_icon}
                     alt="افزودن همکار"
                     className={styles["add-collaborator-icon"]}
                   />
