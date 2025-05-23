@@ -51,7 +51,7 @@ const AreaChartKPI = () => {
       title: {
         display: true,
         text: 'میانگین طول بازی - Area Chart',
-        color: '#ffffff',
+        color: 'rgba(145, 21, 21, 0.606)',
         font: {
           size: 20,
           family: 'Shabnam',
