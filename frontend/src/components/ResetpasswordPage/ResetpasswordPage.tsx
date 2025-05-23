@@ -12,7 +12,6 @@ import unsuccessful_signup_icon from '/public/icons/unsuccessful_signup_icon.svg
 const ResetpasswordPage = () => {
 
   // ============================== State: Loading ==============================
-  const [isLoading, setIsLoading] = useState(false);
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");

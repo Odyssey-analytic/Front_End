@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signup } from '../../services/userService';
-import { Link, useNavigate } from 'react-router-dom';
 import './SignupPage.css'
 
 // Importing icons
@@ -17,8 +16,7 @@ import signup_padlock_icon from '/public/icons/signup_padlock_icon.svg';
 const SignupPage = () => {
   const navigate = useNavigate();
 
-  // ============================== State: Loading ==============================
-  const [isLoading, setIsLoading] = useState(false);
+
 
   // ========================== Form state ==========================
   const [showPassword, setShowPassword] = useState(false);
@@ -216,7 +214,7 @@ const SignupPage = () => {
           <div className="signup-input-wrapper mb-3 position-relative">
           
             <input type="text" className="signup-page-input form-control text-start text-dark pe-5" placeholder="ایمیل" value={email} onChange={handleEmailChange} />
-            <img src={login_email_icon} alt="email icon" className="signup-email-icon" />
+            <img src={signup_email_icon} alt="email icon" className="signup-email-icon" />
           
             {emailError && (
               <div className="auth-input-error-popup" key={emailErrorKey}>

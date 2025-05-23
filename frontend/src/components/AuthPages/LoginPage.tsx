@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../services/userService';
-import './AuthPages.css'
+import './LoginPage.css';
 
 // ============================== Icon Imports ==============================
 import OdessayLogo from '/public/icons/odessay_logo.svg';
@@ -198,15 +198,15 @@ const LoginPage = () => {
           ← بازگشت به صفحه اصلی
         </Link>
 
-        <h2 className="fw-bold text-start mb-3 auth-title">ورود</h2>
-        <p className="text-muted text-start auth-subtitle">ورود با استفاده از ایمیل</p>
+        <h2 className="fw-bold text-start mb-3 login-title">ورود</h2>
+        <p className="text-muted text-start login-subtitle">ورود با استفاده از ایمیل</p>
 
         <form onSubmit={handleLogin}>
           {/* ========== Email Input ========== */}
-          <div className="mb-3 position-relative auth-input-wrapper">
+          <div className="mb-3 position-relative login-input-wrapper">
             <input
               type="text"
-              className="form-control text-start pe-5 text-dark auth-input"
+              className="form-control text-start pe-5 text-dark login-input"
               placeholder="ایمیل یا نام کاربری خود را وارد کنید."
               value={email}
               onChange={handleEmailChange}
@@ -215,7 +215,7 @@ const LoginPage = () => {
             <img src={login_email_icon} alt="email icon" className="login-email-icon" />
             
             {emailError && (
-              <div className="auth-input-error-popup" key={emailErrorKey}>
+              <div className="login-input-error-popup" key={emailErrorKey}>
                 <span>{emailError}</span>
                 <button type="button" onClick={() => setEmailError('')}>×</button>
               </div>
@@ -223,10 +223,10 @@ const LoginPage = () => {
           </div>
 
           {/* ========== Password Input ========== */}
-          <div className="mb-3 position-relative auth-input-wrapper">
+          <div className="mb-3 position-relative login-input-wrapper">
             <input
               type={showPassword ? 'text' : 'password'}
-              className="form-control no-focus-style text-start pe-5 text-dark auth-input"
+              className="form-control no-focus-style text-start pe-5 text-dark login-input"
               placeholder="رمز عبور خود را وارد کنید."
               value={password}
               onChange={handlePasswordChange}
@@ -236,12 +236,12 @@ const LoginPage = () => {
             <img
               src={showPassword ? login_eye_icon : login_eye_off_icon}
               alt="toggle password"
-              className="auth-eye-icon"
+              className="login-eye-icon"
               onClick={() => setShowPassword(prev => !prev)}
             />
             
             {passwordError && (
-              <div className="auth-input-error-popup" key={passwordErrorKey}>
+              <div className="login-input-error-popup" key={passwordErrorKey}>
                 <span>{passwordError}</span>
                 <button type="button" onClick={() => setPasswordError('')}>×</button>
               </div>
@@ -249,18 +249,18 @@ const LoginPage = () => {
           </div>
 
           {/* ========== Submit Button ========== */}
-          <button type="submit" className="btn w-100 auth-btn">ورود</button>
+          <button type="submit" className="btn w-100 login-btn">ورود</button>
 
           {/* ========== Links ========== */}
-          <div className="text-muted small px-2 my-3 text-start auth-non-register-remember-password">
+          <div className="text-muted small px-2 my-3 text-start login-non-register-remember-password">
             <span>ثبت‌نام نکرده‌اید؟{' '}
-              <Link to="/signup" className="fw-bold text-decoration-none auth-non-register-remember-password">
+              <Link to="/signup" className="fw-bold text-decoration-none login-non-register-remember-password">
                 ایجاد حساب
               </Link>
             </span>
 
             <div>
-              <Link to="/forgot-password" className="fw-bold text-decoration-none auth-non-register-remember-password">
+              <Link to="/forgot-password" className="fw-bold text-decoration-none login-non-register-remember-password">
                 فراموشی رمز عبور
               </Link>
             </div>
@@ -270,12 +270,12 @@ const LoginPage = () => {
 
           {/* ========== Popup Result ========== */}
           {loginStatus && (
-            <div className={`auth-popup-warning-overlay ${loginStatus}`}>
-              <div className="auth-warning-popup-card text-center">
-                <button className="auth-warning-popup-close-btn" onClick={() => setLoginStatus('')}>×</button>
+            <div className={`login-popup-warning-overlay ${loginStatus}`}>
+              <div className="login-warning-popup-card text-center">
+                <button className="login-warning-popup-close-btn" onClick={() => setLoginStatus('')}>×</button>
                 <img
                   src={loginStatus === 'success' ? successful_signup_icon : unsuccessful_signup_icon}
-                  className="auth-warning-popup-emoji"
+                  className="login-warning-popup-emoji"
                   alt="status-icon"
                 />
                 <div className="login-warning-popup-line-separator"></div>

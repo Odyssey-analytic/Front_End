@@ -12,7 +12,6 @@ import unsuccessful_signup_icon from "/public/icons/unsuccessful_signup_icon.svg
 const ForgotpasswordPage = () => {
 
   // ============================== State: Loading ==============================
-  const [isLoading, setIsLoading] = useState(false);
 
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
