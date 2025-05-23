@@ -48,15 +48,15 @@ const AreaChartKPI = () => {
       legend: {
         display: false,
       },
-      title: {
-        display: true,
-        text: 'میانگین طول بازی - Area Chart',
-        color: 'rgba(145, 21, 21, 0.606)',
-        font: {
-          size: 20,
-          family: 'Shabnam',
-        },
-      },
+      // title: {
+      //   display: true,
+      //   text: 'میانگین طول بازی - Area Chart',
+      //   color: 'rgba(145, 21, 21, 0.606)',
+      //   font: {
+      //     size: 20,
+      //     family: 'Shabnam',
+      //   },
+      // },
       tooltip: {
         backgroundColor: '#ffffff',
         titleColor: '#000',
@@ -111,16 +111,9 @@ const AreaChartKPI = () => {
 
   return (
     <ChartCardWrapper title="نمودار تعداد کاربران" customHeight="500px">
-      {/* <div className={styles.glassContainer}> */}
-        {/* <div className={styles.glassBox}> */}
-          {/* <div className={styles.glassHeader}>
-            <h2> Area Chart میانگین طول بازی</h2>
-          </div> */}
-          <div className={styles.glassChart}>
-            <Line data={chartData} options={options} />
-          </div>
-        {/* </div> */}
-      {/* </div> */}
+      <div className={styles.glassChart}>
+        <Line data={chartData} options={options} />
+      </div>
     </ChartCardWrapper>
   );
 };

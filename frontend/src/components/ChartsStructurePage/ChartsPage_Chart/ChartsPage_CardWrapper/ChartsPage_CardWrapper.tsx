@@ -32,7 +32,6 @@ const ChartCardWrapper = ({ title, children, customHeight }: ChartCardWrapperPro
         visible: { opacity: 1, y: 0 },
       }}
       transition={{ duration: 1.2, ease: 'easeOut' }}
-      // transition={{ duration: duration || 0.6, ease: 'easeOut' }}
     >
       <div className={styles.header}>
         <h3>{title}</h3>
