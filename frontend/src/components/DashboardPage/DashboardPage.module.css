@@ -104,14 +104,16 @@
 }
 
 .game-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.8rem;
   object-fit: cover;
 }
 
 .game-title {
+  font-size: 1.1rem;
   font-weight: bold;
+  color: #111;
 }
 
 .toolbar-top {
@@ -157,10 +159,15 @@
 
 
 .game-section-info {
+  /* flex: 2;
+  display: flex;
+  align-items: flex-start;
+  text-align: right; */
   flex: 2;
   display: flex;
   align-items: flex-start;
-  text-align: right;
+  gap: 2%;
+
 }
 
 .game-section-stats {
@@ -170,17 +177,40 @@
   padding: 0 20px;
 }
 
+.game-icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 15%;
+}
+
 .game-section-collaborators {
   flex: 1;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
 
+.game-description {
+  font-size: 0.9rem;
+  color: #444;
+  margin-top: 0.3rem;
+}
+
 .game-tag {
-  font-size: 12px;
+  font-size: 0.75rem;
   background: #eee;
-  padding: 2px 6px;
-  border-radius: 4px;
+  width: 95%;
+  /* padding: 0.5em; */
+  padding-top:  0.5em;
+  padding-bottom: 0.3em;
+  border-radius: 0.5em;
+  margin-top: 0.5em;
+  text-align: center;
+  /* display: inline-block; */
+  color: #7D2BAB;
+  background-color: #D3D6ED;
+  font-weight: 500;
+  /* width: fit-content; */
 }
 
 .game-meta {
@@ -218,4 +248,37 @@
   cursor: pointer;
   margin-left: 8px;
   opacity: 0.6;
+}
+
+
+.collaborator-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 4px;
+  margin-right: 50%;
+  margin-top: -95%;
+  z-index: 20;
+/* margin-right: 50%; */
+}
+
+.collaborator-icon:hover {
+  opacity: 1;
+}
+
+.collaborator-wrapper-icon {
+  width: 100%;
+  height: 100%;
+  opacity: 0.35;
+  margin-right: 50%;
+  /* object-fit: contain; */
+  /* display: block; */
+}
+
+.collaborator-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 36px;
 }

@@ -6,7 +6,8 @@ import styles from './DashboardPage.module.css';
 // ========== آیکون‌های تست ==========
 import pocket_champs_icon from "../../../public/icons/pocket-champs-icon.svg";
 import tower_war_icon from "../../../public/icons/tower-war-icon.svg";
-
+import dashboard_collaborator_icon from '../../../public/icons/dashboard_collaborator_icon.svg';
+import dashboard_collaborator_wrapper_icon from '../../../public/icons/dashboard_collaborator_wrapper_icon.svg';
 // =======================
 // Component: DashboardPage
 // =======================
@@ -61,12 +62,17 @@ const DashboardPage = () => {
 
   {/* بخش 1: اطلاعات بازی */}
   <div className={`${styles["game-section-info"]} d-flex align-items-start gap-3`}>
-    <img src={game.icon} alt={game.title} className={styles["game-icon"]} />
+    {/* <img src={game.icon} alt={game.title} className={styles["game-icon"]} /> */}
+    <div className={styles["game-icon-wrapper"]}>
+  <img src={game.icon} alt={game.title} className={styles["game-icon"]} />
+  <span className={styles["game-tag"]}>iOS</span>
+</div>
+
     <div>
       <h4 className={styles["game-title"]}>{game.title}</h4>
       <p className={styles["game-description"]}>{game.description}</p>
       <div className="d-flex gap-2 mt-2">
-        <span className={styles["game-tag"]}>iOS</span>
+        {/* <span className={styles["game-tag"]}>iOS</span> */}
         <span className={styles["game-meta"]}>Created: 23 Nov 16</span>
         <span className={styles["game-meta"]}>Last edited: 20 min ago</span>
       </div>
@@ -89,11 +95,31 @@ const DashboardPage = () => {
   </div>
 
   {/* بخش 3: همکاران */}
+  
+  
   <div className={`${styles["game-section-collaborators"]} d-flex align-items-center gap-2`}>
-    {[...Array(6)].map((_, i) => (
-      <div key={i} className={styles["avatar-circle"]}></div>
-    ))}
-    <span className={styles["game-more-icon"]}>⋯</span>
+            
+{[...Array(6)].map((_, i) => (
+  <div key={i} className={styles["collaborator-wrapper"]}>
+       <img
+      src={dashboard_collaborator_wrapper_icon}
+      alt="collaborator wrapper"
+      className={styles["collaborator-wrapper-icon"]}
+    />
+   
+    <img
+      src={dashboard_collaborator_icon}
+      alt="collaborator"
+      className={styles["collaborator-icon"]}
+    />
+
+  </div>
+))}
+
+
+
+
+    {/* <span className={styles["game-more-icon"]}>⋯</span> */}
   </div>
 </div>
 
