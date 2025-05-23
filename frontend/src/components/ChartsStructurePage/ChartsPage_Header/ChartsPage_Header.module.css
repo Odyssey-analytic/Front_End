@@ -44,6 +44,30 @@
   background-color: #0056b3;
 }
 
+
+.button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #f1f3f5;
+  color: #1a1a1a;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s ease;
+}
+
+.button:hover {
+  background-color: #e1e3e6;
+}
+
+.icon {
+  font-size: 1rem;
+}
+
+
 /* ===== Responsive Breakpoints ===== */
 
 /* 1️⃣ Extra Small (phones <= 480px) */
