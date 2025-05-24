@@ -1,4 +1,3 @@
-// WelcomePage.tsx
 import './WelcomePage.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +16,6 @@ import gift from '/public/icons/gift.svg';
 import close_icon from '/public/icons/close_icon.svg';
 import uploading_game_image_icon from '/public/icons/game-console-icon.svg';
 import uploading_game_image_icon_ghost from '/public/icons/game-ghost-icon.svg';
-// import copyIcon from '../../../public/icons/copy-icon-solid.svg';
 import copyIcon from '/public/icons/copy-icon-gradient.svg';
 
 const WelcomePage = () => {
@@ -36,78 +34,53 @@ const WelcomePage = () => {
   const [gameNameError, setGameNameError] = useState('');
   const [engineError, setEngineError] = useState('');
   const [platformError, setPlatformError] = useState('');
-
   const [copySuccess, setCopySuccess] = useState(false);
- 
-  // loading between steps
+
   const [isLoading, setIsLoading] = useState(false);
-
-
-  // Fading between steps
   const [isFading, setIsFading] = useState(false);
-
-
   const [token, setToken] = useState('');
 
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
-
-  // copying in local and server handling
   const handleClick = () => {
     setIsLoading(true);
     setIsFading(true);
-  
     setTimeout(() => {
       setStep(2);
       setIsLoading(false);
       setIsFading(false);
     }, 300);
   };
-  
+
   const copyToClipboard = (text: string) => {
     if (navigator.clipboard && window.isSecureContext) {
-      
-      // Clipboard API, modern access
-      navigator.clipboard.writeText(text)
-        .then(() => {
-          setCopySuccess(true);
-          setTimeout(() => setCopySuccess(false), 3000);
-        })
-        .catch((err) => {
-          console.error("خطا در کپی:", err);
-        });
+      navigator.clipboard.writeText(text).then(() => {
+        setCopySuccess(true);
+        setTimeout(() => setCopySuccess(false), 3000);
+      }).catch((err) => console.error("خطا در کپی:", err));
     } else {
-      // Clipboard API, classic fallback
       const textArea = document.createElement("textarea");
       textArea.value = text;
-  
-      // removing from sight
       textArea.style.position = "fixed";
       textArea.style.top = "-1000px";
       textArea.style.left = "-1000px";
-  
       document.body.appendChild(textArea);
       textArea.focus();
       textArea.select();
-  
       try {
         const successful = document.execCommand('copy');
         if (successful) {
           setCopySuccess(true);
           setTimeout(() => setCopySuccess(false), 3000);
-        } else {
-          console.error("کپی با execCommand شکست خورد.");
         }
       } catch (err) {
-        console.error("خطا در کپی (fallback):", err);
+        console.error("کپی با fallback شکست خورد:", err);
       }
-  
       document.body.removeChild(textArea);
     }
   };
 
-  // reseting the informations after closing the card
   const resetPopupState = () => {
     setStep(1);
     setSelectedProduct('');
@@ -124,12 +97,10 @@ const WelcomePage = () => {
     setCopySuccess(false);
   };
 
-
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
     setUsername(storedUsername || '');
   }, []);
-
 
   const handlePlatformChange = (platform: string) => {
     if (platforms.includes(platform)) {
@@ -138,33 +109,24 @@ const WelcomePage = () => {
       setPlatforms([...platforms, platform]);
     }
   };
-  
-  // final part
-  const handleSubmitGame = async () => {
 
+  const handleSubmitGame = async () => {
     let valid = true;
-  
     if (!gameName.trim()) {
       setGameNameError('وارد کردن نام بازی الزامی است.');
       valid = false;
-    } else {
-      setGameNameError('');
-    }
-  
+    } else setGameNameError('');
+
     if (!engine.trim()) {
       setEngineError('انتخاب موتور بازی الزامی است.');
       valid = false;
-    } else {
-      setEngineError('');
-    }
-  
+    } else setEngineError('');
+
     if (platforms.length === 0) {
       setPlatformError('انتخاب حداقل یک پلتفرم الزامی است.');
       valid = false;
-    } else {
-      setPlatformError('');
-    }
-  
+    } else setPlatformError('');
+
     if (!valid) return;
 
     const data = {
@@ -174,24 +136,22 @@ const WelcomePage = () => {
       platform: platforms,
       thumbnail: thumbnail
     };
-    
-    console.log('داده ارسالی:', data);
-    
+
     try {
       const result = await submitGameInfo(data);
       setToken(result.token);
-
       setStep(3);
       setIsLoading(true);
       setTimeout(() => {
-        setStep(3);
         setIsLoading(false);
-      }, 200);
+        navigate('/dashboard', { state: { refresh: true } }); // ===== Navigate to dashboard after success
+      }, 1000);
     } catch (err: any) {
       console.error('API error:', err.response?.data || err.message);
       alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
     }
   };
+
 
 
   return (
