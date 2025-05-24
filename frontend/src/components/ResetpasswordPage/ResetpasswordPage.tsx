@@ -10,6 +10,9 @@ import successful_signup_icon from '/public/icons/successful_signup_icon.svg';
 import unsuccessful_signup_icon from '/public/icons/unsuccessful_signup_icon.svg';
 
 const ResetpasswordPage = () => {
+
+  // ============================== State: Loading ==============================
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -72,7 +75,7 @@ const ResetpasswordPage = () => {
       // setErrorMessage(error.message || "Failed to reset password. Please try again.");
       setPopupStatus('error');
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); // بعد از موفق یا ناموفق، لودینگ قطع بشه
     }
   };
 
@@ -84,12 +87,13 @@ const ResetpasswordPage = () => {
         <img src={odessay_logo} alt="Odessay Logo" className="auth-page-logo-img me-4" />
       </div>
 
+      {/* ========== Loading ========== */}
       {isLoading && (
-        <div className="auth-loading-overlay">
-          <div className="auth-spinner"></div>
+        <div className="reset-loading-overlay">
+          <div className="reset-spinner"></div>
         </div>
       )}
-      
+
       {/* ===== Reset Form Box ===== */}
       <div className="reset-box mx-auto ms-lg-5 position-relative">
         <h2 className="fw-bold text-start mb-3 auth-title">تغییر رمز عبور</h2>

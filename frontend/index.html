@@ -2,13 +2,26 @@
 <html lang="en" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <!-- <link rel="icon" type="image/svg+xml" href="/src/assets/icons/odessay_logo.svg" /> -->
     <link rel="icon" type="image/svg+xml" href="/public/icons/odessay_logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Odessay Analytics</title>
+
+    <!-- ✅ Add odometer CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.7/themes/odometer-theme-default.min.css"
+    />
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- ✅ App entry -->
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- ✅ Add odometer script -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.7/odometer.min.js"
+      defer
+    ></script>
   </body>
 </html>

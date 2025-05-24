@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../services/userService';
-import './AuthPages.css'
+import './LoginPage.css';
 
 // ============================== Icon Imports ==============================
 import OdessayLogo from '/public/icons/odessay_logo.svg';
@@ -167,52 +167,68 @@ const LoginPage = () => {
       }, 2000);
 
     } catch (error: any) {
-      console.error('Login failed:', error.message);
-      setErrorMessage('نام کاربری یا رمز عبور نادرست است.');
-      setLoginStatus('error');
-    } finally {
-      setIsLoading(false); // بعد از موفق یا ناموفق، لودینگ قطع بشه
+  console.error('Login failed:', error.message);
+
+  if (error.response && error.response.data) {
+    const serverMessage = error.response.data.error;
+
+    if (serverMessage === 'Invalid password') {
+      setErrorMessage('رمز عبور معتبر نمی‌باشد.');
+    } else if (serverMessage === 'Invalid username/email') {
+      setErrorMessage('نام کاربری یا ایمیل موجود نیست.');
+    } else {
+      setErrorMessage('خطایی رخ داده است. لطفاً دوباره تلاش کنید.');
     }
+  } else {
+    setErrorMessage('خطایی رخ داده است. لطفاً اتصال اینترنت را بررسی کنید.');
+  }
+
+  setLoginStatus('error');
+}
+
   };
 
+
   return (
-    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 auth-page-container px-3">
+    <div className="login-page-container">
 
       {/* ========== Brand Logo ========== */}
-      <div className="website-brand d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
-        <div className="auth-page-brand-text english-text text-white me-3">ODESSAY</div>
-        <img src={OdessayLogo} alt="Odessay Logo" className="auth-page-logo-img me-4" />
+      <div className="d-flex align-items-center position-fixed top-0 end-0 ms-4 mt-4">
+        <div className="login-brand-text english-text text-white me-3">ODESSAY</div>
+        <img src={OdessayLogo} alt="Odessay Logo" className="login-logo-img me-4" />
       </div>
 
       {/* ========== Loading ========== */}
       {isLoading && (
-        <div className="auth-loading-overlay">
-          <div className="auth-spinner"></div>
+        <div className="login-loading-overlay">
+          <div className="login-spinner"></div>
         </div>
       )}
 
       {/* ========== Login Box ========== */}
-      <div className="auth-box mx-auto ms-lg-5 position-relative">
-        <Link to="/" className="auth-back-to-home text-muted small">
-            ← بازگشت به صفحه اصلی
+      <div className="login-box">
+        <Link to="/" className="text-end login-back-to-home text-muted small">
+          ← بازگشت به صفحه اصلی
         </Link>
 
-        <h2 className="fw-bold text-start mb-3 auth-title">ورود</h2>
-        <p className="text-muted text-start auth-subtitle">ورود با استفاده از ایمیل</p>
+        <h2 className="fw-bold text-start mb-3 login-title">ورود</h2>
+        <p className="text-muted text-start login-subtitle">ورود با استفاده از ایمیل</p>
 
         <form onSubmit={handleLogin}>
           {/* ========== Email Input ========== */}
-          <div className="mb-3 position-relative auth-input-wrapper">
+          <div className="mb-3 position-relative login-input-wrapper">
             <input
               type="text"
-              className="form-control text-start pe-5 text-dark auth-input"
+              className="form-control text-start pe-5 text-dark login-input"
               placeholder="ایمیل یا نام کاربری خود را وارد کنید."
               value={email}
               onChange={handleEmailChange}
             />
-            <img src={login_email_icon} alt="email icon" className="auth-email-icon" />
+
+            <img src={login_email_icon} alt="email icon" className="login-email-icon" />
+            
             {emailError && (
-              <div className="auth-input-error-popup" key={emailErrorKey}>
+              <div className="login-input-error-popup" key={emailErrorKey}>
                 <span>{emailError}</span>
                 <button type="button" onClick={() => setEmailError('')}>×</button>
               </div>
@@ -220,23 +236,25 @@ const LoginPage = () => {
           </div>
 
           {/* ========== Password Input ========== */}
-          <div className="mb-3 position-relative auth-input-wrapper">
+          <div className="mb-3 position-relative login-input-wrapper">
             <input
               type={showPassword ? 'text' : 'password'}
-              className="form-control no-focus-style text-start pe-5 text-dark auth-input"
+              className="form-control no-focus-style text-start pe-5 text-dark login-input"
               placeholder="رمز عبور خود را وارد کنید."
               value={password}
               onChange={handlePasswordChange}
             />
-            <img src={login_padlock_icon} alt="password icon" className="auth-password-icon" />
+            <img src={login_padlock_icon} alt="password icon" className="login-password-icon" />
+            
             <img
               src={showPassword ? login_eye_icon : login_eye_off_icon}
               alt="toggle password"
-              className="auth-eye-icon"
+              className="login-eye-icon"
               onClick={() => setShowPassword(prev => !prev)}
             />
+            
             {passwordError && (
-              <div className="auth-input-error-popup" key={passwordErrorKey}>
+              <div className="login-input-error-popup" key={passwordErrorKey}>
                 <span>{passwordError}</span>
                 <button type="button" onClick={() => setPasswordError('')}>×</button>
               </div>
@@ -244,43 +262,47 @@ const LoginPage = () => {
           </div>
 
           {/* ========== Submit Button ========== */}
-          <button type="submit" className="btn w-100 auth-btn">ورود</button>
+          <button type="submit" className="btn w-100 login-btn">ورود</button>
 
           {/* ========== Links ========== */}
-          <div className="text-muted small px-2 my-3 text-start auth-non-register-remember-password">
+          <div className="text-muted small px-2 my-3 text-start login-non-register-remember-password">
             <span>ثبت‌نام نکرده‌اید؟{' '}
-              <Link to="/signup" className="fw-bold text-decoration-none auth-non-register-remember-password">
+              <Link to="/signup" className="fw-bold text-decoration-none login-non-register-remember-password">
                 ایجاد حساب
               </Link>
             </span>
+
             <div>
-              <Link to="/forgot-password" className="fw-bold text-decoration-none auth-non-register-remember-password">
+              <Link to="/forgot-password" className="fw-bold text-decoration-none login-non-register-remember-password">
                 فراموشی رمز عبور
               </Link>
             </div>
           </div>
 
-          <hr className="my-4" />
+          <hr className="my-3" />
 
           {/* ========== Popup Result ========== */}
           {loginStatus && (
-            <div className={`auth-popup-warning-overlay ${loginStatus}`}>
-              <div className="auth-warning-popup-card text-center">
-                <button className="auth-warning-popup-close-btn" onClick={() => setLoginStatus('')}>×</button>
+            <div className={`login-popup-warning-overlay ${loginStatus}`}>
+              <div className="login-warning-popup-card text-center">
+                <button className="login-warning-popup-close-btn" onClick={() => setLoginStatus('')}>×</button>
                 <img
                   src={loginStatus === 'success' ? successful_signup_icon : unsuccessful_signup_icon}
-                  className="auth-warning-popup-emoji"
+                  className="login-warning-popup-emoji"
                   alt="status-icon"
                 />
-                <div className="auth-warning-popup-line-separator"></div>
+                <div className="login-warning-popup-line-separator"></div>
+                
                 <h5 className="fw-bold mb-2">
                   {loginStatus === 'success' ? 'ورود با موفقیت انجام شد!' : 'خطایی رخ داده است!'}
                 </h5>
+
                 <p className="text-muted small">
                   {loginStatus === 'success'
                     ? 'در حال انتقال به حساب کاربری...'
                     : errorMessage}
                 </p>
+
               </div>
             </div>
           )}

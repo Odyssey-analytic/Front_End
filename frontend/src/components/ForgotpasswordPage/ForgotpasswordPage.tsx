@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { requestPasswordReset } from "../../services/userService";
 import "./ForgotpasswordPage.css";
-import '../AuthPages/AuthPages.css'
 import { Link, useNavigate } from 'react-router-dom';
 
 import odessay_logo from '/public/icons/odessay_logo.svg';
@@ -11,6 +10,9 @@ import successful_signup_icon from "/public/icons/successful_signup_icon.svg";
 import unsuccessful_signup_icon from "/public/icons/unsuccessful_signup_icon.svg";
 
 const ForgotpasswordPage = () => {
+
+  // ============================== State: Loading ==============================
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
   const [emailErrorKey, setEmailErrorKey] = useState(0);
@@ -48,32 +50,35 @@ const ForgotpasswordPage = () => {
       console.error("Request error:", err.message);
       setPopupStatus("error");
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); // بعد از موفق یا ناموفق، لودینگ قطع بشه
     }
   };
 
   return (
-    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 auth-page-container px-3">
-
+    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 forgot-page-container px-3">
+     
       {/* ====== Brand Logo ====== */}
-      <div className="d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
-        <div className="auth-page-brand-text english-text text-white me-3">ODESSAY</div>
-        <img src={odessay_logo} alt="Odessay Logo" className="auth-page-logo-img me-4" />
+      <div className="d-flex align-items-center position-fixed top-0 end-0 ms-4 mt-4">
+        <div className="forgot-page-brand-text english-text text-white me-3">ODESSAY</div>
+        <img src={odessay_logo} alt="Odessay Logo" className="forgot-page-logo-img me-4" />
       </div>
 
       {/* ========== Loading ========== */}
       {isLoading && (
-        <div className="auth-loading-overlay">
-          <div className="auth-spinner"></div>
+        <div className="forgot-loading-overlay">
+          <div className="forgot-spinner"></div>
         </div>
       )}
 
       {/* ====== Forgot Form Box ====== */}
-      <div className="auth-box mx-auto ms-lg-5 position-relative">
-        <div className="forgot-title">
-          <h2 className="fw-bold text-start mb-3">بازیابی رمز عبور</h2>
-        </div>
-        
+      <div className="forgot-box">
+
+      <Link to="/login" className="text-end forgot-page-back-to-login text-muted small text-end">
+        ← بازگشت به صفحه ورود
+      </Link>
+
+        <h2 className="fw-bold text-start mb-3 forgot-title">بازیابی رمز عبور</h2>
+
         <form onSubmit={handleSubmit}>
           {/* ====== Email Field ====== */}
           <div className="mb-3 position-relative auth-input-wrapper">
@@ -89,35 +94,23 @@ const ForgotpasswordPage = () => {
             <img src={login_email_icon} alt="Email Icon" className="auth-email-icon" />
 
             {emailError && (
-              <div className="auth-input-error-popup" key={emailErrorKey}>
+              <div className="forgot-input-error-popup" key={emailErrorKey}>
                 <span>{emailError}</span>
                 <button type="button" onClick={() => setEmailError("")}>×</button>
               </div>
             )}
           </div>
 
-          <Link to="/login" className="auth-back-to-home text-muted small">
-              ← بازگشت به صفحه ورود
-          </Link>
-
           <p className="text-muted small text-start ">
             ما یک پیام برای تنظیم یا بازیابی رمز عبور جدید برایتان ارسال خواهیم کرد.
           </p>
 
           <div className="d-flex justify-content-center mt-3">
-            <button type="submit" className="btn d-flex align-items-center gap-1 forgot-btn">
+            <button type="submit" className="btn align-items-center gap-1 forgot-btn">
               <span className="text-white fw-bold forgot-btn-text">ارسال کد</span>
-              <img src={forgetpassword_sendcode_icon} alt="send icon" style={{ width: "30px", height: "25px" }} />
+              <img src={forgetpassword_sendcode_icon} alt="send icon" className="forgot-btn-sent-icon" />
             </button>
           </div>
-
-          {/* ====== Test Success Button (Mock) ====== */}
-          {/* <div className="text-center mt-2">
-            <button type="button" className="btn btn-sm btn-outline-success" onClick={() => setPopupStatus("success")}>
-              تست موفقیت (ماک)
-            </button>
-          </div> */}
-
         </form>
 
         {/* ====== Popup Message (Success / Error) ====== */}

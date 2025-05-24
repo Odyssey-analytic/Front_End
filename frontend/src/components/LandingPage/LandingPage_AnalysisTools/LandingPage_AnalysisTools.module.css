@@ -1,0 +1,239 @@
+/* ============================ Layout Wrapper ============================ */
+.analysisToolsWrapper {
+  flex-direction: row; /* چیدمان افقی بین متن و تصویر */
+  width: 100%;
+}
+
+/* ============================ Text Section ============================ */
+.textContent {
+  position: relative;
+  right: 8%;
+  top: 10%;
+  max-width: 40%;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.6;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1rem;
+  color: #cccccc;
+  line-height: 2;
+  margin-bottom: 2rem;
+}
+
+/* ============================ Service Icons Grid ============================ */
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px 24px;
+  margin-bottom: 2rem;
+}
+
+.serviceItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 0.95rem;
+  color: #e0e0e0;
+  white-space: nowrap;
+}
+
+/* آخرین آیتم رو در یک ردیف کامل نشون بده */
+.serviceItem:nth-child(5) {
+  grid-column: span 2;
+  margin-right: 9rem;
+}
+
+.serviceItem img {
+  width: clamp(2rem, 4vw, 3.5rem); /* حداقل 2rem، حداکثر 3.5rem بر اساس عرض صفحه */
+  height: auto; /* ارتفاع خودکار برای حفظ نسبت تصویر */
+  flex-shrink: 0; /* جلوگیری از فشرده شدن آیکون‌ها */
+}
+
+/* ============================ CTA Button ============================ */
+.containerctaButton {
+  position: absolute;
+  top: 50%;
+  right: 41%;
+}
+
+.ctaButton {
+  padding: 10px 24px;
+  background: none;
+  color: #ffffff;
+  border: 1px solid #63c6e4;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #63c6e4;
+  color: #0c0b1f;
+}
+
+/* ============================ Responsive (Mobile) ============================ */
+@media (max-width: 768px) {
+  .analysisToolsWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .textContent {
+    text-align: center;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================ Box Slide Animation ============================ */
+@keyframes slideRightBox {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ============================ Illustration (Left Section) ============================ */
+.imageContainer {
+  position: relative;
+  justify-content: center;
+  right: 55%;
+  bottom: 48%;
+  max-width: 380px;
+}
+
+.boxWrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.boxImage {
+  width: 100%;
+  min-width: 125%;
+  min-height: 120%;
+}
+
+.topbarImage {
+  position: absolute;
+  top: 0;
+  left: -16.9%;
+  width: 100%;
+  min-width: 107.39%;
+  z-index: 2;
+}
+
+/* ============================ Chat Bubbles ============================ */
+.firstChatImage,
+.secondChatImage,
+.thirdChatImage {
+  position: absolute;
+  left: 50%;
+  width: 90%;
+  max-width: 300px;
+  z-index: 3;
+}
+
+.firstChatImage { top: 17%; }
+.secondChatImage { top: 41%; }
+.thirdChatImage { top: 65%; }
+
+.firstChatProfile,
+.secondChatProfile,
+.thirdChatProfile {
+  position: absolute;
+  width: 20%;
+  z-index: 4;
+}
+
+.firstChatProfile { top: 19%; }
+.secondChatProfile { top: 44%; }
+.thirdChatProfile { top: 67%; }
+
+/* ============================ Chart Box & Arc ============================ */
+.chartBoxImage {
+  position: absolute;
+  top: 28%;
+  width: 120%;
+  max-width: 150%;
+  z-index: 5;
+}
+
+.chartArcContainer {
+  position: absolute;
+  top: 22%;
+  left: 85%;
+  transform: translateX(-50%);
+  width: 90%;         /* ✅ responsive using percentage */
+  max-width: 300px;   /* ✅ upper bound to avoid overgrowth */
+  min-width: 180px;   /* ✅ lower bound to keep clarity */
+  z-index: 6;
+  pointer-events: none;
+}
+
+
+
+
+/* ============================ Chart Text Overlays ============================ */
+.chartTitle {
+  position: absolute;
+  top: 40%;
+  right: -19%;
+  font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+  font-weight: 600;
+  color: #004d40; 
+  z-index: 10;
+}
+
+.chartLabelStart {
+  position: absolute;
+  bottom: 17%;
+  left: 47%;
+  font-size: clamp(0.7rem, 1vw, 1rem);
+  color: #999;
+  z-index: 10;
+}
+
+.chartLabelEnd {
+  position: absolute;
+  bottom: 17%;
+  right: -17%;
+  font-size: clamp(0.7rem, 1vw, 1rem);
+  color: #999;
+  z-index: 10;
+}
+
+.chartCenterText {
+  position: absolute;
+  top: 65%;
+  left: 66%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+  color: #0c0b1f;
+}
+
+.chartCenterText strong {
+  display: block;
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+  margin-bottom: 0.3rem;
+}
+
+.chartCenterText span {
+  font-size: clamp(0.7rem, 1vw, 0.95rem);
+  color: #666;
+}
