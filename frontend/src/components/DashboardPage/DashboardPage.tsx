@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import MainLayout from '../MainLayout/MainLayout';
 import styles from './DashboardPage.module.css';
+import { fetchUserGames } from '../../services/userService'; // =========== comment ========== Import real API function
 
 import pocket_champs_icon from "../../../public/icons/pocket-champs-icon.svg";
 import tower_war_icon from "../../../public/icons/tower-war-icon.svg";
@@ -9,11 +10,12 @@ import dashboard_collaborator_icon from '../../../public/icons/dashboard_collabo
 import dashboard_collaborator_wrapper_icon from '../../../public/icons/dashboard_collaborator_wrapper_icon.svg';
 import dashboard_add_collaborator_icon from '../../../public/icons/dashboard_add_collaborator_icon.svg';
 import dashboard_game_setting_icon from '../../../public/icons/dashboard_game_setting_icon.svg';
+import game_with_no_thumbnail_icon from '../../../public/icons/game_with_no_thumbnail_icon.svg';
 
 const DashboardPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [games, setGames] = useState<any[]>([]);
-
   const pathRef = useRef<SVGPathElement | null>(null);
   const [pathLength, setPathLength] = useState(320);
 
@@ -31,14 +33,66 @@ const DashboardPage = () => {
     i === 0 ? `M${p[0]},${p[1]}` : `L${p[0]},${p[1]}`
   ).join(" ");
 
-  useEffect(() => {
-    setGames(mockGames);
+//   useEffect(() => {
+//   const loadGames = async () => {
+//     try {
+//       const response = await fetchUserGames();
+//       const userGames = response.games.map((g: any) => ({
+//         id: g.id,
+//         icon: g.thumbnail || game_with_no_thumbnail_icon,
+//         title: g.name,
+//         description: g.description || 'توضیحی ثبت نشده است.',
+//         dnu: g.dnu || 14,
+//         dau: g.dau || 1648,
+//         retention: g.retention || '10.49%',
+//       }));
+//       setGames(userGames);
+//     } catch (error) {
+//       console.error('خطا در دریافت بازی‌ها:', error);
+//     }
+//   };
 
-    if (pathRef.current) {
-      const length = pathRef.current.getTotalLength();
-      setPathLength(length);
-    }
-  }, []);
+//   // اگر برای رفرش فرستاده بودن یا بار اول بود، دیتا رو بگیر
+//   if (location.state?.refresh || games.length === 0) {
+//     loadGames();
+//   }
+
+//   if (pathRef.current) {
+//     const length = pathRef.current.getTotalLength();
+//     setPathLength(length);
+//   }
+// }, [location.state]); 
+
+useEffect(() => {
+  // ===== Mock data for testing UI only =====
+  const mockGames = [
+    {
+      id: 'mock-1',
+      icon: game_with_no_thumbnail_icon, // بدون تصویر واقعی
+      title: 'بازی تستی بدون عکس',
+      description: 'این یک بازی تستی است که آیکون ندارد.',
+      dnu: 12,
+      dau: 230,
+      retention: '8.5%',
+    },
+    {
+      id: 'mock-2',
+      icon: tower_war_icon, // با تصویر
+      title: 'Tower War',
+      description: 'یک بازی واقعی با آیکون.',
+      dnu: 32,
+      dau: 540,
+      retention: '14.2%',
+    },
+  ];
+
+  setGames(mockGames);
+
+  if (pathRef.current) {
+    const length = pathRef.current.getTotalLength();
+    setPathLength(length);
+  }
+}, []);
 
   return (
     <div>
@@ -56,7 +110,7 @@ const DashboardPage = () => {
           <span className={styles["filter-label"]}>لیست بازی‌ها</span>
           <div className="d-flex align-items-center gap-2">
             <button className={styles["download-kit-btn"]}>دانلود Starter Kit</button>
-            <button className={styles["add-game-btn"]}>➕ افزودن بازی جدید</button>
+            <button className={styles["add-game-btn"]} onClick={() => navigate('/welcome')}>➕ افزودن بازی جدید</button>
           </div>
           <div className={`d-flex align-items-center gap-2 mx-auto ${styles["shifted-select"]}`}>
             <select className={`${styles["filter-dropdown"]}`}>
@@ -102,11 +156,11 @@ const DashboardPage = () => {
                 <div className="d-flex justify-content-around align-items-end mt-2">
                   <div className="text-center">
                     <div className={styles["game-stat-label"]}>Monthly</div>
-                    <strong className={styles["game-stat-value"]}>879k</strong>
+                    <strong className={styles["game-stat-value"]}>{game.dau}k</strong>
                   </div>
                   <div className="text-center">
                     <div className={styles["game-stat-label"]}>Daily</div>
-                    <strong className={styles["game-stat-value"]}>120k</strong>
+                    <strong className={styles["game-stat-value"]}>{game.dnu}k</strong>
                   </div>
                 </div>
 
@@ -164,26 +218,3 @@ const DashboardPage = () => {
 };
 
 export default DashboardPage;
-
-const mockGames = [
-  {
-    id: 1,
-    icon: pocket_champs_icon,
-    title: 'Pocket Champs: 3D Racing Games',
-    genre: 'Racing',
-    description: 'این بازی یک بازی سه‌بعدی اکشن است که در آن با ارتقاء قهرمان خود در رقابت‌های سریع شرکت می‌کنید.',
-    dnu: 14,
-    dau: 1648,
-    retention: '10.49%',
-  },
-  {
-    id: 2,
-    icon: tower_war_icon,
-    title: 'Tower War - Tactical Conquest',
-    genre: 'Strategy',
-    description: 'این بازی یک بازی استراتژیک سریع است که در آن با تصرف برج‌ها مدیریت نیروها را به‌عهده می‌گیرید.',
-    dnu: 14,
-    dau: 1648,
-    retention: '10.49%',
-  },
-];
