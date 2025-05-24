@@ -73,6 +73,32 @@ const LandingPage_AchievementCounters: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      const cards = document.querySelectorAll(`.${styles.card}`);
+      let maxHeight = 0;
+  
+      cards.forEach((card) => {
+        (card as HTMLElement).style.height = "auto";
+      });
+  
+      cards.forEach((card) => {
+        const height = (card as HTMLElement).offsetHeight;
+        if (height > maxHeight) maxHeight = height;
+      });
+  
+      cards.forEach((card) => {
+        (card as HTMLElement).style.height = `${maxHeight}px`;
+      });
+    };
+  
+    handleResize(); // اجرا در بار اول
+  
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [visible]);
+  
+
   return (
     <div className={styles.container} ref={containerRef}>
       <h3 className={styles.title}>دستاوردهای ما در یک نگاه :</h3>

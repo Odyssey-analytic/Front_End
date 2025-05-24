@@ -12,7 +12,6 @@ import unsuccessful_signup_icon from "/public/icons/unsuccessful_signup_icon.svg
 const ForgotpasswordPage = () => {
 
   // ============================== State: Loading ==============================
-  const [isLoading, setIsLoading] = useState(false);
 
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -20,6 +19,9 @@ const ForgotpasswordPage = () => {
   const [popupStatus, setPopupStatus] = useState<"success" | "error" | "">("");
 
   const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email);
+
+  // ============================== State: Loading ==============================
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,17 +81,17 @@ const ForgotpasswordPage = () => {
 
         <form onSubmit={handleSubmit}>
           {/* ====== Email Field ====== */}
-          <div className="mb-3 position-relative forgot-input-wrapper">
+          <div className="mb-3 position-relative auth-input-wrapper">
             <input
               type="text"
               name="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="form-control text-start pe-5 text-dark forgot-input"
+              className="form-control text-start pe-5 text-dark auth-input"
               placeholder="ایمیل خود را وارد کنید."
             />
-            <img src={login_email_icon} alt="Email Icon" className="forgot-email-icon" />
+            <img src={login_email_icon} alt="Email Icon" className="auth-email-icon" />
 
             {emailError && (
               <div className="forgot-input-error-popup" key={emailErrorKey}>
@@ -99,7 +101,7 @@ const ForgotpasswordPage = () => {
             )}
           </div>
 
-          <p className="text-muted small text-start">
+          <p className="text-muted small text-start ">
             ما یک پیام برای تنظیم یا بازیابی رمز عبور جدید برایتان ارسال خواهیم کرد.
           </p>
 
@@ -109,15 +111,6 @@ const ForgotpasswordPage = () => {
               <img src={forgetpassword_sendcode_icon} alt="send icon" className="forgot-btn-sent-icon" />
             </button>
           </div>
-
-          {/* ====== Test Success Button (Mock) ====== */}
-          {/* <div className="text-center mt-2">
-            <button type="button" className="btn btn-sm btn-outline-success" onClick={() => setPopupStatus("success")}>
-              تست موفقیت (ماک)
-            </button>
-          </div> */}
-
-
         </form>
 
         {/* ====== Popup Message (Success / Error) ====== */}
