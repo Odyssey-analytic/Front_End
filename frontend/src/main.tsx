@@ -31,9 +31,9 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/reset-password/:token" element={<ResetpasswordPage />} />
         <Route path="/" element={<LandingPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/panel" element={<DashboardPage />} />
 
-        <Route path="/ChartsPage" element={<ChartsPage />} />
+        <Route path="/dashboard" element={<ChartsPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

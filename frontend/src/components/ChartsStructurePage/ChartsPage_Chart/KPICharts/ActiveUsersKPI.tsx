@@ -168,26 +168,33 @@
 //        ...( { movingDot: {} } as Record<string, any> )
 //     },
 //     scales: {
-//       x: {
-//         ticks: {
-//           color: '#ccc',
-//           maxRotation: 0,
-//           minRotation: 0,
-//         },
-//         grid: {
-//           color: 'rgba(255,255,255,0.05)',
-//         },
-//       },
-//       y: {
-//         beginAtZero: true,
-//         ticks: {
-//           color: '#ccc',
-//         },
-//         grid: {
-//           color: 'rgba(255,255,255,0.05)',
-//         },
-//       },
+//   x: {
+//   ticks: {
+//     color: '#ccc',
+//     maxRotation: 0,
+//     minRotation: 0,
+//     autoSkip: false, // ✅ تیک‌ها رو خودکار حذف نکن
+//     callback: function (val, index) {
+//       const label = this.getLabelForValue(val as number);
+//       const [h, m] = label.split(':').map(Number);
+//       return m % 60 === 0 ? label : ''; // فقط دقیقه‌های ۰ یا ۳۰
 //     },
+//   },
+//   grid: {
+//     color: 'rgba(255,255,255,0.05)',
+//   },
+// }
+// ,
+//   y: {
+//     beginAtZero: true,
+//     ticks: {
+//       color: '#ccc',
+//     },
+//     grid: {
+//       color: 'rgba(255,255,255,0.05)',
+//     },
+//   },
+// },
 //   };
 
 //   return (
@@ -200,6 +207,8 @@
 // };
 
 // export default AreaChartKPI;
+
+
 import { useEffect, useRef, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
@@ -401,6 +410,12 @@ const AreaChartKPI = () => {
           color: '#ccc',
           maxRotation: 0,
           minRotation: 0,
+          autoSkip: false,
+          callback: function (val, index) {
+            const label = this.getLabelForValue(val as number);
+            const [h, m] = label.split(':').map(Number);
+            return m === 0 ? label : '';
+          },
         },
         grid: {
           color: 'rgba(255,255,255,0.05)',
