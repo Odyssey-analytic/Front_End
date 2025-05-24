@@ -167,12 +167,25 @@ const LoginPage = () => {
       }, 2000);
 
     } catch (error: any) {
-      console.error('Login failed:', error.message);
-      setErrorMessage('نام کاربری یا رمز عبور نادرست است.');
-      setLoginStatus('error');
-    } finally {
-      setIsLoading(false); // بعد از موفق یا ناموفق، لودینگ قطع بشه
+  console.error('Login failed:', error.message);
+
+  if (error.response && error.response.data) {
+    const serverMessage = error.response.data.error;
+
+    if (serverMessage === 'Invalid password') {
+      setErrorMessage('رمز عبور معتبر نمی‌باشد.');
+    } else if (serverMessage === 'Invalid username/email') {
+      setErrorMessage('نام کاربری یا ایمیل موجود نیست.');
+    } else {
+      setErrorMessage('خطایی رخ داده است. لطفاً دوباره تلاش کنید.');
     }
+  } else {
+    setErrorMessage('خطایی رخ داده است. لطفاً اتصال اینترنت را بررسی کنید.');
+  }
+
+  setLoginStatus('error');
+}
+
   };
 
 
