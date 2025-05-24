@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signup } from '../../services/userService';
-import './SignupPage.css'
+import './SignupPage.css';
 
 // Importing icons
 import odessay_logo from '/public/icons/odessay_logo.svg';
@@ -16,14 +16,11 @@ import signup_padlock_icon from '/public/icons/signup_padlock_icon.svg';
 const SignupPage = () => {
   const navigate = useNavigate();
 
-
-
   // ========================== Form state ==========================
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
 
@@ -32,20 +29,11 @@ const SignupPage = () => {
   const [emailError, setEmailError] = useState('');
   const [emailErrorType, setEmailErrorType] = useState<'empty' | 'invalid' | ''>('');
   const [emailErrorKey, setEmailErrorKey] = useState(0);
-
   const [usernameError, setUsernameError] = useState('');
   const [usernameErrorType, setUsernameErrorType] = useState<'empty' | 'invalid' | ''>('');
   const [usernameErrorKey, setUsernameErrorKey] = useState(0);
-
   const [passwordError, setPasswordError] = useState('');
   const [passwordErrorKey, setPasswordErrorKey] = useState(0);
-
-  // const [confirmPasswordError, setConfirmPasswordError] = useState('');
-  // const [confirmPasswordErrorKey, setConfirmPasswordErrorKey] = useState(0);
-
-
-
-
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [confirmPasswordErrorKey, setConfirmPasswordErrorKey] = useState(0);
 
@@ -56,17 +44,23 @@ const SignupPage = () => {
   const [signupStatus, setSignupStatus] = useState<'success' | 'error' | ''>('');
 
   // ========================== Validation functions ==========================
-  const isValidEmail = (email: string) =>
-    /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email);
+  const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email);
+  const isValidUsername = (username: string) => /^(?=[a-zA-Z0-9._]{3,15}$)(?=.*[a-zA-Z])[a-zA-Z0-9._]+$/.test(username);
 
-  const isValidUsername = (username: string) =>
-    /^(?=[a-zA-Z0-9._]{3,15}$)(?=.*[a-zA-Z])[a-zA-Z0-9._]+$/.test(username);
+  const translateServerError = (field: string, message: string): string => {
+    if (field === 'username' && message === 'an account with this username exists!') {
+      return 'یک حساب کاربری با این نام کاربری موجود است.';
+    }
+    if (field === 'confirm_password' && message === "Passwords don't match") {
+      return 'رمز عبور و تکرار آن همخوانی ندارند.';
+    }
+    return message;
+  };
 
   // ========================== Input change handlers ==========================
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEmail(value);
-
     if ((emailErrorType === 'invalid' && isValidEmail(value)) || (emailErrorType === 'empty' && value.trim())) {
       setEmailError('');
       setEmailErrorType('');
@@ -76,7 +70,6 @@ const SignupPage = () => {
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setUsername(value);
-
     if ((usernameErrorType === 'invalid' && isValidUsername(value)) || (usernameErrorType === 'empty' && value.trim())) {
       setUsernameError('');
       setUsernameErrorType('');
@@ -86,7 +79,6 @@ const SignupPage = () => {
   const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setConfirmPassword(value);
-
     if (confirmPasswordError && value === password) {
       setConfirmPasswordError('');
     }
@@ -97,7 +89,6 @@ const SignupPage = () => {
     e.preventDefault();
     let valid = true;
 
-    // Email validation
     if (!email.trim()) {
       setEmailError('ایمیل را وارد کنید.');
       setEmailErrorType('empty');
@@ -110,7 +101,6 @@ const SignupPage = () => {
       valid = false;
     }
 
-    // Username validation
     if (!username.trim()) {
       setUsernameError('نام کاربری را وارد کنید.');
       setUsernameErrorType('empty');
@@ -123,21 +113,6 @@ const SignupPage = () => {
       valid = false;
     }
 
-    // Password validation
-    if (!password.trim()) {
-      setPasswordError('رمز عبور را وارد کنید.');
-      setPasswordErrorKey(prev => prev + 1);
-      valid = false;
-    }
-    
-    // Password match validation
-    // if (confirmPassword !== password) {
-    //   setConfirmPasswordError('رمز عبور و تأیید آن یکی نیستند.');
-    //   setConfirmPasswordErrorKey(prev => prev + 1);
-    //   valid = false;
-    // }
-
-    // Password validation
     if (!password.trim()) {
       setPasswordError('رمز عبور را وارد کنید.');
       setPasswordErrorKey(prev => prev + 1);
@@ -146,7 +121,6 @@ const SignupPage = () => {
       setPasswordError('');
     }
 
-    // Confirm password validation
     if (!confirmPassword.trim()) {
       setConfirmPasswordError('تأیید رمز عبور را وارد کنید.');
       setConfirmPasswordErrorKey(prev => prev + 1);
@@ -159,28 +133,40 @@ const SignupPage = () => {
       setConfirmPasswordError('');
     }
 
-
-
     if (!valid) return;
-
     setIsLoading(true);
 
-    // API call to register
     try {
       const data = { username, email, password, confirm_password: confirmPassword };
       const result = await signup(data);
-
       console.log('Signup successful:', result);
       setSignupStatus('success');
-
-      // Redirect after success
       setTimeout(() => navigate('/login'), 1000);
     } catch (error: any) {
-      console.error('Signup failed:', error.message);
-      setErrorMessage('');
       setSignupStatus('error');
+      const serverErrors = error.response?.data || {};
+
+      if (serverErrors.username) {
+        const msg = serverErrors.username;
+        setUsernameError(translateServerError('username', msg));
+        setUsernameErrorType('invalid');
+        setUsernameErrorKey(prev => prev + 1);
+      }
+
+      if (serverErrors.confirm_password) {
+        const msg = serverErrors.confirm_password;
+        setConfirmPasswordError(translateServerError('confirm_password', msg));
+        setConfirmPasswordErrorKey(prev => prev + 1);
+      }
+
+      if (serverErrors.email) {
+        const msg = serverErrors.email;
+        setEmailError(translateServerError('email', msg));
+        setEmailErrorType('invalid');
+        setEmailErrorKey(prev => prev + 1);
+      }
     } finally {
-      setIsLoading(false); // بعد از موفق یا ناموفق، لودینگ قطع بشه
+      setIsLoading(false);
     }
   };
 
