@@ -237,6 +237,7 @@ const DashboardPage = () => {
   const [games, setGames] = useState<any[]>([]);
   const pathRef = useRef<SVGPathElement | null>(null);
   const [pathLength, setPathLength] = useState(320);
+  const [username, setUsername] = useState<string>('user name');
 
   const chartData = Array.from({ length: 32 }, () =>
     Math.floor(Math.random() * 50) + 10
@@ -251,6 +252,11 @@ const DashboardPage = () => {
   const pathD = points.map((p, i) =>
     i === 0 ? `M${p[0]},${p[1]}` : `L${p[0]},${p[1]}`
   ).join(" ");
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) setUsername(storedUsername);
+  }, []);
 
   useEffect(() => {
     const loadGames = async () => {
@@ -289,7 +295,8 @@ const DashboardPage = () => {
           <h2 className={styles["dashboard-title"]}>مدیریت بازی‌ها</h2>
           <div className={`${styles["dashboard-user"]} d-flex align-items-center gap-2`}>
             <span className={styles["user-avatar"]}>👤</span>
-            <span className={styles["user-name"]}>PonsGroup ▼</span>
+            {/* <span className={styles["user-name"]}>PonsGroup ▼</span> */}
+            <span className={styles["user-name"]}>{username} ▼</span>
           </div>
         </div>
 

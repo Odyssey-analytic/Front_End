@@ -16,6 +16,7 @@
 .dashboard-user {
   background: #f1f1f1;
   padding: 4px 10px;
+  margin-left: 10px;
   border-radius: 6px;
   font-size: 14px;
   color: #333;
@@ -27,6 +28,7 @@
 
 .user-name {
   font-weight: 500;
+  /* margin-le/ft: auto; */
 }
 
 .toolbar-bottom {
@@ -34,6 +36,7 @@
   justify-content: center; /* Center horizontally */
   flex-wrap: wrap;
   gap: 1rem;
+  width: 100%;
 }
 
 
@@ -45,7 +48,7 @@
 
 .download-kit-btn,
 .add-game-btn {
-  background-color: #7D2BAB;
+  background-color: #4a1179;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -57,7 +60,7 @@
 
 .download-kit-btn:hover,
 .add-game-btn:hover {
-  background-color: #5c2d91; 
+  background-color: #5c2d9194; 
 }
 
 
@@ -81,8 +84,13 @@
 }
 
 .shifted-select {
-  transform: translateX(70%); 
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* margin-right: 200px; */
 }
+
 
 
 .toolbar-icon {
@@ -361,4 +369,6 @@
   background-color: #f0f0f0;
   padding: 4px;
 }
+
+
 

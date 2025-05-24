@@ -114,7 +114,7 @@ const fetchDefaultThumbnail = async (): Promise<File | null> => {
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
-    setUsername(storedUsername || '');
+    setUsername(storedUsername || 'user name');
   }, []);
 
   const handlePlatformChange = (platform: string) => {
