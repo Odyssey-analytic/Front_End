@@ -352,3 +352,13 @@
     stroke-dashoffset: 0;
   }
 }
+
+.no-thumbnail-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  object-fit: cover;
+  background-color: #f0f0f0;
+  padding: 4px;
+}
+

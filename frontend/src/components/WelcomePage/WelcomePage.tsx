@@ -17,6 +17,8 @@ import close_icon from '/public/icons/close_icon.svg';
 import uploading_game_image_icon from '/public/icons/game-console-icon.svg';
 import uploading_game_image_icon_ghost from '/public/icons/game-ghost-icon.svg';
 import copyIcon from '/public/icons/copy-icon-gradient.svg';
+import game_with_no_thumbnail_icon from '../../../public/icons/game_with_no_thumbnail_icon.svg';
+
 
 const WelcomePage = () => {
   const [username, setUsername] = useState('');
@@ -42,6 +44,18 @@ const WelcomePage = () => {
 
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const fetchDefaultThumbnail = async (): Promise<File | null> => {
+  try {
+    const response = await fetch(game_with_no_thumbnail_icon);
+    const blob = await response.blob();
+    return new File([blob], 'default-thumbnail.svg', { type: 'image/svg+xml' });
+  } catch (err) {
+    console.error('خطا در بارگیری تصویر پیش‌فرض:', err);
+    return null;
+  }
+};
+
 
   const handleClick = () => {
     setIsLoading(true);
@@ -103,6 +117,7 @@ const WelcomePage = () => {
   }, []);
 
   const handlePlatformChange = (platform: string) => {
+    
     if (platforms.includes(platform)) {
       setPlatforms(platforms.filter(p => p !== platform));
     } else {
@@ -129,12 +144,22 @@ const WelcomePage = () => {
 
     if (!valid) return;
 
+    let finalThumbnail = thumbnail;
+
+    if (!thumbnail) {
+      finalThumbnail = await fetchDefaultThumbnail();
+      if (!finalThumbnail) {
+        alert('امکان بارگذاری تصویر پیش‌فرض وجود ندارد.');
+        return;
+      }
+    }
+    
     const data = {
       name: gameName,
       description: description,
       engine: engine,
       platform: platforms,
-      thumbnail: thumbnail
+      thumbnail: finalThumbnail
     };
 
     try {

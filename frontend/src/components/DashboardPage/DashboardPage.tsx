@@ -33,36 +33,66 @@ const DashboardPage = () => {
     i === 0 ? `M${p[0]},${p[1]}` : `L${p[0]},${p[1]}`
   ).join(" ");
 
-  useEffect(() => {
-  const loadGames = async () => {
-    try {
-      const response = await fetchUserGames();
-      const userGames = response.games.map((g: any) => ({
-        id: g.id,
-        icon: g.thumbnail || game_with_no_thumbnail_icon,
-        title: g.name,
-        description: g.description || 'توضیحی ثبت نشده است.',
-        dnu: g.dnu || 14,
-        dau: g.dau || 1648,
-        retention: g.retention || '10.49%',
-      }));
-      setGames(userGames);
-    } catch (error) {
-      console.error('خطا در دریافت بازی‌ها:', error);
-    }
-  };
+//   useEffect(() => {
+//   const loadGames = async () => {
+//     try {
+//       const response = await fetchUserGames();
+//       const userGames = response.games.map((g: any) => ({
+//         id: g.id,
+//         icon: g.thumbnail || game_with_no_thumbnail_icon,
+//         title: g.name,
+//         description: g.description || 'توضیحی ثبت نشده است.',
+//         dnu: g.dnu || 14,
+//         dau: g.dau || 1648,
+//         retention: g.retention || '10.49%',
+//       }));
+//       setGames(userGames);
+//     } catch (error) {
+//       console.error('خطا در دریافت بازی‌ها:', error);
+//     }
+//   };
 
-  // اگر برای رفرش فرستاده بودن یا بار اول بود، دیتا رو بگیر
-  if (location.state?.refresh || games.length === 0) {
-    loadGames();
-  }
+//   // اگر برای رفرش فرستاده بودن یا بار اول بود، دیتا رو بگیر
+//   if (location.state?.refresh || games.length === 0) {
+//     loadGames();
+//   }
+
+//   if (pathRef.current) {
+//     const length = pathRef.current.getTotalLength();
+//     setPathLength(length);
+//   }
+// }, [location.state]); 
+
+useEffect(() => {
+  // ===== Mock data for testing UI only =====
+  const mockGames = [
+    {
+      id: 'mock-1',
+      icon: game_with_no_thumbnail_icon, // بدون تصویر واقعی
+      title: 'بازی تستی بدون عکس',
+      description: 'این یک بازی تستی است که آیکون ندارد.',
+      dnu: 12,
+      dau: 230,
+      retention: '8.5%',
+    },
+    {
+      id: 'mock-2',
+      icon: tower_war_icon, // با تصویر
+      title: 'Tower War',
+      description: 'یک بازی واقعی با آیکون.',
+      dnu: 32,
+      dau: 540,
+      retention: '14.2%',
+    },
+  ];
+
+  setGames(mockGames);
 
   if (pathRef.current) {
     const length = pathRef.current.getTotalLength();
     setPathLength(length);
   }
-}, [location.state]); // باعث میشه با تغییر state هم اجرا شه
-
+}, []);
 
   return (
     <div>
