@@ -101,10 +101,6 @@ const ForgotpasswordPage = () => {
             )}
           </div>
 
-          <Link to="/login" className="auth-back-to-home text-muted small">
-              ← بازگشت به صفحه ورود
-          </Link>
-
           <p className="text-muted small text-start ">
             ما یک پیام برای تنظیم یا بازیابی رمز عبور جدید برایتان ارسال خواهیم کرد.
           </p>
@@ -115,14 +111,6 @@ const ForgotpasswordPage = () => {
               <img src={forgetpassword_sendcode_icon} alt="send icon" className="forgot-btn-sent-icon" />
             </button>
           </div>
-
-          {/* ====== Test Success Button (Mock) ====== */}
-          {/* <div className="text-center mt-2">
-            <button type="button" className="btn btn-sm btn-outline-success" onClick={() => setPopupStatus("success")}>
-              تست موفقیت (ماک)
-            </button>
-          </div> */}
-
         </form>
 
         {/* ====== Popup Message (Success / Error) ====== */}
