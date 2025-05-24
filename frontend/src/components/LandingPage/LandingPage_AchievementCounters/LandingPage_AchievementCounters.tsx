@@ -55,23 +55,39 @@ const LandingPage_AchievementCounters: React.FC = () => {
   const [animationKey, setAnimationKey] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(false); // reset state
-          setTimeout(() => {
-            setVisible(true);
-            setAnimationKey(prev => prev + 1); // re-trigger
-          }, 100);
-        }
-      },
-      { threshold: 0.6 }
-    );
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       if (entry.isIntersecting) {
+  //         setVisible(false); 
+  //         setTimeout(() => {
+  //           setVisible(true);
+  //           setAnimationKey(prev => prev + 1); // re-trigger
+  //         }, 100);
+  //       }
+  //     },
+  //     { threshold: 0.6 }
+  //   );
 
-    if (containerRef.current) observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, []);
+  //   if (containerRef.current) observer.observe(containerRef.current);
+  //   return () => observer.disconnect();
+  // }, []);
+
+  useEffect(() => {
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting && !visible) {
+        setVisible(true);
+        setAnimationKey(prev => prev + 1);
+      }
+    },
+    { threshold: 0.6 }
+  );
+
+  if (containerRef.current) observer.observe(containerRef.current);
+  return () => observer.disconnect();
+}, [visible]);
+
 
   useEffect(() => {
     const handleResize = () => {
