@@ -210,6 +210,7 @@
 
 
 import { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -247,20 +248,19 @@ const AreaChartKPI = () => {
     ],
   });
 
+  const { id: productId } = useParams();
   const sseRef = useRef<EventSource | null>(null);
 
   useEffect(() => {
     const labels: string[] = [];
     const values: number[] = [];
 
-    for (let i = 0; i < 144; i++) {
-      const totalMinutes = i * 10;
-      const hour = Math.floor(totalMinutes / 60);
-      const minute = totalMinutes % 60;
-      const label = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-      labels.push(label);
-      values.push(0);
-    }
+  for (let i = 0; i < 24; i++) {
+    const label = `${i.toString().padStart(2, '0')}:00`;
+    labels.push(label);
+    values.push(0);
+  }
+
 
     setChartData(prev => ({
       labels,
@@ -275,14 +275,26 @@ const AreaChartKPI = () => {
     const searchParams = new URLSearchParams(window.location.search);
     const token = searchParams.get('token') || '';
 
-    sseRef.current = new EventSource(`https://odysseyanalytics.ir/api/kpi/sse/SessionLengthAvr?kpi=sessionTime_average&token=${token}`);
+    const interval = 30; // 10 ,30 ,60 
+    const now = new Date();
+    const isoNow = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().split('.')[0] + 'Z'; // current UTC time
+
+    sseRef.current = new EventSource(
+    `https://odysseyanalytics.ir/api/kpi/sse/EventCount?product_id=${productId}&start_time=${isoNow}&update_interval=${interval}&token=${token}`
+  );
+
+
+
+    // sseRef.current = new EventSource(`https://odysseyanalytics.ir/api/kpi/sse/SessionLengthAvr?kpi=sessionTime_average&token=${token}`);
 
     sseRef.current.onmessage = (event: MessageEvent) => {
       const { timestamp, value } = JSON.parse(event.data);
       const date = new Date(timestamp);
       const hour = date.getHours();
       const minute = date.getMinutes();
-      const index = hour * 6 + Math.floor(minute / 10); // 10-minute intervals
+      // const index = hour * 6 + Math.floor(minute / 10); 
+      const index = hour; // چون هر ساعت یک مقدار داریم
+
 
       setChartData(prev => {
         const updatedData = [...(prev.datasets[0].data || [])];
@@ -386,19 +398,18 @@ const AreaChartKPI = () => {
         borderColor: '#00C4FF',
         borderWidth: 1,
         callbacks: {
-          title: (tooltipItems) => {
-            const hour = tooltipItems[0].label;
-            const [h, m] = hour.split(':').map(Number);
+        title: (tooltipItems) => {
+          const hourLabel = tooltipItems[0].label;
+          const [h, m] = hourLabel.split(':').map(Number);
+          const endHour = m === 0 ? h : (h + 1) % 24;
+          const endMin = m === 0 ? 30 : 0;
 
-            const endMin = (m + 10) % 60;
-            const endHour = h + Math.floor((m + 10) / 60);
+          const format = (num: number) => num.toString().padStart(2, '0');
+          const start = `${format(h)}:${format(m)}`;
+          const end = `${format(endHour)}:${format(endMin)}`;
 
-            const format = (num: number) => num.toString().padStart(2, '0');
-            const start = `${format(h)}:${format(m)}`;
-            const end = `${format(endHour % 24)}:${format(endMin)}`;
-
-            return `ساعت: ${start} تا ${end}`;
-          },
+          return `ساعت: ${start} تا ${end}`;
+        },
           label: (context) => `تعداد کاربران: ${context.formattedValue}`,
         },
       },
