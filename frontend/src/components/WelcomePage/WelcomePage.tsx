@@ -18,7 +18,7 @@ import uploading_game_image_icon from '/public/icons/game-console-icon.svg';
 import uploading_game_image_icon_ghost from '/public/icons/game-ghost-icon.svg';
 import copyIcon from '/public/icons/copy-icon-gradient.svg';
 import game_with_no_thumbnail_icon from '../../../public/icons/game_with_no_thumbnail_icon.svg';
-
+import game_with_no_thumbnail_icon_png from '../../../public/icons/game_with_no_thumbnail_icon.png';
 
 const WelcomePage = () => {
   const [username, setUsername] = useState('');
@@ -45,16 +45,17 @@ const WelcomePage = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const fetchDefaultThumbnail = async (): Promise<File | null> => {
+const fetchDefaultThumbnail = async (): Promise<File | null> => {
   try {
-    const response = await fetch(game_with_no_thumbnail_icon);
+    const response = await fetch(game_with_no_thumbnail_icon_png);
     const blob = await response.blob();
-    return new File([blob], 'default-thumbnail.svg', { type: 'image/svg+xml' });
+    return new File([blob], 'default-thumbnail.png', { type: 'image/png' });
   } catch (err) {
     console.error('خطا در بارگیری تصویر پیش‌فرض:', err);
     return null;
   }
 };
+
 
 
   const handleClick = () => {
@@ -113,7 +114,7 @@ const WelcomePage = () => {
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
-    setUsername(storedUsername || '');
+    setUsername(storedUsername || 'user name');
   }, []);
 
   const handlePlatformChange = (platform: string) => {

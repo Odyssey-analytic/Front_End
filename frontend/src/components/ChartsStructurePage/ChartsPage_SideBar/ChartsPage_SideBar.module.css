@@ -65,6 +65,21 @@
   background-color: #ffffff6c;
 }
 
+.collapsed .gameSelectorBox {
+  background-color: transparent;
+  padding: 0;
+  gap: 0;
+  justify-content: center;
+}
+
+.collapsed .gameName {
+  display: none;
+}
+
+.collapsed .gameLogo {
+  margin: 0 auto;
+}
+
 .gameLogo {
   width: 32px;
   height: 32px;
