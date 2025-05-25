@@ -270,6 +270,7 @@ const DashboardPage = () => {
           dnu: g.dnu || 14,
           dau: g.dau || 1648,
           retention: g.retention || '10.49%',
+          platform: g.platform?.join(', ') || 'پلتفرم ثبت نشده',
         }));
         setGames(userGames);
       } catch (error) {
@@ -331,7 +332,7 @@ const DashboardPage = () => {
                     onClick={() => navigate(`/dashboard/${game.id}`)}
                     style={{ cursor: 'pointer' }}
                   />
-                  <span className={styles["game-tag"]}>iOS</span>
+                 <span className={styles["game-tag"]}>{game.platform}</span>
                 </div>
 
                 <div>
