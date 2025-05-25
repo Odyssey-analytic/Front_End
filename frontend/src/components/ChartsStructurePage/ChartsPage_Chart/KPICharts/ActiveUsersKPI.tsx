@@ -277,10 +277,10 @@ const AreaChartKPI = () => {
 
     const interval = 30; // 10 ,30 ,60 
     const now = new Date();
-    const isoNow = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().split('.')[0] + 'Z'; // current UTC time
-
+    const utcMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+    const isoMidnight = utcMidnight.toISOString().split('.')[0] + 'Z';
     sseRef.current = new EventSource(
-    `https://odysseyanalytics.ir/api/kpi/sse/EventCount?product_id=${productId}&start_time=${isoNow}&update_interval=${interval}&token=${token}`
+    `https://odysseyanalytics.ir/api/kpi/sse/EventCount?product_id=${productId}&start_time=${isoMidnight}&update_interval=${interval}&token=${token}`
   );
 
 
