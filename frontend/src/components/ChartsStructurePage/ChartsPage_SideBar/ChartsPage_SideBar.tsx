@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import {
   FiHome,
   FiBarChart2,
@@ -18,8 +19,7 @@ import {
   FiChevronDown
 } from 'react-icons/fi';
 import styles from './ChartsPage_SideBar.module.css';
-import OdessayLogo from '../../../../public/icons/odessay_logo.svg';
-import GameLogo from '../../../../public/icons/game-ghost-icon.svg'
+
 
 
 
@@ -76,15 +76,21 @@ const ChartsPage_SideBar = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [activeIndex, setActiveIndex] = useState<string | number>(0);
   const [openSections, setOpenSections] = useState<number[]>([]);
-  const [selectedGame, setSelectedGame] = useState('بازی A');
+  const game_name = localStorage.getItem('game_name');
+  const Logo = localStorage.getItem('Logo');
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const gameList = ['بازی اول', 'بازی دوم', 'بازی سوم'];
-
+  const gameList = JSON.parse(localStorage.getItem('gamesList') ?? '[]');
+  const navigate = useNavigate();
   const toggleSection = (index: number) => {
-    setOpenSections(prev =>
-      prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
-    );
-  };
+  setOpenSections(prev => {
+    console.log(game_name); // This will now be executed
+    if (prev.includes(index)) {
+      return prev.filter(i => i !== index);
+    } else {
+      return [...prev, index];
+    }
+  });
+};
 
   return (
     <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ''}`}>
@@ -95,8 +101,8 @@ const ChartsPage_SideBar = () => {
             className={styles.gameSelectorBox}
             onClick={() => setDropdownOpen(prev => !prev)}
           >
-            <img src={GameLogo} alt="Game Logo" className={styles.gameLogo} />
-            {!collapsed && <span className={styles.gameName}>{selectedGame}</span>}
+            <img src={Logo} alt="Game Logo" className={styles.gameLogo} />
+            {!collapsed && <span className={styles.gameName}>{game_name}</span>}
           </div>
 
           <div
@@ -107,26 +113,34 @@ const ChartsPage_SideBar = () => {
             {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
           </div>
         </div>
-
-        {dropdownOpen && (
+</div>
+ {dropdownOpen && (
+        
           <div className={styles.gameDropdown}>
-            {gameList.map((game) => (
+            {gameList.map((game: any, index: number) => (
               <div
-                key={game}
+                key={index}
                 className={styles.gameDropdownItem}
                 onClick={() => {
-                  setSelectedGame(game);
+                  localStorage.setItem("game_name", game.title);
+                  localStorage.setItem("Logo", game.icon);
                   setDropdownOpen(false);
+                  console.log(game.id);
+                  navigate(`/dashboard/${game.id}`);
                 }}
               >
-                {game}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img
+                    src={game.icon}
+                    alt={game.title}
+                    className={styles.gameDropdownItemImg}
+                  />
+                  <span>{game.title}</span>
+                </div>
               </div>
             ))}
-          </div>
-        )}
 
-        <hr className={styles.divider} />
-      </div>
+      </div>)}
 
       <nav className={styles.menu}>
         {menuItems.map((item, index) => {
