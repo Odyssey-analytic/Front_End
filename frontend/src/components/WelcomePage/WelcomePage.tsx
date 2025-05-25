@@ -170,8 +170,8 @@ const fetchDefaultThumbnail = async (): Promise<File | null> => {
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
-        navigate('/dashboard', { state: { refresh: true } }); // ===== Navigate to dashboard after success
-      }, 1000);
+        navigate('/panel', { state: { refresh: true } }); // ===== Navigate to dashboard after success
+      }, 10000);
     } catch (err: any) {
       console.error('API error:', err.response?.data || err.message);
       alert('خطا در ثبت بازی. لطفا دوباره تلاش کنید.');
