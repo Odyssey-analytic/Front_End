@@ -55,24 +55,6 @@ const LandingPage_AchievementCounters: React.FC = () => {
   const [animationKey, setAnimationKey] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     ([entry]) => {
-  //       if (entry.isIntersecting) {
-  //         setVisible(false); 
-  //         setTimeout(() => {
-  //           setVisible(true);
-  //           setAnimationKey(prev => prev + 1); // re-trigger
-  //         }, 100);
-  //       }
-  //     },
-  //     { threshold: 0.6 }
-  //   );
-
-  //   if (containerRef.current) observer.observe(containerRef.current);
-  //   return () => observer.disconnect();
-  // }, []);
-
   useEffect(() => {
   const observer = new IntersectionObserver(
     ([entry]) => {
@@ -127,7 +109,7 @@ const LandingPage_AchievementCounters: React.FC = () => {
           <div
             key={`${key}-${animationKey}`}
             className={`${styles.card} ${visible ? styles.fadeUp : ""}`}
-            style={{ animationDelay: `${index * 0.1}s` }} // 🌟 staggered entry
+            style={{ animationDelay: `${index * 0.1}s` }} 
           >
             <div className={styles.label}>
               {label}

@@ -1,13 +1,13 @@
 /* ======================= Container holding the orbit SVG ======================= */
 .planetContainer {
   position: absolute;
-  top: 32%;                          /* Slightly below the center vertically */
-  left: 75%;                         /* Positioned more to the right side */
-  transform: translate(-50%, -50%);  /* Center the element from its top-left anchor */
-  width: clamp(180px, 28vw, 650px);  /* Responsive sizing with min/max limits */
+  top: 32%;                          
+  left: 75%;                         
+  transform: translate(-50%, -50%);  
+  width: clamp(180px, 28vw, 650px);  
   height: clamp(180px, 28vw, 650px);
   z-index: 5;
-  pointer-events: none;             /* Make this non-interactive */
+  pointer-events: none;             
 }
 
 /* ======================= Stroke used in circle animation masks ======================= */
@@ -15,22 +15,22 @@
   stroke: white;
   stroke-width: 12;
   fill: none;
-  stroke-dasharray: 1130;           /* Full circumference for r=180 circle */
-  stroke-dashoffset: 1130;          /* Initially hidden stroke for reveal animation */
+  stroke-dasharray: 1130;          
+  stroke-dashoffset: 1130;          
 }
 
 /* ======================= Orbiting dot with lilac color ======================= */
 .movingDotLilac {
-  fill: rgba(144, 115, 175);        /* Light purple tone */
-  r: 17;                            /* Radius of the circle */
-  opacity: 0;                       /* Initially invisible */
-  filter: drop-shadow(0px 10px 20px rgba(144, 115, 175, 0.5)); /* Glowing shadow */
+  fill: rgba(144, 115, 175);        
+  r: 17;                            
+  opacity: 0;
+  filter: drop-shadow(0px 10px 20px rgba(144, 115, 175, 0.5)); 
 }
 
 /* ======================= Orbiting dot with gray-blue color ======================= */
 .movingDotGray {
-  fill: rgba(193, 202, 220);        /* Light gray-blue tone */
+  fill: rgba(193, 202, 220);        
   r: 12;
   opacity: 0;
-  filter: drop-shadow(0px 1px 20px rgba(193, 202, 220, 0.7)); /* Subtle glow */
+  filter: drop-shadow(0px 1px 20px rgba(193, 202, 220, 0.7)); 
 }

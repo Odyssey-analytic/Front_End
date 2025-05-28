@@ -9,7 +9,7 @@
 .title {
   font-size: 28px;
   margin-bottom: 3.5rem;
-  color: rgba(217, 217, 217, 0.8); /* matches design */
+  color: rgba(217, 217, 217, 0.8); 
   font-weight: 500;
 }
 
@@ -35,8 +35,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 32px;       /* horizontal spacing */
-  row-gap: 40px;   /* vertical spacing */
+  gap: 32px;       
+  row-gap: 40px;   
 }
 
 /* ======================= Individual stat card styling ======================= */
@@ -61,7 +61,7 @@
 
 /* ======================= Animation trigger class for cards ======================= */
 .fadeUp {
-  animation: fadeUpAnim 1.4s ease forwards; /* ⬅️ slowed down and smoother */
+  animation: fadeUpAnim 1.4s ease forwards; 
 }
 
 /* ======================= Keyframes for upward fade animation ======================= */
@@ -104,7 +104,7 @@
   }
 
   .card {
-    width: 45%;      /* دو کارت در هر ردیف جا می‌گیرن */
+    width: 45%;      
     min-height: 120px;
     height: 100%;
   }

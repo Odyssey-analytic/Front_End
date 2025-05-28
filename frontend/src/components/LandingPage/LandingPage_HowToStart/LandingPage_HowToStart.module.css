@@ -7,7 +7,6 @@
 
 /* ======================= Section Title ======================= */
 .title {
-  /* top: 10%; */
   font-size: 28px;
   margin-bottom: 6rem;
   color: white;
@@ -18,7 +17,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 100px 100px; /* vertical gap, horizontal gap */
+  gap: 100px 100px; 
 }
 
 /* ======================= Single Step Item ======================= */
@@ -32,10 +31,10 @@
 
 /* ======================= Step Icon (responsive) ======================= */
 .icon {
-  width: 8vw;             /* responsive width */
-  height: auto;           /* maintain aspect ratio */
-  max-width: 100px;       /* never exceed this */
-  min-width: 48px;        /* never go below this */
+  width: 8vw;             
+  height: auto;           
+  max-width: 100px;       
+  min-width: 48px;        
   margin-bottom: 16px;
 }
 

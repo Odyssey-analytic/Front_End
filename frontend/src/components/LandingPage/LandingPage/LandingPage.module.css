@@ -343,7 +343,6 @@
 
 /* ======================= Responsive Breakpoints ======================= */
 
-/* 📱 موبایل متوسط: 481px تا 768px */
 @media (min-width: 481px) and (max-width: 768px) {
   .featuresText {
     top: 18%;
@@ -396,7 +395,6 @@
   }
 }
 
-/* 💻 لپ‌تاپ: 1025px تا 1280px */
 @media (min-width: 1025px) and (max-width: 1280px) {
   .featuresText {
     top: 20%;
@@ -414,7 +412,6 @@
   }
 }
 
-/* 🖥️ دسکتاپ عریض: 1281px تا 1440px */
 @media (min-width: 1281px) and (max-width: 1440px) {
   .featuresText {
     top: 10%;

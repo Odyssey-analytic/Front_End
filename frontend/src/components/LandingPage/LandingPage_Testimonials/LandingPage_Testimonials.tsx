@@ -21,7 +21,7 @@ const LandingPage_Testimonials: React.FC = () => {
   const topSwiperRef = useRef<any>(null);
   const bottomSwiperRef = useRef<any>(null);
 
-  const [isHovering, setIsHovering] = useState(false); // 🔁 Shared hover state
+  const [isHovering, setIsHovering] = useState(false); 
 
   // ======================= Fade-in when in viewport =======================
   useEffect(() => {

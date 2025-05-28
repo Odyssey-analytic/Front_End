@@ -1,6 +1,6 @@
 /* ============================ Layout Wrapper ============================ */
 .analysisToolsWrapper {
-  flex-direction: row; /* چیدمان افقی بین متن و تصویر */
+  flex-direction: row; 
   width: 100%;
 }
 
@@ -44,16 +44,16 @@
   white-space: nowrap;
 }
 
-/* آخرین آیتم رو در یک ردیف کامل نشون بده */
+
 .serviceItem:nth-child(5) {
   grid-column: span 2;
   margin-right: 9rem;
 }
 
 .serviceItem img {
-  width: clamp(2rem, 4vw, 3.5rem); /* حداقل 2rem، حداکثر 3.5rem بر اساس عرض صفحه */
-  height: auto; /* ارتفاع خودکار برای حفظ نسبت تصویر */
-  flex-shrink: 0; /* جلوگیری از فشرده شدن آیکون‌ها */
+  width: clamp(2rem, 4vw, 3.5rem);
+  height: auto;
+  flex-shrink: 0; 
 }
 
 /* ============================ CTA Button ============================ */
@@ -176,9 +176,9 @@
   top: 22%;
   left: 85%;
   transform: translateX(-50%);
-  width: 90%;         /* ✅ responsive using percentage */
-  max-width: 300px;   /* ✅ upper bound to avoid overgrowth */
-  min-width: 180px;   /* ✅ lower bound to keep clarity */
+  width: 90%;         
+  max-width: 300px;   
+  min-width: 180px;   
   z-index: 6;
   pointer-events: none;
 }
