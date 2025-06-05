@@ -18,54 +18,34 @@ import {
   FiChevronDown
 } from 'react-icons/fi';
 import styles from './ChartsPage_SideBar.module.css';
-import OdessayLogo from '../../../../public/icons/odessay_logo.svg';
 import GameLogo from '../../../../public/icons/game-ghost-icon.svg'
-
 
 
 const menuItems = [
   {
-    // label: 'داشبوردها (Dashboards)',
     label: 'داشبوردها',
     collapsible: true,
     icon: <FiGrid />,
-    // items: [
-    //   { label: 'نمای کلی (Overview)', icon: <FiHome /> },
-    //   { label: 'تعامل کاربران (Engagement)', icon: <FiBarChart2 /> },
-    //   { label: 'معیارها (Benchmarks)', icon: <FiActivity /> },
-    //   { label: 'درآمدزایی (Monetization)', icon: <FiDollarSign /> },
-    //   { label: 'منابع (Resources)', icon: <FiLayers /> },
-    //   { label: 'پیشرفت (Progression)', icon: <FiTrendingUp /> },
-    //   { label: 'کیفیت (Quality)', icon: <FiPieChart /> },
-    // ]
     items: [
-      { label: 'نمای کلی ', icon: <FiHome /> },
-      { label: 'تعامل کاربران', icon: <FiBarChart2 /> },
-      { label: 'معیارها', icon: <FiActivity /> },
-      { label: 'درآمدزایی', icon: <FiDollarSign /> },
-      { label: 'منابع', icon: <FiLayers /> },
-      { label: 'پیشرفت', icon: <FiTrendingUp /> },
-      { label: 'کیفیت', icon: <FiPieChart /> },
+      { label: <>نمای کلی <span className={`${styles.englishPart}`}>(Overview)</span></>, icon: <FiHome /> },
+      { label: <>تعامل کاربران <span className={`${styles.englishPart}`}>(Engagement)</span></>, icon: <FiBarChart2 /> },
+      { label: <>معیارها <span className={`${styles.englishPart}`}>(Benchmarks)</span></>, icon: <FiActivity /> },
+      { label: <>درآمدزایی <span className={`${styles.englishPart}`}>(Monetization)</span></>, icon: <FiDollarSign /> },
+      { label: <>منابع <span className={`${styles.englishPart}`} >(Resources)</span></>, icon: <FiLayers /> },
+      { label: <>پیشرفت <span className={`${styles.englishPart}`}>(Progression)</span></>, icon: <FiTrendingUp /> },
+      { label: <>کیفیت <span className={`${styles.englishPart}`}>(Quality)</span></>, icon: <FiPieChart /> },
     ]
   },
   {
     label: 'داشبورد سفارشی',
-    // label: 'داشبورد سفارشی (Custom dashboards)'
     collapsible: true,
     icon: <FiGrid />,
-    // items: [
-    //   { label: 'جستجو (Explore)', icon: <FiSearch /> },
-    //   { label: 'قیف‌ها (Funnels)', icon: <FiUsers /> },
-    //   { label: 'دسته‌بندی کاربران (Cohorts)', icon: <FiUsers /> },
-    //   { label: 'پیکربندی (Configs)', icon: <FiTool /> },
-    //   { label: 'تنظیمات (Settings)', icon: <FiSettings /> },
-    // ]
     items: [
-      { label: 'جستجو', icon: <FiSearch /> },
-      { label: 'قیف‌ها', icon: <FiUsers /> },
-      { label: 'دسته‌بندی کاربران', icon: <FiUsers /> },
-      { label: 'پیکربندی', icon: <FiTool /> },
-      { label: 'تنظیمات', icon: <FiSettings /> },
+      { label: <>جستجو <span className={`${styles.englishPart}`}>(Explore)</span></>, icon: <FiSearch /> },
+      { label: <>قیف‌ها <span className={`${styles.englishPart}`}>(Funnels)</span></>, icon: <FiUsers /> },
+      { label: <>دسته‌بندی کاربران <span className={`${styles.englishPart}`}>(Cohorts)</span></>, icon: <FiUsers /> },
+      { label: <>پیکربندی <span className={`${styles.englishPart}`}>(Configs)</span></>, icon: <FiTool /> },
+      { label: <>تنظیمات <span className={`${styles.englishPart}`}>(Settings)</span></>, icon: <FiSettings /> },
     ]
   },
 ];
