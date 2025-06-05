@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signup } from '../../services/userService';
-import './SignupPage.css';
+import styles from './SignupPage.module.css'; // Changed import
 
 // Importing icons
 import odessay_logo from '/public/icons/odessay_logo.svg';
@@ -171,91 +171,96 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="signup-page-container">
+    <div className={styles.signupPageContainer}>
 
       {/* Logo */}
       <div className="d-flex align-items-center position-fixed top-0 end-0 ms-4 mt-4">
-        <div className="signup-page-brand-text english-text text-white me-3">ODESSAY</div>
-        <img src={odessay_logo} alt="Odessay Logo" className="signup-page-logo-img me-4" />
+        <div className={`${styles.signupPageBrandText} english-text me-3`}>ODESSAY</div>
+        <img src={odessay_logo} alt="Odessay Logo" className={`${styles.signupPageLogoImg} me-4`} />
       </div>
 
       {/* ========== Loading ========== */}
       {isLoading && (
-        <div className="signup-loading-overlay">
-          <div className="signup-spinner"></div>
+        <div className={styles.signupLoadingOverlay}>
+          <div className={styles.signupSpinner}></div>
         </div>
       )}
 
       {/* Signup Form */}
-      <div className="signup-page-box">
+      <div className={styles.signupPageBox}>
 
-        <Link to="/login" className="text-end signup-page-back-to-login text-muted small text-end">
+        <Link to="/login" className={`text-end ${styles.signupPageBackToLogin} small`}>
           ← بازگشت به صفحه ورود
         </Link>
 
-        <h2 className="signup-page-title fw-bold text-start mb-3">ثبت‌نام</h2>
+        <h2 className={`${styles.signupPageTitle} fw-bold text-start mb-3`}>ثبت‌نام</h2>
 
         <form onSubmit={handleSubmit}>
           {/* Email field */}
-          <div className="signup-input-wrapper mb-3 position-relative">
+          <div className={`${styles.signupInputWrapper} mb-3 position-relative`}>
           
-            <input type="text" className="signup-page-input form-control text-start text-dark pe-5" placeholder="ایمیل" value={email} onChange={handleEmailChange} />
-            <img src={signup_email_icon} alt="email icon" className="signup-email-icon" />
+            <input 
+              type="text" 
+              className={`${styles.signupPageInput} form-control text-start text-dark pe-5`} 
+              placeholder="ایمیل" 
+              value={email} 
+              onChange={handleEmailChange} 
+            />
+            <img src={signup_email_icon} alt="email icon" className={styles.signupEmailIcon} />
           
             {emailError && (
-              <div className="auth-input-error-popup" key={emailErrorKey}>
+              <div className={styles.signupInputErrorPopup} key={emailErrorKey}>
                 <span>{emailError}</span>
                 <button type="button" onClick={() => setEmailError('')}>×</button>
               </div>
             )}
           </div>
 
-          <div className="signup-input-wrapper mb-3 position-relative">
-            <input type="text" className="signup-page-input form-control no-focus-style" placeholder="نام کاربری" value={username} onChange={handleUsernameChange} />
+          {/* Username field */}
+          <div className={`${styles.signupInputWrapper} mb-3 position-relative`}>
+            <input 
+              type="text" 
+              className={`${styles.signupPageInput} form-control no-focus-style`} 
+              placeholder="نام کاربری" 
+              value={username} 
+              onChange={handleUsernameChange} 
+            />
             
-            <img src={signup_user_icon} alt="username icon" className="signup-user-icon" />
+            <img src={signup_user_icon} alt="username icon" className={styles.signupUserIcon} />
                         
             {!username && (
-              <div className="signup-page-user-placeholder text-muted">
-                <span className="hint">(بین ۳ تا ۱۵ کاراکتر و شامل حروف، عدد، . یا _)</span>
+              <div className={styles.signupPageUserPlaceholder}>
+                <span className={styles.signupPageUserPlaceholderHint}>(بین ۳ تا ۱۵ کاراکتر و شامل حروف، عدد، . یا _)</span>
               </div>
             )}  
             {usernameError && (
-              <div className="auth-input-error-popup" key={usernameErrorKey}>
+              <div className={styles.signupInputErrorPopup} key={usernameErrorKey}>
                 <span>{usernameError}</span>
                 <button type="button" onClick={() => setUsernameError('')}>×</button>
               </div>
             )}
-
-    
           </div>
           
-          <div className='custom-exp'>
-            <span className="signup-input-custom-explanation">نام کاربری باید بین ۳ تا ۱۵ کاراکتر  (شامل حروف، عدد، . یا _) باشد.</span>
-          
-          </div>
-
-
           {/* Password field */}
           <div className="mb-3 position-relative">
             <input
               type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="signup-page-input form-control"
+              className={`${styles.signupPageInput} form-control`}
               placeholder="رمز عبور"
             />
 
-            <img src={signup_padlock_icon} alt="password icon" className="signup-padlock-icon" />
+            <img src={signup_padlock_icon} alt="password icon" className={styles.signupPadlockIcon} />
             <img
               src={showPassword ? signup_eye_icon : signup_eye_off_icon}
               alt="toggle password"
-              className="signup-eye-icon"
+              className={styles.signupEyeIcon}
               onClick={() => setShowPassword((prev) => !prev)}
             />
 
             {passwordError && (
-              <div className="signup-input-error-popup" key={passwordErrorKey}>
+              <div className={styles.signupInputErrorPopup} key={passwordErrorKey}>
                 <span>{passwordError}</span>
                 <button type="button" onClick={() => setPasswordError('')}>×</button>
               </div>
@@ -266,21 +271,22 @@ const SignupPage = () => {
           <div className="mb-3 position-relative">
             <input 
               type={showConfirmPassword ? 'text' : 'password'} 
-              value={confirmPassword} onChange={handleConfirmPasswordChange} 
-              className="signup-page-input form-control" 
+              value={confirmPassword} 
+              onChange={handleConfirmPasswordChange} 
+              className={`${styles.signupPageInput} form-control`} 
               placeholder="تأیید رمز عبور" 
             />
             
-            <img src={signup_padlock_icon} alt="confirm password icon" className="signup-padlock-icon" />
+            <img src={signup_padlock_icon} alt="confirm password icon" className={styles.signupPadlockIcon} />
             <img
               src={showConfirmPassword ? signup_eye_icon : signup_eye_off_icon} 
               alt="toggle confirm password" 
-              className="signup-eye-icon" 
+              className={styles.signupEyeIcon} 
               onClick={() => setShowConfirmPassword((prev) => !prev)} 
             />
             
             {confirmPasswordError && (
-              <div className="auth-input-error-popup" key={`confirm-password-error-${confirmPasswordErrorKey}`}>
+              <div className={styles.signupInputErrorPopup} key={`confirm-password-error-${confirmPasswordErrorKey}`}>
                 <span>{confirmPasswordError}</span>
                 <button type="button" onClick={() => setConfirmPasswordError('')}>×</button>
               </div>
@@ -288,18 +294,32 @@ const SignupPage = () => {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="signup-btn btn w-100">ثبت نام</button>
+          <button type="submit" className={`${styles.signupBtn} btn w-100`}>ثبت نام</button>
 
           <p className="text-muted small mt-3">
-            با ثبت‌نام، شما با <a href="#" className="signup-agreement-text">قوانین و شرایط</a> ما موافقت می‌کنید.
+            با ثبت‌نام، شما با <a href="#" className={styles.signupAgreementText}>قوانین و شرایط</a> ما موافقت می‌کنید.
           </p>
 
+          {/* Success/Error Popup */}
           {signupStatus && (
-            <div className={`auth-popup-warning-overlay ${signupStatus}`}>
-              <div className="auth-warning-popup-card text-center">
-                <button className="auth-warning-popup-close-btn" onClick={() => setSignupStatus('')}>×</button>
-                <img src={signupStatus === 'success' ? successful_signup_icon : unsuccessful_signup_icon} className="auth-warning-popup-emoji" alt="status-icon" />
-                <div className="auth-warning-popup-line-separator"></div>
+            <div className={`${styles.signupPopupWarningOverlay} ${
+              signupStatus === 'error' 
+                ? styles.signupPopupWarningOverlayError 
+                : styles.signupPopupWarningOverlaySuccess
+            }`}>
+              <div className={styles.signupWarningPopupCard}>
+                <button 
+                  className={styles.signupWarningPopupCloseBtn} 
+                  onClick={() => setSignupStatus('')}
+                >
+                  ×
+                </button>
+                <img 
+                  src={signupStatus === 'success' ? successful_signup_icon : unsuccessful_signup_icon} 
+                  className={styles.signupWarningPopupEmoji} 
+                  alt="status-icon" 
+                />
+                <div className={styles.signupWarningPopupLineSeparator}></div>
                 <h5 className="fw-bold mb-2">
                   {signupStatus === 'success' ? 'ثبت‌نام با موفقیت انجام شد!' : 'خطایی رخ داده است!'}
                 </h5>
