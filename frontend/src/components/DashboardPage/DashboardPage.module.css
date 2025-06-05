@@ -88,7 +88,6 @@
   gap: 0.5rem;
   justify-content: center;
   flex-wrap: wrap;
-  /* margin-right: 200px; */
 }
 
 
@@ -108,7 +107,7 @@
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  background-color: #D3D6ED;
+  background-color: #e1edff;
   width: 100%;
   min-height: calc(100vh - 110px);
   overflow-y: auto;

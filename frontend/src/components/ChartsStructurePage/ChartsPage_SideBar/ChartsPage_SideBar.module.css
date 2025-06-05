@@ -1,6 +1,6 @@
 .sidebar {
   width: 230px;
-  background-color: #151924;
+  background-color: #1f2444;
   color: #ffffffd2;
   transition: width 0.3s ease;
   direction: rtl;
@@ -142,7 +142,7 @@
 }
 
 .selected {
-  background-color: #00c4ff33;
+  background-color: #4cbbdc33;
 }
 
 .toggle {
