@@ -274,7 +274,7 @@ const mockGames = [
     dau: 780,
     retention: "10.6%",
     platform: "iOS",
-  }
+  },
 ];
 
 const DashboardPage = () => {
@@ -360,24 +360,30 @@ const DashboardPage = () => {
             value={searchTerm}
             onChange={handleSearch}
           />
-
           {suggestions.length > 0 && (
-<ul className={styles.searchDropdown}>
-  {suggestions.map((game) => (
-    <li
-      key={game.id}
-      onClick={() => navigate(`/dashboard/${game.id}`)}
-      className={styles.searchSuggestionItem}
-    >
-      <img src={game.icon} alt={game.title} className={styles.searchSuggestionIcon} />
-      <div className={styles.searchSuggestionText}>
-        <div className={styles.searchSuggestionTitle}>{game.title}</div>
-        <div className={styles.searchSuggestionDescription}>{game.description}</div>
-      </div>
-    </li>
-  ))}
-</ul>
-
+            <div className={styles.searchDropdown}>
+              {suggestions.map((game) => (
+                <div
+                  key={game.id}
+                  className={styles.searchSuggestionItem}
+                  onClick={() => navigate(`/dashboard/${game.id}`)}
+                >
+                  <img
+                    src={game.icon}
+                    alt={game.title}
+                    className={styles.searchSuggestionIcon}
+                  />
+                  <div className={styles.searchSuggestionText}>
+                    <div className={styles.searchSuggestionTitle}>
+                      {game.title}
+                    </div>
+                    <div className={styles.searchSuggestionDescription}>
+                      {game.description}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
         </div>
 
@@ -391,8 +397,8 @@ const DashboardPage = () => {
         </div>
       </div>
 
-       <div className={`${styles.dashboardToolbar} px-4 py-3`}>
-      <div className="d-flex justify-content-between align-items-center mb-3">
+      <div className={`${styles.dashboardToolbar} px-4 py-3`}>
+        <div className="d-flex justify-content-between align-items-center mb-3">
           <h2 className={styles.dashboardTitle}>مدیریت بازی‌ها</h2>
           <div
             className={`d-flex align-items-center gap-2 ${styles.dashboardUser}`}
@@ -402,7 +408,7 @@ const DashboardPage = () => {
           </div>
         </div>
 
-      <div
+        <div
           className={`d-flex justify-content-between align-items-center flex-wrap gap-3 ${styles.toolbarBottom}`}
         >
           <span className={styles.filterLabel}>لیست بازی‌ها</span>
@@ -427,7 +433,6 @@ const DashboardPage = () => {
           ></div>
         </div>
       </div>
-
 
       <div className={`${styles.dashboardContainer} px-4 py-4`}>
         <div className={`${styles.gameList} d-flex flex-column gap-4`}>

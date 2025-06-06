@@ -194,7 +194,7 @@
 
 .active {
   background-color: #00c4ff33;
-  border-right: 3px solid #00C4FF;
+  border-right: 3px solid #00c4ff;
 }
 
 .subMenu {
@@ -236,4 +236,61 @@
   align-items: center;
   font-size: 0.8rem;
   color: #888;
+}
+
+.profileSection {
+  margin-top: auto;
+  padding: 12px;
+  border-top: 1px solid #333;
+  background-color: #1f2444;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+.profileName {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.profileRole {
+  font-size: 0.75rem;
+  color: #bbb;
+}
+
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #ffffffc9;
+  transition: color 0.2s ease;
+}
+
+.logoutBtn:hover {
+  color: #00c4ff;
+}
+
+.logoutIcon {
+  width: 22px;
+  height: 22px;
+  margin-right: 2.5%;
+  margin-bottom: 2%;
+  object-fit: contain;
 }

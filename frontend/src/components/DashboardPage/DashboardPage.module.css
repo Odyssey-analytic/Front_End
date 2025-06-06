@@ -1,9 +1,8 @@
 /* ========== Toolbar ========== */
 .dashboardToolbar {
-  /* border-bottom: 1px solid #e0e0e0; */
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
   position: relative;
-  z-index: -10;
+  z-index: 10;
 }
 
 .dashboardTitle {
@@ -86,6 +85,8 @@
   min-height: calc(100vh - 110px);
   overflow-y: auto;
   padding-bottom: 50px;
+  z-index: 1;
+  position: relative;
 }
 
 .gameList {
@@ -102,6 +103,7 @@
   padding: 20px;
   align-items: center;
   justify-content: space-between;
+  z-index: 1;
 }
 
 .gameSectionInfo {
@@ -344,6 +346,7 @@
 .mainLayoutDropdownMenu {
   position: absolute;
   background-color: white;
+  /* z-index: 2; */
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
@@ -353,13 +356,12 @@
 }
 
 .main-layout-header {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  position: relative; /* اضافه شود */
-  z-index: 1;
-  overflow: visible !important;
+  position: relative;
+  z-index: 1000; /* افزایش قابل توجه z-index */
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
 
 .main-layout-header,
 .dashboardToolbar,
@@ -378,7 +380,7 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  z-index: 1001; /* بالاتر از والدش */
+  z-index: 1001;
 }
 
 .searchSuggestionItem {
@@ -388,13 +390,10 @@
   gap: 12px;
   cursor: pointer;
   transition: background-color 0.2s;
+  /* z-index: 10; */
 }
 
-.main-layout-header-search-box {
-  position: relative; /* این خط را اضافه کنید */
-  width: 300px; /* یا عرض مناسب */
-  z-index: 1000;
-}
+
 
 .searchSuggestionItem:hover {
   background-color: #f5f5f5;
@@ -406,6 +405,7 @@
   border-radius: 8px;
   object-fit: cover;
   flex-shrink: 0;
+  /* z-index: 10; */
 }
 
 .searchSuggestionText {
