@@ -36,8 +36,8 @@ const AreaChartKPI = () => {
       {
         label: "تعداد کاربران",
         data: [],
-        borderColor: "#00C4FF",
-        backgroundColor: "rgba(0, 196, 255, 0.2)",
+        borderColor: "rgb(122,103,218,0.75)",
+        backgroundColor: "rgba(227, 231, 242)",
         tension: 0.4,
         fill: true,
         pointRadius: 0,
@@ -124,9 +124,9 @@ const AreaChartKPI = () => {
       labels.push(label);
 
       if (i <= currentHour) {
-        values.push(Math.floor(Math.random() * 100)); 
+        values.push(Math.floor(Math.random() * 100));
       } else {
-        values.push(null); 
+        values.push(null);
       }
     }
 

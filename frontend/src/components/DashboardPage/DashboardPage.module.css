@@ -38,7 +38,7 @@
 
 .downloadKitBtn,
 .addGameBtn {
-  background-color: #4a1179;
+  background-color: rgb(66, 9, 158);
   color: white;
   border: none;
   padding: 8px 16px;
@@ -53,7 +53,7 @@
 
 .downloadKitBtn:hover,
 .addGameBtn:hover {
-  background-color: #5c2d9194;
+  background-color: #5699fe;
 }
 
 .filterLabel {

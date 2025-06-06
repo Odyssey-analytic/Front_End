@@ -429,7 +429,7 @@ const DashboardPage = () => {
               className={styles.addGameBtn}
               onClick={() => navigate("/welcome")}
             >
-              ➕ افزودن بازی جدید
+               افزودن بازی جدید
             </button>
           </div>
           <div
