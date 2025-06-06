@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FiHome,
@@ -20,6 +20,8 @@ import {
 import styles from "./ChartsPage_SideBar.module.css";
 import GameLogo from "../../../../public/icons/game-ghost-icon.svg";
 import dashboard_logout_panel_icon from "../../../../public/icons/dashboard_panel_icon.svg";
+
+
 
 const menuItems = [
   {
@@ -139,14 +141,22 @@ const menuItems = [
   },
 ];
 
+
 const ChartsPage_SideBar = () => {
+
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
   const [activeIndex, setActiveIndex] = useState<string | number>(0);
   const [openSections, setOpenSections] = useState<number[]>([]);
   const [selectedGame, setSelectedGame] = useState("بازی A");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [username, setUsername] = useState<string>();
   const gameList = ["بازی اول", "بازی دوم", "بازی سوم"];
+
+  useEffect(() => {
+  const storedUsername = localStorage.getItem("username");
+  if (storedUsername) setUsername(storedUsername);
+}, []);
 
   const toggleSection = (index: number) => {
     setOpenSections((prev) =>
@@ -154,6 +164,7 @@ const ChartsPage_SideBar = () => {
     );
   };
 
+  
   return (
     <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}>
       <div className={styles.gameHeader}>
@@ -270,8 +281,8 @@ const ChartsPage_SideBar = () => {
           />
           {!collapsed && (
             <div>
-              <div className={styles.profileName}>یوزر نمونه</div>
-              <div className={styles.profileRole}>ادمین</div>
+              <div className={styles.profileName}>{username}</div>
+              {/* <div className={styles.profileRole}>ادمین</div> */}
             </div>
           )}
         </div>

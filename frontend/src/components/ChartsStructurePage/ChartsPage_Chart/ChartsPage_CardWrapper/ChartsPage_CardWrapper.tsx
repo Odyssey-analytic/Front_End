@@ -6,8 +6,6 @@ import styles from './ChartsPage_CardWrapper.module.css';
 type ChartCardWrapperProps = {
   title: string;
   children: React.ReactNode;
-  // customHeight?: string;
-  // duration?: number;
   customHeight?: string | number;
 };
 

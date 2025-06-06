@@ -306,6 +306,10 @@ const DashboardPage = () => {
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
     if (storedUsername) setUsername(storedUsername);
+    else {
+    localStorage.setItem("username", "نام کاربری"); 
+    setUsername("نام کاربری");
+  }
   }, []);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

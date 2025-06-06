@@ -28,10 +28,6 @@ const ChartsPage_Header = () => {
         <h1 className={styles.title}>نمای کلی</h1>
         <div className={styles.buttons}>
           <button className={styles.button}>
-            <FiFilter className={styles.icon} />
-            فیلترها
-          </button>
-          <button className={styles.button}>
             <FiCalendar className={styles.icon} />
             <span>{dateRange}</span>
           </button>
