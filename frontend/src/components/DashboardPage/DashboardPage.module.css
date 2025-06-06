@@ -1,5 +1,5 @@
 /* ========== Toolbar ========== */
-.dashboard-toolbar {
+.dashboardToolbar {
   background-color: #ffffff;
   border-bottom: 1px solid #e0e0e0;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
@@ -7,13 +7,13 @@
   z-index: 1;
 }
 
-.dashboard-title {
+.dashboardTitle {
   font-size: 20px;
   font-weight: 600;
   color: #333;
 }
 
-.dashboard-user {
+.dashboardUser {
   background: #f1f1f1;
   padding: 4px 10px;
   margin-left: 10px;
@@ -22,32 +22,24 @@
   color: #333;
 }
 
-.user-avatar {
+.userAvatar {
   font-size: 18px;
 }
 
-.user-name {
+.userName {
   font-weight: 500;
-  /* margin-le/ft: auto; */
 }
 
-.toolbar-bottom {
+.toolbarBottom {
   display: flex;
-  justify-content: center; /* Center horizontally */
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
 }
 
-
-.dashboard-controls {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.download-kit-btn,
-.add-game-btn {
+.downloadKitBtn,
+.addGameBtn {
   background-color: #4a1179;
   color: white;
   border: none;
@@ -56,25 +48,22 @@
   font-weight: 500;
   font-size: 14px;
   transition: background-color 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 
-.download-kit-btn:hover,
-.add-game-btn:hover {
-  background-color: #5c2d9194; 
+.downloadKitBtn:hover,
+.addGameBtn:hover {
+  background-color: #5c2d9194;
 }
 
-
-.toolbar-filters {
-  font-size: 14px;
-  color: #666;
-}
-
-.filter-label {
+.filterLabel {
   font-weight: 500;
   margin-left: 8px;
 }
 
-.filter-dropdown {
+.filterDropdown {
   padding: 6px 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
@@ -83,28 +72,14 @@
   margin-inline-start: 4px;
 }
 
-.shifted-select {
+.shiftedSelect {
   display: flex;
   gap: 0.5rem;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-
-
-.toolbar-icon {
-  font-size: 18px;
-  opacity: 0.7;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.toolbar-icon:hover {
-  opacity: 1;
-}
-
-/* ========== Dashboard Container ========== */
-.dashboard-container {
+.dashboardContainer {
   display: flex;
   flex-direction: column;
   background-color: #e1edff;
@@ -114,14 +89,13 @@
   padding-bottom: 50px;
 }
 
-/* ========== Game List Section ========== */
-.game-list {
+.gameList {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.game-card {
+.gameCard {
   display: flex;
   background-color: white;
   border-radius: 12px;
@@ -131,28 +105,28 @@
   justify-content: space-between;
 }
 
-.game-section-info {
+.gameSectionInfo {
   flex: 2;
   display: flex;
   align-items: flex-start;
   gap: 2%;
 }
 
-.game-icon-wrapper {
+.gameIconWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 15%;
 }
 
-.game-icon {
+.gameIcon {
   width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: 0.8rem;
   object-fit: cover;
 }
 
-.game-tag {
+.gameTag {
   font-size: 0.75rem;
   background-color: #D3D6ED;
   width: 90%;
@@ -165,50 +139,46 @@
   font-weight: 500;
 }
 
-.game-title {
+.gameTitle {
   font-size: 1.1rem;
   font-weight: bold;
   color: #111;
 }
 
-.game-meta-colored {
+.gameMetaColored {
   font-size: 12px;
-  color: #7D2BAB; 
+  color: #7D2BAB;
   font-weight: 500;
-  margin-top:3% ;
+  margin-top: 3%;
 }
 
-
-.game-description {
+.gameDescription {
   font-size: 0.9rem;
   color: #444;
   margin-top: 0.3rem;
 }
 
-
-.game-settings-icon {
+.gameSettingsIcon {
   width: 80%;
   height: 80%;
   opacity: 0.7;
   cursor: pointer;
-  /* margin-right: 12px; */
   margin-top: -28%;
   transition: opacity 0.2s ease;
 }
 
-.game-settings-icon:hover {
+.gameSettingsIcon:hover {
   opacity: 1;
 }
 
-/* ========== Stats Section ========== */
-.game-section-stats {
+.gameSectionStats {
   flex: 1;
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
   padding: 0 20px;
 }
 
-.user-stats-title {
+.userStatsTitle {
   font-size: 20px;
   font-weight: 600;
   color: #999;
@@ -216,18 +186,18 @@
   margin-top: -2%;
 }
 
-.game-stat-label {
+.gameStatLabel {
   font-size: 12px;
   color: #888;
 }
 
-.game-stat-value {
+.gameStatValue {
   font-size: 18px;
   font-weight: bold;
   color: #222;
 }
 
-.stats-chart {
+.statsChart {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -236,21 +206,20 @@
   gap: 1px;
 }
 
-.stats-bar {
+.statsBar {
   width: 2%;
   border-radius: 2px;
   transition: height 0.3s ease;
 }
 
-/* ========== Collaborators Section ========== */
-.game-section-collaborators {
+.gameSectionCollaborators {
   flex: 1;
   justify-content: flex-start;
   flex-direction: column;
   flex-wrap: wrap;
 }
 
-.collaborator-label {
+.collaboratorLabel {
   font-size: 20px;
   font-weight: 600;
   color: #999;
@@ -258,7 +227,7 @@
   margin-top: -25%;
 }
 
-.add-collaborator-icon {
+.addCollaboratorIcon {
   width: 7%;
   height: 7%;
   cursor: pointer;
@@ -267,32 +236,32 @@
   transition: opacity 0.2s ease;
 }
 
-.add-collaborator-icon:hover {
+.addCollaboratorIcon:hover {
   opacity: 1;
 }
 
-.collaborator-status-wrapper {
+.collaboratorStatusWrapper {
   position: relative;
   width: 32px;
   height: 32px;
   margin: 0 4px;
 }
 
-.collaborator-wrapper {
+.collaboratorWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 36px;
 }
 
-.collaborator-wrapper-icon {
+.collaboratorWrapperIcon {
   width: 130%;
   height: 130%;
   opacity: 0.2;
   margin-right: 50%;
 }
 
-.collaborator-icon {
+.collaboratorIcon {
   width: 110%;
   height: 110%;
   object-fit: contain;
@@ -303,11 +272,11 @@
   z-index: 5;
 }
 
-.collaborator-icon:hover {
+.collaboratorIcon:hover {
   opacity: 1;
 }
 
-.status-indicator {
+.statusIndicator {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -326,25 +295,18 @@
   background-color: #e04545;
 }
 
-
-.stats-line-chart {
+.statsLineChart {
   height: 50px;
   margin-top: 10px;
   overflow: hidden;
 }
 
-.line-chart {
+.lineChart {
   width: 100%;
   height: 100%;
 }
 
-
-.line-path {
-  stroke-linecap: round;
-}
-
-
-.line-path {
+.linePath {
   stroke-linecap: round;
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
@@ -360,7 +322,7 @@
   }
 }
 
-.no-thumbnail-icon {
+.noThumbnailIcon {
   width: 48px;
   height: 48px;
   border-radius: 12px;
@@ -368,6 +330,3 @@
   background-color: #f0f0f0;
   padding: 4px;
 }
-
-
-
