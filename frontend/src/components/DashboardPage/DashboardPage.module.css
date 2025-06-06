@@ -352,3 +352,28 @@
 .show {
   display: block;
 }
+
+.main-layout-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  position: relative; /* اضافه شود */
+  z-index: 10;
+}
+
+.searchDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-top: 4px;
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+}

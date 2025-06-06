@@ -56,6 +56,9 @@ const DashboardPage = () => {
   const [pathLength, setPathLength] = useState(320);
   const [username, setUsername] = useState<string>("user name");
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+
   const chartData = Array.from(
     { length: 32 },
     () => Math.floor(Math.random() * 50) + 10
@@ -75,6 +78,21 @@ const DashboardPage = () => {
     const storedUsername = localStorage.getItem("username");
     if (storedUsername) setUsername(storedUsername);
   }, []);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+
+    if (value.trim() === "") {
+      setSuggestions([]);
+      return;
+    }
+
+    const filtered = games.filter((game) =>
+      game.title.startsWith(value.trim())
+    );
+    setSuggestions(filtered);
+  };
 
   useEffect(() => {
     const loadGames = async () => {
@@ -110,7 +128,23 @@ const DashboardPage = () => {
             type="text"
             className="main-layout-header-search-box-input"
             placeholder="جستجو..."
+            value={searchTerm}
+            onChange={handleSearch}
           />
+
+          {suggestions.length > 0 && (
+            <ul className={styles.searchDropdown}>
+              {suggestions.map((game) => (
+                <li
+                  key={game.id}
+                  onClick={() => navigate(`/dashboard/${game.id}`)}
+                  className={styles.searchSuggestionItem}
+                >
+                  {game.title}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         <div className="main-layout-header-brand">
@@ -123,8 +157,8 @@ const DashboardPage = () => {
         </div>
       </div>
 
-      <div className={`${styles.dashboardToolbar} px-4 py-3`}>
-        <div className="d-flex justify-content-between align-items-center mb-3">
+      {/* <div className={`${styles.dashboardToolbar} px-4 py-3`}> */}
+      {/* <div className="d-flex justify-content-between align-items-center mb-3">
           <h2 className={styles.dashboardTitle}>مدیریت بازی‌ها</h2>
           <div
             className={`d-flex align-items-center gap-2 ${styles.dashboardUser}`}
@@ -132,9 +166,9 @@ const DashboardPage = () => {
             <span className={styles.userAvatar}>👤</span>
             <span className={styles.userName}>{username} ▼</span>
           </div>
-        </div>
+        </div> */}
 
-        <div
+      {/* <div
           className={`d-flex justify-content-between align-items-center flex-wrap gap-3 ${styles.toolbarBottom}`}
         >
           <span className={styles.filterLabel}>لیست بازی‌ها</span>
@@ -157,8 +191,8 @@ const DashboardPage = () => {
           <div
             className={`d-flex align-items-center gap-2 mx-auto ${styles.shiftedSelect}`}
           ></div>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
 
       <div className={`${styles.dashboardContainer} px-4 py-4`}>
         <div className={`${styles.gameList} d-flex flex-column gap-4`}>
