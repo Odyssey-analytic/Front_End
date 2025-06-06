@@ -133,17 +133,22 @@ const DashboardPage = () => {
           />
 
           {suggestions.length > 0 && (
-            <ul className={styles.searchDropdown}>
-              {suggestions.map((game) => (
-                <li
-                  key={game.id}
-                  onClick={() => navigate(`/dashboard/${game.id}`)}
-                  className={styles.searchSuggestionItem}
-                >
-                  {game.title}
-                </li>
-              ))}
-            </ul>
+<ul className={styles.searchDropdown}>
+  {suggestions.map((game) => (
+    <li
+      key={game.id}
+      onClick={() => navigate(`/dashboard/${game.id}`)}
+      className={styles.searchSuggestionItem}
+    >
+      <img src={game.icon} alt={game.title} className={styles.searchSuggestionIcon} />
+      <div className={styles.searchSuggestionText}>
+        <div className={styles.searchSuggestionTitle}>{game.title}</div>
+        <div className={styles.searchSuggestionDescription}>{game.description}</div>
+      </div>
+    </li>
+  ))}
+</ul>
+
           )}
         </div>
 
@@ -156,43 +161,6 @@ const DashboardPage = () => {
           />
         </div>
       </div>
-
-      {/* <div className={`${styles.dashboardToolbar} px-4 py-3`}> */}
-      {/* <div className="d-flex justify-content-between align-items-center mb-3">
-          <h2 className={styles.dashboardTitle}>مدیریت بازی‌ها</h2>
-          <div
-            className={`d-flex align-items-center gap-2 ${styles.dashboardUser}`}
-          >
-            <span className={styles.userAvatar}>👤</span>
-            <span className={styles.userName}>{username} ▼</span>
-          </div>
-        </div> */}
-
-      {/* <div
-          className={`d-flex justify-content-between align-items-center flex-wrap gap-3 ${styles.toolbarBottom}`}
-        >
-          <span className={styles.filterLabel}>لیست بازی‌ها</span>
-          <div className="d-flex align-items-center gap-2">
-            <a
-              href="https://github.com/Odyssey-analytic/SDK"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.downloadKitBtn}
-            >
-              دانلود Starter Kit
-            </a>
-            <button
-              className={styles.addGameBtn}
-              onClick={() => navigate("/welcome")}
-            >
-              ➕ افزودن بازی جدید
-            </button>
-          </div>
-          <div
-            className={`d-flex align-items-center gap-2 mx-auto ${styles.shiftedSelect}`}
-          ></div>
-        </div> */}
-      {/* </div> */}
 
       <div className={`${styles.dashboardContainer} px-4 py-4`}>
         <div className={`${styles.gameList} d-flex flex-column gap-4`}>
