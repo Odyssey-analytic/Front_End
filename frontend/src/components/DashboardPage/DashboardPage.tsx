@@ -115,12 +115,12 @@ const DashboardPage = () => {
             <button className={styles["add-game-btn"]} onClick={() => navigate('/welcome')}>➕ افزودن بازی جدید</button>
           </div>
           <div className={`d-flex align-items-center gap-2 mx-auto ${styles["shifted-select"]}`}>
-            <select className={`${styles["filter-dropdown"]}`}>
+            {/* <select className={`${styles["filter-dropdown"]}`}>
               <option>Mobile only</option>
             </select>
             <select className={`${styles["filter-dropdown"]}`}>
               <option>Recently Used</option>
-            </select>
+            </select> */}
           </div>
         </div>
       </div>
