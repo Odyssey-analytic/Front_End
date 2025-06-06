@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Line } from 'react-chartjs-2';
+import { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   Chart,
@@ -14,21 +14,30 @@ import {
   Filler,
   ChartOptions,
   ChartData,
-} from 'chart.js';
-import ChartCardWrapper from '../ChartsPage_CardWrapper/ChartsPage_CardWrapper';
-import styles from './ActiveUsersKPI.module.css';
+} from "chart.js";
+import ChartCardWrapper from "../ChartsPage_CardWrapper/ChartsPage_CardWrapper";
+import styles from "./ActiveUsersKPI.module.css";
 
-ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend, Filler);
+ChartJS.register(
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+);
 
 const AreaChartKPI = () => {
-  const [chartData, setChartData] = useState<ChartData<'line'>>({
+  const [chartData, setChartData] = useState<ChartData<"line">>({
     labels: [],
     datasets: [
       {
-        label: 'تعداد کاربران',
+        label: "تعداد کاربران",
         data: [],
-        borderColor: '#00C4FF',
-        backgroundColor: 'rgba(0, 196, 255, 0.2)',
+        borderColor: "#00C4FF",
+        backgroundColor: "rgba(0, 196, 255, 0.2)",
         tension: 0.4,
         fill: true,
         pointRadius: 0,
@@ -50,7 +59,6 @@ const AreaChartKPI = () => {
   //   values.push(0);
   // }
 
-
   //   setChartData(prev => ({
   //     labels,
   //     datasets: [
@@ -64,7 +72,7 @@ const AreaChartKPI = () => {
   //   const searchParams = new URLSearchParams(window.location.search);
   //   const token = searchParams.get('token') || '';
 
-  //   const interval = 30; // 10 ,30 ,60 
+  //   const interval = 30; // 10 ,30 ,60
   //   const now = new Date();
   //   const utcMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
   //   const isoMidnight = utcMidnight.toISOString().split('.')[0] + 'Z';
@@ -72,16 +80,12 @@ const AreaChartKPI = () => {
   //   `https://odysseyanalytics.ir/api/kpi/sse/EventCount?product_id=${productId}&start_time=${isoMidnight}&update_interval=${interval}&token=${token}`
   // );
 
-
-
-
   //   sseRef.current.onmessage = (event: MessageEvent) => {
   //     const { timestamp, value } = JSON.parse(event.data);
   //     const date = new Date(timestamp);
   //     const hour = date.getHours();
   //     const minute = date.getMinutes();
-  //     const index = hour; 
-
+  //     const index = hour;
 
   //     setChartData(prev => {
   //       const updatedData = [...(prev.datasets[0].data || [])];
@@ -109,47 +113,51 @@ const AreaChartKPI = () => {
   //   };
   // }, []);
 
-useEffect(() => {
-  const labels: string[] = [];
-  const values: (number | null)[] = [];
+  useEffect(() => {
+    const labels: string[] = [];
+    const values: (number | null)[] = [];
 
-  for (let i = 0; i < 24; i++) {
-    const label = `${i.toString().padStart(2, '0')}:00`;
-    labels.push(label);
+    const currentHour = new Date().getHours(); // ساعت فعلی سیستم
 
-    // فقط برای ساعت‌های 0 تا 13 داده تولید می‌کنیم
-    if (i <= 13) {
-      values.push(Math.floor(Math.random() * 100)); // مقدار واقعی
-    } else {
-      values.push(0); // داده‌ای هنوز دریافت نشده
+    for (let i = 0; i < 24; i++) {
+      const label = `${i.toString().padStart(2, "0")}:00`;
+      labels.push(label);
+
+      if (i <= currentHour) {
+        values.push(Math.floor(Math.random() * 100)); 
+      } else {
+        values.push(null); 
+      }
     }
-  }
 
-  setChartData(prev => ({
-    labels,
-    datasets: [
-      {
-        ...prev.datasets[0],
-        data: values,
-      },
-    ],
-  }));
-}, []);
-
+    setChartData((prev) => ({
+      labels,
+      datasets: [
+        {
+          ...prev.datasets[0],
+          data: values,
+        },
+      ],
+    }));
+  }, []);
 
   const movingDotPlugin = {
-    id: 'movingDot',
+    id: "movingDot",
     afterDraw(chart: Chart) {
       const { ctx } = chart;
-      const dataset = chart.data.datasets[0];
       const meta = chart.getDatasetMeta(0);
       const points = meta.data;
 
       if (!points || points.length === 0) return;
 
-      const now = Date.now();
+      const currentHour = new Date().getHours();
+      const maxIndex = Math.min(currentHour, points.length - 1);
+
+      if (maxIndex < 1) return; // اگر فقط یک نقطه هست، انیمیشن لازم نیست
+
       const duration = 6000;
-      const progress = ((now % duration) / duration) * (points.length - 1);
+      // console.log(Date.now())
+      const progress = ((Date.now() % duration) / duration) * maxIndex;
 
       const leftIndex = Math.floor(progress);
       const rightIndex = Math.ceil(progress);
@@ -166,8 +174,8 @@ useEffect(() => {
       ctx.save();
       ctx.beginPath();
       ctx.arc(x, y, 6, 0, Math.PI * 2);
-      ctx.fillStyle = '#00C4FF';
-      ctx.shadowColor = '#00C4FF';
+      ctx.fillStyle = "#00C4FF";
+      ctx.shadowColor = "#00C4FF";
       ctx.shadowBlur = 12;
       ctx.fill();
       ctx.restore();
@@ -178,7 +186,9 @@ useEffect(() => {
     let animationFrameId: number;
 
     const animate = () => {
-      const chartInstance = Chart.getChart('myAnimatedChartId') as Chart | undefined;
+      const chartInstance = Chart.getChart("myAnimatedChartId") as
+        | Chart
+        | undefined;
       if (chartInstance) {
         chartInstance.draw();
       }
@@ -190,15 +200,15 @@ useEffect(() => {
     return () => cancelAnimationFrame(animationFrameId);
   }, []);
 
-  const options: ChartOptions<'line'> = {
+  const options: ChartOptions<"line"> = {
     responsive: true,
     maintainAspectRatio: false,
     animation: {
       duration: 1200,
-      easing: 'easeInOutQuart',
+      easing: "easeInOutQuart",
     },
     interaction: {
-      mode: 'index',
+      mode: "index",
       intersect: false,
     },
     plugins: {
@@ -207,53 +217,53 @@ useEffect(() => {
       },
       tooltip: {
         enabled: true,
-        backgroundColor: '#ffffff',
-        titleColor: '#000',
-        bodyColor: '#000',
-        borderColor: '#00C4FF',
+        backgroundColor: "#ffffff",
+        titleColor: "#000",
+        bodyColor: "#000",
+        borderColor: "#00C4FF",
         borderWidth: 1,
         callbacks: {
-        title: (tooltipItems) => {
-          const hourLabel = tooltipItems[0].label;
-          const [h, m] = hourLabel.split(':').map(Number);
-          const endHour = m === 0 ? h : (h + 1) % 24;
-          const endMin = m === 0 ? 30 : 0;
+          title: (tooltipItems) => {
+            const hourLabel = tooltipItems[0].label;
+            const [h, m] = hourLabel.split(":").map(Number);
+            const endHour = m === 0 ? h : (h + 1) % 24;
+            const endMin = m === 0 ? 30 : 0;
 
-          const format = (num: number) => num.toString().padStart(2, '0');
-          const start = `${format(h)}:${format(m)}`;
-          const end = `${format(endHour)}:${format(endMin)}`;
+            const format = (num: number) => num.toString().padStart(2, "0");
+            const start = `${format(h)}:${format(m)}`;
+            const end = `${format(endHour)}:${format(endMin)}`;
 
-          return `ساعت: ${start} تا ${end}`;
-        },
+            return `ساعت: ${start} تا ${end}`;
+          },
           label: (context) => `تعداد کاربران: ${context.formattedValue}`,
         },
       },
-      ...( { movingDot: {} } as Record<string, any> )
+      ...({ movingDot: {} } as Record<string, any>),
     },
     scales: {
       x: {
         ticks: {
-          color: '#ccc',
+          color: "#ccc",
           maxRotation: 0,
           minRotation: 0,
           autoSkip: false,
           callback: function (val, index) {
             const label = this.getLabelForValue(val as number);
-            const [h, m] = label.split(':').map(Number);
-            return m === 0 ? label : '';
+            const [h, m] = label.split(":").map(Number);
+            return m === 0 ? label : "";
           },
         },
         grid: {
-          color: 'rgba(255,255,255,0.05)',
+          color: "rgba(255,255,255,0.05)",
         },
       },
       y: {
         beginAtZero: true,
         ticks: {
-          color: '#ccc',
+          color: "#ccc",
         },
         grid: {
-          color: 'rgba(255,255,255,0.05)',
+          color: "rgba(255,255,255,0.05)",
         },
       },
     },
@@ -262,7 +272,12 @@ useEffect(() => {
   return (
     <ChartCardWrapper title="نمودار تعداد کاربران" customHeight="500px">
       <div className={styles.glassChart}>
-        <Line id="myAnimatedChartId" data={chartData} options={options} plugins={[movingDotPlugin]} />
+        <Line
+          id="myAnimatedChartId"
+          data={chartData}
+          options={options}
+          plugins={[movingDotPlugin]}
+        />
       </div>
     </ChartCardWrapper>
   );

@@ -20,7 +20,7 @@ import {
 import styles from "./ChartsPage_SideBar.module.css";
 import GameLogo from "../../../../public/icons/game-ghost-icon.svg";
 import dashboard_logout_panel_icon from "../../../../public/icons/dashboard_panel_icon.svg";
-
+import dashboard_sidebar_user_icon from "../../../../public/icons/dashboard_sidebar_user_icon.svg";
 
 
 const menuItems = [
@@ -274,15 +274,10 @@ const ChartsPage_SideBar = () => {
       </nav>
       <div className={styles.profileSection}>
         <div className={styles.profileInfo}>
-          <img
-            src="/icons/sample-avatar.png"
-            alt="Avatar"
-            className={styles.avatar}
-          />
+          <img src={dashboard_sidebar_user_icon} alt="Avatar" className={styles.avatar}/>
           {!collapsed && (
             <div>
               <div className={styles.profileName}>{username}</div>
-              {/* <div className={styles.profileRole}>ادمین</div> */}
             </div>
           )}
         </div>
