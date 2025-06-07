@@ -119,7 +119,7 @@ const LandingPage_Testimonials: React.FC = () => {
           speed={3500}
           autoplay={{ delay: 0, disableOnInteraction: false, reverseDirection: true }}
           allowTouchMove={false}
-          style={{ marginTop: "50px" }}
+          style={{ marginTop: "20px" }}
         >
           {renderSlides(true)}
         </Swiper>

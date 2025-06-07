@@ -42,14 +42,6 @@ const LandingPage_HowToStart: React.FC = () => {
           const direction = index % 2 === 0 ? -60 : 60;
 
           return (
-            // <motion.div
-            //   key={index}
-            //   className={styles.stepItem}
-            //   initial={{ opacity: 0, y: direction }}
-            //   whileInView={{ opacity: 1, y: 0 }}
-            //   transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.25 }}
-            //   viewport={{ once: false, amount: 0.3 }} // re-triggers when in view
-            // >
             <motion.div
               key={index}
               className={styles.stepItem}

@@ -1,17 +1,16 @@
-/* ======================= Wrapper for whole landing page =================== */
+/* ========== Wrapper for whole landing page ========== */
 .wrapper {
   position: relative;
   width: 100%;
   overflow-x: hidden;
 }
 
-/* ======================= Background image of landing page =================== */
+/* ========== Background image of landing page ========== */
 .backgroundImage {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-
   max-height: 100%;
   z-index: 0;
 }
@@ -21,12 +20,11 @@
   top: 0;
   left: 0;
   width: 100%;
-
-  max-height: 85%;
+  max-height: 80%;
   z-index: 0;
 }
 
-/* ======================= Wrapper for all landing content (above background) =================== */
+/* ========== Wrapper for all landing content (above background) ========== */
 .contentWrapper {
   position: relative;
   z-index: 2;
@@ -34,39 +32,90 @@
   margin-top: 80px;
 }
 
-/* ======================= Wrapper for all main vertical sections =================== */
+/* ========== Wrapper for all main vertical sections ========== */
 .mainSections {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 10px;
 }
 
-/* ======================= Reusable section style =================== */
+@media (max-width: 480px) {
+  .mainSections {
+    gap: 40px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .mainSections {
+    gap: 60px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mainSections {
+    gap: 80px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1500px) {
+  .mainSections {
+    gap: -10px;
+  }
+}
+
+/* ========== Reusable section style ========== */
 .section {
   min-height: 120vh;
   overflow-x: hidden;
   overflow-y: hidden;
-
-  justify-content: flex-start; 
+  justify-content: flex-start;
   color: white;
   position: relative;
   z-index: 2;
 }
 
-/* ======================= Animation for loading content (before visible) =================== */
-/* .hiddenOnLoad {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: all 1s ease-out;
-} */
+@media (max-width: 480px) {
+  .section {
+    min-height: auto;
+    padding: 60px 0;
+  }
+}
 
-/* ======================= Applied when section becomes visible =================== */
+@media (min-width: 481px) and (max-width: 768px) {
+  .section {
+    min-height: auto;
+    padding: 70px 0;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .section {
+    min-height: 50vh;
+    padding: 80px 0;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .section {
+    min-height: 110vh;
+    padding: 90px 0;
+  }
+}
+
+@media (min-width: 1281px) {
+  .section {
+    min-height: 100vh;
+    padding: 100px 0;
+  }
+}
+
+/* ========== Applied when section becomes visible ========== */
 .animate {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ======================= Title wrapper inside section with line under it =================== */
+/* ========== Title wrapper inside section with line under it ========== */
 .titleWrapper {
   display: flex;
   flex-direction: column;
@@ -84,14 +133,13 @@
   margin-top: 8px;
 }
 
-/* ======================= Section1 Content =================== */
+/* ========== Section1 Content ========== */
 .featuresText {
   text-align: right;
   position: absolute;
   right: 53%;
-  top: 12%;                          
-
-  width: clamp(180px, 35vw, 650px);  
+  top: 12%;
+  width: clamp(180px, 35vw, 650px);
   height: clamp(180px, 33vw, 650px);
 }
 
@@ -117,10 +165,10 @@
   left: 73%;
   bottom: 53%;
   width: clamp(100px, 35vw, 400px);
-  z-index: 10;  
+  z-index: 10;
 }
 
-/* ======================= Section2 Content =================== */
+/* ========== Section2 Content ========== */
 .servicesTitleWrapper {
   position: absolute;
   display: flex;
@@ -133,11 +181,9 @@
 
 .servicesTitleBox {
   background-color: rgba(85, 166, 188, 0.3);
-  
   color: #63c6e4;
   padding: 12px 20px;
   border-radius: 3px;
-
   font-size: 0.9rem;
   font-weight: 300;
   white-space: nowrap;
@@ -157,7 +203,7 @@
   width: 100%;
 }
 
-/* ======================= Section3 Content =================== */
+/* ========== Section3 Content ========== */
 .testimonialsTitleWrapper {
   position: absolute;
   display: flex;
@@ -170,14 +216,13 @@
 
 .testimonialsTitleBox {
   background-color: rgba(85, 166, 188, 0.3);
-  
   color: #63c6e4;
   padding: 12px 20px;
   border-radius: 3px;
-
   font-size: 0.9rem;
   font-weight: 300;
   white-space: nowrap;
+  margin-top: 10%;
 }
 
 .testimonialsTitleLine {
@@ -191,10 +236,10 @@
   display: flex;
   position: absolute;
   top: 20%;
-  width: 100%;  
+  width: 100%;
 }
 
-/* ======================= Section4 Content =================== */
+/* ========== Section4 Content ========== */
 .startTitleWrapper {
   position: absolute;
   display: flex;
@@ -207,11 +252,10 @@
 
 .startTitleBox {
   background-color: rgba(85, 166, 188, 0.3);
-  
   color: #63c6e4;
   padding: 12px 20px;
   border-radius: 3px;
-
+  margin-top: -10%;
   font-size: 0.9rem;
   font-weight: 300;
   white-space: nowrap;
@@ -226,38 +270,31 @@
 
 .startInsidePart {
   display: flex;
-  /* position: absolute; */
   top: 25%;
   width: 100%;
   padding: 100px 20px;
-  }
+}
 
-
-  /* موبایل: تک ستونه */
 @media (max-width: 768px) {
   .startInsidePart {
     grid-template-columns: 1fr;
   }
 }
 
-/* تبلت: دو ستونه */
 @media (min-width: 769px) and (max-width: 1024px) {
   .startInsidePart {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  
 }
 
-/* دسکتاپ: چهار ستونه */
 @media (min-width: 1025px) {
   .startInsidePart {
     grid-template-columns: repeat(4, 1fr);
-    padding-top: 130px; 
+    padding-top: 130px;
   }
 }
 
-/* ======================= Section5 Content =================== */
+/* ========== Section5 Content ========== */
 .achievementsTitleWrapper {
   position: absolute;
   display: flex;
@@ -270,11 +307,9 @@
 
 .achievementsTitleBox {
   background-color: rgba(85, 166, 188, 0.3);
-  
   color: #63c6e4;
   padding: 12px 20px;
   border-radius: 3px;
-
   font-size: 0.9rem;
   font-weight: 300;
   white-space: nowrap;
@@ -291,10 +326,10 @@
   display: flex;
   position: absolute;
   top: 25%;
-  width: 100%;  
+  width: 100%;
 }
 
-/* ======================= Section6 Content =================== */
+/* ========== Section6 Content ========== */
 .youtubeTitleWrapper {
   position: absolute;
   display: flex;
@@ -307,11 +342,9 @@
 
 .youtubeTitleBox {
   background-color: rgba(85, 166, 188, 0.3);
-
   color: #63c6e4;
   padding: 12px 20px;
   border-radius: 3px;
-
   font-size: 0.9rem;
   font-weight: 300;
   white-space: nowrap;
@@ -328,22 +361,19 @@
   display: flex;
   position: absolute;
   top: 25%;
-  width: 100%;  
+  width: 100%;
 }
 
-/* ======================= Section7 Content - footer =================== */
-
+/* ========== Section7 Content - Footer ========== */
 .contactInsidePart {
   display: flex;
   position: absolute;
   top: 17%;
   width: 100%;
-  height: 100%;  
+  height: 100%;
 }
 
-/* ======================= Responsive Breakpoints ======================= */
-
-/* 📱 موبایل متوسط: 481px تا 768px */
+/* ========== Responsive Breakpoints ========== */
 @media (min-width: 481px) and (max-width: 768px) {
   .featuresText {
     top: 18%;
@@ -362,15 +392,12 @@
 
   .section1_year_img {
     position: absolute;
-
     left: 74%;
     bottom: 61%;
-  
-    width: clamp(100px, 30vw, 330px);  
+    width: clamp(100px, 30vw, 330px);
   }
 }
 
-/* 💻 تبلت: 769px تا 1024px */
 @media (min-width: 769px) and (max-width: 1024px) {
   .featuresText {
     top: 18%;
@@ -388,15 +415,12 @@
 
   .section1_year_img {
     position: absolute;
-
     left: 73%;
     bottom: 61%;
-  
-    width: clamp(100px, 30vw, 350px);  
+    width: clamp(100px, 30vw, 350px);
   }
 }
 
-/* 💻 لپ‌تاپ: 1025px تا 1280px */
 @media (min-width: 1025px) and (max-width: 1280px) {
   .featuresText {
     top: 20%;
@@ -414,7 +438,6 @@
   }
 }
 
-/* 🖥️ دسکتاپ عریض: 1281px تا 1440px */
 @media (min-width: 1281px) and (max-width: 1440px) {
   .featuresText {
     top: 10%;
@@ -424,14 +447,13 @@
 
   .section1_year_img {
     position: absolute;
-
     left: 75%;
     bottom: 55%;
-  
-    width: clamp(100px, 35vw, 400px);  
+    width: clamp(100px, 35vw, 400px);
   }
 }
 
+/* ========== Scroll to Top Button ========== */
 .scrollToTopButton {
   position: fixed;
   bottom: 30px;
@@ -446,7 +468,7 @@
   height: 48px;
   font-size: 24px;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s ease;
 }
 

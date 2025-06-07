@@ -16,6 +16,7 @@ import FirstSectionBackGround from "../../../../src/assets/images/FirstSectionBa
 
 const LandingPage: React.FC = () => {
   useEffect(() => {
+    // ========== Intersection Observer to animate hidden sections ============
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -34,8 +35,8 @@ const LandingPage: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // =============== Auto Snap to Closest Section After Scroll Stop =================
   useEffect(() => {
+    // ========== Auto Snap to Closest Section After Scroll Stop ============
     let timeoutId: ReturnType<typeof setTimeout>;
 
     const scrollToClosestSection = () => {
@@ -83,10 +84,12 @@ const LandingPage: React.FC = () => {
         className={styles.backgroundImage}
       />
 
+      {/* ========== Fixed Navbar ============ */}
       <LandingPage_Navbar />
 
       <div className={styles.contentWrapper}>
         <main className={styles.mainSections}>
+          {/* ========== Section 1 - Features ============ */}
           <section
             id="features"
             className={`${styles.section} ${styles.hiddenOnLoad}`}
@@ -113,6 +116,7 @@ const LandingPage: React.FC = () => {
             <LandingPage_InsightOrbit />
           </section>
 
+          {/* ========== Section 2 - Services ============ */}
           <section
             id="services"
             className={`${styles.section} ${styles.hiddenOnLoad}`}
@@ -126,6 +130,7 @@ const LandingPage: React.FC = () => {
             </div>
           </section>
 
+          {/* ========== Section 3 - Testimonials ============ */}
           <section id="testimonials" className={styles.section}>
             <div className={styles.testimonialsTitleWrapper}>
               <div className={styles.testimonialsTitleBox}>نظرات کاربران</div>
@@ -136,6 +141,7 @@ const LandingPage: React.FC = () => {
             </div>
           </section>
 
+          {/* ========== Section 4 - How to Start ============ */}
           <section id="start" className={styles.section}>
             <div className={styles.startTitleWrapper}>
               <div className={styles.startTitleBox}>نحوه شروع</div>
@@ -146,6 +152,7 @@ const LandingPage: React.FC = () => {
             </div>
           </section>
 
+          {/* ========== Section 5 - Achievements ============ */}
           <section
             id="achievements"
             className={`${styles.section} ${styles.hiddenOnLoad}`}
@@ -159,6 +166,7 @@ const LandingPage: React.FC = () => {
             </div>
           </section>
 
+          {/* ========== Section 6 - YouTube Guide ============ */}
           <section
             id="youtubeGuide"
             className={`${styles.section} ${styles.hiddenOnLoad}`}
@@ -172,6 +180,7 @@ const LandingPage: React.FC = () => {
             </div>
           </section>
 
+          {/* ========== Section 7 - Contact ============ */}
           <section
             id="contact"
             className={`${styles.section} ${styles.hiddenOnLoad}`}
@@ -183,6 +192,7 @@ const LandingPage: React.FC = () => {
         </main>
       </div>
 
+      {/* ========== Scroll to Top Button ============ */}
       <button
         className={styles.scrollToTopButton}
         onClick={() => {

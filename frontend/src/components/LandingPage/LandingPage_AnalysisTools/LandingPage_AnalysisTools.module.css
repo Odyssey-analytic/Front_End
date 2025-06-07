@@ -8,16 +8,16 @@
 .textContent {
   position: relative;
   right: 8%;
-  top: 10%;
+  top: 7%;
   max-width: 40%;
 }
 
 .title {
-  font-size: 2rem;
+  /* font-size: 2rem; */
   font-weight: bold;
   line-height: 1.6;
   color: white;
-  margin-bottom: 1rem;
+  margin-top: -0.75rem;
 }
 
 .description {
@@ -51,7 +51,7 @@
 }
 
 .serviceItem img {
-  width: clamp(2rem, 4vw, 3.5rem); /* حداقل 2rem، حداکثر 3.5rem بر اساس عرض صفحه */
+  width: clamp(2rem, 3.2vw, 3.5rem); /* حداقل 2rem، حداکثر 3.5rem بر اساس عرض صفحه */
   height: auto; /* ارتفاع خودکار برای حفظ نسبت تصویر */
   flex-shrink: 0; /* جلوگیری از فشرده شدن آیکون‌ها */
 }
@@ -111,7 +111,7 @@
   position: relative;
   justify-content: center;
   right: 55%;
-  bottom: 48%;
+  bottom: 46%;
   max-width: 380px;
 }
 
