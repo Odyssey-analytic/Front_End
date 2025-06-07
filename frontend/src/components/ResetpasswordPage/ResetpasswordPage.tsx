@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import "./ResetpasswordPage.css";
-// import "../AuthPages/AuthPages.css"
+import styles from "./ResetpasswordPage.module.css"; // ✅ استفاده از CSS Module
 
 import odessay_logo from "/public/icons/odessay_logo.svg";
 import signup_padlock_icon from "/public/icons/signup_padlock_icon.svg";
@@ -10,8 +9,6 @@ import successful_signup_icon from "/public/icons/successful_signup_icon.svg";
 import unsuccessful_signup_icon from "/public/icons/unsuccessful_signup_icon.svg";
 
 const ResetpasswordPage = () => {
-  // ============================== State: Loading ==============================
-
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -19,9 +16,7 @@ const ResetpasswordPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [popupStatus, setPopupStatus] = useState<"success" | "error" | "">("");
 
-  // ============================== State: Loading ==============================
   const [isLoading, setIsLoading] = useState(false);
-
   const { token } = useParams();
   const navigate = useNavigate();
 
@@ -30,7 +25,6 @@ const ResetpasswordPage = () => {
 
     let valid = true;
 
-    // ===== Validate password =====
     if (!password.trim()) {
       setPasswordError("رمز عبور را وارد کنید.");
       valid = false;
@@ -38,7 +32,6 @@ const ResetpasswordPage = () => {
       setPasswordError("");
     }
 
-    // ===== Validate confirm password =====
     if (!confirmPassword.trim()) {
       setConfirmPasswordError("تأیید رمز عبور را وارد کنید.");
       valid = false;
@@ -76,36 +69,36 @@ const ResetpasswordPage = () => {
       setTimeout(() => navigate("/"), 2000);
     } catch (error: any) {
       console.error("Reset error:", error.message);
-      // setErrorMessage(error.message || "Failed to reset password. Please try again.");
       setPopupStatus("error");
     } finally {
-      setIsLoading(false); // بعد از موفق یا ناموفق، لودینگ قطع بشه
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="d-flex justify-content-center justify-content-lg-start align-items-center vh-100 reset-page-container px-3">
+    <div className={`d-flex justify-content-center justify-content-lg-start align-items-center vh-100 px-3 ${styles.resetPageContainer}`}>
       {/* ===== Brand ===== */}
       <div className="d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
-        <div className="reset-page-brand-text english-text text-white me-3">
+        <div className={`english-text text-white me-3 ${styles.resetPageBrandText}`}>
           ODESSAY
         </div>
         <img
           src={odessay_logo}
           alt="Odessay Logo"
-          className="reset-logo-img me-4"
+          className={`me-4 ${styles.resetLogoImg}`}
         />
       </div>
 
       {/* ========== Loading ========== */}
       {isLoading && (
-        <div className="reset-loading-overlay">
-          <div className="reset-spinner"></div>
+        <div className={styles.resetLoadingOverlay}>
+          <div className={styles.resetSpinner}></div>
         </div>
       )}
 
+
       {/* ===== Reset Form Box ===== */}
-      <div className="reset-box mx-auto ms-lg-5 position-relative">
+      <div className={`mx-auto ms-lg-5 position-relative ${styles.resetBox}`}>
         <h2 className="fw-bold text-start mb-3 reset-title">تغییر رمز عبور</h2>
 
         <form onSubmit={handleSubmit}>
@@ -160,7 +153,6 @@ const ResetpasswordPage = () => {
             )}
           </div>
 
-          {/* ===== General Server Error ===== */}
           {errorMessage && (
             <div className="alert alert-danger text-center my-2">
               {errorMessage}
