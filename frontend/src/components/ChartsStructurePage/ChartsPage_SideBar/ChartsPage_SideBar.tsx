@@ -16,6 +16,8 @@ import {
   FiGrid,
   FiTool,
   FiChevronDown,
+  FiMenu,
+  FiX,
 } from "react-icons/fi";
 
 import styles from "./ChartsPage_SideBar.module.css";
@@ -23,7 +25,9 @@ import GameLogo from "../../../../public/icons/game-ghost-icon.svg";
 import dashboard_logout_panel_icon from "../../../../public/icons/dashboard_panel_icon.svg";
 import dashboard_sidebar_user_icon from "../../../../public/icons/dashboard_sidebar_user_icon.svg";
 
-import { FiMenu, FiX } from "react-icons/fi";
+// import { FiMenu, FiX } from "react-icons/fi";
+// import { FiMenu, FiX } from "react-icons/fi"; // اضافه کردن آیکون‌های منو و بستن
+
 
 const menuItems = [
   {
@@ -209,13 +213,23 @@ const ChartsPage_SideBar = () => {
             )}
           </div>
 
-          <div
+          {/* <div
             className={styles.toggle}
             onClick={() => setCollapsed(!collapsed)}
             aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
+          </div> */}
+
+          {/* دکمه باز و بسته کردن سایدبار */}
+          <div
+            className={styles.toggle}
+            onClick={toggleCollapse} // فراخوانی تابع toggleCollapse برای تغییر حالت collapsed
+            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          >
+            {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
           </div>
+
         </div>
 
         {dropdownOpen && (
