@@ -85,9 +85,11 @@ const LandingPage: React.FC = () => {
       />
 
       {/* ========== Fixed Navbar ============ */}
-      <LandingPage_Navbar />
+      
+            <LandingPage_Navbar />
 
       <div className={styles.contentWrapper}>
+        
         <main className={styles.mainSections}>
           {/* ========== Section 1 - Features ============ */}
           <section
@@ -99,6 +101,7 @@ const LandingPage: React.FC = () => {
               alt="FirstSectionBackground"
               className={styles.FirstSectionBackGroundImage}
             />
+            
             <div className={styles.featuresText}>
               <h2>
                 هدایت مسیر رشد محصول شما
