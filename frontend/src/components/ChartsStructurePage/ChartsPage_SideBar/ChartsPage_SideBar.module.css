@@ -1,163 +1,73 @@
-.sidebar {
-  width: 230px;
-  background-color: #1f2444;
-  color: #ffffffd2;
-  transition: width 0.3s ease;
-  direction: rtl;
-  display: flex;
-  flex-direction: column;
-}
-
-.collapsed {
-  width: 72px;
-}
-
-.top {
-  display: flex;
-  flex-direction: column;
-  padding: 12px;
-}
-
-.gameHeader {
-  display: flex;
-  flex-direction: column;
-  padding: 12px;
-}
-
-.gameSelectorWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.gameNameWrapper {
-  position: relative;
-}
-
-.gameSelector {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  position: relative;
+/* استایل آیکون همبرگر */
+.hamburgerIcon {
+  font-size: 30px;
   cursor: pointer;
-}
-
-.gameNameBox {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.gameSelectorBox {
-  background-color: #dcdcdc31;
-  padding: 8px 20px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  width: 100%;
-  /* justify-content: center; */
-}
-
-.gameSelectorBox:hover {
-  background-color: #ffffff6c;
-}
-
-.collapsed .gameSelectorBox {
-  background-color: transparent;
-  padding: 0;
-  gap: 0;
-  justify-content: center;
-}
-
-.collapsed .gameName {
-  display: none;
-}
-
-.collapsed .gameLogo {
-  margin: 0 auto;
-}
-
-.gameLogo {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  object-fit: cover;
-}
-
-.gameName {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #ffffffe8;
-}
-
-.dropdownIcon {
-  font-size: 1rem;
-  color: #aaa;
-  transition: transform 0.3s ease;
-}
-
-.rotate {
-  transform: rotate(180deg);
-}
-
-.gameDropdown {
+  z-index: 2001;
   position: absolute;
-  top: 11%;
-  right: 1.5%;
-  background: #d6dbe2;
-  color: #253459;
-  border-radius: 10px;
-  box-shadow: 2px 8px 8px rgba(167, 167, 167, 0.3);
+  top: 20px;
+  left: 20px;
+}
+
+/* استایل سایدبار ثابت برای صفحه‌های بزرگتر از 480px */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 1000;
-  padding: 6px 0;
-  min-width: 200px;
-  animation: dropdownFade 0.2s ease-in-out;
-}
-
-@keyframes dropdownFade {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.gameDropdownItem {
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  transition: background 0.2s;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.gameDropdownItem:hover {
-  background-color: #bec2d3;
-  border-radius: 12px;
-}
-
-.selected {
-  background-color: #4cbbdc33;
-}
-
-.toggle {
-  cursor: pointer;
   display: flex;
-  align-items: center;
-  font-size: 1.2rem;
+  flex-direction: column;
+  padding: 20px;
+  transition: width 0.3s ease;
 }
 
-.divider {
-  margin-top: 12px;
-  border: none;
-  border-top: 1px solid #333;
+.sidebar.collapsed {
+  width: 70px; /* عرض سایدبار زمانی که جمع می‌شود */
 }
 
+.sidebarContent {
+  color: #fff;
+  margin-top: 50px;
+}
+
+/* استایل برای دکمه بستن سایدبار */
+.closeSidebar {
+  font-size: 30px;
+  color: #fff;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 2001;
+}
+
+/* استایل سایدبار کشویی برای صفحه‌های کوچکتر از 480px */
+.sidebarActive {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebarActive .closeSidebar {
+  font-size: 30px;
+  color: #fff;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 2001;
+}
+
+/* استایل منو */
 .menu {
   display: flex;
   flex-direction: column;
@@ -186,170 +96,19 @@
   white-space: nowrap;
 }
 
-.englishPart {
-  font-size: 0.9em;
-  opacity: 0.8;
-  margin-right: 4px;
-}
-
 .active {
   background-color: #00c4ff33;
   border-right: 3px solid #00c4ff;
 }
 
-.subMenu {
-  display: flex;
-  flex-direction: column;
-  margin-top: 2px;
-}
-
-.subMenuItem {
-  padding: 8px 12px;
-  margin: 2px 0;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  font-size: 0.75rem;
-}
-
-.subMenuItem:hover {
-  background-color: #00c3ff57;
-}
-
-.subMenuItem .menuContent {
-  padding-right: 12px;
-}
-
-.iconMain {
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-}
-
-.iconSub {
-  font-size: 16px;
-}
-
-.chevron {
-  margin-right: auto;
-  display: flex;
-  align-items: center;
-  font-size: 0.8rem;
-  color: #888;
-}
-
-.profileSection {
-  margin-top: auto;
-  padding: 12px;
-  border-top: 1px solid #333;
-  background-color: #1f2444;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.profileInfo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.avatar {
-  width: 26px;
-  height: 26px;
-  object-fit: cover;
-}
-
-.profileName {
-  font-size: 0.9rem;
-  font-weight: bold;
-  margin-right: -10%;
-  color: #fff;
-}
-
-.profileRole {
-  font-size: 0.75rem;
-  color: #bbb;
-}
-
-.logoutBtn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  color: #ffffffc9;
-  transition: color 0.2s ease;
-}
-
-.logoutBtn:hover {
-  color: #00c4ff;
-}
-
-.logoutIcon {
-  width: 20px;
-  height: 20px;
-  margin-bottom: 2%;
-  object-fit: contain;
-}
-
-/*/////////////////// Responsivity /////////////////////*/
-
-
-
-
-/* For screens smaller than 480px */
+/* برای صفحه‌های کوچکتر از 480px */
 @media (max-width: 480px) {
-
-  /* برای آیکون‌ها (حالا تصویر جایگزین آیکون‌ها شده است) */
-.hamburgerIcon, .closeSidebar {
-  cursor: pointer; /* اضافه کردن pointer برای نشانگر موس قابل کلیک */
-  z-index: 2001; /* اطمینان از اینکه آیکون‌ها در بالای دیگر عناصر قرار دارند */
-}
-
-/*///////// سایدبار ///////////*/
-.sidebar {
-  display: none; /* سایدبار به طور پیش‌فرض پنهان است */
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.6); /* بک‌گراند کمرنگ */
-  z-index: 1000; /* اطمینان از اینکه سایدبار در پایین‌تر از آیکون‌ها قرار بگیرد */
-  flex-direction: column;
-  padding: 20px;
-}
-
-.sidebar.active {
-  display: flex; /* زمانی که کلاس active به سایدبار اضافه می‌شود، نمایش داده می‌شود */
-}
-
-.closeSidebar img {
-  width: 30px; /* اندازه تصویر */
-  height: 30px; /* اندازه تصویر */
-}
-
-
   .hamburgerIcon {
     display: inline-block;
     font-size: 25px;
     color: #201eb5;
     cursor: pointer;
     margin-left: 10px;
-  }
-
-  .hamburgerIcon.active {
-    display: none; /* سایدبار به طور پیش‌فرض پنهان است */
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* بک‌گراند کمرنگ */
-    z-index: 1000; /* اطمینان از اینکه سایدبار در پایین‌تر از آیکون‌ها قرار بگیرد */
-    flex-direction: column;
-    padding: 20px;
   }
 
   .closeSidebar {
@@ -360,53 +119,5 @@
     right: 20px;
     cursor: pointer;
     z-index: 2001;
-  }
-
-  .closeSidebar img {
-    width: 30px; /* اندازه تصویر */
-    height: 30px; /* اندازه تصویر */
-  }
-}
-
-
-/* Additional responsivity settings */
-@media (min-width: 481px) {
-  .hamburgerIcon {
-    display: none;
-  }
-}
-
-
-/* For screens between 480px and 768px */
-@media (max-width: 768px) and (min-width: 481px) {
-  .sidebar {
-    display: flex;
-    width: 200px;
-  }
-
-  .collapsed {
-    width: 60px;
-  }
-
-  .hamburgerIcon,
-  .closeSidebar {
-    display: none;
-  }
-}
-
-/* For screens larger than 768px */
-@media (min-width: 768px) {
-  .sidebar {
-    display: flex;
-    width: 230px;
-  }
-
-  .collapsed {
-    width: 75px;
-  }
-
-  .hamburgerIcon,
-  .closeSidebar {
-    display: none;
   }
 }
