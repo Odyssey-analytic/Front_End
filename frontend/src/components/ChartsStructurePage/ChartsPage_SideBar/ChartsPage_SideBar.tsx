@@ -17,11 +17,13 @@ import {
   FiTool,
   FiChevronDown,
 } from "react-icons/fi";
+
 import styles from "./ChartsPage_SideBar.module.css";
 import GameLogo from "../../../../public/icons/game-ghost-icon.svg";
 import dashboard_logout_panel_icon from "../../../../public/icons/dashboard_panel_icon.svg";
 import dashboard_sidebar_user_icon from "../../../../public/icons/dashboard_sidebar_user_icon.svg";
 
+import { FiMenu, FiX } from "react-icons/fi";
 
 const menuItems = [
   {
@@ -145,7 +147,10 @@ const menuItems = [
 const ChartsPage_SideBar = () => {
 
   const navigate = useNavigate();
+
+  const [sidebarActive, setSidebarActive] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+
   const [activeIndex, setActiveIndex] = useState<string | number>(0);
   const [openSections, setOpenSections] = useState<number[]>([]);
   const [selectedGame, setSelectedGame] = useState("بازی A");
@@ -164,9 +169,34 @@ const ChartsPage_SideBar = () => {
     );
   };
 
+  const toggleSidebar = () => {
+    setSidebarActive(!sidebarActive);
+  };
+
+  const toggleCollapse = () => {
+    setCollapsed(!collapsed); 
+  };
   
   return (
-    <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}>
+
+  <div>
+    <div
+      className={`${styles.hamburgerIcon} ${window.innerWidth < 480 ? "" : styles.hidden}`}
+      onClick={toggleSidebar}
+    >
+      <FiMenu />
+    </div>
+
+    {/* <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}> */}
+    <aside className={`${styles.sidebar} ${sidebarActive ? "active" : ""} ${collapsed ? styles.collapsed : ""}`}>
+      <div
+        className={`${styles.closeSidebar} ${window.innerWidth < 480 ? "" : styles.hidden}`}
+        onClick={toggleSidebar}
+      >
+        <FiX />
+      </div>
+
+
       <div className={styles.gameHeader}>
         <div className={styles.gameSelectorWrapper}>
           <div
@@ -295,6 +325,7 @@ const ChartsPage_SideBar = () => {
         </div>
       </div>
     </aside>
+  </div>
   );
 };
 

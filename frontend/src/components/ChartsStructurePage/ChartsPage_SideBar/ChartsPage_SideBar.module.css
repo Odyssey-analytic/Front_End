@@ -292,3 +292,72 @@
   margin-bottom: 2%;
   object-fit: contain;
 }
+
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
+  }
+  .collapsed {
+    width: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 180px;
+  }
+  .collapsed {
+    width: 50px;
+  }
+}
+
+/* @media (max-width: 481px) {
+  .sidebar {
+    width: 150px;
+  }
+  .collapsed {
+    width: 40px; 
+  }
+} */
+
+/* برای صفحه‌های کمتر از 480px */
+@media (max-width: 480px) {
+  .sidebar {
+    display: none; /* سایدبار به طور پیش‌فرض مخفی است */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* پس‌زمینه کمرنگ */
+    z-index: 1000;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .sidebar.active {
+    display: flex; /* وقتی کلاس active اضافه می‌شود، سایدبار نمایش داده می‌شود */
+  }
+
+  /* آیکون سه‌خطی برای باز کردن سایدبار */
+  .hamburger-icon {
+    display: block;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2000;
+  }
+
+  /* دکمه بستن سایدبار */
+  .close-sidebar {
+    font-size: 30px;
+    color: #fff;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+}

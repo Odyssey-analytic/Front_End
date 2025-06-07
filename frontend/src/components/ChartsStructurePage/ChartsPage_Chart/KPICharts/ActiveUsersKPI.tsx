@@ -261,11 +261,11 @@ const AreaChartKPI = () => {
               return index % 5 === 0 ? label : "";
             } 
             // If the screen width is less than 768px but greater than or equal to 481px, show the label every 3rd hour
-            else if (screenWidth < 768) {
+            else if (screenWidth < 769) {
               return index % 3 === 0 ? label : "";
             } 
             // If the screen width is less than 1024px but greater than or equal to 768px, show the label every 2nd hour
-            else if (screenWidth < 1024) {
+            else if (screenWidth < 1025) {
               return index % 2 === 0 ? label : "";
             }
 
