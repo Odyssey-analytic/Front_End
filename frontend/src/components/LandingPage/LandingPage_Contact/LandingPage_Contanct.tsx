@@ -2,9 +2,13 @@ import styles from './LandingPage_Contanct.module.css';
 
 const LandinPage_Contact = () => {
   return (
+    // ========== Footer Wrapper ==========
     <footer className={styles.footer}>
+      
+      {/* ========== Main Content Columns ========== */}
       <div className={styles.container}>
-
+        
+        {/* ========== Brand Column ========== */}
         <div className={styles.columnBrand}>
           <h2 className={styles.logo}>اودیسه</h2>
           <p className={styles.description}>
@@ -16,6 +20,7 @@ const LandinPage_Contact = () => {
           </a>
         </div>
 
+        {/* ========== Services Column ========== */}
         <div className={styles.column}>
           <h3 className={styles.heading}>خدمات ما</h3>
           <ul className={styles.list}>
@@ -26,6 +31,7 @@ const LandinPage_Contact = () => {
           </ul>
         </div>
 
+        {/* ========== More Info Column ========== */}
         <div className={styles.column}>
           <h3 className={styles.heading}>اطلاعات بیشتر</h3>
           <ul className={styles.list}>
@@ -35,6 +41,7 @@ const LandinPage_Contact = () => {
           </ul>
         </div>
 
+        {/* ========== Contact Methods Column ========== */}
         <div className={styles.column}>
           <h3 className={styles.heading}>راه‌های ارتباطی</h3>
           <ul className={styles.list}>
@@ -46,6 +53,7 @@ const LandinPage_Contact = () => {
         </div>
       </div>
 
+      {/* ========== Footer Bottom Links ========== */}
       <div className={styles.footerBottom}>
         <span>شرایط و قوانین</span>
         <span>حریم خصوصی</span>
