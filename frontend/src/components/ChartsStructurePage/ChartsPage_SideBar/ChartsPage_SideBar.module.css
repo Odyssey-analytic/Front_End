@@ -293,145 +293,128 @@
   object-fit: contain;
 }
 
+/*///////// برای آیکون همبرگر //////////*/
+
+.hamburgerIcon {
+  display: inline-block;
+  font-size: 30px;
+  color: #aa1d1d;
+  cursor: pointer; /* اضافه کردن cursor pointer برای قابل کلیک شدن */
+  margin-left: 10px;
+  z-index: 2001; /* مطمئن شوید آیکون همبرگر در بالای بقیه محتویات قرار دارد */
+}
+
+.sidebar.active {
+  display: flex; /* زمانی که sidebar فعال است، نمایش داده می‌شود */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* بک‌گراند کمرنگ */
+  z-index: 1000;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/*///////// برای دکمه بستن سایدبار/////////*/
+.closeSidebar {
+  font-size: 30px;
+  color: #971919;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 2001;
+}
+
 
 /*/////////////////// Responsivity /////////////////////*/
-
-/* For screens smaller than 1024px */
-@media (max-width: 1024px) {
-  .sidebar {
-    width: 200px; /* Set sidebar width to 200px */
-  }
-  .collapsed {
-    width: 60px; /* Set collapsed sidebar width to 60px */
-  }
-}
-
-/* For screens smaller than 768px */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 180px; /* Set sidebar width to 180px */
-  }
-  .collapsed {
-    width: 50px; /* Set collapsed sidebar width to 50px */
-  }
-}
-
-/* For screens between 768px and 480px */
-@media (max-width: 768px) and (min-width: 481px) {
-  .sidebar {
-    display: none; /* Sidebar is hidden by default */
-    position: fixed; /* Position the sidebar fixed on the screen */
-    top: 0;
-    left: 0;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Light background for overlay */
-    z-index: 1000; /* Ensure sidebar overlay is on top */
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .sidebar.active {
-    display: flex; /* When "active" class is added, display the sidebar */
-  }
-
-  /* Hamburger menu icon to open sidebar */
-  .hamburgerIcon {
-    display: block;
-    font-size: 30px;
-    color: #fff;
-    cursor: pointer;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 2000;
-  }
-
-  /* Close button icon to close sidebar */
-  .closeSidebar {
-    font-size: 30px;
-    color: #fff;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-  }
-}
-
-/* For screens greater than 480px (but less than 768px) */
-@media (min-width: 481px) {
-  /* Sidebar is always visible */
-  .sidebar {
-    display: flex; /* Sidebar is always visible */
-  }
-
-  /* Hide hamburger menu and close button icons for larger screens */
-  .hamburgerIcon,
-  .closeSidebar {
-    display: none;
-  }
-
-  /* When collapsed state is active, reduce the sidebar width */
-  .collapsed {
-    width: 72px; /* Reduce sidebar width to 72px when collapsed */
-  }
-}
 
 /* For screens smaller than 480px */
 @media (max-width: 480px) {
   .sidebar {
-    display: none; /* Sidebar is hidden by default */
-    position: fixed; /* Sidebar is fixed on the screen */
+    /* display: none; */
+    position: fixed;
     top: 0;
     left: 0;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Light background for overlay */
-    z-index: 1000; /* Ensure sidebar overlay is on top */
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.853);
+    z-index: 1000;
     flex-direction: column;
     padding: 20px;
   }
 
   .sidebar.active {
-    display: flex; /* When "active" class is added, display the sidebar */
+    display: flex;
   }
 
-  /* Hamburger menu icon to open sidebar */
   .hamburgerIcon {
-    display: block;
-    font-size: 30px;
-    color: #fff;
+    display: inline-block;
+    font-size: 25px;
+    color: #201eb5;
     cursor: pointer;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 2000;
+    margin-left: 10px;
   }
 
-  /* Close button icon to close sidebar */
-  .closeSidebar {
-    font-size: 30px;
-    color: #fff;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
+  .menuContent {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .menuItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .label {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
   }
 }
 
-/* For screens larger than 480px */
+/* Additional responsivity settings */
 @media (min-width: 481px) {
-  /* Sidebar is always visible */
+  .hamburgerIcon {
+    display: none;
+  }
+}
+
+
+/* For screens between 480px and 768px */
+@media (max-width: 768px) and (min-width: 481px) {
   .sidebar {
-    display: flex; /* Sidebar is always visible */
+    display: flex;
+    width: 200px;
   }
 
-  /* Hide hamburger menu and close button icons for larger screens */
+  .collapsed {
+    width: 60px;
+  }
+
   .hamburgerIcon,
   .closeSidebar {
     display: none;
   }
+}
 
-  /* When collapsed state is active, reduce the sidebar width */
+/* For screens larger than 768px */
+@media (min-width: 768px) {
+  .sidebar {
+    display: flex;
+    width: 230px;
+  }
+
   .collapsed {
-    width: 72px; /* Reduce sidebar width to 72px when collapsed */
+    width: 75px;
+  }
+
+  .hamburgerIcon,
+  .closeSidebar {
+    display: none;
   }
 }
