@@ -36,31 +36,43 @@ const LandingPage: React.FC = () => {
 
   // =============== Auto Snap to Closest Section After Scroll Stop =================
   useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>;
-    const handleScroll = () => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        const sections = document.querySelectorAll("section");
-        const scrollY = window.scrollY;
-        let closest: HTMLElement | null = null;
-        let closestOffset = Infinity;
+    let timeoutId: ReturnType<typeof setTimeout>;
 
-        sections.forEach((section) => {
-          const offset = Math.abs(section.getBoundingClientRect().top);
-          if (offset < closestOffset) {
-            closest = section as HTMLElement;
-            closestOffset = offset;
-          }
-        });
+    const scrollToClosestSection = () => {
+      const sections = document.querySelectorAll(`.${styles.section}`);
+      let closestSection: Element | null = null;
+      let minDistance = Infinity;
 
-        if (closest) {
-          closest.scrollIntoView({ behavior: "smooth" });
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const distance = Math.abs(rect.top);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestSection = section;
         }
-      }, 150); // Trigger when user stops scrolling for 150ms
+      });
+
+      if (closestSection) {
+        timeoutId = setTimeout(() => {
+          closestSection?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }, 800);
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleScrollEnd = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(scrollToClosestSection, 800);
+    };
+
+    window.addEventListener("scroll", handleScrollEnd);
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("scroll", handleScrollEnd);
+    };
   }, []);
 
   return (
@@ -75,7 +87,10 @@ const LandingPage: React.FC = () => {
 
       <div className={styles.contentWrapper}>
         <main className={styles.mainSections}>
-          <section id="features" className={`${styles.section} ${styles.hiddenOnLoad}`}>
+          <section
+            id="features"
+            className={`${styles.section} ${styles.hiddenOnLoad}`}
+          >
             <img
               src={FirstSectionBackGround}
               alt="FirstSectionBackground"
@@ -83,19 +98,25 @@ const LandingPage: React.FC = () => {
             />
             <div className={styles.featuresText}>
               <h2>
-                هدایت مسیر رشد محصول شما<br />
-                در چشم‌انداز داده‌محور <span className={styles.featureHighlight}>جهانی</span>
+                هدایت مسیر رشد محصول شما
+                <br />
+                در چشم‌انداز داده‌محور{" "}
+                <span className={styles.featureHighlight}>جهانی</span>
               </h2>
               <p>
-                ما به شما کمک می‌کنیم تا با تحلیل داده‌های دقیق و داشبوردهای سفارشی، تصمیم‌های هوشمندانه‌تری بگیرید
-                و تجربه کاربران را بهینه‌سازی کنید.
+                ما به شما کمک می‌کنیم تا با تحلیل داده‌های دقیق و داشبوردهای
+                سفارشی، تصمیم‌های هوشمندانه‌تری بگیرید و تجربه کاربران را
+                بهینه‌سازی کنید.
               </p>
             </div>
             <img src={Section1_Years} className={styles.feature_year_img} />
             <LandingPage_InsightOrbit />
           </section>
 
-          <section id="services" className={`${styles.section} ${styles.hiddenOnLoad}`}>
+          <section
+            id="services"
+            className={`${styles.section} ${styles.hiddenOnLoad}`}
+          >
             <div className={styles.servicesTitleWrapper}>
               <div className={styles.servicesTitleBox}>سرویس‌ها</div>
               <div className={styles.servicesTitleLine}></div>
@@ -125,7 +146,10 @@ const LandingPage: React.FC = () => {
             </div>
           </section>
 
-          <section id="achievements" className={`${styles.section} ${styles.hiddenOnLoad}`}>
+          <section
+            id="achievements"
+            className={`${styles.section} ${styles.hiddenOnLoad}`}
+          >
             <div className={styles.achievementsTitleWrapper}>
               <div className={styles.achievementsTitleBox}>دستاوردها</div>
               <div className={styles.achievementsTitleLine}></div>
@@ -135,7 +159,10 @@ const LandingPage: React.FC = () => {
             </div>
           </section>
 
-          <section id="youtubeGuide" className={`${styles.section} ${styles.hiddenOnLoad}`}>
+          <section
+            id="youtubeGuide"
+            className={`${styles.section} ${styles.hiddenOnLoad}`}
+          >
             <div className={styles.youtubeTitleWrapper}>
               <div className={styles.youtubeTitleBox}>آموزش گام به گام</div>
               <div className={styles.youtubeTitleLine}></div>
@@ -145,7 +172,10 @@ const LandingPage: React.FC = () => {
             </div>
           </section>
 
-          <section id="contact" className={`${styles.section} ${styles.hiddenOnLoad}`}>
+          <section
+            id="contact"
+            className={`${styles.section} ${styles.hiddenOnLoad}`}
+          >
             <div className={styles.contactInsidePart}>
               <LandingPage_Contact />
             </div>
