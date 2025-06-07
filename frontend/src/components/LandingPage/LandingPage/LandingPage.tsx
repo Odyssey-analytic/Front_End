@@ -10,13 +10,12 @@ import LandingPage_AnalysisTools from "../LandingPage_AnalysisTools/LandingPage_
 import LandingPage_Contact from "../LandingPage_Contact/LandingPage_Contanct";
 import LandingPage_YoutubeVideoGuide from "../LandingPage_YoutubeVideoGuide/LandingPage_YoutubeVideoGuide";
 
-import Section1_Years from "../../../../public/icons/Landing/Section1_years.svg"
-import BackGroundImage from "../../../../src/assets/images/TotalBackGround.png"
-import FirstSectionBackGround from "../../../../src/assets/images/FirstSectionBackGround.png"
+import Section1_Years from "../../../../public/icons/Landing/Section1_years.svg";
+import BackGroundImage from "../../../../src/assets/images/TotalBackGround.png";
+import FirstSectionBackGround from "../../../../src/assets/images/FirstSectionBackGround.png";
 
 const LandingPage: React.FC = () => {
   useEffect(() => {
-    // ======================= Intersection Observer to animate hidden sections on scroll ===================
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -35,29 +34,53 @@ const LandingPage: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  // =============== Auto Snap to Closest Section After Scroll Stop =================
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+    const handleScroll = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        const sections = document.querySelectorAll("section");
+        const scrollY = window.scrollY;
+        let closest: HTMLElement | null = null;
+        let closestOffset = Infinity;
+
+        sections.forEach((section) => {
+          const offset = Math.abs(section.getBoundingClientRect().top);
+          if (offset < closestOffset) {
+            closest = section as HTMLElement;
+            closestOffset = offset;
+          }
+        });
+
+        if (closest) {
+          closest.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 150); // Trigger when user stops scrolling for 150ms
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className={styles.wrapper}>
-      
       <img
         src={BackGroundImage}
         alt="Background"
         className={styles.backgroundImage}
       />
 
-      {/* ======================= Fixed Navbar =================== */}
       <LandingPage_Navbar />
 
       <div className={styles.contentWrapper}>
         <main className={styles.mainSections}>
-
-          {/* ======================= Section 1 - Circle Animation =================== */}
-          <section id="features" className={`${styles.section} ${styles.hiddenOnLoad}`}>  
+          <section id="features" className={`${styles.section} ${styles.hiddenOnLoad}`}>
             <img
               src={FirstSectionBackGround}
               alt="FirstSectionBackground"
               className={styles.FirstSectionBackGroundImage}
             />
-
             <div className={styles.featuresText}>
               <h2>
                 هدایت مسیر رشد محصول شما<br />
@@ -68,101 +91,77 @@ const LandingPage: React.FC = () => {
                 و تجربه کاربران را بهینه‌سازی کنید.
               </p>
             </div>
-
-            <img src={Section1_Years} className={`${styles.feature_year_img}`}/>
+            <img src={Section1_Years} className={styles.feature_year_img} />
             <LandingPage_InsightOrbit />
           </section>
 
-          {/* ======================= Section 2 - Services =================== */}
           <section id="services" className={`${styles.section} ${styles.hiddenOnLoad}`}>
             <div className={styles.servicesTitleWrapper}>
-              <div className={styles.servicesTitleBox}>
-                سرویس‌ها
-              </div>
+              <div className={styles.servicesTitleBox}>سرویس‌ها</div>
               <div className={styles.servicesTitleLine}></div>
             </div>
-
-            <div className={styles.servicesInsidePart}> 
-            <LandingPage_AnalysisTools />
+            <div className={styles.servicesInsidePart}>
+              <LandingPage_AnalysisTools />
             </div>
           </section>
 
-          {/* ======================= Section 3 - Testimonials =================== */}
           <section id="testimonials" className={styles.section}>
             <div className={styles.testimonialsTitleWrapper}>
-              <div className={styles.testimonialsTitleBox}>
-                نظرات کاربران
-              </div>
+              <div className={styles.testimonialsTitleBox}>نظرات کاربران</div>
               <div className={styles.testimonialsTitleLine}></div>
-            </div> 
-
-              <div className={styles.testimonialsInsidePart}> 
-            <LandingPage_Testimonials />
+            </div>
+            <div className={styles.testimonialsInsidePart}>
+              <LandingPage_Testimonials />
             </div>
           </section>
 
-          {/* ======================= Section 4 - Getting Started =================== */}
           <section id="start" className={styles.section}>
-
             <div className={styles.startTitleWrapper}>
-              <div className={styles.startTitleBox}>
-                نحوه شروع
-              </div>
+              <div className={styles.startTitleBox}>نحوه شروع</div>
               <div className={styles.startTitleLine}></div>
-            </div> 
-
-            <div className={styles.startInsidePart}> 
+            </div>
+            <div className={styles.startInsidePart}>
               <LandingPage_HowToStart />
-            </div>    
+            </div>
           </section>
 
-          {/* ======================= Section 5 - Achievement Counters =================== */}
           <section id="achievements" className={`${styles.section} ${styles.hiddenOnLoad}`}>
             <div className={styles.achievementsTitleWrapper}>
-              <div className={styles.achievementsTitleBox}>
-                  دستاوردها
-              </div>
+              <div className={styles.achievementsTitleBox}>دستاوردها</div>
               <div className={styles.achievementsTitleLine}></div>
-            </div> 
-
-            <div className={styles.achievementsInsidePart}> 
+            </div>
+            <div className={styles.achievementsInsidePart}>
               <LandingPage_AchievementCounters />
             </div>
           </section>
 
-          {/* ======================= Section 6 - Achievement Counters =================== */}
           <section id="youtubeGuide" className={`${styles.section} ${styles.hiddenOnLoad}`}>
             <div className={styles.youtubeTitleWrapper}>
-              <div className={styles.youtubeTitleBox}>
-                  آموزش گام به گام
-              </div>
+              <div className={styles.youtubeTitleBox}>آموزش گام به گام</div>
               <div className={styles.youtubeTitleLine}></div>
-            </div> 
-
-            <div className={styles.youtubeInsidePart}> 
+            </div>
+            <div className={styles.youtubeInsidePart}>
               <LandingPage_YoutubeVideoGuide />
             </div>
           </section>
 
-          {/* ======================= Section 7 - Contact Us =================== */}
           <section id="contact" className={`${styles.section} ${styles.hiddenOnLoad}`}>
-            <div className={styles.contactInsidePart}> 
+            <div className={styles.contactInsidePart}>
               <LandingPage_Contact />
             </div>
           </section>
-        
         </main>
       </div>
-      <button
-  className={styles.scrollToTopButton}
-  onClick={() => {
-    const sectionTop = document.getElementById("features");
-    sectionTop?.scrollIntoView({ behavior: "smooth" });
-  }}
->
-  ↑
-</button>
 
+      <button
+        className={styles.scrollToTopButton}
+        onClick={() => {
+          const sectionTop = document.getElementById("features");
+          sectionTop?.scrollIntoView({ behavior: "smooth" });
+        }}
+      >
+        ↑
+      </button>
     </div>
   );
 };
