@@ -25,7 +25,6 @@
   font-size: 14px;
   opacity: 0.8;
   text-align: right;
-
   margin-right: 7rem;
   margin-bottom: 3rem;
 }
@@ -35,8 +34,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 32px;       /* horizontal spacing */
-  row-gap: 40px;   /* vertical spacing */
+  gap: 32px;       
+  row-gap: 40px;   
 }
 
 /* ======================= Individual stat card styling ======================= */
@@ -45,23 +44,20 @@
   color: #111;
   border-radius: 16px;
   font-size: 18px;
-
   width: 290px;
   min-height: 180px;
   padding: 24px 16px; 
-  
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   opacity: 0;
   transform: translateY(60px);
 }
 
 /* ======================= Animation trigger class for cards ======================= */
 .fadeUp {
-  animation: fadeUpAnim 1.4s ease forwards; /* ⬅️ slowed down and smoother */
+  animation: fadeUpAnim 1.4s ease forwards; 
 }
 
 /* ======================= Keyframes for upward fade animation ======================= */
@@ -96,15 +92,13 @@
   color: #444;
 }
 
-
-
 @media (max-width: 1258px) {
   .statsGrid {
     justify-content: center;
   }
 
   .card {
-    width: 45%;      /* دو کارت در هر ردیف جا می‌گیرن */
+    width: 45%;      
     min-height: 120px;
     height: 100%;
   }
