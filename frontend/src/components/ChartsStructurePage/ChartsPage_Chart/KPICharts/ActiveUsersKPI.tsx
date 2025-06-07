@@ -15,6 +15,7 @@ import {
   ChartOptions,
   ChartData,
 } from "chart.js";
+
 import ChartCardWrapper from "../ChartsPage_CardWrapper/ChartsPage_CardWrapper";
 import styles from "./ActiveUsersKPI.module.css";
 
@@ -249,8 +250,31 @@ const AreaChartKPI = () => {
           autoSkip: false,
           callback: function (val, index) {
             const label = this.getLabelForValue(val as number);
-            const [h, m] = label.split(":").map(Number);
-            return m === 0 ? label : "";
+          
+            // new
+
+            // Get the current screen width
+            const screenWidth = window.innerWidth;
+
+            // If the screen width is less than 481px, show the label every 5th hour
+            if (screenWidth < 481) {
+              return index % 5 === 0 ? label : "";
+            } 
+            // If the screen width is less than 768px but greater than or equal to 481px, show the label every 3rd hour
+            else if (screenWidth < 768) {
+              return index % 3 === 0 ? label : "";
+            } 
+            // If the screen width is less than 1024px but greater than or equal to 768px, show the label every 2nd hour
+            else if (screenWidth < 1024) {
+              return index % 2 === 0 ? label : "";
+            }
+
+            // If the screen width is greater than or equal to 1024px, show the label every hour
+            return index % 1 === 0 ? label : "";
+
+
+            // const [h, m] = label.split(":").map(Number);
+            // return m === 0 ? label : "";
           },
         },
         grid: {
