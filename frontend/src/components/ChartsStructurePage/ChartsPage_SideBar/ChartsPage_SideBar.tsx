@@ -1,6 +1,4 @@
-// import { useState } from "react";
-// import { FiGrid, FiHome, FiBarChart2, FiActivity, FiDollarSign, FiLayers, FiTrendingUp, FiPieChart, FiSearch, FiUsers, FiTool, FiSettings } from "react-icons/fi";
-import styles from "./ChartsPage_SideBar.module.css"; // وارد کردن CSS Module
+import styles from "./ChartsPage_SideBar.module.css";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -24,12 +22,9 @@ import {
   FiX,
 } from "react-icons/fi";
 
-// import styles from "./ChartsPage_SideBar.module.css";
 import GameLogo from "../../../../public/icons/game-ghost-icon.svg";
 import dashboard_logout_panel_icon from "../../../../public/icons/dashboard_panel_icon.svg";
 import dashboard_sidebar_user_icon from "../../../../public/icons/dashboard_sidebar_user_icon.svg";
-import dashboard_close_icon from "../../../../public/icons/close_icon.svg";
-import insteadham from "../../../../public/icons/game_with_no_thumbnail_icon.png";
 
 const menuItems = [
   {
@@ -150,90 +145,69 @@ const menuItems = [
 ];
 
 const ChartsPage_SideBar = () => {
-  // const [activeIndex, setActiveIndex] = useState<number | null>(null); // برای مدیریت وضعیت باز بودن هر منو
   const [activeIndex, setActiveIndex] = useState<string | number>(0);
 
-
-  const [sidebarActive, setSidebarActive] = useState(false); // وضعیت باز و بسته بودن سایدبار
-  const [isSmallScreen, setIsSmallScreen] = useState(false); // وضعیت اینکه آیا صفحه کوچکتر از 480px است یا نه
-  const [collapsed, setCollapsed] = useState(false); // وضعیت باز یا بسته بودن سایدبار در صفحات بزرگتر از 480px
-
+  const [sidebarActive, setSidebarActive] = useState(false); // The state for controlling whether the sidebar is open or closed
+  const [isSmallScreen, setIsSmallScreen] = useState(false); // The state to check if the screen width is less than 480px
+  const [collapsed, setCollapsed] = useState(false); // The state for controlling the collapsed or expanded state of the sidebar for screens larger than 480px
+  
   const [openSections, setOpenSections] = useState<number[]>([]);
-
-
+  
   const [selectedGame, setSelectedGame] = useState("بازی A");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  
   const gameList = ["بازی اول", "بازی دوم", "بازی سوم"];
-
-
-
-  // تابع برای باز و بسته کردن سایدبار
+  
+  const [username, setUsername] = useState<string>();
+  
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) setUsername(storedUsername);
+  }, []);
+  
+  // Function to toggle the sidebar open/closed
   const toggleSidebar = () => {
     setSidebarActive(!sidebarActive);
   };
-
-  // تغییر وضعیت باز بودن زیرمنوها
-  // const toggleSection = (index: number) => {
-  //   setActiveIndex(prevIndex => (prevIndex === index ? null : index));
-  // };
-
+  
   const toggleSection = (index: number) => {
     setOpenSections((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
-
-  // تابع برای جمع کردن و باز کردن سایدبار
+  
+  // Function to collapse/expand the sidebar
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
   };
-
+  
   useEffect(() => {
-    // چک کردن اینکه آیا صفحه کوچکتر از 480px است
+    // Check if the screen width is less than 480px
     const checkScreenSize = () => {
-      setIsSmallScreen(window.innerWidth < 480);
+      setIsSmallScreen(window.innerWidth < 480); // Set isSmallScreen to true if screen width is less than 480px
     };
-
-    // بررسی اولیه
+  
+    // Initial check
     checkScreenSize();
-
-    // برای هر بار تغییر اندازه صفحه
+  
+    // Add event listener for window resize
     window.addEventListener("resize", checkScreenSize);
-
-    // تمیزکاری (cleanup) برای وقتی که کامپوننت از صفحه خارج می‌شود
+  
+    // Cleanup (remove event listener) when the component unmounts
     return () => {
       window.removeEventListener("resize", checkScreenSize);
     };
   }, []);
+  
 
   return (
     <div>
-      {/* فقط در صورتی که عرض صفحه کوچکتر از 480px باشد، نمایش آیکون همبرگر */}
-      {isSmallScreen && (
-        <div
-          className={styles.hamburgerIcon}
-          onClick={toggleSidebar} // با کلیک روی این آیکون، سایدبار باز یا بسته می‌شود
-        >
-          <FiMenu />
-        </div>
-      )}
 
-      {/* برای صفحه‌های بزرگتر از 480px سایدبار ثابت */}
+
+      {/* For screens larger than 480px, display a fixed sidebar */}
+
       {!isSmallScreen && (
         <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}>
-          
-          
-          
-          
-          {/* دکمه برای جمع کردن سایدبار */}
-          {/* <div
-            className={styles.toggle}
-            onClick={toggleCollapse} // با کلیک روی این آیکون، سایدبار جمع یا باز می‌شود
-          >
-            {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
-          </div> */}
-
 
           {/* Game selector section */}
           <div className={styles.gameHeader}>
@@ -280,46 +254,7 @@ const ChartsPage_SideBar = () => {
             <hr className={styles.divider} />
           </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-          {/* <div className={styles.menu}>
-            {menuItems.map((item, index) => (
-              <div key={index}>
-                <div
-                  className={`${styles.menuItem} ${activeIndex === index ? styles.active : ""}`}
-                  onClick={() => toggleSection(index)} // با کلیک روی منو، وضعیت باز بودن آن تغییر می‌کند
-                >
-                  <span className={styles.iconMain}>{item.icon}</span>
-                  <span className={styles.label}>{item.label}</span>
-                </div>
-
-                {activeIndex === index && item.collapsible && item.items.length > 0 && (
-                  <div className={styles.subMenu}>
-                    {item.items.map((subItem, subIdx) => (
-                      <div key={subIdx} className={styles.subMenuItem}>
-                        <span className={styles.iconSub}>{subItem.icon}</span>
-                        <span className={styles.label}>{subItem.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div> */}
-
-
-          
-        {/* Navigation menu */}
+          {/* Navigation menu */}
           <nav className={styles.menu}>
             {menuItems.map((item, index) => {
               const isSectionOpen = openSections.includes(index);
@@ -340,11 +275,6 @@ const ChartsPage_SideBar = () => {
                     <div className={styles.menuContent}>
                       <span className={styles.iconMain}>{item.icon}</span>
 
-                      {/* {!collapsed && index === 0 && window.innerWidth < 480 && (
-                        <div className={styles.hamburgerIcon} onClick={toggleSidebar}>
-                          <FiMenu />
-                        </div>
-                      )} */}
                       {!collapsed && <span className={styles.label}>{item.label}</span>}
                       {item.collapsible && !collapsed && (
                         <span className={styles.chevron}>
@@ -380,19 +310,51 @@ const ChartsPage_SideBar = () => {
                 </div>
               );
             })}
+
+            <div>
+              <hr className={styles.divider} />
+              <div className={styles.profileInfo}>
+                <img src={dashboard_sidebar_user_icon} alt="Avatar" className={styles.avatar} />
+                {!collapsed && (
+                  <div>
+                    <div className={styles.profileName}>{username}</div>
+                  </div>
+                )}
+              </div>
+  
+              <div
+                className={styles.logoutBtn}
+                onClick={() => (window.location.href = "/panel")}
+              >
+                <img
+                  src={dashboard_logout_panel_icon}
+                  alt="Logout"
+                  className={styles.logoutIcon}
+                />
+                {!collapsed && <span>پنل کاربری</span>}
+              </div>
+            </div>
+
           </nav>
-
-
-
         </aside>
       )}
 
 
 
-      {/* اگر صفحه کوچکتر از 480px باشد، سایدبار کشویی */}
+      {/* Only show the hamburger icon if the screen width is smaller than 480px */}
+      {isSmallScreen && (
+        <div
+          className={styles.hamburgerIcon}
+          onClick={toggleSidebar} // Clicking this icon will toggle the sidebar open or closed
+        >
+          <FiMenu />
+        </div>
+      )}
+
+      {/* If the screen width is smaller than 480px, display a collapsible sidebar */}
       {sidebarActive && isSmallScreen && (
-        <aside className={`${styles.sidebar} ${styles.sidebarActive}`}>
-          {/* دکمه بستن سایدبار */}
+        <aside className={`${styles.sidebarActive}`}>
+          {/* Button to close the sidebar */}
           <div
             className={styles.closeSidebar}
             onClick={toggleSidebar}
@@ -400,10 +362,154 @@ const ChartsPage_SideBar = () => {
             <FiX />
           </div>
 
-          {/* محتوای دیگر سایدبار */}
-          <div className={styles.sidebarContent}>
+          {/* Other content of the sidebar */}
+          {/* <div className={styles.sidebarContent}>
             <h2>این سایدبار است!</h2>
+          </div> */}
+
+
+          {/* Game selector section */}
+          <div className={styles.MobilegameHeader}>
+            <div className={styles.MobilegameSelectorWrapper}>
+              <div
+                className={styles.MobilegameSelectorBox}
+                onClick={() => setDropdownOpen((prev) => !prev)}
+              >
+                <img src={GameLogo} alt="Game Logo" className={styles.MobilegameLogo} />
+                {!collapsed && (
+                  <span className={styles.MobilegameName}>{selectedGame}</span>
+                )}
+              </div>
+
+              {/* Collapse/Expand button for the sidebar */}
+              {/* <div
+                className={styles.toggle}
+                onClick={toggleCollapse} // Toggle the collapse state
+                aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+              >
+                {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
+              </div> */}
+              
+            </div>
+
+            {/* Dropdown to select a game */}
+            {dropdownOpen && (
+              <div className={styles.MobilegameDropdown}>
+                {gameList.map((game) => (
+                  <div
+                    key={game}
+                    className={styles.MobilegameDropdownItem}
+                    onClick={() => {
+                      setSelectedGame(game);
+                      setDropdownOpen(false);
+                    }}
+                  >
+                    {game}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <hr className={styles.Mobiledivider} />
           </div>
+
+
+
+          {/* Navigation menu */}
+          <nav className={styles.Mobilemenu}>
+            {menuItems.map((item, index) => {
+              const isSectionOpen = openSections.includes(index);
+              const isActive = activeIndex === index;
+
+              return (
+                <div key={index}>
+
+                  <div
+                    className={`${styles.MobilemenuItem} ${isActive ? styles.active : ""}`}
+                    onClick={() =>
+                      item.collapsible
+                        ? toggleSection(index)
+                        : setActiveIndex(index)
+                    }
+                  >
+                  
+                    <div className={styles.MobilemenuContent}>
+                      <span className={styles.iconMain}>{item.icon}</span>
+
+                      <span className={styles.Mobilelabel}>{item.label}</span>
+                      <span className={styles.Mobilechevron}>
+                        {isSectionOpen ? <FiChevronDown /> : <FiChevronRight />}
+                      </span>
+
+                      {/* {!collapsed && <span className={styles.label}>{item.label}</span>}
+                      {item.collapsible && !collapsed && (
+                        <span className={styles.chevron}>
+                          {isSectionOpen ? <FiChevronDown /> : <FiChevronRight />}
+                        </span>
+                      )} */}
+
+                    </div>
+
+                  </div>
+
+                  {isSectionOpen && item.items && item.items.length > 0 && (
+                    <div className={styles.MobilesubMenu}>
+                      {item.items.map((subItem, subIdx) => {
+                        const subItemKey = `${index}-${subIdx}`;
+                        return (
+                          <div
+                            key={subIdx}
+                            className={`${styles.MobilesubMenuItem} ${activeIndex === subItemKey ? styles.active : ""}`}
+                            onClick={() => setActiveIndex(subItemKey)}
+                          >
+                            <div className={styles.MobilemenuContent}>
+                              <span className={styles.MobileiconSub}>{subItem.icon}</span>
+                              <span className={styles.Mobilelabel}>{subItem.label}</span>
+                              {/* {!collapsed && (
+                                <span className={styles.label}>{subItem.label}</span>
+                              )} */}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                  
+                </div>
+              );
+            })}
+
+            <div>
+              <hr className={styles.Mobiledivider} />
+              <div className={styles.MobileprofileInfo}>
+                <img src={dashboard_sidebar_user_icon} alt="Avatar" className={styles.Mobileavatar} />
+                {/* {!collapsed && ( */}
+                  <div>
+                    <div className={styles.MobileprofileName}>{username}</div>
+                  </div>
+                {/* )} */}
+              </div>
+  
+              <div
+                className={styles.MobilelogoutBtn}
+                onClick={() => (window.location.href = "/panel")}
+              >
+                <img
+                  src={dashboard_logout_panel_icon}
+                  alt="Logout"
+                  className={styles.MobilelogoutIcon}
+                />
+                <span>پنل کاربری</span>
+                {/* {!collapsed && <span>پنل کاربری</span>} */}
+              </div>
+            </div>
+
+          </nav>
+
+
+
+
+
         </aside>
       )}
     </div>
