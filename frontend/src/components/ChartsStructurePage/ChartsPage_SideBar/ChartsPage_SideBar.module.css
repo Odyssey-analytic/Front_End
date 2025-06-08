@@ -46,7 +46,7 @@
   font-size: 0.9rem;
 }
 
-.menuItem:hover {
+.menuItem.active {
   background-color: #00c3ff59;
 }
 
@@ -320,12 +320,22 @@
    Mobile-Specific Styles (Smaller than 480px)
 -------------------------------------- */
 .hamburgerIcon {
-  font-size: 30px;
-  cursor: pointer;
+  /* font-size: 30px; */
+  /* cursor: pointer; */
   z-index: 2001;
   position: absolute;
   top: 20px;
   left: 20px;
+
+  display: inline-block;
+  font-size: 25px;
+  color: #201eb5;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.hamburgerIconActive {
+  color: #3c3c462d;
 }
 
 .Mobilesidebar {
@@ -367,12 +377,12 @@
   /* justify-items: center; */
   /* text-align: center; */
   
-  padding: 5rem 2rem 0 2rem;
+  padding: 3.8rem 2rem 0 2rem;
 
 }
 
 .sidebarActive .closeSidebar {
-  font-size: 30px;
+  font-size: 20px;
   color: #fff;
   position: absolute;
   top: 20px;
@@ -401,14 +411,41 @@
 }
 
 .MobilegameSelectorBox {
-  background-color: #dcdcdc31;
+  /* background-color: #b1bfd3c1; */
+/* 
+  background-color: #b8cfdecc; */
+
+
+  background: #adbcc4b3;
+
+
+  /* background: rgba(153, 186, 207, 0.7);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+
+  
+  /* background: linear-gradient(
+  135deg,
+  rgba(153, 186, 207, 0.7) 0%,
+  rgba(153, 186, 207, 0.4) 100%
+);
+backdrop-filter: blur(12px) saturate(160%);
+-webkit-backdrop-filter: blur(12px) saturate(160%);
+border: 1px solid rgba(255, 255, 255, 0.3);
+box-shadow:
+  0 4px 20px rgba(0, 0, 0, 0.1),
+  inset 0 0 10px rgba(255, 255, 255, 0.2); */
+
+
+  /* 00c3ff95 */
+
   padding: 10px 0 10px 20px;
   /* text-align: center; */
 /* align-items: center; */
 /* justify-items: center; */
 justify-content: center;
 
-  border-radius: 5px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -416,8 +453,13 @@ justify-content: center;
   transition: background-color 0.2s ease;
   /* width: 100%; */
 
-  border: 1px solid #000000a3;
+
+
+  /* border: 1px solid #000000a3; */
   
+
+
+
   /* box-shadow: 2px 2px rgba(52, 52, 52, 0.3); */
   /* box-shadow: 0 0 0 2px #bebebe32; */
 }
@@ -426,7 +468,13 @@ justify-content: center;
   /* background-color: #164fc97e;
   border: 2px solid #00c4ff; */
 
-  background: #b1bfd377;
+  /* background: #c6d8f1c7; */
+/* 
+  background: #7bb6dbcc; */
+
+
+  background-color: #b8cfdecc;
+
   backdrop-filter: blur(8px);
   
   /* border: 1px solid rgb(0, 0, 0); */
@@ -463,19 +511,25 @@ justify-items: center; */
 
 .MobilegameDropdown {
   position: absolute;
-  top: 14%;
+  top: 13%;
+  /* left: 20%; */
   /* left: 2rem; */
   /* left: 5px; */
-  background: #e6ecf4;
-  color: #253459;
+  background: #edf3fc;
+  color: #070a36b6;
   border-radius: 5px;
   box-shadow: 2px 8px 8px rgba(167, 167, 167, 0.3);
   z-index: 1000;
   /* align-items: center; */
+  text-align: center;
+  /* justify-content: center; */
+  /* justify-items: center; */
+  /* justify-self: center; */
   
 
   /* padding: 6px 0; */
-  min-width: 250px;
+  /* min-width: 300px; */
+  width: 84%;
   animation: dropdownFade 0.2s ease-in-out;
 }
 
@@ -491,8 +545,8 @@ justify-items: center; */
 }
 
 .MobilegameDropdownItem {
-  padding: 14px 16px;
-  font-size: 1rem;
+  padding: 12px;
+  font-size: 1.05rem;
   transition: background 0.2s;
   cursor: pointer;
   /* background-color: #971919; */
@@ -522,11 +576,10 @@ justify-items: center; */
 .MobilemenuItem {
   cursor: pointer;
   padding: 10px 12px;
-  /* padding-top: 12px; */
   margin-bottom: 4px;
   transition: background 0.2s ease;
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .MobilemenuItem:hover {
@@ -610,7 +663,11 @@ justify-items: center; */
   font-size: 16px;
 }
 
-.MobileprofileInfo {
+
+
+
+
+/* .MobileprofileInfo {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -627,19 +684,131 @@ justify-items: center; */
   font-weight: bold;
   margin-right: -10%;
   color: #fff;
+} */
+
+
+
+
+
+
+.MobileprofileSection {
+  padding: 1rem;
+  margin-top: auto; /* برای قرارگیری در پایین */
+  /* width: 100%; */
+}
+
+/* .Mobiledivider {
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0.5rem 0;
+} */
+
+.MobileprofileCard {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 0.8rem;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.MobileprofileInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.Mobileavatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.MobileprofileText {
+  flex: 1;
+}
+
+.MobileprofileName {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.MobileprofileStatus {
+  font-size: 0.75rem;
+  color: #00c4ff;
+  display: flex;
+  align-items: center;
+  
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #00c4ff;
+    border-radius: 50%;
+    margin-left: 5px;
+  }
+}
+
+.MobilelogoutBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(0, 196, 255, 0.1);
+    
+    .MobilelogoutArrow {
+      transform: translateX(-3px);
+    }
+  }
+}
+
+.MobilelogoutContent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.MobilelogoutIcon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+}
+
+.MobilelogoutArrow {
+  color: rgba(255, 255, 255, 0.6);
+  transition: transform 0.2s ease;
 }
 
 
+
+
+
+
 @media (max-width: 480px) {
-  .hamburgerIcon {
+  /* .hamburgerIcon {
     display: inline-block;
     font-size: 25px;
     color: #201eb5;
     cursor: pointer;
     margin-left: 10px;
-  }
+  } */
 
-  .closeSidebar {
+  /* .closeSidebar {
     font-size: 30px;
     color: #971919;
     position: absolute;
@@ -647,5 +816,5 @@ justify-items: center; */
     right: 20px;
     cursor: pointer;
     z-index: 2001;
-  }
+  } */
 }

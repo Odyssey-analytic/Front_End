@@ -204,14 +204,35 @@ const ChartsPage_SideBar = () => {
   };
 
   // Function to toggle the sidebar open/closed
-  const toggleSidebar = () => {
-    setSidebarActive(!sidebarActive);
+  const MobileSidebarOpen = () => {
+    setSidebarActive(true);
   };
+
+  const MobileSidebarClose = () => {
+    setSidebarActive(false);
+  };
+
+  // const toggleSidebar = () => {
+  //   setSidebarActive(!sidebarActive);
+  // };
   
+  // const toggleSection = (index: number) => {
+  //   setOpenSections((prev) =>
+  //     prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+  //   );
+  // };
+
   const toggleSection = (index: number) => {
-    setOpenSections((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    setOpenSections(prev =>
+      prev.includes(index)
+        ? prev.filter(i => i !== index)
+        : [...prev, index]
     );
+    
+    // اگر بخش در حال بسته شدن است
+    if (openSections.includes(index)) {
+      setActiveIndex(null); // یا مقدار پیش‌فرض
+    }
   };
   
   // Function to collapse/expand the sidebar
@@ -310,11 +331,23 @@ const ChartsPage_SideBar = () => {
 
                   <div
                     className={`${styles.menuItem} ${isActive ? styles.active : ""}`}
-                    onClick={() =>
-                      item.collapsible
-                        ? toggleSection(index)
-                        : setActiveIndex(index)
-                    }
+                    // onClick={() =>
+                    //   item.collapsible
+                    //     ? toggleSection(index)
+                    //     : setActiveIndex(index)
+                    // }
+
+                    onClick={() => {
+                      if (item.collapsible) {
+                        if (isSectionOpen) {
+                          setActiveIndex(null); // ریست هنگام بستن
+                        }
+                        toggleSection(index);
+                      } else {
+                        setActiveIndex(index);
+                      }
+                    }}
+
                   >
                   
                     <div className={styles.menuContent}>
@@ -386,12 +419,21 @@ const ChartsPage_SideBar = () => {
 
       {/* Only show the hamburger icon if the screen width is smaller than 480px */}
       {isSmallScreen && (
+        // <div
+        //   className={styles.hamburgerIcon}
+        //   onClick={MobileSidebarOpen} // Clicking this icon will toggle the sidebar open or closed
+        // >
+        //   <FiMenu />
+        // </div>
         <div
-          className={styles.hamburgerIcon}
-          onClick={toggleSidebar} // Clicking this icon will toggle the sidebar open or closed
+          className={`${styles.hamburgerIcon} ${
+            sidebarActive ? styles.hamburgerIconActive : styles.hamburgerIcon
+          }`}
+          onClick={MobileSidebarOpen}
         >
           <FiMenu />
         </div>
+
       )}
 
       {/* If the screen width is smaller than 480px, display a collapsible sidebar */}
@@ -400,7 +442,7 @@ const ChartsPage_SideBar = () => {
           {/* Button to close the sidebar */}
           <div
             className={styles.closeSidebar}
-            onClick={toggleSidebar}
+            onClick={MobileSidebarClose}
           >
             <FiX />
           </div>
@@ -466,11 +508,23 @@ const ChartsPage_SideBar = () => {
 
                   <div
                     className={`${styles.MobilemenuItem} ${isActive ? styles.active : ""}`}
-                    onClick={() =>
-                      item.collapsible
-                        ? toggleSection(index)
-                        : setActiveIndex(index)
-                    }
+                    // onClick={() =>
+                    //   item.collapsible
+                    //     ? toggleSection(index)
+                    //     : setActiveIndex(index)
+                    // }
+                    onClick={() => {
+                      if (item.collapsible) {
+                        if (isSectionOpen) {
+                          setActiveIndex(null); // ریست هنگام بستن
+                        }
+                        toggleSection(index);
+                      } else {
+                        setActiveIndex(index);
+                      }
+                    }}
+
+
                   >
                   
                     <div className={styles.MobilemenuContent}>
@@ -507,7 +561,7 @@ const ChartsPage_SideBar = () => {
               );
             })}
 
-            <div>
+            {/* <div>
               <hr className={styles.Mobiledivider} />
               <div className={styles.MobileprofileInfo}>
                 <img src={dashboard_sidebar_user_icon} alt="Avatar" className={styles.Mobileavatar} />
@@ -527,7 +581,46 @@ const ChartsPage_SideBar = () => {
                 />
                 <span>پنل کاربری</span>
               </div>
-            </div>
+            </div> */}
+
+
+<div className={styles.MobileprofileSection}>
+  <hr className={styles.Mobiledivider} />
+  
+  <div className={styles.MobileprofileCard}>
+    <div className={styles.MobileprofileInfo}>
+      <img 
+        src={dashboard_sidebar_user_icon} 
+        alt="Avatar" 
+        className={styles.Mobileavatar} 
+      />
+      <div className={styles.MobileprofileText}>
+        <div className={styles.MobileprofileName}>{username}</div>
+        <div className={styles.MobileprofileStatus}>آنلاین</div>
+      </div>
+    </div>
+  
+    <hr className={styles.Mobiledivider} />
+
+    <div
+      className={styles.MobilelogoutBtn}
+      onClick={() => (window.location.href = "/panel")}
+    >
+      <div className={styles.MobilelogoutContent}>
+        <img
+          src={dashboard_logout_panel_icon}
+          alt="Logout"
+          className={styles.MobilelogoutIcon}
+        />
+        <span>پنل کاربری</span>
+      </div>
+      {/* <FiChevronLeft className={styles.MobilelogoutArrow} /> */}
+    </div>
+  </div>
+</div>
+
+
+
           </nav>
         </aside>
       )}
