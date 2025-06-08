@@ -396,7 +396,7 @@ const ChartsPage_SideBar = () => {
 
       {/* If the screen width is smaller than 480px, display a collapsible sidebar */}
       {sidebarActive && isSmallScreen && (
-        <aside className={`${styles.Mobilesidebar} ${styles.sidebarActive}`}>
+        <aside className={`${styles.sidebarActive}`}>
           {/* Button to close the sidebar */}
           <div
             className={styles.closeSidebar}

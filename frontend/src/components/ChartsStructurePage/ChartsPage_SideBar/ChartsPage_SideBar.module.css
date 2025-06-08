@@ -64,7 +64,7 @@
 }
 
 .label {
-  white-space: nowrap;
+  /* white-space: nowrap; */
 }
 
 .englishPart {
@@ -331,25 +331,44 @@
 .Mobilesidebar {
   /* width: 10%; */
   /* width: 1000px; */
-  background-color: #1f2444;
+  /* background-color: #1f2444;
   color: #ffffffd2;
-  transition: width 0.3s ease;
-  height: 100%;
+  transition: width 0.3s ease; */
+  /* height: 100%; */
   /* width: 100vh; */
   /* align-items: center; */
+  /* padding-top: 5rem;
+  padding-right: 2rem;
+  padding-left: 2rem; */
+/* 
+  padding: 5rem 2rem 0 2rem; */
+  /* align-items: center;
+  width: 100%; */
+
+  /* padding: 2rem; */
 }
 
 .sidebarActive {
-  display: flex;
+  /* display: flex; */
+  background-color: #1f2444;
+  color: #ffffffd2;
+  transition: width 0.3s ease;
   position: fixed;
-  top: 0;
-  left: 0;
+  /* top: 0; */
+  /* left: 0; */
   width: 100%;
+  /* min-width: 100px; */
   height: 100%;
   background-color: rgba(14, 14, 19, 0.921);
   z-index: 1000;
-  flex-direction: column;
-  padding: 20px;
+  /* flex-direction: column; */
+  /* padding: 20px; */
+  /* align-items: center; */
+  /* justify-items: center; */
+  /* text-align: center; */
+  
+  padding: 5rem 2rem 0 2rem;
+
 }
 
 .sidebarActive .closeSidebar {
@@ -365,27 +384,39 @@
 .MobilegameHeader {
   display: flex;
   flex-direction: column;
-  padding: 3rem;
+  /* padding: 3rem; */
+  width: 100%;
+  /* align-items: center; */
+  /* text-align: center; */
 }
 
 .MobilegameSelectorWrapper {
   /* display: flex; */
-  /* align-items: center; */
+  /* align-items: center;
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  width: 100%; */
   /* justify-content: space-between; */
 }
 
 .MobilegameSelectorBox {
   background-color: #dcdcdc31;
-  padding: 8px 20px;
-  border-radius: 6px;
+  padding: 10px 0 10px 20px;
+  /* text-align: center; */
+/* align-items: center; */
+/* justify-items: center; */
+justify-content: center;
+
+  border-radius: 5px;
   display: flex;
   align-items: center;
   gap: 20px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  width: 100%;
+  /* width: 100%; */
 
-  border: 1px solid #0000009c;
+  border: 1px solid #000000a3;
   
   /* box-shadow: 2px 2px rgba(52, 52, 52, 0.3); */
   /* box-shadow: 0 0 0 2px #bebebe32; */
@@ -395,14 +426,16 @@
   /* background-color: #164fc97e;
   border: 2px solid #00c4ff; */
 
-  /* position: relative; برای z-index کار کند */
-  background-color: #164fc97e;
-  border: 1px solid #e0e0e0;
-  /* border-radius: 8px; */
-  box-shadow: 
-    0 2px 8px rgba(0, 196, 255, 0.2), /* سایه آبی ملایم */
-    0 4px 12px rgba(0, 0, 0, 0.1); /* سایه تاریک برای عمق */
-  /* z-index: 10; برای نمایش سایه روی المان‌های دیگر */
+  background: #b1bfd377;
+  backdrop-filter: blur(8px);
+  
+  /* border: 1px solid rgb(0, 0, 0); */
+  /* border-radius: 12px; */
+  box-shadow:
+    0 4px 20px rgba(0, 196, 255, 0.15),
+    0 0 0 1px rgba(131, 163, 199, 0.5) inset; /* هایلایت داخلی */
+
+
   transition: all 0.3s ease; /* انیمیشن نرم */
 
 }
@@ -412,12 +445,20 @@
   height: 32px;
   border-radius: 6px;
   object-fit: cover;
+  /* text-align: center; */
+    /* text-align: center;
+align-items: center;
+justify-items: center; */
 }
 
 .MobilegameName {
   font-size: 1.1rem;
   font-weight: 600;
   color: #ffffffe8;
+  /* text-align: center;
+    text-align: center;
+align-items: center;
+justify-items: center; */
 }
 
 .MobilegameDropdown {
@@ -481,9 +522,11 @@
 .MobilemenuItem {
   cursor: pointer;
   padding: 10px 12px;
+  /* padding-top: 12px; */
   margin-bottom: 4px;
   transition: background 0.2s ease;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .MobilemenuItem:hover {
@@ -492,21 +535,26 @@
 
 .MobilemenuContent {
   display: flex;
-  align-items: center;
+  /* align-items: center;
+  text-align: center; */
+  justify-content: center;
   gap: 12px;
+
 }
 
 .Mobilelabel {
-  white-space: nowrap;
+  /* white-space: nowrap; */
+  /* align-items: center;
+  text-align: center; */
 }
-
+/* 
 .Mobilechevron {
   margin-right: auto;
   display: flex;
   align-items: center;
   font-size: 0.9rem;
   color: #888;
-}
+} */
 
 .MobilelogoutBtn {
   display: flex;
@@ -549,7 +597,7 @@
 }
 
 .MobilesubMenuItem .MobilemenuContent {
-  padding-right: 12px;
+  /* padding-right: 12px; */
 }
 
 .MobileiconMain {
