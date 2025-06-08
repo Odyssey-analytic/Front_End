@@ -75,7 +75,7 @@
 
 .active {
   background-color: #00c4ff33;
-  border-right: 3px solid #00c4ff;
+  border-right: 3px solid #00c3ff;
 }
 
 .subMenu {
@@ -378,6 +378,8 @@
   /* text-align: center; */
   
   padding: 3.8rem 2rem 0 2rem;
+  
+  overflow-y: auto;
 
 }
 
@@ -416,7 +418,14 @@
   background-color: #b8cfdecc; */
 
 
-  background: #adbcc4b3;
+  /* background: #adbcc4b3; */
+
+
+  background: rgba(255, 255, 255, 0.199);
+  /* border-radius: 12px; */
+  /* padding: 0.8rem; */
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
 
 
   /* background: rgba(153, 186, 207, 0.7);
@@ -445,7 +454,7 @@ box-shadow:
 /* justify-items: center; */
 justify-content: center;
 
-  border-radius: 4px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -473,7 +482,9 @@ justify-content: center;
   background: #7bb6dbcc; */
 
 
-  background-color: #b8cfdecc;
+  background-color: #b8cfde7c;
+  /* backdrop-filter: blur(5px); */
+  /* transition: all 0.3s ease; */
 
   backdrop-filter: blur(8px);
   
@@ -515,8 +526,13 @@ justify-items: center; */
   /* left: 20%; */
   /* left: 2rem; */
   /* left: 5px; */
-  background: #edf3fc;
+  background: #edf3fcd7;
   color: #070a36b6;
+
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+
+
   border-radius: 5px;
   box-shadow: 2px 8px 8px rgba(167, 167, 167, 0.3);
   z-index: 1000;
@@ -580,10 +596,14 @@ justify-items: center; */
   transition: background 0.2s ease;
   font-size: 1.1rem;
   font-weight: 600;
+  border-radius: 5px;
 }
 
 .MobilemenuItem:hover {
-  background-color: #00c3ff95;
+  background-color: #1ab5e471;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+
 }
 
 .MobilemenuContent {
@@ -663,38 +683,14 @@ justify-items: center; */
   font-size: 16px;
 }
 
-
-
-
-
-/* .MobileprofileInfo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.Mobileavatar {
-  width: 26px;
-  height: 26px;
-  object-fit: cover;
-}
-
-.MobileprofileName {
-  font-size: 0.9rem;
-  font-weight: bold;
-  margin-right: -10%;
-  color: #fff;
-} */
-
-
-
-
-
-
 .MobileprofileSection {
-  padding: 1rem;
+  padding: 2rem;
   margin-top: auto; /* برای قرارگیری در پایین */
   /* width: 100%; */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 /* .Mobiledivider {
