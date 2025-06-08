@@ -1,76 +1,69 @@
 /* =========================== body =========================== */
-.welcome-page-body {
+.welcomePageBody {
   width: 100%;
-  height: 84.6%;
-
+  height: 86%;
   position: absolute;
   justify-content: center;
-  top: 15.4%;
-
+  top: 14%;
   align-items: center;
-
-  background-color: rgba(186, 190, 226, 0.63);
+  background-color: rgba(225, 237, 255);
 }
 
 /* =========================== main box =========================== */
-.welcome-page-main-box {
+.welcomePageMainBox {
   width: 80%;
-  height: 85%;
+  height: 80%;
   position: absolute;
-  top: 7%;
+  top: 9%;
   right: 10%;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
-
   background-color: rgba(252, 251, 255, 0.976);
   border-radius: 12px;
   box-shadow: 0px 4px 16px rgba(100, 100, 100, 0.12);
 }
 
-.welcome-page-main-box-icon img {
-  width: 130px; 
+.welcomePageMainBoxIcon img {
+  width: 130px;
   margin-bottom: 1rem;
 }
 
-.welcome-page-main-box-heading {
+.welcomePageMainBoxHeading {
   font-size: 30px;
   font-weight: bold;
   color: #1a1a1a;
   margin-bottom: 2rem;
 }
 
-.welcome-page-main-box-description {
+.welcomePageMainBoxDescription {
   color: #4a4a4a;
   font-size: 15px;
   text-align: center;
   margin-bottom: -10px;
 }
 
-.welcome-page-main-box-start-btn {
+.welcomePageMainBoxStartBtn {
   display: block;
   margin-top: 2rem;
   margin-bottom: 1rem;
   width: 100%;
   max-width: 250px;
-
   padding: 0.75rem 0.5rem;
   font-size: 15px;
   color: #c4c4c4;
   background: linear-gradient(to right, #5d1b79, #00719a);
   border: none;
   border-radius: 12px;
-
   filter: brightness(1.4);
   transition: all 0.3s ease;
 }
 
-.welcome-page-main-box-start-btn:hover,
-.welcome-page-main-box-start-btn:focus,
-.welcome-page-main-box-start-btn:active {
+.welcomePageMainBoxStartBtn:hover,
+.welcomePageMainBoxStartBtn:focus,
+.welcomePageMainBoxStartBtn:active {
   background: linear-gradient(to right, #5d1b79, #00719a);
   filter: brightness(1.1);
   color: white !important;
@@ -79,7 +72,7 @@
 }
 
 /* =========================== popup overlay =========================== */
-.welcome-page-main-box-body {
+.welcomePageMainBoxBody {
   position: absolute;
   top: 15.4%;
   left: 0;
@@ -89,13 +82,11 @@
   background-color: rgba(255, 255, 255, 0.15);
 }
 
-.welcome-page-main-box-body-overlay {
+.welcomePageMainBoxBodyOverlay {
   position: absolute;
   inset: 0;
-
   display: flex;
   justify-content: center;
-
   align-items: center;
   pointer-events: none;
   border-radius: inherit;
@@ -103,67 +94,58 @@
   height: 100vh;
 }
 
-.welcome-page-main-box-body-popup-card {
+.welcomePageMainBoxBodyPopupCard {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   position: relative;
   z-index: 2;
   pointer-events: all;
-
   width: 35%;
-
   height: 70%;
   top: 7%;
-
   overflow-y: auto;
-  
   padding-right: 4rem;
   padding-left: 4rem;
   padding-top: 1.5rem;
   padding-bottom: 0.5rem;
-
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(60, 60, 60, 0.2);
   text-align: center;
 }
 
-
-.welcome-page-popup-card-close-icon {
+.welcomePagePopupCardCloseIcon {
   position: sticky;
   top: 0.1rem;
   right: 27rem;
   margin-left: -45px;
   z-index: 100;
-
   width: 24px;
   height: 24px;
   opacity: 0.4;
   cursor: pointer;
-
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.welcome-page-popup-card-close-icon:hover {
+.welcomePagePopupCardCloseIcon:hover {
   transform: scale(1.08);
   opacity: 0.7;
 }
 
 /* ======================== Input Fields ======================== */
-.game-name-input-sm {
+.gameNameInputSm {
   border-radius: 8px;
   padding-right: 1rem;
 }
 
-.game-name-input-sm::placeholder {
+.gameNameInputSm::placeholder {
   font-size: 0.8rem;
   color: rgb(46, 46, 46);
 }
 
-.game-name-input-sm:focus,
-.game-name-input-sm:focus-visible {
+.gameNameInputSm:focus,
+.gameNameInputSm:focus-visible {
   outline: none !important;
   box-shadow: 0 0 0 1px rgba(113, 46, 141, 0.4) !important;
 }
@@ -176,13 +158,13 @@
   margin-bottom: 1rem;
 }
 
-.welcome-page-upload-section {
+.welcomePageUploadSection {
   width: 90px;
   height: 110px;
   margin-right: 1rem;
 }
 
-.welcome-page-upload-preview-wrapper {
+.welcomePageUploadPreviewWrapper {
   width: 90px;
   height: 90px;
   border-radius: 50%;
@@ -194,25 +176,25 @@
   justify-content: center;
 }
 
-.welcome-page-upload-preview-image {
+.welcomePageUploadPreviewImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.welcome-page-upload-placeholder-icon {
+.welcomePageUploadPlaceholderIcon {
   width: 32px;
   opacity: 0.5;
 }
 
-.welcome-page-upload-select-label {
+.welcomePageUploadSelectLabel {
   display: inline-block;
   font-size: 0.75rem;
   cursor: pointer;
   color: #007bff;
 }
 
-.welcome-page-delete-image-text-btn {
+.welcomePageDeleteImageTextBtn {
   background: none;
   border: none;
   padding: 0;
@@ -259,20 +241,20 @@
 }
 
 /* =========================== stepper =========================== */
-.welcome-page-stepper-container {
+.welcomePageStepperContainer {
   display: flex;
   width: 100%;
   margin: 0 auto 2rem;
   padding: 1rem 0;
 }
 
-.welcome-page-stepper-item {
+.welcomePageStepperItem {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.welcome-page-stepper-circle {
+.welcomePageStepperCircle {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -280,34 +262,31 @@
   background-color: white;
   color: #ccc;
   display: flex;
-
   justify-content: center;
   align-items: center;
-
   font-weight: bold;
   z-index: 2;
   transition: all 0.3s ease;
 }
 
-.welcome-page-stepper-label {
+.welcomePageStepperLabel {
   margin-top: 0.5rem;
   font-size: 13px;
   color: #888;
 }
 
-.welcome-page-stepper-line1 {
+.welcomePageStepperFirstLine {
   height: 2px;
   border-radius: 12px;
   background-color: #ccc;
   flex: 1;
-
   margin-top: 15px;
   margin-right: -15px;
   margin-left: 5px;
   z-index: 1;
 }
 
-.welcome-page-stepper-line2 {
+.welcomePageStepperSecondLine {
   height: 2px;
   border-radius: 12px;
   background-color: #ccc;
@@ -316,13 +295,13 @@
   z-index: 1;
 }
 
-.welcome-page-stepper-item.active .welcome-page-stepper-circle {
+.welcomePageStepperItem.active .welcomePageStepperCircle {
   background: linear-gradient(to right, rgba(93, 27, 121), rgba(0, 113, 154));
   color: white;
   border: 2px solid white;
 }
 
-.welcome-page-stepper-item.active .stepper-label {
+.welcomePageStepperItem.active .welcomePageStepperLabel {
   color: #4c1764;
 }
 
@@ -361,7 +340,7 @@
   left: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  
+
   width: 19px;
   height: 19px;
   border: 1px solid #525252;
@@ -380,12 +359,12 @@
 }
 
 .welcome-page-product-option.checked .checkmark {
-  background-color:rgb(139, 71, 169);
+  background-color: rgb(139, 71, 169);
   border-color: rgb(136, 68, 165);
 }
 
 .welcome-page-product-option.checked::before {
-  content: '✔';
+  content: "✔";
   position: absolute;
   left: 1.25rem;
   top: 55%;
@@ -447,7 +426,7 @@
 }
 
 .welcome-page-acces-token-inside-box {
-  display: fles;
+  display: flex;
   align-items: center;
   text-align: center;
   gap: 8px;
@@ -495,7 +474,7 @@
 }
 
 .welcome-page-token-value::-webkit-scrollbar-thumb:hover {
-  background: rgb(169, 169, 169)
+  background: rgb(169, 169, 169);
 }
 
 .welcome-page-token-copy-icon-img {
@@ -504,13 +483,13 @@
   margin-bottom: 8px;
   transition: filter 0.3s ease;
   cursor: pointer;
-  filter: brightness(1.1)
+  filter: brightness(1.1);
 }
 
 .welcome-page-token-copy-icon-img:hover,
 .welcome-page-token-copy-icon-img:focus,
 .welcome-page-token-copy-icon-img:active {
-  filter: brightness(0.95)
+  filter: brightness(0.95);
 }
 
 .welcome-page-copy-icon-wrapper {
@@ -541,19 +520,30 @@
 }
 
 @keyframes tooltipFade {
-  0% { opacity: 0; transform: translateY(5px); }
-  10% { opacity: 1; transform: translateY(0); }
-  90% { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-5px); }
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
 }
 
 /* =========================== step 2 inputs =========================== */
-.step-2-compact .popup-options label {
+.step2Compact .popup-options label {
   font-size: 14px;
 }
 
-.step-2-compact .popup-options input,
-.step-2-compact .popup-options textarea {
+.step2Compact .popup-options input,
+.step2Compact .popup-options textarea {
   margin-bottom: 3rem;
 }
 
@@ -642,25 +632,24 @@
   opacity: 0.6;
 }
 
-.welcome-page-radio-group-grid {
+.welcomePageRadioGroupGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 45px;
 }
 
-.welcome-page-radio-label {
+.welcomePageRadioLabel {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.welcome-page-engine-disabled-option {
+.welcomePageEngineDisabledOption {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-
-.welcome-page-error-placeholder {
+.welcomePageErrorPlaceholder {
   margin-top: 10px;
   font-size: 15px;
 }
