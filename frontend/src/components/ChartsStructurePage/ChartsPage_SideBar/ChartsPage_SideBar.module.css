@@ -13,10 +13,10 @@
   width: 70px; /* Sidebar width when collapsed */
 }
 
-.sidebarContent {
+/* .sidebarContent {
   color: #fff;
   margin-top: 50px;
-}
+} */
 
 .closeSidebar {
   font-size: 30px;
@@ -49,6 +49,13 @@
 .menuItem:hover {
   background-color: #00c3ff59;
 }
+
+/* .menuItem:active {
+  background-color: #00c4ff33;
+  border-right: 3px solid #00c4ff;
+} */
+
+
 
 .menuContent {
   display: flex;
@@ -89,6 +96,12 @@
 .subMenuItem:hover {
   background-color: #00c3ff57;
 }
+
+/* .subMenuItem.active {
+
+  background-color: #00c4ff33;
+  border-right: 3px solid #00c4ff;
+} */
 
 .subMenuItem .menuContent {
   padding-right: 12px;
@@ -315,6 +328,17 @@
   left: 20px;
 }
 
+.Mobilesidebar {
+  /* width: 10%; */
+  /* width: 1000px; */
+  background-color: #1f2444;
+  color: #ffffffd2;
+  transition: width 0.3s ease;
+  height: 100%;
+  /* width: 100vh; */
+  /* align-items: center; */
+}
+
 .sidebarActive {
   display: flex;
   position: fixed;
@@ -338,7 +362,6 @@
   z-index: 2001;
 }
 
-
 .MobilegameHeader {
   display: flex;
   flex-direction: column;
@@ -346,22 +369,42 @@
 }
 
 .MobilegameSelectorWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: space-between; */
 }
-
 
 .MobilegameSelectorBox {
   background-color: #dcdcdc31;
   padding: 8px 20px;
-  border-radius: 4px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   gap: 20px;
   cursor: pointer;
   transition: background-color 0.2s ease;
   width: 100%;
+
+  border: 1px solid #0000009c;
+  
+  /* box-shadow: 2px 2px rgba(52, 52, 52, 0.3); */
+  /* box-shadow: 0 0 0 2px #bebebe32; */
+}
+
+.MobilegameSelectorBoxActive {
+  /* background-color: #164fc97e;
+  border: 2px solid #00c4ff; */
+
+  /* position: relative; برای z-index کار کند */
+  background-color: #164fc97e;
+  border: 1px solid #e0e0e0;
+  /* border-radius: 8px; */
+  box-shadow: 
+    0 2px 8px rgba(0, 196, 255, 0.2), /* سایه آبی ملایم */
+    0 4px 12px rgba(0, 0, 0, 0.1); /* سایه تاریک برای عمق */
+  /* z-index: 10; برای نمایش سایه روی المان‌های دیگر */
+  transition: all 0.3s ease; /* انیمیشن نرم */
+
 }
 
 .MobilegameLogo {
@@ -372,22 +415,26 @@
 }
 
 .MobilegameName {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #ffffffe8;
 }
 
 .MobilegameDropdown {
   position: absolute;
-  top: 11%;
-  right: 1.5%;
-  background: #d6dbe2;
+  top: 14%;
+  /* left: 2rem; */
+  /* left: 5px; */
+  background: #e6ecf4;
   color: #253459;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 2px 8px 8px rgba(167, 167, 167, 0.3);
   z-index: 1000;
-  padding: 6px 0;
-  min-width: 200px;
+  /* align-items: center; */
+  
+
+  /* padding: 6px 0; */
+  min-width: 250px;
   animation: dropdownFade 0.2s ease-in-out;
 }
 
@@ -403,15 +450,19 @@
 }
 
 .MobilegameDropdownItem {
-  padding: 8px 16px;
-  font-size: 0.9rem;
+  padding: 14px 16px;
+  font-size: 1rem;
   transition: background 0.2s;
   cursor: pointer;
-  white-space: nowrap;
+  /* background-color: #971919; */
+  /* white-space: nowrap; */
+  /* align-items: center; */
+  
+  /* justify-content: center; */
 }
 
 .MobilegameDropdownItem:hover {
-  background-color: #bec2d3;
+  background-color: #d3bec2;
   border-radius: 12px;
 }
 
@@ -421,53 +472,39 @@
   border-top: 1px solid #5f699c;
 }
 
-
-
-.menu {
+.Mobilemenu {
   display: flex;
   flex-direction: column;
   padding: 0 8px;
 }
 
-.menuItem {
+.MobilemenuItem {
   cursor: pointer;
   padding: 10px 12px;
   margin-bottom: 4px;
   transition: background 0.2s ease;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
-.menuItem:hover {
-  background-color: #00c3ff59;
+.MobilemenuItem:hover {
+  background-color: #00c3ff95;
 }
 
-.menuContent {
+.MobilemenuContent {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.label {
+.Mobilelabel {
   white-space: nowrap;
 }
-
-/* .englishPart {
-  font-size: 0.9em;
-  opacity: 0.8;
-  margin-right: 4px;
-}
-
-.active {
-  background-color: #00c4ff33;
-  border-right: 3px solid #00c4ff;
-} */
-
 
 .Mobilechevron {
   margin-right: auto;
   display: flex;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #888;
 }
 
@@ -504,11 +541,11 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s ease;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
 }
 
 .MobilesubMenuItem:hover {
-  background-color: #00c3ff57;
+  background-color: #00c3ff81;
 }
 
 .MobilesubMenuItem .MobilemenuContent {
@@ -524,7 +561,6 @@
 .MobileiconSub {
   font-size: 16px;
 }
-
 
 .MobileprofileInfo {
   display: flex;

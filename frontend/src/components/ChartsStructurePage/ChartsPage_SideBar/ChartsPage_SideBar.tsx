@@ -1,6 +1,6 @@
 import styles from "./ChartsPage_SideBar.module.css";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FiHome,
@@ -155,7 +155,8 @@ const ChartsPage_SideBar = () => {
   
   const [selectedGame, setSelectedGame] = useState("بازی A");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  
+  const dropdownRef = useRef(null);
+
   const gameList = ["بازی اول", "بازی دوم", "بازی سوم"];
   
   const [username, setUsername] = useState<string>();
@@ -165,6 +166,43 @@ const ChartsPage_SideBar = () => {
     if (storedUsername) setUsername(storedUsername);
   }, []);
   
+
+  // useEffect(() => {
+  //   // تابعی که بررسی می‌کند کلیک خارج از منو شده است یا نه
+  //   const handleClickOutside = (event) => {
+  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  //       setDropdownOpen(false); // بستن منو
+  //     }
+  //   };
+
+  //   // اضافه کردن لیسنر به کلیک در صفحه
+  //   document.addEventListener("mousedown", handleClickOutside);
+
+  //   // تمیزکاری
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    const handleClick = () => {
+      if (dropdownOpen) {
+        setDropdownOpen(false);
+      }
+    };
+
+    // وقتی منو باز است، کلیک روی هر جای صفحه آن را می‌بندد
+    if (dropdownOpen) {
+      document.addEventListener('click', handleClick);
+      return () => document.removeEventListener('click', handleClick);
+    }
+  }, [dropdownOpen]);
+
+
+  const handleMenuClick = () => {
+    setDropdownOpen((prev) => !prev); // باز و بسته شدن منو
+  };
+
   // Function to toggle the sidebar open/closed
   const toggleSidebar = () => {
     setSidebarActive(!sidebarActive);
@@ -203,9 +241,7 @@ const ChartsPage_SideBar = () => {
   return (
     <div>
 
-
       {/* For screens larger than 480px, display a fixed sidebar */}
-
       {!isSmallScreen && (
         <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}>
 
@@ -214,7 +250,11 @@ const ChartsPage_SideBar = () => {
             <div className={styles.gameSelectorWrapper}>
               <div
                 className={styles.gameSelectorBox}
-                onClick={() => setDropdownOpen((prev) => !prev)}
+                // onClick={() => setDropdownOpen((prev) => !prev)}
+                onClick={(e) => {
+                  e.stopPropagation(); // جلوگیری از بسته شدن توسط event کلیک صفحه
+                  setDropdownOpen(!dropdownOpen);
+                }}
               >
                 <img src={GameLogo} alt="Game Logo" className={styles.gameLogo} />
                 {!collapsed && (
@@ -240,7 +280,12 @@ const ChartsPage_SideBar = () => {
                   <div
                     key={game}
                     className={styles.gameDropdownItem}
-                    onClick={() => {
+                    // onClick={() => {
+                    //   setSelectedGame(game);
+                    //   setDropdownOpen(false);
+                    // }}
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setSelectedGame(game);
                       setDropdownOpen(false);
                     }}
@@ -339,8 +384,6 @@ const ChartsPage_SideBar = () => {
         </aside>
       )}
 
-
-
       {/* Only show the hamburger icon if the screen width is smaller than 480px */}
       {isSmallScreen && (
         <div
@@ -353,7 +396,7 @@ const ChartsPage_SideBar = () => {
 
       {/* If the screen width is smaller than 480px, display a collapsible sidebar */}
       {sidebarActive && isSmallScreen && (
-        <aside className={`${styles.sidebarActive}`}>
+        <aside className={`${styles.Mobilesidebar} ${styles.sidebarActive}`}>
           {/* Button to close the sidebar */}
           <div
             className={styles.closeSidebar}
@@ -362,44 +405,43 @@ const ChartsPage_SideBar = () => {
             <FiX />
           </div>
 
-          {/* Other content of the sidebar */}
-          {/* <div className={styles.sidebarContent}>
-            <h2>این سایدبار است!</h2>
-          </div> */}
-
-
           {/* Game selector section */}
           <div className={styles.MobilegameHeader}>
             <div className={styles.MobilegameSelectorWrapper}>
               <div
-                className={styles.MobilegameSelectorBox}
-                onClick={() => setDropdownOpen((prev) => !prev)}
+                // className={styles.MobilegameSelectorBox} 
+                className={`${styles.MobilegameSelectorBox} ${
+                  dropdownOpen ? styles.MobilegameSelectorBoxActive : ''
+                }`}
+                // onClick={handleMenuClick}
+                onClick={(e) => {
+                  e.stopPropagation(); // جلوگیری از بسته شدن توسط event کلیک صفحه
+                  setDropdownOpen(!dropdownOpen);
+                }}
               >
                 <img src={GameLogo} alt="Game Logo" className={styles.MobilegameLogo} />
                 {!collapsed && (
                   <span className={styles.MobilegameName}>{selectedGame}</span>
                 )}
               </div>
-
-              {/* Collapse/Expand button for the sidebar */}
-              {/* <div
-                className={styles.toggle}
-                onClick={toggleCollapse} // Toggle the collapse state
-                aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-              >
-                {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
-              </div> */}
-              
             </div>
 
             {/* Dropdown to select a game */}
             {dropdownOpen && (
-              <div className={styles.MobilegameDropdown}>
+              <div 
+                className={styles.MobilegameDropdown}
+                // ref={dropdownRef}
+              >
                 {gameList.map((game) => (
                   <div
                     key={game}
                     className={styles.MobilegameDropdownItem}
-                    onClick={() => {
+                    // onClick={() => {
+                    //   setSelectedGame(game);
+                    //   setDropdownOpen(false); // بسته شدن منو پس از انتخاب بازی
+                    // }}
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setSelectedGame(game);
                       setDropdownOpen(false);
                     }}
@@ -412,8 +454,6 @@ const ChartsPage_SideBar = () => {
 
             <hr className={styles.Mobiledivider} />
           </div>
-
-
 
           {/* Navigation menu */}
           <nav className={styles.Mobilemenu}>
@@ -440,16 +480,7 @@ const ChartsPage_SideBar = () => {
                       <span className={styles.Mobilechevron}>
                         {isSectionOpen ? <FiChevronDown /> : <FiChevronRight />}
                       </span>
-
-                      {/* {!collapsed && <span className={styles.label}>{item.label}</span>}
-                      {item.collapsible && !collapsed && (
-                        <span className={styles.chevron}>
-                          {isSectionOpen ? <FiChevronDown /> : <FiChevronRight />}
-                        </span>
-                      )} */}
-
                     </div>
-
                   </div>
 
                   {isSectionOpen && item.items && item.items.length > 0 && (
@@ -465,9 +496,6 @@ const ChartsPage_SideBar = () => {
                             <div className={styles.MobilemenuContent}>
                               <span className={styles.MobileiconSub}>{subItem.icon}</span>
                               <span className={styles.Mobilelabel}>{subItem.label}</span>
-                              {/* {!collapsed && (
-                                <span className={styles.label}>{subItem.label}</span>
-                              )} */}
                             </div>
                           </div>
                         );
@@ -483,11 +511,9 @@ const ChartsPage_SideBar = () => {
               <hr className={styles.Mobiledivider} />
               <div className={styles.MobileprofileInfo}>
                 <img src={dashboard_sidebar_user_icon} alt="Avatar" className={styles.Mobileavatar} />
-                {/* {!collapsed && ( */}
                   <div>
                     <div className={styles.MobileprofileName}>{username}</div>
                   </div>
-                {/* )} */}
               </div>
   
               <div
@@ -500,16 +526,9 @@ const ChartsPage_SideBar = () => {
                   className={styles.MobilelogoutIcon}
                 />
                 <span>پنل کاربری</span>
-                {/* {!collapsed && <span>پنل کاربری</span>} */}
               </div>
             </div>
-
           </nav>
-
-
-
-
-
         </aside>
       )}
     </div>
