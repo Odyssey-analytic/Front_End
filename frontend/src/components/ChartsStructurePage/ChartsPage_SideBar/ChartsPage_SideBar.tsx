@@ -150,10 +150,23 @@ const menuItems = [
 ];
 
 const ChartsPage_SideBar = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null); // برای مدیریت وضعیت باز بودن هر منو
+  // const [activeIndex, setActiveIndex] = useState<number | null>(null); // برای مدیریت وضعیت باز بودن هر منو
+  const [activeIndex, setActiveIndex] = useState<string | number>(0);
+
+
   const [sidebarActive, setSidebarActive] = useState(false); // وضعیت باز و بسته بودن سایدبار
   const [isSmallScreen, setIsSmallScreen] = useState(false); // وضعیت اینکه آیا صفحه کوچکتر از 480px است یا نه
   const [collapsed, setCollapsed] = useState(false); // وضعیت باز یا بسته بودن سایدبار در صفحات بزرگتر از 480px
+
+  const [openSections, setOpenSections] = useState<number[]>([]);
+
+
+  const [selectedGame, setSelectedGame] = useState("بازی A");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const gameList = ["بازی اول", "بازی دوم", "بازی سوم"];
+
+
 
   // تابع برای باز و بسته کردن سایدبار
   const toggleSidebar = () => {
@@ -161,8 +174,14 @@ const ChartsPage_SideBar = () => {
   };
 
   // تغییر وضعیت باز بودن زیرمنوها
+  // const toggleSection = (index: number) => {
+  //   setActiveIndex(prevIndex => (prevIndex === index ? null : index));
+  // };
+
   const toggleSection = (index: number) => {
-    setActiveIndex(prevIndex => (prevIndex === index ? null : index));
+    setOpenSections((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
   };
 
   // تابع برای جمع کردن و باز کردن سایدبار
@@ -203,21 +222,77 @@ const ChartsPage_SideBar = () => {
       {/* برای صفحه‌های بزرگتر از 480px سایدبار ثابت */}
       {!isSmallScreen && (
         <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}>
+          
+          
+          
+          
           {/* دکمه برای جمع کردن سایدبار */}
-          <div
+          {/* <div
             className={styles.toggle}
             onClick={toggleCollapse} // با کلیک روی این آیکون، سایدبار جمع یا باز می‌شود
           >
             {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
+          </div> */}
+
+
+          {/* Game selector section */}
+          <div className={styles.gameHeader}>
+            <div className={styles.gameSelectorWrapper}>
+              <div
+                className={styles.gameSelectorBox}
+                onClick={() => setDropdownOpen((prev) => !prev)}
+              >
+                <img src={GameLogo} alt="Game Logo" className={styles.gameLogo} />
+                {!collapsed && (
+                  <span className={styles.gameName}>{selectedGame}</span>
+                )}
+              </div>
+
+              {/* Collapse/Expand button for the sidebar */}
+              <div
+                className={styles.toggle}
+                onClick={toggleCollapse} // Toggle the collapse state
+                aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+              >
+                {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
+              </div>
+              
+            </div>
+
+            {/* Dropdown to select a game */}
+            {dropdownOpen && (
+              <div className={styles.gameDropdown}>
+                {gameList.map((game) => (
+                  <div
+                    key={game}
+                    className={styles.gameDropdownItem}
+                    onClick={() => {
+                      setSelectedGame(game);
+                      setDropdownOpen(false);
+                    }}
+                  >
+                    {game}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <hr className={styles.divider} />
           </div>
 
-          {/* محتوای ثابت سایدبار */}
-          <div className={styles.sidebarContent}>
-            <h2>سایدبار ثابت</h2>
-            <p>محتویات سایدبار</p>
-          </div>
 
-          <div className={styles.menu}>
+
+
+
+
+
+
+
+
+
+
+
+          {/* <div className={styles.menu}>
             {menuItems.map((item, index) => (
               <div key={index}>
                 <div
@@ -240,9 +315,79 @@ const ChartsPage_SideBar = () => {
                 )}
               </div>
             ))}
-          </div>
+          </div> */}
+
+
+          
+        {/* Navigation menu */}
+          <nav className={styles.menu}>
+            {menuItems.map((item, index) => {
+              const isSectionOpen = openSections.includes(index);
+              const isActive = activeIndex === index;
+
+              return (
+                <div key={index}>
+
+                  <div
+                    className={`${styles.menuItem} ${isActive ? styles.active : ""}`}
+                    onClick={() =>
+                      item.collapsible
+                        ? toggleSection(index)
+                        : setActiveIndex(index)
+                    }
+                  >
+                  
+                    <div className={styles.menuContent}>
+                      <span className={styles.iconMain}>{item.icon}</span>
+
+                      {/* {!collapsed && index === 0 && window.innerWidth < 480 && (
+                        <div className={styles.hamburgerIcon} onClick={toggleSidebar}>
+                          <FiMenu />
+                        </div>
+                      )} */}
+                      {!collapsed && <span className={styles.label}>{item.label}</span>}
+                      {item.collapsible && !collapsed && (
+                        <span className={styles.chevron}>
+                          {isSectionOpen ? <FiChevronDown /> : <FiChevronRight />}
+                        </span>
+                      )}
+
+                    </div>
+                  </div>
+
+                  {item.collapsible && isSectionOpen && item.items && item.items.length > 0 && (
+                    <div className={styles.subMenu}>
+                      {item.items.map((subItem, subIdx) => {
+                        const subItemKey = `${index}-${subIdx}`;
+                        return (
+                          <div
+                            key={subIdx}
+                            className={`${styles.subMenuItem} ${activeIndex === subItemKey ? styles.active : ""}`}
+                            onClick={() => setActiveIndex(subItemKey)}
+                          >
+                            <div className={styles.menuContent}>
+                              <span className={styles.iconSub}>{subItem.icon}</span>
+                              {!collapsed && (
+                                <span className={styles.label}>{subItem.label}</span>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                  
+                </div>
+              );
+            })}
+          </nav>
+
+
+
         </aside>
       )}
+
+
 
       {/* اگر صفحه کوچکتر از 480px باشد، سایدبار کشویی */}
       {sidebarActive && isSmallScreen && (
