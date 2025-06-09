@@ -119,62 +119,67 @@ const WelcomePage = () => {
     }
   };
 
-  const handleSubmitGame = async () => {
-    let valid = true;
-    if (!gameName.trim()) {
-      setGameNameError("وارد کردن نام بازی الزامی است.");
-      valid = false;
-    } else setGameNameError("");
+const handleSubmitGame = async () => {
+  let valid = true;
 
-    if (!engine.trim()) {
-      setEngineError("انتخاب موتور بازی الزامی است.");
-      valid = false;
-    } else setEngineError("");
+  if (!gameName.trim()) {
+    setGameNameError("وارد کردن نام بازی الزامی است.");
+    valid = false;
+  } else setGameNameError("");
 
-    if (platforms.length === 0) {
-      setPlatformError("انتخاب حداقل یک پلتفرم الزامی است.");
-      valid = false;
-    } else setPlatformError("");
+  if (!engine.trim()) {
+    setEngineError("انتخاب موتور بازی الزامی است.");
+    valid = false;
+  } else setEngineError("");
 
-    if (!valid) return;
+  if (platforms.length === 0) {
+    setPlatformError("انتخاب حداقل یک پلتفرم الزامی است.");
+    valid = false;
+  } else setPlatformError("");
 
-    let finalThumbnail = thumbnail;
+  if (!valid) return;
 
-    if (!thumbnail) {
-      finalThumbnail = await fetchDefaultThumbnail();
-      if (!finalThumbnail) {
-        alert("امکان بارگذاری تصویر پیش‌فرض وجود ندارد.");
-        return;
-      }
+  setIsLoading(true); // فقط اینجا فعال می‌شود
+
+  let finalThumbnail = thumbnail;
+
+  if (!thumbnail) {
+    finalThumbnail = await fetchDefaultThumbnail();
+    if (!finalThumbnail) {
+      alert("امکان بارگذاری تصویر پیش‌فرض وجود ندارد.");
+      setIsLoading(false); // در صورت خطا
+      return;
     }
+  }
 
-    const data = {
-      name: gameName,
-      description: description,
-      engine: engine,
-      platform: platforms,
-      thumbnail: finalThumbnail,
-    };
-
-    try {
-      const result = await submitGameInfo(data);
-      setToken(result.token);
-      setStep(3);
-      setIsLoading(true);
-      setTimeout(() => {
-        setIsLoading(false);
-        navigate("/panel", { state: { refresh: true } });
-      }, 10000);
-    } catch (err: any) {
-      console.error("API error:", err.response?.data || err.message);
-      alert("خطا در ثبت بازی. لطفا دوباره تلاش کنید.");
-    }
+  const data = {
+    name: gameName,
+    description: description,
+    engine: engine,
+    platform: platforms,
+    thumbnail: finalThumbnail,
   };
 
-  return (
-    <>
-      <MainLayout></MainLayout>
+  try {
+    setStep(3);
+    const result = await submitGameInfo(data);
+    setToken(result.token);
 
+    setTimeout(() => {
+      setIsLoading(false); 
+      navigate("/panel", { state: { refresh: true } });
+    }, 10000);
+  } catch (err: any) {
+    console.error("API error:", err.response?.data || err.message);
+    alert("خطا در ثبت بازی. لطفا دوباره تلاش کنید.");
+    setIsLoading(false); 
+  }
+};
+
+
+  return (
+    <div className={styles.back}>
+      <MainLayout></MainLayout>
       <div className={styles.welcomePageBody}>
         <div
           className={`${styles.welcomePageMainBox} text-center ${
@@ -269,12 +274,12 @@ const WelcomePage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: "easeInOut" }}
                 >
-                  <p className={styles["welcome-page-popup-title"]}>
+                  <p className={styles.welcomePagePopupTitle}>
                     محصولی که می‌خوای آنالیزشون رو انجام بدی رو انتخاب کن:
                   </p>
-                  <div className={styles["welcome-page-product-options-list"]}>
+                  <div className={styles.welcomePageProductOptionsList}>
                     <label
-                      className={`${styles["welcome-page-product-option"]} ${
+                      className={`${styles.welcomePageProductOption} ${
                         selectedProduct === "game" ? styles.checked : ""
                       }`}
                     >
@@ -291,7 +296,7 @@ const WelcomePage = () => {
                     </label>
 
                     <label
-                      className={`${styles["welcome-page-product-option"]} ${
+                      className={`${styles.welcomePageProductOption} ${
                         selectedProduct === "website" ? styles.checked : ""
                       }`}
                     >
@@ -308,9 +313,9 @@ const WelcomePage = () => {
                     </label>
                   </div>
 
-                  <div className={styles["welcome-page-product-buttons-row"]}>
+                  <div className={styles.welcomePageProductButtonsRow}>
                     <button
-                      className={styles["welcome-page-continue-btn"]}
+                      className={styles.welcomePageContinueBtn}
                       disabled={!selectedProduct || isLoading}
                       onClick={handleClick}
                     >
@@ -328,7 +333,7 @@ const WelcomePage = () => {
                 >
                   <div className={styles.step2Compact}>
                     <p className={`text-start mb-3`}>
-                      اطلاعات بازیت رو وارد کن :
+                      اطلاعات بازیت رو وارد کن:
                     </p>
 
                     <div
@@ -370,13 +375,18 @@ const WelcomePage = () => {
                             <img
                               src={uploading_game_image_icon_ghost}
                               alt="انتخاب تصویر"
-                              className={styles.welcomePageUploadPlaceholderIcon}
+                              className={
+                                styles.welcomePageUploadPlaceholderIcon
+                              }
                             />
                           )}
                         </div>
-                        <div className={`d-flex justify-content-center gap-3 mt-2`}>
+                        <div
+                          className={`d-flex justify-content-center gap-3 mt-2`}
+                        >
                           <label
-                            className={`${styles.welcomePageUploadSelectLabel} mb-0`}>
+                            className={`${styles.welcomePageUploadSelectLabel} mb-0`}
+                          >
                             انتخاب تصویر
                             <input
                               type="file"
@@ -392,7 +402,9 @@ const WelcomePage = () => {
                           </label>
                           <button
                             type="button"
-                            className={`${styles.welcomePageDeleteImageTextBtn} ${thumbnail ? styles.active : styles.disabled}`}
+                            className={`${
+                              styles.welcomePageDeleteImageTextBtn
+                            } ${thumbnail ? styles.active : styles.disabled}`}
                             onClick={() => {
                               if (!thumbnail) {
                                 setImageError("هنوز تصویری بارگزاری نشده است.");
@@ -417,17 +429,13 @@ const WelcomePage = () => {
                     </div>
 
                     <div className="d-flex flex-column flex-md-row gap-4">
-                      <div
-                        className={`text-start flex-fill mt-3 mt-md-0 mb-4`}
-                      >
+                      <div className={`text-start flex-fill mt-3 mt-md-0 mb-4`}>
                         <label className="d-block mb-3">
                           انتخاب موتور بازی:{" "}
                           <span style={{ color: "red" }}>*</span>
                         </label>
 
-                        <div
-                          className={styles.welcomePageRadioGroupGrid}
-                        >
+                        <div className={styles.welcomePageRadioGroupGrid}>
                           <label className={styles.welcomePageRadioLabel}>
                             <input
                               type="checkbox"
@@ -443,7 +451,9 @@ const WelcomePage = () => {
                             Unity
                           </label>
 
-                          <label className={`${styles.welcomePageRadioLabel} ${styles.welcomePageEngineDisabledOption}`}>
+                          <label
+                            className={`${styles.welcomePageRadioLabel} ${styles.welcomePageEngineDisabledOption}`}
+                          >
                             <input
                               type="checkbox"
                               checked={engine === "godot"}
@@ -477,7 +487,7 @@ const WelcomePage = () => {
                         </div>
 
                         <div
-                          className={styles["welcome-page-error-placeholder"]}
+                          className={styles.welcomePageErrorPlaceholder}
                           style={{ minHeight: "20px" }}
                         >
                           {engineError && (
@@ -492,17 +502,13 @@ const WelcomePage = () => {
                     </div>
 
                     <div className="d-flex flex-column flex-md-row mb-4">
-                      <div
-                        className={`text-start flex-fill mt-3 mt-md-0 mb-2 ${styles["platform-section"]}`}
-                      >
+                      <div className={`text-start flex-fill mt-3 mt-md-0 mb-2`}>
                         <label className="d-block mb-3">
                           انتخاب پلتفرم هدف:{" "}
                           <span style={{ color: "red" }}>*</span>
                         </label>
 
-                        <div
-                          className={styles.welcomePageRadioGroupGrid}
-                        >
+                        <div className={styles.welcomePageRadioGroupGrid}>
                           <label className={styles.welcomePageRadioLabel}>
                             <input
                               type="checkbox"
@@ -536,9 +542,7 @@ const WelcomePage = () => {
                           style={{ minHeight: "20px" }}
                         >
                           {platformError && (
-                            <p
-                              className={`text-danger small mt-1 mb-0`}
-                            >
+                            <p className={`text-danger small mt-1 mb-0`}>
                               {platformError}
                             </p>
                           )}
@@ -546,38 +550,19 @@ const WelcomePage = () => {
                       </div>
                     </div>
 
-                    <div
-                      className={`w-100 text-start mb-4 ${styles["description-section"]}`}
-                    >
+                    <div className={`w-100 text-start mb-4`}>
                       <label className="d-block mb-2">توضیحات (اختیاری):</label>
                       <textarea
-                        className={`form-control ${styles["game-name-input-sm"]}`}
+                        className={`form-control ${styles.gameNameInputSm}`}
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                       />
                     </div>
-
-                    <div
-                      className={`d-flex justify-content-center gap-3 mt-3 ${styles["step-2-buttons"]}`}
-                    >
-                      <button
-                        className={styles["welcome-page-continue-btn"]}
-                        onClick={() => {
-                          setIsLoading(true);
-                          setTimeout(() => {
-                            setStep(1);
-                            setIsLoading(false);
-                          }, 200);
-                        }}
-                      >
+                    <div className={`d-flex justify-content-center gap-3 mt-3 ${styles["step-2-buttons"]}`}>
+                      <button className={styles.welcomePageContinueBtn} onClick={() => setStep(1)}>
                         بازگشت
                       </button>
-
-                      <button
-                        className={styles["welcome-page-continue-btn"]}
-                        disabled={!selectedProduct || isLoading}
-                        onClick={handleSubmitGame}
-                      >
+                      <button className={styles.welcomePageContinueBtn} disabled={!selectedProduct || isLoading} onClick={handleSubmitGame}>
                         {isLoading ? "در حال بارگذاری..." : "ثبت"}
                       </button>
                     </div>
@@ -652,8 +637,7 @@ const WelcomePage = () => {
                         </span>
                       </div>
                     </div>
-
-                    <p className={styles["welcome-page-token-note"]}>
+                    <p className={styles.welcomePageTokenNote}>
                       برای اطلاع از دستور نصب، به بخش داکیومنت در منو مراجعه
                       کنید!
                     </p>
@@ -664,7 +648,7 @@ const WelcomePage = () => {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 

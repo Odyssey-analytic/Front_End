@@ -4,7 +4,7 @@
   height: 86%;
   position: absolute;
   justify-content: center;
-  top: 14%;
+  top: 14.6%;
   align-items: center;
   background-color: rgba(225, 237, 255);
 }
@@ -151,7 +151,7 @@
 }
 
 /* =========================== popup content =========================== */
-.welcome-page-popup-title {
+.welcomePagePopupTitle {
   font-size: 15px;
   text-align: right;
   color: #333;
@@ -212,34 +212,6 @@
 .welcome-page-delete-image-text-btn.active:hover {
   text-decoration: underline;
 }
-
-/* =========================== responsive breakpoints =========================== */
-@media (max-width: 480px) {
-  .welcome-page-body {
-    padding: 1.5rem 1rem;
-  }
-}
-@media (min-width: 481px) and (max-width: 768px) {
-  .welcome-page-body {
-    padding: 2rem 1.5rem;
-  }
-}
-@media (min-width: 769px) and (max-width: 1024px) {
-  .welcome-page-body {
-    padding: 2.5rem 2rem;
-  }
-}
-@media (min-width: 1025px) and (max-width: 1280px) {
-  .welcome-page-body {
-    padding: 3rem 2.5rem;
-  }
-}
-@media (min-width: 1281px) and (max-width: 1440px) {
-  .welcome-page-body {
-    padding: 3rem 4rem;
-  }
-}
-
 /* =========================== stepper =========================== */
 .welcomePageStepperContainer {
   display: flex;
@@ -310,7 +282,7 @@
 }
 
 /* =========================== product option checkboxes =========================== */
-.welcome-page-product-options-list {
+.welcomePageProductOptionsList {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -318,12 +290,11 @@
   padding-top: 0.5rem;
 }
 
-.welcome-page-product-option {
+.welcomePageProductOption {
   position: relative;
   padding: 0.75rem 1.5rem 0.75rem 2rem;
   border-radius: 10px;
   cursor: pointer;
-
   font-size: 15px;
   font-weight: 400;
   transition: all 0.3s ease;
@@ -331,11 +302,11 @@
   box-shadow: 0 2px 2px rgb(188, 159, 202);
 }
 
-.welcome-page-product-option input {
+.welcomePageProductOption input {
   display: none;
 }
 
-.welcome-page-product-option .checkmark {
+.welcomePageProductOption .checkmark {
   position: absolute;
   left: 1rem;
   top: 50%;
@@ -349,7 +320,7 @@
   transition: all 0.3s ease;
 }
 
-.welcome-page-product-option.checked {
+.welcomePageProductOption.checked {
   background-color: #f1f1f1;
   border-color: rgb(129, 70, 155);
   color: rgb(141, 84, 165);
@@ -358,12 +329,12 @@
   box-shadow: 0 2px 6px rgba(135, 64, 166, 0.6);
 }
 
-.welcome-page-product-option.checked .checkmark {
+.welcomePageProductOption.checked .checkmark {
   background-color: rgb(139, 71, 169);
   border-color: rgb(136, 68, 165);
 }
 
-.welcome-page-product-option.checked::before {
+.welcomePageProductOption.checked::before {
   content: "✔";
   position: absolute;
   left: 1.25rem;
@@ -504,15 +475,12 @@
   bottom: 120%;
   left: 1px;
   font-family: Vazirmatn, sans-serif;
-
   transform: translateX(-50%);
   background-color: #686d80;
   color: white;
-
   padding: 6px 10px;
   border-radius: 3px;
   font-size: 0.8rem;
-
   white-space: nowrap;
   opacity: 0;
   animation: tooltipFade 2s ease forwards;
@@ -540,6 +508,7 @@
 /* =========================== step 2 inputs =========================== */
 .step2Compact .popup-options label {
   font-size: 14px;
+  
 }
 
 .step2Compact .popup-options input,
@@ -588,39 +557,37 @@
   font-size: 13px;
 }
 
-.welcome-page-token-note {
+.welcomePageTokenNote {
   font-size: 12px;
   color: #888;
 }
 
 /* =========================== continue button =========================== */
-.welcome-page-product-buttons-row {
+.welcomePageProductButtonsRow {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
 }
 
-.welcome-page-continue-btn {
+.welcomePageContinueBtn {
   display: block;
   margin-top: 1rem;
   margin-bottom: 1.5rem;
   width: 100%;
   max-width: 130px;
-
   padding: 0.6rem;
   font-size: 15px;
   color: #c4c4c4;
   background: linear-gradient(to right, #5d1b79, #00719a);
   border: none;
   border-radius: 12px;
-
   filter: brightness(1.4);
   transition: all 0.3s ease;
 }
 
-.welcome-page-continue-btn:hover,
-.welcome-page-continue-btn:focus,
-.welcome-page-continue-btn:active {
+.welcomePageContinueBtn:hover,
+.welcomePageContinueBtn:focus,
+.welcomePageContinueBtn:active {
   background: linear-gradient(to right, #5d1b79, #00719a);
   filter: brightness(1.1);
   color: white !important;
@@ -628,7 +595,7 @@
   outline: none;
 }
 
-.welcome-page-continue-btn:disabled {
+.welcomePageContinueBtn:disabled {
   opacity: 0.6;
 }
 
@@ -642,6 +609,10 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  /* THESE 3 LINES MAY BE AS COMMENT */
+  font-family: "Aboreto", sans-serif;
+  font-size: medium;
+  font-weight: bold;
 }
 
 .welcomePageEngineDisabledOption {
@@ -653,3 +624,321 @@
   margin-top: 10px;
   font-size: 15px;
 }
+
+.back {
+  background-color: rgba(225, 237, 255);
+  height: 100%;
+}
+
+
+/* ===================~======== responsive breakpoints =========================== */
+/* @media (max-width: 768px) {
+  .welcomePageBody {
+    width: 100%;
+    height: 86%;
+    position: absolute;
+    justify-content: center;
+    top: 12%;
+    align-items: center;
+  } */
+
+  /* .welcomePageMainBox {
+    width: 90%;
+    height: auto;
+    top: 5%;
+    right: 5%;
+    padding: 2rem 1rem;
+  } */
+  /* 
+  .welcomePageMainBoxHeading {
+    font-size: 26px;
+  }
+
+  .welcomePageMainBoxDescription {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  .welcomePageMainBoxStartBtn {
+    width: 100%;
+    max-width: 220px;
+    padding: 0.7rem;
+    font-size: 14px;
+  }
+
+  .welcomePageMainBoxBodyPopupCard {
+    width: 80%;
+    height: auto;
+    top: 5%;
+    padding: 2rem 2rem 1rem;
+  }
+
+  .welcomePagePopupCardCloseIcon {
+    right: 1rem;
+    margin-left: 0;
+  }
+
+  .welcomePageStepperContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .welcomePageStepperItem {
+    flex: 0 0 30%;
+  }
+
+  .welcomePageStepperLabel {
+    font-size: 12px;
+  }
+
+  .welcomePageUploadSection {
+    width: 80px;
+    height: 100px;
+    margin-right: 0.5rem;
+  }
+
+  .welcomePageUploadPreviewWrapper {
+    width: 80px;
+    height: 80px;
+  }
+
+  .gameNameInputSm {
+    font-size: 14px;
+    padding: 0.5rem;
+  }
+
+  .welcomePageRadioGroupGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .welcomePageRadioLabel {
+    font-size: 14px;
+  }
+
+  .welcomePageProductOption {
+    font-size: 14px;
+    padding: 0.5rem 1.2rem 0.5rem 2rem;
+  }
+
+  .welcomePageProductButtonsRow {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .welcomePageContinueBtn {
+    max-width: 200px;
+    font-size: 14px;
+    padding: 0.6rem;
+  }
+
+  .welcome-page-access-token-box {
+    width: 100%;
+    font-size: 13px;
+    padding: 1rem 0.5rem;
+  }
+
+  .welcome-page-token-value {
+    font-size: 12px;
+  }
+
+  .welcome-page-sdk-download-link {
+    font-size: 14px;
+  }
+
+  .welcomePageTokenNote {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .welcome-page-copy-done-msg-tooltip {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+}
+@media (max-width: 768px) {
+  .welcomePageBody {
+    padding: 1rem 0.5rem;
+    top: 0;
+    position: relative;
+    height: auto;
+    background-color: #f7f9ff;
+  }
+
+  .welcomePageMainBox {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    padding: 1.5rem 1rem;
+    border-radius: 8px;
+  }
+
+  .welcomePageMainBoxIcon img {
+    width: 90px;
+  }
+
+  .welcomePageMainBoxHeading {
+    font-size: 20px;
+    margin-bottom: 1rem;
+  }
+
+  .welcomePageMainBoxDescription {
+    font-size: 13px;
+    margin-bottom: 0;
+  }
+
+  .welcomePageMainBoxStartBtn {
+    max-width: 100%;
+    font-size: 13px;
+    padding: 0.6rem;
+    border-radius: 10px;
+  }
+
+  .welcomePageMainBoxBodyPopupCard {
+    width: 95%;
+    height: auto;
+    top: 2%;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .welcomePagePopupCardCloseIcon {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 20px;
+    height: 20px;
+  }
+
+  .welcomePageStepperContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .welcomePageStepperItem {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .welcomePageStepperCircle {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  .welcomePageStepperLabel {
+    font-size: 12px;
+  }
+
+  .welcomePageStepperFirstLine,
+  .welcomePageStepperSecondLine {
+    display: none;
+  }
+
+  .welcomePageProductOptionsList {
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .welcomePageProductOption {
+    font-size: 13px;
+    padding: 0.7rem 1rem;
+  }
+
+  .step2Compact {
+    padding: 0 0.5rem;
+  }
+
+  .gameNameInputSm {
+    width: 100%;
+    font-size: 13px;
+    padding: 0.5rem;
+  }
+
+  .welcomePageUploadSection {
+    width: 70px;
+    height: 85px;
+    margin: 1rem auto;
+  }
+
+  .welcomePageUploadPreviewWrapper {
+    width: 70px;
+    height: 70px;
+  }
+
+  .welcomePageUploadPlaceholderIcon {
+    width: 28px;
+  }
+
+  .welcomePageRadioGroupGrid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .welcomePageRadioLabel {
+    font-size: 13px;
+  }
+
+  .welcomePageContinueBtn {
+    max-width: 100%;
+    width: 100%;
+    font-size: 13px;
+    padding: 0.6rem;
+  }
+
+  .welcomePageProductButtonsRow {
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .welcome-page-success-icon-wrapper img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+  }
+
+  .welcome-page-success-text-title {
+    font-size: 1rem;
+  }
+
+  .welcome-page-success-text-explain {
+    font-size: 12px;
+    padding: 1rem;
+  }
+
+  .welcome-page-sdk-download-link {
+    font-size: 13px;
+  }
+
+  .welcome-page-access-token-box {
+    width: 100%;
+    font-size: 12px;
+    padding: 0.8rem;
+    overflow-x: auto;
+  }
+
+  .welcome-page-token-value {
+    font-size: 11.5px;
+  }
+
+  .welcomePageTokenNote {
+    font-size: 11.5px;
+    text-align: center;
+  }
+
+  .welcome-page-copy-done-msg-tooltip {
+    font-size: 11px;
+    padding: 4px 6px;
+  }
+
+  .welcomePageErrorPlaceholder {
+    font-size: 12.5px;
+  } */
+/* } */
