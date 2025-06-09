@@ -21,7 +21,10 @@ const Counter: React.FC<{ end: number; trigger: boolean; speed?: number }> = ({
   speed = 200,
 }) => {
   const [count, setCount] = useState(0);
-  const intervalRef = useRef<number | null>(null);
+  // const intervalRef = useRef<number | null>(null);
+
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
   useEffect(() => {
     if (!trigger) return;
 
