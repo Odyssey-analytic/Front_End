@@ -17,6 +17,8 @@ import LandingPage from "./components/LandingPage/LandingPage/LandingPage";
 
 import ChartsPage from './components/ChartsStructurePage/ChartsPage/ChartsPage';
 
+import DateSelector from './components/ChartsStructurePage/ChartsPage_Header/test'
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
@@ -31,6 +33,7 @@ createRoot(document.getElementById('root')!).render(
         {/* <Route path="/dashboard/:gameId" element={<ChartsPage />} /> */}
         
         <Route path="/dashboard" element={<ChartsPage />} />
+        <Route path='/DateSelector' element={<DateSelector/>}/>
       </Routes>
     </BrowserRouter>
   </StrictMode>
