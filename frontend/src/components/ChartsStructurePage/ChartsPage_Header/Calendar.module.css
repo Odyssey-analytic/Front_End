@@ -1,160 +1,107 @@
+/* Calendar.module.css */
+
 .dateSelectorContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   position: relative;
-  font-family: 'IRANSans', sans-serif;
-  direction: rtl;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   height: 100vh;
+}
+
+.combinedPicker {
+  position: relative;
+  display: inline-block;
+}
+
+.mainButton {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-width: 250px;
+  justify-content: space-between;
+}
+
+.mainButton:hover {
+  border-color: #999;
+}
+
+.buttonContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.icon {
+  font-size: 18px;
+  color: #555;
+}
+
+.dateText {
+  flex-grow: 1;
+  text-align: right;
+  font-size: 14px;
+}
+
+.modeBadge {
+  background-color: #f0f0f0;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #333;
+}
+
+.arrow {
+  transition: transform 0.2s;
+  font-size: 16px;
+}
+
+.arrow.rotated {
+  transform: rotate(180deg);
+}
+
+.dropdownContent {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 5px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  padding: 15px;
+  min-width: 300px;
 }
 
 .modeSelector {
   display: flex;
   gap: 5px;
-  justify-content: center;
+  margin-bottom: 15px;
 }
 
 .modeButton {
-  padding: 5px 15px;
+  padding: 5px 10px;
+  background-color: #f5f5f5;
   border: 1px solid #ddd;
-  background: #f5f5f5;
-  border-radius: 20px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
+  font-size: 12px;
 }
 
 .modeButton:hover {
-  background: #e9e9e9;
+  background-color: #e9e9e9;
 }
 
 .modeButton.active {
-  background: #3f51b5;
+  background-color: #007bff;
   color: white;
-  border-color: #3f51b5;
+  border-color: #007bff;
 }
 
-.datePickerWrapper {
-  position: relative;
-  /* height: 100vh; */
-}
-
-.datePickerButton {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 15px;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 20px;
-  cursor: pointer;
-  width: 100%;
-  justify-content: center;
-  transition: all 0.2s ease;
-}
-
-.datePickerButton:hover {
-  border-color: #3f51b5;
-}
-
-.icon {
-  font-size: 1.1rem;
-}
-
-.calendarPopup {
-  position: absolute;
-  top: 100%;
-  right: 0;
+.calendarWrapper {
   margin-top: 10px;
-  z-index: 1000;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-}
-
-/* استایل کلی دکمه/فیلد نمایش تاریخ */
-.customInput {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #f5f5f5;
-  cursor: pointer;
-  text-align: right;
-  font-size: 14px;
-  min-width: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* استایل وقتی روی دکمه/فیلد هاور می‌شود */
-.customInput:hover {
-  border-color: #aaa;
-}
-
-/* استایل وقتی تقویم باز است */
-.customInput:focus {
-  outline: none;
-  border-color: #3f51b5;
-  box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.2);
-}
-
-/* استایل کانتینر تقویم */
-.pickerContainer {
-  direction: rtl;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* استایل روزهای تقویم */
-.rmdp-day {
-  border-radius: 50%;
-}
-
-/* استایل روز انتخاب شده */
-.rmdp-selected {
-  background-color: #3f51b5;
-  color: white;
-}
-
-/* استایل هفته انتخاب شده */
-.rmdp-week-picker .rmdp-selected {
-  background-color: #3f51b5;
-  color: white;
-}
-
-/* استایل هدر تقویم */
-.rmdp-header {
-  padding: 10px;
-}
-
-/* استایل دکمه‌های ناوبری ماه */
-.rmdp-arrow {
-  border-color: #333;
-}
-
-/* استایل برای حالت غیرفعال */
-.readonlyInput {
-  background-color: #f5f5f5;
-  cursor: pointer;
-  user-select: none;
-}
-
-/* استایل برای نمایش تاریخ انتخاب شده */
-.selectedDate {
-  font-weight: bold;
-  color: #3f51b5;
-}
-
-/* استایل حالت موبایل */
-@media (max-width: 768px) {
-  .customInput {
-    min-width: 150px;
-    font-size: 12px;
-    padding: 6px 10px;
-  }
-  
-  .pickerContainer {
-    width: 100%;
-  }
 }
