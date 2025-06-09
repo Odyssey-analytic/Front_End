@@ -15,267 +15,7 @@ import dashboard_add_collaborator_icon from "../../../public/icons/dashboard_add
 import dashboard_game_setting_icon from "../../../public/icons/dashboard_game_setting_icon.svg";
 import game_with_no_thumbnail_icon from "../../../public/icons/game_with_no_thumbnail_icon.svg";
 
-const mockGames = [
-  // بازی‌های با حرف "پ"
-  {
-    id: "game1",
-    icon: pocket_champs_icon,
-    title: "پاکت چمپس",
-    description: "بازی استراتژیک با قابلیت چندنفره.",
-    dnu: 35,
-    dau: 1200,
-    retention: "12.5%",
-    platform: "Android, iOS",
-  },
-  {
-    id: "game2",
-    icon: pocket_champs_icon,
-    title: "پرش خفن",
-    description: "بازی پرشی با مراحل جذاب.",
-    dnu: 15,
-    dau: 400,
-    retention: "10%",
-    platform: "Android",
-  },
-  {
-    id: "game3",
-    icon: pocket_champs_icon,
-    title: "پازل کده",
-    description: "حل معماهای تصویری.",
-    dnu: 18,
-    dau: 520,
-    retention: "11%",
-    platform: "iOS",
-  },
-  {
-    id: "game4",
-    icon: pocket_champs_icon,
-    title: "پادشاه نبرد",
-    description: "بازی نبرد تن‌به‌تن آنلاین.",
-    dnu: 28,
-    dau: 800,
-    retention: "13%",
-    platform: "Web",
-  },
-  {
-    id: "game5",
-    icon: pocket_champs_icon,
-    title: "پینگ پونگ",
-    description: "شبیه‌ساز پینگ پونگ حرفه‌ای.",
-    dnu: 10,
-    dau: 200,
-    retention: "7%",
-    platform: "Android",
-  },
-
-  // بازی‌های با حرف "ت"
-  {
-    id: "game6",
-    icon: tower_war_icon,
-    title: "تاور وار",
-    description: "دفاع از قلعه در برابر هیولاها.",
-    dnu: 20,
-    dau: 800,
-    retention: "9.3%",
-    platform: "Android",
-  },
-  {
-    id: "game7",
-    icon: tower_war_icon,
-    title: "تمرکز سریع",
-    description: "بازی تقویت تمرکز و دقت.",
-    dnu: 17,
-    dau: 600,
-    retention: "8.2%",
-    platform: "Android",
-  },
-  {
-    id: "game8",
-    icon: tower_war_icon,
-    title: "تفنگی‌ها",
-    description: "نبرد با سلاح‌های متنوع.",
-    dnu: 30,
-    dau: 1100,
-    retention: "12.1%",
-    platform: "iOS",
-  },
-  {
-    id: "game9",
-    icon: tower_war_icon,
-    title: "تخته نرد آنلاین",
-    description: "بازی تخته نرد با رقیب واقعی.",
-    dnu: 14,
-    dau: 500,
-    retention: "9.5%",
-    platform: "Web",
-  },
-  {
-    id: "game10",
-    icon: tower_war_icon,
-    title: "تست واکنش",
-    description: "بازی ساده برای تست واکنش سریع.",
-    dnu: 9,
-    dau: 300,
-    retention: "6.9%",
-    platform: "Android",
-  },
-
-  // بازی‌های با حرف "ب"
-  {
-    id: "game11",
-    icon: game_with_no_thumbnail_icon,
-    title: "بدون تصویر",
-    description: "بازی تستی بدون آیکون مشخص.",
-    dnu: 12,
-    dau: 400,
-    retention: "7.1%",
-    platform: "Web",
-  },
-  {
-    id: "game12",
-    icon: game_with_no_thumbnail_icon,
-    title: "بسکتبال خیابانی",
-    description: "بازی مسابقه‌ای بسکتبال.",
-    dnu: 22,
-    dau: 650,
-    retention: "10.1%",
-    platform: "Android",
-  },
-  {
-    id: "game13",
-    icon: game_with_no_thumbnail_icon,
-    title: "برج کلمات",
-    description: "حل کلمات پنهان در جدول‌ها.",
-    dnu: 19,
-    dau: 700,
-    retention: "9.9%",
-    platform: "iOS",
-  },
-  {
-    id: "game14",
-    icon: game_with_no_thumbnail_icon,
-    title: "بمب‌گذاری حرفه‌ای",
-    description: "بازی مهارتی و زمان‌بندی بمب‌ها.",
-    dnu: 13,
-    dau: 350,
-    retention: "7.8%",
-    platform: "Web",
-  },
-  {
-    id: "game15",
-    icon: game_with_no_thumbnail_icon,
-    title: "بازی بی‌پایان",
-    description: "بازی آرکید بی‌انتها.",
-    dnu: 25,
-    dau: 900,
-    retention: "11.2%",
-    platform: "Android, iOS",
-  },
-
-  // بازی‌های با حرف "ن"
-  {
-    id: "game16",
-    icon: tower_war_icon,
-    title: "نبرد تاریکی",
-    description: "بازی فانتزی با داستان عمیق.",
-    dnu: 16,
-    dau: 470,
-    retention: "8%",
-    platform: "Android",
-  },
-  {
-    id: "game17",
-    icon: tower_war_icon,
-    title: "نجات حیوانات",
-    description: "بازی ماجراجویی و کمک به حیوانات.",
-    dnu: 14,
-    dau: 380,
-    retention: "8.3%",
-    platform: "iOS",
-  },
-  {
-    id: "game18",
-    icon: tower_war_icon,
-    title: "نابغه شو",
-    description: "سری سوالات تست هوش.",
-    dnu: 20,
-    dau: 500,
-    retention: "10%",
-    platform: "Web",
-  },
-  {
-    id: "game19",
-    icon: tower_war_icon,
-    title: "نقاشی کن",
-    description: "یادگیری نقاشی با مراحل مختلف.",
-    dnu: 18,
-    dau: 430,
-    retention: "9.7%",
-    platform: "Android",
-  },
-  {
-    id: "game20",
-    icon: tower_war_icon,
-    title: "نیروهای ویژه",
-    description: "بازی اکشن با گروه ویژه.",
-    dnu: 26,
-    dau: 850,
-    retention: "11.5%",
-    platform: "iOS",
-  },
-
-  // بازی‌های با حرف "د"
-  {
-    id: "game21",
-    icon: tower_war_icon,
-    title: "دژ مستحکم",
-    description: "ساخت و دفاع از دژ.",
-    dnu: 19,
-    dau: 710,
-    retention: "10.4%",
-    platform: "Android",
-  },
-  {
-    id: "game22",
-    icon: tower_war_icon,
-    title: "دویدن تا ابد",
-    description: "بازی دونده‌ی بی‌پایان.",
-    dnu: 30,
-    dau: 1000,
-    retention: "12%",
-    platform: "Android, iOS",
-  },
-  {
-    id: "game23",
-    icon: tower_war_icon,
-    title: "دست خالی",
-    description: "بازی بقا در جهان بدون منابع.",
-    dnu: 11,
-    dau: 300,
-    retention: "6.8%",
-    platform: "Web",
-  },
-  {
-    id: "game24",
-    icon: tower_war_icon,
-    title: "دکتر سریع",
-    description: "شبیه‌ساز اورژانس پزشکی.",
-    dnu: 17,
-    dau: 560,
-    retention: "9.2%",
-    platform: "Android",
-  },
-  {
-    id: "game25",
-    icon: tower_war_icon,
-    title: "دقت بالا",
-    description: "تمرین تیراندازی دقیق.",
-    dnu: 21,
-    dau: 780,
-    retention: "10.6%",
-    platform: "iOS",
-  },
-];
+import { fetchUserGames } from "../../services/userService";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -307,9 +47,9 @@ const DashboardPage = () => {
     const storedUsername = localStorage.getItem("username");
     if (storedUsername) setUsername(storedUsername);
     else {
-    localStorage.setItem("username", "نام کاربری"); 
-    setUsername("نام کاربری");
-  }
+      localStorage.setItem("username", "نام کاربری");
+      setUsername("نام کاربری");
+    }
   }, []);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -330,7 +70,17 @@ const DashboardPage = () => {
   useEffect(() => {
     const loadGames = async () => {
       try {
-        const userGames = mockGames;
+        const response = await fetchUserGames();
+        const userGames = response.games.map((g: any) => ({
+          id: g.id,
+          icon: g.thumbnail || game_with_no_thumbnail_icon,
+          title: g.name,
+          description: g.description || "توضیحی ثبت نشده است.",
+          dnu: g.dnu || 14,
+          dau: g.dau || 1648,
+          retention: g.retention || "10.49%",
+          platform: g.platform?.join(", ") || "پلتفرم ثبت نشده",
+        }));
         setGames(userGames);
       } catch (error) {
         console.error("❌ خطا در دریافت بازی‌ها:", error);
@@ -429,7 +179,7 @@ const DashboardPage = () => {
               className={styles.addGameBtn}
               onClick={() => navigate("/welcome")}
             >
-               افزودن بازی جدید
+              افزودن بازی جدید
             </button>
           </div>
           <div
@@ -558,7 +308,10 @@ const DashboardPage = () => {
                   {[...Array(6)].map((_, i) => {
                     const isOnline = Math.random() > 0.5;
                     return (
-                      <div key={i} className={styles.collaboratorStatusWrapper}>
+                      <div
+                        key={i}
+                        className={styles.collaboratorStatusWrapper}
+                      >
                         <img
                           src={dashboard_collaborator_wrapper_icon}
                           alt="wrapper"
