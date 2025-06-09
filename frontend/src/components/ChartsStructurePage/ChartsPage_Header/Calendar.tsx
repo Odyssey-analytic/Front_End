@@ -14,13 +14,20 @@ const DateRangeSelector = () => {
 
   const [selectedDate, setSelectedDate] = useState<any>(null);
 
+  // const getWeekRange = (date: DateObject) => {
+  //   const dayOfWeek = date.weekDay.index;
+  //   const start = date.subtract(dayOfWeek, "day");
+  //   const end = start.add(6, "day");
+  //   return [start, end];
+  // };
+
   const getWeekRange = (date: DateObject) => {
     const dayOfWeek = date.weekDay.index;
-    const start = date.subtract(dayOfWeek, 'day');
-    const end = start.add(6, 'day');
+    const start = date.subtract("days", dayOfWeek);
+    const end = start.add("days", 6);
     return [start, end];
   };
-
+  
   const getMonthStart = (date: DateObject) => {
     return new DateObject({
       year: date.year,
