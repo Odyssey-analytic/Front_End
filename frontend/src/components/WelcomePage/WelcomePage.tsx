@@ -119,64 +119,63 @@ const WelcomePage = () => {
     }
   };
 
-const handleSubmitGame = async () => {
-  let valid = true;
+  const handleSubmitGame = async () => {
+    let valid = true;
 
-  if (!gameName.trim()) {
-    setGameNameError("وارد کردن نام بازی الزامی است.");
-    valid = false;
-  } else setGameNameError("");
+    if (!gameName.trim()) {
+      setGameNameError("وارد کردن نام بازی الزامی است.");
+      valid = false;
+    } else setGameNameError("");
 
-  if (!engine.trim()) {
-    setEngineError("انتخاب موتور بازی الزامی است.");
-    valid = false;
-  } else setEngineError("");
+    if (!engine.trim()) {
+      setEngineError("انتخاب موتور بازی الزامی است.");
+      valid = false;
+    } else setEngineError("");
 
-  if (platforms.length === 0) {
-    setPlatformError("انتخاب حداقل یک پلتفرم الزامی است.");
-    valid = false;
-  } else setPlatformError("");
+    if (platforms.length === 0) {
+      setPlatformError("انتخاب حداقل یک پلتفرم الزامی است.");
+      valid = false;
+    } else setPlatformError("");
 
-  if (!valid) return;
+    if (!valid) return;
 
-  setIsLoading(true); // فقط اینجا فعال می‌شود
+    setIsLoading(true);
 
-  let finalThumbnail = thumbnail;
+    let finalThumbnail = thumbnail;
 
-  if (!thumbnail) {
-    finalThumbnail = await fetchDefaultThumbnail();
-    if (!finalThumbnail) {
-      alert("امکان بارگذاری تصویر پیش‌فرض وجود ندارد.");
-      setIsLoading(false); // در صورت خطا
-      return;
+    if (!thumbnail) {
+      finalThumbnail = await fetchDefaultThumbnail();
+      if (!finalThumbnail) {
+        alert("امکان بارگذاری تصویر پیش‌فرض وجود ندارد.");
+        setIsLoading(false);
+        return;
+      }
     }
-  }
 
-  const data = {
-    name: gameName,
-    description: description,
-    engine: engine,
-    platform: platforms,
-    thumbnail: finalThumbnail,
+    const data = {
+      name: gameName,
+      description: description,
+      engine: engine,
+      platform: platforms,
+      thumbnail: finalThumbnail,
+    };
+
+    try {
+      setStep(3);
+      const result = await submitGameInfo(data);
+      setToken(result.token);
+
+      setTimeout(() => {
+        setIsLoading(false);
+        navigate("/dashboard", { state: { refresh: true } });
+      }, 10000);
+    } catch (err: any) {
+      console.error("API error:", err.response?.data || err.message);
+      alert("خطا در ثبت بازی. لطفا دوباره تلاش کنید.");
+      setIsLoading(false);
+    }
   };
-
-  try {
-    setStep(3);
-    const result = await submitGameInfo(data);
-    setToken(result.token);
-
-    setTimeout(() => {
-      setIsLoading(false); 
-      navigate("/panel", { state: { refresh: true } });
-    }, 10000);
-  } catch (err: any) {
-    console.error("API error:", err.response?.data || err.message);
-    alert("خطا در ثبت بازی. لطفا دوباره تلاش کنید.");
-    setIsLoading(false); 
-  }
-};
-
-
+  
   return (
     <div className={styles.back}>
       <MainLayout></MainLayout>
