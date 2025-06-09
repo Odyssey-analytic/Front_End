@@ -37,12 +37,13 @@ const AreaChartKPI = () => {
       {
         label: "تعداد کاربران",
         data: [],
-        borderColor: "rgb(122,103,218,0.75)",
-        backgroundColor: "rgba(227, 231, 242)",
+        borderColor: "#101d71",
+        backgroundColor: "rgb(242, 244, 250)",
         tension: 0.4,
         fill: true,
         pointRadius: 0,
         pointHoverRadius: 4,
+        borderWidth: 1,
       },
     ],
   });
@@ -50,88 +51,17 @@ const AreaChartKPI = () => {
   const { id: productId } = useParams();
   const sseRef = useRef<EventSource | null>(null);
 
-  // useEffect(() => {
-  //   const labels: string[] = [];
-  //   const values: number[] = [];
-
-  // for (let i = 0; i < 24; i++) {
-  //   const label = `${i.toString().padStart(2, '0')}:00`;
-  //   labels.push(label);
-  //   values.push(0);
-  // }
-
-  //   setChartData(prev => ({
-  //     labels,
-  //     datasets: [
-  //       {
-  //         ...prev.datasets[0],
-  //         data: values,
-  //       },
-  //     ],
-  //   }));
-
-  //   const searchParams = new URLSearchParams(window.location.search);
-  //   const token = searchParams.get('token') || '';
-
-  //   const interval = 30; // 10 ,30 ,60
-  //   const now = new Date();
-  //   const utcMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
-  //   const isoMidnight = utcMidnight.toISOString().split('.')[0] + 'Z';
-  //   sseRef.current = new EventSource(
-  //   `https://odysseyanalytics.ir/api/kpi/sse/EventCount?product_id=${productId}&start_time=${isoMidnight}&update_interval=${interval}&token=${token}`
-  // );
-
-  //   sseRef.current.onmessage = (event: MessageEvent) => {
-  //     const { timestamp, value } = JSON.parse(event.data);
-  //     const date = new Date(timestamp);
-  //     const hour = date.getHours();
-  //     const minute = date.getMinutes();
-  //     const index = hour;
-
-  //     setChartData(prev => {
-  //       const updatedData = [...(prev.datasets[0].data || [])];
-  //       updatedData[index] = value;
-
-  //       return {
-  //         ...prev,
-  //         datasets: [
-  //           {
-  //             ...prev.datasets[0],
-  //             data: updatedData,
-  //           },
-  //         ],
-  //       };
-  //     });
-  //   };
-
-  //   sseRef.current.onerror = (err) => {
-  //     console.error('خطا در SSE:', err);
-  //     if (sseRef.current) sseRef.current.close();
-  //   };
-
-  //   return () => {
-  //     if (sseRef.current) sseRef.current.close();
-  //   };
-  // }, []);
-
   useEffect(() => {
     const labels: string[] = [];
-    const values: (number | null)[] = [];
-
-    const currentHour = new Date().getHours(); // ساعت فعلی سیستم
+    const values: number[] = [];
 
     for (let i = 0; i < 24; i++) {
-      const label = `${i.toString().padStart(2, "0")}:00`;
+      const label = `${i.toString().padStart(2, '0')}:00`;
       labels.push(label);
-
-      if (i <= currentHour) {
-        values.push(Math.floor(Math.random() * 100));
-      } else {
-        values.push(null);
-      }
+      values.push(0);
     }
 
-    setChartData((prev) => ({
+    setChartData(prev => ({
       labels,
       datasets: [
         {
@@ -140,6 +70,49 @@ const AreaChartKPI = () => {
         },
       ],
     }));
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const token = searchParams.get('token') || '';
+
+    const interval = 30;
+    const now = new Date();
+    const utcMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+    const isoMidnight = utcMidnight.toISOString().split('.')[0] + 'Z';
+
+    sseRef.current = new EventSource(
+      `https://odysseyanalytics.ir/api/kpi/sse/EventCount?product_id=${productId}&start_time=${isoMidnight}&update_interval=${interval}&token=${token}`
+    );
+
+    sseRef.current.onmessage = (event: MessageEvent) => {
+      const { timestamp, value } = JSON.parse(event.data);
+      const date = new Date(timestamp);
+      const hour = date.getHours();
+      const index = hour;
+
+      setChartData(prev => {
+        const updatedData = [...(prev.datasets[0].data || [])];
+        updatedData[index] = value;
+
+        return {
+          ...prev,
+          datasets: [
+            {
+              ...prev.datasets[0],
+              data: updatedData,
+            },
+          ],
+        };
+      });
+    };
+
+    sseRef.current.onerror = (err) => {
+      console.error('خطا در SSE:', err);
+      if (sseRef.current) sseRef.current.close();
+    };
+
+    return () => {
+      if (sseRef.current) sseRef.current.close();
+    };
   }, []);
 
   const movingDotPlugin = {
@@ -153,11 +126,9 @@ const AreaChartKPI = () => {
 
       const currentHour = new Date().getHours();
       const maxIndex = Math.min(currentHour, points.length - 1);
-
-      if (maxIndex < 1) return; // اگر فقط یک نقطه هست، انیمیشن لازم نیست
+      if (maxIndex < 1) return;
 
       const duration = 6000;
-      // console.log(Date.now())
       const progress = ((Date.now() % duration) / duration) * maxIndex;
 
       const leftIndex = Math.floor(progress);
@@ -175,9 +146,9 @@ const AreaChartKPI = () => {
       ctx.save();
       ctx.beginPath();
       ctx.arc(x, y, 6, 0, Math.PI * 2);
-      ctx.fillStyle = "#00C4FF";
-      ctx.shadowColor = "#00C4FF";
-      ctx.shadowBlur = 12;
+      ctx.fillStyle = "#111d69";
+      ctx.shadowColor = "#1f2444";
+      ctx.shadowBlur = 8;
       ctx.fill();
       ctx.restore();
     },
@@ -187,9 +158,7 @@ const AreaChartKPI = () => {
     let animationFrameId: number;
 
     const animate = () => {
-      const chartInstance = Chart.getChart("myAnimatedChartId") as
-        | Chart
-        | undefined;
+      const chartInstance = Chart.getChart("myAnimatedChartId") as Chart | undefined;
       if (chartInstance) {
         chartInstance.draw();
       }
@@ -250,35 +219,21 @@ const AreaChartKPI = () => {
           autoSkip: false,
           callback: function (val, index) {
             const label = this.getLabelForValue(val as number);
-          
-            // new
-
-            // Get the current screen width
             const screenWidth = window.innerWidth;
 
-            // If the screen width is less than 481px, show the label every 5th hour
             if (screenWidth < 481) {
               return index % 5 === 0 ? label : "";
-            } 
-            // If the screen width is less than 768px but greater than or equal to 481px, show the label every 3rd hour
-            else if (screenWidth < 769) {
+            } else if (screenWidth < 769) {
               return index % 3 === 0 ? label : "";
-            } 
-            // If the screen width is less than 1024px but greater than or equal to 768px, show the label every 2nd hour
-            else if (screenWidth < 1025) {
+            } else if (screenWidth < 1025) {
               return index % 2 === 0 ? label : "";
             }
 
-            // If the screen width is greater than or equal to 1024px, show the label every hour
             return index % 1 === 0 ? label : "";
-
-
-            // const [h, m] = label.split(":").map(Number);
-            // return m === 0 ? label : "";
           },
         },
         grid: {
-          color: "rgba(255,255,255,0.05)",
+          color: "rgba(247,247,247)",
         },
       },
       y: {
@@ -287,7 +242,7 @@ const AreaChartKPI = () => {
           color: "#ccc",
         },
         grid: {
-          color: "rgba(255,255,255,0.05)",
+          color: "rgba(247,247,247)",
         },
       },
     },

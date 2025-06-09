@@ -167,24 +167,6 @@ const ChartsPage_SideBar = () => {
     if (storedUsername) setUsername(storedUsername);
   }, []);
   
-
-  // useEffect(() => {
-  //   // تابعی که بررسی می‌کند کلیک خارج از منو شده است یا نه
-  //   const handleClickOutside = (event) => {
-  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-  //       setDropdownOpen(false); // بستن منو
-  //     }
-  //   };
-
-  //   // اضافه کردن لیسنر به کلیک در صفحه
-  //   document.addEventListener("mousedown", handleClickOutside);
-
-  //   // تمیزکاری
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, []);
-
   useEffect(() => {
     const handleClick = () => {
       if (dropdownOpen) {
@@ -192,7 +174,6 @@ const ChartsPage_SideBar = () => {
       }
     };
 
-    // وقتی منو باز است، کلیک روی هر جای صفحه آن را می‌بندد
     if (dropdownOpen) {
       document.addEventListener('click', handleClick);
       return () => document.removeEventListener('click', handleClick);
@@ -201,7 +182,7 @@ const ChartsPage_SideBar = () => {
 
 
   const handleMenuClick = () => {
-    setDropdownOpen((prev) => !prev); // باز و بسته شدن منو
+    setDropdownOpen((prev) => !prev);
   };
 
   // Function to toggle the sidebar open/closed
@@ -213,16 +194,6 @@ const ChartsPage_SideBar = () => {
     setSidebarActive(false);
   };
 
-  // const toggleSidebar = () => {
-  //   setSidebarActive(!sidebarActive);
-  // };
-  
-  // const toggleSection = (index: number) => {
-  //   setOpenSections((prev) =>
-  //     prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-  //   );
-  // };
-
   const toggleSection = (index: number) => {
     setOpenSections(prev =>
       prev.includes(index)
@@ -230,9 +201,8 @@ const ChartsPage_SideBar = () => {
         : [...prev, index]
     );
     
-    // اگر بخش در حال بسته شدن است
     if (openSections.includes(index)) {
-      setActiveIndex(null); // یا مقدار پیش‌فرض
+      setActiveIndex(null);
     }
   };
   
@@ -309,10 +279,6 @@ const ChartsPage_SideBar = () => {
                 )}
               </div>
 
-
-              
-            {/* </div> */}
-
             {/* Dropdown to select a game */}
             {dropdownOpen && (
               <div className={styles.gameDropdown}>
@@ -320,10 +286,6 @@ const ChartsPage_SideBar = () => {
                   <div
                     key={game}
                     className={styles.gameDropdownItem}
-                    // onClick={() => {
-                    //   setSelectedGame(game);
-                    //   setDropdownOpen(false);
-                    // }}
                     onClick={(e) => {
                       e.stopPropagation();
                       setSelectedGame(game);
@@ -350,11 +312,6 @@ const ChartsPage_SideBar = () => {
 
                   <div
                     className={`${styles.menuItem} ${isActive ? styles.active : ""}`}
-                    // onClick={() =>
-                    //   item.collapsible
-                    //     ? toggleSection(index)
-                    //     : setActiveIndex(index)
-                    // }
 
                     onClick={() => {
                       if (item.collapsible) {
@@ -408,33 +365,7 @@ const ChartsPage_SideBar = () => {
               );
             })}
 
-            {/* <div>
-              <hr className={styles.divider} />
-              <div className={styles.profileInfo}>
-                <img src={dashboard_sidebar_user_icon} alt="Avatar" className={styles.avatar} />
-                {!collapsed && (
-                  <div>
-                    <div className={styles.profileName}>{username}</div>
-                  </div>
-                )}
-              </div>
-  
-              <div
-                className={styles.logoutBtn}
-                onClick={() => (window.location.href = "/panel")}
-              >
-                <img
-                  src={dashboard_logout_panel_icon}
-                  alt="Logout"
-                  className={styles.logoutIcon}
-                />
-                {!collapsed && <span>پنل کاربری</span>}
-              </div>
-            </div> */}
-
-{/* <hr className={styles.divider} /> */}
             <div className={styles.profileSection}>
-              {/* <hr className={styles.divider} /> */}
               
               <div className={styles.profileCard}>
                 <div className={styles.profileInfo}>
@@ -449,8 +380,6 @@ const ChartsPage_SideBar = () => {
                   </div>
                 </div>
               
-                {/* <hr className={styles.divider} /> */}
-
                 <div
                   className={styles.logoutBtn}
                   onClick={() => (window.location.href = "/panel")}
@@ -463,7 +392,6 @@ const ChartsPage_SideBar = () => {
                     />
                     <span className={styles.profilePanel}>پنل کاربری</span>
                   </div>
-                  {/* <FiChevronLeft className={styles.MobilelogoutArrow} /> */}
                 </div>
               </div>
             </div>
@@ -474,12 +402,6 @@ const ChartsPage_SideBar = () => {
 
       {/* Only show the hamburger icon if the screen width is smaller than 480px */}
       {isSmallScreen && (
-        // <div
-        //   className={styles.hamburgerIcon}
-        //   onClick={MobileSidebarOpen} // Clicking this icon will toggle the sidebar open or closed
-        // >
-        //   <FiMenu />
-        // </div>
         <div
           className={`${styles.hamburgerIcon} ${
             sidebarActive ? styles.hamburgerIconActive : styles.hamburgerIcon
@@ -506,11 +428,9 @@ const ChartsPage_SideBar = () => {
           <div className={styles.MobilegameHeader}>
             <div className={styles.MobilegameSelectorWrapper}>
               <div
-                // className={styles.MobilegameSelectorBox} 
                 className={`${styles.MobilegameSelectorBox} ${
                   dropdownOpen ? styles.MobilegameSelectorBoxActive : ''
                 }`}
-                // onClick={handleMenuClick}
                 onClick={(e) => {
                   e.stopPropagation(); // جلوگیری از بسته شدن توسط event کلیک صفحه
                   setDropdownOpen(!dropdownOpen);
@@ -533,10 +453,7 @@ const ChartsPage_SideBar = () => {
                   <div
                     key={game}
                     className={styles.MobilegameDropdownItem}
-                    // onClick={() => {
-                    //   setSelectedGame(game);
-                    //   setDropdownOpen(false); // بسته شدن منو پس از انتخاب بازی
-                    // }}
+
                     onClick={(e) => {
                       e.stopPropagation();
                       setSelectedGame(game);
@@ -563,11 +480,7 @@ const ChartsPage_SideBar = () => {
 
                   <div
                     className={`${styles.MobilemenuItem} ${isActive ? styles.active : ""}`}
-                    // onClick={() =>
-                    //   item.collapsible
-                    //     ? toggleSection(index)
-                    //     : setActiveIndex(index)
-                    // }
+                    
                     onClick={() => {
                       if (item.collapsible) {
                         if (isSectionOpen) {
@@ -578,8 +491,6 @@ const ChartsPage_SideBar = () => {
                         setActiveIndex(index);
                       }
                     }}
-
-
                   >
                   
                     <div className={styles.MobilemenuContent}>
@@ -616,29 +527,6 @@ const ChartsPage_SideBar = () => {
               );
             })}
 
-            {/* <div>
-              <hr className={styles.Mobiledivider} />
-              <div className={styles.MobileprofileInfo}>
-                <img src={dashboard_sidebar_user_icon} alt="Avatar" className={styles.Mobileavatar} />
-                  <div>
-                    <div className={styles.MobileprofileName}>{username}</div>
-                  </div>
-              </div>
-  
-              <div
-                className={styles.MobilelogoutBtn}
-                onClick={() => (window.location.href = "/panel")}
-              >
-                <img
-                  src={dashboard_logout_panel_icon}
-                  alt="Logout"
-                  className={styles.MobilelogoutIcon}
-                />
-                <span>پنل کاربری</span>
-              </div>
-            </div> */}
-
-
             <div className={styles.MobileprofileSection}>
               <hr className={styles.Mobiledivider} />
               
@@ -669,12 +557,9 @@ const ChartsPage_SideBar = () => {
                     />
                     <span>پنل کاربری</span>
                   </div>
-                  {/* <FiChevronLeft className={styles.MobilelogoutArrow} /> */}
                 </div>
               </div>
             </div>
-
-
 
           </nav>
         </aside>

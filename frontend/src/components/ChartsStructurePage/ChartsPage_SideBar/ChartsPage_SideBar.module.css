@@ -4,6 +4,7 @@
 .sidebar {
   width: 230px;
   background-color: #1f2444;
+
   color: #ffffffd2;
   transition: width 0.3s ease;
   height: 100%;
@@ -373,7 +374,7 @@
 
   display: inline-block;
   font-size: 25px;
-  color: #201eb5;
+  color: #b51e1e;
   cursor: pointer;
   margin-left: 10px;
 }
