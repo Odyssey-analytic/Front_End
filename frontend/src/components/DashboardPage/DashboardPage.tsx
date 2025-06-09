@@ -27,6 +27,7 @@ const DashboardPage = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
 
   const chartData = Array.from(
     { length: 32 },
@@ -66,6 +67,27 @@ const DashboardPage = () => {
     );
     setSuggestions(filtered);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (suggestions.length === 0) return;
+
+      if (e.key === "PageDown") {
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev + 1) % suggestions.length);
+      } else if (e.key === "PageUp") {
+        e.preventDefault();
+        setSelectedIndex((prev) =>
+          prev <= 0 ? suggestions.length - 1 : prev - 1
+        );
+      } else if (e.key === "Enter" && selectedIndex !== -1) {
+        navigate(`/dashboard/${suggestions[selectedIndex].id}`);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [suggestions, selectedIndex]);
 
   useEffect(() => {
     const loadGames = async () => {
@@ -116,10 +138,12 @@ const DashboardPage = () => {
           />
           {suggestions.length > 0 && (
             <div className={styles.searchDropdown}>
-              {suggestions.map((game) => (
+              {suggestions.map((game, index) => (
                 <div
                   key={game.id}
-                  className={styles.searchSuggestionItem}
+                  className={`${styles.searchSuggestionItem} ${
+                    index === selectedIndex ? styles.activeSuggestion : ""
+                  }`}
                   onClick={() => navigate(`/dashboard/${game.id}`)}
                 >
                   <img
@@ -308,10 +332,7 @@ const DashboardPage = () => {
                   {[...Array(6)].map((_, i) => {
                     const isOnline = Math.random() > 0.5;
                     return (
-                      <div
-                        key={i}
-                        className={styles.collaboratorStatusWrapper}
-                      >
+                      <div key={i} className={styles.collaboratorStatusWrapper}>
                         <img
                           src={dashboard_collaborator_wrapper_icon}
                           alt="wrapper"
