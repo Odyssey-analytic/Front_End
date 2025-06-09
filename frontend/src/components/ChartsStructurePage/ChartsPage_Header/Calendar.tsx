@@ -10,7 +10,6 @@ const DateRangeSelector = () => {
   const [mode, setMode] = useState<'day' | 'week' | 'month' | 'year'>('day');
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState<any>(null);
-  const [displayValue, setDisplayValue] = useState('');
 
   const setDefaultDate = () => {
     const now = new Date();
@@ -35,7 +34,6 @@ const DateRangeSelector = () => {
       
       formattedDate = `${start.toLocaleDateString('fa-IR', options)} - ${end.toLocaleDateString('fa-IR', options)}`;
       dateToSet = start;
-
     } 
     else if (mode === 'month') {
       formattedDate = now.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long' });
@@ -55,171 +53,141 @@ const DateRangeSelector = () => {
     setDefaultDate();
   }, [mode]);
 
-  // const handleModeChange = (newMode: typeof mode) => {
-  //   setMode(newMode);
-  //   setShowCalendar(false);
-  // };
-
-
-  // نمایش درست، متن غلط
-  // const handleDateChange = (date: any) => {
-  //   if (!date) return;
-    
-  //   setSelectedDate(date);
-  //   const dateObj = new Date(date);
-
-  //   let formattedDate = '';
-  //   const options: Intl.DateTimeFormatOptions = { 
-  //     year: 'numeric', 
-  //     month: 'long', 
-  //     day: 'numeric' 
-  //   };
-
-  //   if (mode === 'day') {
-  //     formattedDate = dateObj.toLocaleDateString('fa-IR', options);
-  //   } 
-  //   else if (mode === 'week') {
-  //     const start = new Date(dateObj);
-  //     start.setDate(dateObj.getDate() - dateObj.getDay());
-  //     const end = new Date(start);
-  //     end.setDate(start.getDate() + 6);
-      
-  //     formattedDate = `${start.toLocaleDateString('fa-IR', options)} - ${end.toLocaleDateString('fa-IR', options)}`;
-  //   } 
-  //   else if (mode === 'month') {
-  //     formattedDate = dateObj.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long' });
-  //   } 
-  //   else {
-  //     formattedDate = dateObj.toLocaleDateString('fa-IR', { year: 'numeric' });
-  //   }
-
-  //   setDateRange(formattedDate);
-  //   setShowCalendar(false);
-  // };
-  
-
-  // const renderCustomCalendar = () => {
-  //   switch (mode) {
-  //     case 'year':
-  //       return (
-  //         <DatePicker
-  //           value={selectedDate}
-  //           onChange={handleDateChange}
-  //           calendar={persian}
-  //           locale={persian_fa}
-  //           onlyYearPicker
-  //         />
-  //       );
-  //     case 'month':
-  //       return (
-  //         <DatePicker
-  //           value={selectedDate}
-  //           onChange={handleDateChange}
-  //           calendar={persian}
-  //           locale={persian_fa}
-  //           onlyMonthPicker
-  //         />
-  //       );
-  //     case 'week':
-  //       return (
-  //         <DatePicker
-  //           value={selectedDate}
-  //           onChange={handleDateChange}
-  //           calendar={persian}
-  //           locale={persian_fa}
-  //           weekPicker
-  //         />
-  //       );
-  //     default:
-  //       return (
-  //         <DatePicker
-  //           value={selectedDate}
-  //           onChange={handleDateChange}
-  //           calendar={persian}
-  //           locale={persian_fa}
-  //         />
-  //       );
-  //   }
-  // };
-
-  
-  // تابع برای تنظیم نمایش تاریخ
-  const updateDisplayValue = (date: Date) => {
-    const options: Intl.DateTimeFormatOptions = { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    };
-
-    if (mode === 'day') {
-      setDisplayValue(date.toLocaleDateString('fa-IR', options));
-    } 
-    else if (mode === 'week') {
-      const start = new Date(date);
-      start.setDate(date.getDate() - date.getDay());
-      const end = new Date(start);
-      end.setDate(start.getDate() + 6);
-      
-      setDisplayValue(
-        `${start.toLocaleDateString('fa-IR', options)} - ${end.toLocaleDateString('fa-IR', options)}`
-      );
-    } 
-    else if (mode === 'month') {
-      setDisplayValue(date.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long' }));
-    } 
-    else {
-      setDisplayValue(date.toLocaleDateString('fa-IR', { year: 'numeric' }));
-    }
+  const handleModeChange = (newMode: typeof mode) => {
+    setMode(newMode);
+    setShowCalendar(false);
   };
 
-  // تابع تغییر تاریخ
   const handleDateChange = (date: any) => {
     if (!date) return;
     
-    let dateObj;
-    if (Array.isArray(date)) {
-      dateObj = new Date(date[0]);
-    } else {
-      dateObj = new Date(date);
+    try {
+      let dateObj;
+      let weekRange;
+      
+      // برای حالت هفته
+      if (mode === 'week' && Array.isArray(date)) {
+        // تاریخ شروع هفته (اولین روز هفته)
+        dateObj = new Date(date[0]);
+        weekRange = date; // ذخیره کل محدوده هفته
+        
+        // محاسبه تاریخ شروع و پایان هفته از آرایه دریافتی
+        const start = new Date(date[0]);
+        const end = new Date(date[date.length - 1]);
+        
+        const options: Intl.DateTimeFormatOptions = { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        };
+        
+        const formattedDate = `${start.toLocaleDateString('fa-IR', options)} - ${end.toLocaleDateString('fa-IR', options)}`;
+        
+        setDateRange(formattedDate);
+        setSelectedDate({
+          startDate: start,
+          endDate: end,
+          weekRange: weekRange
+        });
+        setShowCalendar(false);
+        return;
+      } 
+      // برای سایر حالات
+      else if (date instanceof Object && 'year' in date && 'month' in date && 'day' in date) {
+        dateObj = new Date(date.year, date.month.index, date.day);
+      } 
+      else if (typeof date === 'string') {
+        dateObj = new Date(date);
+      } 
+      else if (date instanceof Date) {
+        dateObj = date;
+      } 
+      else {
+        console.error('فرمت تاریخ نامعتبر:', date);
+        return;
+      }
+  
+      if (isNaN(dateObj.getTime())) {
+        console.error('تاریخ نامعتبر:', date);
+        return;
+      }
+  
+      const options: Intl.DateTimeFormatOptions = { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      };
+  
+      let formattedDate = '';
+  
+      if (mode === 'day') {
+        formattedDate = dateObj.toLocaleDateString('fa-IR', options);
+      } 
+      else if (mode === 'month') {
+        formattedDate = dateObj.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long' });
+      } 
+      else {
+        formattedDate = dateObj.toLocaleDateString('fa-IR', { year: 'numeric' });
+      }
+  
+      setDateRange(formattedDate);
+      setSelectedDate(dateObj);
+      setShowCalendar(false);
+    } catch (error) {
+      console.error('خطا در پردازش تاریخ:', error);
     }
-
-    setSelectedDate(dateObj);
-    updateDisplayValue(dateObj);
   };
 
-  // تنظیم تاریخ پیش‌فرض
-  useEffect(() => {
-    const now = new Date();
-    setSelectedDate(now);
-    updateDisplayValue(now);
-  }, [mode]);
-
-  const handleModeChange = (newMode: typeof mode) => {
-    setMode(newMode);
-  };
-
+  // تایپ میتونه کنه کاربر
   const renderCustomCalendar = () => {
-    const commonProps = {
-      value: selectedDate,
-      onChange: handleDateChange,
-      calendar: persian,
-      locale: persian_fa,
-      render: <input className={styles.dateInput} value={displayValue} readOnly />,
-      className: styles.customDatePicker
-    };
-
+    // برای حالت هفته، از weekRange یا startDate استفاده کنید
+    const value = mode === 'week' 
+      ? selectedDate?.weekRange || selectedDate?.startDate 
+      : selectedDate;
+  
     switch (mode) {
       case 'year':
-        return <DatePicker {...commonProps} onlyYearPicker />;
+        return (
+          <DatePicker
+            value={value}
+            onChange={handleDateChange}
+            calendar={persian}
+            locale={persian_fa}
+            onlyYearPicker
+          />
+        );
       case 'month':
-        return <DatePicker {...commonProps} onlyMonthPicker />;
+        return (
+          <DatePicker
+            value={value}
+            onChange={handleDateChange}
+            calendar={persian}
+            locale={persian_fa}
+            onlyMonthPicker
+          />
+        );
       case 'week':
-        return <DatePicker {...commonProps} weekPicker />;
+        return (
+          <DatePicker
+            value={value}
+            onChange={handleDateChange}
+            calendar={persian}
+            locale={persian_fa}
+            weekPicker
+            range // این خط ممکن است لازم باشد
+          />
+        );
       default:
-        return <DatePicker {...commonProps} />;
+        return (
+          <DatePicker
+            value={value}
+            onChange={handleDateChange}
+            calendar={persian}
+            locale={persian_fa}
+          />
+        );
     }
   };
-
 
   return (
     <div className={styles.dateSelectorContainer}>
@@ -250,24 +218,7 @@ const DateRangeSelector = () => {
         </button>
       </div>
 
-      {/* <div className={styles.datePickerWrapper}> */}
-        {/* <button 
-          className={styles.datePickerButton}
-          onClick={() => setShowCalendar(!showCalendar)}
-        >
-          <FiCalendar className={styles.icon} />
-          <span>{dateRange || 'تاریخ را انتخاب کنید'}</span>
-        </button> */}
-
-        {/* {showCalendar && ( */}
-          <div className={styles.calendarPopup}>
-            {renderCustomCalendar()}
-          </div>
-        {/* // )} */}
-      {/* </div> */}
-
-
-      {/* <div className={styles.datePickerWrapper}>
+      <div className={styles.datePickerWrapper}>
         <button 
           className={styles.datePickerButton}
           onClick={() => setShowCalendar(!showCalendar)}
@@ -276,14 +227,11 @@ const DateRangeSelector = () => {
           <span>{dateRange || 'تاریخ را انتخاب کنید'}</span>
         </button>
 
-        {showCalendar && (
           <div className={styles.calendarPopup}>
             {renderCustomCalendar()}
           </div>
-        )}
+
       </div>
-       */}
-      
     </div>
   );
 };
