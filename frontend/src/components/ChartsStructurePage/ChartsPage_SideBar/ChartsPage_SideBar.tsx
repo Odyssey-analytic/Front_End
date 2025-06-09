@@ -25,6 +25,7 @@ import {
 import GameLogo from "../../../../public/icons/game-ghost-icon.svg";
 import dashboard_logout_panel_icon from "../../../../public/icons/dashboard_panel_icon.svg";
 import dashboard_sidebar_user_icon from "../../../../public/icons/dashboard_sidebar_user_icon.svg";
+import OdessayLogo from "../../../../public/icons/odessay_logo.svg"
 
 const menuItems = [
   {
@@ -268,7 +269,32 @@ const ChartsPage_SideBar = () => {
 
           {/* Game selector section */}
           <div className={styles.gameHeader}>
-            <div className={styles.gameSelectorWrapper}>
+            <div className={styles.headerWrapper}>
+
+
+              {/* <div className={styles.brandLogoHeader}> */}
+                <span className={styles.brandLogoText}>ODESSAY</span>
+                <img
+                  src={OdessayLogo}
+                  alt="Odessay Logo"
+                  className={styles.brandLogoImg}
+                />
+              {/* </div> */}
+
+              
+              {/* Collapse/Expand button for the sidebar */}
+              <div
+                className={styles.toggle}
+                onClick={toggleCollapse} // Toggle the collapse state
+                aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+              >
+                {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
+              </div>
+
+            </div>
+
+              <hr className={styles.divider} />
+
               <div
                 className={styles.gameSelectorBox}
                 // onClick={() => setDropdownOpen((prev) => !prev)}
@@ -283,16 +309,9 @@ const ChartsPage_SideBar = () => {
                 )}
               </div>
 
-              {/* Collapse/Expand button for the sidebar */}
-              <div
-                className={styles.toggle}
-                onClick={toggleCollapse} // Toggle the collapse state
-                aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-              >
-                {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
-              </div>
+
               
-            </div>
+            {/* </div> */}
 
             {/* Dropdown to select a game */}
             {dropdownOpen && (
@@ -389,7 +408,7 @@ const ChartsPage_SideBar = () => {
               );
             })}
 
-            <div>
+            {/* <div>
               <hr className={styles.divider} />
               <div className={styles.profileInfo}>
                 <img src={dashboard_sidebar_user_icon} alt="Avatar" className={styles.avatar} />
@@ -410,6 +429,42 @@ const ChartsPage_SideBar = () => {
                   className={styles.logoutIcon}
                 />
                 {!collapsed && <span>پنل کاربری</span>}
+              </div>
+            </div> */}
+
+{/* <hr className={styles.divider} /> */}
+            <div className={styles.profileSection}>
+              <hr className={styles.divider} />
+              
+              <div className={styles.profileCard}>
+                <div className={styles.profileInfo}>
+                  <img 
+                    src={dashboard_sidebar_user_icon} 
+                    alt="Avatar" 
+                    className={styles.avatar} 
+                  />
+                  <div className={styles.profileText}>
+                    <div className={styles.profileName}>{username}</div>
+                    <div className={styles.profileStatus}>آنلاین</div>
+                  </div>
+                </div>
+              
+                {/* <hr className={styles.divider} /> */}
+
+                <div
+                  className={styles.logoutBtn}
+                  onClick={() => (window.location.href = "/panel")}
+                >
+                  <div className={styles.logoutContent}>
+                    <img
+                      src={dashboard_logout_panel_icon}
+                      alt="Logout"
+                      className={styles.logoutIcon}
+                    />
+                    <span className={styles.profilePanel}>پنل کاربری</span>
+                  </div>
+                  {/* <FiChevronLeft className={styles.MobilelogoutArrow} /> */}
+                </div>
               </div>
             </div>
 
@@ -584,40 +639,40 @@ const ChartsPage_SideBar = () => {
             </div> */}
 
 
-<div className={styles.MobileprofileSection}>
-  <hr className={styles.Mobiledivider} />
-  
-  <div className={styles.MobileprofileCard}>
-    <div className={styles.MobileprofileInfo}>
-      <img 
-        src={dashboard_sidebar_user_icon} 
-        alt="Avatar" 
-        className={styles.Mobileavatar} 
-      />
-      <div className={styles.MobileprofileText}>
-        <div className={styles.MobileprofileName}>{username}</div>
-        <div className={styles.MobileprofileStatus}>آنلاین</div>
-      </div>
-    </div>
-  
-    <hr className={styles.Mobiledivider} />
+            <div className={styles.MobileprofileSection}>
+              <hr className={styles.Mobiledivider} />
+              
+              <div className={styles.MobileprofileCard}>
+                <div className={styles.MobileprofileInfo}>
+                  <img 
+                    src={dashboard_sidebar_user_icon} 
+                    alt="Avatar" 
+                    className={styles.Mobileavatar} 
+                  />
+                  <div className={styles.MobileprofileText}>
+                    <div className={styles.MobileprofileName}>{username}</div>
+                    <div className={styles.MobileprofileStatus}>آنلاین</div>
+                  </div>
+                </div>
+              
+                <hr className={styles.Mobiledivider} />
 
-    <div
-      className={styles.MobilelogoutBtn}
-      onClick={() => (window.location.href = "/panel")}
-    >
-      <div className={styles.MobilelogoutContent}>
-        <img
-          src={dashboard_logout_panel_icon}
-          alt="Logout"
-          className={styles.MobilelogoutIcon}
-        />
-        <span>پنل کاربری</span>
-      </div>
-      {/* <FiChevronLeft className={styles.MobilelogoutArrow} /> */}
-    </div>
-  </div>
-</div>
+                <div
+                  className={styles.MobilelogoutBtn}
+                  onClick={() => (window.location.href = "/panel")}
+                >
+                  <div className={styles.MobilelogoutContent}>
+                    <img
+                      src={dashboard_logout_panel_icon}
+                      alt="Logout"
+                      className={styles.MobilelogoutIcon}
+                    />
+                    <span>پنل کاربری</span>
+                  </div>
+                  {/* <FiChevronLeft className={styles.MobilelogoutArrow} /> */}
+                </div>
+              </div>
+            </div>
 
 
 
