@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FiCalendar, FiChevronDown } from 'react-icons/fi';
-import DatePicker from 'react-multi-date-picker';
+import DatePicker, { DateObject } from 'react-multi-date-picker';
 import persian from 'react-date-object/calendars/persian';
 import persian_fa from 'react-date-object/locales/persian_fa';
 import styles from './Calendar.module.css';
@@ -9,96 +9,75 @@ const DateRangeSelector = () => {
   const [dateRange, setDateRange] = useState('');
   const [mode, setMode] = useState<'day' | 'week' | 'month' | 'year'>('day');
   const [showDropdown, setShowDropdown] = useState(false);
-  // const [selectedDate, setSelectedDate] = useState<any>(null);
-  const [showModeDropdown, setShowModeDropdown] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<any>(null);
 
-  const [selectedDate, setSelectedDate] = useState<SelectedDateType | null>(null);
+  const getWeekRange = (date: DateObject) => {
+    const dayOfWeek = date.weekDay.index;
+    const start = date.subtract(dayOfWeek, 'day');
+    const end = start.add(6, 'day');
+    return [start, end];
+  };
 
-  
+  const getMonthStart = (date: DateObject) => {
+    return new DateObject({
+      year: date.year,
+      month: date.month.index + 1,
+      day: 1,
+      calendar: persian,
+      locale: persian_fa
+    });
+  };
 
-  type SelectedDateType = 
-  | Date // برای حالت‌های روز، ماه و سال
-  | {    // برای حالت هفته
-      startDate: Date;
-      endDate: Date;
-      weekRange?: Date[];
-    };
+  const getYearStart = (date: DateObject) => {
+    return new DateObject({
+      year: date.year,
+      month: 1,
+      day: 1,
+      calendar: persian,
+      locale: persian_fa
+    });
+  };
 
-
-  const modeOptions = [
-    { value: 'day', label: 'روز' },
-    { value: 'week', label: 'هفته' },
-    { value: 'month', label: 'ماه' },
-    { value: 'year', label: 'سال' }
-  ];
-
-  // const setDefaultDate = () => {
-  //   const now = new Date();
-  //   const options: Intl.DateTimeFormatOptions = { 
-  //     year: 'numeric', 
-  //     month: 'long', 
-  //     day: 'numeric' 
-  //   };
-  
-  //   let formattedDate = '';
-  //   let dateToSet = now;
-  
-  //   if (mode === 'day') {
-  //     formattedDate = now.toLocaleDateString('fa-IR', options);
-  //   } else if (mode === 'week') {
-  //     const start = new Date(now);
-  //     start.setDate(now.getDate() - now.getDay());
-  //     const end = new Date(start);
-  //     end.setDate(start.getDate() + 6);
-      
-  //     formattedDate = `${start.toLocaleDateString('fa-IR', options)} - ${end.toLocaleDateString('fa-IR', options)}`;
-  //     dateToSet = start;
-  //   } else if (mode === 'month') {
-  //     formattedDate = now.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long' });
-  //     dateToSet = new Date(now.getFullYear(), now.getMonth(), 1);
-  //   } else {
-  //     formattedDate = now.toLocaleDateString('fa-IR', { year: 'numeric' });
-  //     dateToSet = new Date(now.getFullYear(), 0, 1);
-  //   }
-  
-  //   setDateRange(formattedDate);
-  //   setSelectedDate(dateToSet);
-  // };
-
+  const formatDate = (date: DateObject | DateObject[], mode: string) => {
+    if (Array.isArray(date)) {
+      const start = date[0].format("D MMMM YYYY");
+      const end = date[date.length - 1].format("D MMMM YYYY");
+      return `${start} - ${end}`;
+    } else {
+      switch (mode) {
+        case 'day':
+          return date.format("D MMMM YYYY");
+        case 'month':
+          return date.format("MMMM YYYY");
+        case 'year':
+          return date.format("YYYY");
+        default:
+          return date.format("D MMMM YYYY");
+      }
+    }
+  };
 
   const setDefaultDate = () => {
-    const now = new Date();
-    const options: Intl.DateTimeFormatOptions = { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    };
-  
+    const now = new DateObject({ calendar: persian, locale: persian_fa });
+    
+    let dateToSet: any;
     let formattedDate = '';
-    let dateToSet: SelectedDateType = now;
-  
+
     if (mode === 'day') {
-      formattedDate = now.toLocaleDateString('fa-IR', options);
+      dateToSet = now;
+      formattedDate = now.format("D MMMM YYYY");
     } else if (mode === 'week') {
-      const start = new Date(now);
-      start.setDate(now.getDate() - now.getDay());
-      const end = new Date(start);
-      end.setDate(start.getDate() + 6);
-      
-      formattedDate = `${start.toLocaleDateString('fa-IR', options)} - ${end.toLocaleDateString('fa-IR', options)}`;
-      dateToSet = {
-        startDate: start,
-        endDate: end,
-        weekRange: [start, end]
-      };
+      const [start, end] = getWeekRange(now);
+      dateToSet = [start, end];
+      formattedDate = `${start.format("D MMMM YYYY")} - ${end.format("D MMMM YYYY")}`;
     } else if (mode === 'month') {
-      formattedDate = now.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long' });
-      dateToSet = new Date(now.getFullYear(), now.getMonth(), 1);
+      dateToSet = getMonthStart(now);
+      formattedDate = now.format("MMMM YYYY");
     } else {
-      formattedDate = now.toLocaleDateString('fa-IR', { year: 'numeric' });
-      dateToSet = new Date(now.getFullYear(), 0, 1);
+      dateToSet = getYearStart(now);
+      formattedDate = now.format("YYYY");
     }
-  
+
     setDateRange(formattedDate);
     setSelectedDate(dateToSet);
   };
@@ -109,101 +88,33 @@ const DateRangeSelector = () => {
 
   const handleModeChange = (newMode: typeof mode) => {
     setMode(newMode);
-    setDefaultDate();
+    setShowDropdown(true);
   };
 
   const handleDateChange = (date: any) => {
     if (!date) return;
-    
+
     try {
-      let dateObj;
-      let weekRange;
+      setSelectedDate(date);
       
       if (mode === 'week' && Array.isArray(date)) {
-        dateObj = new Date(date[0]);
-        weekRange = date;
-        
-        const start = new Date(date[0]);
-        const end = new Date(date[date.length - 1]);
-        
-        const options: Intl.DateTimeFormatOptions = { 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
-        };
-        
-        const formattedDate = `${start.toLocaleDateString('fa-IR', options)} - ${end.toLocaleDateString('fa-IR', options)}`;
-        
+        const formattedDate = formatDate(date, mode);
         setDateRange(formattedDate);
-        setSelectedDate({
-          startDate: start,
-          endDate: end,
-          weekRange: weekRange
-        });
-        return;
-      } else if (date instanceof Object && 'year' in date && 'month' in date && 'day' in date) {
-        dateObj = new Date(date.year, date.month.index, date.day);
-      } else if (typeof date === 'string') {
-        dateObj = new Date(date);
-      } else if (date instanceof Date) {
-        dateObj = date;
-      } else {
-        console.error('فرمت تاریخ نامعتبر:', date);
-        return;
+      } else if (date instanceof DateObject) {
+        const formattedDate = formatDate(date, mode);
+        setDateRange(formattedDate);
       }
-  
-      if (isNaN(dateObj.getTime())) {
-        console.error('تاریخ نامعتبر:', date);
-        return;
-      }
-  
-      const options: Intl.DateTimeFormatOptions = { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-      };
-  
-      let formattedDate = '';
-  
-      if (mode === 'day') {
-        formattedDate = dateObj.toLocaleDateString('fa-IR', options);
-      } else if (mode === 'month') {
-        formattedDate = dateObj.toLocaleDateString('fa-IR', { year: 'numeric', month: 'long' });
-      } else {
-        formattedDate = dateObj.toLocaleDateString('fa-IR', { year: 'numeric' });
-      }
-  
-      setDateRange(formattedDate);
-      setSelectedDate(dateObj);
     } catch (error) {
       console.error('خطا در پردازش تاریخ:', error);
     }
   };
 
   const renderCustomCalendar = () => {
-    // const value = mode === 'week' 
-    //   ? selectedDate?.weekRange || selectedDate?.startDate 
-    //   : selectedDate;
-
-    let value;
-  
-    if (mode === 'week') {
-      if (selectedDate && typeof selectedDate === 'object' && 'weekRange' in selectedDate) {
-        value = selectedDate.weekRange;
-      } else if (selectedDate && typeof selectedDate === 'object' && 'startDate' in selectedDate) {
-        value = [selectedDate.startDate, selectedDate.endDate];
-      } else {
-        value = null;
-      }
-    } else {
-      value = selectedDate instanceof Date ? selectedDate : null;
-    }
-  
     switch (mode) {
       case 'year':
         return (
           <DatePicker
-            value={value}
+            value={selectedDate}
             onChange={handleDateChange}
             calendar={persian}
             locale={persian_fa}
@@ -213,7 +124,7 @@ const DateRangeSelector = () => {
       case 'month':
         return (
           <DatePicker
-            value={value}
+            value={selectedDate}
             onChange={handleDateChange}
             calendar={persian}
             locale={persian_fa}
@@ -223,18 +134,18 @@ const DateRangeSelector = () => {
       case 'week':
         return (
           <DatePicker
-            value={value}
+            value={selectedDate}
             onChange={handleDateChange}
             calendar={persian}
             locale={persian_fa}
-            weekPicker
             range
+            weekPicker
           />
         );
       default:
         return (
           <DatePicker
-            value={value}
+            value={selectedDate}
             onChange={handleDateChange}
             calendar={persian}
             locale={persian_fa}
@@ -253,63 +164,6 @@ const DateRangeSelector = () => {
     }
   };
 
-  // return (
-  //   <div className={styles.dateSelectorContainer}>
-  //     <div className={styles.combinedPicker}>
-  //       <button 
-  //         className={styles.mainButton}
-  //         onClick={() => setShowDropdown(!showDropdown)}
-  //       >
-  //         <div className={styles.buttonContent}>
-  //           <FiCalendar className={styles.icon} />
-  //           {/* <span className={styles.dateText}>{dateRange || 'تاریخ را انتخاب کنید'}</span> */}
-  //           <div className={styles.dateText}>
-  //             {dateRange || 'تاریخ را انتخاب کنید'}
-  //           </div>
-
-  //           <span className={styles.modeBadge}>{getModeLabel()}</span>
-  //           <FiChevronDown className={`${styles.arrow} ${showDropdown ? styles.rotated : ''}`} />
-  //         </div>
-  //       </button>
-
-  //       {showDropdown && (
-  //         <div className={styles.dropdownContent}>
-  //           <div className={styles.modeSelector}>
-  //             <button 
-  //               className={`${styles.modeButton} ${mode === 'day' ? styles.active : ''}`}
-  //               onClick={() => handleModeChange('day')}
-  //             >
-  //               روز
-  //             </button>
-  //             <button
-  //               className={`${styles.modeButton} ${mode === 'week' ? styles.active : ''}`}
-  //               onClick={() => handleModeChange('week')}
-  //             >
-  //               هفته
-  //             </button>
-  //             <button
-  //               className={`${styles.modeButton} ${mode === 'month' ? styles.active : ''}`}
-  //               onClick={() => handleModeChange('month')}
-  //             >
-  //               ماه
-  //             </button>
-  //             <button
-  //               className={`${styles.modeButton} ${mode === 'year' ? styles.active : ''}`}
-  //               onClick={() => handleModeChange('year')}
-  //             >
-  //               سال
-  //             </button>
-  //           </div>
-
-  //           <div className={styles.calendarWrapper}>
-  //             {renderCustomCalendar()}
-  //           </div>
-  //         </div>
-  //       )}
-  //     </div>
-  //   </div>
-  // );
-
   return (
     <div className={styles.dateSelectorContainer}>
       <div className={styles.combinedPicker}>
@@ -319,46 +173,43 @@ const DateRangeSelector = () => {
         >
           <div className={styles.buttonContent}>
             <FiCalendar className={styles.icon} />
-            {/* <span className={styles.dateText}>{dateRange || 'تاریخ را انتخاب کنید'}</span> */}
-
-          <div className={styles.dateText}>
-            {dateRange || 'تاریخ را انتخاب کنید'}
-          </div>
-
-            <div className={styles.modeSelectorWrapper}>
-              <button 
-                className={styles.modeSelectorButton}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowModeDropdown(!showModeDropdown);
-                }}
-              >
-                {modeOptions.find(m => m.value === mode)?.label}
-                <FiChevronDown className={`${styles.arrow} ${showModeDropdown ? styles.rotated : ''}`} />
-              </button>
-              {showModeDropdown && (
-                <div className={styles.modeDropdown}>
-                  {modeOptions.map(option => (
-                    <div
-                      key={option.value}
-                      className={`${styles.modeOption} ${mode === option.value ? styles.active : ''}`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleModeChange(option.value as typeof mode);
-                        setShowModeDropdown(false);
-                      }}
-                    >
-                      {option.label}
-                    </div>
-                  ))}
-                </div>
-              )}
+            <div className={styles.dateText}>
+              {dateRange || 'تاریخ را انتخاب کنید'}
             </div>
+            <span className={styles.modeBadge}>{getModeLabel()}</span>
+            <FiChevronDown className={`${styles.arrow} ${showDropdown ? styles.rotated : ''}`} />
           </div>
         </button>
 
         {showDropdown && (
           <div className={styles.dropdownContent}>
+            <div className={styles.modeSelector}>
+              <button 
+                className={`${styles.modeButton} ${mode === 'day' ? styles.active : ''}`}
+                onClick={() => handleModeChange('day')}
+              >
+                روز
+              </button>
+              <button
+                className={`${styles.modeButton} ${mode === 'week' ? styles.active : ''}`}
+                onClick={() => handleModeChange('week')}
+              >
+                هفته
+              </button>
+              <button
+                className={`${styles.modeButton} ${mode === 'month' ? styles.active : ''}`}
+                onClick={() => handleModeChange('month')}
+              >
+                ماه
+              </button>
+              <button
+                className={`${styles.modeButton} ${mode === 'year' ? styles.active : ''}`}
+                onClick={() => handleModeChange('year')}
+              >
+                سال
+              </button>
+            </div>
+
             <div className={styles.calendarWrapper}>
               {renderCustomCalendar()}
             </div>
@@ -367,8 +218,6 @@ const DateRangeSelector = () => {
       </div>
     </div>
   );
-
-
 };
 
 export default DateRangeSelector;
