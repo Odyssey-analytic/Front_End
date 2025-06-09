@@ -37,7 +37,7 @@
     "swiper": "^11.2.6",
     "tailwind-variants": "^1.0.0",
 
-    "react-multi-date-picker": "^3.4.0",
+    "react-multi-date-picker": "^4.5.2",
     "react-date-object": "^1.0.0"
 
   },
