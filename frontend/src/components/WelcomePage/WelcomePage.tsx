@@ -316,7 +316,7 @@ const handleSubmitGame = async () => {
                   <div className={styles.welcomePageProductButtonsRow}>
                     <button
                       className={styles.welcomePageContinueBtn}
-                      disabled={!selectedProduct || isLoading}
+                      disabled={selectedProduct !== "game" || isLoading}
                       onClick={handleClick}
                     >
                       {isLoading ? "در حال بارگذاری..." : "ادامه"}
@@ -356,7 +356,7 @@ const handleSubmitGame = async () => {
                           style={{ minHeight: "20px" }}
                         >
                           {gameNameError && (
-                            <p className={`text-danger small mt-1 mb-0`}>
+                            <p className={`text-danger small mt-1 mb-0 text-start`}>
                               {gameNameError}
                             </p>
                           )}

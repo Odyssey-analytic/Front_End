@@ -356,10 +356,10 @@ const DashboardPage = () => {
           className="main-layout-header-help-icon"
         />
 
-        <div className="main-layout-header-search-box">
+        <div className={styles.mainLayoutHeaderSearchBox}>
           <input
             type="text"
-            className="main-layout-header-search-box-input"
+            className={styles.mainLayoutHeaderSearchBoxInput}
             placeholder="جستجو..."
             value={searchTerm}
             onChange={handleSearch}
