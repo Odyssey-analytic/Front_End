@@ -576,63 +576,46 @@ const handleSubmitGame = async () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: "easeInOut" }}
                 >
-                  <div
-                    className={styles["welcome-page-step-success-container"]}
-                  >
-                    <div
-                      className={styles["welcome-page-success-icon-wrapper"]}
-                    >
+                  <div className={styles.welcomePageStepSuccessContainer}>
+                    <div className={styles.welcomePageSuccessIconWrapper}>
                       <img src={gift} alt="Success Icon" />
                     </div>
 
-                    <h4 className={styles["welcome-page-success-text-title"]}>
+                    <h4 className={styles.welcomePageSuccessTextTitle}>
                       محصول شما با موفقیت ثبت شد!
                     </h4>
-                    <p className={styles["welcome-page-success-text-explain"]}>
+                    <p className={styles.welcomePageSuccessTextExplain}>
                       همه‌چیز آماده‌ست. حالا فقط کافیه SDK رو داخل
                       بازی/وب‌سایت‌تون قرار بدید.
                     </p>
-                    <p
-                      className={`mb-3 ${styles["welcome-page-sdk-download-link"]}`}
-                    >
+                    <p className={`mb-3 ${styles.welcomePageSdkDownloadLink}`}>
                       <a href="#">لینک دانلود SDK</a>
                     </p>
-
-                    <div className={styles["welcome-page-access-token-box"]}>
+                    <div className={styles.welcomePageAccessTokenBox}>
                       <strong
-                        className={styles["welcome-page-access-token-label"]}
+                        className={styles.welcomePageAccessTokenLabel}
                       >
                         Access Token:
                       </strong>
                       <br />
-
-                      <div className={styles["token-copy-container"]}>
-                        <div>
-                          <div
-                            className={styles["welcome-page-copy-icon-wrapper"]}
-                          >
+                      <div className={styles.welcomePageAccesTokenInsideBox}>
+                          <div className={styles.welcomePageCopyIconWrapper}>
                             <img
                               src={copyIcon}
                               alt="Copy"
                               className={`${
-                                styles["welcome-page-token-copy-icon-img"]
+                                styles.welcomePageTokenCopyIconImg
                               } ${copySuccess ? styles.active : ""}`}
                               onClick={() => copyToClipboard(token)}
                             />
-
                             {copySuccess && (
-                              <div
-                                className={
-                                  styles["welcome-page-copy-done-msg-tooltip"]
-                                }
-                              >
+                              <div className={styles.welcomePageCopyDoneMsgTooltip}>
                                 !کپی شد
                               </div>
                             )}
-                          </div>
                         </div>
 
-                        <span className={styles["welcome-page-token-value"]}>
+                        <span className={styles.welcomePageTokenValue}>
                           {token}
                         </span>
                       </div>
