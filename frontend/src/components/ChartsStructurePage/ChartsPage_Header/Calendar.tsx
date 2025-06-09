@@ -9,6 +9,9 @@ const DateRangeSelector = () => {
   const [dateRange, setDateRange] = useState('');
   const [mode, setMode] = useState<'day' | 'week' | 'month' | 'year'>('day');
   const [showDropdown, setShowDropdown] = useState(false);
+
+  const [showModeSelector, setShowModeSelector] = useState(false);
+
   const [selectedDate, setSelectedDate] = useState<any>(null);
 
   const getWeekRange = (date: DateObject) => {
@@ -109,35 +112,85 @@ const DateRangeSelector = () => {
     }
   };
 
+  // const renderCustomCalendar = () => {
+  //   switch (mode) {
+  //     case 'year':
+  //       return (
+  //         <DatePicker
+  //           value={selectedDate}
+  //           onChange={handleDateChange}
+  //           calendar={persian}
+  //           locale={persian_fa}
+  //           onlyYearPicker
+  //         />
+  //       );
+  //     case 'month':
+  //       return (
+  //         <DatePicker
+  //           value={selectedDate}
+  //           onChange={handleDateChange}
+  //           calendar={persian}
+  //           locale={persian_fa}
+  //           onlyMonthPicker
+  //         />
+  //       );
+  //     case 'week':
+  //       return (
+  //         <DatePicker
+  //           value={selectedDate}
+  //           onChange={handleDateChange}
+  //           calendar={persian}
+  //           locale={persian_fa}
+  //           range
+  //           weekPicker
+  //         />
+  //       );
+  //     default:
+  //       return (
+  //         <DatePicker
+  //           value={selectedDate}
+  //           onChange={handleDateChange}
+  //           calendar={persian}
+  //           locale={persian_fa}
+  //         />
+  //       );
+  //   }
+  // };
+
+
   const renderCustomCalendar = () => {
+    const commonProps = {
+      calendar: persian,
+      locale: persian_fa,
+      inputClass: styles.disabledInput,
+      render: <input readOnly />
+    };
+  
     switch (mode) {
       case 'year':
         return (
           <DatePicker
+            {...commonProps}
             value={selectedDate}
             onChange={handleDateChange}
-            calendar={persian}
-            locale={persian_fa}
             onlyYearPicker
           />
         );
       case 'month':
         return (
           <DatePicker
+            {...commonProps}
             value={selectedDate}
             onChange={handleDateChange}
-            calendar={persian}
-            locale={persian_fa}
             onlyMonthPicker
           />
         );
       case 'week':
         return (
           <DatePicker
+            {...commonProps}
             value={selectedDate}
             onChange={handleDateChange}
-            calendar={persian}
-            locale={persian_fa}
             range
             weekPicker
           />
@@ -145,14 +198,14 @@ const DateRangeSelector = () => {
       default:
         return (
           <DatePicker
+            {...commonProps}
             value={selectedDate}
             onChange={handleDateChange}
-            calendar={persian}
-            locale={persian_fa}
           />
         );
     }
   };
+
 
   const getModeLabel = () => {
     switch (mode) {
@@ -164,60 +217,160 @@ const DateRangeSelector = () => {
     }
   };
 
+
   return (
+    // <div className={styles.dateSelectorContainer}>
+    //   <div className={styles.combinedPicker}>
+    //     <button 
+    //       className={styles.mainButton}
+    //       onClick={() => setShowDropdown(!showDropdown)}
+    //     >
+    //       <div className={styles.buttonContent}>
+    //         <FiCalendar className={styles.icon} />
+    //         <div className={styles.dateText}>
+    //           {dateRange || 'تاریخ را انتخاب کنید'}
+    //         </div>
+    //         <FiChevronDown className={`${styles.arrow} ${showDropdown ? styles.rotated : ''}`} />
+    //       </div>
+    //     </button>
+
     <div className={styles.dateSelectorContainer}>
-      <div className={styles.combinedPicker}>
-        <button 
-          className={styles.mainButton}
-          onClick={() => setShowDropdown(!showDropdown)}
-        >
-          <div className={styles.buttonContent}>
-            <FiCalendar className={styles.icon} />
-            <div className={styles.dateText}>
-              {dateRange || 'تاریخ را انتخاب کنید'}
-            </div>
+    <div className={styles.combinedPicker}>
+      <button 
+        className={styles.mainButton}
+        onClick={() => setShowDropdown(!showDropdown)}
+      >
+        <div className={styles.buttonContent}>
+          <FiCalendar className={styles.icon} />
+          <div className={styles.dateText}>
+            {dateRange || 'تاریخ را انتخاب کنید'}
+            <span className={styles.modeSeparator}>|</span>
             <span className={styles.modeBadge}>{getModeLabel()}</span>
-            <FiChevronDown className={`${styles.arrow} ${showDropdown ? styles.rotated : ''}`} />
           </div>
-        </button>
+          <FiChevronDown className={`${styles.arrow} ${showDropdown ? styles.rotated : ''}`} />
+        </div>
+      </button>
 
         {showDropdown && (
           <div className={styles.dropdownContent}>
-            <div className={styles.modeSelector}>
-              <button 
-                className={`${styles.modeButton} ${mode === 'day' ? styles.active : ''}`}
-                onClick={() => handleModeChange('day')}
-              >
-                روز
-              </button>
-              <button
-                className={`${styles.modeButton} ${mode === 'week' ? styles.active : ''}`}
-                onClick={() => handleModeChange('week')}
-              >
-                هفته
-              </button>
-              <button
-                className={`${styles.modeButton} ${mode === 'month' ? styles.active : ''}`}
-                onClick={() => handleModeChange('month')}
-              >
-                ماه
-              </button>
-              <button
-                className={`${styles.modeButton} ${mode === 'year' ? styles.active : ''}`}
-                onClick={() => handleModeChange('year')}
-              >
-                سال
-              </button>
+            <div className={styles.calendarHeader}>
+              <div className={styles.modeSelectorWrapper}>
+                <button 
+                  className={styles.modeSelectorButton}
+                  onClick={() => setShowModeSelector(!showModeSelector)}
+                >
+                  {getModeLabel()}
+                  <FiChevronDown className={`${styles.modeSelectorArrow} ${showModeSelector ? styles.rotated : ''}`} />
+                </button>
+                
+                {showModeSelector && (
+                  <div className={styles.modeSelectorDropdown}>
+                    <button
+                      className={`${styles.modeOption} ${mode === 'day' ? styles.active : ''}`}
+                      onClick={() => {
+                        handleModeChange('day');
+                        setShowModeSelector(false);
+                      }}
+                    >
+                      روز
+                    </button>
+                    <button
+                      className={`${styles.modeOption} ${mode === 'week' ? styles.active : ''}`}
+                      onClick={() => {
+                        handleModeChange('week');
+                        setShowModeSelector(false);
+                      }}
+                    >
+                      هفته
+                    </button>
+                    <button
+                      className={`${styles.modeOption} ${mode === 'month' ? styles.active : ''}`}
+                      onClick={() => {
+                        handleModeChange('month');
+                        setShowModeSelector(false);
+                      }}
+                    >
+                      ماه
+                    </button>
+                    <button
+                      className={`${styles.modeOption} ${mode === 'year' ? styles.active : ''}`}
+                      onClick={() => {
+                        handleModeChange('year');
+                        setShowModeSelector(false);
+                      }}
+                    >
+                      سال
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className={styles.calendarWrapper}>
               {renderCustomCalendar()}
             </div>
+
           </div>
         )}
       </div>
     </div>
   );
+
+
+  // return (
+  //   <div className={styles.dateSelectorContainer}>
+  //     <div className={styles.combinedPicker}>
+  //       <button 
+  //         className={styles.mainButton}
+  //         onClick={() => setShowDropdown(!showDropdown)}
+  //       >
+  //         <div className={styles.buttonContent}>
+  //           <FiCalendar className={styles.icon} />
+  //           <div className={styles.dateText}>
+  //             {dateRange || 'تاریخ را انتخاب کنید'}
+  //           </div>
+  //           <span className={styles.modeBadge}>{getModeLabel()}</span>
+  //           <FiChevronDown className={`${styles.arrow} ${showDropdown ? styles.rotated : ''}`} />
+  //         </div>
+  //       </button>
+
+  //       {showDropdown && (
+  //         <div className={styles.dropdownContent}>
+  //           <div className={styles.modeSelector}>
+  //             <button 
+  //               className={`${styles.modeButton} ${mode === 'day' ? styles.active : ''}`}
+  //               onClick={() => handleModeChange('day')}
+  //             >
+  //               روز
+  //             </button>
+  //             <button
+  //               className={`${styles.modeButton} ${mode === 'week' ? styles.active : ''}`}
+  //               onClick={() => handleModeChange('week')}
+  //             >
+  //               هفته
+  //             </button>
+  //             <button
+  //               className={`${styles.modeButton} ${mode === 'month' ? styles.active : ''}`}
+  //               onClick={() => handleModeChange('month')}
+  //             >
+  //               ماه
+  //             </button>
+  //             <button
+  //               className={`${styles.modeButton} ${mode === 'year' ? styles.active : ''}`}
+  //               onClick={() => handleModeChange('year')}
+  //             >
+  //               سال
+  //             </button>
+  //           </div>
+
+  //           <div className={styles.calendarWrapper}>
+  //             {renderCustomCalendar()}
+  //           </div>
+  //         </div>
+  //       )}
+  //     </div>
+  //   </div>
+  // );
 };
 
 export default DateRangeSelector;
