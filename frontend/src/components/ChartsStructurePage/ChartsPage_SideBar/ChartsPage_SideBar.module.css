@@ -58,11 +58,14 @@
 }
 
 .active {
-  background-color: #0095ff33;
-  border-right: 3px solid #0084ff;
+  /* background-color: #2f7bc733; */
 
-  /* background-color: #00c4ff33;
-  border-right: 3px solid #00c3ff; */
+  background-color: #00c4ff33;
+  border-right: 3px solid #00c4ff;
+
+  
+  /* 41, 44, 72
+  color: rgb(41, 44, 72); */
 
 }
 
@@ -196,6 +199,9 @@
   backdrop-filter: blur(5px);
   
   background-color: #b0d3ff25;
+
+  /* background-color: rgb(41, 44, 72); */
+
 
   margin-top: 15px;
   /* border-right: 3px solid #00c3ff; */
