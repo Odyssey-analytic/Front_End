@@ -434,7 +434,7 @@ const ChartsPage_SideBar = () => {
 
 {/* <hr className={styles.divider} /> */}
             <div className={styles.profileSection}>
-              <hr className={styles.divider} />
+              {/* <hr className={styles.divider} /> */}
               
               <div className={styles.profileCard}>
                 <div className={styles.profileInfo}>
