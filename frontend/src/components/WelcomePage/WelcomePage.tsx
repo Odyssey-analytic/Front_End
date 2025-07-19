@@ -1,68 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './WelcomePage.module.css';
 
 type Line = {
   id: number;
-  position: number;
-  startX: number;
-  startY: number;
+  top: number;
+  left: number;
+  length: number;
+  duration: number;
 };
 
-const DiagonalLine: React.FC = () => {
+const NUM_LINES = 15;
+
+export default function WelcomePage() {
   const [lines, setLines] = useState<Line[]>([]);
-  const lineId = useRef(0);
-  const requestRef = useRef<number | null>(null);
-  const speed = 2;
-  const spawnInterval = 500;
-
-  // تولید موقعیت تصادفی از لبه چپ یا لبه پایین
-  const generateRandomStart = (): { x: number; y: number } => {
-    const fromBottom = Math.random() < 0.5;
-    if (fromBottom) {
-      return {
-        x: Math.random() * window.innerWidth,
-        y: window.innerHeight,
-      };
-    } else {
-      return {
-        x: 0,
-        y: Math.random() * window.innerHeight,
-      };
-    }
-  };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const { x, y } = generateRandomStart();
-      setLines((prev) => [
-        ...prev,
-        { id: lineId.current++, position: 0, startX: x, startY: y }
-      ]);
-    }, spawnInterval);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const animate = () => {
-    setLines((prev) =>
-      prev
-        .map((line) => ({
-          ...line,
-          position: line.position + speed,
-        }))
-        .filter((line) =>
-          line.startX + line.position < window.innerWidth + 100 &&
-          line.startY - line.position > -100
-        )
-    );
-    requestRef.current = requestAnimationFrame(animate);
-  };
-
-  useEffect(() => {
-    requestRef.current = requestAnimationFrame(animate);
-    return () => {
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
-    };
+    const generatedLines = Array.from({ length: NUM_LINES }, (_, i) => ({
+      id: i,
+      top: Math.random() * 100,
+      left: Math.random() * 100,
+      length: 80 + Math.random() * 150,
+      duration: 5 + Math.random() * 10, // سرعت بیشتر
+    }));
+    setLines(generatedLines);
   }, []);
 
   return (
@@ -70,14 +30,21 @@ const DiagonalLine: React.FC = () => {
       {lines.map((line) => (
         <div
           key={line.id}
-          className={styles.line}
+          className={styles.rotatedWrapper}
           style={{
-            transform: `translate(${line.startX + line.position}px, ${line.startY - line.position}px) rotate(-45deg)`
+            top: `${line.top}%`,
+            left: `-${line.left}%`,
+            width: `${line.length}px`,
           }}
-        />
+        >
+          <div
+            className={styles.line}
+            style={{
+              animationDuration: `${line.duration}s`,
+            }}
+          />
+        </div>
       ))}
     </div>
   );
-};
-
-export default DiagonalLine;
+}
