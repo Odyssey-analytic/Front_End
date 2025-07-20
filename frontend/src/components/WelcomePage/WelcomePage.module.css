@@ -1,12 +1,4 @@
 /* =========================== body =========================== */
-/* .welcomePageBody {
-  width: 100%;
-  height: 86%;
-  position: absolute;
-  justify-content: center;
-  top: 10%;
-} */
-
 .WelcomePageTitle {
   font-size: 110px;
   font-weight: bold;
@@ -17,23 +9,6 @@
 }
 
 /* =========================== main box =========================== */
-/* .welcomePageMainBox {
-  width: 80%;
-  height: 80%;
-  position: absolute;
-  top: 9%;
-  right: 10%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-  border-radius: 5px;
-
-  box-shadow: 0px 4px 10px rgba(100, 100, 100, 0.12);
-} */
-
-
 .welcomePageMainBox {
   width: 80%;
   height: 80%;
@@ -46,40 +21,23 @@
   align-items: center;
   gap: 1.5rem;
   border-radius: 5px;
-
   z-index: 2;
+}
 
-  background: rgba(250, 253, 255, 0.449); /* نیمه‌شفاف */
+.welcomePageMainBox {
+  background: rgba(255, 255, 255, 0.514);
   backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+}
 
-  /* border: 1px solid rgba(255, 255, 255, 0.3); */
-  /* box-shadow: 4px 8px 6px 6px rgba(100, 100, 100, 0.12); */
-  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); */
-  /* box-shadow: */
-  /* 4px 4px 8px rgba(100, 100, 100, 0.15),   سایه‌ی اصلی به پایین و راست */
-  /* -2px -2px 4px rgba(255, 255, 255, 0.4);   سایه‌ی سبک بالا و چپ (روشن برای حالت 3D) */
-  /* -2px -2px 2px rgba(255, 255, 255, 0.3); */
 
+/* .welcomePageMainBox {
+  background: rgba(250, 253, 255, 0.449);
+  backdrop-filter: blur(1px);
 
   box-shadow:
-    /* بالا */
-  /* 0px -1px 1px rgba(100, 100, 100, 0.12),  */
-   /* چپ */
-  /* -1px 0px 1px rgba(100, 100, 100, 0.12),  */
-  /* راست */
-  6px 0px 6px rgba(100, 100, 100, 0.12),    
-  /* پایین */
-  0px 6px 6px rgba(100, 100, 100, 0.12);    
-
-
-}
-
-
-.welcomePageMainBoxIcon img {
-  width: 130px;
-  margin-bottom: 1rem;
-}
+  6px 0px 6px rgba(100, 100, 100, 0.12),
+  0px 6px 6px rgba(100, 100, 100, 0.12);
+} */
 
 .welcomePageMainBoxHeading {
   font-size: 30px;
@@ -96,27 +54,51 @@
 }
 
 .welcomePageMainBoxStartBtn {
-  display: block;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  width: 100%;
-  max-width: 250px;
-  padding: 0.75rem 0.5rem;
-  font-size: 15px;
-  color: #c4c4c4;
-  background: linear-gradient(to right, #5d1b79, #00719a);
-  border: none;
-  border-radius: 12px;
-  filter: brightness(1.4);
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  margin-top: 50px;
+
+  background-image:
+    linear-gradient(to right, #8000ffd0, #00c8ffd1),
+    linear-gradient(to right, #7f00ff, #00c6ff);
+  
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+
+  border: 2px solid transparent;
+  color: #ffffffea; 
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
+.welcomePageMainBoxStartBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: skewX(-20deg);
+  transition: all 0.5s ease;
+  z-index: 0;
+  
+}
+
+.welcomePageMainBoxStartBtn:hover::before {
+  left: 120%;
+}
+
 .welcomePageMainBoxStartBtn:hover,
-.welcomePageMainBoxStartBtn:focus,
-.welcomePageMainBoxStartBtn:active {
-  background: linear-gradient(to right, #5d1b79, #00719a);
-  filter: brightness(1.1);
-  color: white !important;
+.welcomePageMainBoxStartBtn:focus {
+  filter: brightness(1.2);
+  color: #ffffff;
   cursor: pointer;
   outline: none;
 }

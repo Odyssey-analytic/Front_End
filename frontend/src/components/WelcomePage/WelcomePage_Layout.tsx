@@ -21,12 +21,12 @@ const DiagonalLine: React.FC = () => {
   const [lines, setLines] = useState<Line[]>([]);
   const lineId = useRef(0);
   const requestRef = useRef<number | null>(null);
-  const spawnInterval = 700;
+  const spawnInterval = 500;
 
   const createLine = (): Line => {
     const isFromBottom = Math.random() < 0.5; // 50٪ احتمال برای هر حالت
-    const randomSpeed = 1 + Math.random() * 4;
-    // between 1 - 5
+    const randomSpeed = 2 + Math.random() * 4;
+    // between 2 - 6
 
     const randomLength = 30 + Math.random() * 150;
     // between 30px - 150px

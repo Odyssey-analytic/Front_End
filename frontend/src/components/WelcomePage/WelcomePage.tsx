@@ -193,7 +193,7 @@ const WelcomePage = () => {
             {username} خوش اومدی!
           </h2>
           <p className={styles.welcomePageMainBoxDescription}>
-            شروع کن تا ببینی توی محصولات دقیقاً چه خبره
+            شروع کن تا ببینی توی محصولت دقیقاً چه خبره
           </p>
           <p className={styles.welcomePageMainBoxDescription}>
             و چطور می‌تونی بهترین تجربه رو برای کاربرات بسازی.

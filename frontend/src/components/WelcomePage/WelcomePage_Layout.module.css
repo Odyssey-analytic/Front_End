@@ -1,13 +1,17 @@
 .container {
   width: 100vw;
   height: 100vh;
-  background-color: white;
+
+  background-color: rgb(255, 255, 255);
+
+  /* background-color: rgba(245, 245, 255, 0.788); */ 
+
   position: relative;
   overflow: hidden;
 }
 
 .line {
-  height: 0.5px;
+  height: 1px;
   background: linear-gradient(90deg, #8a2be2, #00bfff);
   position: absolute;
   left: -50px;
