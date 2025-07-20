@@ -1,5 +1,5 @@
 // import "./MainLayout.css";
-import styles from './MainLayout.module.css';
+import styles from './WelcomePage_HeaderLayout.module.css';
 
 import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -37,33 +37,44 @@ const MainLayout = () => {
 
   return (
     <div>
-      <div className={styles.Header}>
-        <img
+      {/* <div className={styles.Header}> */}
+        {/* <img
           src={HelpIcon}
           alt="Help"
           className={styles.HelpIcon}
-        />
+        /> */}
 
-        <div className={styles.SearchBox}>
+        {/* <div className={styles.SearchBox}>
           <input
             type="text"
             className={styles.SearchBoxInput}
             placeholder="جستجو..."
           />
-        </div>
+        </div> */}
 
-        <div className={styles.Logo}>
-          <span className={`${styles.LogoText} english-text`}>ODESSAY</span>
-          <img
-            src={OdessayLogo}
-            alt="Odessay Logo"
-            className={`${styles.LogoImg} ms-2`}
-          />
-        </div>
-      </div>
+
+      {/* </div> */}
 
       <div className={`${styles.SubHeader} d-flex justify-content-between align-items-center py-2`}>
+        <div className={styles.Logo}>
+          <img
+              src={OdessayLogo}
+              alt="Odessay Logo"
+              className={`${styles.LogoImg} ms-2`}
+            />
+          <span className={`${styles.LogoText} english-text`}>ODESSAY</span>
+
+        </div>
+
+        
         <div className="d-flex align-items-center gap-3">
+        
+          <img
+            src={UserIcon}
+            alt="User"
+            className={styles.SubHeader_UserIcon}
+          />
+        
           <div
             ref={menuRef}
             onClick={() => setMenuOpen((prev) => !prev)}
@@ -76,7 +87,7 @@ const MainLayout = () => {
 
             <div
               className={`${styles.DropdownMenu} ${menuOpen ? styles.show : ''}`}
-            >
+              >
               <button
                 className={styles.DropdownItem}
                 onClick={handleLogout}
@@ -84,19 +95,15 @@ const MainLayout = () => {
                 خروج از حساب کاربری
               </button>
             </div>
+            
           </div>
-
-          <img
-            src={UserIcon}
-            alt="User"
-            className={styles.SubHeader_UserIcon}
-          />
         </div>
 
-        <div className="d-flex align-items-center gap-3">
+        {/* <div className="d-flex align-items-center gap-3">
           <span className={styles.SubHeader_AdminDivider}></span>
           <div className={styles.SubHeader_AdminText}>Admin</div>
-        </div>
+        </div> */}
+
       </div>
     </div>
   );

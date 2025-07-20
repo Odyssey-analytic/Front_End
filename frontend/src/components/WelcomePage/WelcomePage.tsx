@@ -2,7 +2,7 @@ import styles from "./WelcomePage.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { submitGameInfo } from "../../services/userService";
-import MainLayout from "./MainLayout";
+import MainLayout from "./WelcomePage_HeaderLayout";
 import { motion } from "framer-motion";
 
 // =========================== assets ===========================
