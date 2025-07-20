@@ -1,4 +1,4 @@
-.container {
+/* .container {
   position: fixed;
   top: 0;
   left: 0;
@@ -26,14 +26,90 @@
   position: relative;
 }
 
-/* @keyframes moveDiagonal {
+
+@keyframes moveDiagonal {
   0% {
-    transform: translate(150, 0);
+    transform: translate(0px, 0px);
   }
   100% {
-    transform: translate(0, 150px);
+    transform: translate(-3000px, 0px);
   }
 } */
+
+
+
+/* //////////////////////////////// */
+/* .container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: rgb(255, 255, 255);
+} */
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* .rotatedWrapper {
+  position: absolute;
+} */
+
+.rotatedWrapper {
+  position: absolute;
+  transform: rotate(143deg);
+  height: 2px;
+}
+
+/* .line {
+  height: 2px;
+  background-color: white;
+  position: absolute;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.style1 {
+  animation-name: moveRight;
+}
+
+@keyframes moveRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(150vw);
+  }
+} */
+
+
+.line {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #8a2be2, #00bfff);
+  opacity: 0.3;
+  /* animation-name: moveDiagonal; */
+  /* animation-timing-function: linear; */
+  /* animation-iteration-count: infinite; */
+  /* position: relative; */
+
+
+  /* height: 2px; */
+  /* background-color: white; */
+  position: absolute;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+
+
+}
+
 
 @keyframes moveDiagonal {
   0% {
@@ -43,3 +119,14 @@
     transform: translate(-3000px, 0px);
   }
 }
+
+
+
+/* @keyframes moveDiagonal {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+    transform: translate(-3000px, 0px);
+  }
+} */

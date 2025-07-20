@@ -178,7 +178,7 @@ const WelcomePage = () => {
   
   return (
     <div className={styles.back}>
-      <MainLayout></MainLayout>
+      {/* <MainLayout></MainLayout> */}
       <div className={styles.welcomePageBody}>
         <div
           className={`${styles.welcomePageMainBox} text-center ${
