@@ -11,7 +11,8 @@ import LoginPage from "./components/AuthPages/LoginPage";
 import SignupPage from "./components/AuthPages/SignupPage";
 import ForgotpasswordPage from "./components/ForgotpasswordPage/ForgotpasswordPage";
 import ResetpasswordPage from "./components/ResetpasswordPage/ResetpasswordPage";
-import WelcomePage from "./components/WelcomePage/WelcomePage";
+
+import WelcomePage from "./components/WelcomePage/WelcomePage_Layout";
 import DashboardPage from "./components/DashboardPage/DashboardPage";
 import LandingPage from "./components/LandingPage/LandingPage/LandingPage";
 

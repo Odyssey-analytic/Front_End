@@ -1,132 +1,679 @@
-/* .container {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* =========================== body =========================== */
+/* .welcomePageBody {
   width: 100%;
-  height: 100%;
-  background-color: white;
-  overflow: hidden;
-  z-index: -1;
-}
-
-.rotatedWrapper {
+  height: 86%;
   position: absolute;
-  transform: rotate(143deg);
-  height: 2px;
+  justify-content: center;
+  top: 10%;
+} */
+
+.WelcomePageTitle {
+  font-size: 110px;
+  font-weight: bold;
+  background: linear-gradient(to right, #7f00ff, #00c6ff);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 10px;
 }
 
-.line {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, #8a2be2, #00bfff);
-  opacity: 0.3;
-  animation-name: moveDiagonal;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  position: relative;
-}
+/* =========================== main box =========================== */
+/* .welcomePageMainBox {
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 9%;
+  right: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  border-radius: 5px;
 
-
-@keyframes moveDiagonal {
-  0% {
-    transform: translate(0px, 0px);
-  }
-  100% {
-    transform: translate(-3000px, 0px);
-  }
+  box-shadow: 0px 4px 10px rgba(100, 100, 100, 0.12);
 } */
 
 
+.welcomePageMainBox {
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  top: 9%;
+  right: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  border-radius: 5px;
 
-/* //////////////////////////////// */
-/* .container {
-  position: relative;
-  width: 100vw;
+  z-index: 2;
+
+  background: rgba(250, 253, 255, 0.449); /* نیمه‌شفاف */
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+
+  /* border: 1px solid rgba(255, 255, 255, 0.3); */
+  /* box-shadow: 4px 8px 6px 6px rgba(100, 100, 100, 0.12); */
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); */
+  /* box-shadow: */
+  /* 4px 4px 8px rgba(100, 100, 100, 0.15),   سایه‌ی اصلی به پایین و راست */
+  /* -2px -2px 4px rgba(255, 255, 255, 0.4);   سایه‌ی سبک بالا و چپ (روشن برای حالت 3D) */
+  /* -2px -2px 2px rgba(255, 255, 255, 0.3); */
+
+
+  box-shadow:
+    /* بالا */
+  /* 0px -1px 1px rgba(100, 100, 100, 0.12),  */
+   /* چپ */
+  /* -1px 0px 1px rgba(100, 100, 100, 0.12),  */
+  /* راست */
+  6px 0px 6px rgba(100, 100, 100, 0.12),    
+  /* پایین */
+  0px 6px 6px rgba(100, 100, 100, 0.12);    
+
+
+}
+
+
+.welcomePageMainBoxIcon img {
+  width: 130px;
+  margin-bottom: 1rem;
+}
+
+.welcomePageMainBoxHeading {
+  font-size: 30px;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin-bottom: 2rem;
+}
+
+.welcomePageMainBoxDescription {
+  color: #4a4a4a;
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: -10px;
+}
+
+.welcomePageMainBoxStartBtn {
+  display: block;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 250px;
+  padding: 0.75rem 0.5rem;
+  font-size: 15px;
+  color: #c4c4c4;
+  background: linear-gradient(to right, #5d1b79, #00719a);
+  border: none;
+  border-radius: 12px;
+  filter: brightness(1.4);
+  transition: all 0.3s ease;
+}
+
+.welcomePageMainBoxStartBtn:hover,
+.welcomePageMainBoxStartBtn:focus,
+.welcomePageMainBoxStartBtn:active {
+  background: linear-gradient(to right, #5d1b79, #00719a);
+  filter: brightness(1.1);
+  color: white !important;
+  cursor: pointer;
+  outline: none;
+}
+
+/* =========================== popup overlay =========================== */
+.welcomePageMainBoxBody {
+  position: absolute;
+  top: 15.4%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(6px);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.welcomePageMainBoxBodyOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  border-radius: inherit;
+  width: 100%;
   height: 100vh;
-  overflow: hidden;
-  background: rgb(255, 255, 255);
-} */
+}
 
-.container {
-  position: fixed;
-  top: 0;
-  left: 0;
+.welcomePageMainBoxBodyPopupCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 2;
+  pointer-events: all;
+  width: 35%;
+  height: 70%;
+  top: 7%;
+  overflow-y: auto;
+  padding-right: 4rem;
+  padding-left: 4rem;
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(60, 60, 60, 0.2);
+  text-align: center;
+}
+
+.welcomePagePopupCardCloseIcon {
+  position: sticky;
+  top: 0.1rem;
+  right: 27rem;
+  margin-left: -45px;
+  z-index: 100;
+  width: 24px;
+  height: 24px;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.welcomePagePopupCardCloseIcon:hover {
+  transform: scale(1.08);
+  opacity: 0.7;
+}
+
+/* ======================== Input Fields ======================== */
+.gameNameInputSm {
+  border-radius: 8px;
+  padding-right: 1rem;
+}
+
+.gameNameInputSm::placeholder {
+  font-size: 0.8rem;
+  color: rgb(46, 46, 46);
+}
+
+.gameNameInputSm:focus,
+.gameNameInputSm:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 1px rgba(113, 46, 141, 0.4) !important;
+}
+
+/* =========================== popup content =========================== */
+.welcomePagePopupTitle {
+  font-size: 15px;
+  text-align: right;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.welcomePageUploadSection {
+  width: 90px;
+  height: 110px;
+  margin-right: 1rem;
+}
+
+.welcomePageUploadPreviewWrapper {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  overflow: hidden;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcomePageUploadPreviewImage {
   width: 100%;
   height: 100%;
-  background-color: white;
-  overflow: hidden;
-  z-index: -1;
+  object-fit: cover;
 }
 
-/* .rotatedWrapper {
-  position: absolute;
-} */
-
-.rotatedWrapper {
-  position: absolute;
-  transform: rotate(143deg);
-  height: 2px;
+.welcomePageUploadPlaceholderIcon {
+  width: 32px;
+  opacity: 0.5;
 }
 
-/* .line {
-  height: 2px;
-  background-color: white;
-  position: absolute;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
+.welcomePageUploadSelectLabel {
+  display: inline-block;
+  font-size: 0.75rem;
+  cursor: pointer;
+  color: #007bff;
 }
 
-.style1 {
-  animation-name: moveRight;
+.welcomePageDeleteImageTextBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.75rem;
+  color: #999;
+  cursor: not-allowed;
+  transition: color 0.2s ease;
 }
 
-@keyframes moveRight {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(150vw);
-  }
-} */
+.welcome-page-delete-image-text-btn.active {
+  color: #dc3545;
+  cursor: pointer;
+}
 
-
-.line {
+.welcome-page-delete-image-text-btn.active:hover {
+  text-decoration: underline;
+}
+/* =========================== stepper =========================== */
+.welcomePageStepperContainer {
+  display: flex;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, #8a2be2, #00bfff);
-  opacity: 0.3;
-  /* animation-name: moveDiagonal; */
-  /* animation-timing-function: linear; */
-  /* animation-iteration-count: infinite; */
-  /* position: relative; */
+  margin: 0 auto 2rem;
+  padding: 1rem 0;
+}
 
+.welcomePageStepperItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  /* height: 2px; */
-  /* background-color: white; */
+.welcomePageStepperCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #dfdfdf;
+  background-color: white;
+  color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.welcomePageStepperLabel {
+  margin-top: 0.5rem;
+  font-size: 13px;
+  color: #888;
+}
+
+.welcomePageStepperFirstLine {
+  height: 2px;
+  border-radius: 12px;
+  background-color: #ccc;
+  flex: 1;
+  margin-top: 15px;
+  margin-right: -15px;
+  margin-left: 5px;
+  z-index: 1;
+}
+
+.welcomePageStepperSecondLine {
+  height: 2px;
+  border-radius: 12px;
+  background-color: #ccc;
+  flex: 1;
+  margin: 15px 6px;
+  z-index: 1;
+}
+
+.welcomePageStepperItem.active .welcomePageStepperCircle {
+  background: linear-gradient(to right, rgba(93, 27, 121), rgba(0, 113, 154));
+  color: white;
+  border: 2px solid white;
+}
+
+.welcomePageStepperItem.active .welcomePageStepperLabel {
+  color: #4c1764;
+}
+
+.welcome-page-stepper-line.active {
+  background: linear-gradient(to right, rgba(93, 27, 121), rgba(0, 113, 154));
+}
+
+/* =========================== product option checkboxes =========================== */
+.welcomePageProductOptionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: right;
+  padding-top: 0.5rem;
+}
+
+.welcomePageProductOption {
+  position: relative;
+  padding: 0.75rem 1.5rem 0.75rem 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  background-color: #f7f5f5;
+  box-shadow: 0 2px 2px rgb(188, 159, 202);
+}
+
+.welcomePageProductOption input {
+  display: none;
+}
+
+.welcomePageProductOption .checkmark {
   position: absolute;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
 
-
+  width: 19px;
+  height: 19px;
+  border: 1px solid #525252;
+  border-radius: 4px;
+  background: white;
+  transition: all 0.3s ease;
 }
 
+.welcomePageProductOption.checked {
+  background-color: #f1f1f1;
+  border-color: rgb(129, 70, 155);
+  color: rgb(141, 84, 165);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(135, 64, 166, 0.6);
+}
 
-@keyframes moveDiagonal {
+.welcomePageProductOption.checked .checkmark {
+  background-color: rgb(139, 71, 169);
+  border-color: rgb(136, 68, 165);
+}
+
+.welcomePageProductOption.checked::before {
+  content: "✔";
+  position: absolute;
+  left: 1.25rem;
+  top: 55%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: white;
+  z-index: 1;
+}
+
+/* =========================== success message =========================== */
+.welcomePageStepSuccessContainer {
+  text-align: center;
+}
+
+.welcomePageSuccessIconWrapper img {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 1.5rem;
+}
+
+.welcomePageSuccessTextTitle {
+  font-size: 1.2rem;
+}
+
+/* =========================== token and SDK link success =========================== */
+
+.welcomePageSuccessTextExplain {
+  font-size: 12.5px;
+  padding: 1rem 2.5rem;
+}
+
+.welcomePageSdkDownloadLink {
+  color: #00719a;
+  font-weight: 400;
+  transition: color 0.3s;
+  font-size: 13px;
+}
+
+.welcomePageAccessTokenBox {
+  background-color: #f0f0f6;
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  font-family: monospace;
+  text-align: left;
+  direction: ltr;
+  width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-right: -8%;
+}
+
+.welcomePageAccessTokenLabel {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.welcomePageAccesTokenInsideBox {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.welcomePageTokenValue {
+  display: inline-block;
+  background-color: white;
+  padding: 8px 12px;
+  border-radius: 2px;
+  font-family: monospace;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  border: 1px solid #ccc;
+  color: #333;
+  font-size: 13px;
+}
+
+.welcome-page-token-button {
+  padding: 6px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.welcome-page-token-button:hover {
+  background-color: #0056b3;
+}
+
+.welcomePageTokenValue::-webkit-scrollbar {
+  height: 7px;
+}
+
+.welcomePageTokenValue::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+.welcomePageTokenValue::-webkit-scrollbar-thumb {
+  background: #bdbecc;
+}
+
+.welcomePageTokenValue::-webkit-scrollbar-thumb:hover {
+  background: rgb(169, 169, 169);
+}
+
+.welcomePageTokenCopyIconImg {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 8px;
+  transition: filter 0.3s ease;
+  cursor: pointer;
+  filter: brightness(1.1);
+}
+
+.welcomePageTokenCopyIconImg:hover,
+.welcomePageTokenCopyIconImg:focus,
+.welcomePageTokenCopyIconImg:active {
+  filter: brightness(0.95);
+}
+
+.welcomePageCopyIconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcomePageCopyDoneMsgTooltip {
+  position: absolute;
+  bottom: 120%;
+  left: 1px;
+  font-family: Vazirmatn, sans-serif;
+  transform: translateX(-50%);
+  background-color: #686d80;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  animation: tooltipFade 2s ease forwards;
+  z-index: 10;
+}
+
+@keyframes tooltipFade {
   0% {
-    transform: translate(0px, 0px);
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
   }
   100% {
-    transform: translate(-3000px, 0px);
+    opacity: 0;
+    transform: translateY(-5px);
   }
 }
 
+/* =========================== step 2 inputs =========================== */
+.step2Compact .popup-options label {
+  font-size: 14px;
+}
 
+.step2Compact .popup-options input,
+.step2Compact .popup-options textarea {
+  margin-bottom: 3rem;
+}
 
-/* @keyframes moveDiagonal {
-  0% {
-    transform: translate(0px, 0px);
-  }
-  100% {
-    transform: translate(-3000px, 0px);
-  }
+.engine-disabled-option {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* =========================== token and SDK link =========================== */
+.welcome-page-sdk-download-link {
+  color: #00719a;
+  font-weight: 500;
+  text-decoration: underline;
+  transition: color 0.3s;
+  font-size: 15px;
+  margin-top: 1rem;
+}
+
+.welcome-page-sdk-download-link:hover {
+  color: #4c1764;
+}
+
+.welcome-page-access-token-box {
+  background-color: #f6f6f6;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: monospace;
+  text-align: left;
+  direction: ltr;
+
+  margin-top: 2rem;
+  width: 100%;
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.welcome-page-token-value {
+  color: #333;
+  font-size: 13px;
+}
+
+.welcomePageTokenNote {
+  font-size: 12px;
+  color: #888;
+}
+
+/* =========================== continue button =========================== */
+.welcomePageProductButtonsRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.welcomePageContinueBtn {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  max-width: 130px;
+  padding: 0.6rem;
+  font-size: 15px;
+  color: #c4c4c4;
+  background: linear-gradient(to right, #5d1b79, #00719a);
+  border: none;
+  border-radius: 12px;
+  filter: brightness(1.4);
+  transition: all 0.3s ease;
+}
+
+.welcomePageContinueBtn:hover,
+.welcomePageContinueBtn:focus,
+.welcomePageContinueBtn:active {
+  background: linear-gradient(to right, #5d1b79, #00719a);
+  filter: brightness(1.1);
+  color: white !important;
+  cursor: pointer;
+  outline: none;
+}
+
+.welcomePageContinueBtn:disabled {
+  opacity: 0.6;
+}
+
+.welcomePageRadioGroupGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 45px;
+}
+
+.welcomePageRadioLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* THESE 3 LINES MAY BE AS COMMENT */
+  font-family: "Aboreto", sans-serif;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.welcomePageEngineDisabledOption {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.welcomePageErrorPlaceholder {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+/* .back {
+  background-color: rgba(225, 237, 255);
+  height: 100%;
 } */
