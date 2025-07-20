@@ -5,29 +5,65 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from './WelcomePage_simple.module.css';
 import { number } from 'framer-motion';
 
+// type Line = {
+//   id: number;
+//   position: number;
+//   // top: number;
+//   left: number;
+// };
+
+
 type Line = {
   id: number;
   position: number;
-  // top: number;
-  left: number;
+  left?: number;
+  top?: number;
+  direction: 'bottom' | 'left';
 };
+
+
+
 
 const DiagonalLine: React.FC = () => {
   const [lines, setLines] = useState<Line[]>([]);
   const lineId = useRef(0);
   const requestRef = useRef<number | null>(null);
   const speed = 1;
-  const spawnInterval = 3000;
+  const spawnInterval = 2000;
 
   
+  // const createLine = (): Line => {
+  //   const leftPercent = 10 + Math.random() * 90;
+  //   return {
+  //     id: lineId.current++,
+  //     position: 0,
+  //     left: leftPercent,
+  //   };
+  // };
+
+
   const createLine = (): Line => {
-    const leftPercent = 10 + Math.random() * 90;
-    return {
-      id: lineId.current++,
-      position: 0,
-      left: leftPercent,
-    };
+    const isFromBottom = Math.random() < 0.5; // 50٪ احتمال برای هر حالت
+  
+    if (isFromBottom) {
+      const leftPercent = 10 + Math.random() * 90;
+      return {
+        id: lineId.current++,
+        position: 0,
+        left: leftPercent,
+        direction: 'bottom',
+      };
+    } else {
+      const topPercent = 10 + Math.random() * 90;
+      return {
+        id: lineId.current++,
+        position: 0,
+        top: topPercent,
+        direction: 'left',
+      };
+    }
   };
+  
 
   useEffect(() => {
 
@@ -62,22 +98,45 @@ const DiagonalLine: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      {lines.map((line) => (
+      {/* {lines.map((line) => (
         <div
           key={line.id}
           className={styles.line}
           // style={{
           //   top: `${line.top}%`,
-          //   transform: `translate(${line.position}px, -${line.position}px)
-          //   rotate(-45deg)`
+          //   transform: `translate(${line.position}px, -${line.position}px) rotate(-45deg)`
           // }}
+
           style={{
             top: `100%`,
             left: `${line.left}%`,
             transform: `translate(${line.position}px, -${line.position}px) rotate(-45deg)`
           }}
         />
+      ))} */}
+
+      {lines.map((line) => (
+        <div
+          key={line.id}
+          className={styles.line}
+          style={
+            line.direction === 'bottom'
+              ? {
+                  top: `100%`,
+                  left: `${line.left}%`,
+                  transform: `translate(${line.position}px, -${line.position}px) rotate(-45deg)`
+                }
+              : {
+                  top: `${line.top}%`,
+                  transform: `translate(${line.position}px, -${line.position}px) rotate(-45deg)`
+                }
+          }
+        />
       ))}
+
+
+
+
     </div>
   );
 };
