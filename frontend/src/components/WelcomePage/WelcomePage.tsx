@@ -2,7 +2,7 @@ import styles from "./WelcomePage.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { submitGameInfo } from "../../services/userService";
-import MainLayout from "../MainLayout/MainLayout";
+import MainLayout from "./MainLayout";
 import { motion } from "framer-motion";
 
 // =========================== assets ===========================
@@ -177,8 +177,8 @@ const WelcomePage = () => {
   };
   
   return (
-    <div>
-      {/* <MainLayout></MainLayout> */}
+    <div className={styles.container}>
+      <MainLayout></MainLayout>
       {/* <div className={styles.welcomePageBody}> */}
         <div
           className={`${styles.welcomePageMainBox} text-center ${

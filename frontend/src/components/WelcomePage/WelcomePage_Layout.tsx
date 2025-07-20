@@ -24,12 +24,12 @@ const DiagonalLine: React.FC = () => {
   const spawnInterval = 500;
 
   const createLine = (): Line => {
-    const isFromBottom = Math.random() < 0.5; // 50٪ احتمال برای هر حالت
+    const isFromBottom = Math.random() < 0.5;
     const randomSpeed = 2 + Math.random() * 4;
     // between 2 - 6
 
     const randomLength = 30 + Math.random() * 150;
-    // between 30px - 150px
+    // between 30px - 180px
 
     const randomOpacity = 0.2 + Math.random() * 0.6;
     // 0.2 - 0.8

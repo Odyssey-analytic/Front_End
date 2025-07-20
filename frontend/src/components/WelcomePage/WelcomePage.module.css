@@ -1,43 +1,55 @@
-/* =========================== body =========================== */
-.WelcomePageTitle {
-  font-size: 110px;
-  font-weight: bold;
-  background: linear-gradient(to right, #7f00ff, #00c6ff);
-  -webkit-background-clip: text;
-  color: transparent;
-  margin-bottom: 10px;
-}
-
 /* =========================== main box =========================== */
 .welcomePageMainBox {
-  width: 80%;
-  height: 80%;
+  height: 70%;
+  top: 20%;
+
   position: absolute;
-  top: 9%;
-  right: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   align-items: center;
   gap: 1.5rem;
-  border-radius: 5px;
+  
   z-index: 2;
 }
 
+/* V1 */
 .welcomePageMainBox {
+  width: 40%;
+  right: 30%;
+
+  border-radius: 400px;
+
   background: rgba(255, 255, 255, 0.514);
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(2px);
 }
 
-
+/* V2 */
 /* .welcomePageMainBox {
-  background: rgba(250, 253, 255, 0.449);
+  width: 80%;
+  right: 10%;
+  border-radius: 5px;
+
+  background: rgba(250, 253, 255, 0.699);
   backdrop-filter: blur(1px);
 
   box-shadow:
   6px 0px 6px rgba(100, 100, 100, 0.12),
   0px 6px 6px rgba(100, 100, 100, 0.12);
 } */
+
+.WelcomePageTitle {
+  font-size: 100px;
+  font-weight: bold;
+
+  /* background: linear-gradient(to right, #7f00ff, #00c6ff); */
+  background: linear-gradient(to right, #6e10cbdd, #2f97bd);
+
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 10px;
+}
 
 .welcomePageMainBoxHeading {
   font-size: 30px;
@@ -53,26 +65,33 @@
   margin-bottom: -10px;
 }
 
+
+/* =========================== buttons =========================== */
 .welcomePageMainBoxStartBtn {
   display: inline-block;
   padding: 12px 28px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border-radius: 5px;
+  border-radius: 8px;
   margin-top: 50px;
 
-  background-image:
-    linear-gradient(to right, #8000ffd0, #00c8ffd1),
-    linear-gradient(to right, #7f00ff, #00c6ff);
+  width: 200px;
+  height: 50px;
+
   
+  /* background: linear-gradient(to right, #5d1b79, #00719a); */
+
+  background: linear-gradient(to right, #6e10cbdd, #2f97bd);
+
+
   background-origin: border-box;
   background-clip: padding-box, border-box;
 
   border: 2px solid transparent;
-  color: #ffffffea; 
+  color: #fffffffb; 
   cursor: pointer;
   transition: all 0.3s ease;
 }

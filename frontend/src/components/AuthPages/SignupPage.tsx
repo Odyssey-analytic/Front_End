@@ -294,7 +294,7 @@ const SignupPage = () => {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className={`${styles.signupBtn} btn w-100`}>ثبت نام</button>
+          <button type="submit" className={`${styles.signupBtn} btn w-100`}>ثبت‌نام</button>
 
           <p className="text-muted small mt-3">
             با ثبت‌نام، شما با <a href="#" className={styles.signupAgreementText}>قوانین و شرایط</a> ما موافقت می‌کنید.

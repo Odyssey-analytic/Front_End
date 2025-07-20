@@ -2,9 +2,11 @@
   width: 100vw;
   height: 100vh;
 
+  /* V1 */
   background-color: rgb(255, 255, 255);
 
-  /* background-color: rgba(245, 245, 255, 0.788); */ 
+  /* V2 */
+  /* background-color: rgba(245, 245, 255, 0.788);  */
 
   position: relative;
   overflow: hidden;
