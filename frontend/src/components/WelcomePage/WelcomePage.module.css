@@ -31,13 +31,55 @@
   transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
+.icons {
+  position: absolute;
+  top: 18%;
+  right: 8%;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+
+  z-index: 100;
+}
+
+.welcomePageicons {
+  z-index: 100;
+  width: 25px;
+  height: 25px;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+
+}
+
+.welcomePageicons:hover {
+  transform: scale(1.05);
+  opacity: 0.7;
+}
+
+
+/* .welcomePagePopupCardCloseIcon {
+  z-index: 100;
+  width: 24px;
+  height: 24px;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.welcomePagePopupCardCloseIcon:hover {
+  transform: scale(1.08);
+  opacity: 0.7;
+} */
+
+
 .WelcomePageTitle {
   font-size: 95px;
   font-weight: bold;
-  /* color: #a5bff1; */
 
   color: #93ceff;
-
   
   margin-bottom: 10px;
 }
@@ -71,10 +113,7 @@
   width: 250px;
   height: 55px;
 
-  /* background: #4366ac; */
-
   background: #5a8bb3;
-
   
   background-origin: border-box;
   background-clip: padding-box, border-box;

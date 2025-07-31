@@ -14,6 +14,9 @@ import gift from "/public/icons/gift.svg";
 import uploading_game_image_icon_ghost from "/public/icons/game-ghost-icon.svg";
 import copyIcon from "/public/icons/copy-icon-gradient.svg";
 import game_with_no_thumbnail_icon_png from "../../../public/icons/game_with_no_thumbnail_icon.png";
+import usericon from "../../../public/icons/user 3.svg";
+import doticon from "../../../public/icons/dots 1.svg";
+
 
 const WelcomePage = () => {
   const [username, setUsername] = useState("");
@@ -181,11 +184,38 @@ const WelcomePage = () => {
   return (
     <div className={styles.container}>
       <WelcomePage_HeaderLayout></WelcomePage_HeaderLayout>
+
+        <div className={styles.icons}>
+          <img
+              src={doticon}
+              alt="بستن"
+              className={styles.welcomePageicons}
+              onClick={() => {
+                setShowPopup(false);
+                resetPopupState();
+              }}
+            />
+            
+          <img
+            src={usericon}
+            alt="بستن"
+            className={styles.welcomePageicons}
+            onClick={() => {
+              setShowPopup(false);
+              resetPopupState();
+            }}
+          />
+          
+
+
+        </div>
+        
         <div
           className={`${styles.welcomePageMainBox} text-center ${
             showPopup ? styles.blurred : ""
           }`}
           >
+
           <h1 className={styles.WelcomePageTitle}>!Welcome</h1>
           <h2 className={styles.welcomePageMainBoxHeading}>
             {username} خوش اومدی!
