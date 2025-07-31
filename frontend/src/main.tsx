@@ -29,10 +29,10 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/reset-password/:token" element={<ResetpasswordPage />} />
         <Route path="/" element={<LandingPage />} />
-        <Route path="/panel" element={<DashboardPage />} />
-        <Route path="/dashboard/:gameId" element={<ChartsPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/charts/:gameId" element={<ChartsPage />} />
         
-        <Route path="/dashboard" element={<ChartsPage />} />
+        <Route path="/charts" element={<ChartsPage />} />
         {/* <Route path='/DateSelector' element={<DateSelector/>}/> */}
       </Routes>
     </BrowserRouter>

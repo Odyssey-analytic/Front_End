@@ -10,7 +10,7 @@ import MainLayout from "../MainLayout/MainLayout";
 // =========================== assets ===========================
 import welcome_page_main_box_welcome_icon from "/public/icons/welcome_page_main_box_welcome_icon.svg";
 import gift from "/public/icons/gift.svg";
-import close_icon from "/public/icons/close_icon.svg";
+// import close_icon from "/public/icons/close_icon.svg";
 import uploading_game_image_icon_ghost from "/public/icons/game-ghost-icon.svg";
 import copyIcon from "/public/icons/copy-icon-gradient.svg";
 import game_with_no_thumbnail_icon_png from "../../../public/icons/game_with_no_thumbnail_icon.png";
@@ -210,7 +210,7 @@ const WelcomePage = () => {
           <div className={styles.welcomePageMainBoxBody} />
           <div className={styles.welcomePageMainBoxBodyOverlay}>
             <div className={styles.welcomePageMainBoxBodyPopupCard}>
-              {(step === 1 ||
+              {/* {(step === 1 ||
                 (step === 2 && selectedProduct === "game") ||
                 step === 3) && (
                 <img
@@ -222,7 +222,7 @@ const WelcomePage = () => {
                     resetPopupState();
                   }}
                 />
-              )}
+              )} */}
 
               <div className={styles.welcomePageStepperContainer}>
                 <div

@@ -12,34 +12,16 @@
   gap: 1.5rem;
   
   z-index: 2;
-}
 
-/* V1 */
-/* .welcomePageMainBox {
-  width: 40%;
-  right: 30%;
-
-  border-radius: 400px;
-
-  background: rgba(255, 255, 255, 0.514);
-  backdrop-filter: blur(2px);
-} */
-
-/* V2 */
-.welcomePageMainBox {
   width: 85%;
   right: 7%;
   border-radius: 15px;
   height: 80%;
   top: 14%;
 
-
   background: rgba(145, 135, 201, 0.04);
-
   backdrop-filter: blur(3px);
-
   border-radius: 12px; 
-
   border: 1px solid rgba(255, 255, 255, 0.2);
 
   box-shadow: 
@@ -47,61 +29,18 @@
       inset 0 0 10px rgba(255, 255, 255, 0.1);
 
   transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
-
 }
-
-
-
-/* background: rgba(126, 119, 153, 0.05); 
-backdrop-filter: blur(10px);
--webkit-backdrop-filter: blur(10px);
-border-radius: 12px; 
-border: 1px solid rgba(255, 255, 255, 0.2); 
-box-shadow: 
-    0 4px 30px rgba(0, 0, 0, 0.1), 
-    inset 0 0 10px rgba(255, 255, 255, 0.1); */
-
-
-
-
-/* .WelcomePageTitle {
-  font-size: 90px;
-  font-weight: bold;
-
-  background: linear-gradient(to right, #46107bdd, #1a6784);
-
-  -webkit-background-clip: text;
-  color: transparent;
-  margin-bottom: 10px;
-} */
-
 
 .WelcomePageTitle {
   font-size: 95px;
   font-weight: bold;
-  /* color: rgb(223, 205, 244); */
-  /* color: #dbbbff; */
-  /* color: hsla(268, 100%, 87%, 0.938); */
-  /* color: hsla(268, 95%, 77%, 0.938); */
-  /* color: #a2adff; */
-  /* color: #a4b1fd; */
+  /* color: #a5bff1; */
 
-  color: #a5bff1;
+  color: #93ceff;
+
   
-
-  /* color: #772CA7; */
-
-  /* text-shadow:  */
-    /* 0 0 5px #46107b,  */
-    /* 0 0 5px #2d1a84; */
   margin-bottom: 10px;
 }
-
-
-
-
-
-
 
 .welcomePageMainBoxHeading {
   font-size: 28px;
@@ -116,7 +55,6 @@ box-shadow:
   text-align: center;
   margin-bottom: -10px;
 }
-
 
 /* =========================== buttons =========================== */
 .welcomePageMainBoxStartBtn {
@@ -133,66 +71,35 @@ box-shadow:
   width: 250px;
   height: 55px;
 
-  
-  /* background: linear-gradient(to right, #5d1b79, #00719a); */
+  /* background: #4366ac; */
 
-  /* background: linear-gradient(to right, #46107bdd, #1a6784); */
-  /* background: #424971; */
-  /* background: #4d4db8b0; */
-
-  /* background: #4d6fb8b0; */
-
-  /* background: #4c8aa4; */
+  background: #5a8bb3;
 
   
-  background: #4366ac;
-
-  /* background: #4d6fb8b0; */
-
   background-origin: border-box;
   background-clip: padding-box, border-box;
-
-  border: 2px solid transparent;
-  color: #e3ebfa; 
+  color: #e3ebfae4; 
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-/* .welcomePageMainBoxStartBtn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.024);
-  transform: skewX(-20deg);
-  transition: all 0.5s ease;
-  z-index: 0;
-  
-}
-
-.welcomePageMainBoxStartBtn:hover::before {
-  left: 150%;
-} */
-
-.welcomePageMainBoxStartBtn:hover,
-.welcomePageMainBoxStartBtn:focus {
-  filter: brightness(1.2);
+.welcomePageMainBoxStartBtn:hover {
+  background: #4366aca8; 
   color: #ffffff;
-  cursor: pointer;
-  outline: none;
 }
 
 /* =========================== popup overlay =========================== */
 .welcomePageMainBoxBody {
   position: absolute;
-  top: 15.4%;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  backdrop-filter: blur(6px);
-  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(60px);
+
+  /* background-color: rgba(7, 6, 36, 0.5); */
+
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .welcomePageMainBoxBodyOverlay {
@@ -214,16 +121,29 @@ box-shadow:
   position: relative;
   z-index: 2;
   pointer-events: all;
-  width: 35%;
-  height: 70%;
-  top: 7%;
+  width: 55%;
+  height: 93%;
+  /* top: 1%; */
   overflow-y: auto;
-  padding-right: 4rem;
+
+  /* padding-right: 4rem;
   padding-left: 4rem;
   padding-top: 1.5rem;
-  padding-bottom: 0.5rem;
-  background: white;
-  border-radius: 12px;
+  padding-bottom: 0.5rem; */
+
+  padding: 1.5rem 4rem 0.5rem;
+
+  /* background: white; */
+
+  background: #A2A1AC;
+
+  
+  /* background: #6d6d80; */
+
+
+  
+  border-radius: 3px;
+
   box-shadow: 0 4px 20px rgba(60, 60, 60, 0.2);
   text-align: center;
 }
@@ -250,17 +170,22 @@ box-shadow:
 .gameNameInputSm {
   border-radius: 8px;
   padding-right: 1rem;
+  background: #ffffffab;
 }
 
 .gameNameInputSm::placeholder {
   font-size: 0.8rem;
   color: rgb(46, 46, 46);
+
 }
 
 .gameNameInputSm:focus,
 .gameNameInputSm:focus-visible {
   outline: none !important;
-  box-shadow: 0 0 0 1px rgba(113, 46, 141, 0.4) !important;
+  
+  background: #ffffffd1;
+  box-shadow: none !important;
+  /* box-shadow: 0 0 0 1px rgba(113, 46, 141, 0.4) !important; */
 }
 
 /* =========================== popup content =========================== */
@@ -343,8 +268,8 @@ box-shadow:
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 2px solid #dfdfdf;
-  background-color: white;
+  /* border: 2px solid #ffffff95; */
+  background-color: #171c6935;
   color: #ccc;
   display: flex;
   justify-content: center;
@@ -357,13 +282,13 @@ box-shadow:
 .welcomePageStepperLabel {
   margin-top: 0.5rem;
   font-size: 13px;
-  color: #888;
+  color: #3441658e;
 }
 
 .welcomePageStepperFirstLine {
   height: 2px;
   border-radius: 12px;
-  background-color: #ccc;
+  background-color: #331275;
   flex: 1;
   margin-top: 15px;
   margin-right: -15px;
@@ -374,20 +299,23 @@ box-shadow:
 .welcomePageStepperSecondLine {
   height: 2px;
   border-radius: 12px;
-  background-color: #ccc;
+  background-color: #331275;
   flex: 1;
   margin: 15px 6px;
   z-index: 1;
 }
 
 .welcomePageStepperItem.active .welcomePageStepperCircle {
-  background: linear-gradient(to right, rgba(93, 27, 121), rgba(0, 113, 154));
-  color: white;
-  border: 2px solid white;
+  /* background: linear-gradient(to right, rgb(132, 60, 163), rgba(0, 113, 154)); */
+  /* background: linear-gradient(to right, rgb(132, 60, 163), rgba(0, 113, 154)); */
+  background-color: #171c69;
+
+  color: rgba(255, 255, 255, 0.815);
+  /* border: 2px solid rgba(255, 255, 255, 0.586); */
 }
 
 .welcomePageStepperItem.active .welcomePageStepperLabel {
-  color: #4c1764;
+  color: #0f2152;
 }
 
 .welcome-page-stepper-line.active {
