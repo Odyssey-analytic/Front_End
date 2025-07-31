@@ -2,8 +2,10 @@ import styles from "./WelcomePage.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { submitGameInfo } from "../../services/userService";
-import MainLayout from "./WelcomePage_HeaderLayout";
 import { motion } from "framer-motion";
+
+import WelcomePage_HeaderLayout from "./WelcomePage_HeaderLayout";
+import MainLayout from "../MainLayout/MainLayout";
 
 // =========================== assets ===========================
 import welcome_page_main_box_welcome_icon from "/public/icons/welcome_page_main_box_welcome_icon.svg";
@@ -178,16 +180,12 @@ const WelcomePage = () => {
   
   return (
     <div className={styles.container}>
-      <MainLayout></MainLayout>
-      {/* <div className={styles.welcomePageBody}> */}
+      <WelcomePage_HeaderLayout></WelcomePage_HeaderLayout>
         <div
           className={`${styles.welcomePageMainBox} text-center ${
             showPopup ? styles.blurred : ""
           }`}
           >
-          {/* <div className={styles.welcomePageMainBoxIcon}>
-            <img src={welcome_page_main_box_welcome_icon} alt="Welcome Icon" />
-          </div> */}
           <h1 className={styles.WelcomePageTitle}>!Welcome</h1>
           <h2 className={styles.welcomePageMainBoxHeading}>
             {username} خوش اومدی!
@@ -206,7 +204,6 @@ const WelcomePage = () => {
             اضافه کردن بازی
           </button>
         </div>
-      {/* </div> */}
 
       {showPopup && (
         <>

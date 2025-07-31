@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./DashboardPage.module.css";
 
+import MainLayout from "../MainLayout/MainLayout";
+
 import OdessayLogo from "/public/icons/odessay_logo.svg";
 import welcome_subheader_user from "/public/icons/welcome_subheader_user.svg";
 import welcome_subheader_menu from "/public/icons/welcome_subheader_menu.svg";
@@ -121,7 +123,8 @@ const DashboardPage = () => {
 
   return (
     <div>
-      <div className="main-layout-header">
+      <MainLayout></MainLayout>
+      {/* <div className="main-layout-header">
         <img
           src={welcome_header_help}
           alt="Help"
@@ -173,7 +176,9 @@ const DashboardPage = () => {
             className="main-layout-logo-img ms-2"
           />
         </div>
-      </div>
+      </div> */}
+
+
 
       <div className={`${styles.dashboardToolbar} px-4 py-3`}>
         <div className="d-flex justify-content-between align-items-center mb-3">

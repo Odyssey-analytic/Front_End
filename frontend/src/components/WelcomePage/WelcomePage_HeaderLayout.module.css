@@ -50,7 +50,12 @@
 
 /* =========================== Subheader =========================== */
 .SubHeader {
-  background-color: #e6e6e6dc;
+  /* background-color: rgb(34, 36, 66); */
+
+  /* background-color: rgb(34, 36, 66); */
+  background-color: rgb(63, 49, 130);
+
+
   height: 60px;
   width: 100%;
   box-shadow: 0px 1px 4px rgba(43, 43, 43, 0.4);
@@ -67,4 +72,65 @@
   height: 21px;
   cursor: pointer;
   transition: opacity 0.2s ease;
+}
+
+
+/* copy from landing */
+/* /////////////////////////////////////////////////////////////////////////////// */
+.navbar {
+  position: fixed;
+  direction: ltr;
+
+  left: 48%;
+  transform: translateX(-50%);
+
+  /* 1 */
+  /* right: 3%; */
+  top: 3%;
+  width: calc(100% - 100px);
+  border-radius: 12px;
+
+  /* 2 */
+  /* 
+  width: 100%;
+  height: 10%; */
+
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+/* 
+  background-color: #1d122b6f;
+
+  backdrop-filter: blur(3px);
+  transition: height 0.3s ease, padding 0.3s ease;
+  box-shadow: 
+  0 0 10px rgba(255, 255, 255, 0.2),  
+  0 0 15px rgba(255, 255, 255, 0.1);     */
+
+
+
+  
+}
+
+
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoImage {
+  height: 35px;
+  width: auto;
+}
+
+.logoText {
+  color: white;
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-family: 'Aboreto', sans-serif;
 }

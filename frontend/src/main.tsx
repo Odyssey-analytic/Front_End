@@ -32,7 +32,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/panel" element={<DashboardPage />} />
         <Route path="/dashboard/:gameId" element={<ChartsPage />} />
         
-        {/* <Route path="/dashboard" element={<ChartsPage />} /> */}
+        <Route path="/dashboard" element={<ChartsPage />} />
         {/* <Route path='/DateSelector' element={<DateSelector/>}/> */}
       </Routes>
     </BrowserRouter>

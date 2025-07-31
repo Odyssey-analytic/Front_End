@@ -3,6 +3,7 @@ import styles from './WelcomePage_Layout.module.css';
 import { number } from 'framer-motion';
 
 import WelcomePage from './WelcomePage';
+import MainLayout from './WelcomePage_HeaderLayout';
 
 
 type Line = {
@@ -21,7 +22,7 @@ const DiagonalLine: React.FC = () => {
   const [lines, setLines] = useState<Line[]>([]);
   const lineId = useRef(0);
   const requestRef = useRef<number | null>(null);
-  const spawnInterval = 500;
+  const spawnInterval = 300;
 
   const createLine = (): Line => {
     const isFromBottom = Math.random() < 0.5;
@@ -94,6 +95,8 @@ const DiagonalLine: React.FC = () => {
     <div className={styles.container}>
 
       <WelcomePage />
+      {/* <MainLayout></MainLayout> */}
+
 
       {lines.map((line) => (
         <div

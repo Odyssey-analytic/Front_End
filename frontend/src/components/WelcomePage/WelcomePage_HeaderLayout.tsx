@@ -36,76 +36,86 @@ const MainLayout = () => {
   }, []);
 
   return (
-    <div>
-      {/* <div className={styles.Header}> */}
-        {/* <img
-          src={HelpIcon}
-          alt="Help"
-          className={styles.HelpIcon}
-        /> */}
 
-        {/* <div className={styles.SearchBox}>
-          <input
-            type="text"
-            className={styles.SearchBoxInput}
-            placeholder="جستجو..."
-          />
-        </div> */}
-
-
-      {/* </div> */}
-
-      <div className={`${styles.SubHeader} d-flex justify-content-between align-items-center py-2`}>
-        <div className={styles.Logo}>
-          <img
-              src={OdessayLogo}
-              alt="Odessay Logo"
-              className={`${styles.LogoImg} ms-2`}
-            />
-          <span className={`${styles.LogoText} english-text`}>ODESSAY</span>
-
-        </div>
-
-        
-        <div className="d-flex align-items-center gap-3">
-        
-          <img
-            src={UserIcon}
-            alt="User"
-            className={styles.SubHeader_UserIcon}
-          />
-        
-          <div
-            ref={menuRef}
-            onClick={() => setMenuOpen((prev) => !prev)}
-          >
-            <img
-              src={MenuIcon}
-              alt="Menu"
-              className={styles.SubHeader_MenuIcon}
-            />
-
-            <div
-              className={`${styles.DropdownMenu} ${menuOpen ? styles.show : ''}`}
-              >
-              <button
-                className={styles.DropdownItem}
-                onClick={handleLogout}
-              >
-                خروج از حساب کاربری
-              </button>
-            </div>
-            
-          </div>
-        </div>
-
-        {/* <div className="d-flex align-items-center gap-3">
-          <span className={styles.SubHeader_AdminDivider}></span>
-          <div className={styles.SubHeader_AdminText}>Admin</div>
-        </div> */}
-
+    <nav className={styles.navbar}>
+      {/* <div className={styles.authButtons}>
+        <Link to="/signup" className={styles.signupBtn}>
+          <span className={styles.signupText}>ثبت‌نام</span>
+        </Link>
+        <Link to="/login" className={styles.loginBtn}>ورود</Link>
       </div>
-    </div>
+
+      <button
+        className={styles.menuToggle}
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        ☰
+      </button> */}
+
+      {/* <ul className={styles.navLinks}>
+        {sections.map(({ id, label }) => (
+          <li key={id}>
+            <a
+              href={`#${id}`}
+              className={`${styles.link} ${
+                activeSection === id ? styles.activeNavLink : ""
+              }`}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul> */}
+
+      <div className={styles.rightSection}>
+        <img src={OdessayLogo} alt="Odessay Logo" className={styles.logoImage} />
+        <span className={styles.logoText}>ODESSAY</span>
+      </div>
+    </nav>
+    
+    // <div>
+    //   <div className={`${styles.SubHeader} d-flex justify-content-between align-items-center py-2`}>
+    //     <div className={styles.Logo}>
+    //       <img
+    //           src={OdessayLogo}
+    //           alt="Odessay Logo"
+    //           className={`${styles.LogoImg} ms-2`}
+    //         />
+    //       <span className={`${styles.LogoText} english-text`}>ODESSAY</span>
+    //     </div>
+        
+    //     <div className="d-flex align-items-center gap-3">
+        
+    //       <img
+    //         src={UserIcon}
+    //         alt="User"
+    //         className={styles.SubHeader_UserIcon}
+    //       />
+    //       <div
+    //         ref={menuRef}
+    //         onClick={() => setMenuOpen((prev) => !prev)}
+    //       >
+    //         <img
+    //           src={MenuIcon}
+    //           alt="Menu"
+    //           className={styles.SubHeader_MenuIcon}
+    //         />
+    //         <div
+    //           className={`${styles.DropdownMenu} ${menuOpen ? styles.show : ''}`}
+    //           >
+    //           <button
+    //             className={styles.DropdownItem}
+    //             onClick={handleLogout}
+    //           >
+    //             خروج از حساب کاربری
+    //           </button>
+    //         </div>
+            
+    //       </div>
+    //     </div>
+
+    //   </div>
+    // </div>
   );
 
 };
