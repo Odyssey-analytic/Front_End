@@ -178,8 +178,6 @@
 //         </div>
 //       </div> */}
 
-
-
 //       <div className={`${styles.dashboardToolbar} px-4 py-3`}>
 //         <div className="d-flex justify-content-between align-items-center mb-3">
 //           <h2 className={styles.dashboardTitle}>مدیریت بازی‌ها</h2>
@@ -368,8 +366,6 @@
 
 // export default DashboardPage;
 
-
-
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./DashboardPage.module.css";
@@ -385,9 +381,15 @@ import pocket_champs_icon from "/public/icons/pocket-champs-icon.svg";
 import tower_war_icon from "/public/icons/tower-war-icon.svg";
 import dashboard_collaborator_icon from "/public/icons/dashboard_collaborator_icon.svg";
 import dashboard_collaborator_wrapper_icon from "/public/icons/dashboard_collaborator_wrapper_icon.svg";
-import dashboard_add_collaborator_icon from "/public/icons/dashboard_add_collaborator_icon.svg";
+// import dashboard_add_collaborator_icon from "/public/icons/dashboard_add_collaborator_icon.svg";
+
+import dashboard_add_collaborator_icon from "../../../public/icons/add 1.svg";
+
+
 import dashboard_game_setting_icon from "/public/icons/dashboard_game_setting_icon.svg";
 import game_with_no_thumbnail_icon from "/public/icons/game_with_no_thumbnail_icon.svg";
+import { FiSettings } from "react-icons/fi";
+// import { FiPlus } from "react-icons/fi";
 
 // ✅ داده‌های ماک برای تست
 const mockGames = [
@@ -496,18 +498,22 @@ const DashboardPage = () => {
 
   return (
     <div>
-      <MainLayout />
+      {/* <MainLayout /> */}
 
       <div className={`${styles.dashboardToolbar} px-4 py-3`}>
         <div className="d-flex justify-content-between align-items-center mb-3">
           <h2 className={styles.dashboardTitle}>مدیریت بازی‌ها</h2>
-          <div className={`d-flex align-items-center gap-2 ${styles.dashboardUser}`}>
+          <div
+            className={`d-flex align-items-center gap-2 ${styles.dashboardUser}`}
+          >
             <span className={styles.userAvatar}>👤</span>
             <span className={styles.userName}>{username} ▼</span>
           </div>
         </div>
 
-        <div className={`d-flex justify-content-between align-items-center flex-wrap gap-3 ${styles.toolbarBottom}`}>
+        <div
+          className={`d-flex justify-content-between align-items-center flex-wrap gap-3 ${styles.toolbarBottom}`}
+        >
           <span className={styles.filterLabel}>لیست بازی‌ها</span>
           <div className="d-flex align-items-center gap-2">
             <a
@@ -528,14 +534,11 @@ const DashboardPage = () => {
         </div>
       </div>
 
-      <div className={`${styles.dashboardContainer} px-4 py-4`}>
-        <div className={`${styles.gameList} d-flex flex-column gap-4`}>
+      <div className={`${styles.dashboardContainer}`}>
+        <div className={`${styles.gameList}`}>
           {games.map((game) => (
-            <div
-              key={game.id}
-              className={`${styles.gameCard} d-flex justify-content-between align-items-center shadow-sm rounded`}
-            >
-              <div className={`${styles.gameSectionInfo} d-flex align-items-start gap-3`}>
+            <div key={game.id} className={`${styles.gameCard}`}>
+              <div className={`${styles.gameSectionInfo}`}>
                 <div className={styles.gameIconWrapper}>
                   <img
                     src={game.icon}
@@ -544,10 +547,9 @@ const DashboardPage = () => {
                     onClick={() => navigate(`/dashboard/${game.id}`)}
                     style={{ cursor: "pointer" }}
                   />
-                  <span className={styles.gameTag}>{game.platform}</span>
                 </div>
 
-                <div>
+                <div className={styles.gameTextContent}>
                   <h4
                     className={styles.gameTitle}
                     onClick={() => navigate(`/dashboard/${game.id}`)}
@@ -556,43 +558,54 @@ const DashboardPage = () => {
                     {game.title}
                   </h4>
                   <p className={styles.gameDescription}>{game.description}</p>
-                  <div className="d-flex gap-2 mt-2">
+                  <div>
                     <span className={styles.gameMetaColored}>
                       Created: 23 Nov 16
                     </span>
                   </div>
                 </div>
-                <div className="ms-auto">
-                  <img
-                    src={dashboard_game_setting_icon}
-                    alt="تنظیمات"
-                    className={styles.gameSettingsIcon}
-                  />
+                <FiSettings className={styles.gameSettingsIcon} />
                 </div>
-              </div>
+                
+              <div className={styles.FirstverticalLine}></div>
 
               <div className={styles.gameSectionStats}>
                 <div className={styles.userStatsTitle}>کاربران فعال</div>
-                <div className="d-flex justify-content-around align-items-end mt-2">
-                  <div className="text-center">
+                <div className={styles.statRow}>
+                  <div className={styles.statItem}>
                     <div className={styles.gameStatLabel}>Monthly</div>
-                    <strong className={styles.gameStatValue}>{game.dau}k</strong>
+                    <strong className={styles.gameStatValue}>
+                      {game.dau}k
+                    </strong>
                   </div>
-                  <div className="text-center">
+
+                  <div className={styles.statItem}>
                     <div className={styles.gameStatLabel}>Daily</div>
-                    <strong className={styles.gameStatValue}>{game.dnu}k</strong>
+                    <strong className={styles.gameStatValue}>
+                      {game.dnu}k
+                    </strong>
                   </div>
                 </div>
 
                 <div className={styles.statsLineChart}>
-                  <svg viewBox="0 0 320 60" preserveAspectRatio="none" className={styles.lineChart}>
+                  <svg
+                    viewBox="0 0 320 60"
+                    preserveAspectRatio="none"
+                    className={styles.lineChart}
+                  >
                     <defs>
-                      <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="rgba(125, 43, 171, 0.9)" />
-                        <stop offset="25%" stopColor="rgba(197, 134, 255, 0.8)" />
-                        <stop offset="50%" stopColor="rgba(125, 43, 171, 0.9)" />
-                        <stop offset="75%" stopColor="rgba(197, 134, 255, 0.8)" />
-                        <stop offset="100%" stopColor="rgba(125, 43, 171, 0.9)" />
+                      <linearGradient
+                        id="lineGradient"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="0%"
+                      >
+                        <stop offset="0%" stopColor="rgb(43, 40, 132)" />
+                        <stop offset="25%" stopColor="rgb(94, 135, 171)" />
+                        <stop offset="50%" stopColor="#425398" />
+                        <stop offset="75%" stopColor="rgb(87, 85, 161)" />
+                        <stop offset="100%" stopColor="#5570a1" />
                       </linearGradient>
                     </defs>
                     <path
@@ -605,18 +618,47 @@ const DashboardPage = () => {
                     />
                   </svg>
                 </div>
+                {/* <div className={styles.verticalLine}></div> */}
               </div>
 
+
+
+              <div className={styles.SecondverticalLine}></div>
               <div className={styles.gameSectionCollaborators}>
-                <div className="d-flex align-items-center justify-content-between w-100">
+                
+                <div>
                   <span className={styles.collaboratorLabel}>همکاران</span>
                   <img
                     src={dashboard_add_collaborator_icon}
                     alt="افزودن همکار"
                     className={styles.addCollaboratorIcon}
                   />
+
+                  {/* <FiPlus size={24} /> */}
+
+                  {/* <div style={{
+                    width: "48px",
+                    height: "48px",
+                    borderRadius: "50%",
+                    border: "2px solid",
+                    borderImage: "linear-gradient(to bottom right, #3b82f6, #8b5cf6) 1",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  }}>
+                    <FiPlus size={24} color="#8b5cf6" />
+                  </div> */}  
+
+                  {/* <div className="plusCircle">
+                    <FiPlus className="plusIcon" />
+                  </div> */}
+
+                  {/* <div className={styles.plusCircle}>
+                    <FiPlus className={styles.plusIcon} />
+                  </div> */}
                 </div>
-                <div className="d-flex flex-wrap gap-2 mt-2">
+
+                <div>
                   {[...Array(4)].map((_, i) => {
                     const isOnline = Math.random() > 0.5;
                     return (
