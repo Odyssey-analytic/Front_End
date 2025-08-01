@@ -371,6 +371,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./DashboardPage.module.css";
 
 import MainLayout from "../MainLayout/MainLayout";
+// import DashboardPage_HeaderLayout from "./DashboardPage_HeaderLayout";
 
 import OdessayLogo from "/public/icons/odessay_logo.svg";
 import welcome_subheader_user from "/public/icons/welcome_subheader_user.svg";
@@ -382,9 +383,9 @@ import tower_war_icon from "/public/icons/tower-war-icon.svg";
 import dashboard_collaborator_icon from "/public/icons/dashboard_collaborator_icon.svg";
 import dashboard_collaborator_wrapper_icon from "/public/icons/dashboard_collaborator_wrapper_icon.svg";
 // import dashboard_add_collaborator_icon from "/public/icons/dashboard_add_collaborator_icon.svg";
+import lists_icon from "../../../public/icons/clipboard 1.svg";
 
 import dashboard_add_collaborator_icon from "../../../public/icons/add 1.svg";
-
 
 import dashboard_game_setting_icon from "/public/icons/dashboard_game_setting_icon.svg";
 import game_with_no_thumbnail_icon from "/public/icons/game_with_no_thumbnail_icon.svg";
@@ -401,7 +402,7 @@ const mockGames = [
     dnu: 32,
     dau: 1220,
     retention: "15.7%",
-    platform: "Android, iOS",
+    platform: "IOS",
   },
   {
     id: "mock-2",
@@ -411,7 +412,7 @@ const mockGames = [
     dnu: 18,
     dau: 960,
     retention: "12.4%",
-    platform: "Web, Android",
+    platform: "Android",
   },
   {
     id: "mock-3",
@@ -498,43 +499,65 @@ const DashboardPage = () => {
 
   return (
     <div>
-      {/* <MainLayout /> */}
-
-      <div className={`${styles.dashboardToolbar} px-4 py-3`}>
-        <div className="d-flex justify-content-between align-items-center mb-3">
-          <h2 className={styles.dashboardTitle}>مدیریت بازی‌ها</h2>
-          <div
-            className={`d-flex align-items-center gap-2 ${styles.dashboardUser}`}
-          >
-            <span className={styles.userAvatar}>👤</span>
-            <span className={styles.userName}>{username} ▼</span>
-          </div>
-        </div>
-
-        <div
-          className={`d-flex justify-content-between align-items-center flex-wrap gap-3 ${styles.toolbarBottom}`}
-        >
-          <span className={styles.filterLabel}>لیست بازی‌ها</span>
-          <div className="d-flex align-items-center gap-2">
-            <a
-              href="https://github.com/Odyssey-analytic/SDK"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.downloadKitBtn}
-            >
-              دانلود Starter Kit
-            </a>
-            <button
-              className={styles.addGameBtn}
-              onClick={() => navigate("/welcome")}
-            >
-              افزودن بازی جدید
-            </button>
-          </div>
-        </div>
-      </div>
-
       <div className={`${styles.dashboardContainer}`}>
+        <div className={styles.header}>
+          <div className={`${styles.toolbarTop}`}>
+            <div className={styles.headerBrand}>
+              <img
+                src={OdessayLogo}
+                alt="Odessay Logo"
+                className={`${styles.logoImg} ms-2`}
+              />
+              <span className={`${styles.brandText} english-text`}>
+                ODESSAY
+              </span>
+            </div>
+
+            <div className={styles.searchBox}>
+              <input
+                type="text"
+                className={styles.searchInput}
+                placeholder="جستجو..."
+              />
+            </div>
+          </div>
+
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <h2 className={styles.dashboardTitle}>مدیریت بازی‌ها</h2>
+            <div
+              className={`d-flex align-items-center gap-2 ${styles.dashboardUser}`}
+            >
+              <span className={styles.userAvatar}>👤</span>
+              <span className={styles.userName}>{username} ▼</span>
+            </div>
+          </div>
+
+          <div
+            className={`d-flex justify-content-between align-items-center flex-wrap gap-3 ${styles.toolbarBottom}`}
+          >
+            <div className="d-flex align-items-center gap-2">
+              <img src={lists_icon} className={`${styles.lists_icon} ms-2`} />
+              <span className={styles.filterLabel}>لیست بازی‌ها</span>
+            </div>
+            <div className="d-flex align-items-center gap-2">
+              <a
+                href="https://github.com/Odyssey-analytic/SDK"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.downloadKitBtn}
+              >
+                دانلود Starter Kit
+              </a>
+              <button
+                className={styles.addGameBtn}
+                onClick={() => navigate("/welcome")}
+              >
+                افزودن بازی جدید
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div className={`${styles.gameList}`}>
           {games.map((game) => (
             <div key={game.id} className={`${styles.gameCard}`}>
@@ -547,6 +570,7 @@ const DashboardPage = () => {
                     onClick={() => navigate(`/dashboard/${game.id}`)}
                     style={{ cursor: "pointer" }}
                   />
+                  <span className={styles.gameTag}>{game.platform}</span>
                 </div>
 
                 <div className={styles.gameTextContent}>
@@ -565,8 +589,8 @@ const DashboardPage = () => {
                   </div>
                 </div>
                 <FiSettings className={styles.gameSettingsIcon} />
-                </div>
-                
+              </div>
+
               <div className={styles.FirstverticalLine}></div>
 
               <div className={styles.gameSectionStats}>
@@ -608,6 +632,7 @@ const DashboardPage = () => {
                         <stop offset="100%" stopColor="#5570a1" />
                       </linearGradient>
                     </defs>
+
                     <path
                       ref={pathRef}
                       d={pathD}
@@ -618,14 +643,11 @@ const DashboardPage = () => {
                     />
                   </svg>
                 </div>
-                {/* <div className={styles.verticalLine}></div> */}
               </div>
 
-
-
               <div className={styles.SecondverticalLine}></div>
+
               <div className={styles.gameSectionCollaborators}>
-                
                 <div>
                   <span className={styles.collaboratorLabel}>همکاران</span>
                   <img
@@ -633,29 +655,6 @@ const DashboardPage = () => {
                     alt="افزودن همکار"
                     className={styles.addCollaboratorIcon}
                   />
-
-                  {/* <FiPlus size={24} /> */}
-
-                  {/* <div style={{
-                    width: "48px",
-                    height: "48px",
-                    borderRadius: "50%",
-                    border: "2px solid",
-                    borderImage: "linear-gradient(to bottom right, #3b82f6, #8b5cf6) 1",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center"
-                  }}>
-                    <FiPlus size={24} color="#8b5cf6" />
-                  </div> */}  
-
-                  {/* <div className="plusCircle">
-                    <FiPlus className="plusIcon" />
-                  </div> */}
-
-                  {/* <div className={styles.plusCircle}>
-                    <FiPlus className={styles.plusIcon} />
-                  </div> */}
                 </div>
 
                 <div>
@@ -663,21 +662,18 @@ const DashboardPage = () => {
                     const isOnline = Math.random() > 0.5;
                     return (
                       <div key={i} className={styles.collaboratorStatusWrapper}>
-                        <img
-                          src={dashboard_collaborator_wrapper_icon}
-                          alt="wrapper"
-                          className={styles.collaboratorWrapperIcon}
-                        />
-                        <img
-                          src={dashboard_collaborator_icon}
-                          alt="user"
-                          className={styles.collaboratorIcon}
-                        />
-                        <span
-                          className={`${styles.statusIndicator} ${
-                            isOnline ? styles.online : styles.offline
-                          }`}
-                        ></span>
+                        <div className={styles.collaboratorWrapperIcon}>
+                          <img
+                            src={dashboard_collaborator_icon}
+                            alt="user"
+                            className={styles.collaboratorIcon}
+                          />
+                          <span
+                            className={`${styles.statusIndicator} ${
+                              isOnline ? styles.online : styles.offline
+                            }`}
+                          ></span>
+                        </div>
                       </div>
                     );
                   })}
