@@ -2,12 +2,12 @@
 .welcomePageMainBox {
   position: absolute;
   z-index: 2;
-  top: 20%;
+  top: 15%;
   /* top: 14%; */
   right: 7%;
 
   width: 85%;
-  height: 70%;
+  height: 80%;
   /* height: 80%; */
   /* box-sizing: border-box; */
 
@@ -118,9 +118,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
-  backdrop-filter: blur(60px);
-  background-color: rgba(255, 255, 255, 0.05);
+  z-index: 2;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.055);
 }
 
 .welcomePageMainBoxBodyOverlay {
@@ -145,7 +145,7 @@
   padding: 4rem 4rem 1rem 4rem;
   overflow-y: auto;
 
-  background: #A2A1AC;
+  background: #b2b5ba;
   border-radius: 3px;
   box-shadow: 0 4px 20px rgba(60, 60, 60, 0.2);
   text-align: center;
@@ -209,8 +209,9 @@
 .gameTitle {
   font-size: 1.1rem;
   margin-top: 3rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   font-weight: 500;
+  color: #3e3e3e;;
 }
 
 .welcomePageUploadPreviewImage {
@@ -233,7 +234,6 @@
 
 .welcomePageUploadSelectLabel:hover {
   color: #4000ff;
-  
   font-weight: 500;
 }
 
@@ -265,8 +265,6 @@
   align-items: center;
 }
 
-
-
 .welcomePageStepperCircle {
   display: flex;
   justify-content: center;
@@ -277,9 +275,9 @@
   border-radius: 50%;
 
   background-color: #171c6935;
+  /* background-color: rgba(201, 135, 135, 0.04);; */
   color: #ccc;
   font-weight: bold;
-
   transition: all 0.3s ease;
 }
 
@@ -311,6 +309,7 @@
 
 .welcomePageStepperFirstLine.active {
   background-color: #1a0e5bb5;
+  /* background-color: rgba(173, 33, 33, 0.04);; */
 }
 
 .welcomePageStepperSecondLine.active {
@@ -330,7 +329,10 @@
 .welcomePagePopupTitle {
   font-size: 1rem;
   text-align: right;
-  color: #333;
+  color: #3e3e3e;
+  /* color: #344165; */
+  /* color: #0f2152; */
+  
   margin-top: 4rem;
   margin-bottom: 2.5rem;
 }
@@ -346,14 +348,18 @@
 .welcomePageProductOption {
   position: relative;
   padding: 1rem 2rem;
-  color: rgba(107, 84, 165, 0.558);
-  border-radius: 10px;
+  /* color: rgba(107, 84, 165, 0.558); */
+
+  color: #545da1;
+  /* color: #808080; */
+
+  border-radius: 12px;
   cursor: pointer;
   font-size: 15px;
   font-weight: 400;
   transition: all 0.3s ease;
   background-color: #f7f5f5b9;
-  box-shadow: 0 2px 2px rgb(160, 159, 202);
+  box-shadow: 0 1px 1px rgb(82, 108, 211);
 }
 
 .welcomePageProductOption input {
@@ -376,16 +382,19 @@
 
 .welcomePageProductOption.checked {
   background-color: #f1f1f1;
-  border-color: rgb(83, 70, 155);
-  color: rgb(107, 84, 165);
+  /* border-color: #712020; */
+  /* color: rgb(107, 84, 165); */
+  color: #222ba5;
+
   font-weight: 600;
   padding: 1.2rem;
-  box-shadow: 0 2px 5px rgba(86, 64, 166, 0.6);
+  /* box-shadow: 0 2px 4px rgb(82, 119, 211); */
+  box-shadow: 0 2px 2px rgba(20, 23, 198, 0.825);
 }
 
 .welcomePageProductOption.checked .checkmark {
-  background-color: rgb(107, 84, 165);;
-  border-color: rgb(86, 68, 165);
+  background-color: #222ba5dc;
+  /* border-color: rgb(86, 68, 165); */
 }
 
 .welcomePageProductOption.checked::before {
@@ -584,7 +593,9 @@
   font-size: 15px;
   color: #c4c4c4;
 
-  background-color: #24247bdb;  
+  /* background-color: #24247bdb; */
+  background-color: #362e7afe;
+  /* background-color: #222ba5dc; */
   border: none;
   border-radius: 12px;
   filter: brightness(1.4);
@@ -647,8 +658,8 @@
 
 /* حالت غیرفعال چک‌باکس (disabled) */
 .welcomePageRadioLabel input[type="checkbox"]:disabled {
-  cursor: default; /* یا cursor: not-allowed; */
-  opacity: 0.6;/
+  cursor: default;
+  opacity: 0.6;
 }
 
 .welcomePageErrorPlaceholder {

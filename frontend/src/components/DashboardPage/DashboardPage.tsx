@@ -522,11 +522,11 @@ const DashboardPage = () => {
             </div>
           </div>
 
-          <div className="d-flex justify-content-between align-items-center mb-1 mt-1">
+          <div className="d-flex justify-content-between align-items-center mb-4 mt-2">
             <h2 className={styles.dashboardTitle}>مدیریت بازی‌ها</h2>
-            <div style={{ paddingLeft: "20px" }}>
+            <div className={styles.dashboardUser}>
               <div
-                className={`d-flex align-items-center gap-2 ${styles.dashboardUser}`}
+                className={`d-flex align-items-center gap-2 ${styles.dashboardUserbox}`}
               >
                 <span className={styles.userAvatar}>👤</span>
                 <span className={styles.userName}>{username} ▼</span>

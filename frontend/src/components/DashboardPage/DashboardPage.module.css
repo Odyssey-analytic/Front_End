@@ -1,12 +1,14 @@
-.header {
+/* .header {
   padding: 20px;
-}
+} */
 
 .headerBrand {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-left: 1.2rem;
+  padding-top: 1.5%;
+  padding-left: 1.5%;
+  /* margin-left: 1.2rem; */
   direction: ltr;
 }
 
@@ -47,17 +49,31 @@
   transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
+.searchInput:hover,
+.searchInput:active,
+.searchInput:focus {
+  background-color: #8a8a8a;
+}
+
 .dashboardTitle {
-  padding-right: 10px;
+  /* padding-right: 10px; */
+  padding-right: 2%;
   font-size: 20px;
   font-weight: 600;
   color: #D9D9D9;
 }
 
 .dashboardUser {
+  padding-left: 2.7%;
+}
+
+.dashboardUserbox {
   background: #f1f1f1e5;
   padding: 4px 10px;
-  margin-left: 10px;
+  /* margin-left: 2%; */
+  
+  /* margin-right: 150px; */
+  /* margin-left: ; */
   border-radius: 6px;
   font-size: 14px;
   color: #333;
@@ -80,20 +96,27 @@
 }
 
 .gameListtop {
-  padding: 15px 40px 10px 45px;
+  /* padding: 15px 40px 10px 45px; */
+  padding-left: 2.7%;
+  padding-right: 2.2%;
   /* ترتیب: top right bottom left */
 }
 
 .dashboardBtns {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   direction: ltr;
 }
 
 .downloadKitBtn,
 .addGameBtn {
   background-color: rgb(105, 121, 192);
+
+  /* background-color: rgb(101, 120, 202); */
+  /* background-color: #3a7ff6; */
+
+
   color: white;
   border: none;
   padding: 8px 16px;
@@ -256,7 +279,8 @@
 .gameMetaColored {
   font-size: 12px;
   font-size: 0.7rem;
-  color: #3a7ff6;
+  /* color: #3a7ff6; */
+  color: rgb(169, 185, 255);
   font-weight: 500;
 }
 
@@ -327,7 +351,10 @@
 
 .gameStatLabel {
   font-size: 0.8rem;
-  color: #3a7ff6;
+  /* color: #3a7ff6; */
+
+  color: rgb(169, 185, 255);
+
 }
 
 .gameStatValue {
