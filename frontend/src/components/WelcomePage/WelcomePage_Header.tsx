@@ -1,13 +1,13 @@
 // import "./MainLayout.css";
-import styles from './WelcomePage_HeaderLayout.module.css';
+import styles from './WelcomePage_Header.module.css';
 
 import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import OdessayLogo from "/public/icons/odessay_logo.svg";
-import UserIcon from "/public/icons/welcome_subheader_user.svg";
-import MenuIcon from "/public/icons/welcome_subheader_menu.svg";
-import HelpIcon from "/public/icons/welcome_header_help.svg";
+// import UserIcon from "/public/icons/welcome_subheader_user.svg";
+// import MenuIcon from "/public/icons/welcome_subheader_menu.svg";
+// import HelpIcon from "/public/icons/welcome_header_help.svg";
 
 const MainLayout = () => {
   const [menuOpen, setMenuOpen] = useState(false);

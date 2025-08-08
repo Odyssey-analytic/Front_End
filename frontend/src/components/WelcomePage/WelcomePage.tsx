@@ -4,19 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { submitGameInfo } from "../../services/userService";
 import { motion } from "framer-motion";
 
-import WelcomePage_HeaderLayout from "./WelcomePage_HeaderLayout";
+import WelcomePage_Header from "./WelcomePage_Header";
 import MainLayout from "../MainLayout/MainLayout";
 
 // =========================== assets ===========================
 import welcome_page_main_box_welcome_icon from "/public/icons/welcome_page_main_box_welcome_icon.svg";
 import gift from "/public/icons/gift.svg";
-// import close_icon from "/public/icons/close_icon.svg";
+import close_icon from "/public/icons/close_icon.svg";
 import uploading_game_image_icon_ghost from "/public/icons/game-ghost-icon.svg";
 import copyIcon from "/public/icons/copy-icon-gradient.svg";
 import game_with_no_thumbnail_icon_png from "../../../public/icons/game_with_no_thumbnail_icon.png";
 import usericon from "../../../public/icons/user 3.svg";
 import doticon from "../../../public/icons/dots 1.svg";
-
 
 const WelcomePage = () => {
   const [username, setUsername] = useState("");
@@ -26,7 +25,7 @@ const WelcomePage = () => {
 
   const [gameName, setGameName] = useState("");
   const [description, setDescription] = useState("");
-  const [engine, setEngine] = useState("");
+  // const [engine, setEngine] = useState("");
   const [platforms, setPlatforms] = useState<string[]>([]);
   const [thumbnail, setThumbnail] = useState<File | null>(null);
   const [imageError, setImageError] = useState("");
@@ -42,6 +41,72 @@ const WelcomePage = () => {
 
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // const [godotDisabled, setGodotDisabled] = useState(true);
+
+  // const [disabledOptions, setDisabledOptions] = useState({
+  //   godot: true,
+  //   custom: true,
+  //   // ... سایر گزینه‌ها
+  // });
+
+  const [engine, setEngine] = useState("");
+  const [disabledOptions, setDisabledOptions] = useState({
+    Unity: false,
+    godot: true,
+    custom: true,
+
+    IOS: false,
+    Android: false,
+    Windows: false,
+
+
+    // unity: false,
+    // unreal: true,
+    // ... سایر گزینه‌ها
+  });
+
+
+  const EngineOption = ({ 
+    engineType, 
+    currentEngine, 
+    setEngine, 
+    disabledOptions 
+  }) => {
+    const isDisabled = disabledOptions[engineType];
+    
+    return (
+      <label className={`${styles.radioLabel} ${isDisabled ? styles.disabled : ''}`}>
+        <input
+          type="checkbox"
+          checked={currentEngine === engineType}
+          disabled={isDisabled}
+          onChange={() => !isDisabled && setEngine(currentEngine === engineType ? "" : engineType)}
+        />
+        {engineType.charAt(0).toUpperCase() + engineType.slice(1)}
+      </label>
+    );
+  };
+
+  
+  // تغییر وضعیت یک گزینه خاص
+const toggleOption = (engineType) => {
+  setDisabledOptions(prev => ({
+    ...prev,
+    [engineType]: !prev[engineType]
+  }));
+};
+
+// در JSX:
+{['godot', 'custom'].map((engineType) => (
+  <EngineOption
+    key={engineType}
+    engineType={engineType}
+    currentEngine={engine}
+    setEngine={setEngine}
+    disabledOptions={disabledOptions}
+  />
+))}
 
   const fetchDefaultThumbnail = async (): Promise<File | null> => {
     try {
@@ -180,67 +245,67 @@ const WelcomePage = () => {
       setIsLoading(false);
     }
   };
-  
+
   return (
     <div className={styles.container}>
-      <WelcomePage_HeaderLayout></WelcomePage_HeaderLayout>
+      {/* <WelcomePage_Header></WelcomePage_Header> */}
 
+      <div
+        className={`${styles.welcomePageMainBox} text-center ${
+          showPopup ? styles.blurred : ""
+        }`}
+      >
         <div className={styles.icons}>
           <img
-              src={doticon}
-              alt="بستن"
-              className={styles.welcomePageicons}
-              onClick={() => {
-                setShowPopup(false);
-                resetPopupState();
-              }}
-            />
-            
-          <img
-            src={usericon}
-            alt="بستن"
-            className={styles.welcomePageicons}
+            src={doticon}
+            // className={styles.welcomePageicons}
+            className={`${styles.welcomePageicons} ${
+              showPopup ? styles.disabled : ""
+            }`}
             onClick={() => {
               setShowPopup(false);
               resetPopupState();
             }}
           />
-          
 
-
+          <img
+            src={usericon}
+            // className={styles.welcomePageicons}
+            className={`${styles.welcomePageicons} ${
+              showPopup ? styles.disabled : ""
+            }`}
+            onClick={() => {
+              setShowPopup(false);
+              resetPopupState();
+            }}
+          />
         </div>
-        
-        <div
-          className={`${styles.welcomePageMainBox} text-center ${
-            showPopup ? styles.blurred : ""
-          }`}
-          >
 
-          <h1 className={styles.WelcomePageTitle}>!Welcome</h1>
-          <h2 className={styles.welcomePageMainBoxHeading}>
-            {username} خوش اومدی!
-          </h2>
-          <p className={styles.welcomePageMainBoxDescription}>
-            شروع کن تا ببینی توی محصولت دقیقاً چه خبره
-          </p>
-          <p className={styles.welcomePageMainBoxDescription}>
-            و چطور می‌تونی بهترین تجربه رو برای کاربرات بسازی.
-          </p>
+        <h1 className={styles.WelcomePageTitle}>!Welcome</h1>
+        <h2 className={styles.welcomePageMainBoxHeading}>
+          {username} خوش اومدی!
+        </h2>
+        <p className={styles.welcomePageMainBoxDescription}>
+          شروع کن تا ببینی توی محصولت دقیقاً چه خبره
+        </p>
+        <p className={styles.welcomePageMainBoxDescription}>
+          و چطور می‌تونی بهترین تجربه رو برای کاربرات بسازی.
+        </p>
 
-          <button
-            className={`btn ${styles.welcomePageMainBoxStartBtn}`}
-            onClick={() => setShowPopup(true)}
-          >
-            اضافه کردن بازی
-          </button>
-        </div>
+        <button
+          className={`btn ${styles.welcomePageMainBoxStartBtn}`}
+          onClick={() => setShowPopup(true)}
+        >
+          اضافه کردن بازی
+        </button>
+      </div>
 
       {showPopup && (
         <>
           <div className={styles.welcomePageMainBoxBody} />
           <div className={styles.welcomePageMainBoxBodyOverlay}>
             <div className={styles.welcomePageMainBoxBodyPopupCard}>
-              {/* {(step === 1 ||
+              {(step === 1 ||
                 (step === 2 && selectedProduct === "game") ||
                 step === 3) && (
                 <img
@@ -252,7 +317,7 @@ const WelcomePage = () => {
                     resetPopupState();
                   }}
                 />
-              )} */}
+              )}
 
               <div className={styles.welcomePageStepperContainer}>
                 <div
@@ -265,11 +330,13 @@ const WelcomePage = () => {
                     انتخاب محصول
                   </div>
                 </div>
+
                 <div
                   className={`${styles.welcomePageStepperFirstLine} ${
                     step >= 2 ? styles.active : ""
                   }`}
                 />
+
                 <div
                   className={`${styles.welcomePageStepperItem} ${
                     step >= 2 ? styles.active : ""
@@ -359,7 +426,7 @@ const WelcomePage = () => {
                   transition={{ duration: 0.6, ease: "easeInOut" }}
                 >
                   <div className={styles.step2Compact}>
-                    <p className={`text-start mb-3`}>
+                    <p className={`${styles.gameTitle} text-start`}>
                       اطلاعات بازیت رو وارد کن:
                     </p>
 
@@ -383,7 +450,9 @@ const WelcomePage = () => {
                           style={{ minHeight: "20px" }}
                         >
                           {gameNameError && (
-                            <p className={`text-danger small mt-1 mb-0 text-start`}>
+                            <p
+                              className={`text-danger small mt-1 mb-0 text-start`}
+                            >
                               {gameNameError}
                             </p>
                           )}
@@ -478,7 +547,7 @@ const WelcomePage = () => {
                             Unity
                           </label>
 
-                          <label
+                          {/* <label
                             className={`${styles.welcomePageRadioLabel} ${styles.welcomePageEngineDisabledOption}`}
                           >
                             <input
@@ -493,9 +562,34 @@ const WelcomePage = () => {
                               }}
                             />
                             Godot
-                          </label>
+                          </label> */}
 
-                          <label
+                          {/* // در کامپوننت والد: */}
+
+                          {/* // در JSX: */}
+                          {/* <label
+                            className={`${styles.welcomePageRadioLabel} ${
+                              godotDisabled
+                                ? styles.welcomePageEngineDisabledOption
+                                : ""
+                            }`}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={engine === "godot"}
+                              disabled={godotDisabled}
+                              onChange={() => {
+                                if (engine === "godot") {
+                                  setEngine("");
+                                } else {
+                                  setEngine("godot");
+                                }
+                              }}
+                            />
+                            Godot
+                          </label> */}
+
+                          {/* <label
                             className={`${styles.welcomePageRadioLabel} ${styles.welcomePageEngineDisabledOption}`}
                           >
                             <input
@@ -506,6 +600,48 @@ const WelcomePage = () => {
                                   setEngine("");
                                 } else {
                                   setEngine("custom");
+                                }
+                              }}
+                            />
+                            Custom
+                          </label> */}
+
+                          <label
+                            className={`${styles.welcomePageRadioLabel} ${
+                              disabledOptions.godot
+                                ? styles.welcomePageEngineDisabledOption
+                                : ""
+                            }`}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={engine === "godot"}
+                              disabled={disabledOptions.godot}
+                              onChange={() => {
+                                if (!disabledOptions.godot) {
+                                  setEngine(engine === "godot" ? "" : "godot");
+                                }
+                              }}
+                            />
+                            Godot
+                          </label>
+
+                          <label
+                            className={`${styles.welcomePageRadioLabel} ${
+                              disabledOptions.custom
+                                ? styles.welcomePageEngineDisabledOption
+                                : ""
+                            }`}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={engine === "custom"}
+                              disabled={disabledOptions.custom}
+                              onChange={() => {
+                                if (!disabledOptions.custom) {
+                                  setEngine(
+                                    engine === "custom" ? "" : "custom"
+                                  );
                                 }
                               }}
                             />
@@ -542,7 +678,7 @@ const WelcomePage = () => {
                               checked={platforms.includes("ios")}
                               onChange={() => handlePlatformChange("ios")}
                             />
-                            iOS
+                            IOS
                           </label>
 
                           <label className={styles.welcomePageRadioLabel}>
@@ -578,18 +714,26 @@ const WelcomePage = () => {
                     </div>
 
                     <div className={`w-100 text-start mb-4`}>
-                      <label className="d-block mb-2">توضیحات (اختیاری):</label>
+                      <label className="d-block mb-3">توضیحات (اختیاری):</label>
                       <textarea
                         className={`form-control ${styles.gameNameInputSm}`}
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                       />
                     </div>
-                    <div className={`d-flex justify-content-center gap-3 mt-3 ${styles["step-2-buttons"]}`}>
-                      <button className={styles.welcomePageContinueBtn} onClick={() => setStep(1)}>
+                    <div className={`d-flex justify-content-center gap-5 mt-3`}>
+                      <button
+                        className={styles.welcomePageContinueBtn}
+                        onClick={() => setStep(1)}
+                      >
                         بازگشت
                       </button>
-                      <button className={styles.welcomePageContinueBtn} disabled={!selectedProduct || isLoading} onClick={handleSubmitGame}>
+
+                      <button
+                        className={styles.welcomePageContinueBtn}
+                        disabled={!selectedProduct || isLoading}
+                        onClick={handleSubmitGame}
+                      >
                         {isLoading ? "در حال بارگذاری..." : "ثبت"}
                       </button>
                     </div>
@@ -619,27 +763,27 @@ const WelcomePage = () => {
                       <a href="#">لینک دانلود SDK</a>
                     </p>
                     <div className={styles.welcomePageAccessTokenBox}>
-                      <strong
-                        className={styles.welcomePageAccessTokenLabel}
-                      >
+                      <strong className={styles.welcomePageAccessTokenLabel}>
                         Access Token:
                       </strong>
                       <br />
                       <div className={styles.welcomePageAccesTokenInsideBox}>
-                          <div className={styles.welcomePageCopyIconWrapper}>
-                            <img
-                              src={copyIcon}
-                              alt="Copy"
-                              className={`${
-                                styles.welcomePageTokenCopyIconImg
-                              } ${copySuccess ? styles.active : ""}`}
-                              onClick={() => copyToClipboard(token)}
-                            />
-                            {copySuccess && (
-                              <div className={styles.welcomePageCopyDoneMsgTooltip}>
-                                !کپی شد
-                              </div>
-                            )}
+                        <div className={styles.welcomePageCopyIconWrapper}>
+                          <img
+                            src={copyIcon}
+                            alt="Copy"
+                            className={`${styles.welcomePageTokenCopyIconImg} ${
+                              copySuccess ? styles.active : ""
+                            }`}
+                            onClick={() => copyToClipboard(token)}
+                          />
+                          {copySuccess && (
+                            <div
+                              className={styles.welcomePageCopyDoneMsgTooltip}
+                            >
+                              !کپی شد
+                            </div>
+                          )}
                         </div>
 
                         <span className={styles.welcomePageTokenValue}>

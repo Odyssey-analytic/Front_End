@@ -3,7 +3,9 @@ import styles from './WelcomePage_Layout.module.css';
 import { number } from 'framer-motion';
 
 import WelcomePage from './WelcomePage';
-import MainLayout from './WelcomePage_HeaderLayout';
+import MainLayout from './WelcomePage_Header';
+
+import WelcomePage_Header from './WelcomePage_Header';
 
 
 type Line = {
@@ -94,6 +96,8 @@ const DiagonalLine: React.FC = () => {
   return (
     <div className={styles.container}>
 
+
+      <WelcomePage_Header />
       <WelcomePage />
       {/* <MainLayout></MainLayout> */}
 
