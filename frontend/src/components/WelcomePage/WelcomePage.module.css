@@ -1,32 +1,29 @@
 /* =========================== main box =========================== */
 .welcomePageMainBox {
-  height: 70%;
-  top: 20%;
-
   position: absolute;
+  z-index: 2;
+  top: 20%;
+  /* top: 14%; */
+  right: 7%;
+
+  width: 85%;
+  height: 70%;
+  /* height: 80%; */
+  /* box-sizing: border-box; */
+
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   align-items: center;
   gap: 1.5rem;
-  
-  z-index: 2;
 
-  width: 85%;
-  right: 7%;
   border-radius: 15px;
-  height: 80%;
-  top: 14%;
-
+  border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(145, 135, 201, 0.04);
   backdrop-filter: blur(3px);
-  border-radius: 12px; 
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
   box-shadow: 
-      0 4px 30px rgba(0, 0, 0, 0.1), 
-      inset 0 0 10px rgba(255, 255, 255, 0.1);
+    0 4px 30px rgba(0, 0, 0, 0.1), 
+    inset 0 0 10px rgba(255, 255, 255, 0.1);
 
   transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
 }
@@ -35,13 +32,12 @@
   position: absolute;
   top: 5%;
   right: 2%;
-  
+  z-index: 100;
+
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 15px;
-
-  z-index: 100;
 }
 
 .welcomePageicons {
@@ -51,7 +47,6 @@
   opacity: 0.6;
   cursor: pointer;
   transition: opacity 0.2s ease, transform 0.2s ease;
-
 }
 
 .welcomePageicons:hover {
@@ -63,15 +58,12 @@
   pointer-events: none;
   cursor: default;
   opacity: 0.4;
-  /* opacity: 0.6; اختیاری - برای نشان دادن غیرفعال بودن */
 }
 
 .WelcomePageTitle {
   font-size: 95px;
   font-weight: bold;
-
   color: #93ceff;
-  
   margin-bottom: 10px;
 }
 
@@ -92,23 +84,24 @@
 /* =========================== buttons =========================== */
 .welcomePageMainBoxStartBtn {
   display: inline-block;
+  width: 250px;
+  height: 55px;
   padding: 12px 28px;
+  margin-top: 50px;
+  /* box-sizing: border-box; */
+
   font-size: 16px;
   font-weight: 400;
+  color: #e3ebfae4;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border-radius: 8px;
-  margin-top: 50px;
-
-  width: 250px;
-  height: 55px;
 
   background: #5a8bb3;
-  
+  border-radius: 8px;
   background-origin: border-box;
   background-clip: padding-box, border-box;
-  color: #e3ebfae4; 
+
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -136,43 +129,32 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* pointer-events: none; */
-  /* border-radius: inherit; */
-
 }
 
 .welcomePageMainBoxBodyPopupCard {
-  /* display: flex; */
-  flex-direction: column;
-  justify-content: flex-start;
   position: relative;
   z-index: 2;
   pointer-events: all;
+
   width: 55%;
   height: 93%;
-  
-  overflow-y: auto;
-  /* padding: 4rem; */
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: flex-start;
 
-  /* ترتیب: top right bottom left */
   padding: 4rem 4rem 1rem 4rem;
+  overflow-y: auto;
 
   background: #A2A1AC;
   border-radius: 3px;
-
   box-shadow: 0 4px 20px rgba(60, 60, 60, 0.2);
   text-align: center;
 }
 
 .welcomePagePopupCardCloseIcon {
-  /* position: sticky; */
+  position: absolute;
   top: 20px;
   left: 20px;
-  /* right: 27rem; */
-  /* margin-left: -45px; */
-  position: absolute;
-
-
   z-index: 200;
   width: 24px;
   height: 24px;
@@ -196,16 +178,13 @@
 .gameNameInputSm::placeholder {
   font-size: 0.8rem;
   color: rgb(46, 46, 46);
-
 }
 
 .gameNameInputSm:focus,
 .gameNameInputSm:focus-visible {
   outline: none !important;
-  
   background: #ffffffd1;
   box-shadow: none !important;
-  /* box-shadow: 0 0 0 1px rgba(113, 46, 141, 0.4) !important; */
 }
 
 /* =========================== popup content: step=2 =========================== */
@@ -273,22 +252,11 @@
   font-weight: 500;
 }
 
-/* .welcome-page-delete-image-text-btn.active {
-  color: #dc3545;
-  cursor: pointer;
-}
-
-.welcome-page-delete-image-text-btn.active:hover {
-  text-decoration: underline;
-} */
-
 /* =========================== stepper =========================== */
 .welcomePageStepperContainer {
   display: flex;
   width: 100%;
   margin: 0 auto 2rem;
-  /* padding: 1rem 0; */
-  /* padding-top: 5rem; */
 }
 
 .welcomePageStepperItem {
@@ -297,19 +265,21 @@
   align-items: center;
 }
 
-.welcomePageStepperCircle {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  /* border: 2px solid #ffffff95; */
 
-  background-color: #171c6935;
-  color: #ccc;
+
+.welcomePageStepperCircle {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
   z-index: 2;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+
+  background-color: #171c6935;
+  color: #ccc;
+  font-weight: bold;
+
   transition: all 0.3s ease;
 }
 
@@ -330,20 +300,14 @@
   z-index: 1;
 }
 
-/* .welcomePageStepperFirstLine.active {
-  background-color: #292f7142;
-} */
-
 .welcomePageStepperSecondLine {
   height: 1.5px;
   border-radius: 12px;
-  /* background-color: #331275; */
   background-color: #292f7142;
   flex: 1;
   margin: 15px 6px;
   z-index: 1;
 }
-
 
 .welcomePageStepperFirstLine.active {
   background-color: #1a0e5bb5;
@@ -354,21 +318,13 @@
 }
 
 .welcomePageStepperItem.active .welcomePageStepperCircle {
-  /* background: linear-gradient(to right, rgb(132, 60, 163), rgba(0, 113, 154)); */
-  /* background: linear-gradient(to right, rgb(132, 60, 163), rgba(0, 113, 154)); */
   background-color: #171c69;
-
   color: rgba(255, 255, 255, 0.815);
-  /* border: 2px solid rgba(255, 255, 255, 0.586); */
 }
 
 .welcomePageStepperItem.active .welcomePageStepperLabel {
   color: #0f2152;
 }
-
-/* .welcome-page-stepper-line.active {
-  background: linear-gradient(to right, rgba(93, 27, 121), rgba(0, 113, 154));
-} */
 
 /* =========================== product option checkboxes: step=1 =========================== */
 .welcomePagePopupTitle {
@@ -389,14 +345,8 @@
 
 .welcomePageProductOption {
   position: relative;
-  /* padding: 0.75rem 1.5rem 0.75rem 2rem; */
-  
   padding: 1rem 2rem;
-
-  /* color: #00000071; */
-
   color: rgba(107, 84, 165, 0.558);
-
   border-radius: 10px;
   cursor: pointer;
   font-size: 15px;
@@ -428,21 +378,13 @@
   background-color: #f1f1f1;
   border-color: rgb(83, 70, 155);
   color: rgb(107, 84, 165);
-
-  /* color: #000000; */
-
-  
   font-weight: 600;
-  /* padding-top: 1rem;
-  padding-bottom: 1rem; */
   padding: 1.2rem;
   box-shadow: 0 2px 5px rgba(86, 64, 166, 0.6);
 }
 
 .welcomePageProductOption.checked .checkmark {
-  /* background-color: rgb(81, 71, 169); */
   background-color: rgb(107, 84, 165);;
-
   border-color: rgb(86, 68, 165);
 }
 
@@ -490,26 +432,15 @@
   background-color: #f0f0f6;
   border: 1px solid #ccc;
   padding: 0.5rem 1rem;
-
-  /* justify-content: center; */
-
   border-radius: 5px;
   font-family: monospace;
   text-align: left;
 
-  /* align-items: center; */
-  /* text-align: center; */
-
   margin-right: 15%;
-
+  margin-bottom: 1.5rem;
   direction: ltr;
   width: 500px;
-  /* margin-left: auto;
-  margin-right: auto; */
   display: block;
-  margin-bottom: 1.5rem;
-
-  /* margin-right: -8%; */
 }
 
 .welcomePageAccessTokenLabel {
@@ -540,19 +471,6 @@
   color: #333;
   font-size: 13px;
 }
-
-/* .welcome-page-token-button {
-  padding: 6px 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.welcome-page-token-button:hover {
-  background-color: #0056b3;
-} */
 
 .welcomePageTokenValue::-webkit-scrollbar {
   height: 7px;
@@ -596,8 +514,6 @@
   position: absolute;
   bottom: 120%;
   left: 1px;
-  /* font-family: Vazirmatn, sans-serif; */
-
   font-family: "Shabnam";
 
   transform: translateX(-50%);
@@ -646,41 +562,6 @@
 }
 
 /* =========================== token and SDK link =========================== */
-/* .welcome-page-sdk-download-link {
-  color: #00719a;
-  font-weight: 500;
-  text-decoration: underline;
-  transition: color 0.3s;
-  font-size: 15px;
-  margin-top: 1rem;
-}
-
-.welcome-page-sdk-download-link:hover {
-  color: #4c1764;
-} */
-
-/* .welcome-page-access-token-box {
-  background-color: #f6f6f6;
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 8px;
-  font-family: monospace;
-  text-align: left;
-  direction: ltr;
-
-  margin-top: 2rem;
-  width: 100%;
-  display: inline-block;
-  max-width: 100%;
-  overflow-x: auto;
-  white-space: nowrap;
-} */
-
-/* .welcome-page-token-value {
-  color: #333;
-  font-size: 13px;
-} */
-
 .welcomePageTokenNote {
   font-size: 12px;
   color: #5e5e5e;
@@ -703,10 +584,7 @@
   font-size: 15px;
   color: #c4c4c4;
 
-  /* background: linear-gradient(to right, #5d1b79, #00719a); */
-  background-color: #24247bdb;
-  
-
+  background-color: #24247bdb;  
   border: none;
   border-radius: 12px;
   filter: brightness(1.4);
@@ -716,11 +594,7 @@
 .welcomePageContinueBtn:hover,
 .welcomePageContinueBtn:focus,
 .welcomePageContinueBtn:active {
-  /* background: linear-gradient(to right, #5d1b79, #00719a); */
   background-color: #362e7afe;
-
-  /* box-shadow: 0 2px 8px rgb(160, 159, 202); */
-
   filter: brightness(1.1);
   color: white !important;
   cursor: pointer;
@@ -736,16 +610,6 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 45px;
 }
-
-
-/* .radioLabel {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1.1rem;
-  cursor: pointer;
-  margin: 5px;
-} */
 
 .radioLabel input[type="checkbox"] {
   cursor: pointer;
@@ -784,16 +648,10 @@
 /* حالت غیرفعال چک‌باکس (disabled) */
 .welcomePageRadioLabel input[type="checkbox"]:disabled {
   cursor: default; /* یا cursor: not-allowed; */
-  opacity: 0.6; /* اختیاری: برای نشان دادن حالت غیرفعال */
+  opacity: 0.6;/
 }
-
 
 .welcomePageErrorPlaceholder {
   margin-top: 10px;
   font-size: 15px;
 }
-
-/* .back {
-  background-color: rgba(225, 237, 255);
-  height: 100%;
-} */

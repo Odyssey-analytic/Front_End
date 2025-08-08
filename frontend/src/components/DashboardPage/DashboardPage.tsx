@@ -524,20 +524,19 @@ const DashboardPage = () => {
 
           <div className="d-flex justify-content-between align-items-center mb-1 mt-1">
             <h2 className={styles.dashboardTitle}>مدیریت بازی‌ها</h2>
-            {/* <div> */}
-            <div style={{ paddingLeft: '20px' }}>
-            <div className={`d-flex align-items-center gap-2 ${styles.dashboardUser}`}>
-              <span className={styles.userAvatar}>👤</span>
-              <span className={styles.userName}>{username} ▼</span>
-            </div>
+            <div style={{ paddingLeft: "20px" }}>
+              <div
+                className={`d-flex align-items-center gap-2 ${styles.dashboardUser}`}
+              >
+                <span className={styles.userAvatar}>👤</span>
+                <span className={styles.userName}>{username} ▼</span>
+              </div>
             </div>
           </div>
-
         </div>
 
-
-<div className={styles.gameListtop}>
-<div
+        <div className={styles.gameListtop}>
+          <div
             className={`d-flex justify-content-between align-items-center flex-wrap gap-3 ${styles.toolbarBottom}`}
           >
             <div className="d-flex align-items-center gap-2">
@@ -561,7 +560,7 @@ const DashboardPage = () => {
               </button>
             </div>
           </div>
-</div>
+        </div>
 
         <div className={styles.gameList}>
           {games.map((game) => (

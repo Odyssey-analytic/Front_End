@@ -25,7 +25,6 @@ const WelcomePage = () => {
 
   const [gameName, setGameName] = useState("");
   const [description, setDescription] = useState("");
-  // const [engine, setEngine] = useState("");
   const [platforms, setPlatforms] = useState<string[]>([]);
   const [thumbnail, setThumbnail] = useState<File | null>(null);
   const [imageError, setImageError] = useState("");
@@ -42,14 +41,6 @@ const WelcomePage = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // const [godotDisabled, setGodotDisabled] = useState(true);
-
-  // const [disabledOptions, setDisabledOptions] = useState({
-  //   godot: true,
-  //   custom: true,
-  //   // ... سایر گزینه‌ها
-  // });
-
   const [engine, setEngine] = useState("");
   const [disabledOptions, setDisabledOptions] = useState({
     Unity: false,
@@ -59,54 +50,54 @@ const WelcomePage = () => {
     IOS: false,
     Android: false,
     Windows: false,
-
-
-    // unity: false,
-    // unreal: true,
-    // ... سایر گزینه‌ها
   });
 
-
-  const EngineOption = ({ 
-    engineType, 
-    currentEngine, 
-    setEngine, 
-    disabledOptions 
+  const EngineOption = ({
+    engineType,
+    currentEngine,
+    setEngine,
+    disabledOptions,
   }) => {
     const isDisabled = disabledOptions[engineType];
-    
+
     return (
-      <label className={`${styles.radioLabel} ${isDisabled ? styles.disabled : ''}`}>
+      <label
+        className={`${styles.radioLabel} ${isDisabled ? styles.disabled : ""}`}
+      >
         <input
           type="checkbox"
           checked={currentEngine === engineType}
           disabled={isDisabled}
-          onChange={() => !isDisabled && setEngine(currentEngine === engineType ? "" : engineType)}
+          onChange={() =>
+            !isDisabled &&
+            setEngine(currentEngine === engineType ? "" : engineType)
+          }
         />
         {engineType.charAt(0).toUpperCase() + engineType.slice(1)}
       </label>
     );
   };
 
-  
   // تغییر وضعیت یک گزینه خاص
-const toggleOption = (engineType) => {
-  setDisabledOptions(prev => ({
-    ...prev,
-    [engineType]: !prev[engineType]
-  }));
-};
+  const toggleOption = (engineType) => {
+    setDisabledOptions((prev) => ({
+      ...prev,
+      [engineType]: !prev[engineType],
+    }));
+  };
 
-// در JSX:
-{['godot', 'custom'].map((engineType) => (
-  <EngineOption
-    key={engineType}
-    engineType={engineType}
-    currentEngine={engine}
-    setEngine={setEngine}
-    disabledOptions={disabledOptions}
-  />
-))}
+  // در JSX:
+  {
+    ["godot", "custom"].map((engineType) => (
+      <EngineOption
+        key={engineType}
+        engineType={engineType}
+        currentEngine={engine}
+        setEngine={setEngine}
+        disabledOptions={disabledOptions}
+      />
+    ));
+  }
 
   const fetchDefaultThumbnail = async (): Promise<File | null> => {
     try {
@@ -248,8 +239,6 @@ const toggleOption = (engineType) => {
 
   return (
     <div className={styles.container}>
-      {/* <WelcomePage_Header></WelcomePage_Header> */}
-
       <div
         className={`${styles.welcomePageMainBox} text-center ${
           showPopup ? styles.blurred : ""
@@ -258,7 +247,6 @@ const toggleOption = (engineType) => {
         <div className={styles.icons}>
           <img
             src={doticon}
-            // className={styles.welcomePageicons}
             className={`${styles.welcomePageicons} ${
               showPopup ? styles.disabled : ""
             }`}
@@ -270,7 +258,6 @@ const toggleOption = (engineType) => {
 
           <img
             src={usericon}
-            // className={styles.welcomePageicons}
             className={`${styles.welcomePageicons} ${
               showPopup ? styles.disabled : ""
             }`}
@@ -546,65 +533,6 @@ const toggleOption = (engineType) => {
                             />
                             Unity
                           </label>
-
-                          {/* <label
-                            className={`${styles.welcomePageRadioLabel} ${styles.welcomePageEngineDisabledOption}`}
-                          >
-                            <input
-                              type="checkbox"
-                              checked={engine === "godot"}
-                              onChange={() => {
-                                if (engine === "godot") {
-                                  setEngine("");
-                                } else {
-                                  setEngine("godot");
-                                }
-                              }}
-                            />
-                            Godot
-                          </label> */}
-
-                          {/* // در کامپوننت والد: */}
-
-                          {/* // در JSX: */}
-                          {/* <label
-                            className={`${styles.welcomePageRadioLabel} ${
-                              godotDisabled
-                                ? styles.welcomePageEngineDisabledOption
-                                : ""
-                            }`}
-                          >
-                            <input
-                              type="checkbox"
-                              checked={engine === "godot"}
-                              disabled={godotDisabled}
-                              onChange={() => {
-                                if (engine === "godot") {
-                                  setEngine("");
-                                } else {
-                                  setEngine("godot");
-                                }
-                              }}
-                            />
-                            Godot
-                          </label> */}
-
-                          {/* <label
-                            className={`${styles.welcomePageRadioLabel} ${styles.welcomePageEngineDisabledOption}`}
-                          >
-                            <input
-                              type="checkbox"
-                              checked={engine === "custom"}
-                              onChange={() => {
-                                if (engine === "custom") {
-                                  setEngine("");
-                                } else {
-                                  setEngine("custom");
-                                }
-                              }}
-                            />
-                            Custom
-                          </label> */}
 
                           <label
                             className={`${styles.welcomePageRadioLabel} ${
