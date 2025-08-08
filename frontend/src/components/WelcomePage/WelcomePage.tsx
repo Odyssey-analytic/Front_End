@@ -781,7 +781,7 @@ const toggleOption = (engineType) => {
                             <div
                               className={styles.welcomePageCopyDoneMsgTooltip}
                             >
-                              !کپی شد
+                              ! کپی شد
                             </div>
                           )}
                         </div>
