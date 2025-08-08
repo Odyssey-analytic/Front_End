@@ -522,24 +522,29 @@ const DashboardPage = () => {
             </div>
           </div>
 
-          <div className="d-flex justify-content-between align-items-center mb-3">
+          <div className="d-flex justify-content-between align-items-center mb-1 mt-1">
             <h2 className={styles.dashboardTitle}>مدیریت بازی‌ها</h2>
-            <div
-              className={`d-flex align-items-center gap-2 ${styles.dashboardUser}`}
-            >
+            {/* <div> */}
+            <div style={{ paddingLeft: '20px' }}>
+            <div className={`d-flex align-items-center gap-2 ${styles.dashboardUser}`}>
               <span className={styles.userAvatar}>👤</span>
               <span className={styles.userName}>{username} ▼</span>
             </div>
+            </div>
           </div>
 
-          <div
+        </div>
+
+
+<div className={styles.gameListtop}>
+<div
             className={`d-flex justify-content-between align-items-center flex-wrap gap-3 ${styles.toolbarBottom}`}
           >
             <div className="d-flex align-items-center gap-2">
               <img src={lists_icon} className={`${styles.lists_icon} ms-2`} />
               <span className={styles.filterLabel}>لیست بازی‌ها</span>
             </div>
-            <div className="d-flex align-items-center gap-2">
+            <div className={styles.dashboardBtns}>
               <a
                 href="https://github.com/Odyssey-analytic/SDK"
                 target="_blank"
@@ -556,9 +561,9 @@ const DashboardPage = () => {
               </button>
             </div>
           </div>
-        </div>
+</div>
 
-        <div className={`${styles.gameList}`}>
+        <div className={styles.gameList}>
           {games.map((game) => (
             <div key={game.id} className={`${styles.gameCard}`}>
               <div className={`${styles.gameSectionInfo}`}>
