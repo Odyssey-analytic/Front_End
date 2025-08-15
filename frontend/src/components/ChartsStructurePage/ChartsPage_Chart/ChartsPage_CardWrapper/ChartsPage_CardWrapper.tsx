@@ -32,7 +32,7 @@ const ChartCardWrapper = ({ title, children, customHeight }: ChartCardWrapperPro
       transition={{ duration: 1.2, ease: 'easeOut' }}
     >
       <div className={styles.header}>
-        <h3>{title}</h3>
+        <h3 className={styles.chartsTitle}>{title}</h3>
       </div>
       <div className={styles.chartWrapper}>{children}</div>
     </motion.div>

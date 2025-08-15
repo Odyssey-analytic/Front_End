@@ -374,20 +374,20 @@ import styles from "./DashboardPage.module.css";
 // import DashboardPage_HeaderLayout from "./DashboardPage_HeaderLayout";
 
 import OdessayLogo from "/public/icons/odessay_logo.svg";
-import welcome_subheader_user from "/public/icons/welcome_subheader_user.svg";
-import welcome_subheader_menu from "/public/icons/welcome_subheader_menu.svg";
-import welcome_header_help from "/public/icons/welcome_header_help.svg";
+// import welcome_subheader_user from "/public/icons/welcome_subheader_user.svg";
+// import welcome_subheader_menu from "/public/icons/welcome_subheader_menu.svg";
+// import welcome_header_help from "/public/icons/welcome_header_help.svg";
 
 import pocket_champs_icon from "/public/icons/pocket-champs-icon.svg";
 import tower_war_icon from "/public/icons/tower-war-icon.svg";
 import dashboard_collaborator_icon from "/public/icons/dashboard_collaborator_icon.svg";
-import dashboard_collaborator_wrapper_icon from "/public/icons/dashboard_collaborator_wrapper_icon.svg";
+// import dashboard_collaborator_wrapper_icon from "/public/icons/dashboard_collaborator_wrapper_icon.svg";
 // import dashboard_add_collaborator_icon from "/public/icons/dashboard_add_collaborator_icon.svg";
 import lists_icon from "../../../public/icons/clipboard 1.svg";
 
 import dashboard_add_collaborator_icon from "../../../public/icons/add 1.svg";
 
-import dashboard_game_setting_icon from "/public/icons/dashboard_game_setting_icon.svg";
+// import dashboard_game_setting_icon from "/public/icons/dashboard_game_setting_icon.svg";
 import game_with_no_thumbnail_icon from "/public/icons/game_with_no_thumbnail_icon.svg";
 import { FiSettings } from "react-icons/fi";
 // import { FiPlus } from "react-icons/fi";
@@ -521,6 +521,14 @@ const DashboardPage = () => {
               />
             </div>
           </div>
+          {/* 
+          <div className={styles.searchBox}>
+              <input
+                type="text"
+                className={styles.searchInput}
+                placeholder="جستجو..."
+              />
+            </div> */}
 
           <div className="d-flex justify-content-between align-items-center mb-4 mt-2">
             <h2 className={styles.dashboardTitle}>مدیریت بازی‌ها</h2>

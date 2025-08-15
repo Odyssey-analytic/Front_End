@@ -3,7 +3,14 @@
 -------------------------------------- */
 .sidebar {
   width: 230px;
-  background-color: #1f2444;
+  /* background-color: #1f2444; */
+  background-color: #212040;
+
+  /* بردر سفید سمت چپ */
+  border-left: 1px solid rgba(255, 255, 255, 0.4);
+
+  /* سایه ملایم سفید سمت چپ */
+  box-shadow: inset 8px 0 15px rgba(255, 255, 255, 0.1);
 
   color: #ffffffd2;
   transition: width 0.3s ease;

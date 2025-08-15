@@ -414,14 +414,12 @@ const WelcomePage = () => {
                 >
                   <div className={styles.step2Compact}>
                     <p className={`${styles.gameTitle} text-start`}>
-                      اطلاعات بازیت رو وارد کن:
+                      اطلاعات بازی ات را وارد کن:
                     </p>
 
-                    <div
-                      className={`d-flex justify-content-between align-items-start mb-4`}
-                    >
-                      <div className={`flex-fill me-3`}>
-                        <label className={`d-block mb-3 text-start`}>
+                    <div className={styles.gameNameInput}>
+                      <div className={styles.gameNameInputContainer}>
+                        <label className={styles.gameNameLabel}>
                           نام بازی: <span style={{ color: "red" }}>*</span>
                         </label>
 
@@ -513,7 +511,7 @@ const WelcomePage = () => {
 
                     <div className="d-flex flex-column flex-md-row gap-4">
                       <div className={`text-start flex-fill mt-3 mt-md-0 mb-4`}>
-                        <label className="d-block mb-3">
+                        <label className={styles.gameNameLabel}>
                           انتخاب موتور بازی:{" "}
                           <span style={{ color: "red" }}>*</span>
                         </label>
@@ -594,7 +592,7 @@ const WelcomePage = () => {
 
                     <div className="d-flex flex-column flex-md-row mb-4">
                       <div className={`text-start flex-fill mt-3 mt-md-0 mb-2`}>
-                        <label className="d-block mb-3">
+                        <label className={styles.gameNameLabel}>
                           انتخاب پلتفرم هدف:{" "}
                           <span style={{ color: "red" }}>*</span>
                         </label>
@@ -642,7 +640,9 @@ const WelcomePage = () => {
                     </div>
 
                     <div className={`w-100 text-start mb-4`}>
-                      <label className="d-block mb-3">توضیحات (اختیاری):</label>
+                      <label className={styles.gameNameLabel}>
+                        توضیحات (اختیاری):
+                      </label>
                       <textarea
                         className={`form-control ${styles.gameNameInputSm}`}
                         value={description}

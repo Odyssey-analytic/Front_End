@@ -14,12 +14,12 @@ const steps = [
   {
     icon: "/icons/Step2.svg",
     title: "مرحله دوم",
-    description: "سایت، اپ یا بازیت رو به سایت ما اضافه کن.",
+    description: "سایت، اپ یا بازی ات را به سایت ما اضافه کن.",
   },
   {
     icon: "/icons/Step3.svg",
     title: "مرحله سوم",
-    description: "به سایت، اپ یا بازیت SDK رو اضافه کن.",
+    description: "به سایت، اپ یا بازی ات SDK را اضافه کن.",
   },
   {
     icon: "/icons/Step4.svg",

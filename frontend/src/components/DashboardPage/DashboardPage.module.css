@@ -1,14 +1,9 @@
-/* .header {
-  padding: 20px;
-} */
-
 .headerBrand {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding-top: 1.5%;
   padding-left: 1.5%;
-  /* margin-left: 1.2rem; */
   direction: ltr;
 }
 
@@ -28,7 +23,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .searchInput {
@@ -36,27 +30,39 @@
   padding: 0.5rem 1rem;
   font-size: 11px;
   text-align: right;
-  border-radius: 5px !important;
 
   background: rgba(81, 85, 145, 0.192);
   backdrop-filter: blur(3px);
-  border-radius: 12px; 
+  border-radius: 5px; 
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 
       0 4px 30px rgba(0, 0, 0, 0.1), 
       inset 0 0 10px rgba(255, 255, 255, 0.1);
 
-  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: background 0.4s, border 0.4s;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.searchInput:hover,
-.searchInput:active,
+.searchInput::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+.searchInput:focus::placeholder {
+  color: #ccc;
+}
+
 .searchInput:focus {
-  background-color: #8a8a8a;
+  outline: none !important;
+  background: rgba(124, 124, 145, 0.63);
+  box-shadow: 0 0 0 2px rgba(98, 98, 126, 0.497) !important;
+}
+
+.searchInput:active {
+  transform: scale(0.99); /* افکت فشرده شدن ظریف */
 }
 
 .dashboardTitle {
-  /* padding-right: 10px; */
   padding-right: 2%;
   font-size: 20px;
   font-weight: 600;
@@ -70,10 +76,6 @@
 .dashboardUserbox {
   background: #f1f1f1e5;
   padding: 4px 10px;
-  /* margin-left: 2%; */
-  
-  /* margin-right: 150px; */
-  /* margin-left: ; */
   border-radius: 6px;
   font-size: 14px;
   color: #333;
@@ -96,10 +98,8 @@
 }
 
 .gameListtop {
-  /* padding: 15px 40px 10px 45px; */
   padding-left: 2.7%;
   padding-right: 2.2%;
-  /* ترتیب: top right bottom left */
 }
 
 .dashboardBtns {
@@ -112,11 +112,6 @@
 .downloadKitBtn,
 .addGameBtn {
   background-color: rgb(105, 121, 192);
-
-  /* background-color: rgb(101, 120, 202); */
-  /* background-color: #3a7ff6; */
-
-
   color: white;
   border: none;
   padding: 8px 16px;
@@ -131,7 +126,7 @@
 
 .downloadKitBtn:hover,
 .addGameBtn:hover {
-  background-color: #5699fe;
+  background-color: rgba(105, 121, 192, 0.524);
 }
 
 .lists_icon {
