@@ -15,9 +15,8 @@
 
 /* ======================= Subtitle section aligned right for RTL ======================= */
 .subtitleWrapper {
-  display: flex;
+  max-width: none;
   justify-content: flex-start;
-  max-width: 1200px;
 }
 
 /* ======================= Descriptive subtitle ======================= */
@@ -25,21 +24,27 @@
   font-size: 14px;
   opacity: 0.8;
   text-align: right;
-  margin-right: 7rem;
-  margin-bottom: 3rem;
+  margin: 0 0 3rem 0; /* فقط فاصله‌ی زیر */
 }
 
 /* ======================= Grid layout for stat cards ======================= */
-.statsGrid {
+/* .statsGrid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 32px;       
   row-gap: 40px;   
+} */
+
+.statsGrid {
+  display: grid;
+  gap: 32px;
+  row-gap: 100px;
+  grid-template-columns: 1fr;
 }
 
 /* ======================= Individual stat card styling ======================= */
-.card {
+/* .card {
   background: #f2f2f2;
   color: #111;
   border-radius: 16px;
@@ -53,11 +58,35 @@
   align-items: center;
   opacity: 0;
   transform: translateY(60px);
+} */
+
+.inner {
+  width: min(1200px, 92%);
+  margin-inline: auto; /* وسط‌چین با لبه‌ی راست مشخص */
+  direction: rtl; /* اطمینان از شروع ستون از راست */
 }
 
+.card {
+  background: #f2f2f2;
+  color: #111;
+  border-radius: 16px;
+  font-size: 18px;
+  /* مهم: عرض ثابت را حذف کن تا در ستون‌ها جا بگیرد */
+  width: 100%;
+  min-height: 180px;
+  padding: 24px 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  transform: translateY(60px);
+}
 /* ======================= Animation trigger class for cards ======================= */
 .fadeUp {
-  animation: fadeUpAnim 1.4s ease forwards; 
+  animation: fadeUpAnim 1.4s ease forwards;
 }
 
 /* ======================= Keyframes for upward fade animation ======================= */
@@ -92,14 +121,8 @@
   color: #444;
 }
 
-@media (max-width: 1258px) {
-  .statsGrid {
-    justify-content: center;
-  }
+@media (min-width: 600px)  { .statsGrid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (min-width: 900px)  { .statsGrid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+@media (min-width: 1200px) { .statsGrid { grid-template-columns: repeat(4, minmax(0,1fr)); } }
 
-  .card {
-    width: 45%;      
-    min-height: 120px;
-    height: 100%;
-  }
-}
+.card { width: 100%; }

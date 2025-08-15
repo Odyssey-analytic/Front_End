@@ -24,6 +24,7 @@
   height: 100%;
 }
 
+
 /* ======================= Swiper Slide Equal Height Fix ======================= */
 :global(.swiper-wrapper) {
   display: flex;

@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./LandingPage.module.css";
 
+// Sections
 import LandingPage_Testimonials from "../LandingPage_Testimonials/LandingPage_Testimonials";
 import LandingPage_InsightOrbit from "../LandingPage_InsightOrbit/LandingPage_InsightOrbit";
 import LandingPage_Navbar from "../LandingPage_Navbar/LandingPage_Navbar";
@@ -10,198 +11,147 @@ import LandingPage_AnalysisTools from "../LandingPage_AnalysisTools/LandingPage_
 import LandingPage_Contact from "../LandingPage_Contact/LandingPage_Contanct";
 import LandingPage_YoutubeVideoGuide from "../LandingPage_YoutubeVideoGuide/LandingPage_YoutubeVideoGuide";
 
+// Assets
 import Section1_Years from "../../../../public/icons/Landing/Section1_years.svg";
 import BackGroundImage from "../../../../src/assets/images/TotalBackGround.png";
 import FirstSectionBackGround from "../../../../src/assets/images/FirstSectionBackGround.png";
 
 const LandingPage: React.FC = () => {
-  useEffect(() => {
-    // ========== Intersection Observer to animate hidden sections ============
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.animate);
-          }
-        });
-      },
-      {
-        threshold: 0.6,
-        rootMargin: "0px 0px -30% 0px",
-      }
-    );
-    const targets = document.querySelectorAll("." + styles.hiddenOnLoad);
-    targets.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    // ========== Auto Snap to Closest Section After Scroll Stop ============
-    let timeoutId: ReturnType<typeof setTimeout>;
-
-    const scrollToClosestSection = () => {
-      const sections = document.querySelectorAll(`.${styles.section}`);
-      let closestSection: Element | null = null;
-      let minDistance = Infinity;
-
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const distance = Math.abs(rect.top);
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestSection = section;
-        }
-      });
-
-      if (closestSection) {
-        timeoutId = setTimeout(() => {
-          closestSection?.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }, 800);
-      }
-    };
-
-    const handleScrollEnd = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(scrollToClosestSection, 800);
-    };
-
-    window.addEventListener("scroll", handleScrollEnd);
-
-    return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener("scroll", handleScrollEnd);
-    };
-  }, []);
-
   return (
     <div className={styles.wrapper}>
-      <img
-        src={BackGroundImage}
-        alt="Background"
-        className={styles.backgroundImage}
-      />
+      {/* پس‌زمینه کلی صفحه */}
+      <img src={BackGroundImage} alt="" className={styles.backgroundImage} />
 
-      {/* ========== Fixed Navbar ============ */}
-      
-            <LandingPage_Navbar />
+      {/* نوار ناوبری ثابت */}
+      <LandingPage_Navbar />
 
+      {/* محتوای صفحه */}
       <div className={styles.contentWrapper}>
-        
         <main className={styles.mainSections}>
-          {/* ========== Section 1 - Features ============ */}
+          {/* ========== Section 1 (Hero / بدون عنوان) ========== */}
+          <section id="features" className={styles.section}>
+            {/* بک‌گراند تزئینی همین سکشن */}
+            {/* <img src={FirstSectionBackGround} alt="" className={styles.sectionBg} /> */}
+
+            <div className={styles.sectionInner}>
+              <div className={styles.heroRow}>
+                <div className={styles.heroCopy}>
+                  <h1>
+                    هدایت مسیر رشد محصول شما
+                    <br />
+                    در چشم‌انداز داده‌محور{" "}
+                    <span className={styles.accent}>جهانی</span>
+                  </h1>
+                  <p>
+                    ما به شما کمک می‌کنیم تا با تحلیل داده‌های دقیق و داشبوردهای
+                    سفارشی، تصمیم‌های هوشمندانه‌تری بگیرید و تجربه کاربران را
+                    بهینه‌سازی کنید.
+                  </p>
+                </div>
+
+                {/* <img
+                  src={Section1_Years}
+                  alt=""
+                  aria-hidden="true"
+                  className={styles.heroArt}
+                /> */}
+              </div>
+
+              <div className={styles.body}>
+                <LandingPage_InsightOrbit />
+              </div>
+            </div>
+          </section>
+
+          {/* ========== Section 2 - Services ========== */}
+          <section id="services" className={styles.section}>
+            <div className={styles.sectionInner}>
+              <header className={styles.head}>
+                <span className={styles.headBadge}>سرویس‌ها</span>
+                <span className={styles.headLine} />
+              </header>
+              <div className={styles.body}>
+                <LandingPage_AnalysisTools />
+              </div>
+            </div>
+          </section>
           <section
-            id="features"
-            className={`${styles.section} ${styles.hiddenOnLoad}`}
+            id="testimonials"
+            className={`${styles.section} ${styles.sectionTestimonials}`}
           >
-            <img
-              src={FirstSectionBackGround}
-              alt="FirstSectionBackground"
-              className={styles.FirstSectionBackGroundImage}
-            />
-            
-            <div className={styles.featuresText}>
-              <h2>
-                هدایت مسیر رشد محصول شما
-                <br />
-                در چشم‌انداز داده‌محور{" "}
-                <span className={styles.featureHighlight}>جهانی</span>
-              </h2>
-              <p>
-                ما به شما کمک می‌کنیم تا با تحلیل داده‌های دقیق و داشبوردهای
-                سفارشی، تصمیم‌های هوشمندانه‌تری بگیرید و تجربه کاربران را
-                بهینه‌سازی کنید.
-              </p>
-            </div>
-            <img src={Section1_Years} className={styles.feature_year_img} />
-            <LandingPage_InsightOrbit />
-          </section>
+            <div className={styles.sectionInner}>
+              <header className={styles.head}>
+                <span className={styles.headBadgeTestimonials}>نظرات کاربران</span>
+                <span className={styles.headLine} />
+              </header>
 
-          {/* ========== Section 2 - Services ============ */}
-          <section
-            id="services"
-            className={`${styles.section} ${styles.hiddenOnLoad}`}
-          >
-            <div className={styles.servicesTitleWrapper}>
-              <div className={styles.servicesTitleBox}>سرویس‌ها</div>
-              <div className={styles.servicesTitleLine}></div>
-            </div>
-            <div className={styles.servicesInsidePart}>
-              <LandingPage_AnalysisTools />
+              <div className={styles.body}>
+                <LandingPage_Testimonials />
+              </div>
             </div>
           </section>
 
-          {/* ========== Section 3 - Testimonials ============ */}
-          <section id="testimonials" className={styles.section}>
-            <div className={styles.testimonialsTitleWrapper}>
-              <div className={styles.testimonialsTitleBox}>نظرات کاربران</div>
-              <div className={styles.testimonialsTitleLine}></div>
-            </div>
-            <div className={styles.testimonialsInsidePart}>
-              <LandingPage_Testimonials />
-            </div>
-          </section>
-
-          {/* ========== Section 4 - How to Start ============ */}
+          {/* ========== Section 4 - How to Start ========== */}
           <section id="start" className={styles.section}>
-            <div className={styles.startTitleWrapper}>
-              <div className={styles.startTitleBox}>نحوه شروع</div>
-              <div className={styles.startTitleLine}></div>
-            </div>
-            <div className={styles.startInsidePart}>
-              <LandingPage_HowToStart />
-            </div>
-          </section>
-
-          {/* ========== Section 5 - Achievements ============ */}
-          <section
-            id="achievements"
-            className={`${styles.section} ${styles.hiddenOnLoad}`}
-          >
-            <div className={styles.achievementsTitleWrapper}>
-              <div className={styles.achievementsTitleBox}>دستاوردها</div>
-              <div className={styles.achievementsTitleLine}></div>
-            </div>
-            <div className={styles.achievementsInsidePart}>
-              <LandingPage_AchievementCounters />
+            <div className={styles.sectionInner}>
+              <header className={styles.head}>
+                <span className={styles.headBadge}>نحوه شروع</span>
+                <span className={styles.headLine} />
+              </header>
+              <div className={styles.body}>
+                <LandingPage_HowToStart />
+              </div>
             </div>
           </section>
 
-          {/* ========== Section 6 - YouTube Guide ============ */}
-          <section
-            id="youtubeGuide"
-            className={`${styles.section} ${styles.hiddenOnLoad}`}
-          >
-            <div className={styles.youtubeTitleWrapper}>
-              <div className={styles.youtubeTitleBox}>آموزش گام به گام</div>
-              <div className={styles.youtubeTitleLine}></div>
-            </div>
-            <div className={styles.youtubeInsidePart}>
-              <LandingPage_YoutubeVideoGuide />
+          {/* ========== Section 5 - Achievements ========== */}
+          <section id="achievements" className={styles.section}>
+            <div className={styles.sectionInner}>
+              <header className={styles.head}>
+                <span className={styles.headBadge}>دستاوردها</span>
+                <span className={styles.headLine} />
+              </header>
+              <div className={styles.body}>
+                <LandingPage_AchievementCounters />
+              </div>
             </div>
           </section>
 
-          {/* ========== Section 7 - Contact ============ */}
-          <section
-            id="contact"
-            className={`${styles.section} ${styles.hiddenOnLoad}`}
-          >
-            <div className={styles.contactInsidePart}>
-              <LandingPage_Contact />
+          {/* ========== Section 6 - YouTube Guide ========== */}
+          <section id="youtubeGuide" className={styles.section}>
+            <div className={styles.sectionInner}>
+              <header className={styles.head}>
+                <span className={styles.headBadge}>آموزش گام به گام</span>
+                <span className={styles.headLine} />
+              </header>
+              <div className={styles.body}>
+                <LandingPage_YoutubeVideoGuide />
+              </div>
+            </div>
+          </section>
+
+          <section id="contact" className={` ${styles.section}`}>
+            <div className={styles.sectionInner}>
+              <header className={styles.head}>
+                <span className={styles.headBadge}>ارتباط با ما</span>
+                <span className={styles.headLine} />
+              </header>
+              <div className={styles.body}>
+                <LandingPage_Contact />
+              </div>
             </div>
           </section>
         </main>
       </div>
 
-      {/* ========== Scroll to Top Button ============ */}
+      {/* دکمه رفتن به بالا */}
       <button
         className={styles.scrollToTopButton}
-        onClick={() => {
-          const sectionTop = document.getElementById("features");
-          sectionTop?.scrollIntoView({ behavior: "smooth" });
-        }}
+        onClick={() =>
+          document
+            .getElementById("features")
+            ?.scrollIntoView({ behavior: "smooth" })
+        }
       >
         ↑
       </button>

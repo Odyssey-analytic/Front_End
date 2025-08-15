@@ -21,21 +21,24 @@ const LandingPage_Testimonials: React.FC = () => {
   const topSwiperRef = useRef<any>(null);
   const bottomSwiperRef = useRef<any>(null);
 
-  const [isHovering, setIsHovering] = useState(false); // 🔁 Shared hover state
+  const [isHovering, setIsHovering] = useState(false);
 
-  // ======================= Fade-in when in viewport =======================
+  // Fade-in when section enters viewport
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => setIsVisible(true), 100);
-      }
-    }, { threshold: 0.6 });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), 100);
+        }
+      },
+      { threshold: 0.6 }
+    );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  // ======================= Control autoplay on hover =======================
+  // Pause/resume autoplay when hovering
   useEffect(() => {
     if (topSwiperRef.current && bottomSwiperRef.current) {
       if (isHovering) {
@@ -48,7 +51,32 @@ const LandingPage_Testimonials: React.FC = () => {
     }
   }, [isHovering]);
 
-  // ======================= Render testimonial cards =======================
+  // Equalize card heights on desktop
+  const equalizeHeights = () => {
+    if (!sectionRef.current) return;
+    const cards = Array.from(sectionRef.current.querySelectorAll<HTMLElement>(`.${styles.card}`));
+    cards.forEach(c => (c.style.height = "auto"));
+
+    if (window.innerWidth >= 1024) {
+      let maxHeight = 0;
+      cards.forEach(c => {
+        maxHeight = Math.max(maxHeight, c.offsetHeight);
+      });
+      cards.forEach(c => (c.style.height = `${maxHeight}px`));
+    }
+  };
+
+  useEffect(() => {
+    if (isVisible) {
+      equalizeHeights();
+      window.addEventListener("resize", equalizeHeights);
+    }
+    return () => {
+      window.removeEventListener("resize", equalizeHeights);
+    };
+  }, [isVisible]);
+
+  // Render testimonial slides
   const renderSlides = (reverse = false) =>
     testimonials.map((t, i) => (
       <SwiperSlide key={reverse ? `rev-${i}` : i}>
@@ -56,12 +84,12 @@ const LandingPage_Testimonials: React.FC = () => {
           <img
             src={i % 2 === 0 ? "/icons/avatarDot-light.svg" : "/icons/avatarDot-dark.svg"}
             className={`${styles.avatarDot} ${i % 2 === 0 ? styles.avatarDotLight : styles.avatarDotDark}`}
-            alt="avatar dot"
+            alt=""
           />
           <img
             src={i % 2 === 0 ? "/icons/quote-light.svg" : "/icons/quote-dark.svg"}
             className={styles.quoteIcon}
-            alt="quote"
+            alt=""
           />
           <div className={styles.personInfo}>
             <div className={styles.personName}>{t.name}</div>
@@ -78,7 +106,7 @@ const LandingPage_Testimonials: React.FC = () => {
       ref={sectionRef}
       className={`${styles.testimonialsWrapper} ${isVisible ? "animate" : "hiddenOnLoad"}`}
     >
-      {/* ================= Top Swiper ================= */}
+      {/* Top Swiper */}
       <div
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
@@ -101,7 +129,7 @@ const LandingPage_Testimonials: React.FC = () => {
         </Swiper>
       </div>
 
-      {/* ================= Bottom Swiper ================= */}
+      {/* Bottom Swiper */}
       <div
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
