@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import styles from "./ResetpasswordPage.module.css"; // ✅ استفاده از CSS Module
+import { useParams, useNavigate, Link } from "react-router-dom";
+import styles from "./ResetpasswordPage.module.css";
 
-import odessay_logo from "/public/icons/odessay_logo.svg";
-import signup_padlock_icon from "/public/icons/signup_padlock_icon.svg";
+import signupPadlockIcon from "/public/icons/signup_padlock_icon.svg";
+import OdessayLogo from "/public/icons/odessay_logo.svg";
 import forgetpassword_sendcode_icon from "/public/icons/forgetpassword_sendcode_icon.svg";
 import successful_signup_icon from "/public/icons/successful_signup_icon.svg";
 import unsuccessful_signup_icon from "/public/icons/unsuccessful_signup_icon.svg";
@@ -15,14 +15,13 @@ const ResetpasswordPage = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [popupStatus, setPopupStatus] = useState<"success" | "error" | "">("");
-
   const [isLoading, setIsLoading] = useState(false);
+
   const { token } = useParams();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     let valid = true;
 
     if (!password.trim()) {
@@ -45,30 +44,31 @@ const ResetpasswordPage = () => {
     if (!valid) return;
 
     setIsLoading(true);
-
     try {
-      const response = await fetch(
+      const res = await fetch(
         `https://odysseyanalytics.ir/api/api/reset-password/${token}/`,
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ password, confirm_password: confirmPassword }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            password,
+            confirm_password: confirmPassword,
+          }),
         }
       );
 
-      if (!response.ok) {
-        const errorData = await response.json();
+      if (!res.ok) {
+        const errData = await res.json();
         throw new Error(
-          errorData.message || errorData.detail || "Reset password failed."
+          errData.message || errData.detail || "خطا در تغییر رمز عبور"
         );
       }
 
       setPopupStatus("success");
-      setTimeout(() => navigate("/"), 2000);
-    } catch (error: any) {
-      console.error("Reset error:", error.message);
+      setTimeout(() => navigate("/login"), 2000);
+    } catch (err: any) {
+      console.error("Reset error:", err.message);
+      setErrorMessage(err.message);
       setPopupStatus("error");
     } finally {
       setIsLoading(false);
@@ -76,132 +76,89 @@ const ResetpasswordPage = () => {
   };
 
   return (
-    <div className={`d-flex justify-content-center justify-content-lg-start align-items-center vh-100 px-3 ${styles.resetPageContainer}`}>
-      {/* ===== Brand ===== */}
-      <div className="d-flex align-items-center position-absolute top-0 end-0 ms-4 mt-4">
-        <div className={`english-text text-white me-3 ${styles.resetPageBrandText}`}>
+    <div className={styles.container}>
+      {/* Logo */}
+      <div className="d-flex align-items-center position-fixed top-0 end-0 ms-4 mt-4">
+        <div className={`${styles.brandText} english-text text-white me-3`}>
           ODESSAY
         </div>
-        <img
-          src={odessay_logo}
-          alt="Odessay Logo"
-          className={`me-4 ${styles.resetLogoImg}`}
-        />
+        <img src={OdessayLogo} alt="Odessay Logo" className={`${styles.logoImg} me-4`} />
       </div>
 
-      {/* ========== Loading ========== */}
+      {/* Loading */}
       {isLoading && (
-        <div className={styles.resetLoadingOverlay}>
-          <div className={styles.resetSpinner}></div>
+        <div className={styles.loadingOverlay}>
+          <div className={styles.spinner}></div>
         </div>
       )}
 
+      {/* Form Box */}
+      <div className={styles.box}>
+        <Link to="/login" className={`text-muted d-block text-end ${styles.backToLogin}`}>
+          ← بازگشت به صفحه ورود
+        </Link>
 
-      {/* ===== Reset Form Box ===== */}
-      <div className={`mx-auto ms-lg-5 position-relative ${styles.resetBox}`}>
-        <h2 className="fw-bold text-start mb-3 reset-title">تغییر رمز عبور</h2>
+        <h2 className={styles.title}>تغییر رمز عبور</h2>
 
         <form onSubmit={handleSubmit}>
-          {/* ===== Password Field ===== */}
-          <div className="mb-3 position-relative reset-input-wrapper">
+          {/* Password */}
+          <div className={styles.inputWrapper}>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="form-control text-start pe-5 text-dark reset-input"
+              className={`${styles.input} form-control text-start text-dark`}
               placeholder="رمز عبور جدید"
             />
-            <img
-              src={signup_padlock_icon}
-              alt="lock icon"
-              className="reset-form-container-padlock-icon"
-            />
+            <img src={signupPadlockIcon} alt="lock icon" className={styles.signupPadlockIcon} />
             {passwordError && (
-              <div className="reset-input-error-popup">
+              <div className={styles.inputErrorPopup}>
                 <span>{passwordError}</span>
-                <button type="button" onClick={() => setPasswordError("")}>
-                  ×
-                </button>
+                <button type="button" onClick={() => setPasswordError("")}>×</button>
               </div>
             )}
           </div>
 
-          {/* ===== Confirm Password Field ===== */}
-          <div className="mb-3 position-relative reset-input-wrapper">
+          {/* Confirm Password */}
+          <div className={styles.inputWrapper}>
             <input
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="form-control text-start pe-5 text-dark reset-input"
+              className={`${styles.input} form-control text-start text-dark`}
               placeholder="تأیید رمز عبور جدید"
             />
-            <img
-              src={signup_padlock_icon}
-              alt="lock icon"
-              className="reset-form-container-padlock-icon"
-            />
+            <img src={signupPadlockIcon} alt="lock icon" className={styles.signupPadlockIcon} />
             {confirmPasswordError && (
-              <div className="reset-input-error-popup">
+              <div className={styles.inputErrorPopup}>
                 <span>{confirmPasswordError}</span>
-                <button
-                  type="button"
-                  onClick={() => setConfirmPasswordError("")}
-                >
-                  ×
-                </button>
+                <button type="button" onClick={() => setConfirmPasswordError("")}>×</button>
               </div>
             )}
           </div>
 
-          {errorMessage && (
-            <div className="alert alert-danger text-center my-2">
-              {errorMessage}
-            </div>
-          )}
+          {errorMessage && <div className="alert alert-danger text-center my-2">{errorMessage}</div>}
 
-          <Link to="/login" className="auth-back-to-home text-muted small">
-            ← بازگشت به صفحه ورود
-          </Link>
-
-          {/* ===== Submit Button ===== */}
           <div className="d-flex justify-content-center mt-3">
-            <button
-              type="submit"
-              className="btn d-flex align-items-center gap-1 reset-btn"
-            >
-              <span className="text-white fw-bold reset-btn-text">
-                ثبت رمز جدید
-              </span>
-              <img
-                src={forgetpassword_sendcode_icon}
-                alt="send icon"
-                style={{ width: "30px", height: "25px" }}
-              />
+            <button type="submit" className={styles.btn}>
+              <span className={styles.btnText}>ثبت رمز جدید</span>
+              <img src={forgetpassword_sendcode_icon} alt="send icon" className={styles.btnSentIcon} />
             </button>
           </div>
         </form>
 
-        {/* ===== Popup Overlay ===== */}
+        {/* Popup */}
         {popupStatus && (
-          <div className={`reset-popup-warning-overlay ${popupStatus}`}>
-            <div className="reset-warning-popup-card text-center">
-              <button
-                className="reset-warning-popup-close-btn"
-                onClick={() => setPopupStatus("")}
-              >
-                ×
-              </button>
+          <div className={`${styles.popupOverlay} ${popupStatus}`}>
+            <div className={styles.popupCard}>
+              <button className={styles.popupCloseBtn} onClick={() => setPopupStatus("")}>×</button>
               <img
-                src={
-                  popupStatus === "success"
-                    ? successful_signup_icon
-                    : unsuccessful_signup_icon
-                }
-                className="reset-warning-popup-emoji"
+                src={popupStatus === "success" ? successful_signup_icon : unsuccessful_signup_icon}
+                className={styles.popupEmoji}
                 alt="status-icon"
               />
-              <div className="reset-warning-popup-line-separator"></div>
-              <h5 className="fw-bold mb-2">
+              <div className={styles.popupLineSeparator}></div>
+              <h5 className={popupStatus === "success" ? styles.successTitle : styles.errorTitle}>
                 {popupStatus === "success"
                   ? "رمز عبور با موفقیت تغییر کرد!"
                   : "تغییر رمز عبور با خطا مواجه شد!"}
