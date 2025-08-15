@@ -75,27 +75,13 @@ const LandingPage: React.FC = () => {
               </div>
             </div>
           </section>
-
-          {/* ========== Section 3 - Testimonials ========== */}
-          {/* <section id="testimonials" className={styles.section}>
-            <div className={styles.sectionInner}>
-              <header className={styles.head}>
-                <span className={styles.headBadge}>نظرات کاربران</span>
-                <span className={styles.headLine} />
-              </header>
-              <div className={styles.body}>
-                <LandingPage_Testimonials />
-              </div>
-            </div>
-          </section> */}
-
           <section
             id="testimonials"
             className={`${styles.section} ${styles.sectionTestimonials}`}
           >
             <div className={styles.sectionInner}>
               <header className={styles.head}>
-                <span className={styles.headBadge}>نظرات کاربران</span>
+                <span className={styles.headBadgeTestimonials}>نظرات کاربران</span>
                 <span className={styles.headLine} />
               </header>
 

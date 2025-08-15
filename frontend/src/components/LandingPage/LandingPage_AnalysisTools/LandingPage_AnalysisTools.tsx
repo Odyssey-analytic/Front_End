@@ -125,6 +125,7 @@ const LandingPage_AnalysisTools = () => {
 
   return (
     <div className={styles.analysisToolsWrapper}>
+    
       {/* ========== Right Section Content ========== */}
       <div ref={rightItemsRef} className={styles.textContent}>
         <motion.h2
@@ -249,6 +250,7 @@ const LandingPage_AnalysisTools = () => {
         )}
       </div>
     </div>
+    
   );
 };
 

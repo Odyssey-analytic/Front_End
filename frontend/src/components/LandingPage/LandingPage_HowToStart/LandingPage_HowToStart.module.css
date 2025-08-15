@@ -41,7 +41,7 @@
 .icon {
   width: 10vw;         /* ۱۰٪ عرض صفحه */
   max-width: 130px;    /* روی دسکتاپ بیش از این نشه */
-  min-width: 60px;     /* روی موبایل کمتر از این نشه */
+  min-width: 100px;     /* روی موبایل کمتر از این نشه */
   height: auto;
   margin-bottom: 16px;
 }
