@@ -93,32 +93,61 @@ const LandingPage_AchievementCounters: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [visible]);
   return (
+    // <div className={styles.container} ref={containerRef}>
+    //   <h3 className={styles.title}>دستاوردهای ما در یک نگاه :</h3>
+    //   <p className={styles.subtitle}>
+    //     هزاران استودیو، ناشر و توسعه‌دهنده با استفاده از سرویس‌های ما مسیر جذابی
+    //     برای تحلیل و رشد پیدا کرده‌اند. ثبت‌نام کنید!
+    //   </p>
+    //   <div className={styles.statsGrid}>
+    //     {achievements.map(({ key, value, label, suffix }, index) => (
+    //       <div
+    //         key={`${key}-${animationKey}`}
+    //         className={`${styles.card} ${visible ? styles.fadeUp : ""}`}
+    //         style={{ animationDelay: `${index * 0.1}s` }}
+    //       >
+    //         <div className={styles.label}>
+    //           {" "}
+    //           {label}{" "}
+    //           {suffix && <span className={styles.suffix}> در {suffix}</span>}{" "}
+    //         </div>
+    //         <div className={styles.odometer}>
+    //           {" "}
+    //           <Counter end={value} trigger={visible} speed={30} />
+    //         </div>
+    //       </div>
+    //     ))}
+    //   </div>
+    // </div>
     <div className={styles.container} ref={containerRef}>
-      <h3 className={styles.title}>دستاوردهای ما در یک نگاه :</h3>
-      <p className={styles.subtitle}>
-        هزاران استودیو، ناشر و توسعه‌دهنده با استفاده از سرویس‌های ما مسیر جذابی
-        برای تحلیل و رشد پیدا کرده‌اند. ثبت‌نام کنید!
-      </p>
-      <div className={styles.statsGrid}>
-        {achievements.map(({ key, value, label, suffix }, index) => (
-          <div
-            key={`${key}-${animationKey}`}
-            className={`${styles.card} ${visible ? styles.fadeUp : ""}`}
-            style={{ animationDelay: `${index * 0.1}s` }}
-          >
-            <div className={styles.label}>
-              {" "}
-              {label}{" "}
-              {suffix && <span className={styles.suffix}> در {suffix}</span>}{" "}
-            </div>
-            <div className={styles.odometer}>
-              {" "}
-              <Counter end={value} trigger={visible} speed={30} />
-            </div>
+  <h3 className={styles.title}>دستاوردهای ما در یک نگاه :</h3>
+
+  <div className={styles.inner}>
+    <p className={styles.subtitle}>
+      هزاران استودیو، ناشر و توسعه‌دهنده با استفاده از سرویس‌های ما مسیر جذابی
+      برای تحلیل و رشد پیدا کرده‌اند. ثبت‌نام کنید!
+    </p>
+
+    <div className={styles.statsGrid}>
+      {achievements.map(({ key, value, label, suffix }, index) => (
+        <div
+          key={`${key}-${animationKey}`}
+          className={`${styles.card} ${visible ? styles.fadeUp : ""}`}
+          style={{ animationDelay: `${index * 0.1}s` }}
+        >
+          <div className={styles.label}>
+            {label}
+            {suffix && <span className={styles.suffix}> در {suffix}</span>}
           </div>
-        ))}
-      </div>
+          <div className={styles.odometer}>
+            <Counter end={value} trigger={visible} speed={30} />
+          </div>
+        </div>
+      ))}
     </div>
+  </div>
+</div>
+
   );
 };
 

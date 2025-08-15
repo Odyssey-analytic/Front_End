@@ -3,7 +3,8 @@ import styles from "./LandingPage_Contanct.module.css";
 const LandinPage_Contact = () => {
   return (
     // ========== Footer Wrapper ==========
-    <footer className={styles.footer}>
+    // <footer className={styles.footer}>
+    <div>
       {/* ========== Main Content Columns ========== */}
       <div className={styles.container}>
         {/* ========== Brand Column ========== */}
@@ -56,7 +57,8 @@ const LandinPage_Contact = () => {
         <span>شرایط و قوانین</span>
         <span>حریم خصوصی</span>
       </div>
-    </footer>
+    {/* </footer> */}
+    </div>
   );
 };
 

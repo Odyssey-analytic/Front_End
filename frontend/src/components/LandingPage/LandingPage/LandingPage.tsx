@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./LandingPage.module.css";
 
-// Sections / widgets (فعلاً همونا رو رندر می‌کنیم داخل body هر سکشن)
+// Sections
 import LandingPage_Testimonials from "../LandingPage_Testimonials/LandingPage_Testimonials";
 import LandingPage_InsightOrbit from "../LandingPage_InsightOrbit/LandingPage_InsightOrbit";
 import LandingPage_Navbar from "../LandingPage_Navbar/LandingPage_Navbar";
@@ -58,7 +58,7 @@ const LandingPage: React.FC = () => {
               </div>
 
               <div className={styles.body}>
-                {/* <LandingPage_InsightOrbit /> */}
+                <LandingPage_InsightOrbit />
               </div>
             </div>
           </section>
@@ -71,20 +71,36 @@ const LandingPage: React.FC = () => {
                 <span className={styles.headLine} />
               </header>
               <div className={styles.body}>
-                {/* <LandingPage_AnalysisTools /> */}
+                <LandingPage_AnalysisTools />
               </div>
             </div>
           </section>
 
           {/* ========== Section 3 - Testimonials ========== */}
-          <section id="testimonials" className={styles.section}>
+          {/* <section id="testimonials" className={styles.section}>
             <div className={styles.sectionInner}>
               <header className={styles.head}>
                 <span className={styles.headBadge}>نظرات کاربران</span>
                 <span className={styles.headLine} />
               </header>
               <div className={styles.body}>
-                {/* <LandingPage_Testimonials /> */}
+                <LandingPage_Testimonials />
+              </div>
+            </div>
+          </section> */}
+
+          <section
+            id="testimonials"
+            className={`${styles.section} ${styles.sectionTestimonials}`}
+          >
+            <div className={styles.sectionInner}>
+              <header className={styles.head}>
+                <span className={styles.headBadge}>نظرات کاربران</span>
+                <span className={styles.headLine} />
+              </header>
+
+              <div className={styles.body}>
+                <LandingPage_Testimonials />
               </div>
             </div>
           </section>
@@ -97,7 +113,7 @@ const LandingPage: React.FC = () => {
                 <span className={styles.headLine} />
               </header>
               <div className={styles.body}>
-                {/* <LandingPage_HowToStart /> */}
+                <LandingPage_HowToStart />
               </div>
             </div>
           </section>
@@ -110,7 +126,7 @@ const LandingPage: React.FC = () => {
                 <span className={styles.headLine} />
               </header>
               <div className={styles.body}>
-                {/* <LandingPage_AchievementCounters /> */}
+                <LandingPage_AchievementCounters />
               </div>
             </div>
           </section>
@@ -128,12 +144,15 @@ const LandingPage: React.FC = () => {
             </div>
           </section>
 
-          {/* ========== Section 7 - Contact ========== */}
-          <section id="contact" className={styles.section}>
+          <section id="contact" className={` ${styles.section}`}>
             <div className={styles.sectionInner}>
+              <header className={styles.head}>
+                <span className={styles.headBadge}>ارتباط با ما</span>
+                <span className={styles.headLine} />
+              </header>
               <div className={styles.body}>
                 <LandingPage_Contact />
-                </div>
+              </div>
             </div>
           </section>
         </main>

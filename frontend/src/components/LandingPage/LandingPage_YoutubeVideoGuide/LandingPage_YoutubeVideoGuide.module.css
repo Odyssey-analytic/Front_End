@@ -1,45 +1,53 @@
-/* روت RTL */
+/* =========================
+   Wrapper / Layout Grid
+   ========================= */
 .wrapper {
   direction: rtl;
   display: grid;
   grid-template-columns: 1fr;
-  align-items: start; /* ← هم‌تراز بالا */
+  align-items: start;
   gap: clamp(16px, 3vw, 32px);
   width: 100%;
 }
 
-/* ≥768px: دو ستون – نسبت 45% متن و 55% ویدیو */
 @media (min-width: 768px) {
   .wrapper {
     grid-template-columns: 0.45fr 0.55fr;
     gap: clamp(24px, 4vw, 40px);
+    align-items: start; /* Keep content aligned to top on desktop */
   }
 }
 
-/* ≥1200px: کمی بازتر */
 @media (min-width: 1200px) {
   .wrapper {
     grid-template-columns: 0.42fr 0.58fr;
     gap: clamp(28px, 4.5vw, 56px);
+    align-items: start; /* Keep top alignment on large screens */
   }
 }
 
+/* =========================
+   Video Container
+   ========================= */
 .videoBox {
   position: relative;
   aspect-ratio: 16 / 9;
   border-radius: 12px;
   overflow: hidden;
-  border: 1.5px solid rgba(255,255,255,.9);
-  box-shadow: 0 6px 24px rgba(0,0,0,.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
 
-  /* مرکز در ستون Grid + جمع‌وجورتر */
-  justify-self: center;         /* ← وسطِ ستون در Grid */
-  margin-inline: auto;          /* ← اگر جایی Flex شد هم وسط بمونه */
-  width: min(90%, 800px);       /* ← اختیاری: سقف عرض (مثلاً 800px) */
+  justify-self: center;
+  margin-inline: auto;
+  width: min(90%, 800px);
 }
 
+@media (min-width: 1200px) {
+  .videoBox {
+    width: min(95%, 1200px); /* Larger width for big screens */
+  }
+}
 
-/* iframe تمام‌پر */
 .video {
   position: absolute;
   inset: 0;
@@ -48,63 +56,34 @@
   border: 0;
 }
 
-/* متن */
-/* .textBox {
-  color: #fff;
-  min-width: 260px;
-  max-width: 60ch; 
-} */
-
+/* =========================
+   Text Content
+   ========================= */
 .textBox {
-  color: #fff;
+  align-self: center;
+  margin-right: 0;
   min-width: 260px;
   max-width: 60ch;
-  align-self: center;
-  margin-right: 0; /* اگر فاصله اضافه داری صفر کن */
+  color: #fff;
 }
 
-
-/* کمی پایین آوردن محتوا در دسکتاپ (به‌جای right/left قبلی) */
 .textBoxInside {
   display: grid;
   gap: clamp(8px, 1.5vw, 16px);
-  padding-inline-start: 0; /* چون RTL هستیم */
+  padding-inline-start: 0;
 }
 
-/* تایپوگرافی واکنش‌گرا */
 .subheading {
+  margin: 0;
   color: #aeb7c2;
   font-weight: 600;
   font-size: clamp(1rem, 1.8vw, 1.4rem);
-  margin: 0;
 }
 
 .description {
+  margin: 0;
+  font-weight: 300;
   font-size: clamp(0.95rem, 1.4vw, 1.05rem);
   line-height: clamp(1.8rem, 3.2vw, 2.2rem);
-  font-weight: 300;
-  margin: 0;
   color: #e7eaf0;
-}
-
-/* اگر فقط در دسکتاپ می‌خوای کوچک‌تر/وسط‌تر باشه: */
-@media (min-width: 1200px) {
-  .videoBox {
-    width: min(95%, 1200px);
-  }
-}
-
-
-@media (min-width: 768px) {
-  .wrapper {
-    grid-template-columns: 0.45fr 0.55fr;
-    align-items: start; /* ← مطمئن شو توی دسکتاپ هم بالا باشه */
-  }
-}
-
-@media (min-width: 1200px) {
-  .wrapper {
-    grid-template-columns: 0.42fr 0.58fr;
-    align-items: start; /* ← هم‌تراز بالا */
-  }
 }

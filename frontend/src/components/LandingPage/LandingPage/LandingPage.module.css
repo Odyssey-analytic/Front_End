@@ -1,31 +1,43 @@
-/* ===== پایه صفحه ===== */
+/* =========================
+   Root tokens
+   ========================= */
+:root {
+  --nav-height: 80px;     /* fixed navbar height */
+  --scroll-gap: 16px;     /* space under navbar when landing on anchors */
+  --page-gutter: clamp(16px, 2.2vw, 28px); /* safe side padding for full-bleed */
+}
+
+/* =========================
+   Page Base / Layout
+   ========================= */
 .wrapper {
   position: relative;
   width: 100%;
   overflow-x: hidden;
   direction: rtl;
+
   background-image: url("../../../../src/assets/images/TotalBackGround.png");
   background-size: 150% 150%;
   background-repeat: no-repeat;
   background-position: center;
-
 }
 
 .backgroundImage {
   position: absolute;
   inset: 0;
+  z-index: 0;
+
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 0;
-  opacity: .35; /* پس‌زمینه نرم برای خوانایی متن */
+  opacity: 0.35; /* soften backdrop for readability */
 }
 
 .contentWrapper {
   position: relative;
   z-index: 2;
   width: 100%;
-  margin-top: 80px; /* زیر نوار ناوبری */
+  margin-top: var(--nav-height); /* below fixed navbar */
 }
 
 .mainSections {
@@ -34,41 +46,65 @@
   gap: clamp(32px, 5vw, 80px);
 }
 
-/* ===== هر سکشن ===== */
+/* =========================
+   Section Container
+   ========================= */
 .section {
   position: relative;
   z-index: 2;
   color: #fff;
   padding-block: clamp(48px, 6vw, 100px);
   overflow: hidden;
-  /* اگر بعداً scroll-snap خواستی، این‌ها رو فعال کن */
-  /* scroll-snap-align: start; */
+
+  /* land below the fixed navbar on anchor scroll */
+  scroll-margin-top: calc(var(--nav-height) + var(--scroll-gap));
 }
 
-/* ظرف داخلی سکشن‌ها */
+/* Contact section: tighter top space + header contained */
+.sectionContact {
+  color: #fff;
+  padding-top: clamp(24px, 3vw, 56px);
+  padding-bottom: clamp(48px, 6vw, 100px);
+  scroll-margin-top: calc(var(--nav-height) + 8px);
+}
+.sectionContact .head {
+  width: min(1200px, 92%);
+  margin-inline: auto;
+  padding-inline: 0;           /* remove full-bleed padding */
+}
+.sectionContact .headLine {
+  inline-size: clamp(56px, 4vw, 96px);
+}
+
+/* Inner content width lock + vertical rhythm */
 .sectionInner {
   width: min(1200px, 92%);
   margin-inline: auto;
+
   display: flex;
   flex-direction: column;
   gap: clamp(16px, 3vw, 32px);
 }
 
-/* بک‌گراند تزئینی فقط برای سکشن‌ها (در سکشن ۱ استفاده شده) */
+/* Decorative background per section (optional) */
 .sectionBg {
   position: absolute;
   inset: 0;
+  z-index: 0;
+
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: .6;
-  z-index: 0;
+  opacity: 0.6;
 }
 
-/* ===== سکشن ۱ (Hero) ===== */
+/* =========================
+   Hero
+   ========================= */
 .heroRow {
   position: relative;
   z-index: 1;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -76,23 +112,25 @@
 }
 
 .heroCopy h1 {
+  margin: 0 0 clamp(8px, 1.5vw, 16px);
   font-size: clamp(1.6rem, 3.2vw, 2.6rem);
   line-height: 1.6;
   font-weight: 800;
-  margin: 0 0 clamp(8px, 1.5vw, 16px);
 }
+
 .heroCopy p {
-  font-size: clamp(.95rem, 1.4vw, 1.05rem);
+  margin: 0;
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
   line-height: 1.9;
   color: #cfd3da;
-  margin: 0;
 }
+
 .accent { color: #63c6e4; }
 
 .heroArt {
+  align-self: flex-end; /* under text on mobile */
   width: clamp(160px, 28vw, 380px);
-  align-self: flex-end; /* در موبایل زیر متن قرار می‌گیرد */
-  opacity: .95;
+  opacity: 0.95;
 }
 
 @media (min-width: 768px) {
@@ -104,62 +142,87 @@
   .heroArt { align-self: center; }
 }
 
-/* ===== هدر مشترک بقیه سکشن‌ها ===== */
+/* =========================
+   Section Header (full-bleed band)
+   ========================= */
 .head {
   display: flex;
   align-items: center;
   gap: 12px;
-  width: 100vw;                 /* تمام عرض ویوپورت */
-  margin-inline: calc(53% - 50vw);
+
+  width: 100vw;                           /* full viewport band */
+  margin-inline: calc(53% - 50vw);        /* center the band across page */
   padding-inline: var(--page-gutter);
 }
 
 .headBadge {
-  background: rgba(85, 166, 188, 0.3);
-  color: #63c6e4;
+  white-space: nowrap;
   padding: 10px 16px;
   border-radius: 6px;
-  font-size: clamp(.85rem, 1vw, .95rem);
-  white-space: nowrap;
-}
-.headLine {
-  /* flex: 0 0 clamp(60px, 8vw, 120px); */
-  height: 2px;
-  background: #63c6e4;
-  border-radius: 1px;
-  flex: none;                  /* دیگه فضای اضافی نمی‌گیره */
-  /* width: clamp(60px, 2vw, 80px);  */
-  /* width: 5%; */
-    inline-size: clamp(64px, 8vw, 120px);
+
+  background: rgba(85, 166, 188, 0.3);
+  color: #63c6e4;
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
 }
 
-/* ===== بدنه مشترک سکشن‌ها ===== */
+.headLine {
+  inline-size: clamp(64px, 8vw, 120px);
+  height: 2px;
+  flex: none;
+  background: #63c6e4;
+  border-radius: 1px;
+}
+
+/* =========================
+   Generic Body Grid
+   ========================= */
 .body {
   display: flex;
   flex-wrap: wrap;
   gap: clamp(16px, 2.5vw, 28px);
 }
 
-/* ===== دکمه اسکرول به بالا ===== */
+/* =========================
+   Full‑bleed modifier for Testimonials
+   ========================= */
+/* Let the inner container escape the centered max-width just for this section */
+.sectionTestimonials .sectionInner {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  padding-inline: 0;
+}
+/* If you prefer the header not to be full-bleed here, uncomment:
+.sectionTestimonials .head {
+  width: min(1200px, 92%);
+  margin-inline: auto;
+  padding-inline: 0;
+}
+*/
+
+/* =========================
+   Back-to-Top Floating Button
+   ========================= */
 .scrollToTopButton {
   position: fixed;
-  bottom: 30px;
-  left: 30px;
   z-index: 999;
-  background-color: #00796b;
-  opacity: 0.7;
-  color: white;
-  border: none;
-  border-radius: 50%;
+  left: 30px;
+  bottom: 30px;
+
+  display: inline-grid;
+  place-items: center;
+
   width: 48px;
   height: 48px;
+  border: none;
+  border-radius: 50%;
+
+  background-color: #00796b;
+  color: #ffffff;
+  opacity: 0.7;
   font-size: 24px;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,0,0,.3);
-  transition: background-color .3s ease;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
 }
 .scrollToTopButton:hover { background-color: #004d40; }
-
-/* @media (min-width: 1200px) {
-  .headLine { flex-basis: clamp(120px, 12vw, 240px); }
-} */
