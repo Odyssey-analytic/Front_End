@@ -16,11 +16,7 @@ import {
   ChartData,
   type Plugin,
   type ScriptableContext,
-  // type ChartOptions,
-  // type ChartData,
 } from "chart.js";
-
-// import type { Plugin, ScriptableContext } from "chart.js";
 
 import ChartCardWrapper from "../ChartsPage_CardWrapper/ChartsPage_CardWrapper";
 import styles from "./ActiveUsersKPI.module.css";
@@ -62,69 +58,107 @@ const AreaChartKPI = () => {
     },
   };
 
-  const segmentedAreaFill: Plugin<"line"> = {
-    id: "segmentedAreaFill",
-    beforeDatasetsDraw(chart, _args, pluginOpts) {
-      try {
-        const meta = chart.getDatasetMeta(0);
-        const { ctx, chartArea } = chart;
-        if (!meta || meta.hidden || !chartArea) return;
-  
-        const elems = meta.data as any[];
-        if (!elems || elems.length === 0) return;
-  
-        // مرزهای افقی بخش‌ها (۰..۱ نسبتی)
-        const parts: Array<{ from: number; to: number; top: string; bottom: string }> =
-          pluginOpts?.parts ?? [
-            { from: 0.0,  to: 0.33, top: "#dc2e2e", bottom: "#dc2e2e" },
-            { from: 0.33, to: 0.66, top: "#dc2e2e", bottom: "#dc2e2e" },
-            { from: 0.66, to: 1.0,  top: "#dc2e2e",  bottom: "#dc2e2e" },
-          ];
-  
-        // مسیر ناحیه‌ی زیر خط: از کف → روی خط → بازگشت به کف
-        const first = elems[0].getProps(["x", "y"], true);
-        const last  = elems[elems.length - 1].getProps(["x", "y"], true);
-  
-        const makePath = () => {
-          ctx.beginPath();
-          ctx.moveTo(first.x, chartArea.bottom);
-          for (let i = 0; i < elems.length; i++) {
-            const { x, y } = elems[i].getProps(["x", "y"], true);
-            ctx.lineTo(x, y);
-          }
-          ctx.lineTo(last.x, chartArea.bottom);
-          ctx.closePath();
-        };
-  
-        parts.forEach((p) => {
-          const xL = chartArea.left + (chartArea.right - chartArea.left) * p.from;
-          const xR = chartArea.left + (chartArea.right - chartArea.left) * p.to;
-  
-          ctx.save();
-          // کلیپ افقی بخش
-          ctx.beginPath();
-          ctx.rect(xL, chartArea.top, xR - xL, chartArea.bottom - chartArea.top);
-          ctx.clip();
-  
-          // مسیر ناحیه و گرادیان عمودی مخصوص همین بخش
-          makePath();
-          const g = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-          g.addColorStop(0, p.top);
-          g.addColorStop(1, p.bottom);
-          ctx.fillStyle = g;
-          ctx.fill();
-  
-          ctx.restore();
-        });
-      } catch (err) {
-        console.error("segmentedAreaFill error:", err);
+  // const fadedFillPlugin: Plugin<"line"> = {
+  //   id: "fadedFill",
+  //   afterDatasetsDraw(chart, args, pluginOptions) {
+  //     const { ctx, chartArea } = chart;
+  //     const meta = chart.getDatasetMeta(0);
+  //     const dataset = chart.data.datasets[0] as any;
+  //     if (!meta?.dataset || !chartArea) return;
+
+  //     // 1) مسیر زیر نمودار (area) رو کلیپ کن
+  //     ctx.save();
+  //     ctx.beginPath();
+  //     meta.dataset.draw(ctx); // مسیر خود دیتاست
+  //     ctx.clip();
+
+  //     // 2) فیل افقی با استاپ‌های هم‌رنگ بردر
+  //     const g = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
+  //     colorStops.forEach(cs => g.addColorStop(cs.stop, cs.fill));
+  //     ctx.fillStyle = g;
+  //     ctx.fillRect(chartArea.left, chartArea.top, chartArea.width, chartArea.height);
+
+  //     // 3) ماسک عمودی برای محو شدن به سمت پایین
+  //     const mask = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+  //     mask.addColorStop(0, "rgba(0,0,0,0.9)");
+  //     mask.addColorStop(1, "rgba(0,0,0,0)");
+  //     ctx.globalCompositeOperation = "destination-in";
+  //     ctx.fillStyle = mask;
+  //     ctx.fillRect(chartArea.left, chartArea.top, chartArea.width, chartArea.height);
+
+  //     ctx.restore();
+  //   },
+  // };
+
+  // --- بالای فایل (خارج از کامپوننت) ---
+  const colorStops = [
+    { stop: 0, border: "#591c8e", fill: "rgba(89,28,142,0.25)" },
+    { stop: 0.5, border: "#4e7dd4", fill: "rgba(78,125,212,0.25)" },
+    { stop: 1, border: "#1721b6", fill: "rgba(23,33,182,0.25)" },
+  ];
+
+  const fadedFillPlugin: Plugin<"line"> = {
+    id: "fadedFill",
+    afterDatasetsDraw(chart) {
+      const { ctx, chartArea, scales } = chart;
+      const meta = chart.getDatasetMeta(0);
+
+      if (!chartArea || !meta?.data?.length) return;
+
+      // مسیر زیر نمودار را خودمان می‌سازیم
+      const points = meta.data as unknown as Array<{ x: number; y: number }>;
+      const yScale = scales["y"] as any;
+      const baseY = yScale?.bottom ?? chartArea.bottom;
+
+      ctx.save();
+
+      // 1) کلیپ: مسیر area زیر خط
+      ctx.beginPath();
+      // شروع از خط پایه زیر اولین x
+      ctx.moveTo(points[0].x, baseY);
+      // رفتن روی همه‌ی نقاط خط
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        ctx.lineTo(p.x, p.y);
       }
+      // برگشت روی خط پایه زیر آخرین x
+      const last = points[points.length - 1];
+      ctx.lineTo(last.x, baseY);
+      ctx.closePath();
+      ctx.clip();
+
+      // 2) فیل افقی هم‌رنگ با بردر
+      const g = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
+      colorStops.forEach((cs) => g.addColorStop(cs.stop, cs.fill));
+      ctx.fillStyle = g;
+      ctx.fillRect(
+        chartArea.left,
+        chartArea.top,
+        chartArea.width,
+        chartArea.height
+      );
+
+      // 3) ماسک عمودی برای محو شدن به پایین
+      const mask = ctx.createLinearGradient(
+        0,
+        chartArea.top,
+        0,
+        chartArea.bottom
+      );
+      mask.addColorStop(0, "rgba(0,0,0,0.9)");
+      mask.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.globalCompositeOperation = "destination-in";
+      ctx.fillStyle = mask;
+      ctx.fillRect(
+        chartArea.left,
+        chartArea.top,
+        chartArea.width,
+        chartArea.height
+      );
+
+      ctx.restore();
     },
   };
-  
-  // ثبتِ سراسری پلاگین
-  // ChartJS.register(segmentedAreaFill);
-
 
   const [chartData, setChartData] = useState<ChartData<"line">>({
     // labels: [],
@@ -135,19 +169,33 @@ const AreaChartKPI = () => {
         // data: [],
         data: mockData,
 
-        borderColor: (ctx: ScriptableContext<"line">) => {
-          const { chart } = ctx;
-          const { ctx: c, chartArea } = chart;
-          if (!chartArea) return "#3AA0FF";
+        // borderColor: (ctx: ScriptableContext<"line">) => {
+        //   const { chart } = ctx;
+        //   const { ctx: c, chartArea } = chart;
+        //   if (!chartArea) return "#3AA0FF";
+        //   const g = c.createLinearGradient(
+        //     chartArea.left,
+        //     0,
+        //     chartArea.right,
+        //     0
+        //   );
+        //   g.addColorStop(0, "#591c8e");
+        //   g.addColorStop(0.5, "#4e7dd4");
+        //   g.addColorStop(1, "#1721b6");
+        //   return g;
+        // },
+
+        // خط رنگی افقی با استاپ‌های مشترک
+        borderColor: (ctx) => {
+          const { chartArea, ctx: c } = ctx.chart;
+          if (!chartArea) return colorStops[colorStops.length - 1].border;
           const g = c.createLinearGradient(
             chartArea.left,
             0,
             chartArea.right,
             0
           );
-          g.addColorStop(0, "#591c8e");
-          g.addColorStop(0.5, "#4e7dd4");
-          g.addColorStop(1, "#1721b6");
+          colorStops.forEach((cs) => g.addColorStop(cs.stop, cs.border));
           return g;
         },
 
@@ -167,13 +215,14 @@ const AreaChartKPI = () => {
         //   return g;
         // },
 
+        backgroundColor: "rgba(0,0,0,0)", // شفاف چون پلاگین خودش fill می‌کشه
+        fill: false, // پلاگین مسئول پر کردن میشه
+
         tension: 0.4,
         // fill: true,
-        fill: false,
         pointRadius: 0,
         pointHoverRadius: 4,
         borderWidth: 3,
-
       },
     ],
   });
@@ -392,8 +441,8 @@ const AreaChartKPI = () => {
           id="myAnimatedChartId"
           data={chartData}
           options={options}
-          plugins={[movingDotPlugin]}
-          // plugins={[glowPlugin, movingDotPlugin]}
+          // plugins={[movingDotPlugin]}
+          plugins={[movingDotPlugin, fadedFillPlugin]}
         />
       </div>
     </ChartCardWrapper>

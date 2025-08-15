@@ -1,9 +1,17 @@
 .header {
   width: 100%;
-  background-color: white;
-  border-bottom: 1px solid #e0e0e0;
+  /* background-color: white; */
+  /* border-bottom: 1px solid #e0e0e0; */
   padding: 1rem 1.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04); */
+
+  background-color: #212040;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: inset 8px 0 15px rgba(255, 255, 255, 0.1);
+
+
+  /* color: #ffffffd2; */
+
   position: sticky;
   top: 0;
   z-index: 10;
@@ -20,7 +28,8 @@
 .title {
   font-weight: 600;
   margin: 0;
-  color: #1a1a1a;
+  /* color: #1a1a1a; */
+  color: #ffffffd2;
 }
 
 .buttons {
