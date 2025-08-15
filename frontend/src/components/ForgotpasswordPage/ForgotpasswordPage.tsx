@@ -52,9 +52,7 @@ const ForgotpasswordPage = () => {
     <div className={styles.container}>
       {/* Brand Logo */}
 
-      <div
-        className={`d-flex align-items-center position-fixed top-0 end-0 ms-4 mt-4`}
-      >
+      <div className={`d-flex align-items-center position-fixed top-0 end-0 ms-4 mt-4`}>
         <div className={`${styles.brandText} english-text text-white me-3`}>
           ODESSAY
         </div>
