@@ -2,15 +2,20 @@
    Sidebar Styles (Larger than 480px)
 -------------------------------------- */
 .sidebar {
-  width: 230px;
+  width: 220px;
   /* background-color: #1f2444; */
   background-color: #212040;
 
   /* بردر سفید سمت چپ */
-  border-left: 1px solid rgba(255, 255, 255, 0.4);
+  /* border-left: 1px solid rgba(255, 255, 255, 0.4); */
 
   /* سایه ملایم سفید سمت چپ */
-  box-shadow: inset 8px 0 15px rgba(255, 255, 255, 0.1);
+  /* box-shadow: inset 8px 0 15px rgba(255, 255, 255, 0.1); */
+
+
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 6px 0 13px rgba(255, 255, 255, 0.1);
+
 
   color: #ffffffd2;
   transition: width 0.3s ease;
@@ -21,7 +26,17 @@
   width: 70px;
 }
 
-.closeSidebar {
+/* .closeSidebar {
+  font-size: 30px;
+  color: #fff;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 2001;
+} */
+
+.MobilecloseSidebar {
   font-size: 30px;
   color: #fff;
   position: absolute;
@@ -46,10 +61,13 @@
   margin-bottom: 4px;
   transition: background 0.2s ease;
   font-size: 0.9rem;
+  border-radius: 6px;
 }
 
-.menuItem.active {
-  background-color: #00c3ff59;
+.menuItem:hover {
+  background-color: #6f98d576;
+  /* background-color: #4C5881; */
+  /* border-radius: 6px; */
 }
 
 .menuContent {
@@ -65,8 +83,9 @@
 }
 
 .active {
-  background-color: #00c4ff33;
-  border-right: 3px solid #00c4ff;
+  /* background-color: #ff000033; */
+  background-color: #6f98d576;
+  border-right: 4px solid #b2badb;
 }
 
 .subMenu {
@@ -85,12 +104,18 @@
 }
 
 .subMenuItem:hover {
-  background-color: #00c3ff57;
+  /* background-color: #00c3ff57; */
+  background-color: #6f98d53a;
 }
 
 .subMenuItem .menuContent {
   padding-right: 12px;
 }
+
+
+/* .subMenuItem.active {
+  background-color: #ff000033;
+} */
 
 .iconMain {
   font-size: 20px;
@@ -125,7 +150,7 @@
   display: flex;
   flex-direction: column;
   padding-top: 12px;
-  padding-bottom: 8px;
+  padding-bottom: 20px;
 }
 
 .headerWrapper {
@@ -135,6 +160,7 @@
 
   justify-content: left;
   padding-left: 10px;
+  margin-bottom: 18px;
 }
 
 .gameNameWrapper {
@@ -142,15 +168,22 @@
 }
 
 .gameSelectorBox {  
-  margin-top: 15px;
-  padding: 10px 20px;
+  /* margin-top: 15px; */
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 55px;
+  /* justify-content: center;
+  justify-items: center; */
   border-radius: 2px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
   cursor: pointer;
 
-  background-color: #b0d3ff25;
+  /* background-color: #b0d3ff25; */
+
+/* background-color: #8996e013; */
+
   backdrop-filter: blur(5px);
   
   transition: all 0.3s ease;
@@ -158,7 +191,9 @@
 }
 
 .gameSelectorBox:hover {
-  background-color: #b0d4ff55;
+  /* background-color: #5d5d7fac; */
+  /* background-color: #5177b076; */
+  background-color: #4C5881;
 }
 
 .collapsed .gameSelectorBox {
@@ -257,26 +292,31 @@
 }
 
 .divider {
-  border-top: 1px solid #afbcff;
-  margin-top: 15px;
+  border-top: 1.5px solid #aeb6db;
+  /* margin-top: 15px; */
   margin-bottom: 1px;
+  margin-top: 1px;
 }
 
 /* --------------------------------------
    Profile and Logout Styles
 -------------------------------------- */
 .profileSection {
-  position: fixed;
+  /* position: absolute; */
   bottom: 0.1px;
   right: 0.1px;
-  min-width: 229px;
+  position:fixed;
+  min-width: 220px;
+  
+  transition: width 0.3s ease;
 }
 
 .profileCard {
-  background: #151933eb;
+  /* background: #151933eb; */
+  background-color: #18182B;
 
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 25px;
+  border-top-right-radius:25px;
   padding: 0.5rem;
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;
@@ -310,7 +350,8 @@
 
 .profileStatus {
   font-size: 0.7rem;
-  color: #00c4ff;
+  /* color: #00c4ff; */
+  color: #7d97ff;
   display: flex;
   align-items: center;
   
@@ -319,7 +360,8 @@
     display: inline-block;
     width: 6px;
     height: 6px;
-    background: #00c4ff;
+    /* background: #00c4ff; */
+    background: #7d97ff;
     border-radius: 50%;
     margin-left: 5px;
   }
@@ -369,6 +411,71 @@
   color: rgba(255, 255, 255, 0.6);
   transition: transform 0.2s ease;
 }
+
+
+.profileMiniWrapper {
+  background-color: #18182B;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* justify-items: center; */
+  text-align: center;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 16px;
+  /* margin-top: auto;        اگر می‌خوای بچسبه پایین سایدبار */
+  
+
+  /* width: 100%; */
+  
+  bottom: 0.1px;
+  right: 0.1px;
+  position: fixed;
+  min-width: 70px;
+  /* height: 110px; */
+  border-top-left-radius: 25px;
+  
+  border-top-right-radius: 25px;
+
+  transition: width 0.3s ease;
+}
+
+/* .profileMiniBtn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+
+.logoutMiniIcon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.8;
+  /* align-items: center;
+  text-align: center;
+  justify-content: center;
+  justify-items: center; */
+  margin-right: 18%;
+  margin-bottom: 5px;
+}
+
+.avatarMini {
+  width: 32px;             /* یا 28px/36px برحسب طراحی */
+  height: 32px;
+  border-radius: 50%;
+  display: block;
+  margin-bottom: 10px;
+  /* justify-content: center;
+  justify-items: center;
+  text-align: center;
+  align-items: center; */
+  margin-right: 15%;
+}
+
 
 /* --------------------------------------
    Mobile-Specific Styles (Smaller than 480px)

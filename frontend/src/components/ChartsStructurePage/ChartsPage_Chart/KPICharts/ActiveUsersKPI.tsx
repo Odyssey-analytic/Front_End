@@ -58,39 +58,6 @@ const AreaChartKPI = () => {
     },
   };
 
-  // const fadedFillPlugin: Plugin<"line"> = {
-  //   id: "fadedFill",
-  //   afterDatasetsDraw(chart, args, pluginOptions) {
-  //     const { ctx, chartArea } = chart;
-  //     const meta = chart.getDatasetMeta(0);
-  //     const dataset = chart.data.datasets[0] as any;
-  //     if (!meta?.dataset || !chartArea) return;
-
-  //     // 1) مسیر زیر نمودار (area) رو کلیپ کن
-  //     ctx.save();
-  //     ctx.beginPath();
-  //     meta.dataset.draw(ctx); // مسیر خود دیتاست
-  //     ctx.clip();
-
-  //     // 2) فیل افقی با استاپ‌های هم‌رنگ بردر
-  //     const g = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
-  //     colorStops.forEach(cs => g.addColorStop(cs.stop, cs.fill));
-  //     ctx.fillStyle = g;
-  //     ctx.fillRect(chartArea.left, chartArea.top, chartArea.width, chartArea.height);
-
-  //     // 3) ماسک عمودی برای محو شدن به سمت پایین
-  //     const mask = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-  //     mask.addColorStop(0, "rgba(0,0,0,0.9)");
-  //     mask.addColorStop(1, "rgba(0,0,0,0)");
-  //     ctx.globalCompositeOperation = "destination-in";
-  //     ctx.fillStyle = mask;
-  //     ctx.fillRect(chartArea.left, chartArea.top, chartArea.width, chartArea.height);
-
-  //     ctx.restore();
-  //   },
-  // };
-
-  // --- بالای فایل (خارج از کامپوننت) ---
   const colorStops = [
     { stop: 0, border: "#591c8e", fill: "rgba(89,28,142,0.25)" },
     { stop: 0.5, border: "#4e7dd4", fill: "rgba(78,125,212,0.25)" },

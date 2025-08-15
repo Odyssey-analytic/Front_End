@@ -25,7 +25,7 @@ import {
 import GameLogo from "../../../../public/icons/game-ghost-icon.svg";
 import dashboard_logout_panel_icon from "../../../../public/icons/dashboard_panel_icon.svg";
 import dashboard_sidebar_user_icon from "../../../../public/icons/dashboard_sidebar_user_icon.svg";
-import OdessayLogo from "../../../../public/icons/odessay_logo.svg"
+import OdessayLogo from "../../../../public/icons/odessay_logo.svg";
 
 const menuItems = [
   {
@@ -151,22 +151,22 @@ const ChartsPage_SideBar = () => {
   const [sidebarActive, setSidebarActive] = useState(false); // The state for controlling whether the sidebar is open or closed
   const [isSmallScreen, setIsSmallScreen] = useState(false); // The state to check if the screen width is less than 480px
   const [collapsed, setCollapsed] = useState(false); // The state for controlling the collapsed or expanded state of the sidebar for screens larger than 480px
-  
+
   const [openSections, setOpenSections] = useState<number[]>([]);
-  
+
   const [selectedGame, setSelectedGame] = useState("بازی A");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const gameList = ["بازی اول", "بازی دوم", "بازی سوم"];
-  
+
   const [username, setUsername] = useState<string>();
-  
+
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
     if (storedUsername) setUsername(storedUsername);
   }, []);
-  
+
   useEffect(() => {
     const handleClick = () => {
       if (dropdownOpen) {
@@ -175,15 +175,14 @@ const ChartsPage_SideBar = () => {
     };
 
     if (dropdownOpen) {
-      document.addEventListener('click', handleClick);
-      return () => document.removeEventListener('click', handleClick);
+      document.addEventListener("click", handleClick);
+      return () => document.removeEventListener("click", handleClick);
     }
   }, [dropdownOpen]);
 
-
-  const handleMenuClick = () => {
-    setDropdownOpen((prev) => !prev);
-  };
+  // const handleMenuClick = () => {
+  //   setDropdownOpen((prev) => !prev);
+  // };
 
   // Function to toggle the sidebar open/closed
   const MobileSidebarOpen = () => {
@@ -195,63 +194,59 @@ const ChartsPage_SideBar = () => {
   };
 
   const toggleSection = (index: number) => {
-    setOpenSections(prev =>
-      prev.includes(index)
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
+    setOpenSections((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
-    
+
     if (openSections.includes(index)) {
       setActiveIndex(null);
     }
   };
-  
+
   // Function to collapse/expand the sidebar
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
+    setDropdownOpen(false); // بستن دراپ‌دان بازی
+    setOpenSections([]); // بستن تمام ساب‌منوها
   };
-  
+
   useEffect(() => {
     // Check if the screen width is less than 480px
     const checkScreenSize = () => {
       setIsSmallScreen(window.innerWidth < 480); // Set isSmallScreen to true if screen width is less than 480px
     };
-  
+
     // Initial check
     checkScreenSize();
-  
+
     // Add event listener for window resize
     window.addEventListener("resize", checkScreenSize);
-  
+
     // Cleanup (remove event listener) when the component unmounts
     return () => {
       window.removeEventListener("resize", checkScreenSize);
     };
   }, []);
-  
 
   return (
     <div>
-
       {/* For screens larger than 480px, display a fixed sidebar */}
       {!isSmallScreen && (
-        <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}>
-
+        <aside
+          className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}
+        >
           {/* Game selector section */}
           <div className={styles.gameHeader}>
             <div className={styles.headerWrapper}>
-
-
               {/* <div className={styles.brandLogoHeader}> */}
-                <span className={styles.brandLogoText}>ODESSAY</span>
-                <img
-                  src={OdessayLogo}
-                  alt="Odessay Logo"
-                  className={styles.brandLogoImg}
-                />
+              <span className={styles.brandLogoText}>ODESSAY</span>
+              <img
+                src={OdessayLogo}
+                alt="Odessay Logo"
+                className={styles.brandLogoImg}
+              />
               {/* </div> */}
 
-              
               {/* Collapse/Expand button for the sidebar */}
               <div
                 className={styles.toggle}
@@ -260,24 +255,23 @@ const ChartsPage_SideBar = () => {
               >
                 {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
               </div>
-
             </div>
 
-              <hr className={styles.divider} />
+            <hr className={styles.divider} />
 
-              <div
-                className={styles.gameSelectorBox}
-                // onClick={() => setDropdownOpen((prev) => !prev)}
-                onClick={(e) => {
-                  e.stopPropagation(); // جلوگیری از بسته شدن توسط event کلیک صفحه
-                  setDropdownOpen(!dropdownOpen);
-                }}
-              >
-                <img src={GameLogo} alt="Game Logo" className={styles.gameLogo} />
-                {!collapsed && (
-                  <span className={styles.gameName}>{selectedGame}</span>
-                )}
-              </div>
+            <div
+              className={styles.gameSelectorBox}
+              // onClick={() => setDropdownOpen((prev) => !prev)}
+              onClick={(e) => {
+                e.stopPropagation(); // جلوگیری از بسته شدن توسط event کلیک صفحه
+                setDropdownOpen(!dropdownOpen);
+              }}
+            >
+              <img src={GameLogo} alt="Game Logo" className={styles.gameLogo} />
+              {!collapsed && (
+                <span className={styles.gameName}>{selectedGame}</span>
+              )}
+            </div>
 
             {/* Dropdown to select a game */}
             {dropdownOpen && (
@@ -309,10 +303,10 @@ const ChartsPage_SideBar = () => {
 
               return (
                 <div key={index}>
-
                   <div
-                    className={`${styles.menuItem} ${isActive ? styles.active : ""}`}
-
+                    className={`${styles.menuItem} ${
+                      isActive ? styles.active : ""
+                    }`}
                     onClick={() => {
                       if (item.collapsible) {
                         if (isSectionOpen) {
@@ -323,63 +317,73 @@ const ChartsPage_SideBar = () => {
                         setActiveIndex(index);
                       }
                     }}
-
                   >
-                  
                     <div className={styles.menuContent}>
                       <span className={styles.iconMain}>{item.icon}</span>
 
-                      {!collapsed && <span className={styles.label}>{item.label}</span>}
+                      {!collapsed && (
+                        <span className={styles.label}>{item.label}</span>
+                      )}
                       {item.collapsible && !collapsed && (
                         <span className={styles.chevron}>
-                          {isSectionOpen ? <FiChevronDown /> : <FiChevronRight />}
+                          {isSectionOpen ? (
+                            <FiChevronDown />
+                          ) : (
+                            <FiChevronRight />
+                          )}
                         </span>
                       )}
-
                     </div>
                   </div>
 
-                  {item.collapsible && isSectionOpen && item.items && item.items.length > 0 && (
-                    <div className={styles.subMenu}>
-                      {item.items.map((subItem, subIdx) => {
-                        const subItemKey = `${index}-${subIdx}`;
-                        return (
-                          <div
-                            key={subIdx}
-                            className={`${styles.subMenuItem} ${activeIndex === subItemKey ? styles.active : ""}`}
-                            onClick={() => setActiveIndex(subItemKey)}
-                          >
-                            <div className={styles.menuContent}>
-                              <span className={styles.iconSub}>{subItem.icon}</span>
-                              {!collapsed && (
-                                <span className={styles.label}>{subItem.label}</span>
-                              )}
+                  {item.collapsible &&
+                    isSectionOpen &&
+                    item.items &&
+                    item.items.length > 0 && (
+                      <div className={styles.subMenu}>
+                        {item.items.map((subItem, subIdx) => {
+                          const subItemKey = `${index}-${subIdx}`;
+                          return (
+                            <div
+                              key={subIdx}
+                              className={`${styles.subMenuItem} ${
+                                activeIndex === subItemKey ? styles.active : ""
+                              }`}
+                              onClick={() => setActiveIndex(subItemKey)}
+                            >
+                              <div className={styles.menuContent}>
+                                <span className={styles.iconSub}>
+                                  {subItem.icon}
+                                </span>
+                                {!collapsed && (
+                                  <span className={styles.label}>
+                                    {subItem.label}
+                                  </span>
+                                )}
+                              </div>
                             </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                  
+                          );
+                        })}
+                      </div>
+                    )}
                 </div>
               );
             })}
 
-            <div className={styles.profileSection}>
-              
+            {/* <div className={styles.profileSection}>
               <div className={styles.profileCard}>
                 <div className={styles.profileInfo}>
-                  <img 
-                    src={dashboard_sidebar_user_icon} 
-                    alt="Avatar" 
-                    className={styles.avatar} 
+                  <img
+                    src={dashboard_sidebar_user_icon}
+                    alt="Avatar"
+                    className={styles.avatar}
                   />
                   <div className={styles.profileText}>
                     <div className={styles.profileName}>{username}</div>
                     <div className={styles.profileStatus}>آنلاین</div>
                   </div>
                 </div>
-              
+
                 <div
                   className={styles.logoutBtn}
                   onClick={() => (window.location.href = "/panel")}
@@ -394,8 +398,71 @@ const ChartsPage_SideBar = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
+            {/* --- Profile section --- */}
+            {collapsed ? (
+              <div className={styles.profileMiniWrapper}>
+                {/* <div className={styles.profileCard}> */}
+                  {/* <div className={styles.profileInfo}> */}
+                    <img
+                      src={dashboard_sidebar_user_icon}
+                      alt="Avatar"
+                      className={styles.avatarMini}
+                    />
+                    {/* <div className={styles.profileText}> */}
+                      {/* <div className={styles.profileName}>{username}</div> */}
+                      {/* <div className={styles.profileStatus}>آنلاین</div> */}
+                    {/* </div> */}
+                  {/* </div> */}
+
+                  <div
+                    className={styles.logoutBtn}
+                    onClick={() => (window.location.href = "/panel")}
+                  >
+                    {/* <div className={styles.logoutContent}> */}
+                      <img
+                        src={dashboard_logout_panel_icon}
+                        alt="Logout"
+                        className={styles.logoutMiniIcon}
+                      />
+                      {/* <span className={styles.profilePanel}>پنل کاربری</span> */}
+                    {/* </div> */}
+                  </div>
+                </div>
+              // </div>
+            ) : (
+              // حالت کامل: کارت پروفایل فعلی
+              <div className={styles.profileSection}>
+                <div className={styles.profileCard}>
+                  <div className={styles.profileInfo}>
+                    <img
+                      src={dashboard_sidebar_user_icon}
+                      alt="Avatar"
+                      className={styles.avatar}
+                    />
+                    <div className={styles.profileText}>
+                      <div className={styles.profileName}>{username}</div>
+                      <div className={styles.profileStatus}>آنلاین</div>
+                    </div>
+                  </div>
+
+                  <div
+                    className={styles.logoutBtn}
+                    onClick={() => (window.location.href = "/panel")}
+                  >
+                    <div className={styles.logoutContent}>
+                      <img
+                        src={dashboard_logout_panel_icon}
+                        alt="Logout"
+                        className={styles.logoutIcon}
+                      />
+                      <span className={styles.profilePanel}>پنل کاربری</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </nav>
         </aside>
       )}
@@ -410,7 +477,6 @@ const ChartsPage_SideBar = () => {
         >
           <FiMenu />
         </div>
-
       )}
 
       {/* If the screen width is smaller than 480px, display a collapsible sidebar */}
@@ -418,7 +484,7 @@ const ChartsPage_SideBar = () => {
         <aside className={`${styles.sidebarActive}`}>
           {/* Button to close the sidebar */}
           <div
-            className={styles.closeSidebar}
+            className={styles.MobilecloseSidebar}
             onClick={MobileSidebarClose}
           >
             <FiX />
@@ -429,14 +495,18 @@ const ChartsPage_SideBar = () => {
             <div className={styles.MobilegameSelectorWrapper}>
               <div
                 className={`${styles.MobilegameSelectorBox} ${
-                  dropdownOpen ? styles.MobilegameSelectorBoxActive : ''
+                  dropdownOpen ? styles.MobilegameSelectorBoxActive : ""
                 }`}
                 onClick={(e) => {
                   e.stopPropagation(); // جلوگیری از بسته شدن توسط event کلیک صفحه
                   setDropdownOpen(!dropdownOpen);
                 }}
               >
-                <img src={GameLogo} alt="Game Logo" className={styles.MobilegameLogo} />
+                <img
+                  src={GameLogo}
+                  alt="Game Logo"
+                  className={styles.MobilegameLogo}
+                />
                 {!collapsed && (
                   <span className={styles.MobilegameName}>{selectedGame}</span>
                 )}
@@ -445,7 +515,7 @@ const ChartsPage_SideBar = () => {
 
             {/* Dropdown to select a game */}
             {dropdownOpen && (
-              <div 
+              <div
                 className={styles.MobilegameDropdown}
                 // ref={dropdownRef}
               >
@@ -453,7 +523,6 @@ const ChartsPage_SideBar = () => {
                   <div
                     key={game}
                     className={styles.MobilegameDropdownItem}
-
                     onClick={(e) => {
                       e.stopPropagation();
                       setSelectedGame(game);
@@ -477,10 +546,10 @@ const ChartsPage_SideBar = () => {
 
               return (
                 <div key={index}>
-
                   <div
-                    className={`${styles.MobilemenuItem} ${isActive ? styles.active : ""}`}
-                    
+                    className={`${styles.MobilemenuItem} ${
+                      isActive ? styles.active : ""
+                    }`}
                     onClick={() => {
                       if (item.collapsible) {
                         if (isSectionOpen) {
@@ -492,7 +561,6 @@ const ChartsPage_SideBar = () => {
                       }
                     }}
                   >
-                  
                     <div className={styles.MobilemenuContent}>
                       <span className={styles.iconMain}>{item.icon}</span>
 
@@ -510,39 +578,44 @@ const ChartsPage_SideBar = () => {
                         return (
                           <div
                             key={subIdx}
-                            className={`${styles.MobilesubMenuItem} ${activeIndex === subItemKey ? styles.active : ""}`}
+                            className={`${styles.MobilesubMenuItem} ${
+                              activeIndex === subItemKey ? styles.active : ""
+                            }`}
                             onClick={() => setActiveIndex(subItemKey)}
                           >
                             <div className={styles.MobilemenuContent}>
-                              <span className={styles.MobileiconSub}>{subItem.icon}</span>
-                              <span className={styles.Mobilelabel}>{subItem.label}</span>
+                              <span className={styles.MobileiconSub}>
+                                {subItem.icon}
+                              </span>
+                              <span className={styles.Mobilelabel}>
+                                {subItem.label}
+                              </span>
                             </div>
                           </div>
                         );
                       })}
                     </div>
                   )}
-                  
                 </div>
               );
             })}
 
             <div className={styles.MobileprofileSection}>
               <hr className={styles.Mobiledivider} />
-              
+
               <div className={styles.MobileprofileCard}>
                 <div className={styles.MobileprofileInfo}>
-                  <img 
-                    src={dashboard_sidebar_user_icon} 
-                    alt="Avatar" 
-                    className={styles.Mobileavatar} 
+                  <img
+                    src={dashboard_sidebar_user_icon}
+                    alt="Avatar"
+                    className={styles.Mobileavatar}
                   />
                   <div className={styles.MobileprofileText}>
                     <div className={styles.MobileprofileName}>{username}</div>
                     <div className={styles.MobileprofileStatus}>آنلاین</div>
                   </div>
                 </div>
-              
+
                 <hr className={styles.Mobiledivider} />
 
                 <div
@@ -560,7 +633,6 @@ const ChartsPage_SideBar = () => {
                 </div>
               </div>
             </div>
-
           </nav>
         </aside>
       )}
