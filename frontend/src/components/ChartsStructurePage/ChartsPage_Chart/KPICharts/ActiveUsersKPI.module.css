@@ -1,3 +1,17 @@
 .glassChart {
-  height: 380px;
+  height: 460px;
+  /* color: #591c8e;
+  color: #1721b6;
+  color: #4e7dd4; */
+
+
+  /* color: #dc2e2e;
+  color: rgba(38,53,128,0.22);
+  color: rgba(21,34,86,0.35); */
 }
+
+/* rgba(58,160,255,0.16) */
+
+/* g.addColorStop(0, "rgba(64,84,255,0.15)");
+g.addColorStop(0.5, "rgba(38,53,128,0.22)");
+g.addColorStop(1, "rgba(21,34,86,0.35)"); */
