@@ -1,459 +1,146 @@
-/* ========== Wrapper for whole landing page ========== */
+/* ===== پایه صفحه ===== */
 .wrapper {
   position: relative;
   width: 100%;
   overflow-x: hidden;
+  direction: rtl;
+  background-image: url("../../../../src/assets/images/TotalBackGround.png");
+  background-size: 150% 150%;
+  background-repeat: no-repeat;
+  background-position: center;
+
 }
 
-/* ========== Background image of landing page ========== */
 .backgroundImage {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
-  max-height: 100%;
+  height: 100%;
+  object-fit: cover;
   z-index: 0;
+  opacity: .35; /* پس‌زمینه نرم برای خوانایی متن */
 }
 
-.FirstSectionBackGroundImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  max-height: 80%;
-  z-index: 0;
-}
-
-/* ========== Wrapper for all landing content (above background) ========== */
 .contentWrapper {
   position: relative;
   z-index: 2;
   width: 100%;
-  margin-top: 80px;
+  margin-top: 80px; /* زیر نوار ناوبری */
 }
 
-/* ========== Wrapper for all main vertical sections ========== */
 .mainSections {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: clamp(32px, 5vw, 80px);
 }
 
-@media (max-width: 480px) {
-  .mainSections {
-    gap: 40px;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-  .mainSections {
-    gap: 60px;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .mainSections {
-    gap: 80px;
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1500px) {
-  .mainSections {
-    gap: -10px;
-  }
-}
-
-/* ========== Reusable section style ========== */
+/* ===== هر سکشن ===== */
 .section {
-  min-height: 120vh;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  justify-content: flex-start;
-  color: white;
   position: relative;
   z-index: 2;
+  color: #fff;
+  padding-block: clamp(48px, 6vw, 100px);
+  overflow: hidden;
+  /* اگر بعداً scroll-snap خواستی، این‌ها رو فعال کن */
+  /* scroll-snap-align: start; */
 }
 
-@media (max-width: 480px) {
-  .section {
-    min-height: auto;
-    padding: 60px 0;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-  .section {
-    min-height: auto;
-    padding: 70px 0;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .section {
-    min-height: 50vh;
-    padding: 80px 0;
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1280px) {
-  .section {
-    min-height: 110vh;
-    padding: 90px 0;
-  }
-}
-
-@media (min-width: 1281px) {
-  .section {
-    min-height: 100vh;
-    padding: 100px 0;
-  }
-}
-
-/* ========== Applied when section becomes visible ========== */
-.animate {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ========== Title wrapper inside section with line under it ========== */
-.titleWrapper {
+/* ظرف داخلی سکشن‌ها */
+.sectionInner {
+  width: min(1200px, 92%);
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
+  gap: clamp(16px, 3vw, 32px);
 }
 
-.sectionTitle {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.titleUnderline {
-  width: 80px;
-  height: 4px;
-  background-color: white;
-  margin-top: 8px;
-}
-
-/* ========== Section1 Content ========== */
-.featuresText {
-  text-align: right;
+/* بک‌گراند تزئینی فقط برای سکشن‌ها (در سکشن ۱ استفاده شده) */
+.sectionBg {
   position: absolute;
-  right: 53%;
-  top: 12%;
-  width: clamp(180px, 35vw, 650px);
-  height: clamp(180px, 33vw, 650px);
-}
-
-.featuresText h2 {
-  font-size: 2.3rem;
-  font-weight: bold;
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-}
-
-.featuresText p {
-  font-size: 1rem;
-  line-height: 2;
-  color: #cccccc;
-}
-
-.featureHighlight {
-  color: #63c6e4;
-}
-
-.feature_year_img {
-  position: absolute;
-  left: 73%;
-  bottom: 53%;
-  width: clamp(100px, 35vw, 400px);
-  z-index: 10;
-}
-
-/* ========== Section2 Content ========== */
-.servicesTitleWrapper {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  right: 2%;
-  top: 15%;
-  gap: 16px;
-}
-
-.servicesTitleBox {
-  background-color: rgba(85, 166, 188, 0.3);
-  color: #63c6e4;
-  padding: 12px 20px;
-  border-radius: 3px;
-  font-size: 0.9rem;
-  font-weight: 300;
-  white-space: nowrap;
-}
-
-.servicesTitleLine {
-  width: 80px;
-  height: 1.5px;
-  background-color: #63c6e4;
-  border-radius: 1px;
-}
-
-.servicesInsidePart {
-  display: flex;
-  position: absolute;
-  top: 16%;
-  width: 100%;
-}
-
-/* ========== Section3 Content ========== */
-.testimonialsTitleWrapper {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  right: 2%;
-  top: 15%;
-  gap: 16px;
-}
-
-.testimonialsTitleBox {
-  background-color: rgba(85, 166, 188, 0.3);
-  color: #63c6e4;
-  padding: 12px 20px;
-  border-radius: 3px;
-  font-size: 0.9rem;
-  font-weight: 300;
-  white-space: nowrap;
-  margin-top: 10%;
-}
-
-.testimonialsTitleLine {
-  width: 80px;
-  height: 1.5px;
-  background-color: #63c6e4;
-  border-radius: 1px;
-}
-
-.testimonialsInsidePart {
-  display: flex;
-  position: absolute;
-  top: 20%;
-  width: 100%;
-}
-
-/* ========== Section4 Content ========== */
-.startTitleWrapper {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  right: 2%;
-  top: 15%;
-  gap: 16px;
-}
-
-.startTitleBox {
-  background-color: rgba(85, 166, 188, 0.3);
-  color: #63c6e4;
-  padding: 12px 20px;
-  border-radius: 3px;
-  margin-top: -10%;
-  font-size: 0.9rem;
-  font-weight: 300;
-  white-space: nowrap;
-}
-
-.startTitleLine {
-  width: 80px;
-  height: 1.5px;
-  background-color: #63c6e4;
-  border-radius: 1px;
-}
-
-.startInsidePart {
-  display: flex;
-  top: 25%;
-  width: 100%;
-  padding: 100px 20px;
-}
-
-@media (max-width: 768px) {
-  .startInsidePart {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .startInsidePart {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1025px) {
-  .startInsidePart {
-    grid-template-columns: repeat(4, 1fr);
-    padding-top: 130px;
-  }
-}
-
-/* ========== Section5 Content ========== */
-.achievementsTitleWrapper {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  right: 2%;
-  top: 15%;
-  gap: 16px;
-}
-
-.achievementsTitleBox {
-  background-color: rgba(85, 166, 188, 0.3);
-  color: #63c6e4;
-  padding: 12px 20px;
-  border-radius: 3px;
-  font-size: 0.9rem;
-  font-weight: 300;
-  white-space: nowrap;
-}
-
-.achievementsTitleLine {
-  width: 80px;
-  height: 1.5px;
-  background-color: #63c6e4;
-  border-radius: 1px;
-}
-
-.achievementsInsidePart {
-  display: flex;
-  position: absolute;
-  top: 25%;
-  width: 100%;
-}
-
-/* ========== Section6 Content ========== */
-.youtubeTitleWrapper {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  right: 2%;
-  top: 15%;
-  gap: 16px;
-}
-
-.youtubeTitleBox {
-  background-color: rgba(85, 166, 188, 0.3);
-  color: #63c6e4;
-  padding: 12px 20px;
-  border-radius: 3px;
-  font-size: 0.9rem;
-  font-weight: 300;
-  white-space: nowrap;
-}
-
-.youtubeTitleLine {
-  width: 80px;
-  height: 1.5px;
-  background-color: #63c6e4;
-  border-radius: 1px;
-}
-
-.youtubeInsidePart {
-  display: flex;
-  position: absolute;
-  top: 25%;
-  width: 100%;
-}
-
-/* ========== Section7 Content - Footer ========== */
-.contactInsidePart {
-  display: flex;
-  position: absolute;
-  top: 17%;
+  inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  opacity: .6;
+  z-index: 0;
 }
 
-/* ========== Responsive Breakpoints ========== */
-@media (min-width: 481px) and (max-width: 768px) {
-  .featuresText {
-    top: 18%;
-    left: 8%;
-    width: 40vw;
-  }
-
-  .featuresText h2 {
-    font-size: 1.1rem;
-    margin-bottom: 1.6rem;
-  }
-
-  .featuresText p {
-    font-size: 0.7rem;
-  }
-
-  .section1_year_img {
-    position: absolute;
-    left: 74%;
-    bottom: 61%;
-    width: clamp(100px, 30vw, 330px);
-  }
+/* ===== سکشن ۱ (Hero) ===== */
+.heroRow {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(16px, 3vw, 24px);
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .featuresText {
-    top: 18%;
-    width: 40vw;
-  }
+.heroCopy h1 {
+  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+  line-height: 1.6;
+  font-weight: 800;
+  margin: 0 0 clamp(8px, 1.5vw, 16px);
+}
+.heroCopy p {
+  font-size: clamp(.95rem, 1.4vw, 1.05rem);
+  line-height: 1.9;
+  color: #cfd3da;
+  margin: 0;
+}
+.accent { color: #63c6e4; }
 
-  .featuresText h2 {
-    font-size: 1.2rem;
-    margin-bottom: 1.6rem;
-  }
-
-  .featuresText p {
-    font-size: 0.7rem;
-  }
-
-  .section1_year_img {
-    position: absolute;
-    left: 73%;
-    bottom: 61%;
-    width: clamp(100px, 30vw, 350px);
-  }
+.heroArt {
+  width: clamp(160px, 28vw, 380px);
+  align-self: flex-end; /* در موبایل زیر متن قرار می‌گیرد */
+  opacity: .95;
 }
 
-@media (min-width: 1025px) and (max-width: 1280px) {
-  .featuresText {
-    top: 20%;
-    left: 12%;
-    width: 40vw;
+@media (min-width: 768px) {
+  .heroRow {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
-
-  .featuresText h2 {
-    font-size: 2.1rem;
-    margin-bottom: 1.6rem;
-  }
-
-  .featuresText p {
-    font-size: 0.9rem;
-  }
+  .heroArt { align-self: center; }
 }
 
-@media (min-width: 1281px) and (max-width: 1440px) {
-  .featuresText {
-    top: 10%;
-    left: 13%;
-    width: 35vw;
-  }
-
-  .section1_year_img {
-    position: absolute;
-    left: 75%;
-    bottom: 55%;
-    width: clamp(100px, 35vw, 400px);
-  }
+/* ===== هدر مشترک بقیه سکشن‌ها ===== */
+.head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100vw;                 /* تمام عرض ویوپورت */
+  margin-inline: calc(53% - 50vw);
+  padding-inline: var(--page-gutter);
 }
 
-/* ========== Scroll to Top Button ========== */
+.headBadge {
+  background: rgba(85, 166, 188, 0.3);
+  color: #63c6e4;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: clamp(.85rem, 1vw, .95rem);
+  white-space: nowrap;
+}
+.headLine {
+  /* flex: 0 0 clamp(60px, 8vw, 120px); */
+  height: 2px;
+  background: #63c6e4;
+  border-radius: 1px;
+  flex: none;                  /* دیگه فضای اضافی نمی‌گیره */
+  /* width: clamp(60px, 2vw, 80px);  */
+  /* width: 5%; */
+    inline-size: clamp(64px, 8vw, 120px);
+}
+
+/* ===== بدنه مشترک سکشن‌ها ===== */
+.body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(16px, 2.5vw, 28px);
+}
+
+/* ===== دکمه اسکرول به بالا ===== */
 .scrollToTopButton {
   position: fixed;
   bottom: 30px;
@@ -468,10 +155,11 @@
   height: 48px;
   font-size: 24px;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(0,0,0,.3);
+  transition: background-color .3s ease;
 }
+.scrollToTopButton:hover { background-color: #004d40; }
 
-.scrollToTopButton:hover {
-  background-color: #004d40;
-}
+/* @media (min-width: 1200px) {
+  .headLine { flex-basis: clamp(120px, 12vw, 240px); }
+} */

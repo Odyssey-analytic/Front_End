@@ -1,19 +1,17 @@
-import styles from './LandingPage_Contanct.module.css';
+import styles from "./LandingPage_Contanct.module.css";
 
 const LandinPage_Contact = () => {
   return (
     // ========== Footer Wrapper ==========
     <footer className={styles.footer}>
-      
       {/* ========== Main Content Columns ========== */}
       <div className={styles.container}>
-        
         {/* ========== Brand Column ========== */}
         <div className={styles.columnBrand}>
           <h2 className={styles.logo}>اودیسه</h2>
           <p className={styles.description}>
-            ما در ODESSAY به شما کمک می‌کنیم تا با تحلیل داده‌های دقیق، مسیر رشد محصول
-            خود را بهینه‌سازی کنید. همراه ما باشید!
+            ما در ODESSAY به شما کمک می‌کنیم تا با تحلیل داده‌های دقیق، مسیر رشد
+            محصول خود را بهینه‌سازی کنید. همراه ما باشید!
           </p>
           <a className={styles.email} href="mailto:contact@odessay.com">
             CONTACT@ODESSAY.COM
