@@ -3,20 +3,9 @@
 -------------------------------------- */
 .sidebar {
   width: 225px;
-  /* background-color: #1f2444; */
   background-color: #212040;
-
-  /* بردر سفید سمت چپ */
-  /* border-left: 1px solid rgba(255, 255, 255, 0.4); */
-
-  /* سایه ملایم سفید سمت چپ */
-  /* box-shadow: inset 8px 0 15px rgba(255, 255, 255, 0.1); */
-
-
   border-left: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: inset 6px 0 13px rgba(255, 255, 255, 0.1);
-
-
   color: #ffffffd2;
   transition: width 0.3s ease;
   height: 100%;
@@ -25,16 +14,6 @@
 .sidebar.collapsed {
   width: 70px;
 }
-
-/* .closeSidebar {
-  font-size: 30px;
-  color: #fff;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-  z-index: 2001;
-} */
 
 .MobilecloseSidebar {
   font-size: 30px;
@@ -66,8 +45,6 @@
 
 .menuItem:hover {
   background-color: #6f98d576;
-  /* background-color: #4C5881; */
-  /* border-radius: 6px; */
 }
 
 .menuContent {
@@ -83,7 +60,6 @@
 }
 
 .active {
-  /* background-color: #ff000033; */
   background-color: #6f98d576;
   border-right: 4px solid #b2badb;
 }
@@ -104,18 +80,12 @@
 }
 
 .subMenuItem:hover {
-  /* background-color: #00c3ff57; */
   background-color: #6f98d53a;
 }
 
 .subMenuItem .menuContent {
   padding-right: 12px;
 }
-
-
-/* .subMenuItem.active {
-  background-color: #ff000033;
-} */
 
 .iconMain {
   font-size: 20px;
@@ -130,13 +100,10 @@
 /* --------------------------------------
    Brand Styles
 -------------------------------------- */
-
 .brandLogoHeader {
-  /* gap: 12px; */
   display: flex;
   gap: 15px;
   align-items: center;
-  /* padding-top: 15px; */
 }
 
 .brandLogoText {
@@ -144,8 +111,7 @@
   letter-spacing: 2px;
   color: rgb(195, 196, 216);
   font-weight: 600;
-  
-  font-family: 'Aboreto', sans-serif;
+ font-family: 'Aboreto', sans-serif;
 }
 
 .brandLogoImg {
@@ -170,9 +136,6 @@
   padding-top: 15px;
   padding-bottom: 15px;
   justify-content: center;
-  /* justify-content: left; */
-  /* padding-left: 10px; */
-  /* margin-bottom: 18px; */
 }
 
 .gameNameWrapper {
@@ -181,55 +144,34 @@
 
 .gameSelectorSection {
   padding-bottom: 15px;
-  /* padding-top: 5px; */
 }
 
 .gameSelectorBox {  
-  /* margin-top: 15px; */
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 55px;
-  /* justify-content: center;
-  justify-items: center; */
   border-radius: 2px;
   display: flex;
   align-items: center;
   gap: 15px;
   cursor: pointer;
-
-  /* background-color: #b0d3ff25; */
-
-/* background-color: #8996e013; */
-
   backdrop-filter: blur(5px);
-  
   transition: all 0.3s ease;
   transition: background-color 0.2s ease;
 }
 
 .gameSelectorBox:hover {
-  /* background-color: #5d5d7fac; */
-  /* background-color: #5177b076; */
   background-color: #4C5881;
 }
 
 .collapsed .gameSelectorBox {
   background-color: transparent;
-  /* padding: 10px; */
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 0;
   gap: 0;
   justify-content: center;
 }
-
-/* .collapsed .gameName {
-  display: none;
-}
-
-.collapsed .gameLogo {
-  margin: 0 auto;
-} */
 
 .gameLogo {
   width: 32px;
@@ -255,11 +197,8 @@
 }
 
 .gameDropdown {
-  /* right: 14.3%;
-  top: 11%; */
-
   position: absolute;
-  top: 18%;
+  top: 17%;
   right: 5px;
 
   border-radius: 3px;
@@ -267,9 +206,9 @@
   min-width: 215px;
 
   animation: dropdownFade 0.2s ease-in-out;
-  color: #070a36b6;
+  color: #000000b6;
 
-  border: 1px solid #ffffffd5;
+  border: 2px solid #8288b7d5;
   background-color: #f2f3ffe5;
 
   backdrop-filter: blur(5px);
@@ -288,15 +227,19 @@
 
 .gameDropdownItem {
   padding: 7px 15px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   transition: background 0.2s;
   cursor: pointer;
   white-space: nowrap;
 }
 
 .gameDropdownItem:hover {
-  background-color: #1f2444;
-  color: rgba(255, 255, 255, 0.928);
+  /* background-color: #1f2444; */
+  
+  background-color: rgba(78, 87, 154, 0.2);
+
+  /* background-color: rgba(78, 87, 154, 0.090); */
+  /* color: rgba(0, 0, 0, 0.928); */
   border-radius: 3px;
 }
 
@@ -313,7 +256,6 @@
 
 .divider {
   border-top: 1.5px solid #aeb6db;
-  /* margin-top: 15px; */
   margin-bottom: 1px;
   margin-top: 1px;
 }
@@ -330,9 +272,7 @@
 }
 
 .profileCard {
-  /* background: #151933eb; */
   background-color: #18182B;
-
   border-top-left-radius: 25px;
   border-top-right-radius:25px;
   padding: 0.5rem;
@@ -368,7 +308,6 @@
 
 .profileStatus {
   font-size: 0.7rem;
-  /* color: #00c4ff; */
   color: #7d97ff;
   display: flex;
   align-items: center;
@@ -378,7 +317,6 @@
     display: inline-block;
     width: 6px;
     height: 6px;
-    /* background: #00c4ff; */
     background: #7d97ff;
     border-radius: 50%;
     margin-left: 5px;
@@ -390,7 +328,9 @@
   font-weight: 400;
   color: #ffffffbd;
   margin-bottom: 2px;
+  color: #ffffffa1;
 }
+
 
 .logoutBtn {
   border-top: 1px solid #afbcff;
@@ -430,32 +370,13 @@
   transition: transform 0.2s ease;
 }
 
-
 .profileMiniSection {
   bottom: 0.1px;
   right: 0.1px;
   position: fixed;
   min-width: 70px;
-  /* width: 100px; */
   transition: width 0.3s ease;
-  /* justify-content: center; */
-  /* justify-items: center; */
-  /* width: 10%; */
 }
-
-
-/* .profileMiniCard {
-  background-color: #18182B;
-
-  justify-content: center;
-  justify-items: center;
-
-  border-top-left-radius: 25px;
-  border-top-right-radius:25px;
-  padding: 0.5rem;
-  backdrop-filter: blur(5px);
-  transition: all 0.3s ease;
-} */
 
 
 .profileMiniInfo {
@@ -468,48 +389,13 @@
   justify-items: center;
 }
 
-/* .profileMiniWrapper {
-  background-color: #18182B;
-  
-  padding-top: 1.2%;
-  padding-bottom: 1%;
-
-  justify-content: center;
-  justify-items: center;
-
-  bottom: 0.1px;
-  right: 0.1px;
-  position: fixed;
-  min-width: 70px;
-
-  border-top-left-radius: 25px;
-  border-top-right-radius: 25px;
-  transition: width 0.3s ease;
-} */
-
 
 .logoutMiniBtn {
   border-top: 1px solid #afbcff;
 
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: space-between; */
-
-
-  /* align-items: center; */
-  /* align-self: center; */
-  /* align-content: center; */
-
-  /* justify-content: center; */
-  /* justify-items: center; */
-
-  /* justify-self: center; */
-
   text-align: center;
-/* margin-left: 15%; */
-  /* padding: 0.6rem; */
-padding-bottom: 13%;
-padding-top: 18%;
+  padding-bottom: 13%;
+  padding-top: 18%;
 
   border-radius: 8px;
   cursor: pointer;
@@ -526,34 +412,10 @@ padding-top: 18%;
 
 
 
-
-/* .logoutMiniBtn {
-  border-top: 1px solid #afbcff;
-  width: 80%;
-
-  text-align: center;
-
-
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: #afbcff1c;
-    
-    .logoutArrow {
-      transform: translateX(-3px);
-    }
-  }
-} */
-
-
-
 .logoutMiniIcon {
   width: 16px;
   height: 16px;
   opacity: 0.8;
-  /* padding-left: 5px; */
   margin-left: 10%;
 }
 

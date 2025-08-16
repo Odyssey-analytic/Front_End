@@ -9,8 +9,12 @@
 .mainButton {
   align-items: center;
   padding: 10px 15px;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  /* background-color: #fff; */
+
+  
+  background-color: #373C5F;
+
+  border: 1px solid #dddddd88;
   border-radius: 4px;
 
   transition: all 0.2s;
@@ -26,27 +30,50 @@
 
 .icon {
   font-size: 18px;
-  color: #555;
+  /* color: #555; */
+  color: #e6e6e6b7;
 }
 
 .arrow {
   transition: transform 0.2s;
   font-size: 16px;
+  color: #e6e6e6b7;
 }
 
 .arrow.rotated {
   transform: rotate(180deg);
 }
 
+.arrow:hover {
+  color: #e6e6e6;
+  transform: scale(1.1);
+}
+
 .dropdownContent {
   position: absolute;
-  right: 12px;
+  /* justify-content: center; */
+  justify-items: center;
+  /* display: flex; */
+
+  /* gap: 95px; */
+  /* right: 12px; */
   margin-top: 5px;
-  background-color: #feffff;
+  /* background-color: #feffff; */
+
+  background-color: #373C5F;
+
+  /* background-color: #6c7eb7; */
+
+  /* background-color: ; */
+
+
   border: 1px solid #ddd;
+  border-radius: 4px;
   padding: 10px 10px 0 10px;
   
-  width: 290px;
+
+
+  width: 320px;
 }
 
 .modeSelector {
@@ -123,6 +150,7 @@
   justify-content: flex-end;
   margin-bottom: 10px;
   align-items: center;
+  gap: 10px;
 }
 
 .modeSelectorWrapper {
@@ -135,37 +163,53 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 6px 12px;
-  background-color: #f5f5f5;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 3px 8px;
+  /* background-color: #f5f5f5; */
+  background-color: #ffffffd3;
+
+  border: 1px solid #dddddd9a;
+  border-radius: 3px;
   cursor: pointer;
   font-size: 14px;
   transition: all 0.2s;
 }
 
 .modeSelectorButton:hover {
-  background-color: #e9e9e9;
+  background-color: #ffffffee;
 }
+
 
 .modeSelectorArrow {
   transition: transform 0.2s;
-  font-size: 12px;
+  font-size: 14px;
+  color: #00000069;
+}
+
+.modeSelectorArrow.rotated {
+  transform: rotate(180deg);
+}
+
+.modeSelectorArrow:hover {
+  color: #000000c7;
+  transform: scale(1.05);
 }
 
 .modeSelectorDropdown {
   position: absolute;
-  top: 100%;
-  right: 0;
-  background: white;
+  /* top: 100%; */
+  /* right: 0; */
+  background: rgba(255, 255, 255, 0.955);
   border: 1px solid #ddd;
+  
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin-top: 5px;
-  min-width: 100px;
+  min-width: 53px;
 }
 
 .modeOption {
+  
+  border-radius: 4px;
   display: block;
   width: 100%;
   padding: 8px 12px;
@@ -174,17 +218,17 @@
   border: none;
   cursor: pointer;
   font-size: 12px;
+  color: rgba(0, 0, 0, 0.589);
 }
 
 .modeOption:hover {
-  background-color: #f5f5f5;
+  background-color: rgba(78, 87, 154, 0.090);
 }
 
 .modeOption.active {
-  background-color: #e0f0ff;
-  color: #0066cc;
+  background-color: rgba(78, 87, 154, 0.260);
+  color: #000000da;
 }
-
 
 .modeSeparator {
   color: #ddd;
@@ -192,7 +236,8 @@
 }
 
 .modeBadge {
-  color: #666;
+  /* color: #666; */
+  color: #e6e6e698;
   font-weight: 500;
 } 
 
@@ -204,4 +249,5 @@
   font-size: 14px;
   display: flex;
   align-items: center;
+  color: #e6e6e6e2;
 }

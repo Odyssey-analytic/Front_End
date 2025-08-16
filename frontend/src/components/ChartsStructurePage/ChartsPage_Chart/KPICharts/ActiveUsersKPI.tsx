@@ -44,20 +44,6 @@ const AreaChartKPI = () => {
     83, 85, 80, 74, 78,
   ];
 
-  const glowPlugin: Plugin<"line"> = {
-    id: "glow",
-    beforeDatasetsDraw(chart) {
-      const { ctx } = chart;
-      const meta = chart.getDatasetMeta(0);
-      if (!meta?.dataset) return;
-      ctx.save();
-      ctx.shadowColor = "rgba(108,91,255,0.8)";
-      ctx.shadowBlur = 18;
-      (meta.dataset as any).draw(); // فقط برای افتادن سایه
-      ctx.restore();
-    },
-  };
-
   const colorStops = [
     { stop: 0, border: "#591c8e", fill: "rgba(89,28,142,0.25)" },
     { stop: 0.5, border: "#4e7dd4", fill: "rgba(78,125,212,0.25)" },
@@ -133,26 +119,8 @@ const AreaChartKPI = () => {
     datasets: [
       {
         label: "تعداد کاربران",
-        // data: [],
         data: mockData,
 
-        // borderColor: (ctx: ScriptableContext<"line">) => {
-        //   const { chart } = ctx;
-        //   const { ctx: c, chartArea } = chart;
-        //   if (!chartArea) return "#3AA0FF";
-        //   const g = c.createLinearGradient(
-        //     chartArea.left,
-        //     0,
-        //     chartArea.right,
-        //     0
-        //   );
-        //   g.addColorStop(0, "#591c8e");
-        //   g.addColorStop(0.5, "#4e7dd4");
-        //   g.addColorStop(1, "#1721b6");
-        //   return g;
-        // },
-
-        // خط رنگی افقی با استاپ‌های مشترک
         borderColor: (ctx) => {
           const { chartArea, ctx: c } = ctx.chart;
           if (!chartArea) return colorStops[colorStops.length - 1].border;
@@ -166,27 +134,10 @@ const AreaChartKPI = () => {
           return g;
         },
 
-        // backgroundColor: (ctx: ScriptableContext<"line">) => {
-        //   const { chart } = ctx;
-        //   const { ctx: c, chartArea } = chart;
-        //   if (!chartArea) return "rgba(64,84,255,0.18)";
-        //   const g = c.createLinearGradient(
-        //     0,
-        //     chartArea.top,
-        //     0,
-        //     chartArea.bottom
-        //   );
-        //   g.addColorStop(0, "rgba(64,84,255,0.15)");
-        //   g.addColorStop(0.5, "rgba(38,53,128,0.22)");
-        //   g.addColorStop(1, "rgba(21,34,86,0.35)");
-        //   return g;
-        // },
-
-        backgroundColor: "rgba(0,0,0,0)", // شفاف چون پلاگین خودش fill می‌کشه
-        fill: false, // پلاگین مسئول پر کردن میشه
+        backgroundColor: "rgba(0,0,0,0)",
+        fill: false,
 
         tension: 0.4,
-        // fill: true,
         pointRadius: 0,
         pointHoverRadius: 4,
         borderWidth: 3,
@@ -297,8 +248,9 @@ const AreaChartKPI = () => {
       ctx.save();
       ctx.beginPath();
       ctx.arc(x, y, 6, 0, Math.PI * 2);
-      ctx.fillStyle = "#111d69";
-      ctx.shadowColor = "#1f2444";
+      // ctx.fillStyle = "#111d69";
+      // ctx.shadowColor = "#1f2444";
+      ctx.fillStyle = "#ffffffbb";
       ctx.shadowBlur = 8;
       ctx.fill();
       ctx.restore();
