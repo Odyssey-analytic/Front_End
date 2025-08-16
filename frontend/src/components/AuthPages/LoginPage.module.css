@@ -225,12 +225,13 @@
   transition: all 0.1s ease;
 }
 
+
 .loginPopupWarningOverlayError .loginWarningPopupCard::before {
-  background-color: rgba(255, 0, 0, 0.2);
+  background-color: rgba(255, 0, 0, 0.134);
 }
 
 .loginPopupWarningOverlaySuccess .loginWarningPopupCard::before {
-  background-color: rgba(40, 167, 69, 0.2);
+  background-color: rgba(40, 167, 69, 0.134);
 }
 
 .loginWarningPopupCard h5 {

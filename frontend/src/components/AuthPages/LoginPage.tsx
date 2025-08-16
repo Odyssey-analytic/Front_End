@@ -37,7 +37,9 @@ const LoginPage = () => {
   const [passwordErrorType, setPasswordErrorType] = useState<"empty" | "">("");
   const [passwordErrorKey, setPasswordErrorKey] = useState(0);
 
-  const [loginStatus, setLoginStatus] = useState<"success" | "error" | "">("");
+  const [loginStatus, setLoginStatus] = useState<"success" | "error" | "">(
+    ""
+  );
   const [errorMessage, setErrorMessage] = useState("");
 
   const isValidEmail = (email: string) =>
@@ -284,8 +286,13 @@ const LoginPage = () => {
           <hr className="my-3" />
 
           {loginStatus && (
+
             <div
-              className={`${styles.loginPopupWarningOverlay} ${styles[loginStatus]}`}
+              className={`${styles.loginPopupWarningOverlay} ${
+                loginStatus === "success"
+                  ? styles.loginPopupWarningOverlaySuccess
+                  : styles.loginPopupWarningOverlayError
+              }`}
             >
               <div className={styles.loginWarningPopupCard}>
                 <button

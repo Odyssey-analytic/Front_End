@@ -236,27 +236,30 @@ const ChartsPage_SideBar = () => {
           className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}
         >
           {/* Game selector section */}
-          <div className={styles.gameHeader}>
-            <div className={styles.headerWrapper}>
-              {/* <div className={styles.brandLogoHeader}> */}
-              <span className={styles.brandLogoText}>ODESSAY</span>
-              <img
-                src={OdessayLogo}
-                alt="Odessay Logo"
-                className={styles.brandLogoImg}
-              />
-              {/* </div> */}
-
-              {/* Collapse/Expand button for the sidebar */}
-              <div
-                className={styles.toggle}
-                onClick={toggleCollapse} // Toggle the collapse state
-                aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-              >
-                {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
+          {/* <div className={styles.gameHeader}> */}
+          <div className={styles.headerWrapper}>
+            {!collapsed && (
+              <div className={styles.brandLogoHeader}>
+                <span className={styles.brandLogoText}>ODESSAY</span>
+                <img
+                  src={OdessayLogo}
+                  alt="Odessay Logo"
+                  className={styles.brandLogoImg}
+                />
               </div>
-            </div>
+            )}
 
+            {/* Collapse/Expand button for the sidebar */}
+            <div
+              className={styles.toggle}
+              onClick={toggleCollapse} // Toggle the collapse state
+              aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            >
+              {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
+            </div>
+          </div>
+
+          <div className={styles.gameSelectorSection}>
             <hr className={styles.divider} />
 
             <div
@@ -402,22 +405,41 @@ const ChartsPage_SideBar = () => {
 
             {/* --- Profile section --- */}
             {collapsed ? (
-              <div className={styles.profileMiniWrapper}>
-                {/* <div className={styles.profileCard}> */}
-                  {/* <div className={styles.profileInfo}> */}
+              // <div className={styles.profileMiniWrapper}>
+              //   <img
+              //     src={dashboard_sidebar_user_icon}
+              //     alt="Avatar"
+              //     className={styles.avatarMini}
+              //   />
+
+              //   <div
+              //     className={styles.logoutMiniBtn}
+              //     onClick={() => (window.location.href = "/panel")}
+              //   >
+              //     <img
+              //       src={dashboard_logout_panel_icon}
+              //       alt="Logout"
+              //       className={styles.logoutMiniIcon}
+              //     />
+              //   </div>
+              // </div>
+
+              <div className={styles.profileMiniSection}>
+                <div className={styles.profileCard}>
+                  <div className={styles.profileMiniInfo}>
                     <img
                       src={dashboard_sidebar_user_icon}
                       alt="Avatar"
-                      className={styles.avatarMini}
+                      className={styles.avatar}
                     />
-                    {/* <div className={styles.profileText}> */}
-                      {/* <div className={styles.profileName}>{username}</div> */}
-                      {/* <div className={styles.profileStatus}>آنلاین</div> */}
-                    {/* </div> */}
-                  {/* </div> */}
+                    {/* <div className={styles.profileText}>
+                      <div className={styles.profileName}>{username}</div>
+                      <div className={styles.profileStatus}>آنلاین</div>
+                    </div> */}
+                  </div>
 
                   <div
-                    className={styles.logoutBtn}
+                    className={styles.logoutMiniBtn}
                     onClick={() => (window.location.href = "/panel")}
                   >
                     {/* <div className={styles.logoutContent}> */}
@@ -430,7 +452,7 @@ const ChartsPage_SideBar = () => {
                     {/* </div> */}
                   </div>
                 </div>
-              // </div>
+              </div>
             ) : (
               // حالت کامل: کارت پروفایل فعلی
               <div className={styles.profileSection}>

@@ -189,7 +189,9 @@
 
 /* ======================== Aggrement Text ======================== */
 .signupAgreementText {
-  color: rgba(89, 67, 130);
+  color: rgb(52, 98, 214);
+  text-decoration: none;
+  font-weight: 500;
 }
 
 /* ======================== Error Over Input ======================== */
