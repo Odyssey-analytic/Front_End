@@ -3,7 +3,7 @@
 }
 
 /* ======================== Layout & Container ======================== */
-.loginPageContainer {
+/* .loginPageContainer {
   background-image: url('/src/assets/images/login-bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -11,8 +11,22 @@
   background-color: #0e1a2b;
   min-height: 100vh;
   width: 100%;
-}
+} */
 
+
+.loginPageContainer {
+  display: flex;                    /* فلکس کانتینر */
+  justify-content: flex-end;        /* راست‌چین کردن */
+  align-items: center;              /* وسط عمودی */
+  background-image: url('/src/assets/images/login-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 20% center;
+  background-color: #0e1a2b;
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem; /* فاصله داخلی برای ریسپانسیو */
+}
 .loginLogoImg {
   height: 32px;
   width: auto;
@@ -282,12 +296,29 @@
 }
 
 /* ======================== Responsive ======================== */
+
+@media (max-width: 300px) {
+  .loginBox {
+    padding: 2.2rem;
+    max-width: 300px;
+    top: 13vh;
+    right: 7vw;
+  }
+  .loginTitle {
+    font-size: 2.1rem;
+  }
+  .loginLogoImg {
+    top: 1.2rem;
+    left: 1.2rem;
+  }
+}
+
 @media (max-width: 480px) {
   .loginBox {
-    top: 20%;
-    padding: 1.5rem;
-    max-width: 85%;
-    right: 7.5%;
+    padding: 2.2rem;
+    max-width: 330px;
+    top: 13vh;
+    right: 7vw;
   }
   .loginTitle {
     font-size: 2.1rem;
@@ -301,9 +332,9 @@
 @media (min-width: 481px) and (max-width: 768px) {
   .loginBox {
     padding: 2.2rem;
-    max-width: 60%;
-    top: 13%;
-    right: 20%;
+    max-width: 340px;
+    top: 13vh;
+    right: 7vw;
   }
   .loginTitle {
     font-size: 2.2rem;
@@ -317,25 +348,25 @@
 @media (min-width: 769px) and (max-width: 1024px) {
   .loginBox {
     padding: 2rem;
-    top: 8%;
-    right: 5%;
-    max-width: 350px;
+    top: 13vh;
+    right: 7vw;
+    max-width: 360px;
   }
 }
 
 @media (min-width: 1025px) and (max-width: 1280px) {
   .loginBox {
     padding: 2.3rem;
-    top: 15%;
-    right: 7%;
-    max-width: 380px;
+    top: 13vh;
+    right: 7vw;
+    max-width: 370px;
   }
 }
 
 @media (min-width: 1281px) and (max-width: 1440px) {
   .loginBox {
     padding: 2.3rem;
-    top: 8vh;
+    top: 13vh;
     right: 7vw;
     max-width: 380px;
   }
