@@ -19,6 +19,8 @@ import LandingPage from "./components/LandingPage/LandingPage/LandingPage";
 import ChartsPage from './components/ChartsStructurePage/ChartsPage/ChartsPage';
 // import DateSelector from './components/ChartsStructurePage/ChartsPage_Header/Calendar';
 
+import DocsFrame from "./components/Docs/DocsFrame";
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
@@ -31,7 +33,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/charts/:gameId" element={<ChartsPage />} />
-        
+        <Route path="/docs/*" element={<DocsFrame />} />
         <Route path="/charts" element={<ChartsPage />} />
         {/* <Route path='/DateSelector' element={<DateSelector/>}/> */}
       </Routes>

@@ -721,3 +721,35 @@
   margin-top: 10px;
   font-size: 15px;
 }
+
+
+
+
+
+
+/* // */
+.menu {
+  position: absolute;
+  top: 36px;            /* متناسب با جای آیکن تنظیم کن */
+  inset-inline-end: 0;  /* برای RTL ایمن */
+  background: #0f1535;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  padding: 8px;
+  min-width: 180px;
+  z-index: 1000;
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+}
+
+.menuItem {
+  width: 100%;
+  text-align: start;
+  padding: 10px 12px;
+  background: transparent;
+  color: #e6ebff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.menuItem:hover { background: rgba(255,255,255,.08); }

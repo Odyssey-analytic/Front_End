@@ -1,5 +1,5 @@
 import styles from "./WelcomePage.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { submitGameInfo } from "../../services/userService";
 import { motion } from "framer-motion";
@@ -39,7 +39,33 @@ const WelcomePage = () => {
   const [token, setToken] = useState("");
 
   const navigate = useNavigate();
+
+  // ====== منوی سه‌نقطه ======
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const dotsRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const onDocClick = (e: MouseEvent) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(e.target as Node) &&
+        dotsRef.current &&
+        !dotsRef.current.contains(e.target as Node)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+    const onEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("mousedown", onDocClick);
+    document.addEventListener("keydown", onEsc);
+    return () => {
+      document.removeEventListener("mousedown", onDocClick);
+      document.removeEventListener("keydown", onEsc);
+    };
+  }, []);
 
   const [engine, setEngine] = useState("");
   const [disabledOptions, setDisabledOptions] = useState({
@@ -57,9 +83,13 @@ const WelcomePage = () => {
     currentEngine,
     setEngine,
     disabledOptions,
+  }: {
+    engineType: string;
+    currentEngine: string;
+    setEngine: (e: string) => void;
+    disabledOptions: Record<string, boolean>;
   }) => {
     const isDisabled = disabledOptions[engineType];
-
     return (
       <label
         className={`${styles.radioLabel} ${isDisabled ? styles.disabled : ""}`}
@@ -79,25 +109,12 @@ const WelcomePage = () => {
   };
 
   // تغییر وضعیت یک گزینه خاص
-  const toggleOption = (engineType) => {
+  const toggleOption = (engineType: string) => {
     setDisabledOptions((prev) => ({
       ...prev,
       [engineType]: !prev[engineType],
     }));
   };
-
-  // در JSX:
-  {
-    ["godot", "custom"].map((engineType) => (
-      <EngineOption
-        key={engineType}
-        engineType={engineType}
-        currentEngine={engine}
-        setEngine={setEngine}
-        disabledOptions={disabledOptions}
-      />
-    ));
-  }
 
   const fetchDefaultThumbnail = async (): Promise<File | null> => {
     try {
@@ -245,17 +262,41 @@ const WelcomePage = () => {
         }`}
       >
         <div className={styles.icons}>
+          {/* سه‌نقطه - باز/بسته کردن منو */}
           <img
+            ref={dotsRef}
             src={doticon}
-            className={`${styles.welcomePageicons} ${
-              showPopup ? styles.disabled : ""
-            }`}
-            onClick={() => {
-              setShowPopup(false);
-              resetPopupState();
+            className={`${styles.welcomePageicons}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              setMenuOpen((v) => !v);
             }}
           />
+          {/* منو */}
+          {menuOpen && (
+            <div ref={menuRef} className={styles.menu}>
+              <button
+                className={styles.menuItem}
+                onClick={() => navigate("/docs/intro")}
 
+                // onClick={() => (window.location.href = "/docs/intro")}
+                // onClick={() => window.open("/docs/intro", "_blank", "noopener,noreferrer")}
+
+                // onClick={() => navigate("/docs")}
+                // onClick={() => window.open("/docs", "_blank", "noopener")}
+              >
+                داکیومنت‌ها
+              </button>
+              <button
+                className={styles.menuItem}
+                onClick={() => navigate("/")}
+              >
+                صفحه اصلی
+              </button>
+            </div>
+          )}
+
+          {/* آیکن کاربر (همان قبلی) */}
           <img
             src={usericon}
             className={`${styles.welcomePageicons} ${
@@ -281,7 +322,10 @@ const WelcomePage = () => {
 
         <button
           className={`btn ${styles.welcomePageMainBoxStartBtn}`}
-          onClick={() => setShowPopup(true)}
+          onClick={() => {
+            setMenuOpen(false); // منو بسته شود
+            setShowPopup(true);
+          }}
         >
           اضافه کردن بازی
         </button>
