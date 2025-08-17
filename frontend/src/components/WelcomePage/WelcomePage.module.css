@@ -21,8 +21,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(145, 135, 201, 0.04);
   backdrop-filter: blur(3px);
-  box-shadow: 
-    0 4px 30px rgba(0, 0, 0, 0.1), 
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1),
     inset 0 0 10px rgba(255, 255, 255, 0.1);
 
   transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
@@ -108,7 +107,7 @@
 }
 
 .welcomePageMainBoxStartBtn:hover {
-  background: #4366aca8; 
+  background: #4366aca8;
   color: #ffffff;
 }
 
@@ -137,14 +136,25 @@
   z-index: 2;
   pointer-events: all;
 
-  width: 55%;
-  height: 88%;
-  /* display: flex; */
-  flex-direction: column;
-  justify-content: flex-start;
+  width: clamp(500px, 88%, 850px);
+  /* height: auto; */
+  height: clamp(610px, 90vh, 680px);
 
-  padding: 4rem 4rem 1rem 4rem;
-  overflow-y: auto;
+  /* height: 86%; */
+  /* height: 88%; */
+  max-height: calc(100vh - 20px);
+  
+  --card-pad: clamp(1rem, 3vw, 2.5rem);
+  --close-safe: 25px;
+  padding: var(--card-pad);
+  padding-top: var(--card-pad);
+
+  transition: all 0.3s ease;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
 
   background: #b2b5ba;
   border-radius: 3px;
@@ -152,13 +162,30 @@
   text-align: center;
 }
 
+.welcomePageMainBoxBodyPopupCard.scrollable {
+  overflow-y: auto;
+  direction: rtl;          /* نوار اسکرول سمت چپ */
+  scrollbar-gutter: stable;
+}
+
+.popupScrollArea {
+  /* max-height: 120%; */
+  overflow: hidden; /* پیش‌فرض */
+}
+
+.scrollEnabled {
+  overflow-y: auto;
+  height: 1000px;
+}
+
+
 .welcomePagePopupCardCloseIcon {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 17px;
+  left: 17px;
   z-index: 200;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   opacity: 0.4;
   cursor: pointer;
   transition: opacity 0.2s ease, transform 0.2s ease;
@@ -182,7 +209,7 @@
   display: block;
   margin-bottom: 1rem;
   text-align: start;
-  color: #3e3e3e;;
+  color: #3e3e3e;
 }
 
 .gameNameInputContainer {
@@ -193,7 +220,6 @@
 }
 
 .gameNameInput {
-  /* .your-class-name { */
   display: flex;
   /* height: 200px; */
   /* padding: 200px; */
@@ -202,6 +228,7 @@
   margin-bottom: 1.5rem; /* 16px در بوت‌استرپ معمولاً برابر با 1rem است و mb-4 برابر با 1.5rem است */
   /* } */
 }
+/* .gameNameInput { display:flex; justify-content:space-between; gap:24px; } */
 
 .gameNameInputSm {
   border-radius: 8px;
@@ -229,21 +256,58 @@
   /* margin-right: 1rem; */
 }
 
+.welcomePageUploadContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* همیشه وسط */
+  justify-content: flex-start;
+  width: 100%;
+}
+
 .welcomePageUploadPreviewWrapper {
-  width: 150px;
-  height: 150px;
+  width: 150px;      /* یک مقدار ثابت بذار */
+  height: 150px;     /* همون مقدار برای دایره */
+  min-width: 150px;  /* جلوگیری از کوچک شدن */
+  min-height: 150px; 
   border-radius: 50%;
-  /* background-color: #e7e5e5; */
   background: #ffffffab;
   overflow: hidden;
   margin-top: -30px;
-  margin-right: 40px;
   margin-bottom: 15px;
-  /* margin: 0 auto; */
+  flex-shrink: 0;   /* نذار تو flexbox کش بیاد */
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+@media (max-width: 900px) {
+  .welcomePageUploadPreviewWrapper {
+    width: 140px;
+    height: 140px;
+    min-width: 140px;
+    min-height: 140px;
+  }
+}
+
+@media (max-width: 750px) {
+  .welcomePageUploadPreviewWrapper {
+    width: 130px;
+    height: 130px;
+    min-width: 130px;
+    min-height: 130px;
+  }
+}
+
+@media (max-width: 600px) {
+  .welcomePageUploadPreviewWrapper {
+    width: 125px;
+    height: 125px;
+    min-width: 125px;
+    min-height: 125px;
+  }
+}
+
+
 
 .welcomePageUploadPreviewImage {
   width: 100%;
@@ -286,6 +350,8 @@
 /* =========================== stepper =========================== */
 .welcomePageStepperContainer {
   display: flex;
+  flex: 0 0 auto;
+
   width: 100%;
   margin: 0 auto 2rem;
 }
@@ -363,7 +429,7 @@
   color: #3e3e3e;
   /* color: #344165; */
   /* color: #0f2152; */
-  
+
   margin-top: 4rem;
   margin-bottom: 2.5rem;
 }
@@ -469,7 +535,7 @@
   text-decoration: none;
   font-weight: 500;
   /* text-underline: none; */
-  
+
   /* font-weight: 400; */
   /* transition: color 0.3s; */
   font-size: 14px;
@@ -488,10 +554,12 @@
   font-family: monospace;
   text-align: left;
 
-  margin-right: 15%;
+  margin-right: 10%;
   margin-bottom: 1.5rem;
   direction: ltr;
-  width: 500px;
+  /* width: 500px; */
+  width: 80%;
+  max-width: 100%;
   display: block;
 }
 
@@ -503,7 +571,7 @@
   /* color: #171c69;
   color: #2937a3; */
   color: #3e3e3e;
-  
+
   display: inline-block;
   margin-bottom: 0.5rem;
 }
@@ -640,10 +708,7 @@
   padding: 0.6rem;
   font-size: 15px;
   color: #c4c4c4;
-
-  /* background-color: #24247bdb; */
   background-color: #2e327afe;
-  /* background-color: #222ba5dc; */
   border: none;
   border-radius: 12px;
   filter: brightness(1.4);
@@ -690,28 +755,18 @@
   align-items: center;
   gap: 8px;
   font-size: 1.1rem;
-
-  /* THESE 3 LINES MAY BE AS COMMENT */
-  /* font-family: "Aboreto", sans-serif; */
-  /* font-size: medium; */
-  /* font-weight: bold; */
 }
 
 .welcomePageEngineDisabledOption {
   opacity: 0.5;
-  /* cursor: not-allowed; */
 }
 
-/* حالت عادی چک‌باکس (غیرdisabled) */
 .welcomePageRadioLabel input[type="checkbox"] {
   cursor: pointer;
   /* accent-color: #4CAF50; */
   accent-color: #2e327afe;
-  
-  
 }
 
-/* حالت غیرفعال چک‌باکس (disabled) */
 .welcomePageRadioLabel input[type="checkbox"]:disabled {
   cursor: default;
   opacity: 0.6;
@@ -722,23 +777,73 @@
   font-size: 15px;
 }
 
+/* ResponsiveNess  */
 
 
+@media (max-width: 768px) {
+  .welcomePageMainBoxBodyPopupCard {
+    width: 80%;
+    --card-pad: 2rem;
+    --close-safe: 44px;
+    /* height: auto; */
+    padding: 2rem;
+    height: clamp(610px, 90vh, 680px);
+  }
+}
 
+@media (max-width: 480px) {
+  .welcomePageMainBoxBodyPopupCard {
+    width: 75%;
+    padding: 1.5rem;
+    height: clamp(610px, 90vh, 680px);
+    --card-pad: 1.5rem;
+    --close-safe: 52px; /* باز هم کمی پایین‌تر */
+  }
+  .welcomePagePopupCardCloseIcon {
+    top: 10px;
+    left: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .gameNameInput {
+    flex-direction: column;
+  }
+  .gameNameInputContainer,
+  .welcomePageUploadSection {
+    width: 100%;
+  }
+  .welcomePageUploadPreviewWrapper {
+    margin: 0 auto 12px;
+  }
+}
+
+
+.welcomePageRadioGroupGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+@media (max-width: 450px) {
+  .welcomePageRadioGroupGrid {
+    grid-template-columns: 1fr;
+  }
+}
 
 
 /* // */
 .menu {
   position: absolute;
-  top: 36px;            /* متناسب با جای آیکن تنظیم کن */
-  inset-inline-end: 0;  /* برای RTL ایمن */
+  top: 36px;
+  inset-inline-end: 0;
   background: #0f1535;
-  border: 1px solid rgba(255,255,255,.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   padding: 8px;
   min-width: 180px;
   z-index: 1000;
-  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
 .menuItem {
@@ -752,4 +857,24 @@
   cursor: pointer;
   font-size: 14px;
 }
-.menuItem:hover { background: rgba(255,255,255,.08); }
+.menuItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.welcomePageOptionsRow {
+  display: flex;
+  flex-direction: column; /* حالت پیش‌فرض → زیر هم */
+  gap: 20px;
+}
+
+.welcomePageOptionsRow {
+  display: flex;
+  flex-direction: column; /* حالت پیشفرض: زیر هم */
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .welcomePageOptionsRow {
+    flex-direction: row; /* وقتی عرض کوچیک شد: کنار هم */
+  }
+}

@@ -278,19 +278,10 @@ const WelcomePage = () => {
               <button
                 className={styles.menuItem}
                 onClick={() => navigate("/docs/intro")}
-
-                // onClick={() => (window.location.href = "/docs/intro")}
-                // onClick={() => window.open("/docs/intro", "_blank", "noopener,noreferrer")}
-
-                // onClick={() => navigate("/docs")}
-                // onClick={() => window.open("/docs", "_blank", "noopener")}
               >
                 داکیومنت‌ها
               </button>
-              <button
-                className={styles.menuItem}
-                onClick={() => navigate("/")}
-              >
+              <button className={styles.menuItem} onClick={() => navigate("/")}>
                 صفحه اصلی
               </button>
             </div>
@@ -335,7 +326,12 @@ const WelcomePage = () => {
         <>
           <div className={styles.welcomePageMainBoxBody} />
           <div className={styles.welcomePageMainBoxBodyOverlay}>
-            <div className={styles.welcomePageMainBoxBodyPopupCard}>
+            <div
+              className={`${styles.welcomePageMainBoxBodyPopupCard} ${
+                step === 2 ? styles.scrollable : ""
+              }`}
+            >
+              {/* <div className={styles.welcomePageMainBoxBodyPopupCard}> */}
               {(step === 1 ||
                 (step === 2 && selectedProduct === "game") ||
                 step === 3) && (
@@ -349,7 +345,7 @@ const WelcomePage = () => {
                   }}
                 />
               )}
-
+              {/* <div className={`${styles.popupScrollArea} ${step === 2 ? styles.scrollEnabled : ""}`}> */}
               <div className={styles.welcomePageStepperContainer}>
                 <div
                   className={`${styles.welcomePageStepperItem} ${
@@ -452,13 +448,15 @@ const WelcomePage = () => {
 
               {step === 2 && selectedProduct === "game" && (
                 <motion.div
+                  className={styles.stepMotion}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: "easeInOut" }}
                 >
+                  {/* <div className={`${styles.step2ScrollWrapper}`}> */}
                   <div className={styles.step2Compact}>
                     <p className={`${styles.gameTitle} text-start`}>
-                      اطلاعات بازی ات را وارد کن:
+                      اطلاعات بازی‌ات را وارد کن:
                     </p>
 
                     <div className={styles.gameNameInput}>
@@ -489,6 +487,7 @@ const WelcomePage = () => {
                       </div>
 
                       <div className={styles.welcomePageUploadSection}>
+                        <div className={styles.welcomePageUploadContainer}>
                         <div className={styles.welcomePageUploadPreviewWrapper}>
                           {thumbnail ? (
                             <img
@@ -506,6 +505,7 @@ const WelcomePage = () => {
                             />
                           )}
                         </div>
+
                         <div
                           className={`d-flex justify-content-center gap-3 mt-2`}
                         >
@@ -542,6 +542,7 @@ const WelcomePage = () => {
                             حذف تصویر
                           </button>
                         </div>
+                                                </div>
 
                         {imageError && (
                           <p
@@ -552,6 +553,7 @@ const WelcomePage = () => {
                         )}
                       </div>
                     </div>
+
 
                     <div className="d-flex flex-column flex-md-row gap-4">
                       <div className={`text-start flex-fill mt-3 mt-md-0 mb-4`}>
@@ -710,6 +712,7 @@ const WelcomePage = () => {
                       </button>
                     </div>
                   </div>
+                  {/* </div> */}
                 </motion.div>
               )}
 
@@ -772,6 +775,7 @@ const WelcomePage = () => {
               )}
             </div>
           </div>
+          {/* </div> */}
         </>
       )}
     </div>
