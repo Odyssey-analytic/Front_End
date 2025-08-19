@@ -1,8 +1,12 @@
 /* ========================= Root tokens ========================= */
 :root {
-  --nav-height: 80px;     /* fixed navbar height */
-  --scroll-gap: 16px;     /* space under navbar when landing on anchors */
-  --page-gutter: clamp(16px, 2.2vw, 28px); /* safe side padding for full-bleed */
+  --nav-height: 80px; /* fixed navbar height */
+  --scroll-gap: 16px; /* space under navbar when landing on anchors */
+  --page-gutter: clamp(
+    16px,
+    2.2vw,
+    28px
+  ); /* safe side padding for full-bleed */
 }
 
 /* ========================= Page Base / Layout ========================= */
@@ -50,12 +54,18 @@
   color: #fff;
   padding-block: clamp(48px, 6vw, 100px);
   overflow: hidden;
-
-  /* land below the fixed navbar on anchor scroll */
+  scroll-margin-top: calc(var(--nav-height) + var(--scroll-gap));
+}
+.sectionService {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding-block: clamp(48px, 6vw, 100px);
+  overflow: hidden;
+  margin-bottom: -27%;
   scroll-margin-top: calc(var(--nav-height) + var(--scroll-gap));
 }
 
-/* Contact section: tighter top space + header contained */
 .sectionContact {
   color: #fff;
   padding-top: clamp(24px, 3vw, 56px);
@@ -65,7 +75,7 @@
 .sectionContact .head {
   width: min(1200px, 92%);
   margin-inline: auto;
-  padding-inline: 0;           /* remove full-bleed padding */
+  padding-inline: 0; /* remove full-bleed padding */
 }
 .sectionContact .headLine {
   inline-size: clamp(56px, 4vw, 96px);
@@ -118,7 +128,9 @@
   color: #cfd3da;
 }
 
-.accent { color: #63c6e4; }
+.accent {
+  color: #63c6e4;
+}
 
 .heroArt {
   align-self: flex-end; /* under text on mobile */
@@ -132,7 +144,9 @@
     align-items: center;
     justify-content: space-between;
   }
-  .heroArt { align-self: center; }
+  .heroArt {
+    align-self: center;
+  }
 }
 
 /* ========================= Section Header (full-bleed band) ========================= */
@@ -140,9 +154,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
-
-  width: 100vw;                           /* full viewport band */
-  margin-inline: calc(53% - 50vw);        /* center the band across page */
+  margin-top: -4.8%;
+  width: 100vw;
+  margin-inline: calc(53% - 50vw);
   padding-inline: var(--page-gutter);
 }
 
@@ -150,22 +164,20 @@
   white-space: nowrap;
   padding: 10px 16px;
   border-radius: 6px;
-
+  /* margin-top: -4%; */
   background: rgba(85, 166, 188, 0.3);
   color: #63c6e4;
   font-size: clamp(0.85rem, 1vw, 0.95rem);
 }
 
-.headBadgeTestimonials
-{
+.headBadgeTestimonials {
   white-space: nowrap;
   padding: 10px 16px;
   border-radius: 6px;
-margin-right:-1%;
+  margin-right: -1%;
   background: rgba(85, 166, 188, 0.3);
   color: #63c6e4;
   font-size: clamp(0.85rem, 1vw, 0.95rem);
-
 }
 .headLine {
   inline-size: clamp(64px, 8vw, 120px);
@@ -189,7 +201,6 @@ margin-right:-1%;
   margin-inline: calc(50% - 50vw);
   padding-inline: 0;
 }
-
 
 /* ========================= Back-to-Top Floating Button ========================= */
 .scrollToTopButton {
@@ -215,6 +226,6 @@ margin-right:-1%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s ease;
 }
-.scrollToTopButton:hover { background-color: #004d40; }
-
-
+.scrollToTopButton:hover {
+  background-color: #004d40;
+}

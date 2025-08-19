@@ -64,8 +64,8 @@ const LandingPage: React.FC = () => {
           </section>
 
           {/* ========== Section 2 - Services ========== */}
-          <section id="services" className={styles.section}>
-            <div className={styles.sectionInner}>
+          <section id="services" className={styles.sectionService}>
+            {/* <div className={styles.sectionInner}> */}
               <header className={styles.head}>
                 <span className={styles.headBadge}>سرویس‌ها</span>
                 <span className={styles.headLine} />
@@ -73,7 +73,7 @@ const LandingPage: React.FC = () => {
               <div className={styles.body}>
                 <LandingPage_AnalysisTools />
               </div>
-            </div>
+            {/* </div> */}
           </section>
           <section
             id="testimonials"
@@ -132,10 +132,10 @@ const LandingPage: React.FC = () => {
 
           <section id="contact" className={` ${styles.section}`}>
             <div className={styles.sectionInner}>
-              {/* <header className={styles.head}>
+              <header className={styles.head}>
                 <span className={styles.headBadge}>ارتباط با ما</span>
                 <span className={styles.headLine} />
-              </header> */}
+              </header>
               <div className={styles.body}>
                 <LandingPage_Contact />
               </div>
