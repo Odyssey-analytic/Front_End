@@ -93,12 +93,12 @@
 
 /* Decorative background per section (optional) */
 .sectionBg {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 0;
 
   width: 100%;
-  height: 100%;
+  height: 110%;
   object-fit: cover;
   opacity: 0.6;
 }
@@ -119,14 +119,36 @@
   font-size: clamp(1.6rem, 3.2vw, 2.6rem);
   line-height: 1.6;
   font-weight: 800;
+    font-size: 2rem;
 }
 
+/* بلوک متن همون‌طور که گفتی: راست‌چین ولی سمت چپ صفحه */
+.heroCopy {
+  margin-top: auto;
+  font-size: 1.2rem;
+  margin-right: auto; /* بلوک بچسبه به چپ */
+  margin-left: 0;
+  max-width: 59ch; /* عرض خوانا؛ لازمِ تراز شکیل */
+}
 .heroCopy p {
+  font-size: 1.2rem;
+  margin-top: 12%;
+  text-align: justify; /* پر کردن سطرها */
+  text-align-last: right; /* خطِ آخر راست‌چین بماند */
+  line-height: 1.9; /* فاصله‌ی خطوط مثل نمونه */
+  word-break: normal;
+  overflow-wrap: anywhere; /* از هم نپاشه روی موبایل */
+  text-wrap: balance; /* (جدید) تقسیم یکنواخت سطرها، اگر مرورگر پشتیبانی کند */
+  /* اختیاری: بهبود تایپو فارسی */
+  font-feature-settings: "kern" 1, "calt" 1, "rlig" 1;
+}
+
+/* .heroCopy p {
   margin: 0;
   font-size: clamp(0.95rem, 1.4vw, 1.05rem);
   line-height: 1.9;
   color: #cfd3da;
-}
+} */
 
 .accent {
   color: #63c6e4;
@@ -217,7 +239,7 @@
   border: none;
   border-radius: 50%;
 
-  background-color: #00796b;
+  background-color: #6d91ba;
   color: #ffffff;
   opacity: 0.7;
   font-size: 24px;
@@ -227,5 +249,5 @@
   transition: background-color 0.3s ease;
 }
 .scrollToTopButton:hover {
-  background-color: #004d40;
+  background-color: #6d91baae;
 }

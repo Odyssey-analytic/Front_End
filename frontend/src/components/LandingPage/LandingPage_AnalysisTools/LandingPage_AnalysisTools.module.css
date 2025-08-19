@@ -1,6 +1,6 @@
 /* ============================ Layout Wrapper ============================ */
 .analysisToolsWrapper {
-  flex-direction: row; 
+  flex-direction: row;
   width: 100%;
 }
 
@@ -146,9 +146,15 @@
   z-index: 3;
 }
 
-.firstChatImage { top: 17%; }
-.secondChatImage { top: 41%; }
-.thirdChatImage { top: 65%; }
+.firstChatImage {
+  top: 17%;
+}
+.secondChatImage {
+  top: 41%;
+}
+.thirdChatImage {
+  top: 65%;
+}
 
 .firstChatProfile,
 .secondChatProfile,
@@ -158,9 +164,15 @@
   z-index: 4;
 }
 
-.firstChatProfile { top: 19%; }
-.secondChatProfile { top: 44%; }
-.thirdChatProfile { top: 67%; }
+.firstChatProfile {
+  top: 19%;
+}
+.secondChatProfile {
+  top: 44%;
+}
+.thirdChatProfile {
+  top: 67%;
+}
 
 /* ============================ Chart Box & Arc Container ============================ */
 .chartBoxImage {
@@ -233,4 +245,84 @@
 .chartCenterText span {
   font-size: clamp(0.7rem, 1vw, 0.95rem);
   color: #666;
+}
+
+.boxImage {
+  width: 100%;
+  min-width: 125%;
+  min-height: 120%;
+}
+
+@media (min-width: 300px) and (max-width: 550px) {
+  .imageContainer {
+    max-width: 33%;
+  }
+  .firstChatImage,
+  .secondChatImage,
+  .thirdChatImage {
+    position: absolute;
+    left: 50%;
+    width: 90%;
+    max-width: 300px;
+    z-index: 3;
+  }
+
+  .firstChatImage {
+    top: 17%;
+  }
+  .secondChatImage {
+    top: 41%;
+  }
+  .thirdChatImage {
+    top: 65%;
+  }
+
+  .chartTitle {
+    position: absolute;
+    top: 40%;
+    right: -19%;
+    font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+    font-weight: 600;
+    color: #004d40;
+    z-index: 10;
+  }
+}
+
+@media (min-width: 550px) and (max-width: 768px) {
+  .imageContainer {
+    max-width: 33%;
+  }
+  .firstChatImage,
+  .secondChatImage,
+  .thirdChatImage {
+    position: absolute;
+    left: 60%;
+    width: 90%;
+    /* max-width: 300px; */
+    z-index: 3;
+  }
+
+  .firstChatImage {
+    top: 17%;
+  }
+  .secondChatImage {
+    top: 41%;
+  }
+  .thirdChatImage {
+    top: 65%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 978px) {
+  .imageContainer {
+    max-width: 33%;
+  }
+
+}
+
+@media (min-width: 978px) and (max-width: 1200px) {
+  .imageContainer {
+    max-width: 33%;
+  }
+
 }

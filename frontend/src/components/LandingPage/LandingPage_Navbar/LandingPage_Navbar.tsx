@@ -4,6 +4,7 @@ import styles from "./LandingPage_Navbar.module.css";
 import OdessayLogo from "/public/icons/odessay_logo.svg";
 
 const sections = [
+{id: "features" },
   { id: "services", label: "سرویس‌ها" },
   { id: "testimonials", label: "نظرات" },
   { id: "start", label: "شروع" },

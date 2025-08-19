@@ -31,7 +31,7 @@ const LandingPage: React.FC = () => {
           {/* ========== Section 1 (Hero / بدون عنوان) ========== */}
           <section id="features" className={styles.section}>
             {/* بک‌گراند تزئینی همین سکشن */}
-            {/* <img src={FirstSectionBackGround} alt="" className={styles.sectionBg} /> */}
+            <img src={FirstSectionBackGround} alt="" className={styles.sectionBg} />
 
             <div className={styles.sectionInner}>
               <div className={styles.heroRow}>
