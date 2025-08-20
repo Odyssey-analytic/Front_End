@@ -1,8 +1,6 @@
 .dashboardContainer {
   background-color: #1C1C38;
-  /* min-height: 100vh; */
   height: 115vh;
-  /* padding-bottom: 50px; */
 }
 
 .gameList {
@@ -88,7 +86,7 @@
 .searchInput {
   width: 30%;
   padding: 0.5rem 1rem;
-  font-size: 11px;
+  font-size: 12px;
   text-align: right;
 
   background: rgba(81, 85, 145, 0.192);
@@ -109,18 +107,62 @@
 }
 
 .searchInput:focus::placeholder {
-  color: #ccc;
+  color: #000000;
 }
 
 .searchInput:focus {
   outline: none !important;
-  background: rgba(124, 124, 145, 0.63);
+  /* color: #000000; */
+  background: rgba(255, 255, 255, 0.774);
   box-shadow: 0 0 0 2px rgba(98, 98, 126, 0.497) !important;
 }
 
 .searchInput:active {
   transform: scale(0.99); /* افکت فشرده شدن ظریف */
 }
+
+.searchSuggestions {
+  position: absolute;
+  top: 15%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background: #ffffffd5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  padding: 4px 0;
+  width: 30%;
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* justify-items: center; */
+  justify-self: center;
+}
+
+.suggestionItem {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-size: 14px;
+  color: #000000b1;
+}
+
+.suggestionItem:hover {
+  /* background: #ffffff7a; */
+  background: #8092b82f;
+  color: #000000e1;
+}
+
+.suggestionItem.active {
+  background: #8092b8;
+  color: #000000;
+  font-weight: 500;
+}
+
+
 
 .dashboardTitle {
   padding-right: 2%;
@@ -623,10 +665,6 @@
   .gameSettingsIcon {
     display: none !important;
   }
-  /* .headerBrand {
-    padding-top: 2rem;
-    padding-left: 2rem;
-  } */
 }
 
 
@@ -636,42 +674,31 @@
   .mobileSheet,
   .collaboratorNameRowMobile { display: none; }
 
-  /* اگر روی دسکتاپ نمی‌خوای دکمه دیده بشه: */
   .collaboratorsToggleBtn { display: none; }
 }
 
 
 /* وقتی عرض کمتر از 516px شد */
 @media (max-width: 516px) {
-  /* کارت‌ها ساده‌تر بشن */
   .gameCard {
     display: flex;
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* padding: 3px; */
     min-height: auto;
-    /* text-align: right; */
   }
 
   .gameSectionInfo {
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
     flex: 0 0 100%;
-    /* padding: 12px; */
-    /* padding-right: 16px; */
     position: relative;
-    /* text-align: right; */
   }
 
   .gameSectionInfo {
     width: 100%;
   }
-  /* فقط اسم بازی نمایش داده بشه */
+
   .gameTitle {
     font-size: 14px;
     font-weight: 600;
-    /* width: 100%; */
     color: #fff;
     margin: 0;
     text-align: right;

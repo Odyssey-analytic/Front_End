@@ -366,7 +366,7 @@
 
 // export default DashboardPage;
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./DashboardPage.module.css";
 
@@ -502,16 +502,102 @@ const DashboardPage = () => {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchTerm(value);
-    if (value.trim() === "") {
+
+    const q = normalizeText(value);
+    if (!q) {
       setSuggestions([]);
+      setSelectedIndex(-1);
       return;
     }
 
-    const filtered = games.filter((game) =>
-      game.title.startsWith(value.trim())
-    );
-    setSuggestions(filtered);
+    // از filteredGames استفاده نکن چون به setState وابسته است؛ مستقیم محاسبه کن
+    const matched = games.filter((g) => normalizeText(g.title).includes(q));
+
+    setSuggestions(matched.slice(0, 8)); // حداکثر ۸ پیشنهاد
+    setSelectedIndex(matched.length ? 0 : -1);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!suggestions.length) return;
+
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev + 1) % suggestions.length);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setSelectedIndex((prev) =>
+          prev <= 0 ? suggestions.length - 1 : prev - 1
+        );
+      } else if (e.key === "Enter" && selectedIndex !== -1) {
+        e.preventDefault();
+        navigate(`/dashboard/${suggestions[selectedIndex].id}`);
+        // بعد از انتخاب، باکس ساجست بسته شود
+        setSuggestions([]);
+      } else if (e.key === "Escape") {
+        setSuggestions([]);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [suggestions, selectedIndex]);
+
+  const currentGame = openCollaboratorsFor
+    ? games.find((g) => g.id === openCollaboratorsFor)
+    : null;
+
+  // وقتی Bottom Sheet بازه، اسکرول صفحه قفل بشه و Escape کار کنه
+  useEffect(() => {
+    const body = document.body;
+
+    // قفل اسکرول
+    if (openCollaboratorsFor) {
+      const prev = body.style.overflow;
+      body.style.overflow = "hidden";
+      return () => {
+        body.style.overflow = prev;
+      };
+    }
+  }, [openCollaboratorsFor]);
+
+  useEffect(() => {
+    const onEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpenCollaboratorsFor(null);
+    };
+    window.addEventListener("keydown", onEsc);
+    return () => window.removeEventListener("keydown", onEsc);
+  }, []);
+
+  // نرمال‌سازی برای جستجوی بهتر (حساس نبودن به حروف، فواصل، ی/ک فارسی/عربی و ارقام)
+  const normalizeText = (s: string) =>
+    (s || "")
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, " ")
+      .replace(/ي/g, "ی")
+      .replace(/ك/g, "ک")
+      .replace(/[۰-۹]/g, (d) => String("۰۱۲۳۴۵۶۷۸۹".indexOf(d)))
+      .normalize("NFKD");
+
+  // محاسبه‌ی لیست فیلتر شده برای رندر کارت‌ها
+  const filteredGames = useMemo(() => {
+    const q = normalizeText(searchTerm);
+    if (!q) return games;
+    return games.filter((g) => normalizeText(g.title).includes(q));
+  }, [games, searchTerm]);
+
+  useEffect(() => {
+    const onClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      // اگر دوست داری دقیق‌تر کنی، یک ref برای searchBox بگذار
+      if (!target.closest?.(`.${styles.searchBox}`)) {
+        setSuggestions([]);
+      }
+    };
+    window.addEventListener("click", onClickOutside);
+    return () => window.removeEventListener("click", onClickOutside);
+  }, []);
 
   return (
     <div className={`${styles.dashboardContainer}`}>
@@ -531,7 +617,31 @@ const DashboardPage = () => {
               type="text"
               className={styles.searchInput}
               placeholder="جستجو..."
+              value={searchTerm}
+              onChange={handleSearch}
             />
+
+            {suggestions.length > 0 && (
+              <ul className={styles.searchSuggestions /* استایل دلخواه شما */}>
+                {suggestions.map((s, idx) => (
+                  <li
+                    key={s.id}
+                    onMouseDown={() => {
+                      // onMouseDown تا blur نشه قبل از navigate
+                      navigate(`/dashboard/${s.id}`);
+                      setSuggestions([]);
+                    }}
+                    className={
+                      idx === selectedIndex
+                        ? `${styles.suggestionItem} ${styles.active}`
+                        : styles.suggestionItem
+                    }
+                  >
+                    {s.title}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
 
@@ -576,7 +686,8 @@ const DashboardPage = () => {
       </div>
 
       <div className={styles.gameList}>
-        {games.map((game) => (
+        {/* {games.map((game) => ( */}
+        {filteredGames.map((game) => (
           <div key={game.id} className={`${styles.gameCard}`}>
             <div className={`${styles.gameSectionInfo}`}>
               <div className={styles.gameIconWrapper}>
@@ -670,9 +781,11 @@ const DashboardPage = () => {
                 />
               </div>
 
-              {/* دسکتاپ: همان نمایش آیکون‌ها */}
+              {/* دسکتاپ: نمایش آیکون‌ها (مثل قبل) */}
               <div className={styles.collaboratorsDesktop}>
-                  {(game.collaborators ?? []).slice(0, 4).map((c: any, i: number) => (
+                {(game.collaborators ?? [])
+                  .slice(0, 4)
+                  .map((c: any, i: number) => (
                     <div key={i} className={styles.collaboratorStatusWrapper}>
                       <div className={styles.collaboratorWrapperIcon}>
                         <img
@@ -689,95 +802,67 @@ const DashboardPage = () => {
                       </div>
                     </div>
                   ))}
-                </div>
+              </div>
 
-
-
-                {/* موبایل (<768px): فقط یک دکمه «لیست اسامی» نمایش بده */}
-                <button
-                  type="button"
-                  className={styles.collaboratorsToggleBtn}
-                  onClick={() => toggleCollaborators(game.id)}
-                  aria-expanded={openCollaboratorsFor === game.id}
-                >
-                  لیست اسامی
-                </button>
-
-
-
-                {/* لیست اسکرول‌دار نام همکاران؛ فقط در حالت موبایل و وقتی باز است */}
-                {openCollaboratorsFor === game.id && (
-                  <div className={styles.collaboratorsDropdown}>
-                    {(game.collaborators ?? []).map((c: any, i: number) => (
-                      <div key={i} className={styles.collaboratorNameRow}>
-                        <span className={styles.name}>{c.name}</span>
-                        <span
-                          className={`${styles.dot} ${
-                            c.online ? styles.online : styles.offline
-                          }`}
-                          aria-label={c.online ? "آنلاین" : "آفلاین"}
-                          title={c.online ? "آنلاین" : "آفلاین"}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-
-              {/* <div>
-                {[...Array(4)].map((_, i) => {
-                  const isOnline = Math.random() > 0.5;
-                  return (
-                    <div key={i} className={styles.collaboratorStatusWrapper}>
-                      <div className={styles.collaboratorWrapperIcon}>
-                        <img
-                          src={dashboard_collaborator_icon}
-                          alt="user"
-                          className={styles.collaboratorIcon}
-                        />
-                        <span
-                          className={`${styles.statusIndicator} ${
-                            isOnline ? styles.online : styles.offline
-                          }`}
-                        ></span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div> */}
-
-
-
-
-              {/* <div>
-                {game.collaborators?.map((c, i) => (
-                  <div key={i} className={styles.collaboratorStatusWrapper}>
-                    <div
-                      className={`${styles.collaboratorWrapperIcon} ${styles.tooltip}`}
-                      data-tooltip={c.name} // ← متن تول‌تیپ از اینجا خونده می‌شود
-                    >
-                      <img
-                        src={dashboard_collaborator_icon}
-                        alt={c.name}
-                        className={styles.collaboratorIcon}
-                      />
-                      <span
-                        className={`${styles.statusIndicator} ${
-                          c.online ? styles.online : styles.offline
-                        }`}
-                      ></span>
-                    </div>
-                  </div>
-                ))}
-              </div> */}
-
-
-
-
+              {/* موبایل: فقط دکمهٔ باز کردن باکس مجزا */}
+              <button
+                type="button"
+                className={styles.collaboratorsToggleBtn}
+                onClick={() => toggleCollaborators(game.id)}
+                aria-expanded={openCollaboratorsFor === game.id}
+              >
+                لیست اسامی
+              </button>
             </div>
           </div>
         ))}
       </div>
+
+      {/* =========================
+          Bottom Sheet / Modal (فقط موبایل)
+          ========================= */}
+      {currentGame && (
+        <div
+          className={styles.mobileOverlay}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="collabSheetTitle"
+          onClick={(e) => {
+            // کلیک روی بک‌دراپ ببنده
+            if (e.target === e.currentTarget) setOpenCollaboratorsFor(null);
+          }}
+        >
+          <div className={styles.mobileSheet}>
+            <div className={styles.mobileSheetHeader}>
+              <h3 id="collabSheetTitle" className={styles.mobileSheetTitle}>
+                همکاران: {currentGame.title}
+              </h3>
+              <button
+                className={styles.mobileSheetClose}
+                onClick={() => setOpenCollaboratorsFor(null)}
+                aria-label="بستن"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className={styles.mobileSheetBody}>
+              {(currentGame.collaborators ?? []).map((c: any, i: number) => (
+                <div key={i} className={styles.collaboratorNameRowMobile}>
+                  <span className={styles.name}>{c.name}</span>
+                  <span
+                    className={`${styles.dot} ${
+                      c.online ? styles.online : styles.offline
+                    }`}
+                    aria-label={c.online ? "آنلاین" : "آفلاین"}
+                    title={c.online ? "آنلاین" : "آفلاین"}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
