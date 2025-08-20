@@ -1,27 +1,32 @@
-.dateSelectorContainer {
+/* .dateSelectorContainer {
   position: relative;
-}
+} */
 
 .combinedPicker {
   position: relative;
+  
 }
+
+
 
 .mainButton {
   align-items: center;
   padding: 10px 15px;
-  /* background-color: #fff; */
 
-  
   background-color: #373C5F;
 
   border: 1px solid #dddddd88;
   border-radius: 4px;
 
   transition: all 0.2s;
-  min-width: 250px;
   justify-content: space-between;
+  /* left: 1px; */
+  /* direction: ltr; */
 
-  width: 320px;
+  width: 100%;
+  /* width: 320px; */
+  /* width: 55%; */
+  /* width: 120%; */
 }
 
 .mainButton:hover {
@@ -51,29 +56,18 @@
 
 .dropdownContent {
   position: absolute;
-  /* justify-content: center; */
   justify-items: center;
-  /* display: flex; */
 
-  /* gap: 95px; */
-  /* right: 12px; */
   margin-top: 5px;
-  /* background-color: #feffff; */
 
   background-color: #373C5F;
-
-  /* background-color: #6c7eb7; */
-
-  /* background-color: ; */
-
 
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 10px 10px 0 10px;
-  
 
-
-  width: 320px;
+  top: 100%;
+  width: 100%;
 }
 
 .modeSelector {
@@ -101,7 +95,7 @@
   border-color: #007bff;
 }
 
-.modeDropdown {
+/* .modeDropdown {
   position: absolute;
   top: 100%;
   right: 0;
@@ -111,20 +105,20 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   z-index: 101;
   min-width: 80px;
-}
+} */
 
-.separator {
+/* .separator {
   margin: 0 8px;
   color: #ddd;
-}
+} */
 
-.modeLabel {
+/* .modeLabel {
   color: #888;
-  margin-left: 8px;
-}
+  margin-left: 88px;
+} */
 
 .dropdownHeader {
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
   align-items: center;
   padding: 8px 12px;
@@ -250,4 +244,14 @@
   display: flex;
   align-items: center;
   color: #e6e6e6e2;
+}
+
+
+@media (min-width: 481px) and (max-width: 614px) {
+
+  .mainButton {
+    padding: 10px;
+    /* display:-webkit-inline-box; */
+  }
+
 }

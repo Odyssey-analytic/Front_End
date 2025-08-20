@@ -1,3 +1,63 @@
+
+
+.dashboardContainer {
+  background-color: #1C1C38;
+  min-height: 100vh;
+}
+
+.gameList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 95%;
+  margin: 20px auto;
+}
+
+/* کل کارت بازی */
+.gameCard {
+  display: flex;
+  flex-direction: row;
+  border-radius: 8px;
+
+  background: rgba(81, 85, 145, 0.12);
+
+  backdrop-filter: blur(3px);
+  border-radius: 12px; 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  box-shadow: 
+      0 4px 30px rgba(0, 0, 0, 0.1), 
+      inset 0 0 10px rgba(255, 255, 255, 0.1);
+
+  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* هر بخش از کارت (عرض یک‌سوم) */
+.gameSectionInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 0 0 33.33%;
+  padding: 12px;
+  padding-right: 16px;
+  position: relative;
+}
+
+.gameSectionStats {
+  flex: 0 0 33.33%;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gameSectionCollaborators {
+  flex: 0 0 33.33%;
+  padding: 12px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .headerBrand {
   display: flex;
   align-items: center;
@@ -153,71 +213,6 @@
   gap: 0.5rem;
   justify-content: center;
   flex-wrap: wrap;
-}
-
-.dashboardContainer {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100vh;
-  min-height: calc(100vh - 110px);
-  overflow-y: auto;
-  background-color: #1A1C3A;
-}
-
-.gameList {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 95%;
-  margin: 20px auto;
-}
-
-/* کل کارت بازی */
-.gameCard {
-  display: flex;
-  flex-direction: row;
-  border-radius: 8px;
-
-  background: rgba(81, 85, 145, 0.12);
-
-  backdrop-filter: blur(3px);
-  border-radius: 12px; 
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
-  box-shadow: 
-      0 4px 30px rgba(0, 0, 0, 0.1), 
-      inset 0 0 10px rgba(255, 255, 255, 0.1);
-
-  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
-}
-
-/* هر بخش از کارت (عرض یک‌سوم) */
-.gameSectionInfo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex: 0 0 33.33%;
-  padding: 12px;
-  padding-right: 16px;
-  position: relative;
-}
-
-.gameSectionStats {
-  flex: 0 0 33.33%;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.gameSectionCollaborators {
-  flex: 0 0 33.33%;
-  padding: 12px;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 /* آیکون بازی */
@@ -438,3 +433,113 @@
 .offline {
   background-color: #ae2d2d;
 }
+
+
+/* @media (max-width: 300px) {
+  .loginBox {
+    padding: 2.2rem;
+    max-width: 300px;
+    top: 13vh;
+    right: 7vw;
+  }
+
+  .loginTitle {
+    font-size: 2.1rem;
+  }
+
+  .loginLogoImg {
+    top: 1.2rem;
+    left: 1.2rem;
+  }
+} */
+
+
+@media (max-width: 480px) {
+  .signupPageBox {
+    padding: 2.2rem;
+    max-width: 330px;
+    top: 13vh;
+    right: 7vw;
+  }
+
+  .signupPageTitle {
+    font-size: 2.1rem;
+  }
+
+  .signupPageUserPlaceholderHint {
+    font-size: 0.48rem;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .signupPageUserPlaceholder {
+    padding-right: 34%;
+  }
+  
+}
+
+/* @media (min-width: 481px) and (max-width: 768px) {
+  .signupPageBox {
+    padding: 2.2rem;
+    max-width: 340px;
+    top: 13vh;
+    right: 7vw;
+  }
+  
+  .signupPageTitle {
+    font-size: 2.2rem;
+  }
+  
+  .signupPageUserPlaceholderHint {
+  font-size: 0.48rem;
+  color: rgba(0, 0, 0, 0.5);
+  }
+
+  .signupPageUserPlaceholder {
+    padding-right: 38%;
+  }
+} */
+
+/* @media (min-width: 769px) and (max-width: 1024px) {
+  .signupPageBox {
+    padding: 2rem;
+    top: 13vh;
+    right: 7vw;
+    max-width: 360px;
+  }
+
+    .signupPageUserPlaceholderHint {
+    font-size: 0.5rem;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .signupPageUserPlaceholder {
+    padding-right: 36%;
+  }
+} */
+
+/* @media (min-width: 1025px) and (max-width: 1280px) {
+  .signupPageBox {
+    padding: 2.3rem;
+    top: 13vh;
+    right: 7vw;
+    max-width: 370px;
+  }
+  .signupPageUserPlaceholderHint {
+  font-size: 0.6rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+} */
+
+/* @media (min-width: 1281px) and (max-width: 1440px) {
+  .signupPageBox {
+    padding: 2.3rem;
+    top: 13vh;
+    right: 7vw;
+    max-width: 380px;
+  }
+  .signupPageUserPlaceholderHint {
+  font-size: 0.58rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+} */

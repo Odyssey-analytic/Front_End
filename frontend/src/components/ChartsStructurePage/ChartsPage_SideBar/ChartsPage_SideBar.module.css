@@ -1,6 +1,11 @@
 /* --------------------------------------
    Sidebar Styles (Larger than 480px)
 -------------------------------------- */
+.sidebarcontainer {
+  display: flex;
+  flex-direction: column; /* عناصر عمودی بچین */
+}
+
 .sidebar {
   width: 225px;
   background-color: #212040;
@@ -8,7 +13,12 @@
   box-shadow: inset 6px 0 13px rgba(255, 255, 255, 0.1);
   color: #ffffffd2;
   transition: width 0.3s ease;
+  direction: rtl;
   height: 100%;
+  /* overflow: auto; */
+  /* position: fixed; */
+  /* overflow-y: auto; */
+  /* direction: ltr; */
 }
 
 .sidebar.collapsed {
@@ -16,7 +26,7 @@
 }
 
 .MobilecloseSidebar {
-  font-size: 30px;
+  font-size: 25px;
   color: #fff;
   position: absolute;
   top: 20px;
@@ -136,6 +146,7 @@
   padding-top: 15px;
   padding-bottom: 15px;
   justify-content: center;
+  flex: 0 0 auto;
 }
 
 .gameNameWrapper {
@@ -206,10 +217,15 @@
   min-width: 215px;
 
   animation: dropdownFade 0.2s ease-in-out;
-  color: #000000b6;
+  /* color: #000000b6; */
+  color: #070a36b6;
 
-  border: 2px solid #8288b7d5;
-  background-color: #f2f3ffe5;
+  /* border: 2px solid #8288b7d5; */
+  border: 2px solid #4c58818f;
+
+  background: #edf3fcd7;
+  box-shadow: 2px 2px 2px rgba(167, 167, 167, 0.3);
+  
 
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;}
@@ -266,7 +282,7 @@
 .profileSection {
   bottom: 0.1px;
   right: 0.1px;
-  position: fixed;
+  position:fixed;
   min-width: 225px;
   transition: width 0.3s ease;
 }
@@ -434,14 +450,18 @@
 .hamburgerIcon {
   z-index: 2001;
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 25px;
+
+  right: 8px;
 
   display: inline-block;
   font-size: 25px;
-  color: #b51e1e;
+  color: #ffffffc7;
+  /* background-color: rgba(255, 255, 255, 0.226);
+  width: 30px;
+  text-align: center; */
+
   cursor: pointer;
-  margin-left: 10px;
 }
 
 .hamburgerIconActive {
@@ -480,11 +500,17 @@
 }
 
 .MobilegameSelectorBox {
-  background: rgba(255, 255, 255, 0.199);
+  /* background: rgba(255, 255, 255, 0.199); */
+  
+  background-color: #4c588163;
+
+
+  
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;
 
-  padding: 10px 0 10px 20px;
+  
+  padding: 10px;
   justify-content: center;
 
   border-radius: 6px;
@@ -495,12 +521,22 @@
   transition: background-color 0.2s ease;
 }
 
+
+/* .MobilegameSelectorBox:hover {
+  
+  background-color: #4c58818f;
+
+  
+} */
+
 .MobilegameSelectorBoxActive {
-  background-color: #b8cfde7c;
+  /* background-color: #b8cfde7c; */
+  background-color: #4c58818f;
+
   backdrop-filter: blur(8px);
-  box-shadow:
+  /* box-shadow:
     0 4px 20px rgba(0, 196, 255, 0.15),
-    0 0 0 1px rgba(131, 163, 199, 0.5) inset;
+    0 0 0 1px rgba(131, 163, 199, 0.5) inset; */
 
   transition: all 0.3s ease;
 }
@@ -520,18 +556,28 @@
 
 .MobilegameDropdown {
   position: absolute;
-  top: 13%;
+  top: 18%;
   background: #edf3fcd7;
   color: #070a36b6;
+
+  /* animation: dropdownFade 0.2s ease-in-out;
+  color: #000000b6; */
+
 
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;
 
   border-radius: 5px;
-  box-shadow: 2px 8px 8px rgba(167, 167, 167, 0.3);
+  box-shadow: 2px 2px 2px rgba(167, 167, 167, 0.3);
+  
+  
+  border: 2px solid #4c58818f;
+  
+  /* background-color: #f2f3ffe5; */
+
   z-index: 1000;
   text-align: center;
-  width: 84%;
+  width: 83%;
   animation: dropdownFade 0.2s ease-in-out;
 }
 
@@ -548,7 +594,7 @@
 
 .MobilegameDropdownItem {
   padding: 12px;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   transition: background 0.2s;
   cursor: pointer;
 }
@@ -575,13 +621,13 @@
   padding: 10px 12px;
   margin-bottom: 4px;
   transition: background 0.2s ease;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   border-radius: 5px;
 }
 
 .MobilemenuItem:hover {
-  background-color: #1ab5e471;
+  /* background-color: #1ab5e471; */
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;
 }
@@ -625,11 +671,13 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s ease;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
 }
 
 .MobilesubMenuItem:hover {
-  background-color: #00c3ff81;
+  /* background-color: #00c3ff81; */
+  
+  background-color: #6f98d53a;
 }
 
 .MobileiconMain {
@@ -643,16 +691,34 @@
 }
 
 .MobileprofileSection {
-  padding: 2rem;
+  /* padding: 2rem;
   margin-top: auto;
   position: fixed;
   bottom: 0;
   left: 0;
-  right: 0;
+  right: 0; */
+
+
+  /* padding: 2rem; */
+  /* text-align: ; */
+  padding-bottom: 1rem;
+  /* bottom: 1px; */
+  /* right: 0.1px; */
+  
+  top: 100%;
+  position: sticky;
+  
+  /* min-width: 225px; */
+  width: 100%;
+  transition: width 0.3s ease;
+
 }
 
 .MobileprofileCard {
-  background: rgba(255, 255, 255, 0.05);
+  /* background: rgba(255, 255, 255, 0.05); */
+  background-color: #4c588138;
+  
+
   border-radius: 12px;
   padding: 0.8rem;
   backdrop-filter: blur(5px);
@@ -691,7 +757,8 @@
 
 .MobileprofileStatus {
   font-size: 0.75rem;
-  color: #00c4ff;
+  /* color: #00c4ff; */
+  color: #7d97ff;
   display: flex;
   align-items: center;
   
@@ -700,7 +767,9 @@
     display: inline-block;
     width: 6px;
     height: 6px;
-    background: #00c4ff;
+    /* background: #00c4ff; */
+    background: #7d97ff;
+    
     border-radius: 50%;
     margin-left: 5px;
   }

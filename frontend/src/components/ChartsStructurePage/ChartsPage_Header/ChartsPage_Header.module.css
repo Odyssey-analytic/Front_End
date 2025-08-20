@@ -1,18 +1,10 @@
 .header {
   width: 100%;
-  /* background-color: white; */
-  /* border-bottom: 1px solid #e0e0e0; */
   padding: 1rem 1.5rem;
   border-radius: 3px;
-  /* box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04); */
-
   background-color: #212040;
   border: 1px solid rgba(255, 255, 255, 0.295);
   box-shadow: inset 8px 0 13px rgba(255, 255, 255, 0.1);
-
-
-  /* color: #ffffffd2; */
-
   position: sticky;
   top: 0;
   z-index: 10;
@@ -20,116 +12,100 @@
 
 .inner {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  align-items: center; /* وسط‌چین عمودی */
+  justify-content: space-between; /* فاصله بین عناصر */
   gap: 1rem;
+}
+
+.calendarbox {
+  /* flex: 0 0 25%; */
+  /* width: 350px; */
+  /* padding: 10px 15px; */
 }
 
 .title {
   font-weight: 600;
   margin: 0;
-  /* color: #1a1a1a; */
   color: #ffffffd2;
+  flex: 1; /* بقیه فضا رو پر کنه */
+  text-align: right; /* متن سمت راست */
+  /* align-items: center; */
+  /* display: flex; */
+  /* justify-content: center;
+  justify-items: center; */
+  /* align-items: center; */
 }
-
-.buttons {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.buttons button {
-  padding: 0.5rem 1rem;
-  border: none;
-  background-color: #0056b3;
-  color: white;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.buttons button:hover {
-  background-color: #003a78;
-}
-
-.button {
-  padding: 0.5rem 1rem;
-  border: none;
-  background-color: #f1f3f5;
-  color: #1a1a1a;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: background 0.2s ease;
-}
-
-.button:hover {
-  background-color: #e1e3e6;
-}
-
-.icon {
-  font-size: 1rem;
-}
-
 
 /* ===== Responsive Breakpoints ===== */
 
-/* 1️⃣ Extra Small (phones <= 480px) */
 @media (max-width: 480px) {
   .title {
     font-size: 1.2rem;
-    text-align: center;
-    width: 100%;
-  }
-
-  .buttons {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .buttons button {
-    font-size: 0.8rem;
+    /* text-align: center; */
     width: 100%;
   }
 }
 
-/* 2️⃣ Small (phones 481px–768px) */
-@media (min-width: 481px) and (max-width: 768px) {
+
+@media (min-width: 481px) and (max-width: 614px) {
   .title {
     font-size: 1.4rem;
   }
 
-  .buttons {
-    justify-content: flex-start;
+  .calendarbox {
+    flex: 0 0 70%;
+    /* width: 285px; */
   }
 
-  .buttons button {
-    font-size: 0.85rem;
-  }
 }
 
-/* 3️⃣ Medium (tablet 769px–1024px) */
+
+@media (min-width: 615px) and (max-width: 768px) {
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .calendarbox {
+    /* flex: 0 0 70%; */
+    width: 285px;
+  }
+
+}
+
 @media (min-width: 769px) and (max-width: 1024px) {
   .title {
     font-size: 1.6rem;
   }
+
+  
+  .calendarbox {
+    /* flex: 0 0 40%; */
+    width: 285px;
+  }
+
 }
 
-/* 4️⃣ Large (laptop 1025px–1280px) */
 @media (min-width: 1025px) and (max-width: 1280px) {
   .title {
     font-size: 1.8rem;
   }
+
+  
+  .calendarbox {
+    flex: 0 0 35%;
+  }
+
 }
 
-/* 5️⃣ Extra Large (desktop 1281px+) */
 @media (min-width: 1281px) {
   .title {
     font-size: 2rem;
   }
+
+  
+  .calendarbox {
+    /* flex: 0 0 25%; */
+    width: 370px;
+  }
+
 }

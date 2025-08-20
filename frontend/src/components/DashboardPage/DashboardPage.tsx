@@ -498,7 +498,7 @@ const DashboardPage = () => {
   };
 
   return (
-    <div>
+    // <div>
       <div className={`${styles.dashboardContainer}`}>
         <div className={styles.header}>
           <div className={`${styles.toolbarTop}`}>
@@ -695,7 +695,7 @@ const DashboardPage = () => {
           ))}
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 

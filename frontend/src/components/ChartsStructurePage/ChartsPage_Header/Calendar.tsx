@@ -180,7 +180,7 @@ const DateRangeSelector = () => {
   };
 
   return (
-    <div className={styles.dateSelectorContainer}>
+    // <div className={styles.dateSelectorContainer}>
       <div className={styles.combinedPicker}>
         <button
           className={styles.mainButton}
@@ -272,7 +272,7 @@ const DateRangeSelector = () => {
           </div>
         )}
       </div>
-    </div>
+    // </div>
   );
 };
 
