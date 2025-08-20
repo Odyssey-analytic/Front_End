@@ -513,32 +513,6 @@ const DashboardPage = () => {
     setSuggestions(filtered);
   };
 
-  const currentGame = openCollaboratorsFor
-    ? games.find((g) => g.id === openCollaboratorsFor)
-    : null;
-
-  // وقتی Bottom Sheet بازه، اسکرول صفحه قفل بشه و Escape کار کنه
-  useEffect(() => {
-    const body = document.body;
-
-    // قفل اسکرول
-    if (openCollaboratorsFor) {
-      const prev = body.style.overflow;
-      body.style.overflow = "hidden";
-      return () => {
-        body.style.overflow = prev;
-      };
-    }
-  }, [openCollaboratorsFor]);
-
-  useEffect(() => {
-    const onEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpenCollaboratorsFor(null);
-    };
-    window.addEventListener("keydown", onEsc);
-    return () => window.removeEventListener("keydown", onEsc);
-  }, []);
-
   return (
     <div className={`${styles.dashboardContainer}`}>
       <div className={styles.header}>
@@ -697,7 +671,7 @@ const DashboardPage = () => {
               </div>
 
               {/* دسکتاپ: همان نمایش آیکون‌ها */}
-              {/* <div className={styles.collaboratorsDesktop}>
+              <div className={styles.collaboratorsDesktop}>
                   {(game.collaborators ?? []).slice(0, 4).map((c: any, i: number) => (
                     <div key={i} className={styles.collaboratorStatusWrapper}>
                       <div className={styles.collaboratorWrapperIcon}>
@@ -715,20 +689,24 @@ const DashboardPage = () => {
                       </div>
                     </div>
                   ))}
-                </div> */}
+                </div>
 
-              {/* موبایل (<768px): فقط یک دکمه «لیست اسامی» نمایش بده */}
-              {/* <button
+
+
+                {/* موبایل (<768px): فقط یک دکمه «لیست اسامی» نمایش بده */}
+                <button
                   type="button"
                   className={styles.collaboratorsToggleBtn}
                   onClick={() => toggleCollaborators(game.id)}
                   aria-expanded={openCollaboratorsFor === game.id}
                 >
                   لیست اسامی
-                </button> */}
+                </button>
 
-              {/* لیست اسکرول‌دار نام همکاران؛ فقط در حالت موبایل و وقتی باز است */}
-              {/* {openCollaboratorsFor === game.id && (
+
+
+                {/* لیست اسکرول‌دار نام همکاران؛ فقط در حالت موبایل و وقتی باز است */}
+                {openCollaboratorsFor === game.id && (
                   <div className={styles.collaboratorsDropdown}>
                     {(game.collaborators ?? []).map((c: any, i: number) => (
                       <div key={i} className={styles.collaboratorNameRow}>
@@ -743,102 +721,65 @@ const DashboardPage = () => {
                       </div>
                     ))}
                   </div>
-                )} */}
+                )}
 
-              {/* دسکتاپ: نمایش آیکون‌ها (مثل قبل) */}
-              <div className={styles.collaboratorsDesktop}>
-                {(game.collaborators ?? [])
-                  .slice(0, 4)
-                  .map((c: any, i: number) => (
+
+              {/* <div>
+                {[...Array(4)].map((_, i) => {
+                  const isOnline = Math.random() > 0.5;
+                  return (
                     <div key={i} className={styles.collaboratorStatusWrapper}>
                       <div className={styles.collaboratorWrapperIcon}>
                         <img
                           src={dashboard_collaborator_icon}
-                          alt={c.name}
-                          title={c.name}
+                          alt="user"
                           className={styles.collaboratorIcon}
                         />
                         <span
                           className={`${styles.statusIndicator} ${
-                            c.online ? styles.online : styles.offline
+                            isOnline ? styles.online : styles.offline
                           }`}
-                        />
+                        ></span>
                       </div>
                     </div>
-                  ))}
-              </div>
+                  );
+                })}
+              </div> */}
 
-              {/* موبایل: فقط دکمهٔ باز کردن باکس مجزا */}
-              <button
-                type="button"
-                className={styles.collaboratorsToggleBtn}
-                onClick={() => toggleCollaborators(game.id)}
-                aria-expanded={openCollaboratorsFor === game.id}
-              >
-                لیست اسامی
-              </button>
 
-              {/* ⚠️ Dropdown قبلی برای موبایل حذف شد (یا می‌تونی نگه داری ولی با CSS پنهان کنی) */}
+
+
+              {/* <div>
+                {game.collaborators?.map((c, i) => (
+                  <div key={i} className={styles.collaboratorStatusWrapper}>
+                    <div
+                      className={`${styles.collaboratorWrapperIcon} ${styles.tooltip}`}
+                      data-tooltip={c.name} // ← متن تول‌تیپ از اینجا خونده می‌شود
+                    >
+                      <img
+                        src={dashboard_collaborator_icon}
+                        alt={c.name}
+                        className={styles.collaboratorIcon}
+                      />
+                      <span
+                        className={`${styles.statusIndicator} ${
+                          c.online ? styles.online : styles.offline
+                        }`}
+                      ></span>
+                    </div>
+                  </div>
+                ))}
+              </div> */}
+
+
+
+
             </div>
           </div>
         ))}
       </div>
-
-      {/* =========================
-          Bottom Sheet / Modal (فقط موبایل)
-          ========================= */}
-      {currentGame && (
-        <div
-          className={styles.mobileOverlay}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="collabSheetTitle"
-          onClick={(e) => {
-            // کلیک روی بک‌دراپ ببنده
-            if (e.target === e.currentTarget) setOpenCollaboratorsFor(null);
-          }}
-        >
-          <div className={styles.mobileSheet}>
-            <div className={styles.mobileSheetHeader}>
-              <h3 id="collabSheetTitle" className={styles.mobileSheetTitle}>
-                همکاران: {currentGame.title}
-              </h3>
-              <button
-                className={styles.mobileSheetClose}
-                onClick={() => setOpenCollaboratorsFor(null)}
-                aria-label="بستن"
-              >
-                ✕
-              </button>
-            </div>
-
-            <div className={styles.mobileSheetBody}>
-              {(currentGame.collaborators ?? []).map((c: any, i: number) => (
-                <div key={i} className={styles.collaboratorNameRowMobile}>
-                  <span className={styles.name}>{c.name}</span>
-                  <span
-                    className={`${styles.dot} ${
-                      c.online ? styles.online : styles.offline
-                    }`}
-                    aria-label={c.online ? "آنلاین" : "آفلاین"}
-                    title={c.online ? "آنلاین" : "آفلاین"}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
-
-// </div>
-// </div>
-// ))}
-// </div>
-// </div>
-// );
-// };
 
 export default DashboardPage;
