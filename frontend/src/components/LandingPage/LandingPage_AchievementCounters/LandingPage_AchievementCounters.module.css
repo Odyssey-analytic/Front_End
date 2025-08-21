@@ -9,7 +9,7 @@
 .title {
   font-size: 28px;
   margin-bottom: 3.5rem;
-  color: rgba(217, 217, 217, 0.8); /* matches design */
+  color: rgba(217, 217, 217, 0.8); 
   font-weight: 500;
 }
 
@@ -34,6 +34,7 @@
   justify-content: center;
   gap: 32px;       
   row-gap: 40px;   
+
 } */
 
 .statsGrid {
@@ -87,6 +88,7 @@
 /* ======================= Animation trigger class for cards ======================= */
 .fadeUp {
   animation: fadeUpAnim 1.4s ease forwards;
+
 }
 
 /* ======================= Keyframes for upward fade animation ======================= */

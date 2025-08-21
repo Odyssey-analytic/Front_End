@@ -144,9 +144,8 @@ const AreaChartKPI = () => {
       },
     ],
   });
-
-  const { id: productId } = useParams();
   const sseRef = useRef<EventSource | null>(null);
+  const {gameId} = useParams();
 
   useEffect(() => {
     // if we are using the mock data we make this true, so it only shows the mock
@@ -165,35 +164,64 @@ const AreaChartKPI = () => {
       labels,
       datasets: [
         {
-          ...prev.datasets[0],
+          ...(prev.datasets?.[0] ?? {
+            label: 'Event Count',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            data: [],
+          }),
           data: values,
         },
       ],
     }));
 
     const searchParams = new URLSearchParams(window.location.search);
-    const token = searchParams.get("token") || "";
 
-    const interval = 30;
+    const interval = 10; // 10 ,30 ,60 
     const now = new Date();
-    const utcMidnight = new Date(
-      Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
-    );
-    const isoMidnight = utcMidnight.toISOString().split(".")[0] + "Z";
-
+    const utcMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+    const isoMidnight = utcMidnight.toISOString().split('.')[0] + 'Z';
     sseRef.current = new EventSource(
-      `https://odysseyanalytics.ir/api/kpi/sse/EventCount?product_id=${productId}&start_time=${isoMidnight}&update_interval=${interval}&token=${token}`
-    );
+    `https://odysseyanalytics.ir/api/kpi/sse/EventCount?product_id=${gameId}&start_time=${isoMidnight}&update_interval=${interval}`
+  );
 
-    sseRef.current.onmessage = (event: MessageEvent) => {
-      const { timestamp, value } = JSON.parse(event.data);
-      const date = new Date(timestamp);
+
+
+    // sseRef.current = new EventSource(`https://odysseyanalytics.ir/api/kpi/sse/SessionLengthAvr?kpi=sessionTime_average&token=${token}`);
+sseRef.current.onmessage = (event: MessageEvent) => {
+  try {
+    const parsed = JSON.parse(event.data);
+
+    // If the first event is an array (historical data)
+    if (Array.isArray(parsed)) {
+      const updatedValues = Array(24).fill(0);
+
+      parsed.forEach(({ bucket, event_count }) => {
+        const date = new Date(bucket);
+        const hour = date.getHours();
+        updatedValues[hour] = event_count;
+      });
+
+      setChartData(prev => ({
+        ...prev,
+        datasets: [
+          {
+            ...prev.datasets[0],
+            data: updatedValues,
+          },
+        ],
+      }));
+    }
+    // Real-time single event update
+    else if (parsed.bucket) {
+      const { bucket, event_count } = parsed;
+      const date = new Date(bucket);
       const hour = date.getHours();
       const index = hour;
-
       setChartData((prev) => {
+
         const updatedData = [...(prev.datasets[0].data || [])];
-        updatedData[index] = value;
+        updatedData[hour] = event_count;
 
         return {
           ...prev,
@@ -205,7 +233,14 @@ const AreaChartKPI = () => {
           ],
         };
       });
-    };
+    } else {
+      console.warn("Unexpected event format", parsed);
+    }
+  } catch (err) {
+    console.error("Failed to parse SSE event", err);
+  }
+};
+
 
     sseRef.current.onerror = (err) => {
       console.error("خطا در SSE:", err);
@@ -215,7 +250,7 @@ const AreaChartKPI = () => {
     return () => {
       if (sseRef.current) sseRef.current.close();
     };
-  }, []);
+  }, [gameId]);
 
   const movingDotPlugin = {
     id: "movingDot",

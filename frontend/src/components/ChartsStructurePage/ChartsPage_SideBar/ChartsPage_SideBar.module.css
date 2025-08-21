@@ -133,6 +133,13 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
+.gameDropdownItemImg {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-left: 8px;
+}
 
 .headerWrapper {
   display: flex;

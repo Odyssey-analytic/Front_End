@@ -1,4 +1,4 @@
-// The version that is connected to back without any Mock Data engaged
+
 
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -229,6 +229,31 @@ const DashboardPage = () => {
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = prev;
+    const loadGames = async () => {
+      try {
+        const response = await fetchUserGames();
+        const userGames = response.games.map((g: any) => ({
+          id: g.id,
+          icon: g.thumbnail || game_with_no_thumbnail_icon,
+          title: g.name,
+          description: g.description || 'توضیحی ثبت نشده است.',
+          dnu: g.dnu || 14,
+          dau: g.dau || 1648,
+          retention: g.retention || '10.49%',
+          platform: g.platform?.join(', ') || 'پلتفرم ثبت نشده',
+        }));
+        const tempGame=response.games.map((g: any)=>({
+          id: g.id,
+          icon: g.thumbnail || game_with_no_thumbnail_icon,
+          title: g.name,
+        }))
+        setNavigate_games(tempGame);
+        localStorage.setItem('gamesList',JSON.stringify(tempGame));
+        console.log(localStorage.getItem("gamesList"));
+        setGames(userGames);
+      } catch (error) {
+        console.error('❌ خطا در دریافت بازی‌ها:', error);
+      }
     };
   }, [openCollaboratorsFor]);
 
@@ -391,8 +416,13 @@ const DashboardPage = () => {
                     src={game.icon}
                     alt={game.title}
                     className={styles.gameIcon}
-                    onClick={() => navigate(`/dashboard/${game.id}`)}
+                    onClick={() => {
+                        localStorage.setItem('game_name', game.title);
+                        localStorage.setItem('Logo',game.icon)
+                        navigate(`/dashboard/${game.id}`)
+                    }}
                     style={{ cursor: "pointer" }}
+
                   />
                   <span className={styles.gameTag}>{game.platform}</span>
                 </div>
@@ -400,8 +430,13 @@ const DashboardPage = () => {
                 <div className={styles.gameTextContent}>
                   <h4
                     className={styles.gameTitle}
-                    onClick={() => navigate(`/dashboard/${game.id}`)}
+                     onClick={() => {
+                      localStorage.setItem('game_name', game.title);
+                      localStorage.setItem('Logo',game.icon)
+                      navigate(`/dashboard/${game.id}`)
+                  }}
                     style={{ cursor: "pointer" }}
+
                   >
                     {game.title}
                   </h4>

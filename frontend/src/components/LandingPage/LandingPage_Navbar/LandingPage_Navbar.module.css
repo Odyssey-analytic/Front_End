@@ -1,7 +1,7 @@
 /* ======================= Navbar container ======================= */
 .navbar {
   position: fixed;
-  top: 15px; /* distance from top */
+  top: 15px;
   left: 50%;
   transform: translateX(-50%);
 
@@ -16,7 +16,7 @@
 
   background-color: rgba(7, 4, 26, 0.777);
 
-  backdrop-filter: blur(10px); /* blurred glass effect */
+  backdrop-filter: blur(10px);
   border-radius: 12px;
   box-shadow: 0 6px 10px rgba(231, 231, 238, 0.106);
 
