@@ -162,8 +162,8 @@ const ChartsPage_SideBar = () => {
   const gameList = JSON.parse(localStorage.getItem('gamesList') ?? '[]');
   const navigate = useNavigate();
   
-<!--   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const gameList = ["بازی اول", "بازی دوم", "بازی سوم"]; -->
+/*   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const gameList = ["بازی اول", "بازی دوم", "بازی سوم"]; */
 
   const [username, setUsername] = useState<string>();
 
