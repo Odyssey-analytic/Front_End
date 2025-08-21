@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./DashboardPage.module.css";
 
-import MainLayout from "../MainLayout/MainLayout";
+import MainLayout from "../../MainLayout/MainLayout";
 
 import OdessayLogo from "/public/icons/odessay_logo.svg";
 import welcome_subheader_user from "/public/icons/welcome_subheader_user.svg";
@@ -19,7 +19,7 @@ import dashboard_add_collaborator_icon from "../../../public/icons/dashboard_add
 import dashboard_game_setting_icon from "../../../public/icons/dashboard_game_setting_icon.svg";
 import game_with_no_thumbnail_icon from "../../../public/icons/game_with_no_thumbnail_icon.svg";
 
-import { fetchUserGames } from "../../services/userService";
+import { fetchUserGames } from "../../../services/userService";
 
 const DashboardPage = () => {
   const navigate = useNavigate();

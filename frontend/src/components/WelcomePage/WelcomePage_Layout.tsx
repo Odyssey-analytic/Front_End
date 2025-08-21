@@ -1,24 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
-import styles from './WelcomePage_Layout.module.css';
-import { number } from 'framer-motion';
-
-import WelcomePage from './WelcomePage';
-import MainLayout from './WelcomePage_Header';
-
-import WelcomePage_Header from './WelcomePage_Header';
-
+import React, { useEffect, useRef, useState } from "react";
+import styles from "./WelcomePage_Layout.module.css";
+import WelcomePage from "./WelcomePage";
+import WelcomePage_Header from "./WelcomePage_Header";
 
 type Line = {
   id: number;
   position: number;
   left?: number;
   top?: number;
-  direction: 'bottom' | 'left';
+  direction: "bottom" | "left";
   speed: number;
   length: number;
   opacity: number;
 };
-
 
 const DiagonalLine: React.FC = () => {
   const [lines, setLines] = useState<Line[]>([]);
@@ -43,7 +37,7 @@ const DiagonalLine: React.FC = () => {
         id: lineId.current++,
         position: 0,
         left: leftPercent,
-        direction: 'bottom',
+        direction: "bottom",
         speed: randomSpeed,
         length: randomLength,
         opacity: randomOpacity,
@@ -54,7 +48,7 @@ const DiagonalLine: React.FC = () => {
         id: lineId.current++,
         position: 0,
         top: topPercent,
-        direction: 'left',
+        direction: "left",
         speed: randomSpeed,
         length: randomLength,
         opacity: randomOpacity,
@@ -63,7 +57,6 @@ const DiagonalLine: React.FC = () => {
   };
 
   useEffect(() => {
-
     setLines((prev) => [...prev, createLine()]);
 
     const interval = setInterval(() => {
@@ -95,36 +88,31 @@ const DiagonalLine: React.FC = () => {
 
   return (
     <div className={styles.container}>
-
-
       <WelcomePage_Header />
       <WelcomePage />
-      {/* <MainLayout></MainLayout> */}
-
 
       {lines.map((line) => (
         <div
           key={line.id}
           className={styles.line}
           style={
-            line.direction === 'bottom'
+            line.direction === "bottom"
               ? {
                   top: `100%`,
                   left: `${line.left}%`,
                   width: `${line.length}px`,
                   opacity: line.opacity,
-                  transform: `translate(${line.position}px, -${line.position}px) rotate(-45deg)`
+                  transform: `translate(${line.position}px, -${line.position}px) rotate(-45deg)`,
                 }
               : {
                   top: `${line.top}%`,
                   width: `${line.length}px`,
                   opacity: line.opacity,
-                  transform: `translate(${line.position}px, -${line.position}px) rotate(-45deg)`
+                  transform: `translate(${line.position}px, -${line.position}px) rotate(-45deg)`,
                 }
           }
         />
       ))}
-
     </div>
   );
 };

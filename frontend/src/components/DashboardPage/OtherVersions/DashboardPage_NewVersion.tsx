@@ -14,7 +14,7 @@ import game_with_no_thumbnail_icon from "/public/icons/game_with_no_thumbnail_ic
 import { FiSettings } from "react-icons/fi";
 
 // ✅ STEP 0: API را وصل کن
-import { fetchUserGames } from "../../services/userService";
+import { fetchUserGames } from "../../../services/userService";
 
 // ✅ داده‌های ماک برای تست (در صورت خطا از این استفاده می‌کنیم)
 const mockGames = [

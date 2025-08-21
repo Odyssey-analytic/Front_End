@@ -1,7 +1,7 @@
-import styles from "./WelcomePage.module.css";
+import styles from "./DashboardPage_AddNewGame.module.css";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { submitGameInfo } from "../../services/userService";
+// import { useNavigate } from "react-router-dom";
+import { submitGameInfo } from "../../../services/userService";
 import { motion } from "framer-motion";
 
 // =========================== assets ===========================
@@ -9,13 +9,21 @@ import gift from "/public/icons/gift.svg";
 import close_icon from "/public/icons/close_icon.svg";
 import uploading_game_image_icon_ghost from "/public/icons/game-ghost-icon.svg";
 import copyIcon from "/public/icons/copy-icon-gradient.svg";
-import game_with_no_thumbnail_icon_png from "../../../public/icons/game_with_no_thumbnail_icon.png";
-import usericon from "../../../public/icons/user 3.svg";
-import doticon from "../../../public/icons/dots 1.svg";
+import game_with_no_thumbnail_icon_png from "/public/icons/game_with_no_thumbnail_icon.png";
 
-const WelcomePage = () => {
+// ✅ پراپس‌ها
+type AddNewGameProps = {
+  onCancel?: () => void; // برای بستن از سمت والد
+  onSaved?: (result?: any) => void; // بعد از ثبت موفق
+};
+
+// const DashboardPage_AddNewGame = () => {
+const DashboardPage_AddNewGame: React.FC<AddNewGameProps> = ({
+  onCancel,
+  onSaved,
+}) => {
   const [username, setUsername] = useState("");
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState("");
   const [step, setStep] = useState(1);
 
@@ -34,34 +42,34 @@ const WelcomePage = () => {
   const [isFading, setIsFading] = useState(false);
   const [token, setToken] = useState("");
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // ====== منوی سه‌نقطه ======
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const dotsRef = useRef<HTMLImageElement>(null);
+  // const [menuOpen, setMenuOpen] = useState(false);
+  // const menuRef = useRef<HTMLDivElement>(null);
+  // const dotsRef = useRef<HTMLImageElement>(null);
 
-  useEffect(() => {
-    const onDocClick = (e: MouseEvent) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(e.target as Node) &&
-        dotsRef.current &&
-        !dotsRef.current.contains(e.target as Node)
-      ) {
-        setMenuOpen(false);
-      }
-    };
-    const onEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
-    };
-    document.addEventListener("mousedown", onDocClick);
-    document.addEventListener("keydown", onEsc);
-    return () => {
-      document.removeEventListener("mousedown", onDocClick);
-      document.removeEventListener("keydown", onEsc);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const onDocClick = (e: MouseEvent) => {
+  //     if (
+  //       menuRef.current &&
+  //       !menuRef.current.contains(e.target as Node) &&
+  //       dotsRef.current &&
+  //       !dotsRef.current.contains(e.target as Node)
+  //     ) {
+  //       setMenuOpen(false);
+  //     }
+  //   };
+  //   const onEsc = (e: KeyboardEvent) => {
+  //     if (e.key === "Escape") setMenuOpen(false);
+  //   };
+  //   document.addEventListener("mousedown", onDocClick);
+  //   document.addEventListener("keydown", onEsc);
+  //   return () => {
+  //     document.removeEventListener("mousedown", onDocClick);
+  //     document.removeEventListener("keydown", onEsc);
+  //   };
+  // }, []);
 
   const [engine, setEngine] = useState("");
   const [disabledOptions, setDisabledOptions] = useState({
@@ -241,8 +249,9 @@ const WelcomePage = () => {
 
       setTimeout(() => {
         setIsLoading(false);
-        navigate("/dashboard", { state: { refresh: true } });
-      }, 10000);
+        // navigate("/dashboard", { state: { refresh: true } });
+        onSaved?.(result); // والد: loadGames() + برگشت
+      }, 800);
     } catch (err: any) {
       console.error("API error:", err.response?.data || err.message);
       alert("خطا در ثبت بازی. لطفا دوباره تلاش کنید.");
@@ -256,67 +265,7 @@ const WelcomePage = () => {
         className={`${styles.welcomePageMainBox} text-center ${
           showPopup ? styles.blurred : ""
         }`}
-      >
-        <div className={styles.icons}>
-          {/* سه‌نقطه - باز/بسته کردن منو */}
-          <img
-            ref={dotsRef}
-            src={doticon}
-            className={`${styles.welcomePageicons}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              setMenuOpen((v) => !v);
-            }}
-          />
-          {/* منو */}
-          {menuOpen && (
-            <div ref={menuRef} className={styles.menu}>
-              <button
-                className={styles.menuItem}
-                onClick={() => navigate("/docs/intro")}
-              >
-                داکیومنت‌ها
-              </button>
-              <button className={styles.menuItem} onClick={() => navigate("/")}>
-                صفحه اصلی
-              </button>
-            </div>
-          )}
-
-          {/* آیکن کاربر (همان قبلی) */}
-          <img
-            src={usericon}
-            className={`${styles.welcomePageicons} ${
-              showPopup ? styles.disabled : ""
-            }`}
-            onClick={() => {
-              setShowPopup(false);
-              resetPopupState();
-            }}
-          />
-        </div>
-
-        <h1 className={styles.WelcomePageTitle}>!Welcome</h1>
-        <h2 className={styles.welcomePageMainBoxHeading}>
-          {username} خوش اومدی!
-        </h2>
-        <p className={styles.welcomePageMainBoxDescription}>
-          شروع کن تا ببینی توی محصولت دقیقاً چه خبره
-        </p>
-        <p className={styles.welcomePageMainBoxDescription}>
-          و چطور می‌تونی بهترین تجربه رو برای کاربرات بسازی.
-        </p>
-
-        <button
-          className={`btn ${styles.welcomePageMainBoxStartBtn}`}
-          onClick={() => {
-            setMenuOpen(false); // منو بسته شود
-            setShowPopup(true);
-          }}
-        >
-          اضافه کردن بازی
-        </button>
-      </div>
+      ></div>
 
       {showPopup && (
         <>
@@ -776,4 +725,4 @@ const WelcomePage = () => {
   );
 };
 
-export default WelcomePage;
+export default DashboardPage_AddNewGame;

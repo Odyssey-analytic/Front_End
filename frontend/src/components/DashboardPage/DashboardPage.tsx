@@ -13,7 +13,11 @@ import { FiSettings } from "react-icons/fi";
 
 import { fetchUserGames } from "../../services/userService";
 
+import DashboardPage_AddNewGame from "./AddNewGame/DashboardPage_AddNewGame";
+
 const DashboardPage = () => {
+  const [mode, setMode] = useState<"main" | "add">("main");
+
   // ---- Types ----
   type Collaborator = { name: string; online: boolean };
 
@@ -240,6 +244,16 @@ const DashboardPage = () => {
     return () => window.removeEventListener("keydown", onEsc);
   }, []);
 
+  // قفل‌کردن اسکرول وقتی فرم بازه (اختیاری ولی خوبه)
+  useEffect(() => {
+    if (mode !== "add") return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [mode]);
+
   // --- Chart path (same as before) ---
   const { pathD } = useMemo(() => {
     const chartData = Array.from(
@@ -338,9 +352,15 @@ const DashboardPage = () => {
             >
               دانلود Starter Kit
             </a>
+            {/* <button
+              className={styles.addGameBtn}
+              onClick={() => navigate("/DashboardPage_AddNewGame")}
+            >
+              افزودن بازی جدید
+            </button> */}
             <button
               className={styles.addGameBtn}
-              onClick={() => navigate("/welcome")}
+              onClick={() => setMode("add")}
             >
               افزودن بازی جدید
             </button>
@@ -558,6 +578,18 @@ const DashboardPage = () => {
             </div>
           </div>
         </div>
+      )}
+
+      {mode === "add" && (
+        <DashboardPage_AddNewGame
+          onCancel={() => setMode("main")}
+          onSaved={(res) => {
+            // 1) بستن اورلی
+            setMode("main");
+            // 2) گرفتن دوباره دیتا از سرور
+            loadGames();
+          }}
+        />
       )}
     </div>
   );

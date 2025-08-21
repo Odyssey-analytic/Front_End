@@ -17,9 +17,10 @@ import DashboardPage from "./components/DashboardPage/DashboardPage";
 import LandingPage from "./components/LandingPage/LandingPage/LandingPage";
 
 import ChartsPage from './components/ChartsStructurePage/ChartsPage/ChartsPage';
-// import DateSelector from './components/ChartsStructurePage/ChartsPage_Header/Calendar';
 
 import DocsFrame from "./components/Docs/DocsFrame";
+
+// import DashboardPage_AddNewGame from "./components/DashboardPage/AddNewGame/DashboardPage_AddNewGame";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -36,6 +37,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/docs/*" element={<DocsFrame />} />
         <Route path="/charts" element={<ChartsPage />} />
         {/* <Route path='/DateSelector' element={<DateSelector/>}/> */}
+        {/* <Route path="/DashboardPage_AddNewGame" element={<DashboardPage_AddNewGame />} /> */}
       </Routes>
     </BrowserRouter>
   </StrictMode>
