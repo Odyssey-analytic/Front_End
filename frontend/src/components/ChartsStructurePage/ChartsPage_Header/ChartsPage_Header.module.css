@@ -24,6 +24,10 @@
   text-align: right;
 }
 
+.calendarbox {
+  width: 300px;
+}
+
 /* ===== Responsive Breakpoints ===== */
 @media (max-width: 480px) {
   .title {
@@ -69,7 +73,8 @@
   }
   
   .calendarbox {
-    flex: 0 0 35%;
+    /* flex: 0 0 35%; */
+    width: 300px;
   }
 }
 
@@ -79,6 +84,6 @@
   }
   
   .calendarbox {
-    width: 370px;
+    width: 300px;
   }
 }

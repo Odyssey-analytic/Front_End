@@ -11,7 +11,7 @@ const ChartsPage_Header = () => {
       <div className={styles.inner}>
         <h1 className={styles.title}>نمای کلی</h1>
 
-        <div>
+        <div className={styles.calendarbox}>
           <DateRangeSelector />
         </div>
       </div>
