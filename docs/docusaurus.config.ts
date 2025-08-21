@@ -7,8 +7,8 @@ import type * as Preset from "@docusaurus/preset-classic";
 const appBaseUrl = process.env.APP_BASE_URL || "http://localhost:5173";
 
 const config: Config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
+  title: "Odyssey Analytics SDK",
+  tagline: "Analytics for your product",
   favicon: "img/favicon.ico",
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -21,8 +21,8 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: "Odyssey", // Usually your GitHub org/user name.
+  projectName: "odyssey-analytics", // Usually your repo name.
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -48,7 +48,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            "https://github.com/Odyssey-analytic/SDK/tree/main/",
         },
         blog: {
           showReadingTime: true,
@@ -76,7 +76,7 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "ODESSAY",
+      title: "ODYSSEY",
       logo: {
         alt: "My Site Logo",
         src: "img/odessay_logo.svg",
@@ -91,7 +91,7 @@ const config: Config = {
         },
         { to: "/blog", label: "Blog", position: "left" },
         {
-          href: "https://github.com/facebook/docusaurus",
+          href: "https://github.com/Odyssey-analytic/SDK",
           label: "GitHub",
           position: "right",
         },
@@ -109,23 +109,23 @@ const config: Config = {
             },
           ],
         },
-        {
-          title: "Community",
-          items: [
-            {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
-            },
-            {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
-            },
-            {
-              label: "X",
-              href: "https://x.com/docusaurus",
-            },
-          ],
-        },
+        // {
+        //   title: "Community",
+        //   items: [
+        //     {
+        //       label: "Stack Overflow",
+        //       href: "https://stackoverflow.com/questions/tagged/docusaurus",
+        //     },
+        //     {
+        //       label: "Discord",
+        //       href: "https://discordapp.com/invite/docusaurus",
+        //     },
+        //     {
+        //       label: "X",
+        //       href: "https://x.com/docusaurus",
+        //     },
+        //   ],
+        // },
         {
           title: "More",
           items: [
@@ -135,7 +135,7 @@ const config: Config = {
             },
             {
               label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              href: "https://github.com/Odyssey-analytic",
             },
           ],
         },
