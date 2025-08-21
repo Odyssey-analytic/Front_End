@@ -1,34 +1,75 @@
-// The version that is connected to back without any Mock Data engaged
+// The new version of styles with only Mock Data
 
 import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./DashboardPage.module.css";
 
 import OdessayLogo from "/public/icons/odessay_logo.svg";
+import pocket_champs_icon from "/public/icons/pocket-champs-icon.svg";
+import tower_war_icon from "/public/icons/tower-war-icon.svg";
 import dashboard_collaborator_icon from "/public/icons/dashboard_collaborator_icon.svg";
 import lists_icon from "../../../public/icons/clipboard 1.svg";
+
 import dashboard_add_collaborator_icon from "../../../public/icons/add 1.svg";
+
 import game_with_no_thumbnail_icon from "/public/icons/game_with_no_thumbnail_icon.svg";
 import { FiSettings } from "react-icons/fi";
 
-import { fetchUserGames } from "../../services/userService";
+// ✅ داده‌های ماک برای تست
+const mockGames = [
+  {
+    id: "mock-1",
+    icon: pocket_champs_icon,
+    title: "Pocket Champs",
+    description: "یک بازی اکشن سریع برای موبایل",
+    dnu: 32,
+    dau: 1220,
+    retention: "15.7%",
+    platform: "IOS",
+    collaborators: [
+      { name: "علی رضایی", online: true },
+      { name: "نگار موسوی", online: false },
+      { name: "سینا کاظمی", online: true },
+      { name: "پارسا شریفی", online: false },
+    ],
+  },
+  {
+    id: "mock-2",
+    icon: tower_war_icon,
+    title: "Tower War",
+    description: "نبردی تاکتیکی میان برج‌ها!",
+    dnu: 18,
+    dau: 960,
+    retention: "12.4%",
+    platform: "Android",
+    collaborators: [
+      { name: "علی رضایی", online: true },
+      { name: "نگار موسوی", online: false },
+      { name: "سینا کاظمی", online: true },
+      { name: "پارسا شریفی", online: false },
+    ],
+  },
+  {
+    id: "mock-3",
+    icon: game_with_no_thumbnail_icon,
+    title: "Shadow Game",
+    description: "تست بازی بدون تصویر اختصاصی",
+    dnu: 9,
+    dau: 300,
+    retention: "9.1%",
+    platform: "PC",
+    collaborators: [
+      { name: "علی رضایی", online: true },
+      { name: "نگار موسوی", online: false },
+      { name: "سینا کاظمی", online: true },
+      { name: "پارسا شریفی", online: false },
+    ],
+  },
+];
 
 const DashboardPage = () => {
-  // ---- Types ----
+  // --- types ----------------------------------------------------
   type Collaborator = { name: string; online: boolean };
-
-  type ApiGame = {
-    id: string | number;
-    name: string;
-    thumbnail?: string | null;
-    description?: string | null;
-    dnu?: number | null;
-    dau?: number | null;
-    retention?: number | string | null;
-    platform?: string[] | string | null;
-    created_at?: string | null;
-  };
-
   type Game = {
     id: string;
     icon: string;
@@ -37,12 +78,11 @@ const DashboardPage = () => {
     dnu: number;
     dau: number;
     retention: string;
-    platform: string;
-    collaborators: Collaborator[]; // اگر بعداً از API بیاد، اینجا پرش می‌کنیم
-    createdAt?: string;
+    platform: "IOS" | "Android" | "PC";
+    collaborators: Collaborator[];
   };
 
-  // ---- Utils ----
+  // --- utils ----------------------------------------------------
   const normalizeText = (s: string) =>
     (s || "")
       .toLowerCase()
@@ -53,53 +93,7 @@ const DashboardPage = () => {
       .replace(/[۰-۹]/g, (d) => String("۰۱۲۳۴۵۶۷۸۹".indexOf(d)))
       .normalize("NFKD");
 
-  const percent = (v: number | string | null | undefined) => {
-    if (v == null) return "0%";
-    if (typeof v === "number") return `${v.toFixed(2)}%`;
-    const t = String(v).trim();
-    return t.endsWith("%") ? t : `${t}%`;
-  };
-
-  const nCompact = (n?: number | null) => {
-    if (n == null || isNaN(Number(n))) return "0";
-    const x = Math.abs(Number(n));
-    if (x >= 1_000_000_000)
-      return (x / 1_000_000_000).toFixed(x >= 10_000_000_000 ? 0 : 1) + "B";
-    if (x >= 1_000_000)
-      return (x / 1_000_000).toFixed(x >= 10_000_000 ? 0 : 1) + "M";
-    if (x >= 1_000) return (x / 1_000).toFixed(x >= 10_000 ? 0 : 1) + "k";
-    return String(x);
-  };
-
-  const fmtDate = (iso?: string | null) => {
-    if (!iso) return undefined;
-    const d = new Date(iso);
-    if (isNaN(d.getTime())) return undefined;
-    return d.toLocaleDateString("fa-IR", {
-      year: "2-digit",
-      month: "short",
-      day: "2-digit",
-    });
-  };
-
-  const mapApiToUi = (dto: ApiGame): Game => ({
-    id: String(dto.id),
-    icon: dto.thumbnail || game_with_no_thumbnail_icon,
-    title: dto.name,
-    description: dto.description || "توضیحی ثبت نشده است.",
-    dnu: dto.dnu ?? 0,
-    dau: dto.dau ?? 0,
-    retention: percent(dto.retention),
-    platform: Array.isArray(dto.platform)
-      ? dto.platform.length
-        ? dto.platform.join(", ")
-        : "پلتفرم ثبت نشده"
-      : dto.platform || "پلتفرم ثبت نشده",
-    collaborators: [], // اگر API دارد، بعداً وصلش می‌کنیم
-    createdAt: fmtDate(dto.created_at),
-  });
-
-  // ---- Hooks/State ----
+  // --- hooks/state ----------------------------------------------
   const navigate = useNavigate();
   const pathRef = useRef<SVGPathElement | null>(null);
   const searchBoxRef = useRef<HTMLDivElement | null>(null);
@@ -110,51 +104,32 @@ const DashboardPage = () => {
   const [suggestions, setSuggestions] = useState<Game[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [pathLength, setPathLength] = useState(320);
+
   const [openCollaboratorsFor, setOpenCollaboratorsFor] = useState<
     string | null
   >(null);
 
-  const [loading, setLoading] = useState(true);
-  const [errorMsg, setErrorMsg] = useState<string | null>(null);
-
-  // ---- Derived ----
+  // --- derived data ---------------------------------------------
   const filteredGames = useMemo(() => {
     const q = normalizeText(searchTerm);
     if (!q) return games;
     return games.filter((g) => normalizeText(g.title).includes(q));
   }, [games, searchTerm]);
 
-  // ---- Data load (NO MOCK) ----
-  const loadGames = useCallback(async () => {
-    setLoading(true);
-    setErrorMsg(null);
-    try {
-      const payload = await fetchUserGames();
-      const list: ApiGame[] = Array.isArray(payload)
-        ? payload
-        : (payload as any).games;
-      if (!Array.isArray(list)) throw new Error("ساختار پاسخ API نامعتبر است.");
-      setGames(list.map(mapApiToUi));
-    } catch (err: any) {
-      console.error("❌ خطا در دریافت بازی‌ها:", err);
-      setErrorMsg(err?.message || "خطا در دریافت بازی‌ها");
-      setGames([]); // هیچ داده‌ای نمایش نده
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
+  // داده و نام کاربری + طول path
   useEffect(() => {
+    setGames(mockGames as unknown as Game[]);
+
     const storedUsername = localStorage.getItem("username") ?? "نام کاربری";
     setUsername(storedUsername);
     if (!localStorage.getItem("username")) {
       localStorage.setItem("username", "نام کاربری");
     }
-    if (pathRef.current) setPathLength(pathRef.current.getTotalLength());
-    loadGames();
-  }, [loadGames]);
 
-  // ---- Handlers ----
+    if (pathRef.current) setPathLength(pathRef.current.getTotalLength());
+  }, []);
+
+  // --- handlers -------------------------------------------------
   const toggleCollaborators = useCallback((gameId: string) => {
     setOpenCollaboratorsFor((prev) => (prev === gameId ? null : gameId));
   }, []);
@@ -186,7 +161,7 @@ const DashboardPage = () => {
     [games]
   );
 
-  // Keyboard for suggestions
+  // یک افکت واحد برای کلیدها (ArrowUp/Down/Enter/Escape)
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (!suggestions.length) return;
@@ -209,7 +184,7 @@ const DashboardPage = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, [suggestions, selectedIndex, handleSelectSuggestion]);
 
-  // Close suggestions on outside click
+  // بستن ساجست با کلیک بیرون
   useEffect(() => {
     const onClickOutside = (e: MouseEvent) => {
       const t = e.target as HTMLElement;
@@ -222,7 +197,7 @@ const DashboardPage = () => {
     return () => window.removeEventListener("click", onClickOutside);
   }, []);
 
-  // Lock scroll when bottom sheet open
+  // قفل اسکرول هنگام باز بودن Bottom Sheet
   useEffect(() => {
     if (!openCollaboratorsFor) return;
     const prev = document.body.style.overflow;
@@ -232,7 +207,7 @@ const DashboardPage = () => {
     };
   }, [openCollaboratorsFor]);
 
-  // ESC to close bottom sheet
+  // بستن Bottom Sheet با ESC
   useEffect(() => {
     const onEsc = (e: KeyboardEvent) =>
       e.key === "Escape" && setOpenCollaboratorsFor(null);
@@ -240,7 +215,7 @@ const DashboardPage = () => {
     return () => window.removeEventListener("keydown", onEsc);
   }, []);
 
-  // --- Chart path (same as before) ---
+  // --- chart path (سازمان‌دهی به محاسبات نمودار) ----------------
   const { pathD } = useMemo(() => {
     const chartData = Array.from(
       { length: 32 },
@@ -254,6 +229,7 @@ const DashboardPage = () => {
     };
   }, []);
 
+  // --- convenience ----------------------------------------------
   const currentGame = useMemo(
     () =>
       openCollaboratorsFor
@@ -262,7 +238,6 @@ const DashboardPage = () => {
     [openCollaboratorsFor, games]
   );
 
-  // ---- UI ----
   return (
     <div className={`${styles.dashboardContainer}`}>
       <div className={styles.header}>
@@ -276,21 +251,22 @@ const DashboardPage = () => {
             <span className={`${styles.brandText} english-text`}>ODESSAY</span>
           </div>
 
-          <div className={styles.searchBox} ref={searchBoxRef}>
+          <div className={styles.searchBox}>
             <input
               type="text"
               className={styles.searchInput}
               placeholder="جستجو..."
               value={searchTerm}
               onChange={handleSearch}
-              disabled={loading || !!errorMsg || games.length === 0}
             />
+
             {suggestions.length > 0 && (
               <ul className={styles.searchSuggestions}>
                 {suggestions.map((s, idx) => (
                   <li
                     key={s.id}
                     onMouseDown={() => {
+                      // onMouseDown تا blur نشه قبل از navigate
                       navigate(`/dashboard/${s.id}`);
                       setSuggestions([]);
                     }}
@@ -348,176 +324,141 @@ const DashboardPage = () => {
         </div>
       </div>
 
-      {/* حالات لودینگ / خطا / خالی */}
-      {loading && (
-        <div className={styles.stateBox}>
-          <div className={styles.skeletonList}>
-            {/* چند اسکلت ساده؛ یا از CSS Skeleton خودت استفاده کن */}
-            {[...Array(3)].map((_, i) => (
-              <div key={i} className={styles.skeletonCard} />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {!loading && errorMsg && (
-        <div className={styles.stateBox}>
-          <p className={styles.errorText}>⚠️ {errorMsg}</p>
-          <button className={styles.retryBtn} onClick={loadGames}>
-            تلاش مجدد
-          </button>
-        </div>
-      )}
-
-      {!loading && !errorMsg && games.length === 0 && (
-        <div className={styles.stateBox}>
-          <p className={styles.emptyText}>هنوز بازی‌ای ثبت نشده است.</p>
-          <button
-            className={styles.addGameBtn}
-            onClick={() => navigate("/welcome")}
-          >
-            افزودن بازی جدید
-          </button>
-        </div>
-      )}
-
-      {!loading && !errorMsg && games.length > 0 && (
-        <div className={styles.gameList}>
-          {filteredGames.map((game) => (
-            <div key={game.id} className={`${styles.gameCard}`}>
-              <div className={`${styles.gameSectionInfo}`}>
-                <div className={styles.gameIconWrapper}>
-                  <img
-                    src={game.icon}
-                    alt={game.title}
-                    className={styles.gameIcon}
-                    onClick={() => navigate(`/dashboard/${game.id}`)}
-                    style={{ cursor: "pointer" }}
-                  />
-                  <span className={styles.gameTag}>{game.platform}</span>
-                </div>
-
-                <div className={styles.gameTextContent}>
-                  <h4
-                    className={styles.gameTitle}
-                    onClick={() => navigate(`/dashboard/${game.id}`)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    {game.title}
-                  </h4>
-                  <p className={styles.gameDescription}>{game.description}</p>
-                  <div>
-                    <span className={styles.gameMetaColored}>
-                      Created: {game.createdAt ?? "—"}
-                    </span>
-                  </div>
-                </div>
-                <FiSettings className={styles.gameSettingsIcon} />
+      <div className={styles.gameList}>
+        {filteredGames.map((game) => (
+          <div key={game.id} className={`${styles.gameCard}`}>
+            <div className={`${styles.gameSectionInfo}`}>
+              <div className={styles.gameIconWrapper}>
+                <img
+                  src={game.icon}
+                  alt={game.title}
+                  className={styles.gameIcon}
+                  onClick={() => navigate(`/dashboard/${game.id}`)}
+                  style={{ cursor: "pointer" }}
+                />
+                <span className={styles.gameTag}>{game.platform}</span>
               </div>
 
-              <div className={styles.FirstverticalLine}></div>
-
-              <div className={styles.gameSectionStats}>
-                <div className={styles.userStatsTitle}>کاربران فعال</div>
-                <div className={styles.statRow}>
-                  <div className={styles.statItem}>
-                    <div className={styles.gameStatLabel}>Monthly</div>
-                    <strong className={styles.gameStatValue}>
-                      {nCompact(game.dau)}
-                    </strong>
-                  </div>
-
-                  <div className={styles.statItem}>
-                    <div className={styles.gameStatLabel}>Daily</div>
-                    <strong className={styles.gameStatValue}>
-                      {nCompact(game.dnu)}
-                    </strong>
-                  </div>
-                </div>
-
-                <div className={styles.statsLineChart}>
-                  <svg
-                    viewBox="0 0 320 60"
-                    preserveAspectRatio="none"
-                    className={styles.lineChart}
-                  >
-                    <defs>
-                      <linearGradient
-                        id="lineGradient"
-                        x1="0%"
-                        y1="0%"
-                        x2="100%"
-                        y2="0%"
-                      >
-                        <stop offset="0%" stopColor="rgb(43, 40, 132)" />
-                        <stop offset="25%" stopColor="rgb(94, 135, 171)" />
-                        <stop offset="50%" stopColor="#425398" />
-                        <stop offset="75%" stopColor="rgb(87, 85, 161)" />
-                        <stop offset="100%" stopColor="#5570a1" />
-                      </linearGradient>
-                    </defs>
-
-                    <path
-                      ref={pathRef}
-                      d={pathD}
-                      fill="none"
-                      stroke="url(#lineGradient)"
-                      strokeWidth="2"
-                      className={styles.linePath}
-                    />
-                  </svg>
-                </div>
-              </div>
-
-              <div className={styles.SecondverticalLine}></div>
-
-              <div className={styles.gameSectionCollaborators}>
-                <div>
-                  <span className={styles.collaboratorLabel}>همکاران</span>
-                  <img
-                    src={dashboard_add_collaborator_icon}
-                    alt="افزودن همکار"
-                    className={styles.addCollaboratorIcon}
-                  />
-                </div>
-
-                <div className={styles.collaboratorsDesktop}>
-                  {(game.collaborators ?? [])
-                    .slice(0, 4)
-                    .map((c: any, i: number) => (
-                      <div key={i} className={styles.collaboratorStatusWrapper}>
-                        <div className={styles.collaboratorWrapperIcon}>
-                          <img
-                            src={dashboard_collaborator_icon}
-                            alt={c.name}
-                            title={c.name}
-                            className={styles.collaboratorIcon}
-                          />
-                          <span
-                            className={`${styles.statusIndicator} ${
-                              c.online ? styles.online : styles.offline
-                            }`}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                </div>
-
-                <button
-                  type="button"
-                  className={styles.collaboratorsToggleBtn}
-                  onClick={() => toggleCollaborators(game.id)}
-                  aria-expanded={openCollaboratorsFor === game.id}
+              <div className={styles.gameTextContent}>
+                <h4
+                  className={styles.gameTitle}
+                  onClick={() => navigate(`/dashboard/${game.id}`)}
+                  style={{ cursor: "pointer" }}
                 >
-                  لیست اسامی
-                </button>
+                  {game.title}
+                </h4>
+                <p className={styles.gameDescription}>{game.description}</p>
+                <div>
+                  <span className={styles.gameMetaColored}>
+                    Created: 23 Nov 16
+                  </span>
+                </div>
+              </div>
+              <FiSettings className={styles.gameSettingsIcon} />
+            </div>
+
+            <div className={styles.FirstverticalLine}></div>
+
+            <div className={styles.gameSectionStats}>
+              <div className={styles.userStatsTitle}>کاربران فعال</div>
+              <div className={styles.statRow}>
+                <div className={styles.statItem}>
+                  <div className={styles.gameStatLabel}>Monthly</div>
+                  <strong className={styles.gameStatValue}>{game.dau}k</strong>
+                </div>
+
+                <div className={styles.statItem}>
+                  <div className={styles.gameStatLabel}>Daily</div>
+                  <strong className={styles.gameStatValue}>{game.dnu}k</strong>
+                </div>
+              </div>
+
+              <div className={styles.statsLineChart}>
+                <svg
+                  viewBox="0 0 320 60"
+                  preserveAspectRatio="none"
+                  className={styles.lineChart}
+                >
+                  <defs>
+                    <linearGradient
+                      id="lineGradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="0%"
+                    >
+                      <stop offset="0%" stopColor="rgb(43, 40, 132)" />
+                      <stop offset="25%" stopColor="rgb(94, 135, 171)" />
+                      <stop offset="50%" stopColor="#425398" />
+                      <stop offset="75%" stopColor="rgb(87, 85, 161)" />
+                      <stop offset="100%" stopColor="#5570a1" />
+                    </linearGradient>
+                  </defs>
+
+                  <path
+                    ref={pathRef}
+                    d={pathD}
+                    fill="none"
+                    stroke="url(#lineGradient)"
+                    strokeWidth="2"
+                    className={styles.linePath}
+                  />
+                </svg>
               </div>
             </div>
-          ))}
-        </div>
-      )}
 
-      {/* Bottom Sheet (mobile) */}
+            <div className={styles.SecondverticalLine}></div>
+
+            <div className={styles.gameSectionCollaborators}>
+              <div>
+                <span className={styles.collaboratorLabel}>همکاران</span>
+                <img
+                  src={dashboard_add_collaborator_icon}
+                  alt="افزودن همکار"
+                  className={styles.addCollaboratorIcon}
+                />
+              </div>
+
+              {/* دسکتاپ: نمایش آیکون‌ها (مثل قبل) */}
+              <div className={styles.collaboratorsDesktop}>
+                {(game.collaborators ?? [])
+                  .slice(0, 4)
+                  .map((c: any, i: number) => (
+                    <div key={i} className={styles.collaboratorStatusWrapper}>
+                      <div className={styles.collaboratorWrapperIcon}>
+                        <img
+                          src={dashboard_collaborator_icon}
+                          alt={c.name}
+                          title={c.name}
+                          className={styles.collaboratorIcon}
+                        />
+                        <span
+                          className={`${styles.statusIndicator} ${
+                            c.online ? styles.online : styles.offline
+                          }`}
+                        />
+                      </div>
+                    </div>
+                  ))}
+              </div>
+
+              {/* موبایل: فقط دکمهٔ باز کردن باکس مجزا */}
+              <button
+                type="button"
+                className={styles.collaboratorsToggleBtn}
+                onClick={() => toggleCollaborators(game.id)}
+                aria-expanded={openCollaboratorsFor === game.id}
+              >
+                لیست اسامی
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* =========================
+          Bottom Sheet / Modal (فقط موبایل)
+          ========================= */}
       {currentGame && (
         <div
           className={styles.mobileOverlay}
@@ -525,6 +466,7 @@ const DashboardPage = () => {
           aria-modal="true"
           aria-labelledby="collabSheetTitle"
           onClick={(e) => {
+            // کلیک روی بک‌دراپ ببنده
             if (e.target === e.currentTarget) setOpenCollaboratorsFor(null);
           }}
         >
