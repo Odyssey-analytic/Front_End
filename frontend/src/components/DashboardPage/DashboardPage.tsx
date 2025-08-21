@@ -391,7 +391,7 @@ const DashboardPage = () => {
                     src={game.icon}
                     alt={game.title}
                     className={styles.gameIcon}
-                    onClick={() => navigate(`/dashboard/${game.id}`)}
+                    onClick={() => navigate(`/charts/${game.id}`)}
                     style={{ cursor: "pointer" }}
                   />
                   <span className={styles.gameTag}>{game.platform}</span>
@@ -400,7 +400,7 @@ const DashboardPage = () => {
                 <div className={styles.gameTextContent}>
                   <h4
                     className={styles.gameTitle}
-                    onClick={() => navigate(`/dashboard/${game.id}`)}
+                    onClick={() => navigate(`/charts/${game.id}`)}
                     style={{ cursor: "pointer" }}
                   >
                     {game.title}
