@@ -9,7 +9,6 @@ body, html {
   box-sizing: border-box;
 }
 
-
 /* ======================== Layout & Container ======================== */
 .login-page-container {
   background-image: url('/src/assets/images/login-bg.jpg');
@@ -17,7 +16,6 @@ body, html {
   background-repeat: no-repeat;
   background-position: 20% center;
   background-color: #0e1a2b;
-
   min-height: 100vh;
   width: 100%;
 }
@@ -34,7 +32,6 @@ body, html {
 
 /* ======================== Login Back To Home Link ======================== */
 .login-back-to-home {
-  /* position: absolute; */
   font-size: 0.9rem;
   text-decoration: none;
   transition: color 0.2s ease;
@@ -43,7 +40,6 @@ body, html {
 .auth-back-to-home:hover {
   color: #5c5c5c;
 }
-
 
 /* ======================== Loading ======================== */
 .login-loading-overlay {
@@ -83,7 +79,6 @@ body, html {
   flex-direction: column;
   position: fixed;
   height: 500px;
-
   position: fixed;
   padding: 2.2rem;
   top: 13vh;
@@ -100,7 +95,6 @@ body, html {
 .login-subtitle {
   font-size: 14.5px;
   color: rgba(90, 90, 90);
-  /* margin-bottom: 1.5rem; */
 }
 
 /* ======================== Input Fields ======================== */

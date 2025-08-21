@@ -40,7 +40,6 @@
   .title {
     font-size: 1.4rem;
   }
-
   .calendarbox {
     flex: 0 0 70%;
   }
@@ -51,7 +50,6 @@
   .title {
     font-size: 1.4rem;
   }
-
   .calendarbox {
     width: 285px;
   }
@@ -61,7 +59,6 @@
   .title {
     font-size: 1.6rem;
   }
-  
   .calendarbox {
     width: 285px;
   }
@@ -71,9 +68,7 @@
   .title {
     font-size: 1.8rem;
   }
-  
   .calendarbox {
-    /* flex: 0 0 35%; */
     width: 300px;
   }
 }
@@ -82,7 +77,6 @@
   .title {
     font-size: 2rem;
   }
-  
   .calendarbox {
     width: 300px;
   }
