@@ -2,6 +2,7 @@ import styles from "./ChartsPage_SideBar.module.css";
 
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+
 import {
   FiHome,
   FiBarChart2,
@@ -21,6 +22,7 @@ import {
   FiMenu,
   FiX,
 } from "react-icons/fi";
+
 
 import GameLogo from "../../../../public/icons/game-ghost-icon.svg";
 import dashboard_logout_panel_icon from "../../../../public/icons/dashboard_panel_icon.svg";
@@ -153,10 +155,15 @@ const ChartsPage_SideBar = () => {
   const [collapsed, setCollapsed] = useState(false); // The state for controlling the collapsed or expanded state of the sidebar for screens larger than 480px
 
   const [openSections, setOpenSections] = useState<number[]>([]);
-
   const [selectedGame, setSelectedGame] = useState("بازی A");
+  setSelectedGame(localStorage.getItem('game_name'));
+  const Logo = localStorage.getItem('Logo');
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const gameList = ["بازی اول", "بازی دوم", "بازی سوم"];
+  const gameList = JSON.parse(localStorage.getItem('gamesList') ?? '[]');
+  const navigate = useNavigate();
+  
+/*   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const gameList = ["بازی اول", "بازی دوم", "بازی سوم"]; */
 
   const [username, setUsername] = useState<string>();
 
@@ -261,6 +268,7 @@ const ChartsPage_SideBar = () => {
             >
               {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
             </div>
+
           </div>
 
           <div className={styles.gameSelectorSection}>
@@ -493,6 +501,9 @@ const ChartsPage_SideBar = () => {
                       e.stopPropagation();
                       setSelectedGame(game);
                       setDropdownOpen(false);
+                      localStorage.setItem("game_name", game.title);
+                      localStorage.setItem("Logo", game.icon);
+                      navigate(`/dashboard/${game.id}`);
                     }}
                   >
                     {game}
@@ -509,6 +520,7 @@ const ChartsPage_SideBar = () => {
             {menuItems.map((item, index) => {
               const isSectionOpen = openSections.includes(index);
               const isActive = activeIndex === index;
+
 
               return (
                 <div key={index}>

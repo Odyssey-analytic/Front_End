@@ -23,6 +23,7 @@ const LandingPage_Testimonials: React.FC = () => {
 
   const [isHovering, setIsHovering] = useState(false);
 
+
   // Fade-in when section enters viewport
   useEffect(() => {
     const observer = new IntersectionObserver(

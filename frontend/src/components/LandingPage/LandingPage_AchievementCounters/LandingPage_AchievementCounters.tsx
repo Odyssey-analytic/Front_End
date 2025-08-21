@@ -57,7 +57,7 @@ const LandingPage_AchievementCounters: React.FC = () => {
   const [animationKey, setAnimationKey] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-{/* ========== Intersection observer triggers when component comes into viewport ========== */}
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -138,6 +138,7 @@ const LandingPage_AchievementCounters: React.FC = () => {
           <div className={styles.label}>
             {label}
             {suffix && <span className={styles.suffix}> در {suffix}</span>}
+
           </div>
           <div className={styles.odometer}>
             <Counter end={value} trigger={visible} speed={30} />

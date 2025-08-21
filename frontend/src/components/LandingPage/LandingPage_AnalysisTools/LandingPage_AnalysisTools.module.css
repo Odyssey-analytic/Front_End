@@ -1,6 +1,7 @@
 /* ============================ Layout Wrapper ============================ */
 .analysisToolsWrapper {
   flex-direction: row;
+
   width: 100%;
 }
 
@@ -42,6 +43,7 @@
   color: #e0e0e0;
   white-space: nowrap;
 }
+
 
 .serviceItem:nth-child(5) {
   grid-column: span 2;
@@ -191,6 +193,7 @@
   width: 90%;
   max-width: 300px;
   min-width: 180px;
+
   z-index: 6;
   pointer-events: none;
 }

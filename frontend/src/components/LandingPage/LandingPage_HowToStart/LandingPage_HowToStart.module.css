@@ -25,7 +25,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 100px 100px; /* vertical gap, horizontal gap */
+  gap: 100px 100px; 
 }
 
 /* ======================= Single Step Item ======================= */
@@ -43,6 +43,7 @@
   max-width: 130px;    /* روی دسکتاپ بیش از این نشه */
   min-width: 100px;     /* روی موبایل کمتر از این نشه */
   height: auto;
+
   margin-bottom: 16px;
 }
 
