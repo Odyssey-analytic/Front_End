@@ -223,39 +223,52 @@ const DashboardPage = () => {
   }, []);
 
   // Lock scroll when bottom sheet open
-  useEffect(() => {
-    if (!openCollaboratorsFor) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    const loadGames = async () => {
-      try {
-        const response = await fetchUserGames();
-        const userGames = response.games.map((g: any) => ({
-          id: g.id,
-          icon: g.thumbnail || game_with_no_thumbnail_icon,
-          title: g.name,
-          description: g.description || 'توضیحی ثبت نشده است.',
-          dnu: g.dnu || 14,
-          dau: g.dau || 1648,
-          retention: g.retention || '10.49%',
-          platform: g.platform?.join(', ') || 'پلتفرم ثبت نشده',
-        }));
-        const tempGame=response.games.map((g: any)=>({
-          id: g.id,
-          icon: g.thumbnail || game_with_no_thumbnail_icon,
-          title: g.name,
-        }))
-        setNavigate_games(tempGame);
-        localStorage.setItem('gamesList',JSON.stringify(tempGame));
-        console.log(localStorage.getItem("gamesList"));
-        setGames(userGames);
-      } catch (error) {
-        console.error('❌ خطا در دریافت بازی‌ها:', error);
-      }
-    };
-  }, [openCollaboratorsFor]);
+ useEffect(() => {
+  if (!openCollaboratorsFor) return;
+
+  // قفل اسکرول
+  const prev = document.body.style.overflow;
+  document.body.style.overflow = "hidden";
+
+  // دریافت بازی‌ها
+  const loadGames = async () => {
+    try {
+      const response = await fetchUserGames();
+
+      const userGames = response.games.map((g: any) => ({
+        id: g.id,
+        icon: g.thumbnail || game_with_no_thumbnail_icon,
+        title: g.name,
+        description: g.description || 'توضیحی ثبت نشده است.',
+        dnu: g.dnu || 14,
+        dau: g.dau || 1648,
+        retention: g.retention || '10.49%',
+        platform: g.platform?.join(', ') || 'پلتفرم ثبت نشده',
+      }));
+
+      const tempGame = response.games.map((g: any) => ({
+        id: g.id,
+        icon: g.thumbnail || game_with_no_thumbnail_icon,
+        title: g.name,
+      }));
+
+      setNavigate_games(tempGame);
+      localStorage.setItem('gamesList', JSON.stringify(tempGame));
+      console.log(localStorage.getItem("gamesList"));
+      setGames(userGames);
+    } catch (error) {
+      console.error('❌ خطا در دریافت بازی‌ها:', error);
+    }
+  };
+
+  // اجرای تابع
+  loadGames();
+
+  // cleanup فقط برای برگرداندن اسکرول
+  return () => {
+    document.body.style.overflow = prev;
+  };
+}, [openCollaboratorsFor]);
 
   // ESC to close bottom sheet
   useEffect(() => {
