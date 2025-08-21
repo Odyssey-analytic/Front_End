@@ -1,23 +1,23 @@
 /* ============================ Layout Wrapper ============================ */
 .analysisToolsWrapper {
-  flex-direction: row; 
+  flex-direction: row;
+
   width: 100%;
 }
 
-/* ============================ Text Section ============================ */
+/* ============================ Right Section: Text Content ============================ */
 .textContent {
   position: relative;
   right: 8%;
-  top: 10%;
+  top: 7%;
   max-width: 40%;
 }
 
 .title {
-  font-size: 2rem;
   font-weight: bold;
   line-height: 1.6;
   color: white;
-  margin-bottom: 1rem;
+  margin-top: -0.75rem;
 }
 
 .description {
@@ -27,7 +27,7 @@
   margin-bottom: 2rem;
 }
 
-/* ============================ Service Icons Grid ============================ */
+/* ============================ Services Grid ============================ */
 .servicesGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -51,9 +51,9 @@
 }
 
 .serviceItem img {
-  width: clamp(2rem, 4vw, 3.5rem);
+  width: clamp(2rem, 3.2vw, 3.5rem);
   height: auto;
-  flex-shrink: 0; 
+  flex-shrink: 0;
 }
 
 /* ============================ CTA Button ============================ */
@@ -78,7 +78,7 @@
   color: #0c0b1f;
 }
 
-/* ============================ Responsive (Mobile) ============================ */
+/* ============================ Responsive Design ============================ */
 @media (max-width: 768px) {
   .analysisToolsWrapper {
     flex-direction: column;
@@ -94,7 +94,7 @@
   }
 }
 
-/* ============================ Box Slide Animation ============================ */
+/* ============================ Box Slide Keyframe ============================ */
 @keyframes slideRightBox {
   from {
     transform: translateX(-100%);
@@ -106,18 +106,20 @@
   }
 }
 
-/* ============================ Illustration (Left Section) ============================ */
+/* ============================ Left Section: Illustration Wrapper ============================ */
 .imageContainer {
   position: relative;
   justify-content: center;
   right: 55%;
-  bottom: 48%;
+  bottom: 46%;
   max-width: 380px;
 }
 
+/* ============================ Box & Topbar ============================ */
 .boxWrapper {
-  position: relative;
+  position: fixed;
   z-index: 1;
+  /* margin-bottom: 100px; */
 }
 
 .boxImage {
@@ -146,9 +148,15 @@
   z-index: 3;
 }
 
-.firstChatImage { top: 17%; }
-.secondChatImage { top: 41%; }
-.thirdChatImage { top: 65%; }
+.firstChatImage {
+  top: 17%;
+}
+.secondChatImage {
+  top: 41%;
+}
+.thirdChatImage {
+  top: 65%;
+}
 
 .firstChatProfile,
 .secondChatProfile,
@@ -158,11 +166,17 @@
   z-index: 4;
 }
 
-.firstChatProfile { top: 19%; }
-.secondChatProfile { top: 44%; }
-.thirdChatProfile { top: 67%; }
+.firstChatProfile {
+  top: 19%;
+}
+.secondChatProfile {
+  top: 44%;
+}
+.thirdChatProfile {
+  top: 67%;
+}
 
-/* ============================ Chart Box & Arc ============================ */
+/* ============================ Chart Box & Arc Container ============================ */
 .chartBoxImage {
   position: absolute;
   top: 28%;
@@ -176,15 +190,13 @@
   top: 22%;
   left: 85%;
   transform: translateX(-50%);
-  width: 90%;         
-  max-width: 300px;   
-  min-width: 180px;   
+  width: 90%;
+  max-width: 300px;
+  min-width: 180px;
+
   z-index: 6;
   pointer-events: none;
 }
-
-
-
 
 /* ============================ Chart Text Overlays ============================ */
 .chartTitle {
@@ -193,7 +205,7 @@
   right: -19%;
   font-size: clamp(0.9rem, 1.1vw, 1.2rem);
   font-weight: 600;
-  color: #004d40; 
+  color: #004d40;
   z-index: 10;
 }
 
@@ -236,4 +248,84 @@
 .chartCenterText span {
   font-size: clamp(0.7rem, 1vw, 0.95rem);
   color: #666;
+}
+
+.boxImage {
+  width: 100%;
+  min-width: 125%;
+  min-height: 120%;
+}
+
+@media (min-width: 300px) and (max-width: 550px) {
+  .imageContainer {
+    max-width: 33%;
+  }
+  .firstChatImage,
+  .secondChatImage,
+  .thirdChatImage {
+    position: absolute;
+    left: 50%;
+    width: 90%;
+    max-width: 300px;
+    z-index: 3;
+  }
+
+  .firstChatImage {
+    top: 17%;
+  }
+  .secondChatImage {
+    top: 41%;
+  }
+  .thirdChatImage {
+    top: 65%;
+  }
+
+  .chartTitle {
+    position: absolute;
+    top: 40%;
+    right: -19%;
+    font-size: clamp(0.9rem, 1.1vw, 1.2rem);
+    font-weight: 600;
+    color: #004d40;
+    z-index: 10;
+  }
+}
+
+@media (min-width: 550px) and (max-width: 768px) {
+  .imageContainer {
+    max-width: 33%;
+  }
+  .firstChatImage,
+  .secondChatImage,
+  .thirdChatImage {
+    position: absolute;
+    left: 60%;
+    width: 90%;
+    /* max-width: 300px; */
+    z-index: 3;
+  }
+
+  .firstChatImage {
+    top: 17%;
+  }
+  .secondChatImage {
+    top: 41%;
+  }
+  .thirdChatImage {
+    top: 65%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 978px) {
+  .imageContainer {
+    max-width: 33%;
+  }
+
+}
+
+@media (min-width: 978px) and (max-width: 1200px) {
+  .imageContainer {
+    max-width: 33%;
+  }
+
 }

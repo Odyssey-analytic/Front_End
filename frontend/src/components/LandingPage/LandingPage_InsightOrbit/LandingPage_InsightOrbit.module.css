@@ -1,11 +1,11 @@
 /* ======================= Container holding the orbit SVG ======================= */
 .planetContainer {
   position: absolute;
-  top: 32%;                          
-  left: 75%;                         
-  transform: translate(-50%, -50%);  
-  width: clamp(180px, 28vw, 650px);  
-  height: clamp(180px, 28vw, 650px);
+  top: 53%;                          /* Slightly below the center vertically */
+  left: 75%;                         /* Positioned more to the right side */
+  transform: translate(-50%, -50%);  /* Center the element from its top-left anchor */
+  width: clamp(450px, 28vw, 800px);  /* Responsive sizing with min/max limits */
+  height: clamp(450px, 28vw, 800px);
   z-index: 5;
   pointer-events: none;             
 }
@@ -17,6 +17,11 @@
   fill: none;
   stroke-dasharray: 1130;          
   stroke-dashoffset: 1130;          
+}
+
+.somemargin{
+
+  margin-top: 5%;
 }
 
 /* ======================= Orbiting dot with lilac color ======================= */
@@ -33,4 +38,19 @@
   r: 12;
   opacity: 0;
   filter: drop-shadow(0px 1px 20px rgba(193, 202, 220, 0.7)); 
+}
+
+
+
+/* دسکتاپ */
+.planetContainer{ opacity: 1; transition: opacity 0.4s ease; }
+
+/* تبلت */
+@media (max-width: 991px){
+  .planetContainer{ opacity: 0.2; }
+}
+
+/* موبایل */
+@media (max-width: 767px){
+  .planetContainer{ opacity: 0.1; } /* یا 0 برای حذف نرم */
 }

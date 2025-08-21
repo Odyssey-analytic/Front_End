@@ -1,54 +1,207 @@
-/* ========== Toolbar ========== */
-.dashboard-toolbar {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e0e0e0;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  position: relative;
-  z-index: 1;
+.dashboardContainer {
+  background-color: #1C1C38;
+  height: 115vh;
 }
 
-.dashboard-title {
+.gameList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 95%;
+  margin: 20px auto;
+}
+
+.gameCard {
+  display: flex;
+  flex-direction: row;
+  border-radius: 8px;
+  background: rgba(81, 85, 145, 0.12);
+  backdrop-filter: blur(3px);
+  border-radius: 12px; 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+      0 4px 30px rgba(0, 0, 0, 0.1), 
+      inset 0 0 10px rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* هر بخش از کارت (عرض یک‌سوم) */
+.gameSectionInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 0 0 33.33%;
+  padding: 12px;
+  padding-right: 16px;
+  position: relative;
+}
+
+.gameSectionStats {
+  flex: 0 0 33.33%;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gameSectionCollaborators {
+  flex: 0 0 33.33%;
+  padding: 12px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.headerBrand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 2rem;
+  padding-left: 2rem;
+  direction: ltr;
+}
+
+.brandText {
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+}
+
+.logoImg {
+  width: 32px;
+  height: 32px;
+}
+
+.searchBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchInput {
+  width: 30%;
+  padding: 0.5rem 1rem;
+  font-size: 12px;
+  text-align: right;
+
+  background: rgba(81, 85, 145, 0.192);
+  backdrop-filter: blur(3px);
+  border-radius: 5px; 
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+      0 4px 30px rgba(0, 0, 0, 0.1), 
+      inset 0 0 10px rgba(255, 255, 255, 0.1);
+
+  transition: background 0.4s, border 0.4s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.searchInput::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+.searchInput:focus::placeholder {
+  color: #000000;
+}
+
+.searchInput:focus {
+  outline: none !important;
+  background: rgba(255, 255, 255, 0.774);
+  box-shadow: 0 0 0 2px rgba(98, 98, 126, 0.497) !important;
+}
+
+.searchInput:active {
+  transform: scale(0.99);
+}
+
+.searchSuggestions {
+  position: absolute;
+  top: 15%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background: #ffffffd5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  padding: 4px 0;
+  width: 30%;
+  justify-self: center;
+}
+
+.suggestionItem {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-size: 14px;
+  color: #000000b1;
+}
+
+.suggestionItem:hover {
+  background: #8092b82f;
+  color: #000000e1;
+}
+
+.suggestionItem.active {
+  background: #8092b8;
+  color: #000000;
+  font-weight: 500;
+}
+
+.dashboardTitle {
+  padding-right: 2%;
   font-size: 20px;
   font-weight: 600;
-  color: #333;
+  color: #D9D9D9;
 }
 
-.dashboard-user {
-  background: #f1f1f1;
+.dashboardUser {
+  padding-left: 2.7%;
+}
+
+.dashboardUserbox {
+  background: #f1f1f1e5;
   padding: 4px 10px;
-  margin-left: 10px;
   border-radius: 6px;
   font-size: 14px;
   color: #333;
 }
 
-.user-avatar {
+.userAvatar {
   font-size: 18px;
 }
 
-.user-name {
+.userName {
   font-weight: 500;
-  /* margin-le/ft: auto; */
 }
 
-.toolbar-bottom {
+.toolbarBottom {
   display: flex;
-  justify-content: center; /* Center horizontally */
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
 }
 
+.gameListtop {
+  padding-left: 2.7%;
+  padding-right: 2.2%;
+}
 
-.dashboard-controls {
+.dashboardBtns {
   display: flex;
   align-items: center;
   gap: 1rem;
+  direction: ltr;
 }
 
-.download-kit-btn,
-.add-game-btn {
-  background-color: #4a1179;
+.downloadKitBtn,
+.addGameBtn {
+  background-color: rgb(105, 121, 192);
   color: white;
   border: none;
   padding: 8px 16px;
@@ -56,25 +209,27 @@
   font-weight: 500;
   font-size: 14px;
   transition: background-color 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 
-.download-kit-btn:hover,
-.add-game-btn:hover {
-  background-color: #5c2d9194; 
+.downloadKitBtn:hover,
+.addGameBtn:hover {
+  background-color: rgba(105, 121, 192, 0.524);
 }
 
-
-.toolbar-filters {
-  font-size: 14px;
-  color: #666;
+.lists_icon {
+  width: 23px;
+  opacity: 0.7;
 }
 
-.filter-label {
+.filterLabel {
   font-weight: 500;
-  margin-left: 8px;
+  color: rgba(255, 255, 255, 0.75);
 }
 
-.filter-dropdown {
+.filterDropdown {
   padding: 6px 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
@@ -83,292 +238,467 @@
   margin-inline-start: 4px;
 }
 
-.shifted-select {
+.shiftedSelect {
   display: flex;
   gap: 0.5rem;
   justify-content: center;
   flex-wrap: wrap;
-  /* margin-right: 200px; */
 }
 
-
-
-.toolbar-icon {
-  font-size: 18px;
-  opacity: 0.7;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.toolbar-icon:hover {
-  opacity: 1;
-}
-
-/* ========== Dashboard Container ========== */
-.dashboard-container {
+/* آیکون بازی */
+.gameIconWrapper {
+  width: 64px;
+  height: auto;
   display: flex;
   flex-direction: column;
-  background-color: #D3D6ED;
+  align-items: center;
+  gap: 8px;
+  margin-left: 16px;
+}
+
+.gameIcon {
   width: 100%;
-  min-height: calc(100vh - 110px);
-  overflow-y: auto;
-  padding-bottom: 50px;
-}
-
-/* ========== Game List Section ========== */
-.game-list {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.game-card {
-  display: flex;
-  background-color: white;
+  height: 100%;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-  padding: 20px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.game-section-info {
-  flex: 2;
-  display: flex;
-  align-items: flex-start;
-  gap: 2%;
-}
-
-.game-icon-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 15%;
-}
-
-.game-icon {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 0.8rem;
   object-fit: cover;
 }
 
-.game-tag {
-  font-size: 0.75rem;
-  background-color: #D3D6ED;
-  width: 90%;
-  padding-top: 0.5em;
-  padding-bottom: 0.3em;
-  border-radius: 0.5em;
-  margin-top: 0.5em;
+.gameTag {
+  width: 100%;
   text-align: center;
-  color: #7D2BAB;
-  font-weight: 500;
+  font-size: 0.7rem;
+
+  background: rgba(160, 161, 175, 0.22);
+  padding-top: 5px;
+  padding-bottom: 3px;
+  border-radius: 3px;
+  color: #ffffff;
+  font-weight: 300;
 }
 
-.game-title {
-  font-size: 1.1rem;
+.gameTextContent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gameTitle {
+  font-size: 1rem;
   font-weight: bold;
-  color: #111;
+  color: #ffffffdd;
 }
 
-.game-meta-colored {
-  font-size: 12px;
-  color: #7D2BAB; 
-  font-weight: 500;
-  margin-top:3% ;
-}
-
-
-.game-description {
-  font-size: 0.9rem;
-  color: #444;
+.gameDescription {
+  font-size: 0.8rem;
+  color: #ffffffa7;
   margin-top: 0.3rem;
 }
 
-
-.game-settings-icon {
-  width: 80%;
-  height: 80%;
-  opacity: 0.7;
-  cursor: pointer;
-  /* margin-right: 12px; */
-  margin-top: -28%;
-  transition: opacity 0.2s ease;
-}
-
-.game-settings-icon:hover {
-  opacity: 1;
-}
-
-/* ========== Stats Section ========== */
-.game-section-stats {
-  flex: 1;
-  border-left: 1px solid #eee;
-  border-right: 1px solid #eee;
-  padding: 0 20px;
-}
-
-.user-stats-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #999;
-  margin-bottom: 6px;
-  margin-top: -2%;
-}
-
-.game-stat-label {
+.gameMetaColored {
   font-size: 12px;
-  color: #888;
+  font-size: 0.7rem;
+  color: rgb(169, 185, 255);
+  font-weight: 500;
 }
 
-.game-stat-value {
-  font-size: 18px;
-  font-weight: bold;
-  color: #222;
-}
-
-.stats-chart {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  height: 50px;
-  margin-top: 3%;
-  gap: 1px;
-}
-
-.stats-bar {
-  width: 2%;
-  border-radius: 2px;
-  transition: height 0.3s ease;
-}
-
-/* ========== Collaborators Section ========== */
-.game-section-collaborators {
-  flex: 1;
-  justify-content: flex-start;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-
-.collaborator-label {
-  font-size: 20px;
-  font-weight: 600;
-  color: #999;
-  margin-right: 5%;
-  margin-top: -25%;
-}
-
-.add-collaborator-icon {
-  width: 7%;
-  height: 7%;
+.gameSettingsIcon {
+  position: absolute;
+  top: 15px;
+  left: 23px;
   cursor: pointer;
+  color: #ffffff;
   opacity: 0.7;
-  margin-top: -22%;
   transition: opacity 0.2s ease;
 }
 
-.add-collaborator-icon:hover {
+.gameSettingsIcon:hover {
   opacity: 1;
+  transform: scale(1.05);
 }
 
-.collaborator-status-wrapper {
-  position: relative;
-  width: 32px;
-  height: 32px;
-  margin: 0 4px;
+.FirstverticalLine {
+  position: absolute;
+  width: 1px;            
+  height: 80%;
+  top: 10%;
+  right: 33%;
+  border-radius: 1px;
+  opacity: 0.7;
+  box-shadow: 0 0 8px rgba(120, 120, 255, 0.068);
+  background: linear-gradient(to bottom, rgba(120, 120, 255, 0.476), rgba(255, 255, 255, 0.301));
 }
 
-.collaborator-wrapper {
+.SecondverticalLine {
+  position: absolute;
+  width: 1px;            
+  height: 80%;
+  top: 10%;
+  right: 66%;
+  border-radius: 1px;
+  opacity: 0.7;
+  box-shadow: 0 0 8px rgba(120, 120, 255, 0.068);
+  background: linear-gradient(to bottom, rgba(120, 120, 255, 0.476), rgba(255, 255, 255, 0.301));
+}
+
+.statRow {
+  display: flex;
+  flex-direction: row;
+  gap: 25%;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.statItem {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 36px;
+  text-align: center;
 }
 
-.collaborator-wrapper-icon {
-  width: 130%;
-  height: 130%;
-  opacity: 0.2;
-  margin-right: 50%;
+.userStatsTitle {
+  font-size: 15px;
+  margin-bottom: 12px;
+  color: #D9D9D9;
 }
 
-.collaborator-icon {
-  width: 110%;
-  height: 110%;
-  object-fit: contain;
-  border-radius: 50%;
-  margin-bottom: 4px;
-  margin-right: 60%;
-  margin-top: -190%;
-  z-index: 5;
+.gameStatLabel {
+  font-size: 0.8rem;
+  color: rgb(169, 185, 255);
 }
 
-.collaborator-icon:hover {
-  opacity: 1;
+.gameStatValue {
+  font-size: 14px;
+  font-size: 0.8rem;
+  color: #d8dbe0;
 }
 
-.status-indicator {
+/* نمودار خطی */
+.statsLineChart {
+  margin-top: auto;
+}
+
+.lineChart {
+  width: 90%;
+  height: 40px;
+}
+
+.linePath {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 2px 3px rgba(77, 67, 172, 0.4));
+}
+
+.collaboratorLabel {
+  font-size: 15px;
+  color: #D9D9D9;
+}
+
+.addCollaboratorIcon {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  margin-bottom: -32%;
-  width: 12px;
-  height: 12px;
+  top: 12px;
+  left: 20px;
+  width: 18px;  
+  cursor: pointer;
+  color: #ffffff;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.addCollaboratorIcon:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.collaboratorStatusWrapper {
+  display: inline-block;
+  margin-right: 8px;
+  margin-top: 35px;
+}
+
+.collaboratorWrapperIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
-  border: 2px solid white;
+}
+
+.collaboratorIcon {
+  width: 27px;
+  height: 27px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.statusIndicator {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid white;
 }
 
 .online {
-  background-color: #28c840;
+  background-color: #28c76f;
 }
 
 .offline {
-  background-color: #e04545;
+  background-color: #ae2d2d;
 }
 
 
-.stats-line-chart {
-  height: 50px;
-  margin-top: 10px;
-  overflow: hidden;
+.tooltip {
+  position: relative;
 }
 
-.line-chart {
-  width: 100%;
-  height: 100%;
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%;           /* بالای آیکون */
+  right: 50%;             /* RTL: از راست حساب کن */
+  transform: translateX(50%);
+  white-space: nowrap;
+  background: rgba(20, 20, 30, 0.95);
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .15s ease, transform .15s ease, visibility .15s;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25);
+  z-index: 5;
+}
+
+.tooltip::before {
+  content: "";
+  position: absolute;
+  bottom: 110%;
+  right: 50%;
+  transform: translateX(50%);
+  border: 6px solid transparent;
+  border-top-color: rgba(20, 20, 30, 0.95);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .15s ease, visibility .15s;
+  z-index: 5;
+}
+
+.tooltip:hover::after,
+.tooltip:hover::before {
+  opacity: 1;
+  visibility: visible;
 }
 
 
-.line-path {
-  stroke-linecap: round;
-}
-
-
-.line-path {
-  stroke-linecap: round;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: draw-line 3.5s linear infinite;
-}
-
-@keyframes draw-line {
-  from {
-    stroke-dashoffset: 1000;
+/* ======= فقط موبایل ======= */
+@media (max-width: 769px) {
+  .collaboratorsToggleBtn {
+    display: inline-flex;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform .08s ease, background .2s ease;
   }
-  to {
-    stroke-dashoffset: 0;
+  .collaboratorsToggleBtn:active { transform: scale(0.98); }
+
+  /* Dropdown قدیمی داخل کارت را پنهان کن اگر داشتی */
+  .collaboratorsDropdown { display: none !important; }
+
+  /* آیکون‌های دسکتاپ مخفی در موبایل (اگه لازم شد) */
+  .collaboratorsDesktop { display: none; }
+
+  /* بک‌دراپ تمام‌صفحه */
+  .mobileOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 15, 20, 0.55);
+    backdrop-filter: blur(2px);
+    z-index: 1000;
+    display: flex;
+    align-items: flex-end; /* Bottom Sheet */
+  }
+
+  /* خود باکس (Bottom Sheet) */
+  .mobileSheet {
+    width: 100%;
+    max-height: 70vh;
+    background: #0f1221;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.35);
+    overflow: hidden;
+    transform: translateY(0);
+    animation: slideUp .18s ease-out;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(8%); opacity: .7; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+
+  .mobileSheetHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .mobileSheetTitle {
+    margin: 0;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+  }
+  .mobileSheetClose {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .mobileSheetBody {
+    padding: 8px 6px 14px 6px;
+    max-height: calc(70vh - 54px);
+    overflow-y: auto;
+  }
+
+  .collaboratorNameRowMobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    margin: 6px 8px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .name {
+    color: #eaeaea;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* نقطه وضعیت را از کلاس‌های موجودت استفاده کردم: .dot .online .offline */
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    display: inline-block;
+  }
+  .online  { background: #2ecc71; }
+  .offline { background: #bdc3c7; }
+}
+
+/* مخفی‌کردن نمودار در موبایل */
+@media (max-width: 769px) {
+  .statsLineChart {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 }
 
-.no-thumbnail-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  object-fit: cover;
-  background-color: #f0f0f0;
-  padding: 4px;
+
+@media (max-width: 769px) {
+  .gameMetaColored {
+    display: none !important;
+  }
+  .gameDescription {
+    display: none !important;
+  }
+  .gameTag {
+    display: none !important;
+  }
+  .gameSettingsIcon {
+    display: none !important;
+  }
 }
 
+/* ======= دسکتاپ ======= */
+@media (min-width: 770px) {
+  .mobileOverlay,
+  .mobileSheet,
+  .collaboratorNameRowMobile { display: none; }
 
+  .collaboratorsToggleBtn { display: none; }
+}
 
+/* وقتی عرض کمتر از 516px شد */
+@media (max-width: 516px) {
+  
+  .dashboardContainer {
+    padding: 0.5rem;
+  }
+
+  .dashboardTitle {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .gameCard {
+    display: flex;
+    min-height: auto;
+  }
+
+  .searchInput {
+    width: 70%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .gameSectionInfo {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 100%;
+    position: relative;
+  }
+
+  .gameSectionInfo {
+    width: 100%;
+  }
+
+  .gameTitle {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    text-align: right;
+    cursor: default;
+  }
+
+  .gameIconWrapper {
+    width: 50px;
+  }
+
+  /* بقیه‌ی بخش‌ها مخفی */
+  /* .gameIconWrapper, */
+  .gameTextContent p,
+  .gameMetaColored
+  .gameSectionStats,
+  .FirstverticalLine,
+  .SecondverticalLine,
+  .gameSectionCollaborators,
+  .gameSettingsIcon {
+    display: none !important;
+  }
+}

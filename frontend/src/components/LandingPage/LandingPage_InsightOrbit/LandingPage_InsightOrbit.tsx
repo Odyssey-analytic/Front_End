@@ -88,6 +88,7 @@ const LandingPage_InsightOrbit: React.FC = () => {
   }, []);
 
   return (
+    <div className={styles.somemargin}>
     <div className={styles.planetContainer} ref={containerRef}>
       <svg width="100%" height="100%" viewBox="0 0 400 400" style={{ overflow: "visible" }}>
         <defs>
@@ -172,6 +173,7 @@ const LandingPage_InsightOrbit: React.FC = () => {
         <circle ref={dot1Ref} className={styles.movingDotLilac} />
         <circle ref={dot2Ref} className={styles.movingDotGray} />
       </svg>
+    </div>
     </div>
   );
 };

@@ -1,24 +1,29 @@
+/* ========== Footer Wrapper ========== */
+
+:root {
+  --footer-gutter: clamp(16px, 3vw, 40px);
+  --footer-max: 1440px; /* ظرف پیش‌فرض در دسکتاپ */
+}
+
 .footer {
   color: white;
-
   font-family: sans-serif;
   width: 100%;
   height: 100%;
   align-items: center;
-  position: absolute;
+  /* position: absolute; */
 }
 
+/* ========== Footer Container ========== */
+/* ظرف ستون‌ها با CSS Grid */
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 2rem;
-  position: absolute;
-  top: 20%;
-  width: 100%;
-  padding-right: 2rem;
+  display: grid;
+  gap: clamp(24px, 4vw, 48px);
+  width: min(1440px, 100% - 2 * clamp(16px, 3vw, 40px));
+  margin-inline: auto;
+  /* padding-inline: 0;  اگر padding داشتی، حذفش کن تا به دیواره نزدیک‌تر شود */
 }
-
+/* ========== Columns ========== */
 .column,
 .columnBrand {
   flex: 1 1 200px;
@@ -26,39 +31,45 @@
   padding-right: 5%;
 }
 
+/* ========== Brand Logo ========== */
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 3rem;
+  font-family: "Shabnam", sans-serif;
 }
 
+/* ========== Brand Description ========== */
 .description {
   font-size: 1rem;
   line-height: 2;
   margin-bottom: 1rem;
   color: #e0e0e0;
-  font-family: 'Shabnam', sans-serif;
+  font-family: "Shabnam", sans-serif;
 }
 
+/* ========== Contact Email ========== */
 .email {
   font-size: 0.95rem;
   color: #b0cfff;
   text-decoration: none;
-  font-family: 'Aboreto', sans-serif;
+  font-family: "Aboreto", sans-serif;
 }
 
+/* ========== Section Headings ========== */
 .heading {
   font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 3rem;
-  font-family: 'Shabnam', sans-serif;
+  font-family: "Shabnam", sans-serif;
 }
 
+/* ========== List Styling ========== */
 .list {
   list-style: none;
   padding: 0;
   margin: 0;
-  font-family: 'Shabnam', sans-serif;
+  font-family: "Shabnam", sans-serif;
 }
 
 .list li {
@@ -67,6 +78,7 @@
   color: #e0e0e0;
 }
 
+/* ========== Footer Bottom Section ========== */
 .footerBottom {
   border-top: 1px solid #ccc;
   margin-top: 3rem;
@@ -76,20 +88,45 @@
   gap: 2rem;
   font-size: 0.85rem;
   color: #ccc;
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
-  top: 65%;
-  font-family: 'Shabnam', sans-serif;
+  /* top: 65%; */
+  font-family: "Shabnam", sans-serif;
 }
 
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+/* ========== Responsive Rules ========== */
 
-  .footerBottom {
-    flex-direction: column;
-    align-items: center;
+/* < 600px → 1 ستونه (موبایل) */
+@media (max-width: 599px) {
+  .container {
+    grid-template-columns: 1fr;
   }
+}
+
+/* 600–899px → 2 ستونه */
+@media (min-width: 600px) and (max-width: 899px) {
+  .container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* 900–1199px → 3 ستونه */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ≥1200px → 4 ستونه (زودتر از قبل) */
+@media (min-width: 1200px) {
+  .container {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ستون‌ها دیگر نیازی به flex ندارند */
+.column,
+.columnBrand {
+  /* هر استایل داخلی (padding, typography) بماند */
+  min-width: 0; /* برای جلوگیری از بروز اسکرول افقی در متن‌های طولانی */
 }

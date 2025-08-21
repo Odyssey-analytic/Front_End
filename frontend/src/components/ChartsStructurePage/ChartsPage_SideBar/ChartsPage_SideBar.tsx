@@ -1,5 +1,8 @@
-import { useState } from 'react';
-import {useNavigate} from 'react-router-dom';
+import styles from "./ChartsPage_SideBar.module.css";
+
+import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   FiHome,
   FiBarChart2,
@@ -15,181 +18,602 @@ import {
   FiUsers,
   FiGrid,
   FiTool,
-  FiBookOpen,
-  FiChevronDown
-} from 'react-icons/fi';
-import styles from './ChartsPage_SideBar.module.css';
+  FiChevronDown,
+  FiMenu,
+  FiX,
+} from "react-icons/fi";
 
 
-
+import GameLogo from "../../../../public/icons/game-ghost-icon.svg";
+import dashboard_logout_panel_icon from "../../../../public/icons/dashboard_panel_icon.svg";
+import dashboard_sidebar_user_icon from "../../../../public/icons/dashboard_sidebar_user_icon.svg";
+import OdessayLogo from "../../../../public/icons/odessay_logo.svg";
 
 const menuItems = [
   {
-    // label: 'داشبوردها (Dashboards)',
-    label: 'داشبوردها',
+    label: "داشبوردها", // Dashboards
     collapsible: true,
     icon: <FiGrid />,
-    // items: [
-    //   { label: 'نمای کلی (Overview)', icon: <FiHome /> },
-    //   { label: 'تعامل کاربران (Engagement)', icon: <FiBarChart2 /> },
-    //   { label: 'معیارها (Benchmarks)', icon: <FiActivity /> },
-    //   { label: 'درآمدزایی (Monetization)', icon: <FiDollarSign /> },
-    //   { label: 'منابع (Resources)', icon: <FiLayers /> },
-    //   { label: 'پیشرفت (Progression)', icon: <FiTrendingUp /> },
-    //   { label: 'کیفیت (Quality)', icon: <FiPieChart /> },
-    // ]
     items: [
-      { label: 'نمای کلی ', icon: <FiHome /> },
-      { label: 'تعامل کاربران', icon: <FiBarChart2 /> },
-      { label: 'معیارها', icon: <FiActivity /> },
-      { label: 'درآمدزایی', icon: <FiDollarSign /> },
-      { label: 'منابع', icon: <FiLayers /> },
-      { label: 'پیشرفت', icon: <FiTrendingUp /> },
-      { label: 'کیفیت', icon: <FiPieChart /> },
-    ]
+      {
+        label: (
+          <>
+            نمای کلی <span className={`${styles.englishPart}`}>(Overview)</span>
+          </>
+        ),
+        icon: <FiHome />,
+      },
+      {
+        label: (
+          <>
+            تعامل کاربران{" "}
+            <span className={`${styles.englishPart}`}>(Engagement)</span>
+          </>
+        ),
+        icon: <FiBarChart2 />,
+      },
+      {
+        label: (
+          <>
+            معیارها{" "}
+            <span className={`${styles.englishPart}`}>(Benchmarks)</span>
+          </>
+        ),
+        icon: <FiActivity />,
+      },
+      {
+        label: (
+          <>
+            درآمدزایی{" "}
+            <span className={`${styles.englishPart}`}>(Monetization)</span>
+          </>
+        ),
+        icon: <FiDollarSign />,
+      },
+      {
+        label: (
+          <>
+            منابع <span className={`${styles.englishPart}`}>(Resources)</span>
+          </>
+        ),
+        icon: <FiLayers />,
+      },
+      {
+        label: (
+          <>
+            پیشرفت{" "}
+            <span className={`${styles.englishPart}`}>(Progression)</span>
+          </>
+        ),
+        icon: <FiTrendingUp />,
+      },
+      {
+        label: (
+          <>
+            کیفیت <span className={`${styles.englishPart}`}>(Quality)</span>
+          </>
+        ),
+        icon: <FiPieChart />,
+      },
+    ],
   },
   {
-    label: 'داشبورد سفارشی',
-    // label: 'داشبورد سفارشی (Custom dashboards)'
+    label: "داشبورد سفارشی", // Custom Dashboards
     collapsible: true,
     icon: <FiGrid />,
-    // items: [
-    //   { label: 'جستجو (Explore)', icon: <FiSearch /> },
-    //   { label: 'قیف‌ها (Funnels)', icon: <FiUsers /> },
-    //   { label: 'دسته‌بندی کاربران (Cohorts)', icon: <FiUsers /> },
-    //   { label: 'پیکربندی (Configs)', icon: <FiTool /> },
-    //   { label: 'تنظیمات (Settings)', icon: <FiSettings /> },
-    // ]
     items: [
-      { label: 'جستجو', icon: <FiSearch /> },
-      { label: 'قیف‌ها', icon: <FiUsers /> },
-      { label: 'دسته‌بندی کاربران', icon: <FiUsers /> },
-      { label: 'پیکربندی', icon: <FiTool /> },
-      { label: 'تنظیمات', icon: <FiSettings /> },
-    ]
+      {
+        label: (
+          <>
+            جستجو <span className={`${styles.englishPart}`}>(Explore)</span>
+          </>
+        ),
+        icon: <FiSearch />,
+      },
+      {
+        label: (
+          <>
+            قیف‌ها <span className={`${styles.englishPart}`}>(Funnels)</span>
+          </>
+        ),
+        icon: <FiUsers />,
+      },
+      {
+        label: (
+          <>
+            دسته‌بندی کاربران{" "}
+            <span className={`${styles.englishPart}`}>(Cohorts)</span>
+          </>
+        ),
+        icon: <FiUsers />,
+      },
+      {
+        label: (
+          <>
+            پیکربندی <span className={`${styles.englishPart}`}>(Configs)</span>
+          </>
+        ),
+        icon: <FiTool />,
+      },
+      {
+        label: (
+          <>
+            تنظیمات <span className={`${styles.englishPart}`}>(Settings)</span>
+          </>
+        ),
+        icon: <FiSettings />,
+      },
+    ],
   },
 ];
 
-
-
 const ChartsPage_SideBar = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const [activeIndex, setActiveIndex] = useState<string | number>(0);
+  const [activeIndex, setActiveIndex] = useState<number | string | null>(null);
+
+  const [sidebarActive, setSidebarActive] = useState(false); // The state for controlling whether the sidebar is open or closed
+  const [isSmallScreen, setIsSmallScreen] = useState(false); // The state to check if the screen width is less than 480px
+  const [collapsed, setCollapsed] = useState(false); // The state for controlling the collapsed or expanded state of the sidebar for screens larger than 480px
+
   const [openSections, setOpenSections] = useState<number[]>([]);
-  const game_name = localStorage.getItem('game_name');
+  const [selectedGame, setSelectedGame] = useState("بازی A");
+  setSelectedGame(localStorage.getItem('game_name'));
   const Logo = localStorage.getItem('Logo');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const gameList = JSON.parse(localStorage.getItem('gamesList') ?? '[]');
   const navigate = useNavigate();
-  const toggleSection = (index: number) => {
-  setOpenSections(prev => {
-    console.log(game_name); // This will now be executed
-    if (prev.includes(index)) {
-      return prev.filter(i => i !== index);
-    } else {
-      return [...prev, index];
+  
+/*   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const gameList = ["بازی اول", "بازی دوم", "بازی سوم"]; */
+
+  const [username, setUsername] = useState<string>();
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) setUsername(storedUsername);
+  }, []);
+
+  useEffect(() => {
+    const handleClick = () => {
+      if (dropdownOpen) {
+        setDropdownOpen(false);
+      }
+    };
+
+    if (dropdownOpen) {
+      document.addEventListener("click", handleClick);
+      return () => document.removeEventListener("click", handleClick);
     }
-  });
-};
+  }, [dropdownOpen]);
+
+  const resetMobileSidebarState = () => {
+    setDropdownOpen(false);
+    setOpenSections([]);
+    setActiveIndex(null);
+  };
+
+  // Function to toggle the sidebar open/closed
+  const MobileSidebarOpen = () => {
+    setSidebarActive(true);
+  };
+
+  const MobileSidebarClose = () => {
+    setSidebarActive(false);
+    resetMobileSidebarState();
+  };
+
+  const toggleSection = (index: number) => {
+    setOpenSections((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+
+    if (openSections.includes(index)) {
+      setActiveIndex(null);
+    }
+  };
+
+  // Function to collapse/expand the sidebar
+  const toggleCollapse = () => {
+    setCollapsed(!collapsed);
+    setDropdownOpen(false);
+    setOpenSections([]);
+  };
+
+  useEffect(() => {
+    // Check if the screen width is less than 480px
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 480); // Set isSmallScreen to true if screen width is less than 480px
+    };
+
+    // Initial check
+    checkScreenSize();
+
+    // Add event listener for window resize
+    window.addEventListener("resize", checkScreenSize);
+
+    // Cleanup (remove event listener) when the component unmounts
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!sidebarActive) resetMobileSidebarState();
+  }, [sidebarActive]);
 
   return (
-    <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ''}`}>
+    <div className={styles.sidebarcontainer}>
+      {/* For screens larger than 480px, display a fixed sidebar */}
+      {!isSmallScreen && (
+        <aside
+          className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}
+        >
+          {/* Game selector section */}
+          <div className={styles.headerWrapper}>
+            {!collapsed && (
+              <div className={styles.brandLogoHeader}>
+                <span className={styles.brandLogoText}>ODESSAY</span>
+                <img
+                  src={OdessayLogo}
+                  alt="Odessay Logo"
+                  className={styles.brandLogoImg}
+                />
+              </div>
+            )}
 
-      <div className={styles.gameHeader}>
-        <div className={styles.gameSelectorWrapper}>
-          <div
-            className={styles.gameSelectorBox}
-            onClick={() => setDropdownOpen(prev => !prev)}
-          >
-            <img src={Logo} alt="Game Logo" className={styles.gameLogo} />
-            {!collapsed && <span className={styles.gameName}>{game_name}</span>}
+            {/* Collapse/Expand button for the sidebar */}
+            <div
+              className={styles.toggle}
+              onClick={toggleCollapse} // Toggle the collapse state
+              aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+            >
+              {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
+            </div>
+
           </div>
 
-          <div
-            className={styles.toggle}
-            onClick={() => setCollapsed(!collapsed)}
-            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-          >
-            {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
-          </div>
-        </div>
-</div>
- {dropdownOpen && (
-        
-          <div className={styles.gameDropdown}>
-            {gameList.map((game: any, index: number) => (
-              <div
-                key={index}
-                className={styles.gameDropdownItem}
-                onClick={() => {
-                  localStorage.setItem("game_name", game.title);
-                  localStorage.setItem("Logo", game.icon);
-                  setDropdownOpen(false);
-                  console.log(game.id);
-                  navigate(`/dashboard/${game.id}`);
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <img
-                    src={game.icon}
-                    alt={game.title}
-                    className={styles.gameDropdownItemImg}
-                  />
-                  <span>{game.title}</span>
-                </div>
-              </div>
-            ))}
+          <div className={styles.gameSelectorSection}>
+            <hr className={styles.divider} />
 
-      </div>)}
-
-      <nav className={styles.menu}>
-        {menuItems.map((item, index) => {
-          const isSectionOpen = openSections.includes(index);
-          const isActive = activeIndex === index;
-
-          return (
-            <div key={index}>
-              <div
-                className={`${styles.menuItem} ${isActive ? styles.active : ''}`}
-                onClick={() =>
-                  item.collapsible ? toggleSection(index) : setActiveIndex(index)
-                }
-              >
-                <div className={styles.menuContent}>
-                  <span className={styles.iconMain}>{item.icon}</span>
-                  {!collapsed && <span className={styles.label}>{item.label}</span>}
-                  {item.collapsible && !collapsed && (
-                    <span className={styles.chevron}>
-                      {isSectionOpen ? <FiChevronDown /> : <FiChevronRight />}
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {item.collapsible && isSectionOpen && item.items && item.items.length > 0 && (
-                <div className={styles.subMenu}>
-                  {item.items.map((subItem, subIdx) => {
-                    const subItemKey = `${index}-${subIdx}`;
-                    return (
-                      <div
-                        key={subIdx}
-                        className={`${styles.subMenuItem} ${activeIndex === subItemKey ? styles.active : ''}`}
-                        onClick={() => setActiveIndex(subItemKey)}
-                      >
-                        <div className={styles.menuContent}>
-                          <span className={styles.iconSub}>{subItem.icon}</span>
-                          {!collapsed && <span className={styles.label}>{subItem.label}</span>}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
+            <div
+              className={styles.gameSelectorBox}
+              onClick={(e) => {
+                e.stopPropagation(); // جلوگیری از بسته شدن توسط event کلیک صفحه
+                setDropdownOpen(!dropdownOpen);
+              }}
+            >
+              <img src={GameLogo} alt="Game Logo" className={styles.gameLogo} />
+              {!collapsed && (
+                <span className={styles.gameName}>{selectedGame}</span>
               )}
             </div>
-          );
-        })}
-      </nav>
-    </aside>
+
+            {/* Dropdown to select a game */}
+            {dropdownOpen && (
+              <div className={styles.gameDropdown}>
+                {gameList.map((game) => (
+                  <div
+                    key={game}
+                    className={styles.gameDropdownItem}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedGame(game);
+                      setDropdownOpen(false);
+                    }}
+                  >
+                    {game}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <hr className={styles.divider} />
+          </div>
+
+          {/* Navigation menu */}
+          <nav className={styles.menu}>
+            {menuItems.map((item, index) => {
+              const isSectionOpen = openSections.includes(index);
+              const isActive = activeIndex === index;
+
+              return (
+                <div key={index}>
+                  <div
+                    className={`${styles.menuItem} ${
+                      isActive ? styles.active : ""
+                    }`}
+                    onClick={() => {
+                      if (item.collapsible) {
+                        if (isSectionOpen) {
+                          setActiveIndex(null); // ریست هنگام بستن
+                        }
+                        toggleSection(index);
+                      } else {
+                        setActiveIndex(index);
+                      }
+                    }}
+                  >
+                    <div className={styles.menuContent}>
+                      <span className={styles.iconMain}>{item.icon}</span>
+
+                      {!collapsed && (
+                        <span className={styles.label}>{item.label}</span>
+                      )}
+                      {item.collapsible && !collapsed && (
+                        <span className={styles.chevron}>
+                          {isSectionOpen ? (
+                            <FiChevronDown />
+                          ) : (
+                            <FiChevronRight />
+                          )}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {item.collapsible &&
+                    isSectionOpen &&
+                    item.items &&
+                    item.items.length > 0 && (
+                      <div className={styles.subMenu}>
+                        {item.items.map((subItem, subIdx) => {
+                          const subItemKey = `${index}-${subIdx}`;
+                          return (
+                            <div
+                              key={subIdx}
+                              className={`${styles.subMenuItem} ${
+                                activeIndex === subItemKey ? styles.active : ""
+                              }`}
+                              onClick={() => setActiveIndex(subItemKey)}
+                            >
+                              <div className={styles.menuContent}>
+                                <span className={styles.iconSub}>
+                                  {subItem.icon}
+                                </span>
+                                {!collapsed && (
+                                  <span className={styles.label}>
+                                    {subItem.label}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                </div>
+              );
+            })}
+
+            {/* --- Profile section --- */}
+            {collapsed ? (
+              <div className={styles.profileMiniSection}>
+                <div className={styles.profileCard}>
+                  <div className={styles.profileMiniInfo}>
+                    <img
+                      src={dashboard_sidebar_user_icon}
+                      alt="Avatar"
+                      className={styles.avatar}
+                    />
+                  </div>
+
+                  <div
+                    className={styles.logoutMiniBtn}
+                    onClick={() => (window.location.href = "/panel")}
+                  >
+                    <img
+                      src={dashboard_logout_panel_icon}
+                      alt="Logout"
+                      className={styles.logoutMiniIcon}
+                    />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              // حالت کامل: کارت پروفایل فعلی
+              <div className={styles.profileSection}>
+                <div className={styles.profileCard}>
+                  <div className={styles.profileInfo}>
+                    <img
+                      src={dashboard_sidebar_user_icon}
+                      alt="Avatar"
+                      className={styles.avatar}
+                    />
+                    <div className={styles.profileText}>
+                      <div className={styles.profileName}>{username}</div>
+                      <div className={styles.profileStatus}>آنلاین</div>
+                    </div>
+                  </div>
+
+                  <div
+                    className={styles.logoutBtn}
+                    onClick={() => (window.location.href = "/panel")}
+                  >
+                    <div className={styles.logoutContent}>
+                      <img
+                        src={dashboard_logout_panel_icon}
+                        alt="Logout"
+                        className={styles.logoutIcon}
+                      />
+                      <span className={styles.profilePanel}>پنل کاربری</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </nav>
+        </aside>
+      )}
+
+      {/* Only show the hamburger icon if the screen width is smaller than 480px */}
+      {isSmallScreen && (
+        <div
+          className={`${styles.hamburgerIcon} ${
+            sidebarActive ? styles.hamburgerIconActive : styles.hamburgerIcon
+          }`}
+          onClick={MobileSidebarOpen}
+        >
+          <FiMenu />
+        </div>
+      )}
+
+      {/* If the screen width is smaller than 480px, display a collapsible sidebar */}
+      {sidebarActive && isSmallScreen && (
+        <aside className={`${styles.sidebarActive}`}>
+          {/* Button to close the sidebar */}
+          <div
+            className={styles.MobilecloseSidebar}
+            onClick={MobileSidebarClose}
+          >
+            <FiX />
+          </div>
+
+          {/* Game selector section */}
+          <div className={styles.MobilegameHeader}>
+            <div className={styles.MobilegameSelectorWrapper}>
+              <div
+                className={`${styles.MobilegameSelectorBox} ${
+                  dropdownOpen ? styles.MobilegameSelectorBoxActive : ""
+                }`}
+                onClick={(e) => {
+                  e.stopPropagation(); // جلوگیری از بسته شدن توسط event کلیک صفحه
+                  setDropdownOpen(!dropdownOpen);
+                }}
+              >
+                <img
+                  src={GameLogo}
+                  alt="Game Logo"
+                  className={styles.MobilegameLogo}
+                />
+                {!collapsed && (
+                  <span className={styles.MobilegameName}>{selectedGame}</span>
+                )}
+              </div>
+            </div>
+
+            {/* Dropdown to select a game */}
+            {dropdownOpen && (
+              <div className={styles.MobilegameDropdown}>
+                {gameList.map((game) => (
+                  <div
+                    key={game}
+                    className={styles.MobilegameDropdownItem}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedGame(game);
+                      setDropdownOpen(false);
+                      localStorage.setItem("game_name", game.title);
+                      localStorage.setItem("Logo", game.icon);
+                      navigate(`/dashboard/${game.id}`);
+                    }}
+                  >
+                    {game}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <hr className={styles.Mobiledivider} />
+          </div>
+
+          {/* Navigation menu */}
+          <nav className={styles.Mobilemenu}>
+            {menuItems.map((item, index) => {
+              const isSectionOpen = openSections.includes(index);
+              const isActive = activeIndex === index;
+
+
+              return (
+                <div key={index}>
+                  <div
+                    className={`${styles.MobilemenuItem} ${
+                      isActive ? styles.active : ""
+                    }`}
+                    onClick={() => {
+                      if (item.collapsible) {
+                        if (isSectionOpen) {
+                          setActiveIndex(null); // ریست هنگام بستن
+                        }
+                        toggleSection(index);
+                      } else {
+                        setActiveIndex(index);
+                      }
+                    }}
+                  >
+                    <div className={styles.MobilemenuContent}>
+                      <span className={styles.iconMain}>{item.icon}</span>
+
+                      <span className={styles.Mobilelabel}>{item.label}</span>
+                      <span className={styles.Mobilechevron}>
+                        {isSectionOpen ? <FiChevronDown /> : <FiChevronRight />}
+                      </span>
+                    </div>
+                  </div>
+
+                  {isSectionOpen && item.items && item.items.length > 0 && (
+                    <div className={styles.MobilesubMenu}>
+                      {item.items.map((subItem, subIdx) => {
+                        const subItemKey = `${index}-${subIdx}`;
+                        return (
+                          <div
+                            key={subIdx}
+                            className={`${styles.MobilesubMenuItem} ${
+                              activeIndex === subItemKey ? styles.active : ""
+                            }`}
+                            onClick={() => setActiveIndex(subItemKey)}
+                          >
+                            <div className={styles.MobilemenuContent}>
+                              <span className={styles.MobileiconSub}>
+                                {subItem.icon}
+                              </span>
+                              <span className={styles.Mobilelabel}>
+                                {subItem.label}
+                              </span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </nav>
+          <div className={styles.MobileprofileSection}>
+            <hr className={styles.Mobiledivider} />
+
+            <div className={styles.MobileprofileCard}>
+              <div className={styles.MobileprofileInfo}>
+                <img
+                  src={dashboard_sidebar_user_icon}
+                  alt="Avatar"
+                  className={styles.Mobileavatar}
+                />
+                <div className={styles.MobileprofileText}>
+                  <div className={styles.MobileprofileName}>{username}</div>
+                  <div className={styles.MobileprofileStatus}>آنلاین</div>
+                </div>
+              </div>
+
+              <hr className={styles.Mobiledivider} />
+
+              <div
+                className={styles.MobilelogoutBtn}
+                onClick={() => (window.location.href = "/panel")}
+              >
+                <div className={styles.MobilelogoutContent}>
+                  <img
+                    src={dashboard_logout_panel_icon}
+                    alt="Logout"
+                    className={styles.MobilelogoutIcon}
+                  />
+                  <span>پنل کاربری</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      )}
+    </div>
   );
 };
 

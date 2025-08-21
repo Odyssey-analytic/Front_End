@@ -14,12 +14,12 @@ const steps = [
   {
     icon: "/icons/Step2.svg",
     title: "مرحله دوم",
-    description: "سایت، اپ یا بازیت رو به سایت ما اضافه کن.",
+    description: "سایت، اپ یا بازی ات را به سایت ما اضافه کن.",
   },
   {
     icon: "/icons/Step3.svg",
     title: "مرحله سوم",
-    description: "به سایت، اپ یا بازیت SDK رو اضافه کن.",
+    description: "به سایت، اپ یا بازی ات SDK را اضافه کن.",
   },
   {
     icon: "/icons/Step4.svg",
@@ -42,14 +42,6 @@ const LandingPage_HowToStart: React.FC = () => {
           const direction = index % 2 === 0 ? -60 : 60;
 
           return (
-            // <motion.div
-            //   key={index}
-            //   className={styles.stepItem}
-            //   initial={{ opacity: 0, y: direction }}
-            //   whileInView={{ opacity: 1, y: 0 }}
-            //   transition={{ duration: 0.8, ease: "easeOut", delay: index * 0.25 }}
-            //   viewport={{ once: false, amount: 0.3 }} // re-triggers when in view
-            // >
             <motion.div
               key={index}
               className={styles.stepItem}

@@ -1,16 +1,24 @@
-/* ======================= Wrapper for the "How to Start" section ======================= */
 .startContainer {
-  text-align: center;
-  padding: 40px 20px;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  /* آیتم‌ها وسط عمودی */
+  padding: 80px 20px;        /* ارتفاع بخش رو با padding تنظیم کن */
 }
 
-/* ======================= Section Title ======================= */
 .title {
   font-size: 28px;
-  margin-bottom: 6rem;
+  margin-top: -10%;
+  margin-bottom: 5rem; /* حالت پیش‌فرض برای موبایل/تبلت */
   color: white;
 }
+
+@media (min-width: 1024px) { /* لپ‌تاپ و بزرگ‌تر */
+  .title {
+    margin-bottom: 8rem; /* فاصله کمتر روی لپ‌تاپ */
+  }
+}
+
 
 /* ======================= Steps Container Grid ======================= */
 .stepsWrapper {
@@ -31,12 +39,14 @@
 
 /* ======================= Step Icon (responsive) ======================= */
 .icon {
-  width: 8vw;             
-  height: auto;           
-  max-width: 100px;       
-  min-width: 48px;        
+  width: 10vw;         /* ۱۰٪ عرض صفحه */
+  max-width: 130px;    /* روی دسکتاپ بیش از این نشه */
+  min-width: 100px;     /* روی موبایل کمتر از این نشه */
+  height: auto;
+
   margin-bottom: 16px;
 }
+
 
 /* ======================= Step Title ======================= */
 .stepTitle {

@@ -1,0 +1,15 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #181c3c;
+  position: relative;
+  overflow: hidden;
+}
+
+.line {
+  height: 1px;
+  background: linear-gradient(90deg, #8a2be2, #00bfff);
+  position: absolute;
+  left: -50px;
+  z-index: 1;
+}

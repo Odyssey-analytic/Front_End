@@ -1,217 +1,6 @@
-// import { Line } from 'react-chartjs-2';
-// import { useEffect, useState } from 'react';
-// import {
-//   Chart as ChartJS,
-//   Chart,
-//   LineElement,
-//   PointElement,
-//   LinearScale,
-//   CategoryScale,
-//   Title,
-//   Tooltip,
-//   Legend,
-//   Filler,
-//   ChartOptions,
-//   ChartData,
-// } from 'chart.js';
-// import ChartCardWrapper from '../ChartsPage_CardWrapper/ChartsPage_CardWrapper';
-// import styles from './ActiveUsersKPI.module.css';
-
-// ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend, Filler);
-
-// const AreaChartKPI = () => {
-//   const [chartData, setChartData] = useState<ChartData<'line'>>({
-//     labels: [],
-//     datasets: [
-//       {
-//         label: 'تعداد کاربران',
-//         data: [],
-//         borderColor: '#00C4FF',
-//         backgroundColor: 'rgba(0, 196, 255, 0.2)',
-//         tension: 0.4,
-//         fill: true,
-//         pointRadius: 0,
-//         pointHoverRadius: 4,
-//       },
-//     ],
-//   });
-
-// useEffect(() => {
-//   const labels: string[] = [];
-//   const values: number[] = [];
-
-//   const now = new Date();
-//   const currentMinutes = now.getHours() * 60 + now.getMinutes();
-
-//   for (let i = 0; i < 144; i++) { // 24 ساعت × 6 بازه ده‌دقیقه‌ای = 144 نقطه
-//     const totalMinutes = i * 10;
-//     const hour = Math.floor(totalMinutes / 60);
-//     const minute = totalMinutes % 60;
-//     const label = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-//     labels.push(label);
-
-//     if (totalMinutes <= currentMinutes) {
-//       const lastValue = values.length > 0 ? values[values.length - 1] : Math.random() * 30 + 20;
-//       const variation = (Math.random() - 0.5) * 10;
-//       const newValue = Math.max(0, Math.min(100, lastValue + variation));
-//       values.push(Math.round(newValue));
-//     } else {
-//       values.push(0); // آینده
-//     }
-//   }
-
-//   setChartData((prev) => ({
-//     labels,
-//     datasets: [
-//       {
-//         ...prev.datasets[0],
-//         data: values,
-//       },
-//     ],
-//   }));
-// }, []);
-
-
-//   const movingDotPlugin = {
-//     id: 'movingDot',
-//     afterDraw(chart: Chart) {
-//       const { ctx } = chart;
-//       const dataset = chart.data.datasets[0];
-//       const meta = chart.getDatasetMeta(0);
-//       const points = meta.data;
-
-//       if (!points || points.length === 0) return;
-
-//       const now = Date.now();
-//       const duration = 6000;
-//       const progress = ((now % duration) / duration) * (points.length - 1);
-
-//       const leftIndex = Math.floor(progress);
-//       const rightIndex = Math.ceil(progress);
-//       const t = progress - leftIndex;
-
-//       if (rightIndex >= points.length) return;
-
-//       const p1 = points[leftIndex];
-//       const p2 = points[rightIndex];
-
-//       const x = p1.x + (p2.x - p1.x) * t;
-//       const y = p1.y + (p2.y - p1.y) * t;
-
-//       ctx.save();
-//       ctx.beginPath();
-//       ctx.arc(x, y, 6, 0, Math.PI * 2);
-//       ctx.fillStyle = '#00C4FF';
-//       ctx.shadowColor = '#00C4FF';
-//       ctx.shadowBlur = 12;
-//       ctx.fill();
-//       ctx.restore();
-//     },
-//   };
-
-//   useEffect(() => {
-//     let animationFrameId: number;
-
-//     const animate = () => {
-//       const chartInstance = Chart.getChart('myAnimatedChartId') as Chart | undefined;
-//       if (chartInstance) {
-//         chartInstance.draw();
-//       }
-//       animationFrameId = requestAnimationFrame(animate);
-//     };
-
-//     animate();
-
-//     return () => cancelAnimationFrame(animationFrameId);
-//   }, []);
-
-//   const options: ChartOptions<'line'> = {
-//     responsive: true,
-//     maintainAspectRatio: false,
-//     animation: {
-//       duration: 1200,
-//       easing: 'easeInOutQuart',
-//     },
-//     interaction: {
-//       mode: 'index',
-//       intersect: false,
-//     },
-//     plugins: {
-//       legend: { display: false },
-//       tooltip: {
-//         enabled: true,
-//         backgroundColor: '#ffffff',
-//         titleColor: '#000',
-//         bodyColor: '#000',
-//         borderColor: '#00C4FF',
-//         borderWidth: 1,
-//         callbacks: {
-//   title: (tooltipItems) => {
-//     const hour = tooltipItems[0].label;
-//     const [h, m] = hour.split(':').map(Number);
-
-//     const startMin = m;
-//     const endMin = (m + 10) % 60;
-//     const endHour = h + Math.floor((m + 10) / 60);
-
-//     const format = (num: number) => num.toString().padStart(2, '0');
-//     const start = `${format(h)}:${format(startMin)}`;
-//     const end = `${format(endHour % 24)}:${format(endMin)}`;
-
-//     return `ساعت: ${start} تا ${end}`;
-//   },
-//   label: (context) => `تعداد کاربران: ${context.formattedValue}`,
-// },
-
-//       },
-//       // movingDot: {},
-//        ...( { movingDot: {} } as Record<string, any> )
-//     },
-//     scales: {
-//   x: {
-//   ticks: {
-//     color: '#ccc',
-//     maxRotation: 0,
-//     minRotation: 0,
-//     autoSkip: false, // ✅ تیک‌ها رو خودکار حذف نکن
-//     callback: function (val, index) {
-//       const label = this.getLabelForValue(val as number);
-//       const [h, m] = label.split(':').map(Number);
-//       return m % 60 === 0 ? label : ''; // فقط دقیقه‌های ۰ یا ۳۰
-//     },
-//   },
-//   grid: {
-//     color: 'rgba(255,255,255,0.05)',
-//   },
-// }
-// ,
-//   y: {
-//     beginAtZero: true,
-//     ticks: {
-//       color: '#ccc',
-//     },
-//     grid: {
-//       color: 'rgba(255,255,255,0.05)',
-//     },
-//   },
-// },
-//   };
-
-//   return (
-//     <ChartCardWrapper title="نمودار تعداد کاربران" customHeight="500px">
-//       <div className={styles.glassChart}>
-//         <Line id="myAnimatedChartId" data={chartData} options={options} plugins={[movingDotPlugin]} />
-//       </div>
-//     </ChartCardWrapper>
-//   );
-// };
-
-// export default AreaChartKPI;
-
-
-import { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Line } from 'react-chartjs-2';
+import { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   Chart,
@@ -225,25 +14,133 @@ import {
   Filler,
   ChartOptions,
   ChartData,
-} from 'chart.js';
-import ChartCardWrapper from '../ChartsPage_CardWrapper/ChartsPage_CardWrapper';
-import styles from './ActiveUsersKPI.module.css';
+  type Plugin,
+  type ScriptableContext,
+} from "chart.js";
 
-ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Title, Tooltip, Legend, Filler);
+import ChartCardWrapper from "../ChartsPage_CardWrapper/ChartsPage_CardWrapper";
+import styles from "./ActiveUsersKPI.module.css";
+
+ChartJS.register(
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+);
 
 const AreaChartKPI = () => {
-  const [chartData, setChartData] = useState<ChartData<'line'>>({
-    labels: [],
+  const USE_MOCK = true; // ← وقتی true است، فقط داده‌های ماک و گرادیان نمایش داده می‌شوند
+
+  const mockLabels = Array.from(
+    { length: 24 },
+    (_, i) => `${String(i).padStart(2, "0")}:00`
+  );
+  const mockData = [
+    70, 71, 73, 74, 76, 78, 82, 88, 92, 84, 76, 72, 70, 71, 73, 75, 77, 79, 81,
+    83, 85, 80, 74, 78,
+  ];
+
+  const colorStops = [
+    { stop: 0, border: "#591c8e", fill: "rgba(89,28,142,0.25)" },
+    { stop: 0.5, border: "#4e7dd4", fill: "rgba(78,125,212,0.25)" },
+    { stop: 1, border: "#1721b6", fill: "rgba(23,33,182,0.25)" },
+  ];
+
+  const fadedFillPlugin: Plugin<"line"> = {
+    id: "fadedFill",
+    afterDatasetsDraw(chart) {
+      const { ctx, chartArea, scales } = chart;
+      const meta = chart.getDatasetMeta(0);
+
+      if (!chartArea || !meta?.data?.length) return;
+
+      // مسیر زیر نمودار را خودمان می‌سازیم
+      const points = meta.data as unknown as Array<{ x: number; y: number }>;
+      const yScale = scales["y"] as any;
+      const baseY = yScale?.bottom ?? chartArea.bottom;
+
+      ctx.save();
+
+      // 1) کلیپ: مسیر area زیر خط
+      ctx.beginPath();
+      // شروع از خط پایه زیر اولین x
+      ctx.moveTo(points[0].x, baseY);
+      // رفتن روی همه‌ی نقاط خط
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        ctx.lineTo(p.x, p.y);
+      }
+      // برگشت روی خط پایه زیر آخرین x
+      const last = points[points.length - 1];
+      ctx.lineTo(last.x, baseY);
+      ctx.closePath();
+      ctx.clip();
+
+      // 2) فیل افقی هم‌رنگ با بردر
+      const g = ctx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
+      colorStops.forEach((cs) => g.addColorStop(cs.stop, cs.fill));
+      ctx.fillStyle = g;
+      ctx.fillRect(
+        chartArea.left,
+        chartArea.top,
+        chartArea.width,
+        chartArea.height
+      );
+
+      // 3) ماسک عمودی برای محو شدن به پایین
+      const mask = ctx.createLinearGradient(
+        0,
+        chartArea.top,
+        0,
+        chartArea.bottom
+      );
+      mask.addColorStop(0, "rgba(0,0,0,0.9)");
+      mask.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.globalCompositeOperation = "destination-in";
+      ctx.fillStyle = mask;
+      ctx.fillRect(
+        chartArea.left,
+        chartArea.top,
+        chartArea.width,
+        chartArea.height
+      );
+
+      ctx.restore();
+    },
+  };
+
+  const [chartData, setChartData] = useState<ChartData<"line">>({
+    // labels: [],
+    labels: mockLabels,
     datasets: [
       {
-        label: 'تعداد کاربران',
-        data: [],
-        borderColor: '#00C4FF',
-        backgroundColor: 'rgba(0, 196, 255, 0.2)',
+        label: "تعداد کاربران",
+        data: mockData,
+
+        borderColor: (ctx) => {
+          const { chartArea, ctx: c } = ctx.chart;
+          if (!chartArea) return colorStops[colorStops.length - 1].border;
+          const g = c.createLinearGradient(
+            chartArea.left,
+            0,
+            chartArea.right,
+            0
+          );
+          colorStops.forEach((cs) => g.addColorStop(cs.stop, cs.border));
+          return g;
+        },
+
+        backgroundColor: "rgba(0,0,0,0)",
+        fill: false,
+
         tension: 0.4,
-        fill: true,
         pointRadius: 0,
         pointHoverRadius: 4,
+        borderWidth: 3,
       },
     ],
   });
@@ -251,17 +148,19 @@ const AreaChartKPI = () => {
   const {gameId} = useParams();
 
   useEffect(() => {
+    // if we are using the mock data we make this true, so it only shows the mock
+    if (USE_MOCK) return; // ← مهم
+
     const labels: string[] = [];
     const values: number[] = [];
 
-  for (let i = 0; i < 24; i++) {
-    const label = `${i.toString().padStart(2, '0')}:00`;
-    labels.push(label);
-    values.push(0);
-  }
+    for (let i = 0; i < 24; i++) {
+      const label = `${i.toString().padStart(2, "0")}:00`;
+      labels.push(label);
+      values.push(0);
+    }
 
-
-    setChartData(prev => ({
+    setChartData((prev) => ({
       labels,
       datasets: [
         {
@@ -277,6 +176,7 @@ const AreaChartKPI = () => {
     }));
 
     const searchParams = new URLSearchParams(window.location.search);
+
     const interval = 10; // 10 ,30 ,60 
     const now = new Date();
     const utcMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
@@ -317,8 +217,9 @@ sseRef.current.onmessage = (event: MessageEvent) => {
       const { bucket, event_count } = parsed;
       const date = new Date(bucket);
       const hour = date.getHours();
+      const index = hour;
+      setChartData((prev) => {
 
-      setChartData(prev => {
         const updatedData = [...(prev.datasets[0].data || [])];
         updatedData[hour] = event_count;
 
@@ -342,7 +243,7 @@ sseRef.current.onmessage = (event: MessageEvent) => {
 
 
     sseRef.current.onerror = (err) => {
-      console.error('خطا در SSE:', err);
+      console.error("خطا در SSE:", err);
       if (sseRef.current) sseRef.current.close();
     };
 
@@ -352,18 +253,20 @@ sseRef.current.onmessage = (event: MessageEvent) => {
   }, [gameId]);
 
   const movingDotPlugin = {
-    id: 'movingDot',
+    id: "movingDot",
     afterDraw(chart: Chart) {
       const { ctx } = chart;
-      const dataset = chart.data.datasets[0];
       const meta = chart.getDatasetMeta(0);
       const points = meta.data;
 
       if (!points || points.length === 0) return;
 
-      const now = Date.now();
+      const currentHour = new Date().getHours();
+      const maxIndex = Math.min(currentHour, points.length - 1);
+      if (maxIndex < 1) return;
+
       const duration = 6000;
-      const progress = ((now % duration) / duration) * (points.length - 1);
+      const progress = ((Date.now() % duration) / duration) * maxIndex;
 
       const leftIndex = Math.floor(progress);
       const rightIndex = Math.ceil(progress);
@@ -380,9 +283,10 @@ sseRef.current.onmessage = (event: MessageEvent) => {
       ctx.save();
       ctx.beginPath();
       ctx.arc(x, y, 6, 0, Math.PI * 2);
-      ctx.fillStyle = '#00C4FF';
-      ctx.shadowColor = '#00C4FF';
-      ctx.shadowBlur = 12;
+      // ctx.fillStyle = "#111d69";
+      // ctx.shadowColor = "#1f2444";
+      ctx.fillStyle = "#ffffffbb";
+      ctx.shadowBlur = 8;
       ctx.fill();
       ctx.restore();
     },
@@ -392,7 +296,9 @@ sseRef.current.onmessage = (event: MessageEvent) => {
     let animationFrameId: number;
 
     const animate = () => {
-      const chartInstance = Chart.getChart('myAnimatedChartId') as Chart | undefined;
+      const chartInstance = Chart.getChart("myAnimatedChartId") as
+        | Chart
+        | undefined;
       if (chartInstance) {
         chartInstance.draw();
       }
@@ -404,15 +310,15 @@ sseRef.current.onmessage = (event: MessageEvent) => {
     return () => cancelAnimationFrame(animationFrameId);
   }, []);
 
-  const options: ChartOptions<'line'> = {
+  const options: ChartOptions<"line"> = {
     responsive: true,
     maintainAspectRatio: false,
     animation: {
       duration: 1200,
-      easing: 'easeInOutQuart',
+      easing: "easeInOutQuart",
     },
     interaction: {
-      mode: 'index',
+      mode: "index",
       intersect: false,
     },
     plugins: {
@@ -421,62 +327,76 @@ sseRef.current.onmessage = (event: MessageEvent) => {
       },
       tooltip: {
         enabled: true,
-        backgroundColor: '#ffffff',
-        titleColor: '#000',
-        bodyColor: '#000',
-        borderColor: '#00C4FF',
+        backgroundColor: "#ffffff",
+        titleColor: "#000",
+        bodyColor: "#000",
+        borderColor: "#00C4FF",
         borderWidth: 1,
         callbacks: {
-        title: (tooltipItems) => {
-          const hourLabel = tooltipItems[0].label;
-          const [h, m] = hourLabel.split(':').map(Number);
-          const endHour = m === 0 ? h : (h + 1) % 24;
-          const endMin = m === 0 ? 30 : 0;
+          title: (tooltipItems) => {
+            const hourLabel = tooltipItems[0].label;
+            const [h, m] = hourLabel.split(":").map(Number);
+            const endHour = m === 0 ? h : (h + 1) % 24;
+            const endMin = m === 0 ? 30 : 0;
 
-          const format = (num: number) => num.toString().padStart(2, '0');
-          const start = `${format(h)}:${format(m)}`;
-          const end = `${format(endHour)}:${format(endMin)}`;
+            const format = (num: number) => num.toString().padStart(2, "0");
+            const start = `${format(h)}:${format(m)}`;
+            const end = `${format(endHour)}:${format(endMin)}`;
 
-          return `ساعت: ${start} تا ${end}`;
-        },
+            return `ساعت: ${start} تا ${end}`;
+          },
           label: (context) => `تعداد کاربران: ${context.formattedValue}`,
         },
       },
-      ...( { movingDot: {} } as Record<string, any> )
+      ...({ movingDot: {} } as Record<string, any>),
     },
     scales: {
       x: {
         ticks: {
-          color: '#ccc',
+          color: "#9599B1",
           maxRotation: 0,
           minRotation: 0,
           autoSkip: false,
           callback: function (val, index) {
             const label = this.getLabelForValue(val as number);
-            const [h, m] = label.split(':').map(Number);
-            return m === 0 ? label : '';
+            const screenWidth = window.innerWidth;
+
+            if (screenWidth < 481) {
+              return index % 5 === 0 ? label : "";
+            } else if (screenWidth < 769) {
+              return index % 3 === 0 ? label : "";
+            } else if (screenWidth < 1025) {
+              return index % 2 === 0 ? label : "";
+            }
+
+            return index % 1 === 0 ? label : "";
           },
         },
         grid: {
-          color: 'rgba(255,255,255,0.05)',
+          color: "#2F304A",
         },
       },
       y: {
         beginAtZero: true,
         ticks: {
-          color: '#ccc',
+          color: "#9599B1",
         },
         grid: {
-          color: 'rgba(255,255,255,0.05)',
+          color: "#2F304A",
         },
       },
     },
   };
 
   return (
-    <ChartCardWrapper title="نمودار تعداد کاربران" customHeight="500px">
+    <ChartCardWrapper title="نمودار تعداد کاربران">
       <div className={styles.glassChart}>
-        <Line id="myAnimatedChartId" data={chartData} options={options} plugins={[movingDotPlugin]} />
+        <Line
+          id="myAnimatedChartId"
+          data={chartData}
+          options={options}
+          plugins={[movingDotPlugin, fadedFillPlugin]}
+        />
       </div>
     </ChartCardWrapper>
   );

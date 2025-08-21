@@ -11,11 +11,15 @@ import LoginPage from "./components/AuthPages/LoginPage";
 import SignupPage from "./components/AuthPages/SignupPage";
 import ForgotpasswordPage from "./components/ForgotpasswordPage/ForgotpasswordPage";
 import ResetpasswordPage from "./components/ResetpasswordPage/ResetpasswordPage";
-import WelcomePage from "./components/WelcomePage/WelcomePage";
+
+import WelcomePage from "./components/WelcomePage/WelcomePage_Layout";
 import DashboardPage from "./components/DashboardPage/DashboardPage";
 import LandingPage from "./components/LandingPage/LandingPage/LandingPage";
 
 import ChartsPage from './components/ChartsStructurePage/ChartsPage/ChartsPage';
+// import DateSelector from './components/ChartsStructurePage/ChartsPage_Header/Calendar';
+
+import DocsFrame from "./components/Docs/DocsFrame";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -27,8 +31,11 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/reset-password/:token" element={<ResetpasswordPage />} />
         <Route path="/" element={<LandingPage />} />
-        <Route path="/panel" element={<DashboardPage />} />
-        <Route path="/dashboard/:gameId" element={<ChartsPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/charts/:gameId" element={<ChartsPage />} />
+        <Route path="/docs/*" element={<DocsFrame />} />
+        <Route path="/charts" element={<ChartsPage />} />
+        {/* <Route path='/DateSelector' element={<DateSelector/>}/> */}
       </Routes>
     </BrowserRouter>
   </StrictMode>

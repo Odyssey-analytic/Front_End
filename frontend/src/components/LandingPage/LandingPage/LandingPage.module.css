@@ -1,452 +1,254 @@
-/* ======================= Wrapper for whole landing page =================== */
+/* ========================= Root tokens ========================= */
+:root {
+  --nav-height: 80px; /* fixed navbar height */
+  --scroll-gap: 16px; /* space under navbar when landing on anchors */
+  --page-gutter: clamp(
+    16px,
+    2.2vw,
+    28px
+  ); /* safe side padding for full-bleed */
+}
+
+/* ========================= Page Base / Layout ========================= */
 .wrapper {
   position: relative;
   width: 100%;
   overflow-x: hidden;
+  direction: rtl;
+
+  background-image: url("../../../../src/assets/images/TotalBackGround.png");
+  background-size: 150% 150%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-/* ======================= Background image of landing page =================== */
 .backgroundImage {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-
-  max-height: 100%;
+  inset: 0;
   z-index: 0;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35; /* soften backdrop for readability */
 }
 
-.FirstSectionBackGroundImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-
-  max-height: 85%;
-  z-index: 0;
-}
-
-/* ======================= Wrapper for all landing content (above background) =================== */
 .contentWrapper {
   position: relative;
   z-index: 2;
   width: 100%;
-  margin-top: 80px;
+  margin-top: var(--nav-height); /* below fixed navbar */
 }
 
-/* ======================= Wrapper for all main vertical sections =================== */
 .mainSections {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: clamp(32px, 5vw, 80px);
+  /* gap: 0; */
 }
 
-/* ======================= Reusable section style =================== */
+/* ========================= Section Container ========================= */
 .section {
-  min-height: 120vh;
-  overflow-x: hidden;
-  overflow-y: hidden;
-
-  justify-content: flex-start; 
-  color: white;
   position: relative;
   z-index: 2;
+  color: #fff;
+  padding-block: clamp(48px, 6vw, 100px);
+  overflow: hidden;
+  scroll-margin-top: calc(var(--nav-height) + var(--scroll-gap));
+}
+.sectionService {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding-block: clamp(48px, 6vw, 100px);
+  overflow: hidden;
+  margin-bottom: -27%;
+  scroll-margin-top: calc(var(--nav-height) + var(--scroll-gap));
 }
 
-/* ======================= Animation for loading content (before visible) =================== */
-/* .hiddenOnLoad {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: all 1s ease-out;
-} */
-
-/* ======================= Applied when section becomes visible =================== */
-.animate {
-  opacity: 1;
-  transform: translateY(0);
+.sectionContact {
+  color: #fff;
+  padding-top: clamp(24px, 3vw, 56px);
+  padding-bottom: clamp(48px, 6vw, 100px);
+  scroll-margin-top: calc(var(--nav-height) + 8px);
+}
+.sectionContact .head {
+  width: min(1200px, 92%);
+  margin-inline: auto;
+  padding-inline: 0; /* remove full-bleed padding */
+}
+.sectionContact .headLine {
+  inline-size: clamp(56px, 4vw, 96px);
 }
 
-/* ======================= Title wrapper inside section with line under it =================== */
-.titleWrapper {
+/* Inner content width lock + vertical rhythm */
+.sectionInner {
+  width: min(1200px, 92%);
+  margin-inline: auto;
+
   display: flex;
   flex-direction: column;
+  gap: clamp(16px, 3vw, 32px);
 }
 
-.sectionTitle {
-  font-size: 2rem;
-  font-weight: bold;
-}
+/* Decorative background per section (optional) */
+.sectionBg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
 
-.titleUnderline {
-  width: 80px;
-  height: 4px;
-  background-color: white;
-  margin-top: 8px;
-}
-
-/* ======================= Section1 Content =================== */
-.featuresText {
-  text-align: right;
-  position: absolute;
-  right: 53%;
-  top: 12%;                          
-
-  width: clamp(180px, 35vw, 650px);  
-  height: clamp(180px, 33vw, 650px);
-}
-
-.featuresText h2 {
-  font-size: 2.3rem;
-  font-weight: bold;
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-}
-
-.featuresText p {
-  font-size: 1rem;
-  line-height: 2;
-  color: #cccccc;
-}
-
-.featureHighlight {
-  color: #63c6e4;
-}
-
-.feature_year_img {
-  position: absolute;
-  left: 73%;
-  bottom: 53%;
-  width: clamp(100px, 35vw, 400px);
-  z-index: 10;  
-}
-
-/* ======================= Section2 Content =================== */
-.servicesTitleWrapper {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  right: 2%;
-  top: 15%;
-  gap: 16px;
-}
-
-.servicesTitleBox {
-  background-color: rgba(85, 166, 188, 0.3);
-  
-  color: #63c6e4;
-  padding: 12px 20px;
-  border-radius: 3px;
-
-  font-size: 0.9rem;
-  font-weight: 300;
-  white-space: nowrap;
-}
-
-.servicesTitleLine {
-  width: 80px;
-  height: 1.5px;
-  background-color: #63c6e4;
-  border-radius: 1px;
-}
-
-.servicesInsidePart {
-  display: flex;
-  position: absolute;
-  top: 16%;
   width: 100%;
+  height: 110%;
+  object-fit: cover;
+  opacity: 0.6;
 }
 
-/* ======================= Section3 Content =================== */
-.testimonialsTitleWrapper {
-  position: absolute;
+/* ========================= Hero ========================= */
+.heroRow {
+  position: relative;
+  z-index: 1;
+
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  right: 2%;
-  top: 15%;
-  gap: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(16px, 3vw, 24px);
 }
 
-.testimonialsTitleBox {
-  background-color: rgba(85, 166, 188, 0.3);
-  
+.heroCopy h1 {
+  margin: 0 0 clamp(8px, 1.5vw, 16px);
+  font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+  line-height: 1.6;
+  font-weight: 800;
+    font-size: 2rem;
+}
+
+/* بلوک متن همون‌طور که گفتی: راست‌چین ولی سمت چپ صفحه */
+.heroCopy {
+  margin-top: 6%;
+  font-size: 1.2rem;
+  margin-right: auto;
+  margin-left: 4%;
+  max-width: 59ch; /* عرض خوانا؛ لازمِ تراز شکیل */
+}
+.heroCopy p {
+  font-size: 1.2rem;
+  margin-top: 12%;
+  text-align: justify; /* پر کردن سطرها */
+  text-align-last: right; /* خطِ آخر راست‌چین بماند */
+  line-height: 1.9; /* فاصله‌ی خطوط مثل نمونه */
+  word-break: normal;
+  overflow-wrap: anywhere; /* از هم نپاشه روی موبایل */
+  text-wrap: balance; /* (جدید) تقسیم یکنواخت سطرها، اگر مرورگر پشتیبانی کند */
+  /* اختیاری: بهبود تایپو فارسی */
+  font-feature-settings: "kern" 1, "calt" 1, "rlig" 1;
+}
+
+/* .heroCopy p {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  line-height: 1.9;
+  color: #cfd3da;
+} */
+
+.accent {
   color: #63c6e4;
-  padding: 12px 20px;
-  border-radius: 3px;
-
-  font-size: 0.9rem;
-  font-weight: 300;
-  white-space: nowrap;
 }
 
-.testimonialsTitleLine {
-  width: 80px;
-  height: 1.5px;
-  background-color: #63c6e4;
+.heroArt {
+  align-self: flex-end; /* under text on mobile */
+  width: clamp(160px, 28vw, 380px);
+  opacity: 0.95;
+}
+
+@media (min-width: 768px) {
+  .heroRow {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .heroArt {
+    align-self: center;
+  }
+}
+
+/* ========================= Section Header (full-bleed band) ========================= */
+.head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: -4.8%;
+  width: 100vw;
+  margin-inline: calc(53% - 50vw);
+  padding-inline: var(--page-gutter);
+}
+
+.headBadge {
+  white-space: nowrap;
+  padding: 10px 16px;
+  border-radius: 6px;
+  /* margin-top: -4%; */
+  background: rgba(85, 166, 188, 0.3);
+  color: #63c6e4;
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+}
+
+.headBadgeTestimonials {
+  white-space: nowrap;
+  padding: 10px 16px;
+  border-radius: 6px;
+  margin-right: -1%;
+  background: rgba(85, 166, 188, 0.3);
+  color: #63c6e4;
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+}
+.headLine {
+  inline-size: clamp(64px, 8vw, 120px);
+  height: 2px;
+  flex: none;
+  background: #63c6e4;
   border-radius: 1px;
 }
 
-.testimonialsInsidePart {
+/* ========================= Generic Body Grid ========================= */
+.body {
   display: flex;
-  position: absolute;
-  top: 20%;
-  width: 100%;  
+  flex-wrap: wrap;
+  gap: clamp(16px, 2.5vw, 28px);
 }
 
-/* ======================= Section4 Content =================== */
-.startTitleWrapper {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  right: 2%;
-  top: 15%;
-  gap: 16px;
+/* ========================= Full‑bleed modifier for Testimonials ========================= */
+/* Let the inner container escape the centered max-width just for this section */
+.sectionTestimonials .sectionInner {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  padding-inline: 0;
+
 }
 
-.startTitleBox {
-  background-color: rgba(85, 166, 188, 0.3);
-  
-  color: #63c6e4;
-  padding: 12px 20px;
-  border-radius: 3px;
-
-  font-size: 0.9rem;
-  font-weight: 300;
-  white-space: nowrap;
-}
-
-.startTitleLine {
-  width: 80px;
-  height: 1.5px;
-  background-color: #63c6e4;
-  border-radius: 1px;
-}
-
-.startInsidePart {
-  display: flex;
-  /* position: absolute; */
-  top: 25%;
-  width: 100%;
-  padding: 100px 20px;
-  }
-
-
-  /* موبایل: تک ستونه */
-@media (max-width: 768px) {
-  .startInsidePart {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* تبلت: دو ستونه */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .startInsidePart {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  
-}
-
-/* دسکتاپ: چهار ستونه */
-@media (min-width: 1025px) {
-  .startInsidePart {
-    grid-template-columns: repeat(4, 1fr);
-    padding-top: 130px; 
-  }
-}
-
-/* ======================= Section5 Content =================== */
-.achievementsTitleWrapper {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  right: 2%;
-  top: 15%;
-  gap: 16px;
-}
-
-.achievementsTitleBox {
-  background-color: rgba(85, 166, 188, 0.3);
-  
-  color: #63c6e4;
-  padding: 12px 20px;
-  border-radius: 3px;
-
-  font-size: 0.9rem;
-  font-weight: 300;
-  white-space: nowrap;
-}
-
-.achievementsTitleLine {
-  width: 80px;
-  height: 1.5px;
-  background-color: #63c6e4;
-  border-radius: 1px;
-}
-
-.achievementsInsidePart {
-  display: flex;
-  position: absolute;
-  top: 25%;
-  width: 100%;  
-}
-
-/* ======================= Section6 Content =================== */
-.youtubeTitleWrapper {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  right: 2%;
-  top: 15%;
-  gap: 16px;
-}
-
-.youtubeTitleBox {
-  background-color: rgba(85, 166, 188, 0.3);
-
-  color: #63c6e4;
-  padding: 12px 20px;
-  border-radius: 3px;
-
-  font-size: 0.9rem;
-  font-weight: 300;
-  white-space: nowrap;
-}
-
-.youtubeTitleLine {
-  width: 80px;
-  height: 1.5px;
-  background-color: #63c6e4;
-  border-radius: 1px;
-}
-
-.youtubeInsidePart {
-  display: flex;
-  position: absolute;
-  top: 25%;
-  width: 100%;  
-}
-
-/* ======================= Section7 Content - footer =================== */
-
-.contactInsidePart {
-  display: flex;
-  position: absolute;
-  top: 17%;
-  width: 100%;
-  height: 100%;  
-}
-
-/* ======================= Responsive Breakpoints ======================= */
-
-@media (min-width: 481px) and (max-width: 768px) {
-  .featuresText {
-    top: 18%;
-    left: 8%;
-    width: 40vw;
-  }
-
-  .featuresText h2 {
-    font-size: 1.1rem;
-    margin-bottom: 1.6rem;
-  }
-
-  .featuresText p {
-    font-size: 0.7rem;
-  }
-
-  .section1_year_img {
-    position: absolute;
-
-    left: 74%;
-    bottom: 61%;
-  
-    width: clamp(100px, 30vw, 330px);  
-  }
-}
-
-/* 💻 تبلت: 769px تا 1024px */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .featuresText {
-    top: 18%;
-    width: 40vw;
-  }
-
-  .featuresText h2 {
-    font-size: 1.2rem;
-    margin-bottom: 1.6rem;
-  }
-
-  .featuresText p {
-    font-size: 0.7rem;
-  }
-
-  .section1_year_img {
-    position: absolute;
-
-    left: 73%;
-    bottom: 61%;
-  
-    width: clamp(100px, 30vw, 350px);  
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1280px) {
-  .featuresText {
-    top: 20%;
-    left: 12%;
-    width: 40vw;
-  }
-
-  .featuresText h2 {
-    font-size: 2.1rem;
-    margin-bottom: 1.6rem;
-  }
-
-  .featuresText p {
-    font-size: 0.9rem;
-  }
-}
-
-@media (min-width: 1281px) and (max-width: 1440px) {
-  .featuresText {
-    top: 10%;
-    left: 13%;
-    width: 35vw;
-  }
-
-  .section1_year_img {
-    position: absolute;
-
-    left: 75%;
-    bottom: 55%;
-  
-    width: clamp(100px, 35vw, 400px);  
-  }
-}
-
+/* ========================= Back-to-Top Floating Button ========================= */
 .scrollToTopButton {
   position: fixed;
-  bottom: 30px;
-  left: 30px;
   z-index: 999;
-  background-color: #00796b;
-  opacity: 0.7;
-  color: white;
-  border: none;
-  border-radius: 50%;
+  left: 30px;
+  bottom: 30px;
+
+  display: inline-grid;
+  place-items: center;
+
   width: 48px;
   height: 48px;
+  border: none;
+  border-radius: 50%;
+
+  background-color: #6d91ba;
+  color: #ffffff;
+  opacity: 0.7;
   font-size: 24px;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s ease;
 }
-
 .scrollToTopButton:hover {
-  background-color: #004d40;
+  background-color: #6d91baae;
 }

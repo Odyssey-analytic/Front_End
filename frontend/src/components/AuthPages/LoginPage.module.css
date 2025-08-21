@@ -1,27 +1,58 @@
-/* ===================================  Main Page  =================================== */
-.forgot-page-container {
+.container * {
+  box-sizing: border-box;
+}
+
+/* ======================== Layout & Container ======================== */
+/* .loginPageContainer {
   background-image: url('/src/assets/images/login-bg.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 20% center;
   background-color: #0e1a2b;
-  height: 100vh;
-  width: 100vw;
-}
+  min-height: 100vh;
+  width: 100%;
+} */
 
-/* ===================================  Brand & Logo  =================================== */
-.forgot-page-logo-img {
+
+.loginPageContainer {
+  display: flex;                    /* فلکس کانتینر */
+  justify-content: flex-end;        /* راست‌چین کردن */
+  align-items: center;              /* وسط عمودی */
+  background-image: url('/src/assets/images/login-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 20% center;
+  background-color: #0e1a2b;
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem; /* فاصله داخلی برای ریسپانسیو */
+}
+.loginLogoImg {
   height: 32px;
   width: auto;
 }
 
-.forgot-page-brand-text {
+.loginBrandText {
   font-size: 18px;
   letter-spacing: 2px;
+  color: white;
+  font-family: 'Aboreto';
+}
+
+/* ======================== Login Back To Home Link ======================== */
+.loginBackToHome {
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #6c757d;
+  transition: color 0.2s ease
+}
+
+.loginBackToHome:hover {
+  color: #5c5c5c;
 }
 
 /* ======================== Loading ======================== */
-.forgot-loading-overlay {
+.loginLoadingOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -34,7 +65,7 @@
   z-index: 9999;
 }
 
-.forgot-spinner {
+.loginSpinner {
   width: 50px;
   height: 50px;
   border: 5px solid #ccc;
@@ -49,51 +80,54 @@
   }
 }
 
-/* ===================================  forgot Form  =================================== */
-.forgot-box {
-  position: fixed;
+/* ======================== Login Form Box ======================== */
+.loginBox {
   background-color: rgba(255, 255, 255, 0.8);
   width: 100%;
-  max-width: 400px;
   border-radius: 12px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  height: 350px;
-
-
+  padding: 2.2rem;
   position: fixed;
-  padding: 2rem;
-  top: 20vh;
+  height: 500px;
+  top: 13vh;
   right: 7vw;
   max-width: 400px;
 }
 
-.forgot-title {
+.loginTitle {
   font-size: 2.5rem;
   color: rgba(11, 20, 75);
+  margin-bottom: 1rem;
+  font-weight: bold;
 }
 
-.forgot-input {
-  margin-top: 1rem;
+.loginSubtitle {
+  font-size: 14.5px;
+  color: rgba(90, 90, 90);
+}
+
+/* ======================== Input Fields ======================== */
+.loginInput {
   padding: 0.5rem 1rem;
   border-radius: 12px;
   padding-right: 3rem;
   box-shadow: inset 0 0 11px rgba(0, 0, 0, 0.16);
+  color: #2e2e2e;
 }
 
-.forgot-input::placeholder {
+.loginInput::placeholder {
   font-size: 0.8rem;
   color: rgb(46, 46, 46);
 }
 
-.forgot-input:focus,
-.forgot-input:focus-visible {
+.loginInput:focus,
+.loginInput:focus-visible {
   outline: none !important;
   box-shadow: 0 0 0 1px rgba(113, 46, 141, 0.4) !important;
 }
 
-.forgot-email-icon {
+/* ======================== Icons ======================== */
+.loginEmailIcon,
+.loginPasswordIcon {
   position: absolute;
   top: 50%;
   right: 1rem;
@@ -102,13 +136,23 @@
   opacity: 1;
 }
 
-.forgot-btn {
+.loginEyeIcon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  width: 20px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+/* ======================== Buttons ======================== */
+.loginBtn {
   display: block;
   width: 100%;
-  max-width: 150px;
+  max-width: 350px;
   height: 44px;
-  margin: 2rem auto 0 auto;
-
+  margin: 2.5rem auto 0 auto;
   font-size: 16px;
   font-weight: bold;
   color: #c4c4c4;
@@ -117,11 +161,12 @@
   border-radius: 12px;
   filter: brightness(1.4);
   transition: all 0.3s ease;
+  text-align: center;
 }
 
-.forgot-btn:hover,
-.forgot-btn:focus,
-.forgot-btn:active {
+.loginBtn:hover,
+.loginBtn:focus,
+.loginBtn:active {
   background: linear-gradient(to right, #5d1b79, #00719a);
   filter: brightness(1.1);
   color: white !important;
@@ -129,32 +174,17 @@
   outline: none;
 }
 
-.forgot-page-back-to-login {
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: color 0.2s ease;
+.loginNonRegisterRememberPassword {
+  color: rgba(29, 29, 29);
+  font-size: 12px;
 }
 
-.forgot-btn-sent-icon {
-  width: 28px;
-  height: 23px;
-}
-
-/* ========================  Aggrement Text  ========================= */
-.forgot-btn-text {
-  font-size: 15px;
-  margin-left: 8px;
-}
-.forgot-btn:hover {
-  background-color: #2e0a44;
-}
-
-/* ======================== Input Error Popup ======================== */
-.forgot-input-wrapper {
+/* ======================== Error Popup Over Input Fields ======================== */
+.loginInputWrapper {
   position: relative;
 }
 
-.forgot-input-error-popup {
+.loginInputErrorPopup {
   position: absolute;
   top: 0;
   left: 0;
@@ -174,7 +204,7 @@
   -webkit-backdrop-filter: blur(2px);
 }
 
-.forgot-input-error-popup button {
+.loginInputErrorPopup button {
   background: transparent;
   border: none;
   font-size: 1rem;
@@ -183,8 +213,8 @@
   margin-bottom: -0.3rem;
 }
 
-/* ======================== Login Success/Error Popup Warnings ======================== */
-.forgot-password-warning-popup-card {
+/* ======================== Login Success/Error Popup ======================== */
+.loginWarningPopupCard {
   position: absolute;
   inset: 0;
   background-color: transparent;
@@ -199,7 +229,7 @@
   overflow: hidden;
 }
 
-.forgot-password-warning-popup-card::before {
+.loginWarningPopupCard::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -209,39 +239,35 @@
   transition: all 0.1s ease;
 }
 
-.forgot-password-popup-warning-overlay.error .forgot-password-warning-popup-card::before {
-  background-color: rgba(255, 0, 0, 0.2);
+
+.loginPopupWarningOverlayError .loginWarningPopupCard::before {
+  background-color: rgba(255, 0, 0, 0.134);
 }
 
-.forgot-password-popup-warning-overlay.success .forgot-password-warning-popup-card::before {
-  background-color: rgba(40, 167, 69, 0.2);
+.loginPopupWarningOverlaySuccess .loginWarningPopupCard::before {
+  background-color: rgba(40, 167, 69, 0.134);
 }
 
-.forgot-password-warning-popup-card > * {
-  position: relative;
-  z-index: 1;
-}
-
-.forgot-password-warning-popup-card h5 {
+.loginWarningPopupCard h5 {
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
-.forgot-password-popup-warning-overlay.error .forgot-password-warning-popup-card h5 {
+.loginPopupWarningOverlayError .loginWarningPopupCard h5 {
   color: #e60023;
 }
 
-.forgot-password-popup-warning-overlay.success .forgot-password-warning-popup-card h5 {
+.loginPopupWarningOverlaySuccess .loginWarningPopupCard h5 {
   color: #28a745;
 }
 
-.forgot-password-warning-popup-card p {
+.loginWarningPopupCard p {
   color: #555;
   font-size: 14px;
   margin: 0;
 }
 
-.forgot-password-warning-popup-close-btn {
+.loginWarningPopupCloseBtn {
   position: absolute;
   top: 17px;
   left: 25px;
@@ -252,14 +278,14 @@
   cursor: pointer;
 }
 
-.forgot-password-warning-popup-emoji {
+.loginWarningPopupEmoji {
   width: 100px;
   height: 100px;
   object-fit: contain;
   margin-bottom: 1rem;
 }
 
-.forgot-password-warning-popup-line-separator {
+.loginWarningPopupLineSeparator {
   width: 100%;
   max-width: 250px;
   height: 1px;
@@ -269,73 +295,79 @@
   border-radius: 2px;
 }
 
-/* ======================== Responsive Normal Version ======================== */
-@media (max-width: 480px) {
-  .forgot-box {
-    position: fixed;
-    padding: 1.5rem;
-    max-width: 360px;
-    top: 20vh;
-    right: 8vw;
+/* ======================== Responsive ======================== */
+
+@media (max-width: 300px) {
+  .loginBox {
+    padding: 2.2rem;
+    max-width: 300px;
+    top: 13vh;
+    right: 7vw;
   }
-  .forgot-title {
+  .loginTitle {
     font-size: 2.1rem;
   }
-  .forgot-page-logo-img {
+  .loginLogoImg {
     top: 1.2rem;
     left: 1.2rem;
   }
-  .forgot-btn {
-    width: 100%;
+}
+
+@media (max-width: 480px) {
+  .loginBox {
+    padding: 2.2rem;
+    max-width: 330px;
+    top: 13vh;
+    right: 7vw;
+  }
+  .loginTitle {
+    font-size: 2.1rem;
+  }
+  .loginLogoImg {
+    top: 1.2rem;
+    left: 1.2rem;
   }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
-  .forgot-box {
-    position: fixed;
-    padding: 1.5rem;
-    max-width: 380px;
-    top: 14vh;
-    right: 20vw;
+  .loginBox {
+    padding: 2.2rem;
+    max-width: 340px;
+    top: 13vh;
+    right: 7vw;
   }
-  .forgot-title {
+  .loginTitle {
     font-size: 2.2rem;
   }
-  .forgot-page-logo-img {
+  .loginLogoImg {
     top: 1.5rem;
     left: 1.5rem;
-  }
-  .forgot-btn {
-    width: 100%;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .forgot-box {
-    position: fixed;
+  .loginBox {
     padding: 2rem;
-    top: 6vh;
-    right: 6vw;
-    max-width: 350px;
+    top: 13vh;
+    right: 7vw;
+    max-width: 360px;
   }
 }
 
 @media (min-width: 1025px) and (max-width: 1280px) {
-  .forgot-box {
-    position: fixed;
-    padding: 2.2rem;
-    top: 18vh;
+  .loginBox {
+    padding: 2.3rem;
+    top: 13vh;
     right: 7vw;
-    max-width: 400px;
+    max-width: 370px;
   }
 }
 
 @media (min-width: 1281px) and (max-width: 1440px) {
-  .forgot-box {
-    position: fixed;
-    padding: 2rem;
-    top: 20vh;
+  .loginBox {
+    padding: 2.3rem;
+    top: 13vh;
     right: 7vw;
-    max-width: 400px;
+    max-width: 380px;
   }
 }
