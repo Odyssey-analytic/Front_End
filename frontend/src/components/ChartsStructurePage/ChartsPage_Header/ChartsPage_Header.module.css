@@ -12,40 +12,25 @@
 
 .inner {
   display: flex;
-  align-items: center; /* وسط‌چین عمودی */
-  justify-content: space-between; /* فاصله بین عناصر */
-  gap: 1rem;
-}
-
-.calendarbox {
-  /* flex: 0 0 25%; */
-  /* width: 350px; */
-  /* padding: 10px 15px; */
+  align-items: center;
+  justify-content: space-between;
 }
 
 .title {
   font-weight: 600;
   margin: 0;
   color: #ffffffd2;
-  flex: 1; /* بقیه فضا رو پر کنه */
-  text-align: right; /* متن سمت راست */
-  /* align-items: center; */
-  /* display: flex; */
-  /* justify-content: center;
-  justify-items: center; */
-  /* align-items: center; */
+  flex: 1;
+  text-align: right;
 }
 
 /* ===== Responsive Breakpoints ===== */
-
 @media (max-width: 480px) {
   .title {
     font-size: 1.2rem;
-    /* text-align: center; */
     width: 100%;
   }
 }
-
 
 @media (min-width: 481px) and (max-width: 614px) {
   .title {
@@ -54,9 +39,7 @@
 
   .calendarbox {
     flex: 0 0 70%;
-    /* width: 285px; */
   }
-
 }
 
 
@@ -66,46 +49,36 @@
   }
 
   .calendarbox {
-    /* flex: 0 0 70%; */
     width: 285px;
   }
-
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .title {
     font-size: 1.6rem;
   }
-
   
   .calendarbox {
-    /* flex: 0 0 40%; */
     width: 285px;
   }
-
 }
 
 @media (min-width: 1025px) and (max-width: 1280px) {
   .title {
     font-size: 1.8rem;
   }
-
   
   .calendarbox {
     flex: 0 0 35%;
   }
-
 }
 
 @media (min-width: 1281px) {
   .title {
     font-size: 2rem;
   }
-
   
   .calendarbox {
-    /* flex: 0 0 25%; */
     width: 370px;
   }
-
 }

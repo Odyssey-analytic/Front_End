@@ -1,32 +1,16 @@
-/* .dateSelectorContainer {
-  position: relative;
-} */
-
 .combinedPicker {
-  position: relative;
-  
+  position: relative;  
 }
-
-
 
 .mainButton {
   align-items: center;
   padding: 10px 15px;
-
   background-color: #373C5F;
-
   border: 1px solid #dddddd88;
   border-radius: 4px;
-
   transition: all 0.2s;
   justify-content: space-between;
-  /* left: 1px; */
-  /* direction: ltr; */
-
   width: 100%;
-  /* width: 320px; */
-  /* width: 55%; */
-  /* width: 120%; */
 }
 
 .mainButton:hover {
@@ -35,7 +19,6 @@
 
 .icon {
   font-size: 18px;
-  /* color: #555; */
   color: #e6e6e6b7;
 }
 
@@ -57,15 +40,11 @@
 .dropdownContent {
   position: absolute;
   justify-items: center;
-
   margin-top: 5px;
-
   background-color: #373C5F;
-
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 10px 10px 0 10px;
-
   top: 100%;
   width: 100%;
 }
@@ -95,30 +74,7 @@
   border-color: #007bff;
 }
 
-/* .modeDropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  z-index: 101;
-  min-width: 80px;
-} */
-
-/* .separator {
-  margin: 0 8px;
-  color: #ddd;
-} */
-
-/* .modeLabel {
-  color: #888;
-  margin-left: 88px;
-} */
-
 .dropdownHeader {
-  /* display: flex; */
   justify-content: space-between;
   align-items: center;
   padding: 8px 12px;
@@ -158,9 +114,7 @@
   align-items: center;
   gap: 5px;
   padding: 3px 8px;
-  /* background-color: #f5f5f5; */
   background-color: #ffffffd3;
-
   border: 1px solid #dddddd9a;
   border-radius: 3px;
   cursor: pointer;
@@ -171,7 +125,6 @@
 .modeSelectorButton:hover {
   background-color: #ffffffee;
 }
-
 
 .modeSelectorArrow {
   transition: transform 0.2s;
@@ -190,11 +143,8 @@
 
 .modeSelectorDropdown {
   position: absolute;
-  /* top: 100%; */
-  /* right: 0; */
   background: rgba(255, 255, 255, 0.955);
-  border: 1px solid #ddd;
-  
+  border: 1px solid #ddd;  
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin-top: 5px;
@@ -202,7 +152,6 @@
 }
 
 .modeOption {
-  
   border-radius: 4px;
   display: block;
   width: 100%;
@@ -230,14 +179,12 @@
 }
 
 .modeBadge {
-  /* color: #666; */
   color: #e6e6e698;
   font-weight: 500;
 } 
 
 .dateText {
   flex-grow: 1;
-
   gap: 8px;
   text-align: right;
   font-size: 14px;
@@ -246,12 +193,8 @@
   color: #e6e6e6e2;
 }
 
-
 @media (min-width: 481px) and (max-width: 614px) {
-
   .mainButton {
     padding: 10px;
-    /* display:-webkit-inline-box; */
   }
-
 }

@@ -434,331 +434,175 @@ const mockGames = [
 ];
 
 const DashboardPage = () => {
-  // const navigate = useNavigate();
-  // const pathRef = useRef<SVGPathElement | null>(null);
-  // const [games, setGames] = useState<any[]>([]);
-  // const [username, setUsername] = useState("نام کاربری");
-  // const [searchTerm, setSearchTerm] = useState("");
-  // const [suggestions, setSuggestions] = useState<any[]>([]);
-  // const [selectedIndex, setSelectedIndex] = useState(-1);
-  // const [pathLength, setPathLength] = useState(320);
-
-  // // بالا، کنار سایر stateها
-  // const [openCollaboratorsFor, setOpenCollaboratorsFor] = useState<
-  //   string | null
-  // >(null);
-
-  // const toggleCollaborators = (gameId: string) => {
-  //   setOpenCollaboratorsFor((prev) => (prev === gameId ? null : gameId));
-  // };
-
-  // const chartData = Array.from(
-  //   { length: 32 },
-  //   () => Math.floor(Math.random() * 50) + 10
-  // );
-  // const points = chartData.map((val, i) => [i * 10, 60 - val]);
-  // const pathD = points
-  //   .map((p, i) => (i === 0 ? `M${p[0]},${p[1]}` : `L${p[0]},${p[1]}`))
-  //   .join(" ");
-
-  // useEffect(() => {
-  //   // بارگذاری داده‌های ماک
-  //   setGames(mockGames);
-
-  //   const storedUsername = localStorage.getItem("username");
-  //   if (storedUsername) setUsername(storedUsername);
-  //   else {
-  //     localStorage.setItem("username", "نام کاربری");
-  //     setUsername("نام کاربری");
-  //   }
-
-  //   if (pathRef.current) {
-  //     const length = pathRef.current.getTotalLength();
-  //     setPathLength(length);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   const handleKeyDown = (e: KeyboardEvent) => {
-  //     if (suggestions.length === 0) return;
-
-  //     if (e.key === "PageDown") {
-  //       e.preventDefault();
-  //       setSelectedIndex((prev) => (prev + 1) % suggestions.length);
-  //     } else if (e.key === "PageUp") {
-  //       e.preventDefault();
-  //       setSelectedIndex((prev) =>
-  //         prev <= 0 ? suggestions.length - 1 : prev - 1
-  //       );
-  //     } else if (e.key === "Enter" && selectedIndex !== -1) {
-  //       navigate(`/dashboard/${suggestions[selectedIndex].id}`);
-  //     }
-  //   };
-
-  //   window.addEventListener("keydown", handleKeyDown);
-  //   return () => window.removeEventListener("keydown", handleKeyDown);
-  // }, [suggestions, selectedIndex]);
-
-  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const value = e.target.value;
-  //   setSearchTerm(value);
-
-  //   const q = normalizeText(value);
-  //   if (!q) {
-  //     setSuggestions([]);
-  //     setSelectedIndex(-1);
-  //     return;
-  //   }
-
-  //   // از filteredGames استفاده نکن چون به setState وابسته است؛ مستقیم محاسبه کن
-  //   const matched = games.filter((g) => normalizeText(g.title).includes(q));
-
-  //   setSuggestions(matched.slice(0, 8)); // حداکثر ۸ پیشنهاد
-  //   setSelectedIndex(matched.length ? 0 : -1);
-  // };
-
-  // useEffect(() => {
-  //   const handleKeyDown = (e: KeyboardEvent) => {
-  //     if (!suggestions.length) return;
-
-  //     if (e.key === "ArrowDown") {
-  //       e.preventDefault();
-  //       setSelectedIndex((prev) => (prev + 1) % suggestions.length);
-  //     } else if (e.key === "ArrowUp") {
-  //       e.preventDefault();
-  //       setSelectedIndex((prev) =>
-  //         prev <= 0 ? suggestions.length - 1 : prev - 1
-  //       );
-  //     } else if (e.key === "Enter" && selectedIndex !== -1) {
-  //       e.preventDefault();
-  //       navigate(`/dashboard/${suggestions[selectedIndex].id}`);
-  //       // بعد از انتخاب، باکس ساجست بسته شود
-  //       setSuggestions([]);
-  //     } else if (e.key === "Escape") {
-  //       setSuggestions([]);
-  //     }
-  //   };
-
-  //   window.addEventListener("keydown", handleKeyDown);
-  //   return () => window.removeEventListener("keydown", handleKeyDown);
-  // }, [suggestions, selectedIndex]);
-
-  // const currentGame = openCollaboratorsFor
-  //   ? games.find((g) => g.id === openCollaboratorsFor)
-  //   : null;
-
-  // // وقتی Bottom Sheet بازه، اسکرول صفحه قفل بشه و Escape کار کنه
-  // useEffect(() => {
-  //   const body = document.body;
-
-  //   // قفل اسکرول
-  //   if (openCollaboratorsFor) {
-  //     const prev = body.style.overflow;
-  //     body.style.overflow = "hidden";
-  //     return () => {
-  //       body.style.overflow = prev;
-  //     };
-  //   }
-  // }, [openCollaboratorsFor]);
-
-  // useEffect(() => {
-  //   const onEsc = (e: KeyboardEvent) => {
-  //     if (e.key === "Escape") setOpenCollaboratorsFor(null);
-  //   };
-  //   window.addEventListener("keydown", onEsc);
-  //   return () => window.removeEventListener("keydown", onEsc);
-  // }, []);
-
-  // // نرمال‌سازی برای جستجوی بهتر (حساس نبودن به حروف، فواصل، ی/ک فارسی/عربی و ارقام)
-  // const normalizeText = (s: string) =>
-  //   (s || "")
-  //     .toLowerCase()
-  //     .trim()
-  //     .replace(/\s+/g, " ")
-  //     .replace(/ي/g, "ی")
-  //     .replace(/ك/g, "ک")
-  //     .replace(/[۰-۹]/g, (d) => String("۰۱۲۳۴۵۶۷۸۹".indexOf(d)))
-  //     .normalize("NFKD");
-
-  // // محاسبه‌ی لیست فیلتر شده برای رندر کارت‌ها
-  // const filteredGames = useMemo(() => {
-  //   const q = normalizeText(searchTerm);
-  //   if (!q) return games;
-  //   return games.filter((g) => normalizeText(g.title).includes(q));
-  // }, [games, searchTerm]);
-
-  // useEffect(() => {
-  //   const onClickOutside = (e: MouseEvent) => {
-  //     const target = e.target as HTMLElement;
-  //     // اگر دوست داری دقیق‌تر کنی، یک ref برای searchBox بگذار
-  //     if (!target.closest?.(`.${styles.searchBox}`)) {
-  //       setSuggestions([]);
-  //     }
-  //   };
-  //   window.addEventListener("click", onClickOutside);
-  //   return () => window.removeEventListener("click", onClickOutside);
-  // }, []);
-
-
-
   // --- types ----------------------------------------------------
-type Collaborator = { name: string; online: boolean };
-type Game = {
-  id: string;
-  icon: string;
-  title: string;
-  description: string;
-  dnu: number;
-  dau: number;
-  retention: string;
-  platform: "IOS" | "Android" | "PC";
-  collaborators: Collaborator[];
-};
+  type Collaborator = { name: string; online: boolean };
+  type Game = {
+    id: string;
+    icon: string;
+    title: string;
+    description: string;
+    dnu: number;
+    dau: number;
+    retention: string;
+    platform: "IOS" | "Android" | "PC";
+    collaborators: Collaborator[];
+  };
 
-// --- utils ----------------------------------------------------
-const normalizeText = (s: string) =>
-  (s || "")
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, " ")
-    .replace(/ي/g, "ی")
-    .replace(/ك/g, "ک")
-    .replace(/[۰-۹]/g, (d) => String("۰۱۲۳۴۵۶۷۸۹".indexOf(d)))
-    .normalize("NFKD");
+  // --- utils ----------------------------------------------------
+  const normalizeText = (s: string) =>
+    (s || "")
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, " ")
+      .replace(/ي/g, "ی")
+      .replace(/ك/g, "ک")
+      .replace(/[۰-۹]/g, (d) => String("۰۱۲۳۴۵۶۷۸۹".indexOf(d)))
+      .normalize("NFKD");
 
-// --- hooks/state ----------------------------------------------
-const navigate = useNavigate();
-const pathRef = useRef<SVGPathElement | null>(null);
-const searchBoxRef = useRef<HTMLDivElement | null>(null);
+  // --- hooks/state ----------------------------------------------
+  const navigate = useNavigate();
+  const pathRef = useRef<SVGPathElement | null>(null);
+  const searchBoxRef = useRef<HTMLDivElement | null>(null);
 
-const [games, setGames] = useState<Game[]>([]);
-const [username, setUsername] = useState("نام کاربری");
-const [searchTerm, setSearchTerm] = useState("");
-const [suggestions, setSuggestions] = useState<Game[]>([]);
-const [selectedIndex, setSelectedIndex] = useState(-1);
-const [pathLength, setPathLength] = useState(320);
+  const [games, setGames] = useState<Game[]>([]);
+  const [username, setUsername] = useState("نام کاربری");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [suggestions, setSuggestions] = useState<Game[]>([]);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [pathLength, setPathLength] = useState(320);
 
-const [openCollaboratorsFor, setOpenCollaboratorsFor] = useState<string | null>(null);
+  const [openCollaboratorsFor, setOpenCollaboratorsFor] = useState<
+    string | null
+  >(null);
 
-// --- derived data ---------------------------------------------
-const filteredGames = useMemo(() => {
-  const q = normalizeText(searchTerm);
-  if (!q) return games;
-  return games.filter((g) => normalizeText(g.title).includes(q));
-}, [games, searchTerm]);
+  // --- derived data ---------------------------------------------
+  const filteredGames = useMemo(() => {
+    const q = normalizeText(searchTerm);
+    if (!q) return games;
+    return games.filter((g) => normalizeText(g.title).includes(q));
+  }, [games, searchTerm]);
 
-// داده و نام کاربری + طول path
-useEffect(() => {
-  setGames(mockGames as unknown as Game[]);
+  // داده و نام کاربری + طول path
+  useEffect(() => {
+    setGames(mockGames as unknown as Game[]);
 
-  const storedUsername = localStorage.getItem("username") ?? "نام کاربری";
-  setUsername(storedUsername);
-  if (!localStorage.getItem("username")) {
-    localStorage.setItem("username", "نام کاربری");
-  }
+    const storedUsername = localStorage.getItem("username") ?? "نام کاربری";
+    setUsername(storedUsername);
+    if (!localStorage.getItem("username")) {
+      localStorage.setItem("username", "نام کاربری");
+    }
 
-  if (pathRef.current) setPathLength(pathRef.current.getTotalLength());
-}, []);
+    if (pathRef.current) setPathLength(pathRef.current.getTotalLength());
+  }, []);
 
-// --- handlers -------------------------------------------------
-const toggleCollaborators = useCallback((gameId: string) => {
-  setOpenCollaboratorsFor((prev) => (prev === gameId ? null : gameId));
-}, []);
+  // --- handlers -------------------------------------------------
+  const toggleCollaborators = useCallback((gameId: string) => {
+    setOpenCollaboratorsFor((prev) => (prev === gameId ? null : gameId));
+  }, []);
 
-const handleSelectSuggestion = useCallback(
-  (gameId: string) => {
-    navigate(`/dashboard/${gameId}`);
-    setSuggestions([]);
-    setSelectedIndex(-1);
-  },
-  [navigate]
-);
-
-const handleSearch = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-  const value = e.target.value;
-  setSearchTerm(value);
-
-  const q = normalizeText(value);
-  if (!q) {
-    setSuggestions([]);
-    setSelectedIndex(-1);
-    return;
-  }
-  const matched = games.filter((g) => normalizeText(g.title).includes(q));
-  setSuggestions(matched.slice(0, 8));
-  setSelectedIndex(matched.length ? 0 : -1);
-}, [games]);
-
-// یک افکت واحد برای کلیدها (ArrowUp/Down/Enter/Escape)
-useEffect(() => {
-  const onKey = (e: KeyboardEvent) => {
-    if (!suggestions.length) return;
-
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      setSelectedIndex((i) => (i + 1) % suggestions.length);
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setSelectedIndex((i) => (i <= 0 ? suggestions.length - 1 : i - 1));
-    } else if (e.key === "Enter" && selectedIndex !== -1) {
-      e.preventDefault();
-      handleSelectSuggestion(suggestions[selectedIndex].id);
-    } else if (e.key === "Escape") {
+  const handleSelectSuggestion = useCallback(
+    (gameId: string) => {
+      navigate(`/dashboard/${gameId}`);
       setSuggestions([]);
       setSelectedIndex(-1);
-    }
-  };
-  window.addEventListener("keydown", onKey);
-  return () => window.removeEventListener("keydown", onKey);
-}, [suggestions, selectedIndex, handleSelectSuggestion]);
+    },
+    [navigate]
+  );
 
-// بستن ساجست با کلیک بیرون
-useEffect(() => {
-  const onClickOutside = (e: MouseEvent) => {
-    const t = e.target as HTMLElement;
-    if (searchBoxRef.current && !searchBoxRef.current.contains(t)) {
-      setSuggestions([]);
-      setSelectedIndex(-1);
-    }
-  };
-  window.addEventListener("click", onClickOutside);
-  return () => window.removeEventListener("click", onClickOutside);
-}, []);
+  const handleSearch = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setSearchTerm(value);
 
-// قفل اسکرول هنگام باز بودن Bottom Sheet
-useEffect(() => {
-  if (!openCollaboratorsFor) return;
-  const prev = document.body.style.overflow;
-  document.body.style.overflow = "hidden";
-  return () => {
-    document.body.style.overflow = prev;
-  };
-}, [openCollaboratorsFor]);
+      const q = normalizeText(value);
+      if (!q) {
+        setSuggestions([]);
+        setSelectedIndex(-1);
+        return;
+      }
+      const matched = games.filter((g) => normalizeText(g.title).includes(q));
+      setSuggestions(matched.slice(0, 8));
+      setSelectedIndex(matched.length ? 0 : -1);
+    },
+    [games]
+  );
 
-// بستن Bottom Sheet با ESC
-useEffect(() => {
-  const onEsc = (e: KeyboardEvent) => e.key === "Escape" && setOpenCollaboratorsFor(null);
-  window.addEventListener("keydown", onEsc);
-  return () => window.removeEventListener("keydown", onEsc);
-}, []);
+  // یک افکت واحد برای کلیدها (ArrowUp/Down/Enter/Escape)
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (!suggestions.length) return;
 
-// --- chart path (سازمان‌دهی به محاسبات نمودار) ----------------
-const { pathD } = useMemo(() => {
-  const chartData = Array.from({ length: 32 }, () => Math.floor(Math.random() * 50) + 10);
-  const points = chartData.map((val, i) => [i * 10, 60 - val] as const);
-  return {
-    pathD: points.map((p, i) => (i === 0 ? `M${p[0]},${p[1]}` : `L${p[0]},${p[1]}`)).join(" "),
-  };
-}, []);
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setSelectedIndex((i) => (i + 1) % suggestions.length);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setSelectedIndex((i) => (i <= 0 ? suggestions.length - 1 : i - 1));
+      } else if (e.key === "Enter" && selectedIndex !== -1) {
+        e.preventDefault();
+        handleSelectSuggestion(suggestions[selectedIndex].id);
+      } else if (e.key === "Escape") {
+        setSuggestions([]);
+        setSelectedIndex(-1);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [suggestions, selectedIndex, handleSelectSuggestion]);
 
-// --- convenience ----------------------------------------------
-const currentGame = useMemo(
-  () => (openCollaboratorsFor ? games.find((g) => g.id === openCollaboratorsFor) ?? null : null),
-  [openCollaboratorsFor, games]
-);
+  // بستن ساجست با کلیک بیرون
+  useEffect(() => {
+    const onClickOutside = (e: MouseEvent) => {
+      const t = e.target as HTMLElement;
+      if (searchBoxRef.current && !searchBoxRef.current.contains(t)) {
+        setSuggestions([]);
+        setSelectedIndex(-1);
+      }
+    };
+    window.addEventListener("click", onClickOutside);
+    return () => window.removeEventListener("click", onClickOutside);
+  }, []);
 
+  // قفل اسکرول هنگام باز بودن Bottom Sheet
+  useEffect(() => {
+    if (!openCollaboratorsFor) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [openCollaboratorsFor]);
 
+  // بستن Bottom Sheet با ESC
+  useEffect(() => {
+    const onEsc = (e: KeyboardEvent) =>
+      e.key === "Escape" && setOpenCollaboratorsFor(null);
+    window.addEventListener("keydown", onEsc);
+    return () => window.removeEventListener("keydown", onEsc);
+  }, []);
 
+  // --- chart path (سازمان‌دهی به محاسبات نمودار) ----------------
+  const { pathD } = useMemo(() => {
+    const chartData = Array.from(
+      { length: 32 },
+      () => Math.floor(Math.random() * 50) + 10
+    );
+    const points = chartData.map((val, i) => [i * 10, 60 - val] as const);
+    return {
+      pathD: points
+        .map((p, i) => (i === 0 ? `M${p[0]},${p[1]}` : `L${p[0]},${p[1]}`))
+        .join(" "),
+    };
+  }, []);
+
+  // --- convenience ----------------------------------------------
+  const currentGame = useMemo(
+    () =>
+      openCollaboratorsFor
+        ? games.find((g) => g.id === openCollaboratorsFor) ?? null
+        : null,
+    [openCollaboratorsFor, games]
+  );
 
   return (
     <div className={`${styles.dashboardContainer}`}>
@@ -847,7 +691,6 @@ const currentGame = useMemo(
       </div>
 
       <div className={styles.gameList}>
-        {/* {games.map((game) => ( */}
         {filteredGames.map((game) => (
           <div key={game.id} className={`${styles.gameCard}`}>
             <div className={`${styles.gameSectionInfo}`}>

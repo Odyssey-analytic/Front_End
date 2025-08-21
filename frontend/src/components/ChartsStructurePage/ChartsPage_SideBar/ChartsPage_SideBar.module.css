@@ -3,7 +3,7 @@
 -------------------------------------- */
 .sidebarcontainer {
   display: flex;
-  flex-direction: column; /* عناصر عمودی بچین */
+  flex-direction: column;
 }
 
 .sidebar {
@@ -15,10 +15,6 @@
   transition: width 0.3s ease;
   direction: rtl;
   height: 100%;
-  /* overflow: auto; */
-  /* position: fixed; */
-  /* overflow-y: auto; */
-  /* direction: ltr; */
 }
 
 .sidebar.collapsed {
@@ -211,34 +207,26 @@
   position: absolute;
   top: 17%;
   right: 5px;
-
   border-radius: 3px;
   z-index: 1000;
   min-width: 215px;
-
   animation: dropdownFade 0.2s ease-in-out;
-  /* color: #000000b6; */
   color: #070a36b6;
-
-  /* border: 2px solid #8288b7d5; */
   border: 2px solid #4c58818f;
-
   background: #edf3fcd7;
   box-shadow: 2px 2px 2px rgba(167, 167, 167, 0.3);
-  
-
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;}
 
-@keyframes dropdownFade {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  @keyframes dropdownFade {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
 }
 
 .gameDropdownItem {
@@ -250,12 +238,7 @@
 }
 
 .gameDropdownItem:hover {
-  /* background-color: #1f2444; */
-  
   background-color: rgba(78, 87, 154, 0.2);
-
-  /* background-color: rgba(78, 87, 154, 0.090); */
-  /* color: rgba(0, 0, 0, 0.928); */
   border-radius: 3px;
 }
 
@@ -405,7 +388,6 @@
   justify-items: center;
 }
 
-
 .logoutMiniBtn {
   border-top: 1px solid #afbcff;
 
@@ -426,8 +408,6 @@
   }
 }
 
-
-
 .logoutMiniIcon {
   width: 16px;
   height: 16px;
@@ -443,7 +423,6 @@
   margin-bottom: 16px;
 }
 
-
 /* --------------------------------------
    Mobile-Specific Styles (Smaller than 480px)
 -------------------------------------- */
@@ -451,16 +430,10 @@
   z-index: 2001;
   position: absolute;
   top: 25px;
-
   right: 8px;
-
   display: inline-block;
   font-size: 25px;
   color: #ffffffc7;
-  /* background-color: rgba(255, 255, 255, 0.226);
-  width: 30px;
-  text-align: center; */
-
   cursor: pointer;
 }
 
@@ -473,12 +446,10 @@
   color: #ffffffd2;
   transition: width 0.3s ease;
   position: fixed;
-  
   width: 100%;
   height: 100%;
   background-color: rgba(14, 14, 19, 0.921);
   z-index: 1000;
-
   padding: 3.8rem 2rem 0 2rem;
   overflow-y: auto;
 }
@@ -500,19 +471,11 @@
 }
 
 .MobilegameSelectorBox {
-  /* background: rgba(255, 255, 255, 0.199); */
-  
   background-color: #4c588163;
-
-
-  
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;
-
-  
   padding: 10px;
   justify-content: center;
-
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -521,23 +484,9 @@
   transition: background-color 0.2s ease;
 }
 
-
-/* .MobilegameSelectorBox:hover {
-  
-  background-color: #4c58818f;
-
-  
-} */
-
 .MobilegameSelectorBoxActive {
-  /* background-color: #b8cfde7c; */
   background-color: #4c58818f;
-
   backdrop-filter: blur(8px);
-  /* box-shadow:
-    0 4px 20px rgba(0, 196, 255, 0.15),
-    0 0 0 1px rgba(131, 163, 199, 0.5) inset; */
-
   transition: all 0.3s ease;
 }
 
@@ -559,22 +508,11 @@
   top: 18%;
   background: #edf3fcd7;
   color: #070a36b6;
-
-  /* animation: dropdownFade 0.2s ease-in-out;
-  color: #000000b6; */
-
-
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;
-
   border-radius: 5px;
   box-shadow: 2px 2px 2px rgba(167, 167, 167, 0.3);
-  
-  
   border: 2px solid #4c58818f;
-  
-  /* background-color: #f2f3ffe5; */
-
   z-index: 1000;
   text-align: center;
   width: 83%;
@@ -627,7 +565,6 @@
 }
 
 .MobilemenuItem:hover {
-  /* background-color: #1ab5e471; */
   backdrop-filter: blur(5px);
   transition: all 0.3s ease;
 }
@@ -637,20 +574,6 @@
   justify-content: center;
   gap: 12px;
 }
-
-/* .MobilelogoutBtn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  color: #ffffffc9;
-  transition: color 0.2s ease;
-}
-
-.MobilelogoutBtn:hover {
-  color: #00c4ff;
-} */
 
 .MobilelogoutIcon {
   width: 20px;
@@ -675,8 +598,6 @@
 }
 
 .MobilesubMenuItem:hover {
-  /* background-color: #00c3ff81; */
-  
   background-color: #6f98d53a;
 }
 
@@ -691,34 +612,15 @@
 }
 
 .MobileprofileSection {
-  /* padding: 2rem;
-  margin-top: auto;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0; */
-
-
-  /* padding: 2rem; */
-  /* text-align: ; */
   padding-bottom: 1rem;
-  /* bottom: 1px; */
-  /* right: 0.1px; */
-  
   top: 100%;
   position: sticky;
-  
-  /* min-width: 225px; */
   width: 100%;
   transition: width 0.3s ease;
-
 }
 
 .MobileprofileCard {
-  /* background: rgba(255, 255, 255, 0.05); */
   background-color: #4c588138;
-  
-
   border-radius: 12px;
   padding: 0.8rem;
   backdrop-filter: blur(5px);
@@ -757,7 +659,6 @@
 
 .MobileprofileStatus {
   font-size: 0.75rem;
-  /* color: #00c4ff; */
   color: #7d97ff;
   display: flex;
   align-items: center;
@@ -767,9 +668,7 @@
     display: inline-block;
     width: 6px;
     height: 6px;
-    /* background: #00c4ff; */
     background: #7d97ff;
-    
     border-radius: 50%;
     margin-left: 5px;
   }
@@ -798,12 +697,6 @@
   align-items: center;
   gap: 10px;
 }
-
-/* .MobilelogoutIcon {
-  width: 18px;
-  height: 18px;
-  opacity: 0.8;
-} */
 
 .MobilelogoutArrow {
   color: rgba(255, 255, 255, 0.6);

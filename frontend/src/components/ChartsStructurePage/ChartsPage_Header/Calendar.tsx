@@ -180,99 +180,95 @@ const DateRangeSelector = () => {
   };
 
   return (
-    // <div className={styles.dateSelectorContainer}>
-      <div className={styles.combinedPicker}>
-        <button
-          className={styles.mainButton}
-          onClick={() => setShowDropdown(!showDropdown)}
-        >
-          <div className={styles.buttonContent}>
-            <FiCalendar className={styles.icon} />
-            <div className={styles.dateText}>
-              {dateRange || "تاریخ را انتخاب کنید"}
-              <span className={styles.modeSeparator}>|</span>
-              <span className={styles.modeBadge}>{getModeLabel()}</span>
-            </div>
-            <FiChevronDown
-              className={`${styles.arrow} ${
-                showDropdown ? styles.rotated : ""
-              }`}
-            />
+    <div className={styles.combinedPicker}>
+      <button
+        className={styles.mainButton}
+        onClick={() => setShowDropdown(!showDropdown)}
+      >
+        <div className={styles.buttonContent}>
+          <FiCalendar className={styles.icon} />
+          <div className={styles.dateText}>
+            {dateRange || "تاریخ را انتخاب کنید"}
+            <span className={styles.modeSeparator}>|</span>
+            <span className={styles.modeBadge}>{getModeLabel()}</span>
           </div>
-        </button>
+          <FiChevronDown
+            className={`${styles.arrow} ${showDropdown ? styles.rotated : ""}`}
+          />
+        </div>
+      </button>
 
-        {showDropdown && (
-          <div className={styles.dropdownContent}>
-            <div className={styles.calendarHeader}>
-              {renderCustomCalendar()}
+      {showDropdown && (
+        <div className={styles.dropdownContent}>
+          <div className={styles.calendarHeader}>
+            {renderCustomCalendar()}
 
-              <div className={styles.modeSelectorWrapper}>
-                <button
-                  className={styles.modeSelectorButton}
-                  onClick={() => setShowModeSelector(!showModeSelector)}
-                >
-                  {getModeLabel()}
-                  <FiChevronDown
-                    className={`${styles.modeSelectorArrow} ${
-                      showModeSelector ? styles.rotated : ""
+            <div className={styles.modeSelectorWrapper}>
+              <button
+                className={styles.modeSelectorButton}
+                onClick={() => setShowModeSelector(!showModeSelector)}
+              >
+                {getModeLabel()}
+                <FiChevronDown
+                  className={`${styles.modeSelectorArrow} ${
+                    showModeSelector ? styles.rotated : ""
+                  }`}
+                />
+              </button>
+
+              {showModeSelector && (
+                <div className={styles.modeSelectorDropdown}>
+                  <button
+                    className={`${styles.modeOption} ${
+                      mode === "day" ? styles.active : ""
                     }`}
-                  />
-                </button>
-
-                {showModeSelector && (
-                  <div className={styles.modeSelectorDropdown}>
-                    <button
-                      className={`${styles.modeOption} ${
-                        mode === "day" ? styles.active : ""
-                      }`}
-                      onClick={() => {
-                        handleModeChange("day");
-                        setShowModeSelector(false);
-                      }}
-                    >
-                      روز
-                    </button>
-                    <button
-                      className={`${styles.modeOption} ${
-                        mode === "week" ? styles.active : ""
-                      }`}
-                      onClick={() => {
-                        handleModeChange("week");
-                        setShowModeSelector(false);
-                      }}
-                    >
-                      هفته
-                    </button>
-                    <button
-                      className={`${styles.modeOption} ${
-                        mode === "month" ? styles.active : ""
-                      }`}
-                      onClick={() => {
-                        handleModeChange("month");
-                        setShowModeSelector(false);
-                      }}
-                    >
-                      ماه
-                    </button>
-                    <button
-                      className={`${styles.modeOption} ${
-                        mode === "year" ? styles.active : ""
-                      }`}
-                      onClick={() => {
-                        handleModeChange("year");
-                        setShowModeSelector(false);
-                      }}
-                    >
-                      سال
-                    </button>
-                  </div>
-                )}
-              </div>
+                    onClick={() => {
+                      handleModeChange("day");
+                      setShowModeSelector(false);
+                    }}
+                  >
+                    روز
+                  </button>
+                  <button
+                    className={`${styles.modeOption} ${
+                      mode === "week" ? styles.active : ""
+                    }`}
+                    onClick={() => {
+                      handleModeChange("week");
+                      setShowModeSelector(false);
+                    }}
+                  >
+                    هفته
+                  </button>
+                  <button
+                    className={`${styles.modeOption} ${
+                      mode === "month" ? styles.active : ""
+                    }`}
+                    onClick={() => {
+                      handleModeChange("month");
+                      setShowModeSelector(false);
+                    }}
+                  >
+                    ماه
+                  </button>
+                  <button
+                    className={`${styles.modeOption} ${
+                      mode === "year" ? styles.active : ""
+                    }`}
+                    onClick={() => {
+                      handleModeChange("year");
+                      setShowModeSelector(false);
+                    }}
+                  >
+                    سال
+                  </button>
+                </div>
+              )}
             </div>
           </div>
-        )}
-      </div>
-    // </div>
+        </div>
+      )}
+    </div>
   );
 };
 

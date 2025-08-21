@@ -360,7 +360,6 @@ const AreaChartKPI = () => {
           id="myAnimatedChartId"
           data={chartData}
           options={options}
-          // plugins={[movingDotPlugin]}
           plugins={[movingDotPlugin, fadedFillPlugin]}
         />
       </div>

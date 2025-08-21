@@ -146,10 +146,7 @@ const menuItems = [
 ];
 
 const ChartsPage_SideBar = () => {
-  // const [activeIndex, setActiveIndex] = useState<string | number>(0);
-  // const [activeIndex, setActiveIndex] = useState<string | number>();
   const [activeIndex, setActiveIndex] = useState<number | string | null>(null);
-
 
   const [sidebarActive, setSidebarActive] = useState(false); // The state for controlling whether the sidebar is open or closed
   const [isSmallScreen, setIsSmallScreen] = useState(false); // The state to check if the screen width is less than 480px
@@ -159,8 +156,6 @@ const ChartsPage_SideBar = () => {
 
   const [selectedGame, setSelectedGame] = useState("بازی A");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  // const dropdownRef = useRef(null);
-
   const gameList = ["بازی اول", "بازی دوم", "بازی سوم"];
 
   const [username, setUsername] = useState<string>();
@@ -183,14 +178,10 @@ const ChartsPage_SideBar = () => {
     }
   }, [dropdownOpen]);
 
-
-  // یک تابع کمکی برای ریست کردن همه چیز
   const resetMobileSidebarState = () => {
     setDropdownOpen(false);
-    setOpenSections([]); // همه‌ی سکشن‌های باز بسته شوند
-    setActiveIndex(null); // آیتم فعال ریست شود
-    // اگر state های مرتبط دیگری دارید، اینجا هم ریست کنید
-    // مثلا: setShowModeSelector(false); setSelectedGame(defaultValue); ...
+    setOpenSections([]);
+    setActiveIndex(null);
   };
 
   // Function to toggle the sidebar open/closed
@@ -216,8 +207,8 @@ const ChartsPage_SideBar = () => {
   // Function to collapse/expand the sidebar
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
-    setDropdownOpen(false); // بستن دراپ‌دان بازی
-    setOpenSections([]); // بستن تمام ساب‌منوها
+    setDropdownOpen(false);
+    setOpenSections([]);
   };
 
   useEffect(() => {
@@ -238,17 +229,6 @@ const ChartsPage_SideBar = () => {
     };
   }, []);
 
-
-
-  // باز/بستن سایدبار موبایل
-  // const MobileSidebarOpen = () => setSidebarActive(true);
-
-  // const MobileSidebarClose = () => {
-  //   setSidebarActive(false);
-  //   resetMobileSidebarState(); // مهم: همین‌جا ریست کن
-  // };
-
-  // برای اطمینان: هر وقت سایدبار بسته شد (هر طریقی)، ریست کن
   useEffect(() => {
     if (!sidebarActive) resetMobileSidebarState();
   }, [sidebarActive]);
@@ -261,7 +241,6 @@ const ChartsPage_SideBar = () => {
           className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}
         >
           {/* Game selector section */}
-          {/* <div className={styles.gameHeader}> */}
           <div className={styles.headerWrapper}>
             {!collapsed && (
               <div className={styles.brandLogoHeader}>
@@ -289,7 +268,6 @@ const ChartsPage_SideBar = () => {
 
             <div
               className={styles.gameSelectorBox}
-              // onClick={() => setDropdownOpen((prev) => !prev)}
               onClick={(e) => {
                 e.stopPropagation(); // جلوگیری از بسته شدن توسط event کلیک صفحه
                 setDropdownOpen(!dropdownOpen);
@@ -506,10 +484,7 @@ const ChartsPage_SideBar = () => {
 
             {/* Dropdown to select a game */}
             {dropdownOpen && (
-              <div
-                className={styles.MobilegameDropdown}
-                // ref={dropdownRef}
-              >
+              <div className={styles.MobilegameDropdown}>
                 {gameList.map((game) => (
                   <div
                     key={game}
@@ -590,40 +565,6 @@ const ChartsPage_SideBar = () => {
                 </div>
               );
             })}
-
-            {/* <div className={styles.MobileprofileSection}>
-              <hr className={styles.Mobiledivider} />
-
-              <div className={styles.MobileprofileCard}>
-                <div className={styles.MobileprofileInfo}>
-                  <img
-                    src={dashboard_sidebar_user_icon}
-                    alt="Avatar"
-                    className={styles.Mobileavatar}
-                  />
-                  <div className={styles.MobileprofileText}>
-                    <div className={styles.MobileprofileName}>{username}</div>
-                    <div className={styles.MobileprofileStatus}>آنلاین</div>
-                  </div>
-                </div>
-
-                <hr className={styles.Mobiledivider} />
-
-                <div
-                  className={styles.MobilelogoutBtn}
-                  onClick={() => (window.location.href = "/panel")}
-                >
-                  <div className={styles.MobilelogoutContent}>
-                    <img
-                      src={dashboard_logout_panel_icon}
-                      alt="Logout"
-                      className={styles.MobilelogoutIcon}
-                    />
-                    <span>پنل کاربری</span>
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </nav>
           <div className={styles.MobileprofileSection}>
             <hr className={styles.Mobiledivider} />

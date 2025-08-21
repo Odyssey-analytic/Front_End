@@ -1,14 +1,10 @@
 .card {
-  /* background-color: white; */
   border-radius: 12px;
   padding: 1.5rem;
   margin-top: 0.5rem;
-  /* box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08); */
-  /* margin-bottom: 2rem; */
 }
 
 .chartsTitle {
   color: rgba(255, 255, 255, 0.651);
   margin-bottom: 0.5rem;
-  /* color: #b2174d; */
 }
