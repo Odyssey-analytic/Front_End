@@ -5,13 +5,13 @@ import { useLocation } from "react-router-dom";
 const DOCS_HOST = import.meta.env.VITE_DOCS_URL || "http://localhost:3000"; // سرور داکیوسوروس
 
 export default function DocsFrame() {
-  const { pathname } = useLocation();        // مثلا "/docs/intro"
+  const { pathname } = useLocation();        
   const subpath = useMemo(() => {
-    const s = pathname.replace(/^\/docs/, "");   // → "/intro"
-    return s && s !== "/" ? s : "/intro";        // پیش‌فرض: /intro
+    const s = pathname.replace(/^\/docs/, "");   
+    return s && s !== "/" ? s : "/";
   }, [pathname]);
 
-  const src = `${DOCS_HOST}/docs${subpath}`;     // → "http://localhost:3000/docs/intro"
+  const src = `${DOCS_HOST}/docs${subpath}`;     
 
   const [ready, setReady] = useState(false);
   useEffect(() => window.scrollTo(0, 0), []);
