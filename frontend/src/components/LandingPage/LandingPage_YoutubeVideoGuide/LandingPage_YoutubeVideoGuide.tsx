@@ -6,7 +6,7 @@ const DOCS_BASE =
     ? "https://odysseyanalytics.ir"
     : `${window.location.protocol}//${window.location.hostname}:3000`);
 
-const DOCS_URL = `${DOCS_BASE}/docs`;
+const DOCS_URL = `${DOCS_BASE}/docs/`;
 
 const LandingPage_YoutubeVideoGuide = () => {
   return (

@@ -280,8 +280,8 @@ const DashboardPage = () => {
 const DOCS_URL =
   (import.meta as any).env?.VITE_DOCS_BASE_URL ??
   ((import.meta as any).env?.PROD
-    ? "https://odysseyanalytics.ir/docs"
-    : `${window.location.protocol}//${window.location.hostname}:3000/docs`);
+    ? "https://odysseyanalytics.ir/docs/"
+    : `${window.location.protocol}//${window.location.hostname}:3000/docs/`);
 
   // ---- UI ----
   return (
