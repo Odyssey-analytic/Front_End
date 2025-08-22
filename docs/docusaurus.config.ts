@@ -14,7 +14,7 @@ const logoHref = isProd
 const config: Config = {
   title: "Odyssey Analytics SDK",
   tagline: "Analytics for your product",
-  favicon: "img/favicon.ico",
+  favicon: "img/odessay_logo.svg",
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -51,8 +51,8 @@ const config: Config = {
         docs: {
           sidebarPath: "./sidebars.ts",
           routeBasePath: "/",
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          // editUrl:
+          //   "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
 
         blog: false,
