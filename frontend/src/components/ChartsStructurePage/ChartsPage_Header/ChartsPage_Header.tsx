@@ -3,7 +3,7 @@ import { FiFilter, FiColumns, FiCalendar } from "react-icons/fi";
 import { useState } from "react";
 import DateRangeSelector from "./Calendar";
 
-const ChartsPage_Header = () => {
+const ChartsPage_Header = ({setSelectedTime}) => {
   const [dateRange, setDateRange] = useState("۱۴۰۳/۰۲/۰۵ - ۱۴۰۳/۰۲/۱۲");
 
   return (
@@ -12,7 +12,7 @@ const ChartsPage_Header = () => {
         <h1 className={styles.title}>نمای کلی</h1>
 
         <div className={styles.calendarbox}>
-          <DateRangeSelector />
+          <DateRangeSelector setSelectedTime={setSelectedTime} />
         </div>
       </div>
     </header>

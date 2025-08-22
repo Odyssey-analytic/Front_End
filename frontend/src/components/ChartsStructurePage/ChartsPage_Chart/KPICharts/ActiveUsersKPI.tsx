@@ -32,8 +32,8 @@ ChartJS.register(
   Filler
 );
 
-const AreaChartKPI = () => {
-  const USE_MOCK = true; // ← وقتی true است، فقط داده‌های ماک و گرادیان نمایش داده می‌شوند
+const AreaChartKPI = ({selectedTime}) => {
+  const USE_MOCK = false; // ← وقتی true است، فقط داده‌های ماک و گرادیان نمایش داده می‌شوند
 
   const mockLabels = Array.from(
     { length: 24 },
@@ -146,7 +146,19 @@ const AreaChartKPI = () => {
   });
   const sseRef = useRef<EventSource | null>(null);
   const {gameId} = useParams();
+  const datee=new Date()
+  datee.setUTCHours(0,0,0,0);
 
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
   useEffect(() => {
     // if we are using the mock data we make this true, so it only shows the mock
     if (USE_MOCK) return; // ← مهم
@@ -179,10 +191,11 @@ const AreaChartKPI = () => {
 
     const interval = 10; // 10 ,30 ,60 
     const now = new Date();
-    const utcMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
-    const isoMidnight = utcMidnight.toISOString().split('.')[0] + 'Z';
+  //   sseRef.current = new EventSource(
+  //   `https://odysseyanalytics.ir/api/kpi/sse/EventCount?product_id=${gameId}&start_time=${selectedTime}&update_interval=${interval}`
+  // );
     sseRef.current = new EventSource(
-    `https://odysseyanalytics.ir/api/kpi/sse/EventCount?product_id=${gameId}&start_time=${isoMidnight}&update_interval=${interval}`
+    `https://odysseyanalytics.ir/api/kpi/sse/NetResourceFlow?product_id=${gameId}&start_time=${selectedTime}&update_interval=${interval}`
   );
 
 
@@ -250,7 +263,7 @@ sseRef.current.onmessage = (event: MessageEvent) => {
     return () => {
       if (sseRef.current) sseRef.current.close();
     };
-  }, [gameId]);
+  }, [gameId,selectedTime]);
 
   const movingDotPlugin = {
     id: "movingDot",

@@ -7,14 +7,28 @@ import persian_fa from "react-multi-date-picker/node_modules/react-date-object/l
 
 import styles from "./Calendar.module.css";
 
-const DateRangeSelector = () => {
+const DateRangeSelector = ({setSelectedTime}) => {
   const [dateRange, setDateRange] = useState("");
   const [mode, setMode] = useState<"day" | "week" | "month" | "year">("day");
   const [showDropdown, setShowDropdown] = useState(false);
-
   const [showModeSelector, setShowModeSelector] = useState(false);
-
   const [selectedDate, setSelectedDate] = useState<any>(null);
+
+  // Function to save the date in ISO format
+  const saveDate = () => {
+    if (!selectedDate) {
+      const isss= new Date()
+      isss.setUTCHours(0,0,0,0);
+      setSelectedTime(isss.toISOString());
+      return;  
+    };
+
+    // Convert the selected date to ISO format
+    const isoDate = selectedDate.toDate();
+    isoDate.setUTCHours(0, 0, 0, 0);
+    console.log(isoDate.toISOString());
+    setSelectedTime(isoDate.toISOString()) ;
+  };
 
   const getWeekRange = (date: DateObject) => {
     const dayOfWeek = date.weekDay.index;
@@ -266,6 +280,11 @@ const DateRangeSelector = () => {
               )}
             </div>
           </div>
+
+          {/* Button to save the selected date */}
+          <button className={styles.saveButton} onClick={saveDate}>
+            ذخیره تاریخ
+          </button>
         </div>
       )}
     </div>
