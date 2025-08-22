@@ -155,8 +155,7 @@ const ChartsPage_SideBar = () => {
   const [collapsed, setCollapsed] = useState(false); // The state for controlling the collapsed or expanded state of the sidebar for screens larger than 480px
 
   const [openSections, setOpenSections] = useState<number[]>([]);
-  const [selectedGame, setSelectedGame] = useState("بازی A");
-  setSelectedGame(localStorage.getItem('game_name'));
+  const [selectedGame, setSelectedGame] = useState(localStorage.getItem('game_name'));
   const Logo = localStorage.getItem('Logo');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const gameList = JSON.parse(localStorage.getItem('gamesList') ?? '[]');

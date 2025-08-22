@@ -165,7 +165,7 @@ const DashboardPage = () => {
 
   const handleSelectSuggestion = useCallback(
     (gameId: string) => {
-      navigate(`/dashboard/${gameId}`);
+      navigate(`/charts/${gameId}`);
       setSuggestions([]);
       setSelectedIndex(-1);
     },
@@ -312,7 +312,7 @@ const DOCS_URL =
                   <li
                     key={s.id}
                     onMouseDown={() => {
-                      navigate(`/dashboard/${s.id}`);
+                      navigate(`/charts/${s.id}`);
                       setSuggestions([]);
                     }}
                     className={
