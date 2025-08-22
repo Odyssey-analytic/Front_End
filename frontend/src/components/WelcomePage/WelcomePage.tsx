@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 
 // =========================== assets ===========================
 import gift from "/public/icons/gift.svg";
+import dashboard_logout_panel_icon from "/public/icons/dashboard_panel_icon.svg";
 import close_icon from "/public/icons/close_icon.svg";
 import uploading_game_image_icon_ghost from "/public/icons/game-ghost-icon.svg";
 import copyIcon from "/public/icons/copy-icon-gradient.svg";
@@ -250,6 +251,16 @@ const WelcomePage = () => {
     }
   };
 
+  // ====================== فقط اضافه‌شده: لینک Docs بر اساس محیط ======================
+  const DOCS_BASE =
+    (import.meta as any).env?.VITE_DOCS_BASE_URL ??
+    ((import.meta as any).env?.PROD
+      ? "https://odysseyanalytics.ir"
+      : `${window.location.protocol}//${window.location.hostname}:3000`);
+
+  const SDK_DOC_URL = `${DOCS_BASE}/docs/getting-started/unity-integration`;
+  // ================================================================================
+
   return (
     <div className={styles.container}>
       <div
@@ -258,8 +269,14 @@ const WelcomePage = () => {
         }`}
       >
         <div className={styles.icons}>
-          {/* سه‌نقطه - باز/بسته کردن منو */}
           <img
+            src={dashboard_logout_panel_icon}
+            alt="Logout"
+            className={styles.logoutIcon}
+            onClick={() => navigate("/")}
+          />
+
+          {/* <img
             ref={dotsRef}
             src={doticon}
             className={`${styles.welcomePageicons}`}
@@ -267,24 +284,11 @@ const WelcomePage = () => {
               e.stopPropagation();
               setMenuOpen((v) => !v);
             }}
-          />
+          /> */}
           {/* منو */}
-          {menuOpen && (
-            <div ref={menuRef} className={styles.menu}>
-              <button
-                className={styles.menuItem}
-                onClick={() => navigate("/docs/intro")}
-              >
-                داکیومنت‌ها
-              </button>
-              <button className={styles.menuItem} onClick={() => navigate("/")}>
-                صفحه اصلی
-              </button>
-            </div>
-          )}
 
           {/* آیکن کاربر (همان قبلی) */}
-          <img
+          {/* <img
             src={usericon}
             className={`${styles.welcomePageicons} ${
               showPopup ? styles.disabled : ""
@@ -293,7 +297,7 @@ const WelcomePage = () => {
               setShowPopup(false);
               resetPopupState();
             }}
-          />
+          /> */}
         </div>
 
         <h1 className={styles.WelcomePageTitle}>!Welcome</h1>
@@ -730,7 +734,7 @@ const WelcomePage = () => {
                       بازی/وب‌سایت‌تون قرار بدید.
                     </p>
                     <p className={`mb-3 ${styles.welcomePageSdkDownloadLink}`}>
-                      <a href="#">لینک دانلود SDK</a>
+                      <a href={SDK_DOC_URL}>لینک دانلود SDK</a>
                     </p>
                     <div className={styles.welcomePageAccessTokenBox}>
                       <strong className={styles.welcomePageAccessTokenLabel}>

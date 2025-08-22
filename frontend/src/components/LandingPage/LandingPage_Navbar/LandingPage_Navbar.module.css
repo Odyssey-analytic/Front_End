@@ -80,8 +80,8 @@
 }
 
 .signupBtn {
-  background: linear-gradient(135deg, #4e3da7ae , #984fb8a6);
-
+  background: linear-gradient(135deg, #c550ffae , #767affa6);
+/* background-color: #20406f; */
   padding: 8px 20px;
   border-radius: 10px;
 
@@ -90,7 +90,7 @@
 }
 
 .signupBtn:hover {
-  background: linear-gradient(to right, rgb(42, 29, 110) , #4d1665);
+  background: linear-gradient(to right, #4d1665,rgb(42, 29, 110));
 }
 
 .signupText {

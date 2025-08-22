@@ -129,7 +129,7 @@
   width: clamp(500px, 88%, 850px);
   height: clamp(610px, 90vh, 680px);
   max-height: calc(100vh - 20px);
-  
+
   --card-pad: clamp(1rem, 3vw, 2.5rem);
   --close-safe: 25px;
   padding: var(--card-pad);
@@ -238,16 +238,16 @@
 }
 
 .welcomePageUploadPreviewWrapper {
-  width: 150px;      
-  height: 150px;     
-  min-width: 150px;  
-  min-height: 150px; 
+  width: 150px;
+  height: 150px;
+  min-width: 150px;
+  min-height: 150px;
   border-radius: 50%;
   background: #ffffffab;
   overflow: hidden;
   margin-top: -30px;
   margin-bottom: 15px;
-  flex-shrink: 0;   /* نذار تو flexbox کش بیاد */
+  flex-shrink: 0; /* نذار تو flexbox کش بیاد */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -719,7 +719,6 @@
   font-size: 15px;
 }
 
-
 /* ResponsiveNess  */
 @media (max-width: 768px) {
   .welcomePageMainBoxBodyPopupCard {
@@ -770,7 +769,6 @@
   }
 }
 
-
 .menu {
   position: absolute;
   top: 36px;
@@ -784,19 +782,10 @@
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
-.menuItem {
-  width: 100%;
-  text-align: start;
-  padding: 10px 12px;
-  background: transparent;
-  color: #e6ebff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-}
-.menuItem:hover {
-  background: rgba(255, 255, 255, 0.08);
+.logoutIcon {
+  width: 25px;
+  height: 25px;
+  opacity: 0.8;
 }
 
 /* .welcomePageOptionsRow {
@@ -814,5 +803,23 @@
 @media (max-width: 768px) {
   .welcomePageOptionsRow {
     flex-direction: row; /* وقتی عرض کوچیک شد: کنار هم */
+  }
+}
+
+@media (min-width: 470px) and (max-width: 500px) {
+  .WelcomePageTitle {
+    font-size: 85px;
+  }
+}
+
+@media (min-width: 420px) and (max-width: 470px) {
+  .WelcomePageTitle {
+    font-size: 75px;
+  }
+}
+
+@media (min-width: 350px) and (max-width: 420px) {
+  .WelcomePageTitle {
+    font-size: 60px;
   }
 }

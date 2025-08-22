@@ -5,6 +5,11 @@ import type * as Preset from "@docusaurus/preset-classic";
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const appBaseUrl = process.env.APP_BASE_URL || "http://localhost:5173";
+const isProd = process.env.NODE_ENV === 'production';
+
+const logoHref = isProd
+  ? 'https://odysseyanalytics.ir'       
+  : 'http://localhost:5173/';
 
 const config: Config = {
   title: "Odyssey Analytics SDK",
@@ -36,7 +41,7 @@ const config: Config = {
   },
 
   customFields: {
-    appBaseUrl, // اینجا ذخیره می‌کنیم
+    appBaseUrl,
   },
 
   presets: [
@@ -44,30 +49,29 @@ const config: Config = {
       "classic",
       {
         docs: {
-          sidebarPath: './sidebars.ts',
-          // This is the first important change.
-          // It makes your docs available at /docs/ instead of /docs/docs/
-          routeBasePath: '/',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ["rss", "atom"],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
+          sidebarPath: "./sidebars.ts",
+          routeBasePath: "/",
           editUrl:
             "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
-          // Useful options to enforce blogging best practices
-          onInlineTags: "warn",
-          onInlineAuthors: "warn",
-          onUntruncatedBlogPosts: "warn",
         },
+
+        blog: false,
+        // blog:
+        // {
+        //   showReadingTime: true,
+        //   feedOptions: {
+        //     type: ["rss", "atom"],
+        //     xslt: true,
+        //   },
+        //   // Please change this to your repo.
+        //   // Remove this to remove the "edit this page" links.
+        //   editUrl:
+        //     "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+        //   // Useful options to enforce blogging best practices
+        //   onInlineTags: "warn",
+        //   onInlineAuthors: "warn",
+        //   onUntruncatedBlogPosts: "warn",
+        // },
         theme: {
           customCss: "./src/css/custom.css",
         },
@@ -83,7 +87,7 @@ const config: Config = {
       logo: {
         alt: "My Site Logo",
         src: "img/odessay_logo.svg",
-        href: `${appBaseUrl}/welcome`,
+        href: logoHref,
       },
       items: [
         {
@@ -92,7 +96,7 @@ const config: Config = {
           position: "left",
           label: "Tutorial",
         },
-        { to: "/blog", label: "Blog", position: "left" },
+        // { to: "/blog", label: "Blog", position: "left" },
         {
           href: "https://github.com/Odyssey-analytic/SDK",
           label: "GitHub",
@@ -101,7 +105,7 @@ const config: Config = {
       ],
     },
     footer: {
-      style: "dark",
+      // style: "dark",
       links: [
         {
           title: "Docs",
@@ -132,10 +136,10 @@ const config: Config = {
         {
           title: "More",
           items: [
-            {
-              label: "Blog",
-              to: "/blog",
-            },
+            // {
+            //   label: "Blog",
+            //   to: "/blog",
+            // },
             {
               label: "GitHub",
               href: "https://github.com/Odyssey-analytic",

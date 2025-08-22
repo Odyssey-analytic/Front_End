@@ -132,10 +132,10 @@ const LandingPage: React.FC = () => {
 
           <section id="contact" className={` ${styles.section}`}>
             <div className={styles.sectionInner}>
-              <header className={styles.head}>
+              {/* <header className={styles.head}>
                 <span className={styles.headBadge}>ارتباط با ما</span>
                 <span className={styles.headLine} />
-              </header>
+              </header> */}
               <div className={styles.body}>
                 <LandingPage_Contact />
               </div>

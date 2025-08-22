@@ -119,7 +119,7 @@
   font-size: clamp(1.6rem, 3.2vw, 2.6rem);
   line-height: 1.6;
   font-weight: 800;
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 /* بلوک متن همون‌طور که گفتی: راست‌چین ولی سمت چپ صفحه */
@@ -187,8 +187,9 @@
   padding: 10px 16px;
   border-radius: 6px;
   /* margin-top: -4%; */
-  background: rgba(85, 166, 188, 0.3);
-  color: #63c6e4;
+  /* background: rgba(85, 166, 188, 0.3); */
+  background-color: #9fbdff64;
+  color: #ffffff;
   font-size: clamp(0.85rem, 1vw, 0.95rem);
 }
 
@@ -198,14 +199,14 @@
   border-radius: 6px;
   margin-right: -1%;
   background: rgba(85, 166, 188, 0.3);
-  color: #63c6e4;
+  color: #9fbdff;
   font-size: clamp(0.85rem, 1vw, 0.95rem);
 }
 .headLine {
   inline-size: clamp(64px, 8vw, 120px);
   height: 2px;
   flex: none;
-  background: #63c6e4;
+  background: #9fbdff;
   border-radius: 1px;
 }
 
@@ -222,7 +223,6 @@
   width: 100vw;
   margin-inline: calc(50% - 50vw);
   padding-inline: 0;
-
 }
 
 /* ========================= Back-to-Top Floating Button ========================= */

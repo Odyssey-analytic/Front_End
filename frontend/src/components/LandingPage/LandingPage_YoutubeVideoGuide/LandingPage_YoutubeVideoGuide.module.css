@@ -87,3 +87,63 @@
   line-height: clamp(1.8rem, 3.2vw, 2.2rem);
   color: #e7eaf0;
 }
+
+
+/* .docsLink {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #425398, #5c7dbe);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.docsLink:hover {
+  background: linear-gradient(90deg, #2b2884, #4b6bab);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.docsLink:active {
+  transform: translateY(0);
+  box-shadow: none;
+} */
+
+/* .docsLink {
+  color: #ffffff;
+  font-weight: 500;
+  text-decoration: none;
+  margin-top: 8px;
+  
+    margin-top: 12px;
+  padding: 10px 20px;
+  background: #b3c4ff;
+}
+
+.docsLink:hover {
+  color: #2b2884;
+} */
+.docsLink {
+  display: inline-block;       /* فقط به اندازه متن + padding */
+  padding: 8px 20px;          /* فاصله داخلی */
+  background-color: #9fbdff64;
+  color: #fff;                 /* رنگ متن */
+  font-weight: 600;           
+  border-radius: 8px;       
+  width: 33%;   
+  text-decoration: none;       /* خط زیر لینک حذف */
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.docsLink:hover {
+  background-color: #5c8df864;   /* رنگ هاور */
+  transform: translateY(-2px); /* افکت بالا رفتن کوچیک */
+}
+
+.docsLink:active {
+  transform: translateY(0);    /* وقتی کلیک شد برگرده */
+}

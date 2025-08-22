@@ -276,6 +276,13 @@ const DashboardPage = () => {
     [openCollaboratorsFor, games]
   );
 
+
+const DOCS_URL =
+  (import.meta as any).env?.VITE_DOCS_BASE_URL ??
+  ((import.meta as any).env?.PROD
+    ? "https://odysseyanalytics.ir/docs"
+    : `${window.location.protocol}//${window.location.hostname}:3000/docs`);
+
   // ---- UI ----
   return (
     <div className={`${styles.dashboardContainer}`}>
@@ -344,13 +351,20 @@ const DashboardPage = () => {
             <span className={styles.filterLabel}>لیست بازی‌ها</span>
           </div>
           <div className={styles.dashboardBtns}>
-            <a
+            {/* <a
               href="https://github.com/Odyssey-analytic/SDK"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.downloadKitBtn}
+            > */}
+
+            <a
+              href={DOCS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.downloadKitBtn}
             >
-              دانلود Starter Kit
+             Starter Kit پیوست به 
             </a>
             {/* <button
               className={styles.addGameBtn}
