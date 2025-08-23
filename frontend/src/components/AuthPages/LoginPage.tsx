@@ -37,9 +37,7 @@ const LoginPage = () => {
   const [passwordErrorType, setPasswordErrorType] = useState<"empty" | "">("");
   const [passwordErrorKey, setPasswordErrorKey] = useState(0);
 
-  const [loginStatus, setLoginStatus] = useState<"success" | "error" | "">(
-    ""
-  );
+  const [loginStatus, setLoginStatus] = useState<"success" | "error" | "">("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const isValidEmail = (email: string) =>
@@ -90,7 +88,12 @@ const LoginPage = () => {
               .then((data) => {
                 localStorage.setItem("accessToken", data.access);
                 localStorage.setItem("username", data.username);
-                window.location.href = "/welcome";
+                // بررسی مقدار is_first_login و هدایت به صفحه مناسب
+                if (data.is_first_login) {
+                  window.location.href = "/welcome"; // اگر اولین ورود بود به صفحه خوشامدگویی برو
+                } else {
+                  window.location.href = "/dashboard"; // اگر اولین ورود نبود به داشبورد برو
+                }
               });
           },
         });
@@ -286,7 +289,6 @@ const LoginPage = () => {
           <hr className="my-3" />
 
           {loginStatus && (
-
             <div
               className={`${styles.loginPopupWarningOverlay} ${
                 loginStatus === "success"
