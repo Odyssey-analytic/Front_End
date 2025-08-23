@@ -619,7 +619,7 @@
 }
 
 .MobileprofileSection {
-  padding-bottom: 1rem;
+  /* padding-bottom: 1rem; */
   top: 100%;
   position: sticky;
   width: 100%;
@@ -708,4 +708,19 @@
 .MobilelogoutArrow {
   color: rgba(255, 255, 255, 0.6);
   transition: transform 0.2s ease;
+}
+
+
+
+.profileText,
+.profilePanel {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.collapsed .profileText,
+.collapsed .profilePanel {
+  opacity: 0;
+  transform: translateY(-10px); /* حرکت نرم به سمت بالا */
 }

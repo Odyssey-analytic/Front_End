@@ -187,23 +187,22 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
   };
 
   const toggleSection = (index: number) => {
-  setOpenSections((prev) => {
-    const newOpenSections = prev.includes(index)
-      ? prev.filter((i) => i !== index)  // تب بسته شده است، آن را از آرایه حذف می‌کنیم
-      : [...prev, index];  // تب باز شده است، آن را به آرایه اضافه می‌کنیم
+    setOpenSections((prev) => {
+      const newOpenSections = prev.includes(index)
+        ? prev.filter((i) => i !== index) // تب بسته شده است، آن را از آرایه حذف می‌کنیم
+        : [...prev, index]; // تب باز شده است، آن را به آرایه اضافه می‌کنیم
 
-    // اگر تب بسته شد، selectedSubTab و selectedTab را ریست کن
-    if (!newOpenSections.includes(index)) {
-      setSelectedTab(null); // ریست کردن تب
-      setSelectedSubTab(null); // ریست کردن ساب‌تب
-      setActiveSubTab(null);  // ریست کردن ساب‌تب فعال
-      localStorage.removeItem('activeSubTab'); // حذف ساب‌تب ذخیره‌شده
-    }
+      // اگر تب بسته شد، selectedSubTab و selectedTab را ریست کن
+      if (!newOpenSections.includes(index)) {
+        setSelectedTab(null); // ریست کردن تب
+        setSelectedSubTab(null); // ریست کردن ساب‌تب
+        setActiveSubTab(null); // ریست کردن ساب‌تب فعال
+        localStorage.removeItem("activeSubTab"); // حذف ساب‌تب ذخیره‌شده
+      }
 
-    return newOpenSections;
-  });
-};
-
+      return newOpenSections;
+    });
+  };
 
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
@@ -217,7 +216,7 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
 
   const handleMenuItemClick = (tabName: string) => {
     setSelectedTab(tabName);
-    setSelectedSubTab(null); 
+    setSelectedSubTab(null);
   };
 
   const handleSubTabClick = (subTabName: string) => {
@@ -357,25 +356,27 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
               );
             })}
           </nav>
-
           {/* پایین سایدبار */}
-          <div className={styles.profileSection}>
-            <div className={styles.profileCard}>
-              <div className={styles.profileInfo}>
+          {/* پایین سایدبار */}
+          <div className={styles.MobileprofileSection}>
+            <div className={styles.MobileprofileCard}>
+              <div className={styles.MobileprofileInfo}>
                 <img
                   src={dashboard_sidebar_user_icon}
                   alt="Avatar"
                   className={styles.avatar}
                 />
-                <div className={styles.profileText}>
-                  <div className={styles.profileName}>{username}</div>
-                  <div className={styles.profileStatus}>آنلاین</div>
-                </div>
+                {!collapsed && (
+                  <div className={styles.profileText}>
+                    <div className={styles.profileName}>{username}</div>
+                    <div className={styles.profileStatus}>آنلاین</div>
+                  </div>
+                )}
               </div>
 
               <div
                 className={styles.logoutBtn}
-                onClick={() => (window.location.href = "/panel")}
+                onClick={() => (window.location.href = "/dashboard")}
               >
                 <div className={styles.logoutContent}>
                   <img
@@ -383,7 +384,9 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
                     alt="Logout"
                     className={styles.logoutIcon}
                   />
-                  <span className={styles.profilePanel}>پنل کاربری</span>
+                  {!collapsed && (
+                    <span className={styles.profilePanel}>پنل کاربری</span>
+                  )}
                 </div>
               </div>
             </div>
