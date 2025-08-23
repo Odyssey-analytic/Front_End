@@ -32,7 +32,7 @@ ChartJS.register(
   Filler
 );
 
-const AreaChartKPI = ({selectedTime}) => {
+const AverageSessionLength = ({selectedTime}) => {
   const USE_MOCK = true // ← وقتی true است، فقط داده‌های ماک و گرادیان نمایش داده می‌شوند
 
   const mockLabels = Array.from(
@@ -415,4 +415,4 @@ sseRef.current.onmessage = (event: MessageEvent) => {
   );
 };
 
-export default AreaChartKPI;
+export default AverageSessionLength;
