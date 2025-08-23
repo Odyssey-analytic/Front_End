@@ -276,12 +276,11 @@ const DashboardPage = () => {
     [openCollaboratorsFor, games]
   );
 
-
-const DOCS_URL =
-  (import.meta as any).env?.VITE_DOCS_BASE_URL ??
-  ((import.meta as any).env?.PROD
-    ? "https://odysseyanalytics.ir/docs/"
-    : `${window.location.protocol}//${window.location.hostname}:3000/docs/`);
+  const DOCS_URL =
+    (import.meta as any).env?.VITE_DOCS_BASE_URL ??
+    ((import.meta as any).env?.PROD
+      ? "https://odysseyanalytics.ir/docs/"
+      : `${window.location.protocol}//${window.location.hostname}:3000/docs/`);
 
   // ---- UI ----
   return (
@@ -364,7 +363,7 @@ const DOCS_URL =
               rel="noopener noreferrer"
               className={styles.downloadKitBtn}
             >
-             Starter Kit پیوست به 
+              Starter Kit پیوست به
             </a>
             {/* <button
               className={styles.addGameBtn}
@@ -374,7 +373,11 @@ const DOCS_URL =
             </button> */}
             <button
               className={styles.addGameBtn}
-              onClick={() => setMode("add")}
+              onClick={() => {
+                if (mode !== "add") {
+                  setMode("add");
+                }
+              }}
             >
               افزودن بازی جدید
             </button>
@@ -596,11 +599,9 @@ const DOCS_URL =
 
       {mode === "add" && (
         <DashboardPage_AddNewGame
-          onCancel={() => setMode("main")}
+          onCancel={() => setMode("main")} // وقتی فرم بسته می‌شود، وضعیت به "main" تغییر می‌کند
           onSaved={(res) => {
-            // 1) بستن اورلی
             setMode("main");
-            // 2) گرفتن دوباره دیتا از سرور
             loadGames();
           }}
         />

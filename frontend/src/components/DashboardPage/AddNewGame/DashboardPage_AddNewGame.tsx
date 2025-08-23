@@ -286,6 +286,7 @@ const DashboardPage_AddNewGame: React.FC<AddNewGameProps> = ({
                   onClick={() => {
                     setShowPopup(false);
                     resetPopupState();
+                    onCancel?.();
                   }}
                 />
               )}
