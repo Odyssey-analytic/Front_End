@@ -28,21 +28,20 @@ const ChartsPage_ChartGrid: React.FC<ChartsPage_ChartGridProps> = ({ selectedTim
   // تعریف چارت‌ها
   const charts = {
     // "(AverageSessionLength)": <KPI_chart selectedTime={selectedTime} />,
-    "(ARPPUConsumer)": <ARPPUConsumerKPI selectedTime={selectedTime} />,
-    "(AverageFPSConsumer)": <AverageFPSConsumerKPI selectedTime={selectedTime} />,
-    "(AverageMemoryUsageConsumer)": <AverageMemoryUsageConsumerKPI selectedTime={selectedTime} />,
-    "(AverageSessionDurationConsumer)": <AverageSessionDurationConsumerKPI selectedTime={selectedTime} />,
-    "(AverageSessionLength)": <AverageSessionLengthKPI selectedTime={selectedTime} />,
-    "(AverageTriesPerLevelConsumer)": <AverageTriesPerLevelConsumerKPI selectedTime={selectedTime} />,
-    "(CrashRateConsumer)": <CrashRateConsumerKPI selectedTime={selectedTime} />,
-    "(DailyActiveUsersConsumer)": <DailyActiveUsersConsumerKPI selectedTime={selectedTime} />,
-    "(GameEventSSEConsumer)": <GameEventSSEConsumerKPI selectedTime={selectedTime} />,
-    "(LevelCompletionRateConsumer)": <LevelCompletionRateConsumerKPI selectedTime={selectedTime} />,
-    "(NetResourceFlowConsumer)": <NetResourceFlowConsumerKPI selectedTime={selectedTime} />,
-    "(ResourceSinkRatioConsumer)": <ResourceSinkRatioConsumerKPI selectedTime={selectedTime} />,
-    "(TopErrorTypesConsumer)": <TopErrorTypesConsumerKPI selectedTime={selectedTime} />,
-    "(TotalRevenuePerCurrencyConsumer)": <TotalRevenuePerCurrencyConsumerKPI selectedTime={selectedTime} />,
-    // اضافه کردن چارت‌های بیشتر در اینجا
+    "ARPPUConsumer": <ARPPUConsumerKPI selectedTime={selectedTime} />,
+    "AverageFPSConsumer": <AverageFPSConsumerKPI selectedTime={selectedTime} />,
+    "AverageMemoryUsageConsumer": <AverageMemoryUsageConsumerKPI selectedTime={selectedTime} />,
+    "AverageSessionDurationConsumer": <AverageSessionDurationConsumerKPI selectedTime={selectedTime} />,
+    "AverageSessionLength": <AverageSessionLengthKPI selectedTime={selectedTime} />,
+    "AverageTriesPerLevelConsumer": <AverageTriesPerLevelConsumerKPI selectedTime={selectedTime} />,
+    "CrashRateConsumer": <CrashRateConsumerKPI selectedTime={selectedTime} />,
+    "DailyActiveUsersConsumer": <DailyActiveUsersConsumerKPI selectedTime={selectedTime} />,
+    "GameEventSSEConsumer": <GameEventSSEConsumerKPI selectedTime={selectedTime} />,
+    "LevelCompletionRateConsumer": <LevelCompletionRateConsumerKPI selectedTime={selectedTime} />,
+    "NetResourceFlowConsumer": <NetResourceFlowConsumerKPI selectedTime={selectedTime} />,
+    "ResourceSinkRatioConsumer": <ResourceSinkRatioConsumerKPI selectedTime={selectedTime} />,
+    "TopErrorTypesConsumer": <TopErrorTypesConsumerKPI selectedTime={selectedTime} />,
+    "TotalRevenuePerCurrencyConsumer": <TotalRevenuePerCurrencyConsumerKPI selectedTime={selectedTime} />,
   };
 
   useEffect(() => {

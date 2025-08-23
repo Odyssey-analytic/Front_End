@@ -1,5 +1,4 @@
 import styles from "./ChartsPage_Header.module.css";
-import { FiFilter, FiColumns, FiCalendar } from "react-icons/fi";
 import { useState } from "react";
 import DateRangeSelector from "./Calendar";
 
@@ -7,13 +6,34 @@ import DateRangeSelector from "./Calendar";
 interface ChartsPage_HeaderProps {
   setSelectedTime: (time: string | null) => void;
   selectedTab: string | null;
+  selectedSubTab: string | null;
 }
 
-const ChartsPage_Header: React.FC<ChartsPage_HeaderProps> = ({ setSelectedTime, selectedTab }) => {
+const ChartsPage_Header: React.FC<ChartsPage_HeaderProps> = ({ setSelectedTime, selectedTab, selectedSubTab }) => {
+  const tabTranslations: { [key: string]: string } = {
+    "AverageSessionLength": "میانگین طول جلسه",
+    "GameEventSSEConsumer": "رویدادهای بازی",
+    "DailyActiveUsersConsumer": "کاربران فعال روزانه",
+    "AverageFPSConsumer": "میانگین فریم‌برثانیه",
+    "AverageMemoryUsageConsumer": "میانگین استفاده از حافظه",
+    "AverageSessionDurationConsumer": "میانگین مدت زمان جلسه",
+    "TotalRevenuePerCurrencyConsumer": "درآمد کل به ازای هر ارز",
+    "ARPPUConsumer": "ARPPU",
+    "LevelCompletionRateConsumer": "نرخ تکمیل هر سطح",
+    "AverageTriesPerLevelConsumer": "میانگین تلاش‌ها در هر سطح",
+    "NetResourceFlowConsumer": "جریان منابع خالص",
+    "CrashRateConsumer": "نرخ کرش",
+    "ResourceSinkRatioConsumer": "نسبت مصرف منابع",
+    "TopErrorTypesConsumer": "انواع برتر خطاها"
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <h1 className={styles.title}>{selectedTab ? "نمای کلی" : ""}</h1>
+        <h1 className={styles.title}>
+          {/* نمایش نام ساب‌تب به فارسی یا "داشبوردهای کاربری" */}
+          {selectedSubTab ? tabTranslations[selectedSubTab] || selectedSubTab : "داشبوردهای کاربری"}
+        </h1>
 
         {selectedTab && (
           <div className={styles.calendarbox}>

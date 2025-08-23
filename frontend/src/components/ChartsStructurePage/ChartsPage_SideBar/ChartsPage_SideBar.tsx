@@ -1,4 +1,4 @@
-import React, {useState, useEffect, JSX} from "react";
+import React, { useState, useEffect, JSX } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FiHome,
@@ -52,62 +52,61 @@ const menuItems: MenuItem[] = [
     icon: <FiGrid />,
     items: [
       {
-        label: "(AverageSessionLength)", // تغییر به string
+        label: "AverageSessionLength", // تغییر به string
         icon: <FiHome />,
       },
       {
-        label: "(GameEventSSEConsumer)", // تغییر به string
+        label: "GameEventSSEConsumer", // تغییر به string
         icon: <FiBarChart2 />,
       },
       {
-        label: "(DailyActiveUsersConsumer)", // تغییر به string
+        label: "DailyActiveUsersConsumer", // تغییر به string
         icon: <FiActivity />,
       },
       {
-        label: "(AverageFPSConsumer)", // تغییر به string
+        label: "AverageFPSConsumer", // تغییر به string
         icon: <FiDollarSign />,
       },
       {
-        label: "(AverageMemoryUsageConsumer)", // تغییر به string
+        label: "AverageMemoryUsageConsumer", // تغییر به string
         icon: <FiLayers />,
       },
       {
-        label: "(AverageSessionDurationConsumer)", // تغییر به string
+        label: "AverageSessionDurationConsumer", // تغییر به string
         icon: <FiTrendingUp />,
       },
       {
-        label: "(TotalRevenuePerCurrencyConsumer)", // تغییر به string
+        label: "TotalRevenuePerCurrencyConsumer", // تغییر به string
         icon: <FiPieChart />,
       },
       {
-        label: "(ARPPUConsumer)", // تغییر به string
-        icon: <FiPieChart />,
+        label: "ARPPUConsumer", // تغییر به string
+        icon: <FiHome />,
       },
       {
-        label: "(LevelCompletionRateConsumer)", // تغییر به string
+        label: "LevelCompletionRateConsumer", // تغییر به string
+        icon: <FiBarChart2 />,
+      },
+      {
+        label: "AverageTriesPerLevelConsumer", // تغییر به string
+        icon: <FiActivity />,
+      },
+      {
+        label: "NetResourceFlowConsumer", // تغییر به string
+        icon: <FiDollarSign />,
+      },
+      {
+        label: "CrashRateConsumer", // تغییر به string
+        icon: <FiLayers />,
+      },
+      {
+        label: "ResourceSinkRatioConsumer", // تغییر به string
+        icon: <FiTrendingUp />,
+      },
+      {
+        label: "TopErrorTypesConsumer", // تغییر به string
         icon: <FiPieChart />,
       },
-            {
-        label: "(AverageTriesPerLevelConsumer)", // تغییر به string
-        icon: <FiPieChart />,
-      },
-                  {
-        label: "(NetResourceFlowConsumer)", // تغییر به string
-        icon: <FiPieChart />,
-      },
-                        {
-        label: "(CrashRateConsumer)", // تغییر به string
-        icon: <FiPieChart />,
-      },
-                              {
-        label: "(ResourceSinkRatioConsumer)", // تغییر به string
-        icon: <FiPieChart />,
-      },
-                                    {
-        label: "(TopErrorTypesConsumer)", // تغییر به string
-        icon: <FiPieChart />,
-      },
-      
     ],
   },
   {
@@ -115,7 +114,6 @@ const menuItems: MenuItem[] = [
     collapsible: true,
     icon: <FiGrid />,
     items: [
-
       {
         label: "تنظیمات (Settings)", // تغییر به string
         icon: <FiSettings />,
@@ -128,7 +126,7 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
   setSelectedTab,
   setSelectedSubTab,
 }) => {
-  const [activeIndex, setActiveIndex] = useState<number | string | null>(null);
+  const [activeSubTab, setActiveSubTab] = useState<string | null>(null);
   const [sidebarActive, setSidebarActive] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
@@ -176,7 +174,7 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
   const resetMobileSidebarState = () => {
     setDropdownOpen(false);
     setOpenSections([]);
-    setActiveIndex(null);
+    setActiveSubTab(null);
   };
 
   const MobileSidebarOpen = () => {
@@ -189,30 +187,51 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
   };
 
   const toggleSection = (index: number) => {
-    setOpenSections((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-    );
+  setOpenSections((prev) => {
+    const newOpenSections = prev.includes(index)
+      ? prev.filter((i) => i !== index)  // تب بسته شده است، آن را از آرایه حذف می‌کنیم
+      : [...prev, index];  // تب باز شده است، آن را به آرایه اضافه می‌کنیم
 
-    if (openSections.includes(index)) {
-      setActiveIndex(null);
+    // اگر تب بسته شد، selectedSubTab و selectedTab را ریست کن
+    if (!newOpenSections.includes(index)) {
+      setSelectedTab(null); // ریست کردن تب
+      setSelectedSubTab(null); // ریست کردن ساب‌تب
+      setActiveSubTab(null);  // ریست کردن ساب‌تب فعال
+      localStorage.removeItem('activeSubTab'); // حذف ساب‌تب ذخیره‌شده
     }
-  };
+
+    return newOpenSections;
+  });
+};
+
 
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
     setDropdownOpen(false);
-    setOpenSections([]);
+    setOpenSections([]); // برای بستن تب‌ها
+
+    // ریست کردن selectedSubTab و selectedTab زمانی که سایدبار بسته می‌شود
+    setSelectedSubTab(null); // ساب‌تب‌ها ریست می‌شوند
+    setSelectedTab(null); // تب‌ها ریست می‌شوند
   };
 
   const handleMenuItemClick = (tabName: string) => {
     setSelectedTab(tabName);
-    setSelectedSubTab(null); // هر بار روی تب کلیک می‌کنیم، زیرتب باید null شود
+    setSelectedSubTab(null); 
   };
 
   const handleSubTabClick = (subTabName: string) => {
+    setActiveSubTab(subTabName); // تعیین زیرتب فعال
     setSelectedSubTab(subTabName); // تعیین زیرتب انتخاب شده
     setSelectedTab(subTabName); // همچنین در صورت لزوم تغییر تب
   };
+
+  useEffect(() => {
+    const savedSubTab = localStorage.getItem("activeSubTab");
+    if (savedSubTab) {
+      setActiveSubTab(savedSubTab);
+    }
+  }, []); // در هنگام باز شدن صفحه، اگر ساب‌تب ذخیره شده باشد، آن را فعال می‌کنیم
 
   return (
     <div className={styles.sidebarcontainer}>
@@ -277,23 +296,14 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
           <nav className={styles.menu}>
             {menuItems.map((item, index) => {
               const isSectionOpen = openSections.includes(index);
-              const isActive = activeIndex === index;
-
               return (
                 <div key={index}>
                   <div
                     className={`${styles.menuItem} ${
-                      isActive ? styles.active : ""
+                      item.collapsible && isSectionOpen ? styles.active : ""
                     }`}
                     onClick={() => {
-                      if (item.collapsible) {
-                        if (isSectionOpen) {
-                          setActiveIndex(null);
-                        }
-                        toggleSection(index);
-                      } else {
-                        setActiveIndex(index);
-                      }
+                      toggleSection(index);
                     }}
                   >
                     <div className={styles.menuContent}>
@@ -319,12 +329,12 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
                     item.items.length > 0 && (
                       <div className={styles.subMenu}>
                         {item.items.map((subItem, subIdx) => {
-                          const subItemKey = `${index}-${subIdx}`;
+                          const isActive = activeSubTab === subItem.label;
                           return (
                             <div
                               key={subIdx}
                               className={`${styles.subMenuItem} ${
-                                activeIndex === subItemKey ? styles.active : ""
+                                isActive ? styles.active : ""
                               }`}
                               onClick={() => handleSubTabClick(subItem.label)} // کلیک روی زیرتب
                             >

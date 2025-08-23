@@ -12,3 +12,30 @@
   padding: 2rem 2.5rem 0rem 2.5rem;
   overflow: hidden;
 }
+
+
+.header {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 3px;
+  background-color: #212040;
+  border: 1px solid rgba(255, 255, 255, 0.295);
+  box-shadow: inset 8px 0 13px rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 600;
+  margin: 0;
+  color: #ffffffd2;
+  flex: 1;
+  text-align: right;
+}
