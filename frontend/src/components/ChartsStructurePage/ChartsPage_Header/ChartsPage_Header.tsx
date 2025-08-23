@@ -3,17 +3,23 @@ import { FiFilter, FiColumns, FiCalendar } from "react-icons/fi";
 import { useState } from "react";
 import DateRangeSelector from "./Calendar";
 
-const ChartsPage_Header = ({setSelectedTime}) => {
-  const [dateRange, setDateRange] = useState("۱۴۰۳/۰۲/۰۵ - ۱۴۰۳/۰۲/۱۲");
+// تایپ پراپس‌ها
+interface ChartsPage_HeaderProps {
+  setSelectedTime: (time: string | null) => void;
+  selectedTab: string | null;
+}
 
+const ChartsPage_Header: React.FC<ChartsPage_HeaderProps> = ({ setSelectedTime, selectedTab }) => {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <h1 className={styles.title}>نمای کلی</h1>
+        <h1 className={styles.title}>{selectedTab ? "نمای کلی" : ""}</h1>
 
-        <div className={styles.calendarbox}>
-          <DateRangeSelector setSelectedTime={setSelectedTime} />
-        </div>
+        {selectedTab && (
+          <div className={styles.calendarbox}>
+            <DateRangeSelector setSelectedTime={setSelectedTime} />
+          </div>
+        )}
       </div>
     </header>
   );

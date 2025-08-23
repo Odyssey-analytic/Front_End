@@ -402,7 +402,7 @@ sseRef.current.onmessage = (event: MessageEvent) => {
   };
 
   return (
-    <ChartCardWrapper title="نمودار تعداد کاربران">
+    <ChartCardWrapper title="CrashRateConsumer">
       <div className={styles.glassChart}>
         <Line
           id="myAnimatedChartId"

@@ -1,8 +1,5 @@
-import styles from "./ChartsPage_SideBar.module.css";
-
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import {
   FiHome,
   FiBarChart2,
@@ -23,78 +20,94 @@ import {
   FiX,
 } from "react-icons/fi";
 
-
 import GameLogo from "../../../../public/icons/game-ghost-icon.svg";
 import dashboard_logout_panel_icon from "../../../../public/icons/dashboard_panel_icon.svg";
 import dashboard_sidebar_user_icon from "../../../../public/icons/dashboard_sidebar_user_icon.svg";
 import OdessayLogo from "../../../../public/icons/odessay_logo.svg";
+import styles from "./ChartsPage_SideBar.module.css";
 
-const menuItems = [
+// تایپ پراپس برای setSelectedTab
+interface SidebarProps {
+  setSelectedTab: (tab: string | null) => void;
+  setSelectedSubTab: (subTab: string | null) => void; // اضافه کردن پراپس برای زیرتب
+}
+
+// اصلاح مدل دیتا به نحوی که label از نوع string باشد و icon از نوع JSX.Element
+interface SubMenuItem {
+  label: string; // تغییر به string
+  icon: JSX.Element; // باقی ماندن به عنوان JSX.Element
+}
+
+interface MenuItem {
+  label: string; // تغییر به string
+  collapsible: boolean;
+  icon: JSX.Element;
+  items?: SubMenuItem[]; // زیرمنوهایی که در صورت لزوم وجود دارند
+}
+
+const menuItems: MenuItem[] = [
   {
     label: "داشبوردها", // Dashboards
     collapsible: true,
     icon: <FiGrid />,
     items: [
       {
-        label: (
-          <>
-            نمای کلی <span className={`${styles.englishPart}`}>(Overview)</span>
-          </>
-        ),
+        label: "(AverageSessionLength)", // تغییر به string
         icon: <FiHome />,
       },
       {
-        label: (
-          <>
-            تعامل کاربران{" "}
-            <span className={`${styles.englishPart}`}>(Engagement)</span>
-          </>
-        ),
+        label: "(GameEventSSEConsumer)", // تغییر به string
         icon: <FiBarChart2 />,
       },
       {
-        label: (
-          <>
-            معیارها{" "}
-            <span className={`${styles.englishPart}`}>(Benchmarks)</span>
-          </>
-        ),
+        label: "(DailyActiveUsersConsumer)", // تغییر به string
         icon: <FiActivity />,
       },
       {
-        label: (
-          <>
-            درآمدزایی{" "}
-            <span className={`${styles.englishPart}`}>(Monetization)</span>
-          </>
-        ),
+        label: "(AverageFPSConsumer)", // تغییر به string
         icon: <FiDollarSign />,
       },
       {
-        label: (
-          <>
-            منابع <span className={`${styles.englishPart}`}>(Resources)</span>
-          </>
-        ),
+        label: "(AverageMemoryUsageConsumer)", // تغییر به string
         icon: <FiLayers />,
       },
       {
-        label: (
-          <>
-            پیشرفت{" "}
-            <span className={`${styles.englishPart}`}>(Progression)</span>
-          </>
-        ),
+        label: "(AverageSessionDurationConsumer)", // تغییر به string
         icon: <FiTrendingUp />,
       },
       {
-        label: (
-          <>
-            کیفیت <span className={`${styles.englishPart}`}>(Quality)</span>
-          </>
-        ),
+        label: "(TotalRevenuePerCurrencyConsumer)", // تغییر به string
         icon: <FiPieChart />,
       },
+      {
+        label: "(ARPPUConsumer)", // تغییر به string
+        icon: <FiPieChart />,
+      },
+      {
+        label: "(LevelCompletionRateConsumer)", // تغییر به string
+        icon: <FiPieChart />,
+      },
+            {
+        label: "(AverageTriesPerLevelConsumer)", // تغییر به string
+        icon: <FiPieChart />,
+      },
+                  {
+        label: "(NetResourceFlowConsumer)", // تغییر به string
+        icon: <FiPieChart />,
+      },
+                        {
+        label: "(CrashRateConsumer)", // تغییر به string
+        icon: <FiPieChart />,
+      },
+                              {
+        label: "(ResourceSinkRatioConsumer)", // تغییر به string
+        icon: <FiPieChart />,
+      },
+                                    {
+        label: "(TopErrorTypesConsumer)", // تغییر به string
+        icon: <FiPieChart />,
+      },
+      
     ],
   },
   {
@@ -102,69 +115,31 @@ const menuItems = [
     collapsible: true,
     icon: <FiGrid />,
     items: [
+
       {
-        label: (
-          <>
-            جستجو <span className={`${styles.englishPart}`}>(Explore)</span>
-          </>
-        ),
-        icon: <FiSearch />,
-      },
-      {
-        label: (
-          <>
-            قیف‌ها <span className={`${styles.englishPart}`}>(Funnels)</span>
-          </>
-        ),
-        icon: <FiUsers />,
-      },
-      {
-        label: (
-          <>
-            دسته‌بندی کاربران{" "}
-            <span className={`${styles.englishPart}`}>(Cohorts)</span>
-          </>
-        ),
-        icon: <FiUsers />,
-      },
-      {
-        label: (
-          <>
-            پیکربندی <span className={`${styles.englishPart}`}>(Configs)</span>
-          </>
-        ),
-        icon: <FiTool />,
-      },
-      {
-        label: (
-          <>
-            تنظیمات <span className={`${styles.englishPart}`}>(Settings)</span>
-          </>
-        ),
+        label: "تنظیمات (Settings)", // تغییر به string
         icon: <FiSettings />,
       },
     ],
   },
 ];
 
-const ChartsPage_SideBar = () => {
+const ChartsPage_SideBar: React.FC<SidebarProps> = ({
+  setSelectedTab,
+  setSelectedSubTab,
+}) => {
   const [activeIndex, setActiveIndex] = useState<number | string | null>(null);
-
-  const [sidebarActive, setSidebarActive] = useState(false); // The state for controlling whether the sidebar is open or closed
-  const [isSmallScreen, setIsSmallScreen] = useState(false); // The state to check if the screen width is less than 480px
-  const [collapsed, setCollapsed] = useState(false); // The state for controlling the collapsed or expanded state of the sidebar for screens larger than 480px
-
-  const [openSections, setOpenSections] = useState<number[]>([]);
-  const [selectedGame, setSelectedGame] = useState(localStorage.getItem('game_name'));
-  const Logo = localStorage.getItem('Logo');
+  const [sidebarActive, setSidebarActive] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+  const [openSections, setOpenSections] = useState<number[]>([]); // برای باز و بسته کردن زیرتب‌ها
+  const [selectedGame, setSelectedGame] = useState(
+    localStorage.getItem("game_name") ?? ""
+  ); // مقدار پیش‌فرض
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const gameList = JSON.parse(localStorage.getItem('gamesList') ?? '[]');
+  const gameList = JSON.parse(localStorage.getItem("gamesList") ?? "[]");
   const navigate = useNavigate();
-  
-/*   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const gameList = ["بازی اول", "بازی دوم", "بازی سوم"]; */
-
-  const [username, setUsername] = useState<string>();
+  const [username, setUsername] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
@@ -184,13 +159,26 @@ const ChartsPage_SideBar = () => {
     }
   }, [dropdownOpen]);
 
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 480);
+    };
+
+    checkScreenSize();
+
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
+
   const resetMobileSidebarState = () => {
     setDropdownOpen(false);
     setOpenSections([]);
     setActiveIndex(null);
   };
 
-  // Function to toggle the sidebar open/closed
   const MobileSidebarOpen = () => {
     setSidebarActive(true);
   };
@@ -210,43 +198,28 @@ const ChartsPage_SideBar = () => {
     }
   };
 
-  // Function to collapse/expand the sidebar
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
     setDropdownOpen(false);
     setOpenSections([]);
   };
 
-  useEffect(() => {
-    // Check if the screen width is less than 480px
-    const checkScreenSize = () => {
-      setIsSmallScreen(window.innerWidth < 480); // Set isSmallScreen to true if screen width is less than 480px
-    };
+  const handleMenuItemClick = (tabName: string) => {
+    setSelectedTab(tabName);
+    setSelectedSubTab(null); // هر بار روی تب کلیک می‌کنیم، زیرتب باید null شود
+  };
 
-    // Initial check
-    checkScreenSize();
-
-    // Add event listener for window resize
-    window.addEventListener("resize", checkScreenSize);
-
-    // Cleanup (remove event listener) when the component unmounts
-    return () => {
-      window.removeEventListener("resize", checkScreenSize);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!sidebarActive) resetMobileSidebarState();
-  }, [sidebarActive]);
+  const handleSubTabClick = (subTabName: string) => {
+    setSelectedSubTab(subTabName); // تعیین زیرتب انتخاب شده
+    setSelectedTab(subTabName); // همچنین در صورت لزوم تغییر تب
+  };
 
   return (
     <div className={styles.sidebarcontainer}>
-      {/* For screens larger than 480px, display a fixed sidebar */}
       {!isSmallScreen && (
         <aside
           className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}
         >
-          {/* Game selector section */}
           <div className={styles.headerWrapper}>
             {!collapsed && (
               <div className={styles.brandLogoHeader}>
@@ -258,25 +231,21 @@ const ChartsPage_SideBar = () => {
                 />
               </div>
             )}
-
-            {/* Collapse/Expand button for the sidebar */}
             <div
               className={styles.toggle}
-              onClick={toggleCollapse} // Toggle the collapse state
+              onClick={toggleCollapse}
               aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
             >
               {collapsed ? <FiChevronRight /> : <FiChevronLeft />}
             </div>
-
           </div>
 
           <div className={styles.gameSelectorSection}>
             <hr className={styles.divider} />
-
             <div
               className={styles.gameSelectorBox}
               onClick={(e) => {
-                e.stopPropagation(); // جلوگیری از بسته شدن توسط event کلیک صفحه
+                e.stopPropagation();
                 setDropdownOpen(!dropdownOpen);
               }}
             >
@@ -285,8 +254,6 @@ const ChartsPage_SideBar = () => {
                 <span className={styles.gameName}>{selectedGame}</span>
               )}
             </div>
-
-            {/* Dropdown to select a game */}
             {dropdownOpen && (
               <div className={styles.gameDropdown}>
                 {gameList.map((game) => (
@@ -304,11 +271,9 @@ const ChartsPage_SideBar = () => {
                 ))}
               </div>
             )}
-
             <hr className={styles.divider} />
           </div>
 
-          {/* Navigation menu */}
           <nav className={styles.menu}>
             {menuItems.map((item, index) => {
               const isSectionOpen = openSections.includes(index);
@@ -323,7 +288,7 @@ const ChartsPage_SideBar = () => {
                     onClick={() => {
                       if (item.collapsible) {
                         if (isSectionOpen) {
-                          setActiveIndex(null); // ریست هنگام بستن
+                          setActiveIndex(null);
                         }
                         toggleSection(index);
                       } else {
@@ -333,7 +298,6 @@ const ChartsPage_SideBar = () => {
                   >
                     <div className={styles.menuContent}>
                       <span className={styles.iconMain}>{item.icon}</span>
-
                       {!collapsed && (
                         <span className={styles.label}>{item.label}</span>
                       )}
@@ -362,7 +326,7 @@ const ChartsPage_SideBar = () => {
                               className={`${styles.subMenuItem} ${
                                 activeIndex === subItemKey ? styles.active : ""
                               }`}
-                              onClick={() => setActiveIndex(subItemKey)}
+                              onClick={() => handleSubTabClick(subItem.label)} // کلیک روی زیرتب
                             >
                               <div className={styles.menuContent}>
                                 <span className={styles.iconSub}>
@@ -382,230 +346,34 @@ const ChartsPage_SideBar = () => {
                 </div>
               );
             })}
-
-            {/* --- Profile section --- */}
-            {collapsed ? (
-              <div className={styles.profileMiniSection}>
-                <div className={styles.profileCard}>
-                  <div className={styles.profileMiniInfo}>
-                    <img
-                      src={dashboard_sidebar_user_icon}
-                      alt="Avatar"
-                      className={styles.avatar}
-                    />
-                  </div>
-
-                  <div
-                    className={styles.logoutMiniBtn}
-                    onClick={() => (window.location.href = "/panel")}
-                  >
-                    <img
-                      src={dashboard_logout_panel_icon}
-                      alt="Logout"
-                      className={styles.logoutMiniIcon}
-                    />
-                  </div>
-                </div>
-              </div>
-            ) : (
-              // حالت کامل: کارت پروفایل فعلی
-              <div className={styles.profileSection}>
-                <div className={styles.profileCard}>
-                  <div className={styles.profileInfo}>
-                    <img
-                      src={dashboard_sidebar_user_icon}
-                      alt="Avatar"
-                      className={styles.avatar}
-                    />
-                    <div className={styles.profileText}>
-                      <div className={styles.profileName}>{username}</div>
-                      <div className={styles.profileStatus}>آنلاین</div>
-                    </div>
-                  </div>
-
-                  <div
-                    className={styles.logoutBtn}
-                    onClick={() => (window.location.href = "/panel")}
-                  >
-                    <div className={styles.logoutContent}>
-                      <img
-                        src={dashboard_logout_panel_icon}
-                        alt="Logout"
-                        className={styles.logoutIcon}
-                      />
-                      <span className={styles.profilePanel}>پنل کاربری</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
           </nav>
-        </aside>
-      )}
 
-      {/* Only show the hamburger icon if the screen width is smaller than 480px */}
-      {isSmallScreen && (
-        <div
-          className={`${styles.hamburgerIcon} ${
-            sidebarActive ? styles.hamburgerIconActive : styles.hamburgerIcon
-          }`}
-          onClick={MobileSidebarOpen}
-        >
-          <FiMenu />
-        </div>
-      )}
-
-      {/* If the screen width is smaller than 480px, display a collapsible sidebar */}
-      {sidebarActive && isSmallScreen && (
-        <aside className={`${styles.sidebarActive}`}>
-          {/* Button to close the sidebar */}
-          <div
-            className={styles.MobilecloseSidebar}
-            onClick={MobileSidebarClose}
-          >
-            <FiX />
-          </div>
-
-          {/* Game selector section */}
-          <div className={styles.MobilegameHeader}>
-            <div className={styles.MobilegameSelectorWrapper}>
-              <div
-                className={`${styles.MobilegameSelectorBox} ${
-                  dropdownOpen ? styles.MobilegameSelectorBoxActive : ""
-                }`}
-                onClick={(e) => {
-                  e.stopPropagation(); // جلوگیری از بسته شدن توسط event کلیک صفحه
-                  setDropdownOpen(!dropdownOpen);
-                }}
-              >
-                <img
-                  src={GameLogo}
-                  alt="Game Logo"
-                  className={styles.MobilegameLogo}
-                />
-                {!collapsed && (
-                  <span className={styles.MobilegameName}>{selectedGame}</span>
-                )}
-              </div>
-            </div>
-
-            {/* Dropdown to select a game */}
-            {dropdownOpen && (
-              <div className={styles.MobilegameDropdown}>
-                {gameList.map((game) => (
-                  <div
-                    key={game}
-                    className={styles.MobilegameDropdownItem}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedGame(game);
-                      setDropdownOpen(false);
-                      localStorage.setItem("game_name", game.title);
-                      localStorage.setItem("Logo", game.icon);
-                      navigate(`/dashboard/${game.id}`);
-                    }}
-                  >
-                    {game}
-                  </div>
-                ))}
-              </div>
-            )}
-
-            <hr className={styles.Mobiledivider} />
-          </div>
-
-          {/* Navigation menu */}
-          <nav className={styles.Mobilemenu}>
-            {menuItems.map((item, index) => {
-              const isSectionOpen = openSections.includes(index);
-              const isActive = activeIndex === index;
-
-
-              return (
-                <div key={index}>
-                  <div
-                    className={`${styles.MobilemenuItem} ${
-                      isActive ? styles.active : ""
-                    }`}
-                    onClick={() => {
-                      if (item.collapsible) {
-                        if (isSectionOpen) {
-                          setActiveIndex(null); // ریست هنگام بستن
-                        }
-                        toggleSection(index);
-                      } else {
-                        setActiveIndex(index);
-                      }
-                    }}
-                  >
-                    <div className={styles.MobilemenuContent}>
-                      <span className={styles.iconMain}>{item.icon}</span>
-
-                      <span className={styles.Mobilelabel}>{item.label}</span>
-                      <span className={styles.Mobilechevron}>
-                        {isSectionOpen ? <FiChevronDown /> : <FiChevronRight />}
-                      </span>
-                    </div>
-                  </div>
-
-                  {isSectionOpen && item.items && item.items.length > 0 && (
-                    <div className={styles.MobilesubMenu}>
-                      {item.items.map((subItem, subIdx) => {
-                        const subItemKey = `${index}-${subIdx}`;
-                        return (
-                          <div
-                            key={subIdx}
-                            className={`${styles.MobilesubMenuItem} ${
-                              activeIndex === subItemKey ? styles.active : ""
-                            }`}
-                            onClick={() => setActiveIndex(subItemKey)}
-                          >
-                            <div className={styles.MobilemenuContent}>
-                              <span className={styles.MobileiconSub}>
-                                {subItem.icon}
-                              </span>
-                              <span className={styles.Mobilelabel}>
-                                {subItem.label}
-                              </span>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </nav>
-          <div className={styles.MobileprofileSection}>
-            <hr className={styles.Mobiledivider} />
-
-            <div className={styles.MobileprofileCard}>
-              <div className={styles.MobileprofileInfo}>
+          {/* پایین سایدبار */}
+          <div className={styles.profileSection}>
+            <div className={styles.profileCard}>
+              <div className={styles.profileInfo}>
                 <img
                   src={dashboard_sidebar_user_icon}
                   alt="Avatar"
-                  className={styles.Mobileavatar}
+                  className={styles.avatar}
                 />
-                <div className={styles.MobileprofileText}>
-                  <div className={styles.MobileprofileName}>{username}</div>
-                  <div className={styles.MobileprofileStatus}>آنلاین</div>
+                <div className={styles.profileText}>
+                  <div className={styles.profileName}>{username}</div>
+                  <div className={styles.profileStatus}>آنلاین</div>
                 </div>
               </div>
 
-              <hr className={styles.Mobiledivider} />
-
               <div
-                className={styles.MobilelogoutBtn}
+                className={styles.logoutBtn}
                 onClick={() => (window.location.href = "/panel")}
               >
-                <div className={styles.MobilelogoutContent}>
+                <div className={styles.logoutContent}>
                   <img
                     src={dashboard_logout_panel_icon}
                     alt="Logout"
-                    className={styles.MobilelogoutIcon}
+                    className={styles.logoutIcon}
                   />
-                  <span>پنل کاربری</span>
+                  <span className={styles.profilePanel}>پنل کاربری</span>
                 </div>
               </div>
             </div>
