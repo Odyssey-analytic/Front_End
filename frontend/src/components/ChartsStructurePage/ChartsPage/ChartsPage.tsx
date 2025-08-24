@@ -14,16 +14,18 @@ const tabTranslations: { [key: string]: string } = {
   "AverageSessionDurationConsumer": "میانگین مدت زمان جلسه",
   "TotalRevenuePerCurrencyConsumer": "درآمد کل به ازای هر ارز",
   "ARPPUConsumer": "ARPPU",
-  "LevelCompletionRateConsumer": "نرخ تکمیل هر سطح",
-  "AverageTriesPerLevelConsumer": "میانگین تلاش‌ها در هر سطح",
-  "NetResourceFlowConsumer": "جریان منابع خالص",
+  //"LevelCompletionRateConsumer": "نرخ تکمیل هر سطح",
+  //"AverageTriesPerLevelConsumer": "میانگین تلاش‌ها در هر سطح",
+  //"NetResourceFlowConsumer": "جریان منابع خالص",
   "CrashRateConsumer": "نرخ کرش",
-  "ResourceSinkRatioConsumer": "نسبت مصرف منابع",
-  "TopErrorTypesConsumer": "انواع برتر خطاها"
+  //"ResourceSinkRatioConsumer": "نسبت مصرف منابع",
+  //"TopErrorTypesConsumer": "انواع برتر خطاها"
 };
 
 const ChartsPage = () => {
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  let today=new Date()
+  today.setUTCHours(0,0,0,0)
+  const [selectedTime, setSelectedTime] = useState<string | null>(today.toISOString());
   const [selectedTab, setSelectedTab] = useState<string | null>(null);
   const [selectedSubTab, setSelectedSubTab] = useState<string | null>(null);
 

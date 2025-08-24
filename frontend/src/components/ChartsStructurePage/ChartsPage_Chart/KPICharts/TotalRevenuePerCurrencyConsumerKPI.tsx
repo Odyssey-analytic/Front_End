@@ -33,7 +33,7 @@ ChartJS.register(
 );
 
 const TotalRevenuePerCurrencyConsumer = ({selectedTime}) => {
-  const USE_MOCK = true // ← وقتی true است، فقط داده‌های ماک و گرادیان نمایش داده می‌شوند
+  const USE_MOCK = false // ← وقتی true است، فقط داده‌های ماک و گرادیان نمایش داده می‌شوند
 
   const mockLabels = Array.from(
     { length: 24 },
@@ -195,7 +195,7 @@ const TotalRevenuePerCurrencyConsumer = ({selectedTime}) => {
   //   `https://odysseyanalytics.ir/api/kpi/sse/EventCount?product_id=${gameId}&start_time=${selectedTime}&update_interval=${interval}`
   // );
     sseRef.current = new EventSource(
-    `https://odysseyanalytics.ir/api/kpi/sse/NetResourceFlow?product_id=${gameId}&start_time=${selectedTime}&update_interval=${interval}`
+    `https://odysseyanalytics.ir/api/kpi/sse/TotalRevenuePerCurrency?product_id=${gameId}&start_time=${selectedTime}&update_interval=${interval}`
   );
 
 

@@ -52,10 +52,6 @@ const menuItems: MenuItem[] = [
     icon: <FiGrid />,
     items: [
       {
-        label: "AverageSessionLength", // تغییر به string
-        icon: <FiHome />,
-      },
-      {
         label: "GameEventSSEConsumer", // تغییر به string
         icon: <FiBarChart2 />,
       },
@@ -83,30 +79,26 @@ const menuItems: MenuItem[] = [
         label: "ARPPUConsumer", // تغییر به string
         icon: <FiHome />,
       },
-      {
-        label: "LevelCompletionRateConsumer", // تغییر به string
-        icon: <FiBarChart2 />,
-      },
-      {
-        label: "AverageTriesPerLevelConsumer", // تغییر به string
-        icon: <FiActivity />,
-      },
-      {
-        label: "NetResourceFlowConsumer", // تغییر به string
-        icon: <FiDollarSign />,
-      },
+      // {
+      //   label: "AverageTriesPerLevelConsumer", // تغییر به string
+      //   icon: <FiActivity />,
+      // },
+      // {
+      //   label: "NetResourceFlowConsumer", // تغییر به string
+      //   icon: <FiDollarSign />,
+      // },
       {
         label: "CrashRateConsumer", // تغییر به string
         icon: <FiLayers />,
       },
-      {
-        label: "ResourceSinkRatioConsumer", // تغییر به string
-        icon: <FiTrendingUp />,
-      },
-      {
-        label: "TopErrorTypesConsumer", // تغییر به string
-        icon: <FiPieChart />,
-      },
+      // {
+      //   label: "ResourceSinkRatioConsumer", // تغییر به string
+      //   icon: <FiTrendingUp />,
+      // },
+      // {
+      //   label: "TopErrorTypesConsumer", // تغییر به string
+      //   icon: <FiPieChart />,
+      // },
     ],
   },
   {

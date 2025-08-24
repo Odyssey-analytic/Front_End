@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import KPI_chart from '../KPICharts/ActiveUsersKPI'; // چارت‌های شما
+// import KPI_chart from '../KPICharts/ActiveUsersKPI'; // چارت‌های شما
 import ARPPUConsumerKPI from '../KPICharts/ARPPUConsumerKPI'; // چارت‌های جدید
 import AverageFPSConsumerKPI from '../KPICharts/AverageFPSConsumerKPI'; 
 import AverageMemoryUsageConsumerKPI from '../KPICharts/AverageMemoryUsageConsumerKPI'; 
 import AverageSessionDurationConsumerKPI from '../KPICharts/AverageSessionDurationConsumerKPI'; 
-import AverageSessionLengthKPI from '../KPICharts/AverageSessionLengthKPI'; 
-import AverageTriesPerLevelConsumerKPI from '../KPICharts/AverageTriesPerLevelConsumerKPI'; 
+// import AverageTriesPerLevelConsumerKPI from '../KPICharts/AverageTriesPerLevelConsumerKPI'; 
 import CrashRateConsumerKPI from '../KPICharts/CrashRateConsumerKPI'; 
 import DailyActiveUsersConsumerKPI from '../KPICharts/DailyActiveUsersConsumerKPI'; 
 import GameEventSSEConsumerKPI from '../KPICharts/GameEventSSEConsumerKPI'; 
-import LevelCompletionRateConsumerKPI from '../KPICharts/LevelCompletionRateConsumerKPI'; 
-import NetResourceFlowConsumerKPI from '../KPICharts/NetResourceFlowConsumerKPI'; 
-import ResourceSinkRatioConsumerKPI from '../KPICharts/ResourceSinkRatioConsumerKPI'; 
-import TopErrorTypesConsumerKPI from '../KPICharts/TopErrorTypesConsumerKPI'; 
+// import NetResourceFlowConsumerKPI from '../KPICharts/NetResourceFlowConsumerKPI'; 
+// import ResourceSinkRatioConsumerKPI from '../KPICharts/ResourceSinkRatioConsumerKPI'; 
+// import TopErrorTypesConsumerKPI from '../KPICharts/TopErrorTypesConsumerKPI'; 
 import TotalRevenuePerCurrencyConsumerKPI from '../KPICharts/TotalRevenuePerCurrencyConsumerKPI'; 
 
 import styles from './ChartsPage_ChartGrid.module.css';
@@ -32,15 +30,13 @@ const ChartsPage_ChartGrid: React.FC<ChartsPage_ChartGridProps> = ({ selectedTim
     "AverageFPSConsumer": <AverageFPSConsumerKPI selectedTime={selectedTime} />,
     "AverageMemoryUsageConsumer": <AverageMemoryUsageConsumerKPI selectedTime={selectedTime} />,
     "AverageSessionDurationConsumer": <AverageSessionDurationConsumerKPI selectedTime={selectedTime} />,
-    "AverageSessionLength": <AverageSessionLengthKPI selectedTime={selectedTime} />,
-    "AverageTriesPerLevelConsumer": <AverageTriesPerLevelConsumerKPI selectedTime={selectedTime} />,
+    // "AverageTriesPerLevelConsumer": <AverageTriesPerLevelConsumerKPI selectedTime={selectedTime} />,
     "CrashRateConsumer": <CrashRateConsumerKPI selectedTime={selectedTime} />,
     "DailyActiveUsersConsumer": <DailyActiveUsersConsumerKPI selectedTime={selectedTime} />,
     "GameEventSSEConsumer": <GameEventSSEConsumerKPI selectedTime={selectedTime} />,
-    "LevelCompletionRateConsumer": <LevelCompletionRateConsumerKPI selectedTime={selectedTime} />,
-    "NetResourceFlowConsumer": <NetResourceFlowConsumerKPI selectedTime={selectedTime} />,
-    "ResourceSinkRatioConsumer": <ResourceSinkRatioConsumerKPI selectedTime={selectedTime} />,
-    "TopErrorTypesConsumer": <TopErrorTypesConsumerKPI selectedTime={selectedTime} />,
+    // "NetResourceFlowConsumer": <NetResourceFlowConsumerKPI selectedTime={selectedTime} />,
+    // "ResourceSinkRatioConsumer": <ResourceSinkRatioConsumerKPI selectedTime={selectedTime} />,
+    // "TopErrorTypesConsumer": <TopErrorTypesConsumerKPI selectedTime={selectedTime} />,
     "TotalRevenuePerCurrencyConsumer": <TotalRevenuePerCurrencyConsumerKPI selectedTime={selectedTime} />,
   };
 
