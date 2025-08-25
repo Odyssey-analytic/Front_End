@@ -45,69 +45,66 @@ interface MenuItem {
   items?: SubMenuItem[]; // زیرمنوهایی که در صورت لزوم وجود دارند
 }
 
+// ترجمه‌ها
+const tabTranslations: { [key: string]: string } = {
+  GameEventSSEConsumer: "رویدادهای بازی",
+  DailyActiveUsersConsumer: "کاربران فعال روزانه",
+  AverageFPSConsumer: "میانگین فریم‌برثانیه",
+  AverageMemoryUsageConsumer: "میانگین استفاده از حافظه",
+  AverageSessionDurationConsumer: "میانگین مدت زمان جلسه",
+  TotalRevenuePerCurrencyConsumer: "درآمد کل به ازای هر ارز",
+  ARPPUConsumer: "درآمد میانگین به ازای هر کاربر پرداخت‌کننده",
+  CrashRateConsumer: "نرخ کرش",
+  Settings: "تنظیمات",
+};
+
 const menuItems: MenuItem[] = [
   {
-    label: "داشبوردها", // Dashboards
+    label: "داشبوردها", // کد انگلیسی باقی می‌ماند
     collapsible: true,
     icon: <FiGrid />,
     items: [
       {
-        label: "GameEventSSEConsumer", // تغییر به string
+        label: "GameEventSSEConsumer", // کد انگلیسی
         icon: <FiBarChart2 />,
       },
       {
-        label: "DailyActiveUsersConsumer", // تغییر به string
+        label: "DailyActiveUsersConsumer", // کد انگلیسی
         icon: <FiActivity />,
       },
       {
-        label: "AverageFPSConsumer", // تغییر به string
+        label: "AverageFPSConsumer", // کد انگلیسی
         icon: <FiDollarSign />,
       },
       {
-        label: "AverageMemoryUsageConsumer", // تغییر به string
+        label: "AverageMemoryUsageConsumer", // کد انگلیسی
         icon: <FiLayers />,
       },
       {
-        label: "AverageSessionDurationConsumer", // تغییر به string
+        label: "AverageSessionDurationConsumer", // کد انگلیسی
         icon: <FiTrendingUp />,
       },
       {
-        label: "TotalRevenuePerCurrencyConsumer", // تغییر به string
+        label: "TotalRevenuePerCurrencyConsumer", // کد انگلیسی
         icon: <FiPieChart />,
       },
       {
-        label: "ARPPUConsumer", // تغییر به string
+        label: "ARPPUConsumer", // کد انگلیسی
         icon: <FiHome />,
       },
-      // {
-      //   label: "AverageTriesPerLevelConsumer", // تغییر به string
-      //   icon: <FiActivity />,
-      // },
-      // {
-      //   label: "NetResourceFlowConsumer", // تغییر به string
-      //   icon: <FiDollarSign />,
-      // },
       {
-        label: "CrashRateConsumer", // تغییر به string
+        label: "CrashRateConsumer", // کد انگلیسی
         icon: <FiLayers />,
       },
-      // {
-      //   label: "ResourceSinkRatioConsumer", // تغییر به string
-      //   icon: <FiTrendingUp />,
-      // },
-      // {
-      //   label: "TopErrorTypesConsumer", // تغییر به string
-      //   icon: <FiPieChart />,
-      // },
     ],
   },
   {
-    label: "داشبورد سفارشی", // Custom Dashboards
+    label: "داشبوردهای سفارشی", // کد انگلیسی
     collapsible: true,
     icon: <FiGrid />,
     items: [
       {
-        label: "تنظیمات (Settings)", // تغییر به string
+        label: "Settings", // کد انگلیسی
         icon: <FiSettings />,
       },
     ],
@@ -300,7 +297,10 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
                     <div className={styles.menuContent}>
                       <span className={styles.iconMain}>{item.icon}</span>
                       {!collapsed && (
-                        <span className={styles.label}>{item.label}</span>
+                        <span className={styles.label}>
+                          {tabTranslations[item.label] || item.label}{" "}
+                          {/* نمایش فارسی */}
+                        </span>
                       )}
                       {item.collapsible && !collapsed && (
                         <span className={styles.chevron}>
@@ -327,7 +327,7 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
                               className={`${styles.subMenuItem} ${
                                 isActive ? styles.active : ""
                               }`}
-                              onClick={() => handleSubTabClick(subItem.label)} // کلیک روی زیرتب
+                              onClick={() => handleSubTabClick(subItem.label)}
                             >
                               <div className={styles.menuContent}>
                                 <span className={styles.iconSub}>
@@ -335,7 +335,8 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
                                 </span>
                                 {!collapsed && (
                                   <span className={styles.label}>
-                                    {subItem.label}
+                                    {tabTranslations[subItem.label] ||
+                                      subItem.label}
                                   </span>
                                 )}
                               </div>
@@ -348,8 +349,7 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
               );
             })}
           </nav>
-          {/* پایین سایدبار */}
-          {/* پایین سایدبار */}
+
           <div className={styles.MobileprofileSection}>
             <div className={styles.MobileprofileCard}>
               <div className={styles.MobileprofileInfo}>
@@ -357,6 +357,7 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
                   src={dashboard_sidebar_user_icon}
                   alt="Avatar"
                   className={styles.avatar}
+                  onClick={() => navigate("/dashboard")} // اضافه کردن رویداد onClick
                 />
                 {!collapsed && (
                   <div className={styles.profileText}>
@@ -368,7 +369,7 @@ const ChartsPage_SideBar: React.FC<SidebarProps> = ({
 
               <div
                 className={styles.logoutBtn}
-                onClick={() => (window.location.href = "/dashboard")}
+                onClick={() => (window.location.href = "/")}
               >
                 <div className={styles.logoutContent}>
                   <img

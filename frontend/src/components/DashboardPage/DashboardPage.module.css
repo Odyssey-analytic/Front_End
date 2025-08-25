@@ -1,7 +1,8 @@
 .dashboardContainer {
   background-color: #1C1C38;
   min-height: 100vh;
-  max-height: 5000px;
+  max-height: 10000px;
+  overflow-y: auto;
 }
 
 .gameList {
